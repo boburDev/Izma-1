@@ -1,0 +1,144 @@
+.izma__finance__salary-table {
+   padding: 0px 20px;
+   padding-top: 10px;
+   background: #FFFFFF;
+   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
+   border-radius: 4px;
+}
+
+.izma__finance__salary-table tr:nth-child(even) {
+   background-color: #FFFFFF;
+}
+
+.izma__finance__salary-table tr:nth-child(even):hover {
+   background-color: #FFFFFF;
+}
+
+.izma__finance__salary-table .ant-table-tbody>tr>td {
+   border-top: 1px solid #f0f0f0;
+   border-bottom: 1px solid #f0f0f0;
+}
+
+.izma__finance__salary-table .ant-table-thead>tr>th {
+   background-color: #ffffff !important;
+   color: #2F2D51 !important;
+}
+
+.ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+   background-color: transparent !important;
+}
+
+.ant-table-tbody>tr>td {
+   border: none;
+}
+
+.izma__table-delete-btn {
+   width: 35px;
+   height: 35px;
+}
+
+.izma__finance-salary-up-table {
+   margin-top: 35px;
+   padding-bottom: 35px;
+}
+
+.izma__finance-salary-bottom-wrapper {
+   margin-top: 35px;
+}
+
+.izma__finance__salary-table-s {
+   padding: 0px 20px;
+   padding-top: 10px;
+   background: #FFFFFF;
+   border-radius: 4px;
+}
+
+.izma__finance__salary-table-s tr:nth-child(even) {
+   background-color: #FFFFFF;
+}
+
+.izma__finance__salary-table-s tr:nth-child(even):hover {
+   background-color: #FFFFFF;
+}
+
+.izma__finance__salary-table-s .ant-table-tbody>tr>td {
+   border-top: 1px solid #f0f0f0;
+   border-bottom: 1px solid #f0f0f0;
+}
+
+.izma__finance__salary-table-s .ant-table-thead>tr>th {
+   background-color: #ffffff !important;
+   color: #2F2D51 !important;
+}
+
+.ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+   background-color: transparent !important;
+}
+
+.ant-table-tbody>tr>td {
+   border: none;
+}
+
+.izma__table-delete-btn {
+   width: 35px;
+   height: 35px;
+}
+
+.izma__finance-salary-up-table {
+   margin-top: 35px;
+   padding-bottom: 35px;
+}
+
+.izma__finance-salary-bottom-wrapper {
+   margin-top: 35px;
+}
+
+// ==============
+.izma__costs-table {
+   width: 100%;
+   margin-top: 40px;
+   padding-bottom: 50px;
+
+   .heading {
+      h1 {
+         font-family: "Jost";
+         font-style: normal;
+         font-weight: 500;
+         font-size: 22px;
+         line-height: 32px;
+         background-color: #fff;
+         color: #222222;
+         margin-bottom: 26px;
+      }
+   }
+
+   .main_order {
+      .main_heading {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding: 24px 0px 20px 0px;
+         background-color: #fff;
+         color: #222222;
+         font-family: "Jost";
+         font-style: normal;
+         font-weight: 500;
+         padding-right: 490px;
+         font-size: 18px;
+         line-height: 26px;
+      }
+
+      .main_infor {
+         .information {
+            border-top: 1px solid #6B6A6A;
+            padding: 16px 0px;
+            display: flex;
+            align-items: center;
+            padding-right: 450px;
+            justify-content: space-between;
+         }
+      }
+
+
+   }
+}

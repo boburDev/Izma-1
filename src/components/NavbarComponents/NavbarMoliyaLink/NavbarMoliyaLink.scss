@@ -1,0 +1,32 @@
+.moliya_link {
+   font-style: normal;
+   font-weight: 500;
+   font-size: 18px;
+   line-height: 26px;
+   color: #000000;
+   margin-bottom: 21px;
+   text-decoration: none;
+   position: relative;
+   padding: 0 0 5px 0;
+
+   &::before {
+      content: "";
+      position: absolute;
+      width: 0%;
+      padding: 2px 0;
+      
+      height: 1px;
+      left: 0;
+      // right: 0;
+      background: #090761;
+      bottom: 0;
+      transition: all ease 0.5s;
+   }
+
+   &.active {
+      &::before {
+         width: 100%;
+         transition: all ease 0.5s;
+      }
+   }
+}

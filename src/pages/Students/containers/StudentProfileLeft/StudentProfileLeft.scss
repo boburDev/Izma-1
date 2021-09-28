@@ -1,0 +1,424 @@
+.izma__students-payment-inner-left {
+   display: flex;
+   flex-wrap: wrap;
+   margin-top: 150px;
+
+}
+
+.izma__students-payment-inner-left-wrapper {
+   &.active {
+      &::before {
+         position: fixed;
+         content: '';
+         width: 100%;
+         height: 100%;
+         background-color: rgb(128, 128, 128);
+         z-index: 9;
+         top: 0;
+         left: 0;
+         bottom: 0;
+         right: 0;
+         margin: auto;
+         opacity: 0.3;
+      }
+   }
+}
+
+
+
+.izma__students-payment-inner {
+   font-family: "Calibri";
+   display: flex;
+   flex-direction: column;
+   padding: 50px 30px;
+}
+
+.izma__students-payment-inner-headings {
+   padding-top: 40px;
+   display: flex;
+   align-items: center;
+}
+
+.izma__students-payment-inner-heading {
+   font-family: "Calibri";
+   font-weight: 600;
+   font-size: 30px;
+   line-height: 43px;
+   text-transform: capitalize;
+   margin-right: 20px;
+   color: #2F2D51;
+}
+
+.izma__students-payment-inner-title {
+   font-weight: bold;
+   font-size: 20px;
+   line-height: 24px;
+   text-transform: capitalize;
+   color: #9493B4;
+}
+
+
+.izma__students-payment-inner-left-up {
+   position: relative;
+   width: 350px;
+   margin-top: 150px;
+   padding-left: 35px;
+   background: #FFFFFF;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+   border-radius: 15px;
+   margin-right: 45px;
+}
+
+
+
+
+
+.izma__students-payment-inner-left-up-left {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.izma__students-payment-inner-left-up-left-name {
+   font-style: normal;
+   font-weight: normal;
+   margin-top: 70px;
+   font-size: 22px;
+   line-height: 32px;
+   color: #000000;
+}
+
+.izma__students-payment-inner-left-up-left-id {
+   font-weight: normal;
+   font-size: 12px;
+   line-height: 15px;
+   color: #747474;
+   margin-bottom: 11px;
+}
+
+.izma__students-payment-inner-left-center {
+   font-family: "Calibri";
+   padding-left: 40px;
+}
+
+.izma__students-payment-inner-left-center-number-wrapper {
+   display: flex;
+   align-items: center;
+   margin-top: 11px;
+}
+
+.izma__students-payment-inner-left-center-text {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 23px;
+   color: #7D7D7D;
+}
+
+.izma__students-payment-inner-left-center-number-number-wrapper {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 20px;
+   color: #000000;
+}
+
+.izma__students-payment-inner-left-center-number-number {
+   margin-left: 16px;
+}
+
+.izma__students-payment-inner-left-center-balans-balans {
+   margin-left: 26px;
+}
+
+.izma__students-payment-inner-left-center-role-role-wrapper {
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 24px;
+   border: 1px solid #090761;
+   border-radius: 30px;
+   color: #090761;
+}
+
+.izma__students-payment-inner-left-center-role-role {
+   padding: 3px 22px;
+   margin-left: 30px;
+}
+
+.izma__students-payment-inner-left-center-filial-filial {
+   padding: 5px 20px;
+   margin-left: 23px;
+}
+
+.izma__students-payment-inner-left-bottom-round {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+}
+
+.izma__students-payment-inner-left-bottom {
+   display: flex;
+   align-items: center;
+   padding-left: 40px;
+   margin-top: 40px;
+   padding-bottom: 25px;
+}
+
+
+
+
+
+.check-modal {
+   max-width: 586px !important;
+
+   .ant-modal-close {
+      display: none !important;
+   }
+}
+
+.student-sendSms {
+   position: fixed;
+   top: 0;
+   right: -500px;
+   width: 400px;
+   height: 100%;
+   background-color: #fff;
+   z-index: 10;
+   transition: 0.3s;
+
+   &.active {
+      right: 0;
+   }
+
+   .sms-heading {
+      display: flex;
+      align-items: center;
+      padding: 30px 20px;
+      justify-content: space-between;
+      border-bottom: 1px solid #000;
+
+      h1 {
+         font-size: 20px;
+      }
+
+      button {
+         border: none;
+         background-color: transparent;
+         cursor: pointer;
+      }
+   }
+
+   .sms-content {
+      margin-top: 30px;
+      padding: 0 20px;
+   }
+}
+
+
+.izma__finance-payment-inner-left {
+   display: flex;
+   flex-wrap: wrap;
+   margin-top: 150px;
+}
+
+.izma__finance-payment-inner {
+   font-family: "Calibri";
+   display: flex;
+   flex-direction: column;
+   padding: 50px 30px;
+   background-color: var(--background-main);
+}
+
+.izma__finance-payment-inner-headings {
+   padding-top: 40px;
+   display: flex;
+   align-items: center;
+}
+
+.izma__finance-payment-inner-heading {
+   font-family: "Calibri";
+   font-weight: 600;
+   font-size: 30px;
+   line-height: 43px;
+   text-transform: capitalize;
+   margin-right: 20px;
+   color: #2F2D51;
+}
+
+.izma__finance-payment-inner-title {
+   font-weight: bold;
+   font-size: 20px;
+   line-height: 24px;
+   text-transform: capitalize;
+   color: #9493B4;
+}
+
+
+.izma__finance-payment-inner-left-up {
+   position: relative;
+   width: 350px;
+   padding-left: 35px;
+   background: #FFFFFF;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+   border-radius: 15px;
+   margin-right: 45px;
+}
+
+.izma__finance-payment-inner-left-up-box-black {
+   position: absolute;
+   top: -42.5px;
+   left: 158px;
+   width: 85px;
+   height: 85px;
+   background: #C9C9C9;
+   border-radius: 80px;
+}
+
+.izma__finance-payment-inner-left-up-box {
+   position: absolute;
+   right: 25px;
+   width: 40px;
+   height: 40px;
+   border: none;
+   outline: none;
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-color: #fff;
+   border-radius: 50%;
+}
+
+.izma__finance-payment-inner-left-up-box-blue {
+   background-image: url('../../../../assets/Icons/fcom.svg');
+   top: 40px;
+}
+
+.izma__finance-payment-inner-left-up-box-green {
+   background-image: url('../../../../assets/Icons/fedit.svg');
+   top: 85px;
+}
+
+.izma__finance-payment-inner-left-up-box-orange {
+   background-image: url('../../../../assets/Icons/fphone.svg');
+   top: 130px;
+}
+
+.izma__finance-payment-inner-left-up-box-red {
+   background-image: url('../../../../assets/Icons/fdel.svg');
+   top: 175px;
+}
+
+.izma__finance-payment-inner-left-up-left {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.izma__finance-payment-inner-left-up-left-name {
+   font-style: normal;
+   font-weight: normal;
+   margin-top: 70px;
+   font-size: 22px;
+   line-height: 32px;
+   color: #000000;
+}
+
+.izma__finance-payment-inner-left-up-left-id {
+   font-weight: normal;
+   font-size: 12px;
+   line-height: 15px;
+   color: #747474;
+   margin-bottom: 11px;
+}
+
+.izma__finance-payment-inner-left-center {
+   font-family: "Calibri";
+   padding-left: 40px;
+}
+
+.izma__finance-payment-inner-left-center-number-wrapper {
+   display: flex;
+   align-items: center;
+   margin-top: 11px;
+}
+
+.izma__finance-payment-inner-left-center-text {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 23px;
+   color: #7D7D7D;
+}
+
+.izma__finance-payment-inner-left-center-number-number-wrapper {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 20px;
+   color: #000000;
+}
+
+.izma__finance-payment-inner-left-center-number-number {
+   margin-left: 16px;
+}
+
+.izma__finance-payment-inner-left-center-balans-balans {
+   margin-left: 26px;
+}
+
+.izma__finance-payment-inner-left-center-role-role-wrapper {
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 24px;
+   border: 1px solid #090761;
+   border-radius: 30px;
+   color: #090761;
+}
+
+.izma__finance-payment-inner-left-center-role-role {
+   padding: 3px 22px;
+   margin-left: 30px;
+}
+
+.izma__finance-payment-inner-left-center-filial-filial {
+   padding: 5px 20px;
+   margin-left: 23px;
+}
+
+.izma__finance-payment-inner-left-bottom-round {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+}
+
+.izma__finance-payment-inner-left-bottom {
+   display: flex;
+   align-items: center;
+   padding-left: 40px;
+   margin-top: 40px;
+   padding-bottom: 25px;
+}
+
+.izma__finance-payment-inner-left-btn {
+   width: 40px;
+   height: 40px;
+   border: none;
+   outline: none;
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-color: #fff;
+   border-radius: 50%;
+}
+
+.izma__finance-payment-inner-drive {
+   background-image: url('../../../../assets/Icons/drive.svg');
+   margin-right: 15px;
+}
+
+.izma__finance-payment-inner-card {
+   background-image: url('../../../../assets/Icons/card.svg');
+   margin-right: 15px;
+}
+
+.izma__finance-payment-inner-refresh {
+   background-image: url('../../../../assets/Icons/refreshn.svg');
+}

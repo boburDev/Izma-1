@@ -1,0 +1,71 @@
+body {
+   margin: 0;
+   font-family: 'Jost', 'Calibri', sans-serif;
+   box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+   margin: 0;
+   padding: 0;
+}
+
+
+
+.app {
+   overflow-y: hidden;
+   display: flex;
+   width: 100%;
+   &-left {
+      width: 300px;
+      border-right: 1px solid #E7E7EC;
+      &.active {
+         width: 100px;
+      }
+   }
+
+   &-right {
+      width: 100%;
+      height: 100vh;
+
+      &-header {
+         height: auto;
+      }
+
+      &-center {
+         background: #F7F9FB;
+         height: 85%;
+         overflow-y: scroll;
+         padding: 20px;
+         box-sizing: border-box;
+         &::-webkit-scrollbar {
+            width: 10px;
+         }
+
+         &::-webkit-scrollbar-track {
+            background: #fff;
+         }
+
+         &::-webkit-scrollbar-thumb {
+            background: #090761;
+         }
+
+         
+      }
+
+   }
+   
+}
+
+.ant-drawer-body {
+   &::-webkit-scrollbar {
+      width: 10px;
+   }
+
+   &::-webkit-scrollbar-track {
+      background: #fff;
+   }
+
+   &::-webkit-scrollbar-thumb {
+      background: #090761;
+   }
+}

@@ -1,0 +1,121 @@
+.dwBox {
+   display: flex;
+   width: 100%;
+}
+
+.izma__finance-costs-headings {
+   display: flex;
+   align-items: center;
+}
+
+.dw {
+   width: 65%;
+}
+
+.izma_page-costs {
+   display: flex;
+   flex-wrap: wrap;
+   padding: 50px 30px;
+   background-color: var(--background-main);
+}
+
+.izma__finance-costs-all-wrapper-left {
+   display: flex;
+   flex-direction: column;
+}
+
+.izma__finance-costs-all-wrapper-right {
+   margin-right: 50px;
+}
+
+.izma__finance-costs-heading {
+   font-style: normal;
+   font-weight: 600;
+   font-size: 27px;
+   line-height: 35px;
+   text-transform: capitalize;
+   margin-right: 35px;
+   color: #2F2D51;
+}
+
+.izma__finance-costs-title {
+   font-style: normal;
+   font-weight: bold;
+   font-size: 20px;
+   line-height: 24px;
+   text-transform: capitalize;
+   color: #9493B4;
+}
+
+.izma__finance-costs-right-tabs-second-up {
+   margin: 31px 0;
+   display: flex;
+   align-items: center;
+   background: #FFFFFF;
+   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
+   border-radius: 4px;
+}
+
+.izma__finance-costs-right-tabs-second-line {
+   width: 9px;
+   height: 62px;
+   background: #090761;
+   border-radius: 20px;
+}
+
+.izma__finance-costs-right-tabs-second-text {
+   font-style: normal;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 23px;
+   padding: 20px 18px;
+   color: #000000;
+}
+
+.izma__finance-costs-right-tabs-second-img {
+   margin-left: auto;
+   margin-right: 35px;
+   width: 65px;
+   height: 40px;
+}
+
+// ==========
+
+.izma__finance__costs {
+   padding: 0px 20px;
+   padding-top: 15px;
+   background: #FFFFFF;
+   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
+   border-radius: 4px;
+}
+
+.izma__finance__costs tr:nth-child(even) {
+   background-color: #FFFFFF;
+}
+
+.izma__finance__costs tr:nth-child(even):hover {
+   background-color: #FFFFFF;
+}
+
+.izma__finance__costs .ant-table-tbody>tr>td {
+   border-top: 1px solid #f0f0f0;
+   border-bottom: 1px solid #f0f0f0;
+}
+
+.izma__finance__costs .ant-table-thead>tr>th {
+   background-color: #ffffff !important;
+   color: #2F2D51 !important;
+}
+
+.ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+   background-color: transparent !important;
+}
+
+.ant-table-tbody>tr>td {
+   border: none;
+}
+
+.izma__table-delete-btn {
+   width: 35px;
+   height: 35px;
+}

@@ -1,0 +1,38 @@
+.izma__groups-attendence-headings {
+   display: flex;
+   align-items: center;
+}
+
+.izma__groups-attendence-heading {
+   width: 100%;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 27px;
+   line-height: 35px;
+   text-transform: capitalize;
+   margin-right: 35px;
+   color: #2F2D51;
+}
+
+.izma__groups-attendence-title {
+   font-style: normal;
+   font-weight: bold;
+   font-size: 20px;
+   line-height: 24px;
+   text-transform: capitalize;
+   color: #9493B4;
+}
+
+.izma__groups-attendence-wrapper {
+   display: flex;
+   flex-wrap: wrap;
+   margin-top: 50px;
+}
+
+.izma__groups-attendence {
+   padding: 50px 30px;
+}
+
+.izma__groups-attendence-wrapper-right {
+   width: 63%;
+}

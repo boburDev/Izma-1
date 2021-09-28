@@ -1,0 +1,200 @@
+.izma__groups-attendance-right-tabs-first {
+   background: #090761;
+   border: 1px solid #E7E7EC;
+   color: #fff;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 16px;
+   line-height: 23px;
+   box-shadow: 0px 4px 11px rgba(140, 152, 164, 0.1);
+   border-radius: 4px;
+   border-radius: 9px;
+   padding: 22px 28px;
+   margin-top: 43px;
+}
+
+.izma__groups-attendance-right-tabs-first-up {
+   display: flex;
+   align-items: center;
+}
+
+.izma__groups-attendance-right-tabs-first-heading {
+   font-weight: 500;
+   font-size: 22px;
+   line-height: 32px;
+   color: #ffffff;
+}
+
+.izma__groups-attendance-right-tabs-first-right {
+   display: flex;
+   align-items: center;
+   margin-left: auto;
+}
+
+.izma__groups-attendance-right-tabs-first-button {
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 24px;
+   background: #090761;
+   border-radius: 30px;
+   padding: 3px 10px;
+   margin-right: 18px;
+   color: #FFFFFF;
+}
+
+.izma__groups-attendance-right-tabs-first-text {
+   font-style: normal;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 24px;
+   color: #090761;
+}
+
+
+.davomat-table {
+   padding: 25px 25px 40px 25px;
+   background: #FFFFFF;
+   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
+   border-radius: 9px;
+   margin-top: 30px;
+
+   .heading-davomat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h1 {
+         font-family: Jost;
+         font-style: normal;
+         font-weight: 500;
+         font-size: 22px;
+         line-height: 32px;
+         color: #222222;
+      }
+
+      .davomat-calendar {
+         display: flex;
+         align-items: center;
+
+         button {
+            border: none;
+            background-color: transparent;
+
+            &.current-datas {
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: 500;
+               font-size: 16px;
+               line-height: 24px;
+               color: #FFFFFF;
+               background: #090761;
+               border-radius: 30px;
+               padding: 3px 13px;
+               margin-right: 18px;
+            }
+
+            &.next-data {
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: 500;
+               font-size: 16px;
+               line-height: 24px;
+               color: #090761;
+            }
+         }
+      }
+   }
+
+   .middle-table {
+      margin-top: 33px;
+      display: flex;
+      align-items: center;
+      padding-bottom: 19px;
+
+      h1 {
+         width: 150px;
+      }
+
+      .days {
+         span {
+            font-family: Jost;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 23px;
+            text-align: center;
+            color: #000000;
+         }
+      }
+   }
+
+   .students {
+      .display-flex {
+         display: flex;
+         align-items: center;
+         margin-bottom: 10px;
+      }
+
+      .student-name {
+         width: 150px;
+         font-family: Jost;
+         font-style: normal;
+         font-weight: normal;
+         font-size: 16px;
+         line-height: 23px;
+         color: #000000;
+      }
+
+      .student-boryoq {
+         position: relative;
+
+         span {
+            width: 32px;
+            height: 32px;
+            display: block;
+            border: 2px solid #090761;
+            box-sizing: border-box;
+            border-radius: 50%;
+            cursor: pointer;
+         }
+
+         span:hover+.bor-yoq {
+            display: flex;
+         }
+
+         .bor-yoq {
+            align-items: center;
+            display: none;
+            top: -5px;
+            left: -10px;
+            position: absolute;
+            background: #E3EDF7;
+            border: 1px solid #7D9CB9;
+            box-sizing: border-box;
+            border-radius: 4px;
+            padding: 8px;
+
+            &:hover {
+               display: flex;
+            }
+
+            button {
+               display: block;
+               width: 24px;
+               height: 24px;
+               cursor: pointer;
+               border-radius: 50%;
+
+               &:nth-child(1) {
+                  background: #02BC02;
+               }
+
+               &:nth-child(2) {
+                  background: #f00;
+                  margin-left: 10px;
+               }
+            }
+         }
+      }
+   }
+}

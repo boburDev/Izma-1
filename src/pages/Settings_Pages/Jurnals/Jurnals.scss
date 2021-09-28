@@ -1,0 +1,78 @@
+.izma__settings-magazine-list {
+   display: flex;
+   flex-direction: column;
+   background: #FFFFFF;
+   border: 1px solid #E7E7EC;
+   box-sizing: border-box;
+   width: 100%;
+   padding: 18px 30px;
+   background-color: var(--background-main);
+   box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
+   border-radius: 4px;
+}
+
+.izma__settings-magazine-heading {
+   font-style: normal;
+   font-weight: 600;
+   font-family: "Calibri";
+   font-size: 30px;
+   line-height: 43px;
+   margin-bottom: 25px;
+   color: #000000;
+}
+
+.izma__settings-magazine-items {
+   display: flex;
+   align-items: center;
+   margin: 15px 0;
+}
+
+.izma__settings-magazine-items-round {
+   width: 22px;
+   height: 22px;
+   border: 3px solid #090761;
+   margin-right: 15px;
+   border-radius: 50%;
+
+   
+}
+
+.izma__settings-magazine-items-teacher {
+   background: #E4ECF3;
+   border-radius: 5px;
+   font-style: normal;
+   font-weight: 300;
+   font-family: "Calibri";
+   font-size: 16px;
+   line-height: 20px;
+   padding: 5px 20px 5px 15px;
+   margin-right: 17px;
+   color: #000000;
+   margin-bottom: 0 !important;
+}
+
+.izma__settings-magazine-items-text {
+   font-style: normal;
+   font-weight: 300;
+   font-family: "Calibri";
+   font-size: 16px;
+   line-height: 20px;
+   color: #000000;
+   margin-bottom: 0 !important;
+
+}
+
+.izma__settings-magazine-items-date {
+   margin-left: auto;
+   font-style: normal;
+   font-weight: 300;
+   font-family: "Calibri";
+   font-size: 16px;
+   line-height: 20px;
+   color: #767676;
+}
+
+.izma__settings-magazine {
+   width: 100%;
+   padding:  30px 0;
+}

@@ -1,0 +1,29 @@
+
+
+.setting_path {
+   display: flex;
+   align-items: center;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 18px;
+   line-height: 26px;
+   color: #000000;
+   margin-bottom: 21px;
+   text-decoration: none;
+
+   &.alone {
+      img {
+         padding-right: 13px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+   }
+
+   img {
+      padding-right: 16px;
+      
+   }
+
+
+}

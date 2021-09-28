@@ -1,0 +1,95 @@
+.izma__teachers-profile-right-wrapper {
+   display: flex;
+   flex-direction: column;
+   width: 130%;
+   margin-top: 150px;
+   padding: 40px 40px 29px 30px;
+   background: #FFFFFF;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+   border-radius: 15px;
+
+   .izma__teachers-profile-right-wrapper-id {
+      font-family: "Jost";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 23px;
+      background: #D3D3D3;
+      border-radius: 5px;
+      padding: 2px 14px;
+      color: #222222;
+      width: 75px;
+      margin-bottom: 10px;
+   }
+
+   .izma__teachers-profile-right-wrapper-title {
+      font-family: "Jost";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 32px;
+      margin-bottom: 7px;
+      color: #000000;
+   }
+
+   .izma__teachers-profile-right-wrapper-time-wrapper {
+      display: flex;
+      font-family: "Calibri";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      color: #000000;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #E0E0E0;
+
+      .izma__teachers-profile-right-wrapper-text {
+         padding-right: 7px;
+      }
+   }
+
+   .izma__teachers-profile-right-wrapper-name-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 22px;
+
+      .izma__teachers-profile-right-wrapper-name-wrapper-name {
+         font-family: "Jost";
+         font-style: normal;
+         font-weight: normal;
+         font-size: 16px;
+         line-height: 23px;
+         color: #000000;
+      }
+
+      .izma__teachers-profile-right-wrapper-name-wrapper-phone {
+         font-family: "Calibri";
+         font-style: normal;
+         font-weight: normal;
+         font-size: 16px;
+         line-height: 20px;
+         color: #000000;
+         padding-right: 30px;
+      }
+   }
+
+   .izma__teachers-profile-right-group-wrapper {
+      display: flex;
+      align-items: center;
+      margin-top: 60px;
+      margin-left: auto;
+
+      .izma__teachers-profile-right-group-wrapper-text {
+         font-family: "Calibri";
+         font-style: normal;
+         font-weight: normal;
+         font-size: 14px;
+         line-height: 17px;
+         text-decoration-line: underline;
+         padding-right: 7px;
+         color: #787878;
+      }
+   }
+}

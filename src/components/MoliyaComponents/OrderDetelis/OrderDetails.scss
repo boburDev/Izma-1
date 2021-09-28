@@ -1,0 +1,101 @@
+.orderDetails {
+   width: 100%;
+   margin-top: 50px;
+   padding: 23px 30px 47px 30px;
+   background: var(--background-white);
+   border: 1px solid #E7E7EC;
+   box-sizing: border-box;
+   box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
+   border-radius: 4px;
+
+   .heading {
+      h1 {
+         font-family: Jost;
+         font-style: normal;
+         font-weight: 500;
+         font-size: 22px;
+         line-height: 32px;
+         color: #2F2D51;
+         margin-bottom: 26px;
+      }
+   }
+
+   .main_order {
+      .main_heading {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding: 24px 41px 20px 41px;
+         background: #090761;
+         border-radius: 4px;
+
+         h1 {
+            font-family: Jost;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 26px;
+            color: #FFFFFF;
+         }
+      }
+
+      .main_infor {
+         .information {
+            padding: 20px 41px;
+            background: #F7F9FB;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+         }
+      }
+
+      .total_nfo {
+         .sub_price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 41px;
+
+            span {
+               font-family: Jost;
+               font-style: normal;
+               font-weight: 600;
+               font-size: 16px;
+               line-height: 30px;
+               color: #2F2D51;
+            }
+         }
+      }
+
+      .keys {
+         padding: 0 41px;
+
+         span {
+            font-family: Jost;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 30px;
+            color: #77838F;
+            display: block;
+            margin-bottom: 7px;
+         }
+
+         button {
+            border: none;
+            font-family: Jost;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 30px;
+            color: #2F2D51;
+            opacity: 0.7;
+            padding: 0 26px;
+            background: #FFC78B;
+            opacity: 0.4;
+            border-radius: 4px;
+         }
+      }
+   }
+}

@@ -1,0 +1,159 @@
+.harajatlar_wrapper {
+   .inner {
+      margin-top: 30px;
+      padding: 43px 62px 0 61px;
+      background: #FFFFFF;
+      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
+      border-radius: 7px;
+
+      .harj_top {
+         margin-bottom: 34px;
+         display: flex;
+         align-items: center;
+
+         .img_icon {
+            margin-right: 14px;
+         }
+
+         h3 {
+            font-family: "Jost";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 20px;
+            line-height: 29px;
+            color: #222222;
+         }
+      }
+
+      .unknown_block {
+         background: #090761;
+         border-radius: 4px;
+         padding-left: 30px;
+         box-sizing: border-box;
+         margin-bottom: 32px;
+         display: flex;
+         align-items: center;
+
+         .numb {
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 70px;
+            line-height: 105px;
+            color: #FFFFFF;
+            margin-right: 16px;
+         }
+
+         .text {
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 27px;
+            color: #FFFFFF;
+         }
+      }
+
+      .inputs_wrap {
+         &.another {
+            margin-bottom: 50px;
+         }
+
+         &.another_two {
+            display: flex;
+            align-items: center;
+            padding-bottom: 25px;
+
+            select {
+               padding: 15px 0 14px 24px;
+               display: block;
+               box-sizing: border-box;
+               border: none;
+               outline: none;
+               background: #CCCBED;
+            }
+
+            .input_items {
+               .inputs {
+                  width: 540px;
+               }
+            }
+
+            .select_two {
+               margin-right: 31px;
+
+               select {
+                  border: 1px solid #B7B7B7;
+                  box-sizing: border-box;
+                  border-radius: 4px;
+                  background-color: #fff;
+                  width: 250px;
+               }
+            }
+         }
+
+         label {
+            font-family: "Jost";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 23px;
+            color: #222222;
+            margin-bottom: 17px;
+            display: block;
+         }
+
+         .input_items {
+            display: flex;
+            align-items: center;
+
+            .inputs {
+               width: 822px;
+               border: 1px solid #B7B7B7;
+               box-sizing: border-box;
+               border-radius: 4px 0px 0px 4px;
+               display: flex;
+               margin-right: 60px;
+
+               input {
+                  width: 65%;
+                  padding: 15px 10px 14px 10px;
+                  display: block;
+                  box-sizing: border-box;
+                  border: none;
+                  outline: none;
+               }
+
+               select {
+                  width: 35%;
+                  padding: 15px 0 14px 24px;
+                  display: block;
+                  box-sizing: border-box;
+                  border: none;
+                  outline: none;
+                  background: #CCCBED;
+               }
+            }
+
+            button {
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: 500;
+               font-size: 16px;
+               line-height: 24px;
+               color: #FFFFFF;
+               padding: 13px 32px;
+               border: none;
+               background: #090761;
+               border-radius: 23px;
+            }
+         }
+      }
+   }
+}
+
+.izma__finance-salary-bootom-dates-line-up {
+   margin-top: 25px;
+   width: 100%;
+   border-bottom: 1px solid #ABABAB;
+}

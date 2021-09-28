@@ -1,0 +1,108 @@
+.izma__finance-allpaymet {
+   display: flex;
+   flex-direction: column;
+   padding: 50px 30px 110px 30px;
+   background-color: var(--background-main);
+}
+
+.izma__finance-allpaymet-up {
+   margin-bottom: 80px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.izma__finance-allpaymet-heading {
+   font-weight: 600;
+   font-size: 30px;
+   line-height: 43px;
+   text-transform: capitalize;
+   color: #2F2D51;
+}
+
+.izma__finance-allpayment-up-wrapper {
+   padding: 27px;
+   width: 100%;
+   background: #E4E4F8;
+   border: 1px solid #9E9EDA;
+   box-sizing: border-box;
+   box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
+   border-radius: 4px;
+   display: flex;
+   align-items: center;
+   margin: 28px 0;
+}
+
+.izma__finance-allpayment-up-text {
+   font-weight: bold;
+   max-width: 440px;
+   font-size: 18px;
+   color: #2F2D51;
+}
+
+.izma__finance-allpaymet-up-left {
+   padding-bottom: 50px;
+   border-bottom: 1px solid #969696;
+   margin-right: 25px;
+   width: 48%;
+}
+
+.izma__finance-allpayment-up-img {
+   width: 44px;
+   height: 44px;
+   margin-left: auto;
+}
+
+.izma__finance-allpaymet-up-right {
+   margin-left: 50px;
+}
+
+.izma__finance-allpayment-up-dates-texts {
+   display: flex;
+   margin-top: 55px;
+   align-items: center;
+
+   .izma__finance-allpayment-up-dates-text {
+      font-weight: normal;
+      font-size: 17px;
+      line-height: 27px;
+      color: #222222;
+   }
+
+   .izma__finance-allpayment-up-dates-text-s {
+      margin-left: 45px;
+   }
+}
+
+.izma__finance-allpayment-up-dates {
+   display: flex;
+   align-items: center;
+
+   .ant-picker {
+      border: none;
+      width: 350px !important;
+      padding: 0;
+   }
+
+   .ant-picker-input {
+      width: 160px !important;
+      padding: 7px 10px;
+      background: #FFFFFF;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+      border-radius: 5px;
+   }
+
+   .izma__finance-allpayment-up-dates-btn {
+      border: 1px solid #090761;
+      box-sizing: border-box;
+      border-radius: 20px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 23px;
+      text-align: center;
+      padding: 9px 28px;
+      background-color: #ffffff;
+      color: #090761;
+      margin-left: 80px;
+   }
+}

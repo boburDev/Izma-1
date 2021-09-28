@@ -1,0 +1,91 @@
+.izma__courses__inner-content {
+   display: flex;
+   flex-direction: column;
+   padding: 50px 30px;
+}
+
+.izma__courses-card-wrappers {
+   width: 276px;
+   height: 323px;
+   background: #FFFFFF;
+   margin-right: 50px;
+   border: 1px solid #E7E7EC;
+   box-sizing: border-box;
+   box-shadow: 0px 4px 11px rgba(140, 152, 164, 0.1);
+   border-radius: 7px;
+   margin-bottom: 30px;
+}
+
+.izma__courses__inner-content-up {
+   display: flex;
+   align-items: center;
+}
+
+.izma__courses__inner-content-up-heading {
+   font-weight: 600;
+   font-size: 30px;
+   line-height: 43px;
+   text-transform: capitalize;
+   margin-right: 10px;
+   color: #2F2D51;
+}
+
+.izma__courses__inner-content-up-title {
+   font-weight: bold;
+   font-size: 20px;
+   line-height: 24px;
+   text-transform: capitalize;
+   color: #9493B4;
+}
+
+.izma__courses__inner-content-bottom {
+   display: flex;
+}
+
+.izma__courses__inner-content .ant-tabs-tab-btn {
+   color: #615f81 !important;
+}
+
+.izma__courses__inner-content .ant-tabs-card.ant-tabs-top>.ant-tabs-nav .ant-tabs-tab-active,
+.ant-tabs-card.ant-tabs-top>div>.ant-tabs-nav .ant-tabs-tab-active {
+   background-color: #2F2D51;
+   color: #FFFFFF !important;
+}
+
+.izma__courses-card-wrapper-bottom-wrapper {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-left: 31px;
+   padding-right: 10px;
+   padding-top: 30px;
+}
+
+.izma__courses-card-wrapper-bottom-prices {
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 20px;
+
+   color: #2F2D51;
+}
+
+.izma__courses-card-wrapper-bottom-btn-wrapper-btn {
+   border: none;
+   outline: none;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-color: #fff;
+   width: 32px;
+   box-shadow: 0px 4px 13px rgba(9, 7, 97, 0.5);
+   border-radius: 3px;
+   height: 32px;
+}
+
+.izma__courses-card-wrapper-bottom-btn-wrapper-btn-edit {
+   background-image: url('../../../assets/Icons/courses-edit.svg');
+}
+
+.izma__courses-card-wrapper-bottom-btn-wrapper-btn-del {
+   margin-left: 14px;
+   background-image: url('../../../assets/Icons/courses-delete.svg');
+}

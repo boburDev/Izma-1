@@ -1,0 +1,54 @@
+.izma__courses-tabs1-button {
+   font-style: normal;
+   font-weight: normal;
+   border: none;
+   outline: none;
+   display: flex;
+   justify-content: flex-end;
+   background-color: transparent;
+   font-size: 16px;
+   line-height: 23px;
+   padding: 10px 31px;
+   border: 1px solid #090761 !important;
+   box-sizing: border-box;
+   margin-left: auto;
+   border-radius: 46px;
+   color: #090761;
+}
+
+.izma__courses-tabs1 {
+   margin-top: 30px;
+   width: 100%;
+}
+
+.izma__courses-tabs1-message-list {
+   display: flex;
+   flex-direction: column;
+   margin-top: 25px;
+}
+
+.izma__courses-tabs1-message-list-item {
+   display: flex;
+   background: #FFFFFF;
+   border: 1px solid #E7E7EC;
+   box-sizing: border-box;
+   box-shadow: 0px 4px 11px rgba(140, 152, 164, 0.1);
+   padding: 27px;
+   border-radius: 4px;
+}
+
+.izma__courses-tabs1-message-text {
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 20px;
+
+   color: #2F2D51;
+}
+
+.izma__courses-tabs1-message-date {
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 20px;
+   margin-left: auto;
+   color: #2F2D51;
+}

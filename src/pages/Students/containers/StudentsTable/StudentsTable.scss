@@ -1,0 +1,45 @@
+.sa tr:nth-child(even) {
+   background-color: #FFFFFF;
+}
+
+.sa tr:nth-child(even):hover {
+   background-color: #FFFFFF;
+}
+
+.sa .ant-table-tbody>tr>td {
+   font-family: "Jost" !important;
+   border: none !important;
+   // border-top: 1px solid #f0f0f0;
+   // border-bottom: 1px solid #f0f0f0;
+}
+
+
+.sa .ant-table-thead>tr>th {
+   background-color: #F7F9FB !important;
+   color: #2F2D51 !important;
+}
+
+.ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+   background-color: transparent !important;
+}
+
+.ant-table-tbody>tr>td {
+   border: none;
+}
+
+.izma__table-delete-btn {
+   width: 35px;
+   height: 35px;
+}
+
+.name_links {
+   color: #000;
+
+   &:hover {
+      color: rgb(47, 61, 255);
+   }
+}
+
+.ant-table {
+   background: transparent !important;
+}

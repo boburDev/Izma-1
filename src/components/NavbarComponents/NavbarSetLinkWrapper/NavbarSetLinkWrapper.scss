@@ -1,0 +1,41 @@
+.set_two {
+
+   .head_open { 
+         display: flex;
+         align-items: center;
+         font-style: normal;
+         font-weight: 500;
+         font-size: 18px;
+         line-height: 26px;
+         color: #000000;
+         margin-bottom: 21px;
+         text-decoration: none;
+         cursor: pointer;
+
+         &.alone {
+            img {
+               padding-right: 13px;
+            }
+         }
+
+         img {
+            padding-right: 16px;
+            
+         }
+
+
+      
+   }
+
+   .opened_head {
+      margin-left: 20px;
+      height: 0px;
+      overflow-y: hidden;
+      transition: all ease 0.5s;
+
+      &.active {
+         transition: all ease 0.5s;
+         height: auto;
+      }
+   }
+}

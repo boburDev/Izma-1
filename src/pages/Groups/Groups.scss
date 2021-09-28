@@ -1,0 +1,132 @@
+.izma__teachers-content-wrapper {
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+}
+
+.izma__teachers-content-up {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.izma__teachers-content-btn-group {
+   border: none;
+   outline: none;
+   background-color: transparent;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 14px;
+   line-height: 20px;
+   text-align: right;
+   text-decoration-line: underline;
+   margin-right: 25px;
+   color: #000000;
+}
+
+.izma__teachers-content-heading {
+   font-weight: 600;
+   font-size: 30px;
+   line-height: 38px;
+   text-transform: capitalize;
+   color: #2F2D51
+}
+
+.izma__teachers-content-button {
+   font-style: normal;
+   font-weight: normal;
+   border: none;
+   outline: none;
+   background-color: transparent;
+   font-size: 16px;
+   line-height: 23px;
+   padding: 10px 31px;
+   border: 1px solid #090761;
+   box-sizing: border-box;
+   border-radius: 46px;
+   color: #090761;
+}
+
+.izma__teachers-content-line {
+   height: 1px;
+   width: 100%;
+   margin: 25px 0;
+   background-color: rgba(9, 7, 97, 0.25);
+}
+
+// ==================
+.izma__groups-tabs {
+
+   .bloc-tabs {
+      display: flex;
+   }
+
+   .tabs {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 23px;
+      text-transform: capitalize;
+      color: #9A99B4;
+      background-color: transparent;
+      padding: 15px;
+      text-align: center;
+      width: 150px;
+      cursor: pointer;
+      box-sizing: content-box;
+      position: relative;
+      outline: none;
+   }
+
+
+   .active-tabs {
+      color: #E59F3F;
+      border-bottom: 1px solid #E59F3F;
+   }
+
+
+
+
+
+   button {
+      border: none;
+   }
+
+   .content-tabs {
+      flex-grow: 1;
+   }
+
+   .content {
+      background: white;
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+      display: none;
+   }
+
+
+   .active-content {
+      display: contents;
+   }
+
+   .ant-modal-body {
+      background: #ECF1F7;
+   }
+}
+
+.izma__group__modal {
+   font-style: normal;
+   border: none;
+   outline: none;
+   margin-top: 0;
+   padding: 9px 15px;
+   margin-top: 25px;
+   margin-right: auto;
+   font-weight: 500;
+   font-size: 12px;
+   line-height: 17px;
+   background: #090761;
+   border-radius: 4px;
+   color: #FFFFFF;
+}

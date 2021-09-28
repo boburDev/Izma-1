@@ -1,0 +1,228 @@
+.form_teacher {
+   padding: 53px 20px 0 20px;
+   max-width: 670px;
+   min-height: 100vh;
+
+   .teacher_top {
+      font-family: "Calibri";
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 43px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #000;
+
+      .name {
+         font-family: "Jost";
+         font-style: normal;
+         font-weight: 600;
+         font-size: 30px;
+         line-height: 43px;
+         color: #000000;
+      }
+
+      button {
+         border: none;
+         background-color: transparent;
+         margin-left: 80px;
+      }
+   }
+
+   .forms {
+      .form_group {
+         margin-bottom: 25px;
+      }
+
+      .number {
+         position: relative;
+
+         span {
+            position: absolute;
+            padding: 15px 20px;
+            display: block;
+            background: #E0E6F1;
+            border: 2px solid #EDF2F8;
+            box-sizing: border-box;
+            border-radius: 7px;
+         }
+      }
+      input {
+         outline: none;
+      }
+      input[type=text] {
+         outline: none;
+         border: 2px solid #C9D5E4;
+         transition: all ease 0.5s;
+         &:hover {
+            transition: all ease 0.5;
+            border: 2px solid #40a9ff;
+         }
+      }
+
+      label,
+      .file {
+         margin-bottom: 8px;
+         display: block;
+         font-family: Calibri;
+         font-style: normal;
+         font-weight: normal;
+         font-size: 20px;
+         line-height: 24px;
+         color: #222222;
+      }
+
+      .form_one {
+         margin-bottom: 25px;
+
+         input {
+            background: #F7F9FB;
+            border: 2px solid #EDF2F8;
+            box-sizing: border-box;
+            border-radius: 7px;
+            width: 100%;
+            padding: 10px;
+         }
+
+         input[type=radio] {
+            display: none;
+         }
+
+         .genders {
+            display: flex;
+            align-items: center;
+
+            .gen_one {
+               display: flex;
+
+               span {
+                  margin-right: 42px;
+                  display: block;
+               }
+
+               label {
+                  width: 26px;
+                  height: 26px;
+                  font-style: normal;
+                  font-weight: 600;
+                  font-size: 20px;
+                  line-height: 29px;
+                  color: #222222;
+                  border: 2px solid #090761;
+                  border-radius: 50%;
+                  margin-right: 10px;
+                  cursor: pointer;
+               }
+
+               input[type=radio]:checked+label {
+                  background: #090761;
+               }
+            }
+         }
+
+         select {
+            border: none;
+            background: #F7F9FB;
+            border: 2px solid #EDF2F8;
+            box-sizing: border-box;
+            border-radius: 7px;
+            padding: 10px;
+            width: 100%;
+            outline: none;
+         }
+
+         textarea {
+            border: none;
+            width: 100%;
+            max-height: 178px;
+            resize: vertical;
+            background: #F7F9FB;
+            border: 2px solid #EDF2F8;
+            box-sizing: border-box;
+            border-radius: 7px;
+            outline: none;
+            padding: 10px;
+            border: 2px solid #C9D5E4;
+            transition: all ease 0.5s;
+
+            &:hover {
+               transition: all ease 0.5;
+               border: 2px solid #40a9ff;
+            }
+         }
+
+         .ant-space {
+            width: 100% !important;
+         }
+
+         .ant-input-password {
+            padding: 0 !important;
+            border: none;
+            border: 2px solid #EDF2F8;
+         }
+
+         input[type=file] {
+            display: none;
+         }
+         
+
+         
+
+         .choose_file {
+            width: 100%;
+            padding: 10px;
+            background: #F7F9FB;
+            box-sizing: border-box;
+            border-radius: 7px;
+            height: 53px;
+            font-family: Calibri;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            color: #A7A7A7;
+            position: relative;
+
+            border: 2px solid #C9D5E4;
+            transition: all ease 0.5s;
+
+            &:hover {
+               transition: all ease 0.5;
+               border: 2px solid #40a9ff;
+            }
+
+            &::before {
+               position: absolute;
+               content: 'Browse';
+               width: 95px;
+               height: 100%;
+               right: 0;
+               background: #E0E6F1;
+               box-sizing: border-box;
+               border-radius: 7px;
+               text-align: center;
+               padding: 11px 0;
+               top: 0;
+               bottom: 0;
+               cursor: pointer;
+               margin: 0;
+            }
+         }
+      }
+
+   }
+
+   .cre_btn {
+      font-family: "Jost";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 29px;
+      color: #FFFFFF;
+      border: none;
+      background: #090761;
+      border-radius: 57px;
+      padding: 12px 40px;
+      margin-bottom: 66px;
+      margin-top: 30px;
+   }
+
+}

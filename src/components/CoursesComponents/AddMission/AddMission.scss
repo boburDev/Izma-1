@@ -1,0 +1,152 @@
+.mission_wrapper {
+   .inner {
+      width: 100%;
+      padding: 25px;
+      background-color: #fff;
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16);
+
+      .mission_item {
+         width: 100%;
+         background: #FFFFFF;
+         border: 1px solid #E7E7EC;
+         box-sizing: border-box;
+         box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16);
+         border-radius: 7px;
+         padding: 38px 49px 52px 39px;
+         margin-top: 30px;
+
+         .mission_top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            span {
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: 500;
+               font-size: 16px;
+               line-height: 24px;
+               color: #222222;
+               display: block;
+               margin-right: 18px;
+            }
+
+            select {
+               border: none;
+               font-family: Calibri;
+               outline: none;
+               width: 313px;
+               font-style: normal;
+               font-weight: normal;
+               font-size: 16px;
+               line-height: 20px;
+               color: #828282;
+               border: 1px solid #222222;
+               box-sizing: border-box;
+               border-radius: 4px;
+               padding: 13px 18px;
+            }
+
+            button {
+               border: none;
+               background-color: transparent;
+               cursor: pointer;
+            }
+         }
+
+         .misson_middle {
+            margin-top: 25px;
+
+            input {
+               border: none;
+               outline: none;
+               width: 100%;
+               box-sizing: border-box;
+               border-radius: 4px;
+               padding: 10px;
+               font-family: Calibri;
+               font-style: normal;
+               font-weight: normal;
+               font-size: 16px;
+               line-height: 20px;
+               color: #828282;
+               border: 1px solid transparent;
+               border: 1px solid #222222;
+            }
+
+            .main_ans {
+               margin-bottom: 35px;
+            }
+
+            .answers {
+               .answer {
+                  width: 276px;
+                  display: block;
+                  margin-bottom: 15px;
+                  padding-left: 27px;
+                  position: relative;
+               }
+            }
+
+            button {
+               border: none;
+               background-color: transparent;
+               margin-top: 15px;
+               border: 1px solid #090761;
+               box-sizing: border-box;
+               border-radius: 46px;
+               font-family: "Jost";
+               font-style: normal;
+               font-weight: normal;
+               font-size: 16px;
+               line-height: 23px;
+               text-align: center;
+               color: #090761;
+               padding: 11px 29px;
+            }
+         }
+
+         .mission_bottom {
+            display: flex;
+            align-items: center;
+            margin-top: 25px;
+
+            label {
+               display: block;
+               font-family: Calibri;
+               font-style: normal;
+               font-weight: normal;
+               font-size: 12px;
+               line-height: 15px;
+               color: #222222;
+               margin-left: 8px;
+            }
+
+         }
+      }
+
+
+   }
+
+   .add_blocker {
+      margin-top: 70px;
+      display: flex;
+      justify-content: center;
+
+      .add_newBlock {
+         border: none;
+         display: flex;
+         align-items: center;
+         background: #090761;
+         border-radius: 46px;
+         padding: 15px 26px;
+         color: #fff;
+
+         img {
+            margin-right: 14px;
+         }
+
+         cursor: pointer;
+      }
+   }
+}

@@ -1,0 +1,61 @@
+.izma__finance-salary {
+   display: flex;
+   flex-direction: column;
+   padding: 50px 30px;
+   background-color: var(--background-main);
+}
+
+.izma__finance-salary-up-dates {
+   display: flex;
+   align-items: center;
+
+   .ant-picker {
+      border: none;
+      width: 350px !important;
+      padding: 0;
+   }
+
+   .ant-picker-input {
+      width: 160px !important;
+      padding: 7px 10px;
+      background: #FFFFFF;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+      border-radius: 5px;
+   }
+}
+
+.izma__finance-salary-up-dates-line-up {
+   width: 100%;
+   margin: 40px 0;
+   border-bottom: 1px solid #959494;
+}
+
+.izma__finance-salary-up-dates-line {
+   margin-top: 35px;
+   width: 800px;
+   border-bottom: 1px solid #959494;
+}
+
+.izma__finance-allpayment-up-dates-btn-text {
+   font-family: "Jost";
+   font-style: normal;
+   font-weight: 600;
+   font-size: 18px;
+   line-height: 126.5%;
+   margin-right: 35px;
+   color: #222222;
+}
+
+.izma__finance-salary-up-dates-btn {
+   border: 1px solid #090761;
+   border-radius: 46px;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 23px;
+   text-align: center;
+   padding: 7px 35px;
+   background-color: #ffffff;
+   color: #090761;
+   margin-left: 80px;
+}

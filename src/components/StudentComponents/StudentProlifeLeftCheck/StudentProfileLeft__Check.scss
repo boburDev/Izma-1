@@ -1,0 +1,58 @@
+.check-wrapper {
+   padding: 15px 20px;
+   background: #FFFFFF;
+   border-radius: 4px;
+   max-width: 586px;
+   box-sizing: border-box;
+
+   .check-holder {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #000;
+
+      button {
+         border: none;
+         background-color: transparent;
+         cursor: pointer;
+      }
+
+      h1 {
+         font-family: Jost;
+         font-style: normal;
+         font-weight: 500;
+         font-size: 24px;
+         line-height: 35px;
+         color: #000000;
+      }
+   }
+
+   .check-inner {
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+
+      .check-items {
+         margin-top: 15px;
+      }
+   }
+
+   .copy-btn {
+      border: none;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 32px;
+      background: #090761;
+      border-radius: 100px;
+      padding: 10px 35px;
+      font-family: Jost;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 23px;
+      color: #FFFFFF;
+      cursor: pointer;
+   }
+}

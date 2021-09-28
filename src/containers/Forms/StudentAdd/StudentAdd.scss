@@ -1,0 +1,288 @@
+.form-wrapper {
+   width: 100%;
+}
+
+input {
+   outline: none;
+   border-radius: 7px;
+   width: 100%;
+}
+
+input[type=text] {
+   outline: none;
+   border: 2px solid #C9D5E4;
+   transition: all ease 0.5s;
+
+   &:hover {
+      transition: all ease 0.5;
+      border: 2px solid #40a9ff;
+   }
+}
+
+.top-place {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-bottom: 8px;
+   border-bottom: 1px solid #000;
+
+   .place_name {
+      font-family: Jost;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 43px;
+      color: #000000;
+   }
+
+   .x-btn {
+      border: none;
+      outline: none;
+      background-color: transparent;
+   }
+}
+
+.number {
+   position: relative;
+
+   span {
+      position: absolute;
+      padding: 15px 23px;
+      display: block;
+      background: #E0E6F1;
+      border: 2px solid #EDF2F8;
+      box-sizing: border-box;
+      border-radius: 7px;
+   }
+
+   &::before {
+      position: absolute;
+      content: '';
+      width: 11px;
+      height: 70%;
+      top: 5px;
+      background-color: rgb(247, 249, 251);
+      z-index: 2;
+      left: 78px;
+      border: 1px solid transparent;
+   }
+}
+
+.numberTwo {
+   display: flex;
+   border: 2px solid #EDF2F8;
+   border-radius: 7px;
+   background: rgb(247, 249, 251);
+
+   span {
+      font-family: "Calibri";
+      padding: 15px 33px;
+      display: block;
+      background: #E0E6F1;
+      box-sizing: border-box;
+      border-radius: 7px;
+   }
+}
+
+.form-input {
+   font-family: "Calibri";
+   margin-top: 35px;
+
+   label {
+      display: block;
+      margin-bottom: 8px;
+   }
+
+   &.alone {
+      margin-top: 25px;
+   }
+
+   .new-input {
+      background: #F7F9FB;
+      border: 2px solid #EDF2F8;
+      border-radius: 7px;
+      padding: 12px;
+      width: 100%;
+   }
+
+   .comment {
+      width: 100%;
+      resize: vertical;
+      max-height: 53px;
+      padding: 12px;
+      box-sizing: border-box;
+      background: #F7F9FB;
+      border: 2px solid #EDF2F8;
+      border-radius: 7px;
+   }
+
+   .user_name {
+      padding: 12px;
+      background-color: rgb(247, 249, 251);
+   }
+
+   .password {
+      font-size: 16px;
+   }
+
+   .ant-input {
+      background: transparent;
+   }
+
+   .ant-input-password {
+      border-radius: 7px;
+      padding: 10px;
+      border: 2px solid #EDF2F8;
+   }
+
+   .ant-space-vertical {
+      background: #F7F9FB;
+      width: 100%;
+   }
+
+   .ant-input-affix-wrapper-focused {
+      background-color: transparent;
+
+      &:hover {
+         border-color: transparent;
+      }
+   }
+
+
+}
+
+.form_group {
+   label {
+      margin-bottom: 8px;
+      display: block;
+   }
+
+   .date__picker,
+   .ant-picker {
+      background: #F7F9FB;
+      border: 2px solid #EDF2F8;
+      box-sizing: border-box;
+      border-radius: 7px;
+   }
+}
+
+.create-btn {
+   font-family: "Jost";
+   font-style: normal;
+   font-weight: 600;
+   border: none;
+   font-size: 18px;
+   line-height: 29px;
+   color: #FFFFFF;
+   margin-top: 40px;
+   margin-bottom: 35px;
+   padding: 12px 40px;
+   background: #090761;
+   border-radius: 57px;
+   cursor: pointer;
+   margin-bottom: 35px;
+}
+
+.gender {
+   display: flex;
+   align-items: center;
+
+   input[type=radio] {
+      width: 26px;
+      height: 26px;
+      margin-right: 10px;
+   }
+
+   span {
+      font-family: "Calibri";
+      font-style: normal;
+      font-weight: 600;
+
+      font-size: 19px;
+      line-height: 29px;
+      color: #222222;
+      margin-right: 42px;
+   }
+}
+
+.buttosn {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+   .remadd_btn {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+
+      &.alone {
+         margin-right: 16px;
+      }
+
+      &.active {
+         display: none;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+         font-size: 12px;
+      }
+   }
+
+   .bla-bla {
+      display: flex;
+   }
+}
+
+.buttosn {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+   .remadd_btnTwo {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+
+      &.aloneTwo {
+         margin-right: 16px;
+      }
+
+      &.active {
+         display: none;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+         font-family: "Calibri";
+         font-size: 12px;
+      }
+   }
+
+   .bla-bla {
+      display: flex;
+   }
+}
+
+.parent-phone {
+   font-family: "Calibri" !important;
+}
+
+.react-tel-input {
+   font-family: "Calibri" !important;
+}
+
+.many-input {
+   margin-bottom: 35px;
+}
+
+.user_name {
+   outline: none;
+   border: none;
+}

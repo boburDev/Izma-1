@@ -1,0 +1,14 @@
+.opened_moliya {
+   display: none;
+   flex-direction: column;
+   padding: 30px;
+   border-right: 1px solid #E7E7EC;
+   height: 100%;
+   padding-top: 30px;
+   background: white;
+
+   &.active{
+      display: flex;
+   }
+
+}

@@ -1,0 +1,47 @@
+.phoneInput {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   border: 2px solid #EDF2F8;
+   box-sizing: border-box;
+   border-radius: 4px;
+   background: #F7F9FB;
+   margin: 10px 0;
+   transition: all ease 0.5 !important;
+   
+   &:hover {
+      border: 2px solid #40a9ff;
+      transition: all ease 0.5 !important;
+
+   }
+
+    .numb {
+       background: #E0E6F1;
+       border-right: 1px solid #C9D5E4;
+       box-sizing: border-box;
+       border-radius: 4px;
+       width: 79px;
+       height: 100%;
+       padding: 15px 22px 14px 18px;
+       font-family: Calibri;
+       font-style: normal;
+       font-weight: normal;
+       font-size: 16px;
+       line-height: 20px;
+       color: #222222;
+       display: block;
+    }
+
+    input.telInput {
+       font-size: 16px;
+       outline: none;
+       border: none !important;
+       border-color: transparent;
+       padding: 11px;
+       width: 100%;
+       background: transparent !important;
+       outline: none !important;
+
+       
+    }
+}

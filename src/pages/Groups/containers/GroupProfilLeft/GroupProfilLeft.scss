@@ -1,0 +1,442 @@
+.izma__groups-attendance-left-section {
+   background: #FFFFFF;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
+   border-radius: 7px;
+   padding: 28px;
+   margin-right: 50px;
+   width: 32%;
+}
+
+.izma__groups-attendance-left-up-wrapper {
+   display: flex;
+   align-items: center;
+   margin-bottom: 14px;
+}
+
+.izma__groups-attendance-left-up-id {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 20px;
+   font-family: "Calibri";
+   line-height: 29px;
+   padding: 4px 17px;
+   background: #C5CEE8;
+   border-radius: 3px;
+   color: #222222;
+}
+
+.izma__groups-attendance-boxses {
+   margin-left: auto;
+   display: flex;
+}
+
+.izma__groups-attendance-left-up-btn-edit {
+   width: 30px;
+   height: 30px;
+   border: none;
+   outline: none;
+   background-size: contain;
+   cursor: pointer;
+   background-image: url('../../../../assets/Icons/courses-edit.svg');
+
+
+
+   background-repeat: no-repeat;
+   box-shadow: 0px 4px 13px rgba(9, 7, 97, 0.5);
+   border-radius: 3px;
+}
+
+.izma__groups-attendance-left-up-btn-del {
+   width: 30px;
+   height: 30px;
+   margin-left: 15px;
+   border: none;
+   background-color: rgb(9, 7, 97);
+   box-shadow: 0px 4px 13px rgba(9, 7, 97, 0.5);
+   border-radius: 3px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+
+   img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+   }
+}
+
+.izma__groups-attendance-left-center-heading {
+   font-style: normal;
+   font-weight: 600;
+   font-family: "Calibri";
+   font-size: 16px;
+   line-height: 23px;
+   color: #000000;
+   margin-bottom: 18px;
+}
+
+.izma__groups-attendance-left-center-prices-wrapper {
+   display: flex;
+   align-items: center;
+   margin-bottom: 8px;
+}
+
+.izma__groups-attendance-left-center-prices-text {
+   font-style: normal;
+   font-weight: 600;
+   font-family: "Calibri";
+   font-size: 16px;
+   padding-right: 5px;
+   line-height: 23px;
+   color: #7D7D7D
+}
+
+.izma__groups-attendance-left-center-prices-number {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 20px;
+   color: #000000;
+}
+
+.izma__groups-attendance-left-center-time-wrapper {
+   display: flex;
+   align-items: center;
+   margin-bottom: 8px;
+}
+
+.izma__groups-attendance-left-center-time-text {
+   font-style: normal;
+   font-weight: 600;
+   font-family: "Calibri";
+   font-size: 16px;
+   padding-right: 5px;
+   line-height: 23px;
+   color: #7D7D7D
+}
+
+.izma__groups-attendance-left-center-time-number {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 20px;
+   color: #000000;
+}
+
+
+.izma__groups-attendance-left-center-room-wrapper {
+   display: flex;
+   align-items: center;
+   margin-bottom: 8px;
+}
+
+.izma__groups-attendance-left-center-room-text {
+   font-style: normal;
+   padding-right: 5px;
+   font-weight: 600;
+   font-family: "Calibri";
+   font-size: 16px;
+   line-height: 23px;
+   color: #7D7D7D
+}
+
+.izma__groups-attendance-left-center-room-number {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 20px;
+   color: #000000;
+}
+
+.izma__groups-attendance-left-center-communicate-text {
+   font-style: normal;
+   font-weight: 600;
+   font-family: "Calibri";
+   font-size: 16px;
+   line-height: 23px;
+   padding-right: 5px;
+   color: #7D7D7D
+}
+
+.izma__groups-attendance-left-center-communicate-number {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 16px;
+   line-height: 20px;
+   color: #000000;
+}
+
+.izma__groups-attendance-left-bottom {
+   display: flex;
+   align-items: center;
+   margin-bottom: 15px;
+}
+
+.izma__groups-attendance-left-bottom-box {
+   width: 15px;
+   height: 15px;
+   background: #131096;
+   border-radius: 50%;
+   margin-right: 8px;
+}
+
+.izma__groups-attendance-left-bottom-box-white {
+   width: 15px;
+   height: 15px;
+   background: #fff;
+   border-radius: 50%;
+   margin-right: 8px;
+}
+
+.izma__groups-attendance-left-bottom-box-red {
+   width: 15px;
+   height: 15px;
+   background: #FF0000;
+   border-radius: 50%;
+   margin-right: 8px;
+}
+
+.izma__groups-attendance-left-bottom-box-orange {
+   width: 15px;
+   height: 15px;
+   background: #ffa500;
+   border-radius: 50%;
+   margin-right: 8px;
+}
+
+.izma__groups-attendance-left-bottom-heading {
+   font-style: normal;
+   font-weight: 600;
+   font-family: "Calibri";
+   font-size: 12px;
+   line-height: 17px;
+   margin-right: 45px;
+   color: #000000;
+}
+
+.izma__groups-attendance-left-bottom-phone {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 12px;
+   line-height: 15px;
+   color: #7D7D7D;
+   margin-right: 25px;
+}
+
+.izma__groups-attendance-left-bottom-button {
+   border: 1px solid #090761;
+   box-sizing: border-box;
+   border-radius: 30px;
+   color: #090761;
+   background-color: #fff;
+   padding: 2px 5px;
+}
+
+.izma__groups-attendance-left-bottom-box-blue {
+   width: 30px;
+   height: 30px;
+   border: 2px solid #131096;
+   border-radius: 50%;
+   margin-top: 28px;
+}
+
+.izma__groups-attendance-left-bottom-btn {
+   border: 1px solid #090761;
+   border-radius: 30px;
+   // background-image: url('../../assets//Icons/cooma.svg');
+   // background-repeat: no-repeat;
+   // background-size: contain;
+   // padding: 5px;
+   width: 56px;
+   position: relative;
+   outline: none;
+   height: 23px;
+   background-color: #fff;
+}
+
+.izma__groups-attendance-left-bottom-btn:after {
+   content: '\2026';
+   top: -27px;
+   right: 23px;
+   font-size: 35px;
+   width: 20px;
+   height: 15px;
+   position: absolute;
+}
+
+.izma__groups-attendance-left-bottom-button {
+   border: none;
+   width: 25px;
+   height: 25px;
+   background-image: url('../../../../assets//Icons/plus-circle.svg');
+   background-size: contain;
+   background-repeat: no-repeat;
+   outline: none;
+}
+
+.izma__groups-inner-tabs {
+   width: 100%;
+
+   .bloc-tabs {
+      display: flex;
+      background: #FFFFFF;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 11px rgba(140, 152, 164, 0.1);
+      border-radius: 4px;
+   }
+
+   .tabs {
+      padding: 15px;
+      text-align: center;
+      background: #fff;
+      cursor: pointer;
+      font-family: Calibri;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+
+      line-height: 24px;
+      color: #2F2D51;
+      box-sizing: content-box;
+      position: relative;
+      outline: none;
+   }
+
+
+   .active-tabs {
+      background: #090761;
+      color: #fff;
+   }
+
+
+   button {
+      border: none;
+
+   }
+
+   .content-tabs {
+      flex-grow: 1;
+   }
+
+   .content {
+      background: white;
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+      display: none;
+   }
+
+   .content h2 {
+      padding: 0px 0 5px 0px;
+   }
+
+   .content hr {
+      width: 100px;
+      height: 2px;
+      background: #222;
+      margin-bottom: 5px;
+   }
+
+   .content p {
+      width: 100%;
+   }
+
+   .active-content {
+      display: contents;
+   }
+
+}
+
+.izma__groups-attendance-left-section {
+   .open_del {
+      position: absolute;
+      width: 248px;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.16);
+      border-radius: 4px;
+      padding: 16px 25px 16px 26px;
+      height: 220px;
+      z-index: 2;
+      display: none;
+      top: 0;
+      right: -257px;
+
+      &.active {
+         display: block;
+      }
+
+      .del_link {
+         display: block;
+         font-family: "Jost";
+         font-style: normal;
+         font-weight: 500;
+         font-size: 16px;
+         line-height: 23px;
+         margin-bottom: 10px;
+         color: #000000;
+         margin-bottom: 10px;
+      }
+
+      .del_link--red {
+         color: #FF0000;
+         padding-top: 3px;
+         border-top: 1px solid #000000;
+         display: block;
+         font-family: "Jost";
+         font-style: normal;
+         font-weight: 500;
+         font-size: 16px;
+         line-height: 23px;
+         margin-bottom: 10px;
+         margin-bottom: 10px;
+         margin-top: 22px;
+      }
+   }
+
+}
+
+.form_group.izma__courses__form-bolim-form-center {
+   .ant-select-selector {
+      border: none !important;
+      background: transparent !important;
+   }
+
+   .ant-select-focused {
+      &:focus {
+         border: none;
+      }
+   }
+}
+
+.form_group {
+   .date__picker {
+      padding: 15px;
+   }
+}
+
+.izma__groups-attendance-left-bottom-wrapper {
+   position: relative;
+}
+
+.new-remember-note {
+   .check-wrapper {
+      margin: 0 auto;
+   }
+}
+
+
+
+// .ant-modal-body {
+//     padding: 0 !important;
+
+// }
+
+// .ant-modal-content {
+//     width: 450px !important;
+//     margin: 0 auto !important;
+// }
+
+// .ant-modal-close-x {
+//     display: none !important;
+// }

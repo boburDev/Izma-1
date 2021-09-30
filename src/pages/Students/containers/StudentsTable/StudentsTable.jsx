@@ -26,7 +26,8 @@ const StudentsTable = ({ studentSearch }) => {
    const [courseFilter] = useCourseFilter()
    const [setData] = useStudentData(true)
    const [studentID] = useStudentPay()
-   const [setLoading] = useLoader(true) 
+   const [setLoading] = useLoader(true)
+
    const { data: students, loading } = useQuery(ALL_STUDENTS, {
       variables: {
          page: 1,
@@ -147,7 +148,7 @@ const StudentsTable = ({ studentSearch }) => {
    };
 
    const handleCancelY = () => {
-      setIsModalVisibleY(false);
+      setIsModalVisibleY(false)
    };
 
 

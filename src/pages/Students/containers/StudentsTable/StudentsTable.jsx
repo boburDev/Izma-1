@@ -68,7 +68,7 @@ const StudentsTable = ({ studentSearch }) => {
 
       }
 
-   }, [Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, courseFilter])
+   }, [studentSearch, studentOnKeyUp, courseFilter, deb, students])
 
 
 

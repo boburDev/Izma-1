@@ -9,7 +9,7 @@ import './StudentsTable.scss'
 import { useEffect, useState } from 'react';
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm';
 import { useMutation, useQuery, useSubscription } from '@apollo/client';
-import { ALL_STUDENTS, DELETE_STUDENT, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT } from '../../../../Querys/Table_Query';
+import { ALL_STUDENTS, DELETE_STUDENT, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT, ALL_STUDENTSs, FILTER_COURSE, FIND_SALE } from '../../../../Querys/Table_Query';
 import { Modal } from 'antd';
 import Check from '../../../../components/Check/Check';
 // import { useCourse } from '../filterSoha/context'
@@ -22,17 +22,15 @@ import { useLoader } from '../../../../context/Loader';
 
 
 const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
-   const [deb] = useStudentFilter()
+   const [truFalse] = useStudentFilter()
    const [courseFilter] = useCourseFilter()
    const [setData] = useStudentData(true)
    const [studentID] = useStudentPay()
-   const [setLoading] = useLoader(true) 
-   const { data: students, loading } = useQuery(ALL_STUDENTS, {
-      variables: {
-         page: 1,
-         count: 10
-      }
-   })
+   const [setLoading] = useLoader(true)
+
+   const [userData, setUserData] = useState([])
+   const { data: Allstudents, loading } = useQuery(ALL_STUDENTS, { variables: { page: 1, count: 10 } })
+   const { data: AllstudentsCrediters } = useQuery(ALL_STUDENTSs)
 
 
    const { data: ddd } = useQuery(STUDENT_ON_KEY_UP, { variables: { name: studentSearch } })
@@ -93,7 +91,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
         }
       }
 
-   }, [students, deb, studentSearch, ddd])
+   }, [Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, courseFilter])
 
 
 
@@ -112,17 +110,17 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    };
 
 
-   // useEffect(() => {
-   //    setLoading(loading)
-   // }, [loading])
+   useEffect(() => {
+      setLoading(loading)
+   }, [loading])
 
    
    useEffect(() => {
    setData({
-      studentData: students,
+      studentData: userData,
       pagination: countSt
    })
-   }, [countSt, students])
+   }, [countSt, userData])
 
 
 

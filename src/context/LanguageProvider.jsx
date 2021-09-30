@@ -1,32 +1,33 @@
-import React, { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from "react"
+
 const Context = createContext()
 
-const LanguageProvider = ({ children }) => {
+const LangProvider = ({ children }) => {
+  const [state, setState] = useState(localStorage.getItem("lang") || 'ru')
 
-   const [state, setState] = useState([])
+  useEffect(() => {
+    if (state) {
+      localStorage.setItem("lang", state)
+    } else {
+      localStorage.setItem("lang", "ru")
+    }
+  }, [state])
 
-   const value = {
-      state,
-      setState
-   }
+  const value = {
+    state,
+    setState,
+  }
 
-   return (
-      <Context.Provider value={value}>
-         <Context.Consumer>
-            {
-               () => children
-            }
-         </Context.Consumer>
-      </Context.Provider>
-   )
+  return (
+    <Context.Provider value={value}>
+      <Context.Consumer>{() => children}</Context.Consumer>
+    </Context.Provider>
+  )
 }
 
-const useLanguage = (setterOnly) => {
-   const { state, setState } = useContext(Context)
-   return setterOnly ? [setState] : [state, setState]
+const useLang = (setterOnly) => {
+  const { state, setState } = useContext(Context)
+  return setterOnly ? [setState] : [state, setState]
 }
 
-export {
-    LanguageProvider,
-    useLanguage
-}
+export { LangProvider, useLang }

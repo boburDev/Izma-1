@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   ApolloClient,
   ApolloProvider,
@@ -6,8 +6,8 @@ import {
   split,
   createHttpLink
 } from '@apollo/client'
-import ReactDOM from 'react-dom';
-import App from './pages/App/App';
+import ReactDOM from 'react-dom'
+import App from './pages/App/App'
 import {BrowserRouter} from 'react-router-dom'
 import {
   CourseProvider
@@ -21,13 +21,15 @@ import { TeacherProvider } from './context/TeacherProvider'
 import { EventProvider } from './context/EventProvider'
 import { CheckProvider } from './context/CheckProvider'
 import {StudentTableProvider} from './context/StudentTableProvider'
-import { StudentPayProvider } from './context/StudentPay';
-import { StudentFilterProvider } from './context/StudentFilter';
-import { CourseFilterProvider } from './context/CourseFilterProvider';
+import { StudentPayProvider } from './context/StudentPay'
+import { StudentFilterProvider } from './context/StudentFilter'
+import { CourseFilterProvider } from './context/CourseFilterProvider'
 import {TeachersTableProvider} from './context/TeachersTableProvider'
-import { LidsProvider } from './context/LidsProvider';
-import { LidsProvider2 } from './context/LidsProvider2';
-import { TrueFalseProvider } from './context/TrueFalseProvider';
+import { LidsProvider } from './context/LidsProvider'
+import { LidsProvider2 } from './context/LidsProvider2'
+import { TrueFalseProvider } from './context/TrueFalseProvider'
+import { LangProvider } from './context/LanguageProvider'
+
 const isTester = true
 
 // http://api.al-azhar.uz/api/graphql
@@ -106,7 +108,9 @@ const Main = () => {
 												<LidsProvider>
 													<LidsProvider2>
 														<TrueFalseProvider>
+															<LangProvider>
 															<App />
+															</LangProvider>
 														</TrueFalseProvider>
 													</LidsProvider2>
 												</LidsProvider>
@@ -129,4 +133,4 @@ const Main = () => {
 ReactDOM.render(
   <Main/>,
   document.getElementById('root')
-);
+)

@@ -8,6 +8,7 @@ const Table = ({ block, arr, showDrawer}) => {
    const [data] = useStudentData()
    const [teacherData] = useTeacherData()
 
+
    return (
       <div className="table">
 
@@ -32,9 +33,8 @@ const Table = ({ block, arr, showDrawer}) => {
                   {
                      block === 'studentHash' ?
                         <div className="table-body">
-
                            {
-                              data && data?.studentData?.map((el, index) => (
+                              data && data?.studentData?.students?.map((el, index) => (
                                  <TableBlock
                                     block={block}
                                     info={el}

@@ -1,10 +1,5 @@
-import {  Drawer } from 'antd';
+import {  Drawer } from 'antd'
 import Table from '../../../../components/Table/Table'
-import { connect } from "react-redux";
-import DeleteImg from '../../../../assets/Icons/delete-border.svg'
-import DollarImg from '../../../../assets/Icons/dollar-border.svg'
-// import { setMainTableData, setRowId, setValues } from '../../ActionRedux/IzmaActions';
-import { Link } from 'react-router-dom'
 import './StudentsTable.scss'
 import { useEffect, useState } from 'react';
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm';
@@ -14,81 +9,63 @@ import { Modal } from 'antd';
 import Check from '../../../../components/Check/Check';
 // import { useCourse } from '../filterSoha/context'
 import { useCheck } from '../../../../context/CheckProvider'
-import { useStudentData } from '../../../../context/StudentTableProvider';
-import { useStudentPay } from '../../../../context/StudentPay';
-import { useStudentFilter } from '../../../../context/StudentFilter';
-import { useCourseFilter } from '../../../../context/CourseFilterProvider';
-import { useLoader } from '../../../../context/Loader';
+import { useStudentData } from '../../../../context/StudentTableProvider'
+import { useStudentPay } from '../../../../context/StudentPay'
+import { useStudentFilter } from '../../../../context/StudentFilter'
+import { useCourseFilter } from '../../../../context/CourseFilterProvider'
+import { useLoader } from '../../../../context/Loader'
+import { usePagination } from '../../../../context/Pagination'
 
 
-const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
-   const [truFalse] = useStudentFilter()
+const StudentsTable = ({ studentSearch }) => {
+   const [page] = usePagination()
+   const [deb] = useStudentFilter()
    const [courseFilter] = useCourseFilter()
    const [setData] = useStudentData(true)
    const [studentID] = useStudentPay()
    const [setLoading] = useLoader(true)
 
-   const [userData, setUserData] = useState([])
-   const { data: Allstudents, loading } = useQuery(ALL_STUDENTS, { variables: { page: 1, count: 10 } })
-   const { data: AllstudentsCrediters } = useQuery(ALL_STUDENTSs)
-
-
-   const { data: ddd } = useQuery(STUDENT_ON_KEY_UP, { variables: { name: studentSearch } })
-   const { data: countSt } = useQuery(STUDENT_COUNT, { variables: { count: 10 } })
-   const [getID] = useMutation(DELETE_STUDENT)
-   // getID({variables: {studentID: 'id'}})
-
-
-   const {data: findSale} = useQuery(FIND_SALE)
-   const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: courseFilter}})
-
-   useEffect(()=>{
-
-      const filterCourseArr = []
-    
-      if (courseFilter.length) {
-        fCourse && fCourse.byCourseIDFilter.map(cs => {
-          const groups = cs.groups.map(gr => {
-            const student = gr.students.map((st) => {
-              return filterCourseArr.push({...st, groups: [gr]})
-            })
-            return student
-          })
-          return groups
-        })
+   const { data: students, loading } = useQuery(ALL_STUDENTS, {
+      variables: {
+         page: page?.page,
+         count: +page?.count
       }
-    
-    
-      const studID = findSale && findSale.findSale.map((i) => {
-        return { ID: i.studentid, name: i.name, phoneNumber: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
-      })
-      
-      const searchedStudent = ddd && ddd.studentOnKeyup
-      
-       if (Allstudents && Allstudents.students) {
-          const users = Allstudents && Allstudents.students
-          
-          
-         if (truFalse.credit) {
-         const userss = AllstudentsCrediters && AllstudentsCrediters.studentCredit
-         const filterStatus = userss.filter(item => item.status === 4)
-         filterStatus && setUserData(filterStatus)
-        }
-        else if (searchedStudent) {
-    
-         setUserData(searchedStudent)
-        } 
-        else if(filterCourseArr.length) {
-         setUserData(filterCourseArr)
-        } 
-        else if (truFalse.sales) {
-    
-         setUserData(studID)
-        } 
-        else {
-    
-         setUserData(users)
-        }
+   })
+
+   // console.log(page?.page)
+   // console.log(page?.count)
+
+
+
+   const { data: studentOnKeyUp } = useQuery(STUDENT_ON_KEY_UP, { variables: { name: studentSearch } })
+   const { data: countSt } = useQuery(STUDENT_COUNT, { variables: { count: +page?.count } })
+   const [getID] = useMutation(DELETE_STUDENT)
+
+
+   useEffect(() => {
+      const searchedStudent = studentOnKeyUp && studentOnKeyUp.studentOnKeyup
+
+      console.log(deb)
+      console.log(searchedStudent)
+      console.log(students && students.students)
+
+      if (students && students.students) {
+         const users = students && students.students.map((i, index) => {
+            return { ID: i.id, id: index + 1, name: i.name, phoneNumber: i.mainPhone, date: i.groups, status: i.status }
+         })
+
+         if (deb) {
+            const filterStatus = users.filter(item => item.status === 4)
+            setUserData(filterStatus)
+         }
+         else if (searchedStudent.length) {
+
+            setUserData(searchedStudent)
+         } else {
+
+            setUserData(students && students.students)
+         }
+
       }
 
    }, [Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, courseFilter])
@@ -99,15 +76,17 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    
 
    const [visible, setVisible] = useState(false)
+   const [userData, setUserData] = useState([])
+   // const [course] = useCourse()
    const [checkOpen] = useCheck()
 
 
    const showDrawer = () => {
-      setVisible(true);
-   };
+      setVisible(true)
+   }
    const onClose = () => {
-      setVisible(false);
-   };
+      setVisible(false)
+   }
 
 
    useEffect(() => {
@@ -138,19 +117,20 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
 
 
 
-   const [isModalVisible, setIsModalVisibleY] = useState(false);
+   const [isModalVisible, setIsModalVisibleY] = useState(false)
 
    const handleOkY = () => {
-      setIsModalVisibleY(false);
-   };
+      setIsModalVisibleY(false)
+   }
 
    const handleCancelY = () => {
-      setIsModalVisibleY(false);
-   };
+      setIsModalVisibleY(false)
+   }
 
 
    return (
       <>
+      
          <Drawer
             placement="right"
             closable={false}

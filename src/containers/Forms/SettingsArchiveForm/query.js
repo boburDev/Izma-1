@@ -10,12 +10,37 @@ mutation createColleague($birthday: String $name: String!, $phoneNumber: String!
       status: $status
       birthday: $birthday
     ) {
-      id
+      Id
       name
     }
   }
 `
 
+const UPDATE_COLLEGUES = gql`
+  mutation
+  updateColleague(
+    $Id: ID!
+    $name: String!
+    $phoneNumber: String!
+    $gender: String!
+    $password: String!
+    $comment: String
+    $birthday: String
+  ) { updateColleague(
+      Id: $Id
+      name: $name
+      phoneNumber: $phoneNumber
+      gender: $gender
+      password: $password
+      comment: $comment
+      birthday: $birthday
+  ) {
+    Id
+  }
+  }
+`
+
 export {
-    CREATE_COLLEAGUE
+    CREATE_COLLEAGUE,
+    UPDATE_COLLEGUES
 }

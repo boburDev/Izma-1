@@ -10,7 +10,7 @@ import { useMutation } from '@apollo/client';
 
 const SettingsArchiveForm = ({ onClose }) => {
 
-   const [value, setValue] = useState()
+   const [value, setValue] = useState('')
    const [phone, setPhone] = useState('')
    const [name, setName] = useState('')
    const [date, setDate] = useState('')

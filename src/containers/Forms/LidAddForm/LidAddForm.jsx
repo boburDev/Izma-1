@@ -24,7 +24,7 @@ const LidAddForm = ({ setAdd, itemId }) => {
       useEffect(() => {
          let closeOrAdd = 0
          function handleClickOutside(event) {
-            event.path.map(el => {
+            event.path && event.path.map(el => {
                if (el.className === 'home-column-top__name' || el.className === 'home-column-top__number' || el.className === 'home-column-top__coment') {
                   closeOrAdd++
                }

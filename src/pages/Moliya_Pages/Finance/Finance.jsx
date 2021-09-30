@@ -11,7 +11,7 @@ const Finance = () => {
       <>
          <div className="izma__finance-allpaymet">
             <h1 className="izma__finance-allpaymet-heading">
-               English
+               Finance
             </h1>
             <div className="izma__finance-allpaymet-up">
                <div className="izma__finance-allpaymet-up-left">

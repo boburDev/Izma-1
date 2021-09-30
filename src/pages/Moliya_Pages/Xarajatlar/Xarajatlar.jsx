@@ -1,12 +1,13 @@
 import './Xarajatlar.scss'
 import FinanceCostsImg from '../../../assets/Icons/finance-dolor-icon.svg'
 import { DatePicker, } from "antd"
-import moment from 'moment'
 import DeleteImg from '../../../assets/Icons/settings-delete.svg'
 import XarajatlarForm from './containers/XarajatlarForm/XarajatlarForm'
 import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { FINANCE_STUDENT_FILTER } from '../../../Querys/Finance_All'
+import { FILTER_DATA, HARAJATLAR } from '../../../Querys/Finance_All'
+import TTable from '../../../components/Table/TTable'
+
 
 const Xarajatlar = () => {
    const [dateFilter, setDateFilter] = useState([])
@@ -14,10 +15,13 @@ const Xarajatlar = () => {
 	const [dateFilterValue, setDateFilterValue] = useState({})
 	const { RangePicker } = DatePicker
    const [amount,setAmount] = useState(0)
+   const [cost,setCost] = useState([])
    
-	const { data: filterCost } = useQuery(FINANCE_STUDENT_FILTER, {
+	const { data: filterCost } = useQuery(FILTER_DATA, {
 		variables: Object.keys(dateFilterValue).length ? dateFilterValue : dateFilterDefaultData
 	})
+
+   const { data: costs } = useQuery(HARAJATLAR)
 
    useEffect(()=>{
 		const date = new Date()
@@ -33,18 +37,17 @@ const Xarajatlar = () => {
 	},[])
 
    useEffect(()=>{
-      if (filterCost && filterCost.financeStudentsFilter) {
-         setAmount(filterCost && filterCost.financeStudentsFilter)
+      if (filterCost && filterCost.harajatlarFilter && filterCost.harajatlarFilter.sum) {
+         setAmount(filterCost && filterCost.harajatlarFilter.sum)
       }
 
    },[filterCost])
 
-
-   const x = [
-      { id: 1, name: "Qog'oz", date: '06.08.2021', type: 'Канцелярия', receiver: "INVEST qog'oz", price: '30 000', actions: '.', },
-      { id: 2, name: "Qog'oz", date: '06.08.2021', type: 'Канцелярия', receiver: "INVEST qog'oz", price: '30 000', actions: '.', },
-   ]
-
+   useEffect(()=>{
+      if (costs && costs.harajatlar) {
+         setCost(costs && costs.harajatlar)
+      }
+   },[costs])
 
    return (
       <div className="dwBox">
@@ -103,7 +106,7 @@ const Xarajatlar = () => {
 
             </div>
             <div className="izma__finance__costs" >
-
+				<TTable arr={cost} block={"financeCostHash"} />
             </div>
          </div>
          <div className="ds">

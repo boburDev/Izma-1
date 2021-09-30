@@ -1,9 +1,9 @@
 import './TableBlock.scss'
 import DeleteImg from '../../assets/Icons/delete-border.svg'
 import EditImg from '../../assets/Icons/settings-edit.svg'
+import moment from 'moment'
 
 const TTableBlock = ({ block, info, showDrawer, index }) => {
-console.log(info)
    return (
       <div className="tableBlock">
          {
@@ -34,12 +34,16 @@ console.log(info)
                <h4 className={'groupHash'}>{info?.typePayment}</h4>
                <h4 className={'groupHash'}>{info?.amount}</h4>
                <h4 className={'groupHash'}>{info?.comment}</h4>
-               {/* <h4 className={'groupHash'}>
-                  <img src={EditImg} alt="" />
-               </h4>
+            </> : block === 'financeCostHash' ? <>
+               <h4 className={'groupHash'}>{info?.name}</h4>
+               <h4 className={'groupHash'}>{moment(info?.createdAt-0).format('DD.MM.YYYY')}</h4>
+               <h4 className={'groupHash'}>{info?.type}</h4>
+               <h4 className={'groupHash'}>{info?.typePayment}</h4>
+               <h4 className={'groupHash'}>{info?.buyer}</h4>
+               <h4 className={'groupHash'}>{info?.paymentAmount}</h4>
                <h4 className={'groupHash'}>
                   <img src={DeleteImg} alt="" />
-               </h4> */}
+               </h4>
             </> :<>ok</>
          }
       </div>

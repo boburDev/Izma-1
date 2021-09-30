@@ -27,9 +27,76 @@ const FINANCE_STUDENT_TABLE = gql`
 `
 
 
+const HARAJATLAR = gql`
+{
+    harajatlar{
+      id
+      name
+      createdAt
+      type
+      buyer
+      paymentAmount
+    }
+}
+`
+
+const NEW_HARAJAT = gql`
+mutation newHarajat(
+    $name: String
+    $createdAt: String
+    $type: String
+    $buyer: String
+    $paymentAmount: Int
+  ) {
+  newHarajat(
+    name: $name
+    createdAt: $createdAt
+    type: $type
+    buyer: $buyer
+    paymentAmount: $paymentAmount
+  ) {
+    id
+    name
+    createdAt
+    type
+    buyer
+    paymentAmount
+  }
+}
+`
+
+
+const FILTER_DATA = gql`
+query harajatlarFilter($startDate: String $endDate: String){
+  harajatlarFilter(startDate: $startDate endDate: $endDate)
+}
+`
+
+
+const GROUPS_COURSES = gql `
+{
+  courses{
+    name
+    price
+    groups{
+      name
+      teacher
+      students{
+        id
+        status
+      }
+    }
+  }
+}
+`
+
 
 export {
     FINANCE_STUDENT,
     FINANCE_STUDENT_FILTER,
-    FINANCE_STUDENT_TABLE
+    FINANCE_STUDENT_TABLE,
+    HARAJATLAR,
+    NEW_HARAJAT,
+    FILTER_DATA,
+    GROUPS_COURSES
 }

@@ -70,6 +70,29 @@ const TTable = ({ block, arr, showDrawer}) => {
                   }
                   </div>
 
+            </> : block === "financeCostHash" ? <>
+               <div className="table-header">
+                  <h4 className={'studentHash'}>Nomi</h4>
+                  <h4 className={'studentHash'}>Sana</h4>
+                  <h4 className={'studentHash'}>Turkum</h4>
+                  <h4 className={'studentHash'}>Oluvchi</h4>
+                  <h4 className={'studentHash'}>So'm</h4>
+                  <h4 className={'studentHash'}>Amallar</h4>
+               </div>
+
+               <div className="table-group-body">
+                  {
+                     arr && arr.map((el, index) => (
+                        <TTableBlock
+                              block={'financeCostHash'}
+                              info={el}
+                              index={index+1}
+                              key={index}
+                        />
+                     ))
+                  }
+                  </div>
+
             </> : <>
             TTable
             </>

@@ -3,21 +3,25 @@ import './StudentFilterDebtors.scss'
 import { useState } from 'react'
 import { useStudentFilter } from '../../../context/StudentFilter'
 
-const StudentFilterDebtorsChecked = ({ nameSoha})=>{
-    const [filterSoha, setFilterSoha] = useState(false)
-    const [setDeb] = useStudentFilter(true)
-    const [deb] = useStudentFilter()
+const StudentFilterDebtorsChecked = ()=>{
+    const [trueFalse, setTrueFalse] = useStudentFilter()
 
 
     return (
-        <div
-            className={`filterName  ${filterSoha ? 'checked' : ' '}`}
-            onClick={() => {
-                setDeb([...deb, nameSoha])
-                setFilterSoha(!filterSoha)}}
-        >
-            <span>{nameSoha}</span>
-        </div>
+        <>
+            <div
+                className={`filterName  ${trueFalse.credit ? 'checked' : ' '}`}
+                onClick={() => setTrueFalse({credit: !trueFalse.credit, sales: trueFalse.sales})}
+            >
+                <span>Qarzdorlar</span>
+            </div>
+            <div
+                className={`filterName  ${trueFalse.sales ? 'checked' : ' '}`}
+                onClick={() => setTrueFalse({sales: !trueFalse.sales, credit: trueFalse.credit})}
+            >
+                <span>Chegirmalar</span>
+            </div>
+        </>
     )
 }
 

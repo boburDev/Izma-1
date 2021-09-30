@@ -27,15 +27,16 @@ import { CourseFilterProvider } from './context/CourseFilterProvider';
 import {TeachersTableProvider} from './context/TeachersTableProvider'
 import { LidsProvider } from './context/LidsProvider';
 import { LidsProvider2 } from './context/LidsProvider2';
-const isTester = false
+import { TrueFalseProvider } from './context/TrueFalseProvider';
+const isTester = true
 
 // http://api.al-azhar.uz/api/graphql
 
-// const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
-// const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
 
-const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
-const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+// const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+// const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
 
 // console.log(api, wssApi)
 
@@ -104,7 +105,9 @@ const Main = () => {
 											<TeachersTableProvider>
 												<LidsProvider>
 													<LidsProvider2>
-														<App />
+														<TrueFalseProvider>
+															<App />
+														</TrueFalseProvider>
 													</LidsProvider2>
 												</LidsProvider>
 											</TeachersTableProvider>

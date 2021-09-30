@@ -3,7 +3,13 @@ const Context = createContext()
 
 const StudentFilterProvider = ({ children }) => {
 
-   const [state, setState] = useState([])
+
+   const opt = {
+      credit: false,
+      sales: false
+  }
+
+   const [state, setState] = useState(opt)
    const value = {
       state,
       setState

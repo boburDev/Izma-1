@@ -41,6 +41,7 @@ const Students = () => {
                className='izma__students-content-input'
                placeholder="Ism yoki telefon orqali qidirish"
                type="text"
+               onChange={e => setSearch(e.target.value)}
             />
             <StudentFilterSoha/>
                      <FilterTeachers/>

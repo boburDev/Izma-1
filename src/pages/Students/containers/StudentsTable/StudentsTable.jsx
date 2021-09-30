@@ -9,7 +9,7 @@ import './StudentsTable.scss'
 import { useEffect, useState } from 'react';
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm';
 import { useMutation, useQuery, useSubscription } from '@apollo/client';
-import { ALL_STUDENTS, DELETE_STUDENT, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT } from '../../../../Querys/Table_Query';
+import { ALL_STUDENTS, DELETE_STUDENT, SUBSCRIPTION, STUDENT_ON_KEY_UP, FIND_SALE, FILTER_COURSE, STUDENT_COUNT, ALL_STUDENTSs  } from '../../../../Querys/Table_Query';
 import { Modal } from 'antd';
 import Check from '../../../../components/Check/Check';
 // import { useCourse } from '../filterSoha/context'
@@ -20,59 +20,83 @@ import { useStudentFilter } from '../../../../context/StudentFilter';
 import { useCourseFilter } from '../../../../context/CourseFilterProvider';
 
 
-const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
-   const [deb] = useStudentFilter()
+const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
+
+   const [truFalse] = useStudentFilter()
    const [courseFilter] = useCourseFilter()
    const [setData] = useStudentData(true)
    const [studentID] = useStudentPay()
-   const { data: students } = useQuery(ALL_STUDENTS, {
-      variables: {
-         page: 1,
-         count: 10
-      }
-   })
 
+   const { data: Allstudents } = useQuery(ALL_STUDENTS, { variables: { page: 1, count: 10 } })
+   const { data: AllstudentsCrediters } = useQuery(ALL_STUDENTSs)
 
-   const { data: ddd } = useQuery(STUDENT_ON_KEY_UP, { variables: { name: studentSearch } })
+   const [userData, setUserData] = useState([])
+
+   const { data: ddd } = useQuery(STUDENT_ON_KEY_UP, { variables: { name: (studentSearch.length > 0) && studentSearch } })
    const { data: countSt } = useQuery(STUDENT_COUNT, { variables: { count: 10 } })
+
    const [getID] = useMutation(DELETE_STUDENT)
 
-   useEffect(() => {
+   // getID({variables: {studentID: 'id'}})
 
-      const searchedStudent = ddd && ddd.studentOnKeyup.map((i, index) => {
-         return { ID: i.id, id: index + 1, name: i.name, phoneNumber: i.mainPhone, date: i.groups, status: i.status }
-      })
+   const {data: findSale} = useQuery(FIND_SALE)
+   const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: courseFilter}})
 
-      if (students && students.students) {
-         const users = students && students.students.map((i, index) => {
-            return { ID: i.id, id: index + 1, name: i.name, phoneNumber: i.mainPhone, date: i.groups, status: i.status }
-         })
+   useEffect(()=>{
 
-
-
-         if (deb) {
-            const filterStatus = users.filter(item => item.status === 4)
-            setUserData(filterStatus)
-         }
-         else if (searchedStudent) {
-
-            setUserData(searchedStudent)
-         } else {
-
-            setUserData(users)
-         }
-
+      const filterCourseArr = []
+    
+      if (courseFilter.length) {
+        fCourse && fCourse.byCourseIDFilter.map(cs => {
+          const groups = cs.groups.map(gr => {
+            const student = gr.students.map((st) => {
+              return filterCourseArr.push({...st, groups: [gr]})
+            })
+            return student
+          })
+          return groups
+        })
       }
+    
+    
+      const studID = findSale && findSale.findSale.map((i) => {
+        return { ID: i.studentid, name: i.name, phoneNumber: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
+      })
+      
+      const searchedStudent = ddd && ddd.studentOnKeyup
+      
+       if (Allstudents && Allstudents.students) {
+          const users = Allstudents && Allstudents.students
+          
+          
+         if (truFalse.credit) {
+         const userss = AllstudentsCrediters && AllstudentsCrediters.students
+         const filterStatus = userss.filter(item => item.status === 4)
+         setUserData(filterStatus)
+        }
+        else if (searchedStudent) {
+    
+         setUserData(searchedStudent)
+        } 
+        else if(filterCourseArr.length) {
+         setUserData(filterCourseArr)
+        } 
+        else if (truFalse.sales) {
+    
+         setUserData(studID)
+        } 
+        else {
+    
+         setUserData(users)
+        }
+      }
+    },[Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, courseFilter])
 
-   }, [students, deb, studentSearch, ddd])
 
 
-
-   
    
 
    const [visible, setVisible] = useState(false)
-   const [userData, setUserData] = useState([])
    // const [course] = useCourse()
    const [checkOpen] = useCheck()
 
@@ -85,16 +109,13 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    };
 
 
-
-
-   
-   
+  
    useEffect(() => {
    setData({
-      studentData: students,
+      studentData: userData,
       pagination: countSt
    })
-   }, [countSt, students])
+   }, [countSt, userData])
 
 
 

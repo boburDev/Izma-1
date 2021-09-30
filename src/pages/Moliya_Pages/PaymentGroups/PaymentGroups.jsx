@@ -3,12 +3,12 @@ import FinanceCostsImg from '../../../assets/Icons/008-dollar.svg'
 import TTable from '../../../components/Table/TTable'
 import { GROUPS_COURSES } from '../../../Querys/Finance_All'
 import { useQuery } from '@apollo/client'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const PaymentGroups = () => {
 	
 	const {data: GrCrTch} = useQuery(GROUPS_COURSES)
-	
+	const [state,setState] = useState([])
 	useEffect(() => {
 		const grDataArr = []
 		
@@ -19,7 +19,6 @@ const PaymentGroups = () => {
 					
 					const arr = []
 					if (st.status !== 2) {
-						console.log(st.status !== 2);
 						arr.push(st)
 					}
 					price = arr.length ? arr.length * item.price : '0'
@@ -36,8 +35,7 @@ const PaymentGroups = () => {
 			
 			return t
 		})
-		
-		console.log(grDataArr)
+		setState(grDataArr)
 	}, [GrCrTch]);
 	
 	
@@ -59,51 +57,13 @@ const PaymentGroups = () => {
 		</p>
 		<img className='izma__finance-payment-right-tabs-second-img' src={FinanceCostsImg} alt="" />
 		</div>
-		
-		<div className="izma__finance-payment-groups-center">
-		<div className="izma__finance-payment-groups-center-id-wrappers">
-		<div className="izma__finance-payment-groups-center-id-text">
-		ID
-		</div>
-		<div className="izma__finance-payment-groups-center-id-number">
-		13119
-		</div>
-		</div>
-		
-		<div className="izma__finance-payment-groups-center-date-wrappers">
-		<div className="izma__finance-payment-groups-center-date-text">
-		Sanadan boshlab
-		</div>
-		<div className="izma__finance-payment-groups-center-date-number">
-		27/07/2020
-		</div>
-		</div>
-		
-		<div className="izma__finance-payment-groups-center-price-wrappers">
-		<div className="izma__finance-payment-groups-center-price-text">
-		Summa
-		</div>
-		<div className="izma__finance-payment-groups-center-price-number">
-		$40.10
-		</div>
-		</div>
-		
-		<div className="izma__finance-payment-groups-center-payment-wrappers">
-		<div className="izma__finance-payment-groups-center-payment-text">
-		Pul o’tkazish turi
-		</div>
-		<div className="izma__finance-payment-groups-center-payment-number">
-		payment/sum
-		</div>
-		</div>
-		
-		</div>
+	
 		
 		<div className="izma__finance-payment-groups-table-wrapper">
 		<h4 className="izma__finance-payment-groups-table-wrapper-heading">
 		Order Details
 		</h4>
-		<TTable />
+		<TTable arr={state} block={"financeGroupHash"} />
 		</div>
 		
 		

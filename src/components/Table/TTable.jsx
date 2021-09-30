@@ -40,7 +40,7 @@ const TTable = ({ block, arr, showDrawer}) => {
                   {
                      arr && arr.map((el, index) => (
                         <TTableBlock
-                              block={'settingsHash'}
+                              block={'settingsHashRooms'}
                               info={el}
                               index={index+1}
                               key={index}

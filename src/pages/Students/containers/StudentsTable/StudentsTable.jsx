@@ -42,34 +42,60 @@ const StudentsTable = ({ studentSearch }) => {
    const [getID] = useMutation(DELETE_STUDENT)
 
 
-   useEffect(() => {
-      const searchedStudent = studentOnKeyUp && studentOnKeyUp.studentOnKeyup
+   useEffect(()=>{
 
-      console.log(deb)
-      console.log(searchedStudent)
-      console.log(students && students.students)
-
-      if (students && students.students) {
-         const users = students && students.students.map((i, index) => {
-            return { ID: i.id, id: index + 1, name: i.name, phoneNumber: i.mainPhone, date: i.groups, status: i.status }
-         })
-
-         if (deb) {
-            const filterStatus = users.filter(item => item.status === 4)
-            setUserData(filterStatus)
-         }
-         else if (searchedStudent.length) {
-
-            setUserData(searchedStudent)
-         } else {
-
-            setUserData(students && students.students)
-         }
-
+      const filterCourseArr = []
+    
+      if (course.length) {
+        fCourse && fCourse.byCourseIDFilter.map(cs => {
+          const groups = cs.groups.map(gr => {
+            const group = []
+            const obj = {name: gr.name, teacher: gr.teacher, time: gr.time}
+            group.push(obj)
+            const student = gr.students.map((st, index) => {
+              return filterCourseArr.push({ ID: st.id, id: index+1, name: st.name, phoneNumber: st.mainPhone, date: group && group, status: st.status })
+            })
+            return student
+          })
+          return groups
+        })
       }
-
-   }, [studentSearch, studentOnKeyUp, courseFilter, deb, students])
-
+    
+    
+      const studID = findSale && findSale.findSale.map((i, index) => {
+        return { ID: i.studentid, id: index+1, name: i.name, phoneNumber: [{number: i.stphone}], date: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
+      })
+      
+      const searchedStudent = ddd && ddd.studentOnKeyup.map((i, index) => {
+        return { ID: i.id, id: index+1, name: i.name, phoneNumber: i.mainPhone, date: i.groups, status: i.status }
+      })
+      
+       if (Allstudents && Allstudents.students) {
+          const users = Allstudents && Allstudents.students.map((i, index) => {
+          return { ID: i.id, id: index+1, name: i.name, phoneNumber: i.mainPhone, date: i.groups, status: i.status }
+          })
+    
+        if (truFalse.credit) {
+          const filterStatus = users.filter(item => item.status === 4)
+          setUserData(filterStatus)
+        }
+        else if (searchedStudent) {
+    
+          setUserData(searchedStudent)
+        } else if(filterCourseArr.length) {
+    
+          setUserData(filterCourseArr)
+    
+        } else if (truFalse.sales) {
+    
+          setUserData(studID)
+        } else {
+    
+          setUserData(users)
+        }
+       }
+    },[Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, course])
+    
 
 
    

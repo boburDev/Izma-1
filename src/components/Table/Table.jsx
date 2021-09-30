@@ -34,7 +34,7 @@ const Table = ({ block, arr, showDrawer}) => {
                      block === 'studentHash' ?
                         <div className="table-body">
                            {
-                              data && data?.studentData?.students?.map((el, index) => (
+                              data && data?.studentData.map((el, index) => (
                                  <TableBlock
                                     block={block}
                                     info={el}

@@ -14,6 +14,7 @@ import Icon6 from '../../../assets/icon6.svg'
 import Icon7 from '../../../assets/icon7.svg'
 import Icon8 from '../../../assets/icon8.svg'
 import Icon9 from '../../../assets/icon9.svg'
+import NavbarLinkSet from '../NavbarLinkFin/NavbarLinkFin'
 
 import {
    Home,
@@ -46,6 +47,11 @@ const Navbar = ({ sidebarActive }) => {
    const openFinance1 = () => {
       setOpenMoliya(!openMoliya)
       setOpenSetting(false)
+   }
+
+   const quitButton = () => {
+      setSettingActive(false)
+      setDragActive(false)
    }
 
    const openSettings1 = () => {
@@ -103,65 +109,75 @@ const Navbar = ({ sidebarActive }) => {
          addClass: openFinance1,
          clas: dragActive
       },
-      {
-         title: 'Sozlamalar',
-         icon: <Settings />,
-         link: '/settingsRoadmap',
-         isButton: true,
-         addClass: openSettings1,
-         clas: settingActive
-      }
    ]
 
    const { location } = useHistory()
-   console.log(location.pathname);
    useEffect(() => {
       switch (location.pathname) {
          case "/settingsEmployeesInner":
             setSettingActive(true)
-
+            setDragActive(false)
+            break;
+         case "/finance":
+            setDragActive(true)
+            setSettingActive(false)
             break;
          case "/financeCosts":
             setDragActive(true)
+            setSettingActive(false)
             break;
          case "/financeSalary":
             setDragActive(true)
+            setSettingActive(false)
             break;
          case "/financePaymentGroups":
             setDragActive(true)
+            setSettingActive(false)
             break;
          case "/financePayment":
             setDragActive(true)
+            setSettingActive(false)
             break;
          case "/settingsRoadmap":
             setSettingActive(true)
+            setDragActive(false)
             break;
          case "/settingsEmployees":
             setSettingActive(true)
+            setDragActive(false)
             break;
          case "/settingsMagazine":
             setSettingActive(true)
+            setDragActive(false)
             break;
          case "/settingsArchive":
             setSettingActive(true)
+            setDragActive(false)
             break;
          case "/settingsLidform":
             setSettingActive(true)
+            setDragActive(false)
             break;
          case "/settingsEnter":
             setSettingActive(true)
+            setDragActive(false)
             break;
          case "/settingsShapes":
             setSettingActive(true)
+            setDragActive(false)
             break;
          case "/settingsCompany":
             setSettingActive(true)
+            setDragActive(false)
             break;
 
-         case "/": ;
+         case "/": 
+         
             break;
-
-         default: ;
+         default:
+            closeFinSet() 
+            setSettingActive(false)
+            setDragActive(false)
             break;
       }
    }, [location.pathname]);
@@ -263,7 +279,7 @@ const Navbar = ({ sidebarActive }) => {
       },
       {
          link: '/settingsCompany',
-         title: '',
+         title: 'Kampaniya sozlamalari',
          icon: Icon9,
          isBox: false,
          links: [],
@@ -309,10 +325,21 @@ const Navbar = ({ sidebarActive }) => {
                         link={el.link}
                         link2={closeFinSet}
                         key={el.title}
+                        quitButton={quitButton}
                      />
                   }
                })
             }
+            <NavbarLinkSet
+               icon={<Settings />}
+               title={'Sozlamalar'}
+               isButton={true}
+               link={'/settingsRoadmap'}
+               addClass={openSettings1}
+               link2={closeFinSet}
+               key={'set'}
+               clas={settingActive}
+            />
 
             
 

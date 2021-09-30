@@ -111,6 +111,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
 
   
    useEffect(() => {
+      
    setData({
       studentData: userData,
       pagination: countSt
@@ -146,6 +147,9 @@ const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
 
    return (
       <>
+      {
+         loading ? <></> : 'id'
+      }
          <Drawer
             placement="right"
             closable={false}

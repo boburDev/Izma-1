@@ -23,16 +23,24 @@ const PhoneNumberInput = ({ setPhone, setParents, parents }) => {
          <span className="numb">+998</span>
          <input
          
-            minLength="9"
-            maxLength="9"
+            minLength="14"
+            maxLength="14"
             className="telInput" type="tel"
+            onKeyPress={(e) => {
+               if (e.target.value.length == 2) {
+                  e.target.value = '(' + e.target.value + ')' + ' '
+               } else if (e.target.value.length == 8) {
+                  e.target.value = e.target.value + '-'
+               } else if (e.target.value.length == 11) {
+                  e.target.value = e.target.value + '-'
+               }
+            }}
             onKeyUp={(e) => {
-               if(setParents && e.target.value.length == 9) {
+               
+               if(setParents && e.target.value.length == 14) {
                   e.target.blur()
-                  console.log(e);
-                  setParents([...parents, {number: e.target.value}])
-               }else if(setPhone && e.target.value.length == 9){
-                  setPhone('998'+e.target.value)
+               }else if(setPhone && e.target.value.length == 14){
+                  setPhone('998'+e.target.value.replace(/[^\d|.-]/g, '').split('-').join(''))
                }
             }}
          />
@@ -41,3 +49,4 @@ const PhoneNumberInput = ({ setPhone, setParents, parents }) => {
 }
 
 export default PhoneNumberInput
+

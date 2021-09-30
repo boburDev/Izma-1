@@ -26,6 +26,8 @@ import { StudentFilterProvider } from './context/StudentFilter';
 import { CourseFilterProvider } from './context/CourseFilterProvider';
 import {TeachersTableProvider} from './context/TeachersTableProvider'
 import { LoaderProvider } from './context/Loader';
+import { DavomatProvider } from './context/DavomatProvider';
+
 const isTester = false
 
 // http://api.al-azhar.uz/api/graphql
@@ -91,18 +93,20 @@ const Main = () => {
 		<React.StrictMode>
     <BrowserRouter>
       <ApolloProvider client={client}>
-      <LoginProvider>
-		  <CourseProvider>
-			  <TeacherProvider>
+		<LoginProvider>
+			<CourseProvider>
+				<TeacherProvider>
 					<EventProvider>
 						<CheckProvider>
 							<StudentTableProvider>
 								<StudentPayProvider>
 									<StudentFilterProvider>
-								   	<CourseFilterProvider>
+										<CourseFilterProvider>
 											<TeachersTableProvider>
 												<LoaderProvider>
-													<App />
+													<DavomatProvider>
+														<App />
+													</DavomatProvider>
 												</LoaderProvider>
 											</TeachersTableProvider>
 										</CourseFilterProvider>
@@ -111,10 +115,10 @@ const Main = () => {
 							</StudentTableProvider>
 						</CheckProvider>
 					</EventProvider>
-			  </TeacherProvider>
-		  </CourseProvider>
-      </LoginProvider>
-    </ApolloProvider>
+				</TeacherProvider>
+			</CourseProvider>
+		</LoginProvider>
+		</ApolloProvider>
     </BrowserRouter>
   </React.StrictMode>
 	)

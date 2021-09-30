@@ -87,9 +87,9 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    };
 
 
-   useEffect(() => {
-      setLoading(loading)
-   }, [loading])
+   // useEffect(() => {
+   //    setLoading(loading)
+   // }, [loading])
 
    
    useEffect(() => {

@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import Loader from '../../../components/Loader/Loader';
 
 const GroupProfil = () => {
-   const [dataHead, setDataHead] = useState()
+   const [dataHead, setDataHead] = useState({})
    const { groupID } = useParams()
 
    const { data, loading } = useQuery(BY_GROUP_ID, {
@@ -19,12 +19,11 @@ const GroupProfil = () => {
    })
    const [students, setStudents] = useState()
 
-   console.log(data && data)
-   
-   
-
    useEffect(() => {
-      setDataHead(data)
+      if (data && data.byGroupID) {
+         console.log(data && data.byGroupID)
+         setDataHead(data.byGroupID)
+      }
    }, [data])
 
    return (
@@ -35,7 +34,7 @@ const GroupProfil = () => {
             }
                <div className="izma__groups-attendence-headings">
                   <h3 className="izma__groups-attendence-heading">
-                  Guruhlar |   {dataHead && dataHead.byGroupID.courseName} | {dataHead && dataHead.byGroupID.teacher}
+                  Guruhlar |   { dataHead.courseName } | { dataHead && dataHead.teacher }
                   </h3>
 
                </div>

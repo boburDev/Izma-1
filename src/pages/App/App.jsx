@@ -25,10 +25,13 @@ import Archive from "../Settings_Pages/Archive/Archive";
 import LidForm from "../Settings_Pages/LidForm/LidForm";
 import EnterForm from "../Settings_Pages/EnterForm/EnterForm";
 import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
+import Loader from "../../components/Loader/Loader";
 import Lids from "../Lids/Lids";
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
   const [token, setToken] = useState(window.localStorage.getItem('token'))
+
+
  
   return (
     <div className="app">
@@ -59,48 +62,48 @@ const App = () => {
         {/* ====================== ROUTES ======================= */}
 
         <div className="app-right-center">
-          <Switch>
-            
-            <Route path="/" component={Home} exact />
-            <Route path="/students" component={Students} exact />
-            <Route path="/teachers" component={Teachers} exact />
-            <Route path="/groups" component={Groups} exact />
-            <Route path="/courses" component={Courses} exact />
-            <Route path="/groups/groupsProfil/:groupID" component={GroupProfil} exact />
-            <Route path="/coursesAddLesson" component={CoursesAddLesson} exact />
-            <Route path="/coursesInner/:courseID" component={CoursesInner} exact />
-            <Route path="/lidlar" component={Lids}/>
-            <Route path="/studentProfile/:studentID" exact>
-              <StudentProfile role="student"/>
-            </Route>
-            <Route path="/teacherProfile/:collegueID" exact>
-              <StudentProfile role="teacher" />
-            </Route>
 
-            {/* ==============     MOLIYA =============== */}
+                    <Switch>
+                      <Route path="/" component={Home} exact />
+                      <Route path="/students" component={Students} exact />
+                      <Route path="/teachers" component={Teachers} exact />
+                      <Route path="/groups" component={Groups} exact />
+                      <Route path="/courses" component={Courses} exact />
+                      <Route path="/groups/groupsProfil/:groupID" component={GroupProfil} exact />
+                      <Route path="/coursesAddLesson" component={CoursesAddLesson} exact />
+                      <Route path="/coursesInner/:courseID" component={CoursesInner} exact />
+                      <Route path="/lidlar" component={Lids} />
+                      <Route path="/studentProfile/:studentID" exact>
+                        <StudentProfile role="student" />
+                      </Route>
+                      <Route path="/teacherProfile/:collegueID" exact>
+                        <StudentProfile role="teacher" />
+                      </Route>
 
-            <Route path="/finance" component={Finance} /> 
-            <Route path="/financeCosts" component={Xarajatlar} />
-            <Route path="/financeSalary" component={Salary} />
-            <Route path="/financePaymentGroups" component={PaymentGroups} />
-            <Route path="/financePayment" component={CoursesPayment} />
+                      {/* ==============     MOLIYA =============== */}
 
-
-            {/* =================== SETTINGS ======================= */}
-
-            <Route path="/settingsEmployees" component={Employees} />
-            <Route path="/settingsEmployeesInner" component={Rooms} />
-            <Route path="/settingsMagazine" component={Jurnals} />
-            <Route path="/settingsArchive" component={Archive} />
-            <Route path="/settingsLidform" component={LidForm} />
-            <Route path="/settingsShapes" component={Shakillar} />
-            <Route path="/enterForm" component={EnterForm} />
+                      <Route path="/finance" component={Finance} />
+                      <Route path="/financeCosts" component={Xarajatlar} />
+                      <Route path="/financeSalary" component={Salary} />
+                      <Route path="/financePaymentGroups" component={PaymentGroups} />
+                      <Route path="/financePayment" component={CoursesPayment} />
 
 
+                      {/* =================== SETTINGS ======================= */}
+
+                      <Route path="/settingsEmployees" component={Employees} />
+                      <Route path="/settingsEmployeesInner" component={Rooms} />
+                      <Route path="/settingsMagazine" component={Jurnals} />
+                      <Route path="/settingsArchive" component={Archive} />
+                      <Route path="/settingsLidform" component={LidForm} />
+                      <Route path="/settingsShapes" component={Shakillar} />
+                      <Route path="/enterForm" component={EnterForm} />
 
 
-           
-          </Switch>
+
+
+
+                    </Switch>
         </div>
         
 

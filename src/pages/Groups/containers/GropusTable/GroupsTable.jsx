@@ -6,19 +6,22 @@ import { useCourse } from '../../../../context/CourseProvider';
 import { useTeacher } from '../../../../context/TeacherProvider';
 import { useEffect, useState } from 'react';
 import { useCourseFilter } from '../../../../context/CourseFilterProvider';
+import { useLoader } from '../../../../context/Loader';
 
 const GroupsTable = ({  setRowId, setValues }) => {
    const [courseFilter] = useCourseFilter()
-
+   const [setLoading] = useLoader(true)
    const [coursesId] = useCourse()
    const [teacher] = useTeacher()
    const [groups, setGroups] = useState()
-   const { data: groupss } = useQuery(GROUPS, {
+   const { data: groupss, loading } = useQuery(GROUPS, {
       variables: { teacherID: teacher, courseID: coursesId }
 
    })
+   useEffect(() => {
+      setLoading(loading)
+   }, [loading])
 
-   console.log(courseFilter);
 
 
    useEffect(()=>{

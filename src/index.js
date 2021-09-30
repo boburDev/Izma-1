@@ -25,18 +25,18 @@ import { StudentPayProvider } from './context/StudentPay';
 import { StudentFilterProvider } from './context/StudentFilter';
 import { CourseFilterProvider } from './context/CourseFilterProvider';
 import {TeachersTableProvider} from './context/TeachersTableProvider'
-import { LidsProvider } from './context/LidsProvider';
-import { LidsProvider2 } from './context/LidsProvider2';
-import { TrueFalseProvider } from './context/TrueFalseProvider';
-const isTester = true
+import { LoaderProvider } from './context/Loader';
+import { DavomatProvider } from './context/DavomatProvider';
+
+const isTester = false
 
 // http://api.al-azhar.uz/api/graphql
 
-const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
-const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+// const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+// const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
 
-// const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
-// const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
 
 // console.log(api, wssApi)
 
@@ -93,23 +93,21 @@ const Main = () => {
 		<React.StrictMode>
     <BrowserRouter>
       <ApolloProvider client={client}>
-      <LoginProvider>
-		  <CourseProvider>
-			  <TeacherProvider>
+		<LoginProvider>
+			<CourseProvider>
+				<TeacherProvider>
 					<EventProvider>
 						<CheckProvider>
 							<StudentTableProvider>
 								<StudentPayProvider>
 									<StudentFilterProvider>
-								   	<CourseFilterProvider>
+										<CourseFilterProvider>
 											<TeachersTableProvider>
-												<LidsProvider>
-													<LidsProvider2>
-														<TrueFalseProvider>
-															<App />
-														</TrueFalseProvider>
-													</LidsProvider2>
-												</LidsProvider>
+												<LoaderProvider>
+													<DavomatProvider>
+														<App />
+													</DavomatProvider>
+												</LoaderProvider>
 											</TeachersTableProvider>
 										</CourseFilterProvider>
 									</StudentFilterProvider>
@@ -117,10 +115,10 @@ const Main = () => {
 							</StudentTableProvider>
 						</CheckProvider>
 					</EventProvider>
-			  </TeacherProvider>
-		  </CourseProvider>
-      </LoginProvider>
-    </ApolloProvider>
+				</TeacherProvider>
+			</CourseProvider>
+		</LoginProvider>
+		</ApolloProvider>
     </BrowserRouter>
   </React.StrictMode>
 	)

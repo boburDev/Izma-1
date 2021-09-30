@@ -9,7 +9,7 @@ import './StudentsTable.scss'
 import { useEffect, useState } from 'react';
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm';
 import { useMutation, useQuery, useSubscription } from '@apollo/client';
-import { ALL_STUDENTS, DELETE_STUDENT, SUBSCRIPTION, STUDENT_ON_KEY_UP, FIND_SALE, FILTER_COURSE, STUDENT_COUNT, ALL_STUDENTSs  } from '../../../../Querys/Table_Query';
+import { ALL_STUDENTS, DELETE_STUDENT, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT } from '../../../../Querys/Table_Query';
 import { Modal } from 'antd';
 import Check from '../../../../components/Check/Check';
 // import { useCourse } from '../filterSoha/context'
@@ -18,23 +18,25 @@ import { useStudentData } from '../../../../context/StudentTableProvider';
 import { useStudentPay } from '../../../../context/StudentPay';
 import { useStudentFilter } from '../../../../context/StudentFilter';
 import { useCourseFilter } from '../../../../context/CourseFilterProvider';
+import { useLoader } from '../../../../context/Loader';
 
 
-const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
-
-   const [truFalse] = useStudentFilter()
+const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
+   const [deb] = useStudentFilter()
    const [courseFilter] = useCourseFilter()
    const [setData] = useStudentData(true)
    const [studentID] = useStudentPay()
+   const [setLoading] = useLoader(true) 
+   const { data: students, loading } = useQuery(ALL_STUDENTS, {
+      variables: {
+         page: 1,
+         count: 10
+      }
+   })
 
-   const { data: Allstudents } = useQuery(ALL_STUDENTS, { variables: { page: 1, count: 10 } })
-   const { data: AllstudentsCrediters } = useQuery(ALL_STUDENTSs)
 
-   const [userData, setUserData] = useState([])
-
-   const { data: ddd } = useQuery(STUDENT_ON_KEY_UP, { variables: { name: (studentSearch.length > 0) && studentSearch } })
+   const { data: ddd } = useQuery(STUDENT_ON_KEY_UP, { variables: { name: studentSearch } })
    const { data: countSt } = useQuery(STUDENT_COUNT, { variables: { count: 10 } })
-
    const [getID] = useMutation(DELETE_STUDENT)
    // getID({variables: {studentID: 'id'}})
 
@@ -90,10 +92,12 @@ const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
          setUserData(users)
         }
       }
-    },[Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, courseFilter])
+
+   }, [students, deb, studentSearch, ddd])
 
 
 
+   
    
 
    const [visible, setVisible] = useState(false)
@@ -108,14 +112,17 @@ const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
    };
 
 
-  
+   // useEffect(() => {
+   //    setLoading(loading)
+   // }, [loading])
+
+   
    useEffect(() => {
-      
    setData({
-      studentData: userData,
+      studentData: students,
       pagination: countSt
    })
-   }, [countSt, userData])
+   }, [countSt, students])
 
 
 

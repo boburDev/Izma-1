@@ -9,11 +9,13 @@ import { useTeacherData } from '../../../../context/TeachersTableProvider';
 import {
    gql
 } from '@apollo/client'
+import { useLoader } from '../../../../context/Loader';
 
 const TeachersTable = ({ setMainTableData, mainTableData, values, setRowId, setValues }) => {
 
-   const { data: teachers } = useQuery(TEACHERS)
+   const { data: teachers, loading } = useQuery(TEACHERS)
    const [setTeacherData] = useTeacherData(true)
+   const [setLoading] = useLoader(true)
 
    const [deleteTeacher] = useMutation(DELETE_TEACHER, {
       update: (cache, data) => {
@@ -24,6 +26,10 @@ const TeachersTable = ({ setMainTableData, mainTableData, values, setRowId, setV
    useEffect(() => {
       setTeacherData(teachers)
    }, [teachers])
+
+   useEffect(() => {
+      setLoading(loading)
+   }, [loading])
 
    
 

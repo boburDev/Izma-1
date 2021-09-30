@@ -5,6 +5,7 @@ import List from '../../../assets/Icons/list.svg'
 import './LidsContent.scss'
 import request from '../../../services'
 import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm'
+import Loader from '../../../components/Loader/Loader'
 
 const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDrawer }) => {
    const [firstCol1, setFirstCol1] = useState(false)
@@ -15,14 +16,16 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
    let arr = [firstCol1, firstCol2, firstCol3]
    let arr2 = [setFirstCol1, setFirstCol2, setFirstCol3]
    const [boards, setBoards] = useState([])
+  const [load, setLoad] = useState()
 
    useEffect(() => {
       let isCancelled = false;
-
+      setLoad(true)
       async function getQuestions() {
          try {
             const { data } = await request.get(`/`);
             setBoards(data.results);
+            setLoad(false)
 
          } catch (err) { console.log(err) }
       }
@@ -30,6 +33,10 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
 
 
    }, [firstCol1, firstCol2, firstCol3, refresh])
+
+  
+
+ 
 
 
 
@@ -144,6 +151,11 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
    
    return (
       <div className="lids container">
+         <>
+            {
+               load ? <Loader/> : <></>
+            }
+         </>
          {
             boards.map((board, index) =>
                <div className="lids-column">

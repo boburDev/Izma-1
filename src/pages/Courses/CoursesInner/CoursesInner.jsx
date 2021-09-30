@@ -5,19 +5,26 @@ import CoursesTabs1 from '../containers/CoursesInner_Tabs/CoursesInner_Tab1/Cour
 import CoursesTabs2 from '../containers/CoursesInner_Tabs/CoursesInner_Tab2/CoursesInner_Tab2';
 import CoursesTabs3 from '../containers/CoursesInner_Tabs/CoursesInner_Tab3/CoursesInner_Tab3';
 import CoursesFormMain from '../containers/CoursesFormMain/CoursesFormMain';
-import { useState, } from 'react';
+import { useState, useEffect} from 'react';
 import { Drawer, } from 'antd';
 import { useParams, Redirect } from 'react-router-dom';
 import { BY_COURSE_ID, DELETE_BY_COURSE_ID } from '../../../Querys/Courses_Query';
 import { useQuery, useMutation } from '@apollo/client';
+import { useLoader } from '../../../context/Loader';
 
 const CoursesInner = () => {
+   const [setLoading] = useLoader(true)
 
    const { courseID } = useParams()
-   const { data: courses } = useQuery(BY_COURSE_ID, {
+   const { data: courses, loading } = useQuery(BY_COURSE_ID, {
       variables: { courseID: courseID && courseID }
    })
-   // console.log(courses)
+
+   useEffect(() => {
+      setLoading(loading)
+   }, [loading])
+
+
 
    const [Delete_course, { data: deleted_data }] = useMutation(DELETE_BY_COURSE_ID)
 

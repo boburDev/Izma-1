@@ -18,7 +18,18 @@ const HISTORY = gql `
     }
 `
 
+const SUBSCRIPTION_HISTORY = gql `
+    subscription{
+        historyPay{
+        id
+        debit
+        credit
+        comment
+        }
+    }
+`
 
 export {
    HISTORY,
+   SUBSCRIPTION_HISTORY
 }

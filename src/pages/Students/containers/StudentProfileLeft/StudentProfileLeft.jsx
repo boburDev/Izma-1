@@ -197,7 +197,7 @@ const StudentsProfileLeft = (prop) => {
        setNames(guruh)
     },[Groups])
  
-     if(frRedirect && frRedirect.deleteStudent.id) return <Redirect to='/student' />
+     if(frRedirect && frRedirect.deleteStudent.id) return <Redirect to='/students' />
  
      return (
          <>
@@ -310,14 +310,17 @@ const StudentsProfileLeft = (prop) => {
        <div className="form_group" style={{width: "100%"}}>
                      
        <Select
-                  defaultValue="Guruhni tanlang"
-                  onChange={(e) => setGrID(e)}
-               >
-                  {Groups && Groups.groups.map((item) => {
-                     // {oneStudent && oneStudent.student.groups.map(gName => (
-                     return <Option key={item.id} value={item.id} >{/* (item.name !== gName.name) &&  */item.name}</Option>
-                     // ))}
-                  })}
+            defaultValue="Guruhni tanlang"
+            onChange={(e) => {
+               setGrID(e)
+               has({variables: {stID: studentID, grID: e}})
+            }}
+         >
+            {Groups && Groups.groups.map((item) => {
+               // {oneStudent && oneStudent.student.groups.map(gName => (
+               return <Option key={item.id} value={item.id} >{/* (item.name !== gName.name) &&  */item.name}</Option>
+               // ))}
+            })}
       </Select>
          {/* <AutoComplete
        options={namesFind.length ? namesFind : names}

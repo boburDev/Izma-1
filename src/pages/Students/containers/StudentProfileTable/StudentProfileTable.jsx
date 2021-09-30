@@ -1,17 +1,28 @@
 import '../StudnetProfileRight/StudentProfileRight.scss'
 import { Table } from 'antd';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { useQuery } from '@apollo/client';
-import { HISTORY } from './query';
+import { useQuery, useSubscription } from '@apollo/client';
+import { HISTORY, SUBSCRIPTION_HISTORY } from './query';
 
 const StudentsProfileTable = ({ setMainTableData, mainTableData, setRowId, setValues }) => {
 
-   const { studentID } = useParams()
+  const { studentID } = useParams()
+
+  const [history, setHistory] = useState([])
+
 
    const { data: forCheck } = useQuery(HISTORY, { variables: { studentID: studentID } })
 
-
+   useSubscription(SUBSCRIPTION_HISTORY, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+        cache.modify({
+          fields: {
+            historyStudentPay: () => {}
+          }
+        })
+      },
+    })
 
 
    useEffect(() => {
@@ -36,7 +47,7 @@ const StudentsProfileTable = ({ setMainTableData, mainTableData, setRowId, setVa
          })
       }
 
-      // setMainTableData(historyPay);
+      setHistory(historyPay);
 
       // setMainTableData([
       //   { id: 1, clock: "06.08.2021 08:44",  Id: '2454',payment: 'Cash', date: '06.08.2021', debit: '1000 UZS', credit: '-', comment: 'desfes', employee: 'Генерик', },
@@ -105,7 +116,7 @@ const StudentsProfileTable = ({ setMainTableData, mainTableData, setRowId, setVa
 
    return (
       <div className="finance__inner-table" >
-         <Table className="izma__table__home" columns={columns} pagination={false} onRow={onRowClicked} dataSource={mainTableData} />
+         <Table className="izma__table__home" columns={columns} pagination={false} onRow={onRowClicked} dataSource={history} />
       </div>
    )
 }

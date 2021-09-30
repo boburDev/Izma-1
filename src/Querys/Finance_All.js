@@ -12,7 +12,24 @@ query financeStudentsFilter($startDate: String, $endDate: String){
   }  
 `
 
+
+const FINANCE_STUDENT_TABLE = gql`
+{
+    financeStudentsList {
+      id
+      phone
+      studentName
+      typePayment
+      amount
+      comment
+    }
+}
+`
+
+
+
 export {
     FINANCE_STUDENT,
-    FINANCE_STUDENT_FILTER
+    FINANCE_STUDENT_FILTER,
+    FINANCE_STUDENT_TABLE
 }

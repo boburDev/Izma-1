@@ -3,7 +3,7 @@ import DeleteImg from '../../assets/Icons/delete-border.svg'
 import EditImg from '../../assets/Icons/settings-edit.svg'
 
 const TTableBlock = ({ block, info, showDrawer, index }) => {
-
+console.log(info)
    return (
       <div className="tableBlock">
          {
@@ -28,7 +28,19 @@ const TTableBlock = ({ block, info, showDrawer, index }) => {
                <h4 className={'groupHash'}>
                   <img src={DeleteImg} alt="" />
                </h4>
-            </> : <>ok</>
+            </> : block === 'financeHash' ? <>
+               <h4 className={'groupHash'}>{info?.studentName}</h4>
+               <h4 className={'groupHash'}>{info?.phone}</h4>
+               <h4 className={'groupHash'}>{info?.typePayment}</h4>
+               <h4 className={'groupHash'}>{info?.amount}</h4>
+               <h4 className={'groupHash'}>{info?.comment}</h4>
+               {/* <h4 className={'groupHash'}>
+                  <img src={EditImg} alt="" />
+               </h4>
+               <h4 className={'groupHash'}>
+                  <img src={DeleteImg} alt="" />
+               </h4> */}
+            </> :<>ok</>
          }
       </div>
    )

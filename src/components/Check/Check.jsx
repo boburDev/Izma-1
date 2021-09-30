@@ -74,19 +74,19 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
                         >Chek raqami: <span style={styleTwo}>error</span></p>
                         <p
                             style={style}
-                        >Talaba: <span style={styleTwo}>{check && check.checkData && check.checkData.data.studentName}</span></p>
+                        >Talaba: <span style={styleTwo}>{check &&  check?.checkData?.data?.studentName}</span></p>
                         <p
                             style={style}
                         >Turi: <span style={styleTwo}>Naqd pul</span></p>
                         <p
                             style={style}
-                        >To’lov miqdori: <span style={styleTwo}>{check && check.checkData && check.checkData.data.cashAmm}so'm</span></p>
+                        >To’lov miqdori: <span style={styleTwo}>{check && check?.checkData?.data?.cashAmm}so'm</span></p>
                         <p
                             style={style}
                         >Vaqt: <span style={styleTwo}>08.08.2021 | 12:22:22</span></p>
                         <p
                             style={style}
-                        >O'qituvchi: <span style={styleTwo}>{check && check.checkData && check.checkData.data.teacherName}</span></p>
+                        >O'qituvchi: <span style={styleTwo}>{check  && check?.checkData?.data?.teacherName}</span></p>
                         <p
                             style={style}
                         >Guruhi: <span style={styleTwo}>{check && check.checkData && check.checkData.text}</span></p>

@@ -11,7 +11,6 @@ const Table = ({ block, arr, showDrawer}) => {
    return (
       <div className="table">
 
-         
          {
             block !== 'groupHash' ?
 
@@ -35,7 +34,7 @@ const Table = ({ block, arr, showDrawer}) => {
                         <div className="table-body">
 
                            {
-                              data && data?.studentData?.students.map((el, index) => (
+                              data && data?.studentData?.map((el, index) => (
                                  <TableBlock
                                     block={block}
                                     info={el}

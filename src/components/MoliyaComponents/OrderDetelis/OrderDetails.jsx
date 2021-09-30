@@ -1,18 +1,29 @@
+import { useQuery } from '@apollo/client'
+import { COURSES_INFO } from '../../../Querys/Finance_All'
 import './OrderDetails.scss'
 
 const OrderDetails = () => {
+   
+   const { data: infoCourse } = useQuery(COURSES_INFO)
 
+   const someArr = []
+   let total = 0
 
-   const someArr = [
-      {
-         title: "#The Complete JavaScript Course 2020: Real Projects!",
-         price: "$96.00"
-      },
-      {
-         title: "Productivity and Time Management f or the...",
-         price: "$96.00"
-      }
-   ]
+   infoCourse && infoCourse.courses.map(course => {
+
+       let countStudent = 0
+
+       const cr = course.groups.map(group => countStudent += group.studentsCount )
+       const data = {
+           title: course.name,
+           price: Number(countStudent) * course.price
+       }
+       someArr.push(data)
+       return cr
+   })
+
+   someArr && someArr.map(i => total += i.price)
+
 
    return (
       <div className="orderDetails">
@@ -39,18 +50,9 @@ const OrderDetails = () => {
 
             <div className="total_nfo">
                <div className="sub_price">
-                  <span>Subtotal</span>
-                  <span>100</span>
-               </div>
-               <div className="sub_price">
                   <span>Total</span>
-                  <span>100</span>
+                  <span>{total}</span>
                </div>
-            </div>
-
-            <div className="keys">
-               <span>Order key: ORDER5F0DEE5A04738</span>
-               <button>Tugatish</button>
             </div>
          </div>
       </div>

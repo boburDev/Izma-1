@@ -90,6 +90,18 @@ const GROUPS_COURSES = gql `
 }
 `
 
+const COURSES_INFO = gql `
+    query {
+        courses {
+        name
+        price
+            groups {
+            studentsCount
+            }
+        }
+    }
+`
+
 
 export {
     FINANCE_STUDENT,
@@ -98,5 +110,6 @@ export {
     HARAJATLAR,
     NEW_HARAJAT,
     FILTER_DATA,
-    GROUPS_COURSES
+    GROUPS_COURSES,
+	COURSES_INFO
 }

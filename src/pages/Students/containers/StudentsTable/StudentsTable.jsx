@@ -21,7 +21,7 @@ import { useCourseFilter } from '../../../../context/CourseFilterProvider';
 import { useLoader } from '../../../../context/Loader';
 
 
-const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
+const StudentsTable = ({ studentSearch }) => {
    const [deb] = useStudentFilter()
    const [courseFilter] = useCourseFilter()
    const [setData] = useStudentData(true)

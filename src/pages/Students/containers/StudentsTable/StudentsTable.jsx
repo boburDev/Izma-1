@@ -4,7 +4,7 @@ import './StudentsTable.scss'
 import { useEffect, useState } from 'react';
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm';
 import { useMutation, useQuery, useSubscription } from '@apollo/client';
-import { ALL_STUDENTS, DELETE_STUDENT, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT, ALL_STUDENTSs, FILTER_COURSE, FIND_SALE } from '../../../../Querys/Table_Query';
+import { ALL_STUDENTS, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT, ALL_STUDENTSs, FILTER_COURSE, FIND_SALE } from '../../../../Querys/Table_Query';
 import { Modal } from 'antd';
 import Check from '../../../../components/Check/Check';
 // import { useCourse } from '../filterSoha/context'
@@ -43,27 +43,28 @@ const StudentsTable = ({ setRowId, setValues, studentSearch='' }) => {
    const {data: ddd} = useQuery(STUDENT_ON_KEY_UP, {variables: {name: (studentSearch.length > 0) && studentSearch}})
    const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: course}})
 
-   const [getID] = useMutation(DELETE_STUDENT)
-
 
    useEffect(()=>{
 
-      const filterCourseArr = []
+         const filterCourseArr = []
     
-      if (course.length) {
-        fCourse && fCourse.byCourseIDFilter.map(cs => {
-          const groups = cs.groups.map(gr => {
-            const student = gr.students.map((st) => filterCourseArr.push({ ...st, groups: [gr] }))
-            return student
-          })
-          return groups
-        })
+         if (course.length) {
+         fCourse && fCourse.byCourseIDFilter.map(cs => {
+            const groups = cs.groups.map(gr => {
+               const student = gr.students.map((st) => filterCourseArr.push({ ...st, groups: [gr] }))
+               return student
+            })
+            return groups
+         })
+         }
+      
+         let studID
+      if (truFalse.sales) {
+         
+            studID = findSale && findSale.findSale.map(i => {
+            return { ID: i.studentid, name: i.name, mainPhone: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
+         })
       }
-    
-    
-      const studID = findSale && findSale.findSale.map(i => {
-        return { ID: i.studentid, name: i.name, mainPhone: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
-      })
 
       const searchedStudent = ddd && ddd.studentOnKeyup
       
@@ -88,7 +89,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch='' }) => {
           setUserData(users)
         }
        }
-    },[Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, course, Allstudentss])
+   },[Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, course, Allstudentss])
     
 
 

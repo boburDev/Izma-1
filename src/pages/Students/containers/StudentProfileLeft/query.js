@@ -1,6 +1,4 @@
-import {
-   gql
-} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 const ONE_STUDENT = gql `
   query student ($id: ID!){
@@ -102,14 +100,62 @@ query{
 }
 `
 
+const STATUS_3_4 = gql `
+  mutation updateStatus (
+    $stID: ID!
+    $status: Int
+    ) {
+    updateStatus(
+      studentID: $stID
+      status: $status
+      ){
+      status
+    }
+  }
+`
+
+const UPDATE_STATUS_4 = gql `
+  mutation updateStudentStatus($status: Int $stID: ID) {
+    updateStudentStatus(status: $status studentID: $stID) {
+      grStatus
+      studentID
+    }
+  }
+`
+
+const HAS_STUDENT = gql `
+  query hasStudent($stID: ID $grID: ID){
+    hasStudent(stID: $stID grID: $grID)
+  }
+`
+
+const SUBSCRIPTION_ST_EDIT = gql `
+  subscription {
+    studentsss {
+      id
+      birthday
+      name
+      gender
+      comment
+      mainPhone{
+        phone
+      }
+    }
+  }
+`
+
 export {
-   FILIAL,
-   GROUPS,
-   CHECK_CASH,
-   ONE_STUDENT,
-   UPDATE_COMMENT,
-   DELETE_STUDENT,
-   SELECT_STUDENT_GROUP,
-   SUBSCRIPTION_STUDENT,
-   SUBSCRIPTION_CASH,
+  FILIAL,
+  GROUPS,
+  CHECK_CASH, 
+  ONE_STUDENT,
+  UPDATE_COMMENT,
+  DELETE_STUDENT,
+  STATUS_3_4,
+  HAS_STUDENT,
+  UPDATE_STATUS_4,
+  SELECT_STUDENT_GROUP,
+  SUBSCRIPTION_STUDENT,
+  SUBSCRIPTION_CASH,
+  SUBSCRIPTION_ST_EDIT
 }

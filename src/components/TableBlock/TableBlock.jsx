@@ -9,7 +9,6 @@ import { DELETE_STUDENT } from '../../Querys/Table_Query'
 const TableBlock = ({ block, info, index, showDrawer }) => {
    const [setStudentID] = useStudentPay(true)
    const [getID] = useMutation(DELETE_STUDENT)
-   // console.log(info)
    
    return (
       <div className="tableBlock">
@@ -60,7 +59,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                            :
                            <>
                                  <h4 className={`${block}`}
-                                    onClick={() => getID({ variables: { studentID: info?.id } })}
+                                    
                                  >{''}</h4>
                            </>
                         }
@@ -80,7 +79,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
 
 
                   <h4 className={`${block}`}>
-                     <img src={DeleteImg} alt="" />
+                     <img src={DeleteImg} alt="" onClick={() => getID({ variables: { studentID: info?.id } })}/>
                   </h4>
                </> :
 

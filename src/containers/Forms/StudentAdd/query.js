@@ -87,10 +87,8 @@ const UPDATE_STUDENT = gql `
     $mainPhone: [PhoneInput]
     $name: String!
     $birthday: String
-    $password: String!
+    $password: String
     $gender: Int
-    $photo: String
-    $groupID: [GroupInput]
     $comment: String
     $newNumber: [PhoneInput]
     $parentNumber: [PhoneInput]
@@ -104,8 +102,6 @@ const UPDATE_STUDENT = gql `
       birthday: $birthday
       password: $password
       gender: $gender
-      photo: $photo
-      groupID: $groupID
       comment: $comment
       newNumber: $newNumber
       parentNumber: $parentNumber
@@ -113,31 +109,6 @@ const UPDATE_STUDENT = gql `
       address: $address
     ) {
       id
-      name
-      comment
-      birthday
-      gender
-      password
-      mainPhone {
-        id
-        phone
-      }
-      parentNumber {
-        id
-        phone
-      }
-      telegram {
-        id
-        telegram
-      }
-      address {
-        id
-        address
-      }
-      groups {
-        id
-        name
-      }
     }
   }
 `
@@ -174,6 +145,8 @@ const NEW_CASH = gql `
     }
   }
 `
+
+
 
 export {
    ADD_NEW_STUDENTS,

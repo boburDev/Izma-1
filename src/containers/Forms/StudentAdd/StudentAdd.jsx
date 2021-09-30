@@ -80,7 +80,7 @@ const StudentAdd = ({ onCloseF }) => {
 
 
 
-   const [stPhoneNum, setStPhoneNum] = useState({ number: '' })
+   const [stPhoneNum, setStPhoneNum] = useState('')
    const [stName, setStName] = useState('')
    const [stBirth, setStBirth] = useState('')
    const [stGender, setStGender] = useState()
@@ -137,7 +137,7 @@ const StudentAdd = ({ onCloseF }) => {
             if (stName && stGender) {
 
                const data = {
-                  mainPhone: [stPhoneNum.number.length === 12 ? stPhoneNum : { number: null }],
+                  mainPhone: [stPhoneNum.length === 12 ? {number: stPhoneNum} : { number: null }],
                   name: stName,
                   birthday: stBirth,
                   password: stPassword,
@@ -151,7 +151,7 @@ const StudentAdd = ({ onCloseF }) => {
                   address: [{ address: 'null' }]
                }
 
-               // console.log(data)
+               // console.log(stPhoneNum.number.length)
                AddNewSudents({ variables: data })
             }
          }}>

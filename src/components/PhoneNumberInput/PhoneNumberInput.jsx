@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import './PhoneNumberInput.scss'
 
-const PhoneNumberInput = ({ setPhone, setParents, parents }) => {
+const PhoneNumberInput = ({ setPhone, setParents, parents, placeholder }) => {
 
 
    useEffect(() => {
@@ -22,7 +22,7 @@ const PhoneNumberInput = ({ setPhone, setParents, parents }) => {
       <div className="phoneInput">
          <span className="numb">+998</span>
          <input
-         
+            placeholder={placeholder && placeholder}
             minLength="14"
             maxLength="14"
             className="telInput" type="tel"

@@ -13,20 +13,13 @@ const FilterTeachers = () => {
    const [teacher, setTeacher] = useTeacher()
    const [arr, setArr] = useState()
 
-   
+   useEffect(()=>{
+      setTeacher(state)
+   },[state])
 
    useEffect(() => {
       setArr(teachers)
    }, [teachers])
-
-   
-
-   if (state.length) {
-      setTeacher(state)
-   }
-
-
-
 
 
    return (
@@ -36,7 +29,7 @@ const FilterTeachers = () => {
                <FilterTeachersChecked
                   key={i}
                   nameSoha={e.name}
-                  id={e.id}
+                  id={e.Id}
                   state={state}
                   setState={setState}
                   teacher={teacher}

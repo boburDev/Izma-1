@@ -1,6 +1,6 @@
 import Table from '../../../../components/Table/Table';
 import './GroupsTable.scss'
-import { useQuery, useSubscription } from '@apollo/client';
+import { useLazyQuery, useQuery, useSubscription } from '@apollo/client';
 import { GROUPS, SUBSCRIPTION_GROUPS } from '../../../../Querys/Group_Query';
 import { useCourse } from '../../../../context/CourseProvider';
 import { useTeacher } from '../../../../context/TeacherProvider';
@@ -14,10 +14,10 @@ const GroupsTable = ({  setRowId, setValues }) => {
    const [coursesId] = useCourse()
    const [teacher] = useTeacher()
    const [groups, setGroups] = useState()
-   const { data: groupss, loading } = useQuery(GROUPS, {
-      variables: { teacherID: teacher, courseID: coursesId }
+   const [daa, { data: groupss, loading }] = useLazyQuery(GROUPS)
 
-   })
+   console.log(teacher, /* courseFilter */)
+
    useEffect(() => {
       setLoading(loading)
    }, [loading, setLoading])
@@ -25,9 +25,14 @@ const GroupsTable = ({  setRowId, setValues }) => {
 
 
    useEffect(()=>{
+
+      daa({
+      variables: { teacherID: teacher, courseID: courseFilter }
+   })
+
       setGroups(groupss)
 
-   }, [groupss])
+   }, [groupss, daa, teacher, courseFilter])
 
    useSubscription(SUBSCRIPTION_GROUPS, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {

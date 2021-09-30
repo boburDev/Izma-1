@@ -12,10 +12,7 @@ const FilterTeachers = () => {
    const [state, setState] = useState([])
    const [teacher, setTeacher] = useTeacher()
 
-   if (state.length) {
-      setTeacher(state)
-   }
-
+   setTeacher(state)
 
    return (
       <div className="filterDebtors">
@@ -24,7 +21,7 @@ const FilterTeachers = () => {
                <FilterTeachersChecked
                   key={i}
                   nameSoha={e.name}
-                  id={e.id}
+                  id={e.Id}
                   state={state}
                   setState={setState}
                   teacher={teacher}

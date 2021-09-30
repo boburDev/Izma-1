@@ -112,7 +112,7 @@ const DropSearch = ({ arr, pInput, fnc }) => {
             {
                arr && arr.map((e, i) => (
                   <option
-
+                  
                      onClick={(e) => {
                         if (e.target.className === 'selected') {
                            fnc('')
@@ -120,7 +120,7 @@ const DropSearch = ({ arr, pInput, fnc }) => {
                            fnc(e.target.value)
                         }
                      }}
-                     key={i} value={e.id}>{e.name ? e.name : e.room}</option>
+                     key={i} value={e.id ? e.id : e.Id}>{e.name ? e.name : e.room}</option>
                ))
             }
          </datalist>

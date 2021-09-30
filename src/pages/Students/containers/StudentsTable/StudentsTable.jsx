@@ -9,7 +9,7 @@ import './StudentsTable.scss'
 import { useEffect, useState } from 'react';
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm';
 import { useMutation, useQuery, useSubscription } from '@apollo/client';
-import { ALL_STUDENTS, DELETE_STUDENT, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT } from '../../../../Querys/Table_Query';
+import { ALL_STUDENTS, DELETE_STUDENT, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT, FIND_SALE, FILTER_COURSE } from '../../../../Querys/Table_Query';
 import { Modal } from 'antd';
 import Check from '../../../../components/Check/Check';
 // import { useCourse } from '../filterSoha/context'

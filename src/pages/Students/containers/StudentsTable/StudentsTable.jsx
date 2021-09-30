@@ -17,67 +17,85 @@ import { useLoader } from '../../../../context/Loader'
 import { usePagination } from '../../../../context/Pagination'
 
 
-const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
+const StudentsTable = ({ setRowId, setValues, studentSearch='' }) => {
    const [page] = usePagination()
-   const [deb] = useStudentFilter()
-   const [courseFilter] = useCourseFilter()
+   const [truFalse] = useStudentFilter()
+   const [course] = useCourseFilter()
    const [setData] = useStudentData(true)
    const [studentID] = useStudentPay()
    const [setLoading] = useLoader(true)
+   const [userData, setUserData] = useState([])
 
-   const { data: students, loading } = useQuery(ALL_STUDENTS, {
+
+   const { data: Allstudents, loading } = useQuery(ALL_STUDENTS, {
       variables: {
          page: page?.page,
          count: +page?.count
       }
    })
+ 
+   const {data: Allstudentss} = useQuery(ALL_STUDENTSs)
 
-   // console.log(page?.page)
-   // console.log(page?.count)
-
-
-
-   const { data: studentOnKeyUp } = useQuery(STUDENT_ON_KEY_UP, { variables: { name: studentSearch } })
    const { data: countSt } = useQuery(STUDENT_COUNT, { variables: { count: +page?.count } })
+
+
+   const {data: findSale} = useQuery(FIND_SALE)
+   const {data: ddd} = useQuery(STUDENT_ON_KEY_UP, {variables: {name: (studentSearch.length > 0) && studentSearch}})
+   const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: course}})
+
    const [getID] = useMutation(DELETE_STUDENT)
 
 
-   useEffect(() => {
-      const searchedStudent = studentOnKeyUp && studentOnKeyUp.studentOnKeyup
+   useEffect(()=>{
 
-      console.log(deb)
-      console.log(searchedStudent)
-      console.log(students && students.students)
-
-      if (students && students.students) {
-         const users = students && students.students.map((i, index) => {
-            return { ID: i.id, id: index + 1, name: i.name, phoneNumber: i.mainPhone, date: i.groups, status: i.status }
-         })
-
-         if (deb) {
-            const filterStatus = users.filter(item => item.status === 4)
-            setUserData(filterStatus)
-         }
-         else if (searchedStudent.length) {
-
-            setUserData(searchedStudent)
-         } else {
-
-            setUserData(students && students.students)
-         }
-
+      const filterCourseArr = []
+    
+      if (course.length) {
+        fCourse && fCourse.byCourseIDFilter.map(cs => {
+          const groups = cs.groups.map(gr => {
+            const student = gr.students.map((st) => filterCourseArr.push({ ...st, groups: [gr] }))
+            return student
+          })
+          return groups
+        })
       }
+    
+    
+      const studID = findSale && findSale.findSale.map(i => {
+        return { ID: i.studentid, name: i.name, mainPhone: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
+      })
 
-   }, [studentSearch, studentOnKeyUp, courseFilter, deb, students])
+      const searchedStudent = ddd && ddd.studentOnKeyup
+      
+       if (Allstudents && Allstudents.students) {
+          const users = Allstudents && Allstudents.students
+    
+        if (truFalse.credit) {
 
+         Allstudentss && setUserData(Allstudentss.studentCredit)
+        }
+        else if (searchedStudent) {
+    
+          setUserData(searchedStudent)
+        } else if(filterCourseArr.length) {
+    
+          setUserData(filterCourseArr)
+        } else if (truFalse.sales) {
+    
+          setUserData(studID)
+        } else {
+    
+          setUserData(users)
+        }
+       }
+    },[Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, course, Allstudentss])
+    
 
 
    
    
 
    const [visible, setVisible] = useState(false)
-   const [userData, setUserData] = useState([])
-   // const [course] = useCourse()
    const [checkOpen] = useCheck()
 
 

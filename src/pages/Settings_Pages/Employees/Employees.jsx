@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Drawer } from 'antd'
-import { Table } from 'antd'
+// import { Table } from 'antd'
 import PersonImg from '../../../assets/header-img.svg'
 import SettingsArchiveForm from '../../../containers/Forms/SettingsArchiveForm/SettingsArchiveForm'
 import SettingsArchiveFormEdit from '../../../containers/Forms/SettingsArchiveFormEdit/SettingsArchiveFormEdit'
@@ -9,8 +9,9 @@ import { COLLEGUES } from '../../../Querys/Settings'
 import { useQuery } from '@apollo/client'
 import EditImg from '../../../assets/Icons/settings-edit.svg'
 import DeleteImg from '../../../assets/Icons/settings-delete.svg'
+import TTable from '../../../components/Table/TTable'
 
-const Employees = ({ setRowId, setValues }) => {
+const Employees = () => {
 	const [visible, setVisible] = useState(false)
 	const [deleteId, setDeleteId] = useState('')
 	const [editId, setEditId] = useState('')
@@ -22,19 +23,12 @@ const Employees = ({ setRowId, setValues }) => {
 	useEffect(()=>{
 		if (all_colleagues && all_colleagues.all_colleagues) {
 			setColleguages(all_colleagues && all_colleagues.all_colleagues)
+			// console.log(all_colleagues && all_colleagues.all_colleagues)
 		}
 	},[all_colleagues])
 	const editable = colleguages.find(e => e.Id === editId)
 	
 	
-	const onRowClicked = (item) => {
-		return {
-			onClick: () => {
-				setRowId(item.id)
-				setValues(item)
-			},
-		}
-	}
 	
 	const showDrawer = () => {
 		setVisible(true)
@@ -55,45 +49,38 @@ const Employees = ({ setRowId, setValues }) => {
 	const columns = [
 		{
 			title: "",
-			dataIndex: 'Id',
-			key: 'Id',
+			dataIndex: 'id',
 			width: "1px",
-			render: (text, record, index) =>
+			key: 'Id',
+			render: () =>
 			<img className="izma__table-delete-btn" src={PersonImg} alt="delete img" />
 		},
 		{
 			title: "First name / Surname",
 			dataIndex: 'name',
-			key: 'name',
 		},
 		{
 			title: 'Roli',
 			dataIndex: 'status',
-			key: 'status',
 		},
 		{
 			title: 'Telefon',
 			dataIndex: 'phoneNumber',
-			key: 'phoneNumber',
 		},
 		{
 			title: 'Tahrirlash',
-			dataIndex: 'actions',
-			key: 'Id',
 			width: "20px",
 			render: ( text, record, index) =>
-			<img id={record.id} key={index} onClick={(e) => {
+			<img id={record.Id} key={record.Id} onClick={(e) => {
 				setEditId(e.target.id)
 				showDrawerr()
 			}}className="izma__table-settings-delete-btn" src={EditImg} alt="delete img"  />
 		},
 		{
 			title: 'Amallar',
-			dataIndex: 'actions',
-			key: 'Id',
 			width: "20px",
 			render: ( text, record, index) =>
-			<img id={record.id} key={index} 
+			<img id={record.Id} key={record.Id} 
 			onClick={(e) => {setDeleteId(e.target.id)}}
 			className="izma__table-settings-delete-btn" src={DeleteImg} alt="delete img"  />
 		},
@@ -110,7 +97,10 @@ const Employees = ({ setRowId, setValues }) => {
 		</button>
 		</div>
 		<div className="izma__settings-employees-table-wrapper">
-		<Table className="izma__table__home" columns={columns} onRow={onRowClicked} dataSource={colleguages} />
+		{/* <Table className="izma__table__home" columns={columns} dataSource={colleguages} /> */}
+		</div>
+		<div className="izma__table-g ">
+			<TTable arr={colleguages} block={"settingsHash"} />
 		</div>
 		
 		</div>
@@ -123,8 +113,7 @@ const Employees = ({ setRowId, setValues }) => {
 		placement="right"
 		closable={false}
 		onClose={onClosee}
-		visible={visiblee}
-		>
+		visible={visiblee}>
 		<SettingsArchiveFormEdit onClose={onClosee}  editableData={editable && editable} />
 		</Drawer>
 		</>

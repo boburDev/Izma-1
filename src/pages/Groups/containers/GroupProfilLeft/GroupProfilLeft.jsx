@@ -1,22 +1,27 @@
 import './GroupProfilLeft.scss'
 import { useState } from 'react'
-import { useParams } from 'react-router';
+import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import GroupEdit from '../../../../containers/Forms/GroupEdit/GroupEdit';
-import { Drawer } from 'antd';
-import { Modal, AutoComplete, DatePicker } from 'antd';
-import { useMutation, useQuery, useSubscription } from '@apollo/client';
-import {
-   BY_GROUP_ID, DELETE_GROUP, GET_STUDENTS, SELECT_STUDENT_GROUP, STATUS_5_6, DELETE_FROM_GROUP,
-   CHECK_CASH, UPDATE_CASH, STATUS_3_4, HISTORY_PAYMENT, SUBSCRIPTION_GROUPS, SUBSCRIPTION_STUDENT
-} from '../../../../Querys/GroupTabs';
-import confirm from 'antd/lib/modal/confirm';
-import { useEffect } from 'react';
+import { Drawer } from 'antd'
+import { Modal, AutoComplete, DatePicker } from 'antd'
+import { useMutation, useQuery, useSubscription, /* useLazyQuery */ } from '@apollo/client'
+import { BY_GROUP_ID, DELETE_GROUP, GET_STUDENTS, SELECT_STUDENT_GROUP, STATUS_6, SET_STATUS_6, SUBSCRIPTION_STATUS, GROUP_STUDENTS, NEW_SUB_STUDENT, SUBSCRIPTION_GROUP_INFO } from '../../../../Querys/GroupTabs'
+import { DELETE_FROM_GROUP, CHECK_CASH, UPDATE_CASH, STATUS_3_4, HISTORY_PAYMENT, SUBSCRIPTION_GROUPS, HAS_STUDENT, UPDATE_GR_STATUS, SUBSCRIPTION_ADD_STUDENT, SUBSCRIPTION_CASH /* CHECK_CASH_GROUP */ } from '../../../../Querys/GroupTabs'
+import confirm from 'antd/lib/modal/confirm'
+import { useEffect } from 'react'
 import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
 import Check from '../../../../components/Check/Check'
+import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
+// import StudentAdd from '../forms/studentsAddFormByGroup/studentsAddForm'
+// import { useGroupStudents } from './context'
+// import { useCloseModal } from './contextModalClose'
 
 const GroupProfilLeft = (prop) => {
+
+   // const [setGroupStudents] = useGroupStudents(true)
+   // const [closeModal] = useCloseModal(true)
 
    const newNoteStyle = {
       width: '100%',
@@ -30,7 +35,6 @@ const GroupProfilLeft = (prop) => {
       borderRadius: '7px',
    }
 
-
    const [userInput, setUserInput] = useState('')
    const [selectedUser, setSelectedUser] = useState()
    const [startedDate, setStartedDate] = useState('')
@@ -38,7 +42,7 @@ const GroupProfilLeft = (prop) => {
    const [staatus, settStatus] = useState()
    const [stID, setStID] = useState()
    const [idName, setIdName] = useState()
-
+   const [onKeyUp, setOnKeyUp] = useState('')
 
 
    const { groupID } = useParams()
@@ -46,6 +50,20 @@ const GroupProfilLeft = (prop) => {
    const { data: groups } = useQuery(BY_GROUP_ID, {
       variables: { groupID }
    })
+   // console.log()
+
+   const { data: grStudents } = useQuery(GROUP_STUDENTS, {
+      variables: { grID: groupID }
+   })
+
+
+   // useEffect(() => {
+   //    setGroupStudents({
+   //       students: grStudents && grStudents.findStudByGrId,
+   //       groups: groups && groups.byGroupID
+   //    })
+   // }, [grStudents, setGroupStudents, groups])
+
 
    prop.studData(groups && groups.byGroupID.students)
 
@@ -53,12 +71,37 @@ const GroupProfilLeft = (prop) => {
       variables: { stID: selectedUser }
    })
 
-   const payment = () => {
-      let backCash = (checkCache && checkCache.studentCash.cashAmount) - (groups && groups.byGroupID.price)
-      UpdatePayment({ variables: { stID: selectedUser, cashAmm: String(backCash) } })
+   const { data: hasStud } = useQuery(HAS_STUDENT, { variables: { stID: stID, grID: groupID } })
+   const { data: setStatus_6 } = useQuery(SET_STATUS_6, { variables: { stID: selectedUser } })
 
-      const data = { credit: checkCache && checkCache.studentCash.cashAmount, studentID: selectedUser }
-      HistoryPay({ variables: data })
+   // const [cashCheck, {data: forCheck}] = useLazyQuery(CHECK_CASH_GROUP)
+
+   const payment = () => {
+
+      if (staatus !== 5) {
+
+         let backCash = (checkCache && checkCache.studentCash.cashAmount) - (groups && groups.byGroupID.price)
+         UpdatePayment({ variables: { stID: selectedUser, cashAmm: String(backCash) } })
+
+         const test = Number(checkCache && checkCache.studentCash.cashAmount) <= Number(groups && groups.byGroupID.price)
+
+         const data = {
+            credit: test ? (checkCache && checkCache.studentCash.cashAmount) : (groups && groups.byGroupID.price),
+            studentID: selectedUser,
+            debit: backCash < 0 ? String(backCash) : null
+         }
+
+         HistoryPay({ variables: data })
+      } else {
+         SetStatus3_4({
+            variables: {
+               status: (checkCache && checkCache.studentCash.cashAmount - 0) < 0 ? 4 : 3,
+               stID: selectedUser,
+               grID: groupID
+            }
+         })
+      }
+
 
    }
 
@@ -71,31 +114,90 @@ const GroupProfilLeft = (prop) => {
          const users = students.studentOnKeyup.map(i => {
             return { key: i.id, value: i.name, text: i.name }
          })
-         console.log();
          setDataUser(users)
       }
    }, [students])
 
-
    const [deletGroup, { data: delData }] = useMutation(DELETE_GROUP)
+   console.log(delData)
 
    const [HistoryPay] = useMutation(HISTORY_PAYMENT)
    const [AddStudentToGroup] = useMutation(SELECT_STUDENT_GROUP)
-   const [SetStatus_5_6] = useMutation(STATUS_5_6)
+   const [SetStatus_6] = useMutation(STATUS_6)
    const [DelFromGroup] = useMutation(DELETE_FROM_GROUP)
    const [UpdatePayment, { data: forStatus }] = useMutation(UPDATE_CASH)
-   const [SetStatus3_4] = useMutation(STATUS_3_4)
+   const [SetStatus_4] = useMutation(STATUS_3_4)
+   const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
+   const [SetStatus_5] = useMutation(UPDATE_GR_STATUS)
 
-   if (forStatus && forStatus.updateCash.cashAmount) {
-      SetStatus3_4({
-         variables: {
-            stID: selectedUser,
-            status: (forStatus.updateCash.cashAmount - 0) < 0 ? 4 : 3
-         }
-      })
-   }
+
+   useEffect(() => {
+
+
+      if (forStatus && forStatus.updateCash.cashAmount) {
+         SetStatus_4({
+            variables: {
+               stID: selectedUser,
+               status: (forStatus.updateCash.cashAmount - 0) < 0 ? 4 : 3
+            }
+         })
+
+         SetStatus3_4({
+            variables: {
+               status: (forStatus.updateCash.cashAmount - 0) < 0 ? 4 : 3,
+               stID: selectedUser,
+               grID: groupID
+            }
+         })
+
+         window.location.reload(true)
+      }
+
+   }, [forStatus, SetStatus3_4, SetStatus_4, groupID, selectedUser])
+
+
 
    useSubscription(SUBSCRIPTION_GROUPS, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               studentGroups: () => { }
+            }
+         })
+      },
+   })
+
+   useSubscription(NEW_SUB_STUDENT, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               findStudByGrId: () => { }
+            }
+         })
+      },
+   })
+
+   useSubscription(SUBSCRIPTION_STATUS, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               grStatus: () => { }
+            }
+         })
+      },
+   })
+
+   useSubscription(SUBSCRIPTION_ADD_STUDENT, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               findStudByGrId: () => { }
+            }
+         })
+      },
+   })
+
+   useSubscription(SUBSCRIPTION_GROUP_INFO, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
             fields: {
@@ -105,17 +207,17 @@ const GroupProfilLeft = (prop) => {
       },
    })
 
-   useSubscription(SUBSCRIPTION_STUDENT, {
-      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
-         cache.modify({
-            fields: {
-               students: () => { }
-            }
-         })
-      },
-   })
+   // useSubscription(SUBSCRIPTION_CASH, {
+   //     onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+   //       cache.modify({
+   //         fields: {
+   //           studentCash: () => {}
+   //         }
+   //       })
+   //     },
+   //   })
 
-   const [isModalVisible, setIsModalVisible] = useState(false);
+   const [isModalVisible, setIsModalVisible] = useState(false)
 
    const handleDelete = () => {
       if (confirm('Are you sure you want to save this thing into the database?')) {
@@ -125,76 +227,87 @@ const GroupProfilLeft = (prop) => {
             }
          })
       } else {
-         console.log('Thing was not saved to the database.');
+         console.log('Thing was not saved to the database.')
       }
    }
 
 
    const showModal = () => {
-      setIsModalVisible(true);
-   };
+      setIsModalVisible(true)
+   }
 
    const handleOk = () => {
-      setIsModalVisible(false);
-   };
+      setIsModalVisible(false)
+   }
 
    const handleCancel = () => {
-      setIsModalVisible(false);
-   };
+      setIsModalVisible(false)
+   }
 
    const [delActive, setDElActive] = useState(false)
-   const [visible, setVisible] = useState(false);
+   const [visible, setVisible] = useState(false)
 
    const showDrawer = () => {
-      setVisible(true);
-   };
+      setVisible(true)
+   }
 
    const onClose = () => {
-      setVisible(false);
-   };
+      setVisible(false)
+   }
 
 
-   const [visibleFiance, setVisibleFiance] = useState(false);
+   const [visibleFiance, setVisibleFiance] = useState(false)
+   const [visibleStudent, setVisibleStudent] = useState(false)
 
    const showFinanceDrawer = () => {
-      setVisibleFiance(true);
-   };
+      setVisibleFiance(true)
+   }
+
+   const showStudentDrawer = () => {
+      setVisibleStudent(true)
+   }
+
    const closeFinanceDrawer = () => {
-      setVisibleFiance(false);
-   };
+      setVisibleFiance(false)
+   }
+
+   const closeStudentDrawer = () => {
+      setVisibleStudent(false)
+   }
 
 
-   const [noteModal, setNoteModal] = useState(false);
+   const [noteModal, setNoteModal] = useState(false)
 
    const showNote = () => {
-      setNoteModal(true);
-   };
+      setNoteModal(true)
+   }
 
    const NoteOk = () => {
-      setNoteModal(false);
-   };
+      setNoteModal(false)
+   }
 
    const NoteCancel = () => {
-      setNoteModal(false);
-   };
+      setNoteModal(false)
+   }
 
 
    const [checkModal, setCheckModal] = useState(false)
 
    const showCheck = () => {
-      setCheckModal(true);
-   };
+      setCheckModal(true)
+   }
 
    const CheckOk = () => {
-      setCheckModal(false);
-   };
+      setCheckModal(false)
+   }
 
    const CheckCancel = () => {
-      setCheckModal(false);
-   };
+      setCheckModal(false)
+   }
+
+   const filtered = grStudents && grStudents.findStudByGrId.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
 
    // if (delData && delData) return <Redirect to='/groups' />
-
 
    return (
       <>
@@ -258,77 +371,111 @@ const GroupProfilLeft = (prop) => {
                         Mashg'ulotlar sanalari:
                      </p>
                      <p className="izma__groups-attendance-left-center-communicate-number">
-                        {/* {groups.byGroupID.startDate} — {groups.byGroupID.endDate} */}
+                        {groups.byGroupID.startDate} — {groups.byGroupID.endDate}
                      </p>
+                     <br />
+                     <input
+                        type="text"
+                        placeholder="search"
+                        onChange={e => setOnKeyUp(e.target.value)} />
                   </div>
                   <div className="izma__students-content-line"></div>
 
+                  <button className="izma__groups-attendance-left-bottom-button" onClick={showModal} ></button>
+
+                  <button className="izma__groups-attendance-left-bottom-button-add" onClick={showStudentDrawer} >
+                  </button>
+
+                  <br />
+                  <br />
                   <div className="izma__groups-attendance-left-bottom-wrapper">
                      {
-                        groups.byGroupID.students && groups.byGroupID.students.map((s, i) => (
+                        filtered && filtered.map((s, i) => (
                            <>
                               <div key={i} className="izma__groups-attendance-left-bottom">
-                                 {s.status === 2 && <div className="izma__groups-attendance-left-bottom-box-white"></div>}
-                                 {s.status === 3 && <div className="izma__groups-attendance-left-bottom-box"></div>}
-                                 {s.status === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
-                                 {s.status === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
-                                 <h5 className="izma__groups-attendance-left-bottom-heading">
-                                    {s.name}
-                                 </h5>
+                                 {s.groupStatus === 2 && <div className="izma__groups-attendance-left-bottom-box-white"></div>}
+                                 {s.groupStatus === 3 && <div className="izma__groups-attendance-left-bottom-box"></div>}
+                                 {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
+                                 {s.groupStatus === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
+                                 <Link to={`/studentProfile/${s.id}`}>
+                                    <h5 className="izma__groups-attendance-left-bottom-heading">
+                                       {s.name}
+                                    </h5>
+                                 </Link>
                                  <p className="izma__groups-attendance-left-bottom-phone">
                                     {
-                                       s.mainPhone.map((i) => <>+{i.phone}<br /></>)
+                                       s.studentPhone.map((i) => <>+{i.phone}<br /></>)
                                     }
                                  </p>
-                                 <button
-                                    style={{ marginLeft: 'auto' }}
-                                    className="izma__groups-attendance-left-bottom-btn" onClick={() => {
-                                       setDElActive(!delActive)
-                                       setSelectedUser(s.id)
-                                       settStatus(s.status)
-                                       setIdName({ studentID: s.id, studentName: s.name })
-                                    }}>
 
-                                 </button>
+                                 <div style={{ position: 'relative', marginLeft: 'auto' }}>
+                                    <button
+                                       className="izma__groups-attendance-left-bottom-btn" onClick={() => {
+                                          if (delActive) {
+                                             setDElActive(false)
+                                          } else {
+                                             setDElActive(s.id)
+                                          }
+                                          setSelectedUser(s.id)
+                                          settStatus(s.groupStatus)
+                                          setIdName({ studentID: s.id, studentName: s.name })
+                                       }}>
+
+                                    </button>
+
+
+
+
+
+                                    <div style={{ zIndex: 10000, position: 'absolute' }}
+                                       className={`open_del ${delActive === s.id ? 'active' : ''}`} onClick={() => setDElActive(false)}>
+
+                                       {(staatus === 3 || staatus === 4) && <Link to="#" className="del_link" onClick={() => {
+                                          SetStatus_5({
+                                             variables: {
+                                                status: 5, stID: selectedUser, grID: groupID
+                                             }
+                                          })
+                                       }}>Muzlash</Link>}
+
+                                       {(staatus === 2 || staatus === 5) && <Link to="#" className="del_link" onClick={payment} >Faollashtirish</Link>}
+                                       <Link to="#" className="del_link" onClick={showFinanceDrawer}>To’lov</Link>
+                                       <Link to="#" className="del_link" onClick={showNote}>Yangi eslatma qo’shish</Link>
+                                       <Link to="#" className="del_link">Talabani guruhga o’tkazing</Link>
+                                       <Link to="#" className="del_link--red" onClick={() => {
+
+                                          if (setStatus_6 && setStatus_6.setStatus_6.length === 1) {
+
+                                             SetStatus_6({
+                                                variables: {
+                                                   status: 6, stID: selectedUser
+                                                }
+                                             })
+                                          }
+
+                                          DelFromGroup({
+                                             variables: {
+                                                grID: groupID, stID: selectedUser
+                                             }
+                                          })
+
+                                       }}>Guruhdan olib tashlash</Link>
+                                    </div>
+
+
+
+                                 </div>
 
                               </div>
                            </>
                         ))
                      }
-                     <div className={`open_del ${delActive ? 'active' : ''}`} >
 
-                        {(staatus === 3 || staatus === 4) && <Link to="#" className="del_link" onClick={() => {
-                           SetStatus_5_6({
-                              variables: {
-                                 stID: selectedUser, status: 5
-                              }
-                           })
-                        }}>Muzlash</Link>}
-
-                        {(staatus === 2 || staatus === 5) && <Link to="#" className="del_link" onClick={payment} >Faollashtirish</Link>}
-                        <Link to="#" className="del_link" onClick={showFinanceDrawer}>To’lov</Link>
-                        <Link to="#" className="del_link" onClick={showNote}>Yangi eslatma qo’shish</Link>
-                        <Link to="#" className="del_link">Talabani guruhga o’tkazing</Link>
-                        <Link to="#" className="del_link--red" onClick={() => {
-                           SetStatus_5_6({
-                              variables: {
-                                 stID: selectedUser, status: 6
-                              }
-                           })
-
-                           DelFromGroup({
-                              variables: {
-                                 grID: groupID, stID: selectedUser
-                              }
-                           })
-
-                        }}>Guruhdan olib tashlash</Link>
-                     </div>
-                     <button className="izma__groups-attendance-left-bottom-button" onClick={showModal} ></button>
                   </div>
                </div>
 
             }
+
 
          </div>
 
@@ -353,10 +500,15 @@ const GroupProfilLeft = (prop) => {
                   //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                   format={"DD-MM-YYYY"}
                />
+               {hasStud && hasStud.hasStudent && <>Siz tanlagan o'quvchi guruhga qo'shilgan</>}
             </div>
             <div >
                <button onClick={() => {
-                  AddStudentToGroup({ variables: { idGroup: groupID, idStudent: stID, startAt: startedDate } })
+
+                  if (hasStud && !hasStud.hasStudent) {
+
+                     AddStudentToGroup({ variables: { idGroup: groupID, idStudent: stID, startAt: startedDate } })
+                  }
                   handleOk()
                }} className={"btn btn-submit izma__group__modal"}>
                   Yuborish
@@ -373,6 +525,17 @@ const GroupProfilLeft = (prop) => {
                studenID={idName}
             />
          </Drawer>
+
+         <Drawer
+            closable={false}
+            placement="right" onClose={closeStudentDrawer} visible={visibleStudent}>
+            <StudentAddGroup
+               onCloseF={closeStudentDrawer}
+               stGroup={groupID}
+            />
+         </Drawer>
+
+
 
          <div className="new-remember-note">
             <Modal style={{ width: '600px !important' }} className="note-modal" title="Yangi eslatma qo'shing" visible={noteModal} onOk={NoteOk} onCancel={NoteCancel}>

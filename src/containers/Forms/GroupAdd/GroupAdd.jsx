@@ -39,7 +39,7 @@ const GroupAdd = ({ onClose }) => {
          name,
          courseID,
          teacherID,
-         days: days === 'boshqa' ? selectedDate.join() : days,
+         days: days === 'boshqa' ? selectedDate.sort().join() : days,
          roomID,
          time,
          startDate,
@@ -54,7 +54,7 @@ const GroupAdd = ({ onClose }) => {
 
    function SelectDate(e) {
       if (e.target.checked) {
-         setselectedDate([e.target.id, ...selectedDate])
+         setselectedDate([e.target.value, ...selectedDate])
       } else {
          for (var i = 0; i < selectedDate.length; i++) {
             if (selectedDate[i] === e.target.id) {
@@ -69,19 +69,19 @@ const GroupAdd = ({ onClose }) => {
    const daysArr = [
       {
          name: 'Toq kunlar',
-         id: 'odd',
+         id: '1,3,5',
       },
       {
          name: 'Juft kunlar',
-         id: 'even',
+         id: '2,4,6',
       },
       {
          name: 'Dam olish kuni',
-         id: 'sat',
+         id: '7',
       },
       {
          name: 'Har kuni',
-         id: 'every',
+         id: '1,2,3,4,5,6,7',
       },
       {
          name: 'Boshqa',
@@ -134,38 +134,38 @@ const GroupAdd = ({ onClose }) => {
                   </div>
 
                   {
-                     days === 'boshqa' && <div>
-                        <div>
-                           <label style={{ display: 'flex', alignItems: 'center' }} htmlFor="mon">Dushanba
-                              <input value="mon" onChange={SelectDate} style={{ marginLeft: '2px' }} type="checkbox" id="mon" /></label>
-                        </div>
-                        <div>
-                           <label style={{ display: 'flex', alignItems: 'center' }} htmlFor="tue">Seshanba
-                              <input onChange={SelectDate} value="tue" style={{ marginLeft: '2px' }} type="checkbox" id="tue" /></label>
-                        </div>
-                        <div>
-                           <label style={{ display: 'flex', alignItems: 'center' }} htmlFor="wed">Chorshanba
-                              <input onChange={SelectDate} value="wed" style={{ marginLeft: '2px' }} type="checkbox" id="wed" /></label>
-                        </div>
-                        <div>
-                           <label style={{ display: 'flex', alignItems: 'center' }} htmlFor="thu">Payshanba
-                              <input onChange={SelectDate} value="thu" style={{ marginLeft: '2px' }} type="checkbox" id="thu" /></label>
-                        </div>
-                        <div>
-                           <label style={{ display: 'flex', alignItems: 'center' }} htmlFor="fri">Juma
-                              <input onChange={SelectDate} value="fri" style={{ marginLeft: '2px' }} type="checkbox" id="fri" /></label>
-                        </div>
-                        <div>
-                           <label style={{ display: 'flex', alignItems: 'center' }} htmlFor="sut">Shanba
-                              <input onChange={SelectDate} value="sut" style={{ marginLeft: '2px' }} type="checkbox" id="sut" /></label>
-                        </div>
-                        <div>
-                           <label style={{ display: 'flex', alignItems: 'center' }} htmlFor="sun">Yakshanba
-                              <input onChange={SelectDate} value="sun" style={{ marginLeft: '2px' }} type="checkbox" id="sun" /></label>
-                        </div>
-                        <br />
-                     </div>
-                  }
+                           days === 'boshqa' &&  <div>
+                           <div>
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="mon">Dushanba
+                           <input value="1" onChange={SelectDate} style={{marginLeft: '2px'}} type="checkbox" id="mon" /></label>
+                           </div>
+                           <div>
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="tue">Seshanba
+                           <input onChange={SelectDate} value="2" style={{marginLeft: '2px'}} type="checkbox" id="tue" /></label>
+                           </div>
+                           <div>
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="wed">Chorshanba
+                           <input onChange={SelectDate} value="3" style={{marginLeft: '2px'}} type="checkbox" id="wed" /></label>
+                           </div>
+                           <div>
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="thu">Payshanba
+                           <input onChange={SelectDate} value="4" style={{marginLeft: '2px'}} type="checkbox" id="thu" /></label>
+                           </div>
+                           <div>
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="fri">Juma
+                           <input onChange={SelectDate} value="5" style={{marginLeft: '2px'}} type="checkbox" id="fri" /></label>
+                           </div>
+                           <div>
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="sut">Shanba
+                           <input onChange={SelectDate} value="6" style={{marginLeft: '2px'}} type="checkbox" id="sut" /></label>
+                           </div>
+                           <div>
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="sun">Yakshanba
+                           <input onChange={SelectDate} value="7" style={{marginLeft: '2px'}} type="checkbox" id="sun" /></label>
+                           </div>
+                           <br />
+                       </div>
+                       }
 
                   <div className="form_inputs">
                      <label htmlFor="">Xonani tanlang</label>

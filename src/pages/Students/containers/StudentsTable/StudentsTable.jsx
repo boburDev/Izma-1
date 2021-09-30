@@ -36,8 +36,8 @@ const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
    const { data: countSt } = useQuery(STUDENT_COUNT, { variables: { count: 10 } })
 
    const [getID] = useMutation(DELETE_STUDENT)
-
    // getID({variables: {studentID: 'id'}})
+
 
    const {data: findSale} = useQuery(FIND_SALE)
    const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: courseFilter}})
@@ -70,9 +70,9 @@ const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
           
           
          if (truFalse.credit) {
-         const userss = AllstudentsCrediters && AllstudentsCrediters.students
+         const userss = AllstudentsCrediters && AllstudentsCrediters.studentCredit
          const filterStatus = userss.filter(item => item.status === 4)
-         setUserData(filterStatus)
+         filterStatus && setUserData(filterStatus)
         }
         else if (searchedStudent) {
     
@@ -97,7 +97,6 @@ const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
    
 
    const [visible, setVisible] = useState(false)
-   // const [course] = useCourse()
    const [checkOpen] = useCheck()
 
 
@@ -147,9 +146,6 @@ const StudentsTable = ({ setRowId, setValues, studentSearch = '' }) => {
 
    return (
       <>
-      {
-         loading ? <></> : 'id'
-      }
          <Drawer
             placement="right"
             closable={false}

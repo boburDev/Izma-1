@@ -17,7 +17,7 @@ import { useLoader } from '../../../../context/Loader'
 import { usePagination } from '../../../../context/Pagination'
 
 
-const StudentsTable = ({ studentSearch }) => {
+const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    const [page] = usePagination()
    const [deb] = useStudentFilter()
    const [courseFilter] = useCourseFilter()

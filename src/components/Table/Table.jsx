@@ -33,6 +33,9 @@ const Table = ({ block, arr, showDrawer}) => {
                   {
                      block === 'studentHash' ?
                         <div className="table-body">
+                           {/* {
+                              console.log(data && data?.studentData)
+                           }
                            {
                               data && data?.studentData.map((el, index) => (
                                  <TableBlock
@@ -43,7 +46,7 @@ const Table = ({ block, arr, showDrawer}) => {
                                     key={index}
                                  />
                               ))
-                           }
+                           } */}
                             <Pagination />
                         </div>
                         :

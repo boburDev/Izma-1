@@ -5,8 +5,8 @@ import { useStudentData } from '../../context/StudentTableProvider'
 import { useTeacherData } from '../../context/TeachersTableProvider'
 
 const Table = ({ block, arr, showDrawer}) => {
-   const [data] = useStudentData(false)
-   const [teacherData] = useTeacherData(false)
+   const [data] = useStudentData()
+   const [teacherData] = useTeacherData()
 
    return (
       <div className="table">
@@ -45,7 +45,6 @@ const Table = ({ block, arr, showDrawer}) => {
                                  />
                               ))
                            }
-
                             <Pagination />
                         </div>
                         :

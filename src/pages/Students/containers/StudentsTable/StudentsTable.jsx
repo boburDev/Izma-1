@@ -25,7 +25,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    const [courseFilter] = useCourseFilter()
    const [setData] = useStudentData(true)
    const [studentID] = useStudentPay()
-   const { data: students } = useQuery(ALL_STUDENTS, {
+   const { data: students, loading } = useQuery(ALL_STUDENTS, {
       variables: {
          page: 1,
          count: 10
@@ -90,6 +90,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    
    
    useEffect(() => {
+      
    setData({
       studentData: students,
       pagination: countSt
@@ -125,6 +126,9 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
 
    return (
       <>
+      {
+         loading ? <></> : 'id'
+      }
          <Drawer
             placement="right"
             closable={false}

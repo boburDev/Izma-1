@@ -9,6 +9,13 @@
    position: relative;
    padding: 0 0 5px 0;
 
+   &:hover {
+      &::before {
+         width: 100%;
+         transition: all ease 0.5s;
+      }
+   }
+
    &::before {
       content: "";
       position: absolute;

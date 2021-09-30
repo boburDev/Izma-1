@@ -8,17 +8,20 @@ import GroupProfilRight from '../containers/GroupPforilRight/GroupProfilRight'
 import GroupProfilLeft from '../containers/GroupProfilLeft/GroupProfilLeft'
 import { BY_GROUP_ID } from '../../../Querys/GroupTabs'
 import { useEffect } from 'react';
+import Loader from '../../../components/Loader/Loader';
 
 const GroupProfil = () => {
    const [dataHead, setDataHead] = useState()
    const { groupID } = useParams()
 
-   const { data } = useQuery(BY_GROUP_ID, {
+   const { data, loading } = useQuery(BY_GROUP_ID, {
       variables: { groupID }
    })
    const [students, setStudents] = useState()
 
    console.log(data && data)
+   
+   
 
    useEffect(() => {
       setDataHead(data)
@@ -27,6 +30,9 @@ const GroupProfil = () => {
    return (
       <>
          <div className="izma__groups-attendence">
+            {
+               loading ? <Loader/> : <></>
+            }
                <div className="izma__groups-attendence-headings">
                   <h3 className="izma__groups-attendence-heading">
                   Guruhlar |   {dataHead && dataHead.byGroupID.courseName} | {dataHead && dataHead.byGroupID.teacher}

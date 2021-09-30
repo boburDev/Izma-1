@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   ApolloClient,
   ApolloProvider,
@@ -6,8 +6,8 @@ import {
   split,
   createHttpLink
 } from '@apollo/client'
-import ReactDOM from 'react-dom'
-import App from './pages/App/App'
+import ReactDOM from 'react-dom';
+import App from './pages/App/App';
 import {BrowserRouter} from 'react-router-dom'
 import {
   CourseProvider
@@ -21,24 +21,20 @@ import { TeacherProvider } from './context/TeacherProvider'
 import { EventProvider } from './context/EventProvider'
 import { CheckProvider } from './context/CheckProvider'
 import {StudentTableProvider} from './context/StudentTableProvider'
-import { StudentPayProvider } from './context/StudentPay'
-import { StudentFilterProvider } from './context/StudentFilter'
-import { CourseFilterProvider } from './context/CourseFilterProvider'
+import { StudentPayProvider } from './context/StudentPay';
+import { StudentFilterProvider } from './context/StudentFilter';
+import { CourseFilterProvider } from './context/CourseFilterProvider';
 import {TeachersTableProvider} from './context/TeachersTableProvider'
-import { LidsProvider } from './context/LidsProvider'
-import { LidsProvider2 } from './context/LidsProvider2'
-import { TrueFalseProvider } from './context/TrueFalseProvider'
-import { LangProvider } from './context/LanguageProvider'
-
-const isTester = true
+import { LoaderProvider } from './context/Loader';
+const isTester = false
 
 // http://api.al-azhar.uz/api/graphql
 
-const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
-const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+// const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+// const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
 
-// const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
-// const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
 
 // console.log(api, wssApi)
 
@@ -105,15 +101,9 @@ const Main = () => {
 									<StudentFilterProvider>
 								   	<CourseFilterProvider>
 											<TeachersTableProvider>
-												<LidsProvider>
-													<LidsProvider2>
-														<TrueFalseProvider>
-															<LangProvider>
-															<App />
-															</LangProvider>
-														</TrueFalseProvider>
-													</LidsProvider2>
-												</LidsProvider>
+												<LoaderProvider>
+													<App />
+												</LoaderProvider>
 											</TeachersTableProvider>
 										</CourseFilterProvider>
 									</StudentFilterProvider>
@@ -133,4 +123,4 @@ const Main = () => {
 ReactDOM.render(
   <Main/>,
   document.getElementById('root')
-)
+);

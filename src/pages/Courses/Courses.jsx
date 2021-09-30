@@ -3,10 +3,13 @@ import './Courses.scss'
 import CoursesAdd from "../../containers/Forms/CoursesAdd/CoursesAdd";
 import { useState } from 'react';
 import { Drawer, } from 'antd';
+import { useLoader } from "../../context/Loader";
+import Loader from "../../components/Loader/Loader";
 
 const Courses = () => {
 
    const [visible, setVisible] = useState(false);
+   const [loading] = useLoader()
    const showDrawer = () => {
       setVisible(true);
    };
@@ -15,6 +18,9 @@ const Courses = () => {
    };
    return (
       <div className="izma__courses-content" >
+         {
+          loading ? <Loader/> : <></>  
+         }
          <div className="izma__students-content-wrapper">
             <div className="izma__students-content-up">
                <h2 className="izma__students-content-heading">

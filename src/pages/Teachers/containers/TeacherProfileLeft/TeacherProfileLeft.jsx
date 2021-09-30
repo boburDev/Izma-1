@@ -9,15 +9,22 @@ import { useState } from 'react';
 import Close from '../../../../assets/Icons/Group 26.svg'
 import { Drawer, } from 'antd';
 import PasswordInput from '../../../../components/PasswordInput/PasswordInput';
+import { useLoader } from '../../../../context/Loader';
+import { useEffect } from 'react';
 
 const TeacherProfileLeft = () => {
    const [openEdit, setOpenEdit] = useState(false)
    const { collegueID } = useParams()
+   const [setLoader] = useLoader(true)
 
 
-   const { data: collegue } = useQuery(BY_COLLEGUE_ID, {
+   const { data: collegue, loading } = useQuery(BY_COLLEGUE_ID, {
       variables: { id: collegueID }
    })
+
+   useEffect(() => {
+      setLoader(loading)
+   }, [loading])
 
    const [visible, setVisible] = useState(false);
    const showDrawer = () => {

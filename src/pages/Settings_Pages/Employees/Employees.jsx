@@ -90,14 +90,11 @@ const Employees = () => {
 		<div className="izma__settings-employees">
 		<div className="hodim_heading">
 		<h2 className="izma__settings-employees-heading">
-		Xodimlar
+		Hodimlar
 		</h2>
 		<button className="izma__settings-archive-up-button" onClick={showDrawer} >
 		Yangisini qo’shing
 		</button>
-		</div>
-		<div className="izma__settings-employees-table-wrapper">
-		{/* <Table className="izma__table__home" columns={columns} dataSource={colleguages} /> */}
 		</div>
 		<div className="izma__table-g ">
 			<TTable arr={colleguages} block={"settingsHash"} />

@@ -12,6 +12,23 @@ const COLLEGUES = gql`
     }
 `
 
+const ROADMAP = gql`
+{
+    roadMap{
+      id
+      name
+      roadmapItems{
+        id
+        nameUz
+        nameRu
+        nameEn
+      }
+    }
+  }
+`
+
+
 export {
-    COLLEGUES
+    COLLEGUES,
+    ROADMAP,
 }

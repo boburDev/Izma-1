@@ -1,55 +1,63 @@
-import { Table } from 'antd';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import './Rooms.scss'
-import EditImg from '../../../assets/Icons/settings-edit.svg'
-import DeleteImg from '../../../assets/Icons/settings-delete.svg'
-import { Modal, Input } from 'antd';
+import { Modal, Button, Input } from 'antd';
 import { ROOMS, CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM } from './query'
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client'
+import TTable from '../../../components/Table/TTable'
 
-const Rooms = ({ setMainTableData, mainTableData, data, values, setRowId, setValues }) => {
 
-   const [isModalVisible, setIsModalVisible] = useState(false);
-   const [isEditModalVisible, setEditIsModalVisible] = useState(false);
-   const [roomName, setRoomName] = useState('');
-   const [editRoomName, setEditRoomName] = useState('');
+const Rooms = () => {
+   const [rooms,setRooms] = useState([])
+   const [isModalVisible, setIsModalVisible] = useState(false)
+   const [isEditModalVisible, setEditIsModalVisible] = useState(false)
+   const [roomName, setRoomName] = useState('')
+   const [editRoomName, setEditRoomName] = useState('')
    const [getId, setGetId] = useState('')
 
-
-   const { data: rooms } = useQuery(ROOMS)
-
+   const { data: Srooms } = useQuery(ROOMS)
    const [newRoom] = useMutation(CREATE_ROOM)
-
    const [UpdateRoom] = useMutation(UPDATE_ROOM)
-
    const [deleteRoom] = useMutation(DELETE_ROOM)
+
+   useEffect(()=>{
+      if (Srooms && Srooms.rooms) {
+         setRooms(Srooms && Srooms.rooms)
+      }
+   },[Srooms])
 
    const showModal = () => {
       setIsModalVisible(true);
-   };
-
+    };
+  
+    const handleOk = () => {
+      setIsModalVisible(false);
+    };
+  
+    const handleCancel = () => {
+      setIsModalVisible(false);
+    };
    const showEditModal = (e) => {
       setGetId(e.target.id)
-      setEditIsModalVisible(true);
-   };
+      setEditIsModalVisible(true)
+   }
 
-   const handleOk = (e) => {
-      newRoom({
-         variables: {
-            name: roomName
-         }
-      })
-      setRoomName('')
-      setIsModalVisible(false);
-   };
+   // const handleOk = (e) => {
+   //    // newRoom({
+   //    //    variables: {
+   //    //       name: roomName
+   //    //    }
+   //    // })
+   //    // setRoomName('')
+   //    setIsModalVisible(false)
+   // }
 
-   const handleCancel = () => {
-      setIsModalVisible(false);
-   };
+   // const handleCancel = () => {
+   //    setIsModalVisible(false)
+   // }
 
    const handleEditCancel = () => {
-      setEditIsModalVisible(false);
-   };
+      setEditIsModalVisible(false)
+   }
 
 
    const updateRoom = () => {
@@ -59,25 +67,9 @@ const Rooms = ({ setMainTableData, mainTableData, data, values, setRowId, setVal
             name: editRoomName
          }
       })
-      setEditIsModalVisible(false);
-   };
+      setEditIsModalVisible(false)
+   }
 
-   // useEffect(() => {
-   //    const room = rooms && rooms.rooms && rooms.rooms.map((i, index) => {
-   //       return { id: i.id, name: i.room, Id: index + 1 }
-   //    })
-   //    setMainTableData(room)
-   // }, [setMainTableData, rooms]);
-
-   const onRowClicked = (item) => {
-      return {
-         onClick: () => {
-            setRowId(item.id);
-            setValues(item);
-
-         },
-      };
-   };
 
    const DeleteRoom = function (e) {
       deleteRoom({
@@ -87,44 +79,6 @@ const Rooms = ({ setMainTableData, mainTableData, data, values, setRowId, setVal
       })
    }
 
-   const columns = [
-      {
-         title: 'id',
-         dataIndex: 'Id',
-         key: 'Id',
-      },
-      {
-         title: "Ism",
-         dataIndex: 'name',
-         key: 'Id',
-      },
-      {
-         title: 'Tahrirlash',
-         dataIndex: 'edit',
-         key: 'Id',
-         width: "20px",
-         render: (text, record, index) =>
-            <img key={index}
-               id={record.id}
-               onClick={showEditModal}
-               className="izma__table-settings-delete-btn" src={EditImg} alt="edit img" />
-      },
-      {
-         title: 'Amallar',
-         dataIndex: 'actions',
-         key: 'Id',
-         width: "20px",
-         render: (text, record, index) =>
-            <img
-               id={record.id}
-               key={index}
-               onClick={DeleteRoom}
-               className="izma__table-settings-delete-btn"
-               src={DeleteImg}
-               alt="delete img" />
-      },
-
-   ];
    return (
       <>
          <div className="izma__settings-employees-inner">
@@ -135,14 +89,24 @@ const Rooms = ({ setMainTableData, mainTableData, data, values, setRowId, setVal
                <button className="izma__settings-archive-up-button" onClick={showModal} >
                   Yangi xona qo’shing
                </button>
-               <Modal footer={null} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+               </div>
+            <div className="izma__settings-employees-inner-button">
+               <TTable arr={rooms} block={"settingsHashRooms"} />
+            </div>
+         </div>
+
+
+		 <Modal visible={isModalVisible} footer={null} onCancel={handleCancel}>
                   <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
                      <label className='izma__courses__form-bolim-form-label'>Xona nomi</label>
-                     <Input defaultValue={roomName} className={"section_name_input"} onKeyUp={e => setRoomName(e.target.value)} name={"nomi"} />
+                     <Input
+                     defaultValue={roomName}
+                     className={"section_name_input"}
+                     onKeyUp={e => setRoomName(e.target.value)} name={"nomi"} />
 
                   </div>
-                  <div >
-                     <button onClick={handleOk} className={"btn btn-submit izma__group__modal"}>
+                  <div>
+                     <button onClick={handleCancel} className={"btn btn-submit izma__group__modal"}>
                         Saqlash
                      </button>
                   </div>
@@ -150,29 +114,20 @@ const Rooms = ({ setMainTableData, mainTableData, data, values, setRowId, setVal
 
                <Modal footer={null} visible={isEditModalVisible} onOk={updateRoom} onCancel={handleEditCancel}>
                   <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
-                     <label className='izma__courses__form-bolim-form-label'>Xonani tahrirlash</label>
-                     <Input defaultValue={roomName} className={"section_name_input"} onKeyUp={e => setEditRoomName(e.target.value)} name={"nomi"} />
-
+				  <label className='izma__courses__form-bolim-form-label'>Xonani tahrirlash</label>
+				  <Input defaultValue={roomName} className={"section_name_input"} onKeyUp={e => setEditRoomName(e.target.value)} name={"nomi"} />
+				  
                   </div>
                   <div >
-                     <button onClick={updateRoom} className={"btn btn-submit izma__group__modal"}>
-                        Saqlash
-                     </button>
+				  <button onClick={updateRoom}
+				  className={"btn btn-submit izma__group__modal"}>
+				  Saqlash
+				  </button>
                   </div>
-               </Modal>
-            </div>
-            <div className="izma__settings-employees-inner-button">
-               <Table
-                  className="izma__table__home"
-                  columns={columns}
-                  pagination={false}
-                  onRow={onRowClicked}
-                  dataSource={mainTableData} />
-            </div>
-         </div>
+				</Modal>
       </>
    )
 }
 
 
-export default Rooms;
+export default Rooms

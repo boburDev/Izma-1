@@ -3,6 +3,8 @@
    background-color: var(--background-main);
 
    .izma__settings-employees-heading {
+      display: flex;
+      align-items: center;
       font-family: "Jost";
       font-style: normal;
       font-weight: 600;

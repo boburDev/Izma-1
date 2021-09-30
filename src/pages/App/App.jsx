@@ -27,6 +27,7 @@ import EnterForm from "../Settings_Pages/EnterForm/EnterForm";
 import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
 import Loader from "../../components/Loader/Loader";
 import Lids from "../Lids/Lids";
+import SettingsRoadMap from "../Settings_Pages/Roadmap/roadmap";
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
   const [token, setToken] = useState(window.localStorage.getItem('token'))
@@ -91,6 +92,7 @@ const App = () => {
 
                       {/* =================== SETTINGS ======================= */}
 
+                      <Route path="/settingsRoadmap" component={SettingsRoadMap} />
                       <Route path="/settingsEmployees" component={Employees} />
                       <Route path="/settingsEmployeesInner" component={Rooms} />
                       <Route path="/settingsMagazine" component={Jurnals} />

@@ -104,8 +104,8 @@ query byCourseIDFilter($courseID: [ID!]){
 
 const STUDENT_COUNT = gql `
   query studentCount($count: Int) {
-    studentCount(count: $count)
- }
+      studentCount(count: $count)
+  }
 `
 
 export {

@@ -3,16 +3,24 @@ import PaginationBlock from "../PaginationBlock/PaginationBlock"
 import { PaginationArrow } from "../../assets/Icons/icons"
 import { useStudentData } from "../../context/StudentTableProvider"
 import { useState, useEffect   } from "react"
+import { usePagination } from "../../context/Pagination"
 
 const Pagination = () => {
+   const [setPage] =  usePagination(true)
    const [data] = useStudentData()
+   const [count, setCount] = useState(10)
    const [activeBtn ,setActiveBtn] = useState(1)
    const [arrOfCurrBtn, setArrOfCurrBtn] = useState([])
    const numberOfPages = []
    
    let arrayLen = Array(data && data?.pagination?.studentCount).fill('@')
 
-   
+   useEffect(() => {
+      setPage({
+         page:activeBtn,
+         count:count
+      })
+   }, [activeBtn, count])
   
    arrayLen.map((key, index) => {
       return numberOfPages.push(index + 1)
@@ -86,7 +94,9 @@ const Pagination = () => {
          <div className="pagination-right">
             {
                data && data?.pagination?.studentCount > 10 ?
-                  <select name="" id="">
+                  <select name="" id=""
+                     onChange={(e) => setCount(e.target.value)}
+                  >
                      <option value="10">10 / page</option>
                      <option value="20">20 / page</option>
                      <option value="50">50 / page</option>

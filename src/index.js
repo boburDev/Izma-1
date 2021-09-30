@@ -27,6 +27,7 @@ import { CourseFilterProvider } from './context/CourseFilterProvider';
 import {TeachersTableProvider} from './context/TeachersTableProvider'
 import { LoaderProvider } from './context/Loader';
 import { DavomatProvider } from './context/DavomatProvider';
+import { Pagination } from './context/Pagination';
 
 const isTester = false
 
@@ -105,7 +106,9 @@ const Main = () => {
 											<TeachersTableProvider>
 												<LoaderProvider>
 													<DavomatProvider>
-														<App />
+														<Pagination>
+															<App />
+														</Pagination>
 													</DavomatProvider>
 												</LoaderProvider>
 											</TeachersTableProvider>

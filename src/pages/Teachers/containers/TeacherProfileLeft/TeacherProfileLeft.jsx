@@ -11,6 +11,7 @@ import { Drawer, } from 'antd';
 import PasswordInput from '../../../../components/PasswordInput/PasswordInput';
 import { useLoader } from '../../../../context/Loader';
 import { useEffect } from 'react';
+import PhoneNumberInput from '../../../../components/PhoneNumberInput/PhoneNumberInput';
 
 const TeacherProfileLeft = () => {
    const [openEdit, setOpenEdit] = useState(false)
@@ -127,32 +128,10 @@ const TeacherProfileLeft = () => {
                   <form action="">
                      <div className="form_one">
                         <label htmlFor="">Telefon</label>
-                        <div className="number">
-                           <span>+998</span>
-                           <PhoneInput
-                              className="phone_number"
-                              country={"uz"}
-                              inputStyle={{
-                                 width: "100%",
-                                 padding: "13px 10px 13px 44px",
-                                 background: "#F7F9FB",
-                                 border: "2px solid #EDF2F8",
-                                 boxSizing: "border-box",
-                                 bordeRadius: "7px",
-                                 fontSize: "16px"
-                              }}
-                              specialLabel={false}
-                              disableDropdown={true}
-                              countryCodeEditable={false}
-                              areaCodes={{
-                                 uz: ["+998"],
-                              }}
-                              masks={{ uz: "(..) ...-..-.." }}
-                              prefix="+"
-
-
-                           />
-                        </div>
+                        <PhoneNumberInput
+                           // setPhone={}
+                        />
+                        
                      </div>
 
                      <div className="form_one">

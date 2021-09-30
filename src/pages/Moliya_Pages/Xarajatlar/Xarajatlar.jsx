@@ -1,71 +1,54 @@
 import './Xarajatlar.scss'
-import { Table } from 'antd';
 import FinanceCostsImg from '../../../assets/Icons/finance-dolor-icon.svg'
-import { DatePicker, } from "antd";
-import moment from 'moment';
+import { DatePicker, } from "antd"
 import DeleteImg from '../../../assets/Icons/settings-delete.svg'
-import XarajatlarForm from './containers/XarajatlarForm/XarajatlarForm';
-
-const Xarajatlar = ({ setMainTableData, mainTableData, setRowId, setValues }) => {
-   const { RangePicker } = DatePicker;
-   // useEffect(() => {
-   //    setMainTableData([
-   //       { id: 1, name: "Qog'oz", date: '06.08.2021', type: 'Канцелярия', receiver: "INVEST qog'oz", price: '30 000', actions: '.', },
-   //       { id: 2, name: "Qog'oz", date: '06.08.2021', type: 'Канцелярия', receiver: "INVEST qog'oz", price: '30 000', actions: '.', },
-   //    ]);
-   // }, [setMainTableData]);
+import XarajatlarForm from './containers/XarajatlarForm/XarajatlarForm'
+import { useEffect, useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { FILTER_DATA, HARAJATLAR } from '../../../Querys/Finance_All'
+import TTable from '../../../components/Table/TTable'
 
 
+const Xarajatlar = () => {
+   const [dateFilter, setDateFilter] = useState([])
+	const [dateFilterDefaultData,setDateFilterDefaultData] = useState({})
+	const [dateFilterValue, setDateFilterValue] = useState({})
+	const { RangePicker } = DatePicker
+   const [amount,setAmount] = useState(0)
+   const [cost,setCost] = useState([])
+   
+	const { data: filterCost } = useQuery(FILTER_DATA, {
+		variables: Object.keys(dateFilterValue).length ? dateFilterValue : dateFilterDefaultData
+	})
 
-   const onRowClicked = (item) => {
-      return {
-         onClick: () => {
-            setRowId(item.id);
-            setValues(item);
+   const { data: costs } = useQuery(HARAJATLAR)
 
-         },
-      };
-   };
+   useEffect(()=>{
+		const date = new Date()
+		
+		const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
+		const month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : `0${date.getMonth() + 1}`
+		const year = date.getFullYear()
+		
+		setDateFilterDefaultData({
+			startDate: `${year}-${month}-01`,
+			endDate: `${year}-${month}-${day}`
+		})
+	},[])
 
-   const columns = [
-      {
-         title: 'Nomi',
-         dataIndex: 'name',
-         key: 'name',
-      },
-      {
-         title: 'Sana',
-         dataIndex: 'date',
-         key: 'date',
-      },
-      {
-         title: "Turkum",
-         dataIndex: 'type',
-         key: 'type',
-         width: "90px",
-      },
+   useEffect(()=>{
+      if (filterCost && filterCost.harajatlarFilter && filterCost.harajatlarFilter.sum) {
+         setAmount(filterCost && filterCost.harajatlarFilter.sum)
+      }
 
+   },[filterCost])
 
-      {
-         title: 'Oluvchi',
-         dataIndex: 'receiver',
-         key: 'receiver',
-      },
-      {
-         title: 'Sum',
-         dataIndex: 'price',
-         key: 'price',
-      },
-      {
-         title: 'Amallar',
-         dataIndex: 'actions',
-         key: 'actions',
-         width: "20px",
-         render: (text, record, index) =>
-            <img className="izma__table-settings-delete-btn" src={DeleteImg} alt="delete img" />
-      },
+   useEffect(()=>{
+      if (costs && costs.harajatlar) {
+         setCost(costs && costs.harajatlar)
+      }
+   },[costs])
 
-   ];
    return (
       <div className="dwBox">
          <div className="dw">
@@ -88,24 +71,34 @@ const Xarajatlar = ({ setMainTableData, mainTableData, setRowId, setValues }) =>
                </div>
 
                <div className="izma__finance-allpayment-up-dates" style={{ width: "350px" }}>
-                  <RangePicker
-                     defaultValue={moment('2015-01-01', 'YYYY-MM-DD')}
+               <RangePicker
+                  onChange={(e, t) => {
+                     setDateFilter(t)
+                  }}
                      separator
                      className={"range_picker"}
                      suffixIcon
-                     format={"DD-MM-YYYY"}
-                     placeholder={["08/01/2021", "08/01/2021"]}
+                     format={"YYYY-MM-DD"}
+                     placeholder={["2021-08-01", "2021-08-30"]}
                   />
-                  <button className="izma__finance-allpayment-up-dates-btn">
-                     Filtr
+                  <button onClick={()=>{
+                        if (dateFilter.length) {
+                        setDateFilterValue({
+                              startDate: dateFilter[0],
+                              endDate: dateFilter[1]
+                           })
+                        }
+                  }}
+                  className="izma__finance-allpayment-up-dates-btn">
+                  Filtr
                   </button>
-               </div>
+                  </div>
 
 
                <div className="izma__finance-costs-right-tabs-second-up">
                   <div className="izma__finance-costs-right-tabs-second-line"></div>
                   <p className="izma__finance-costs-right-tabs-second-text">
-                     Davr uchun tushgan pul: 550 000 UZS
+                     Davr uchun tushgan pul: {amount} UZS
                   </p>
                   <img className='izma__finance-costs-right-tabs-second-img' src={FinanceCostsImg} alt="" />
                </div>
@@ -113,7 +106,7 @@ const Xarajatlar = ({ setMainTableData, mainTableData, setRowId, setValues }) =>
 
             </div>
             <div className="izma__finance__costs" >
-               <Table className="izma__table__home" columns={columns} pagination={false} onRow={onRowClicked} dataSource={mainTableData} />
+				<TTable arr={cost} block={"financeCostHash"} />
             </div>
          </div>
          <div className="ds">
@@ -125,4 +118,4 @@ const Xarajatlar = ({ setMainTableData, mainTableData, setRowId, setValues }) =>
 
 
 
-export default Xarajatlar;
+export default Xarajatlar

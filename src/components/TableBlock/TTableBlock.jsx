@@ -1,9 +1,9 @@
 import './TableBlock.scss'
 import DeleteImg from '../../assets/Icons/delete-border.svg'
 import EditImg from '../../assets/Icons/settings-edit.svg'
+import moment from 'moment'
 
 const TTableBlock = ({ block, info, showDrawer, index }) => {
-
    return (
       <div className="tableBlock">
          {
@@ -28,7 +28,23 @@ const TTableBlock = ({ block, info, showDrawer, index }) => {
                <h4 className={'groupHash'}>
                   <img src={DeleteImg} alt="" />
                </h4>
-            </> : <>ok</>
+            </> : block === 'financeHash' ? <>
+               <h4 className={'groupHash'}>{info?.studentName}</h4>
+               <h4 className={'groupHash'}>{info?.phone}</h4>
+               <h4 className={'groupHash'}>{info?.typePayment}</h4>
+               <h4 className={'groupHash'}>{info?.amount}</h4>
+               <h4 className={'groupHash'}>{info?.comment}</h4>
+            </> : block === 'financeCostHash' ? <>
+               <h4 className={'groupHash'}>{info?.name}</h4>
+               <h4 className={'groupHash'}>{moment(info?.createdAt-0).format('DD.MM.YYYY')}</h4>
+               <h4 className={'groupHash'}>{info?.type}</h4>
+               <h4 className={'groupHash'}>{info?.typePayment}</h4>
+               <h4 className={'groupHash'}>{info?.buyer}</h4>
+               <h4 className={'groupHash'}>{info?.paymentAmount}</h4>
+               <h4 className={'groupHash'}>
+                  <img src={DeleteImg} alt="" />
+               </h4>
+            </> :<>ok</>
          }
       </div>
    )

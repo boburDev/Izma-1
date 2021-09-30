@@ -85,18 +85,8 @@ const TeacherAdd = ({ onClose, setVisible }) => {
 
                   <DatePicker
                      className='date__picker lid-edit-date'
-                     // onChange={(value, dateString) => {
-                     //   const v = {
-                     //     target: {
-                     //       name: "sana",
-                     //       value: dateString,
-                     //     },
-                     //   };
-                     //   handleChange(v);
-                     // }}
                      onChange={onChange}
                      placeholder={"Kun-Oy-Yil"}
-                     //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                      format={"DD-MM-YYYY"}
                   />
                </div>

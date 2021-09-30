@@ -1,5 +1,4 @@
 .form_teacher {
-   padding: 53px 20px 0 20px;
    max-width: 670px;
    min-height: 100vh;
 
@@ -8,29 +7,39 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 43px;
-      padding-bottom: 8px;
+      margin-bottom: 30px;
+      padding-bottom: 25px;
+
       border-bottom: 1px solid #000;
 
       .name {
          font-family: "Jost";
          font-style: normal;
          font-weight: 600;
-         font-size: 30px;
-         line-height: 43px;
+         font-size: 17px;
          color: #000000;
+         margin-bottom: 0;
+         width: 100%;
       }
 
       button {
          border: none;
          background-color: transparent;
-         margin-left: 80px;
+         margin-left: 10px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+
+         img {
+            width: 20px;
+            height: 20px;
+         }
       }
    }
 
    .forms {
       .form_group {
-         margin-bottom: 25px;
+         margin-bottom: 10px;
       }
 
       .number {
@@ -48,6 +57,7 @@
       }
       input {
          outline: none;
+         font-size: .8rem;
       }
       input[type=text] {
          outline: none;
@@ -61,22 +71,24 @@
 
       label,
       .file {
+         padding-left: 5px;
          margin-bottom: 8px;
          display: block;
          font-family: Calibri;
          font-style: normal;
          font-weight: normal;
-         font-size: 20px;
+         font-size: .8rem;
          line-height: 24px;
          color: #222222;
       }
 
       .form_one {
-         margin-bottom: 25px;
+         margin-bottom: 10px;
+         margin-top: 0px;
 
          input {
-            background:transparent;
-            border: 2px solid #EDF2F8;
+            background:#F7F9FB;
+            border: 2px solid #C9D5E4;
             box-sizing: border-box;
             border-radius: 7px;
             width: 100%;
@@ -93,15 +105,23 @@
 
             .gen_one {
                display: flex;
+               align-items: center;
 
                span {
                   margin-right: 42px;
+                  margin-top: 0;
                   display: block;
+                  font-style: normal;
+                  font-weight: 600;
+                  font-size: .8rem;
+                  line-height: 29px;
+                  color: #222222;
+
                }
 
                label {
-                  width: 26px;
-                  height: 26px;
+                  width: 20px;
+                  height: 20px;
                   font-style: normal;
                   font-weight: 600;
                   font-size: 20px;
@@ -111,6 +131,7 @@
                   border-radius: 50%;
                   margin-right: 10px;
                   cursor: pointer;
+                  margin-bottom: 0;
                }
 
                input[type=radio]:checked+label {
@@ -173,11 +194,15 @@
             background: #F7F9FB;
             box-sizing: border-box;
             border-radius: 7px;
-            height: 53px;
+            line-height: 0;
+            height: 44px !important;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
             font-family: Calibri;
             font-style: normal;
             font-weight: normal;
-            font-size: 16px;
+            font-size: .8rem;
             color: #A7A7A7;
             position: relative;
 
@@ -190,6 +215,9 @@
             }
 
             &::before {
+               display: flex;
+               align-items: center;
+               justify-content: center;
                position: absolute;
                content: 'Browse';
                width: 95px;
@@ -214,15 +242,14 @@
       font-family: "Jost";
       font-style: normal;
       font-weight: 600;
-      font-size: 20px;
-      line-height: 29px;
+      font-size: .8rem;
       color: #FFFFFF;
       border: none;
       background: #090761;
       border-radius: 57px;
       padding: 12px 40px;
-      margin-bottom: 66px;
-      margin-top: 30px;
+      margin-bottom: 30px;
+      margin-top: 15px;
    }
 
 }

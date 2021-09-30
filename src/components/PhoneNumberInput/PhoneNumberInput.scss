@@ -2,10 +2,10 @@
    display: flex;
    align-items: center;
    width: 100%;
-   border: 2px solid #EDF2F8;
+   border: 2px solid #C9D5E4;
    box-sizing: border-box;
    border-radius: 4px;
-   background: #E8F0FE;
+   background: #F7F9FB;
    margin: 10px 0;
    transition: all ease 0.5 !important;
    
@@ -20,27 +20,29 @@
        border-right: 1px solid #C9D5E4;
        box-sizing: border-box;
        border-radius: 4px;
-       width: 79px;
+       width: 56px;
        height: 100%;
-       padding: 15px 22px 14px 18px;
+       padding: 10px;
+       text-align: center;
        font-family: Calibri;
        font-style: normal;
        font-weight: normal;
-       font-size: 16px;
+       font-size: .8rem;
        line-height: 20px;
        color: #222222;
        display: block;
     }
 
     input.telInput {
-       font-size: 16px;
+      font-size: .8rem;
        outline: none;
        border: none !important;
        border-color: transparent;
-       padding: 11px;
+       padding: 12px;
        width: 100%;
        background: transparent !important;
        outline: none !important;
+       background: transparent !important;
 
        
     }

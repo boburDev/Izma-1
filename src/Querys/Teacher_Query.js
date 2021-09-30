@@ -5,7 +5,7 @@ import {
 const TEACHERS = gql `
     query {
         colleagues {
-            id
+            Id
             name
             phoneNumber
         }

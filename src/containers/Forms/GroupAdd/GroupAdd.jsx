@@ -112,7 +112,7 @@ const GroupAdd = ({ onClose }) => {
                      <label htmlFor="">Kurs tanlash</label>
                      <DropSearch
                         fnc={setCourseID}
-                        arr={courses.courses}
+                        arr={courses && courses.courses}
                         pInput={'Variantlarni tanlang'}
                      />
                   </div>

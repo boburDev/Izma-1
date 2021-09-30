@@ -1,0 +1,60 @@
+.historyBlock {
+   cursor: pointer;
+   margin-bottom: 5px;
+   &-header {
+      display: flex;
+      align-items: center;
+      background: #F7F9FB;
+      border: 2px solid #EDF2F8;
+      box-sizing: border-box;
+      border-radius: 7px;
+      padding: 9px 17px;
+
+      span {
+         background: #DFE3E8;
+         border-radius: 7px;
+         font-style: normal;
+         font-weight: 600;
+         font-size: 16px;
+         line-height: 23px;
+         padding: 7px 15px;
+         box-sizing: border-box;
+         margin-right: 10px;
+
+         color: #000000;
+      }
+
+      h4 {
+         font-style: normal;
+         font-weight: normal;
+         font-size: 16px;
+         line-height: 20px;
+         color: #000000;
+      }
+   }
+
+   &-center {
+      padding: 0px 17px;
+      height: 0;
+      overflow: hidden;
+
+      &.active {
+         height: 100%;
+      }
+
+      h4 {
+         margin-top: 5px;
+         font-style: normal;
+         font-weight: 400;
+         font-size: 16px;
+         line-height: 23px;
+         color: #000000;
+
+         span {
+            font-weight: bold;
+         }
+      }
+
+
+   }
+}

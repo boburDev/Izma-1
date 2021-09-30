@@ -8,13 +8,15 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { useState } from 'react';
 import Close from '../../../../assets/Icons/Group 26.svg'
 import { Drawer, } from 'antd';
+import PasswordInput from '../../../../components/PasswordInput/PasswordInput';
 
 const TeacherProfileLeft = () => {
    const [openEdit, setOpenEdit] = useState(false)
    const { collegueID } = useParams()
 
+
    const { data: collegue } = useQuery(BY_COLLEGUE_ID, {
-      variables: { collegueID }
+      variables: { id: collegueID }
    })
 
    const [visible, setVisible] = useState(false);
@@ -25,6 +27,7 @@ const TeacherProfileLeft = () => {
    const onClose = () => {
       setVisible(false);
    };
+
 
    return (
       <div className={`overlay ${openEdit ? 'active' : ''}`}>
@@ -198,12 +201,7 @@ const TeacherProfileLeft = () => {
                      </div>
                      <div className="form_one">
                         <label htmlFor="">Parol</label>
-                        <Space direction="vertical">
-                           <Input.Password
-                              iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-
-                           />
-                        </Space>
+                        <PasswordInput/>
                      </div>
 
                      <button onClick={() => setOpenEdit(false)} className="cre_btn">O'zgartirish</button>

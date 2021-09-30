@@ -13,6 +13,8 @@ const FilterTeachers = () => {
    const [teacher, setTeacher] = useTeacher()
    const [arr, setArr] = useState()
 
+   
+
    useEffect(() => {
       setArr(teachers)
    }, [teachers])
@@ -30,7 +32,7 @@ const FilterTeachers = () => {
    return (
       <div className="filterDebtors">
          {
-            arr && arr.map((e, i) => (
+            arr && arr.colleagues.map((e, i) => (
                <FilterTeachersChecked
                   key={i}
                   nameSoha={e.name}

@@ -36,7 +36,7 @@ const Teachers = () => {
 
             <div className="izma__teachers-content-center">
                <div className="izma__teachers-content-line">
-
+                  
                </div>
             </div>
          </div>

@@ -114,7 +114,7 @@ const Navbar = ({ sidebarActive }) => {
    ]
 
    const { location } = useHistory()
-
+   console.log(location.pathname);
    useEffect(() => {
       switch (location.pathname) {
          case "/settingsEmployeesInner":
@@ -322,6 +322,8 @@ const Navbar = ({ sidebarActive }) => {
                   arr2={SettingLinks}
                   openMoliya={openMoliya}
                   openSetting={openSetting}
+                  setOpenMoliya={setOpenMoliya}
+                  setOpenSetting={setOpenSetting}
                />
             </div>
          </div>

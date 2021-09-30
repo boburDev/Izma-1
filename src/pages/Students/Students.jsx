@@ -4,6 +4,7 @@ import {  useState } from 'react'
 import StudentsTable from './containers/StudentsTable/StudentsTable'
 import StudentFilterDebtors from '../../components/StudentComponents/StudentFilterDebtors/StudentFilterDebtors'
 import StudentAdd from '../../containers/Forms/StudentAdd/StudentAdd'
+import FilterTeachers from '../../components/Groups/FilterTeachers/FilterTeachers'
 import { Drawer } from 'antd';
 
 const Students = () => {
@@ -42,10 +43,10 @@ const Students = () => {
                type="text"
             />
             <StudentFilterSoha/>
+                     <FilterTeachers/>
                <StudentFilterDebtors />
                <div className="izma__students-content-center">
                   <div className="izma__students-content-line">
-
                   </div>
                </div>
             </div>

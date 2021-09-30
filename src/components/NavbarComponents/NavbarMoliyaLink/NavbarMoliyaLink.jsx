@@ -1,10 +1,12 @@
 import {  NavLink } from "react-router-dom"
 import './NavbarMoliyaLink.scss'
 
-const NavbarMoliyaLink = ({link, title}) => {
+const NavbarMoliyaLink = ({link, title, setClose}) => {
 
    return(
-      <NavLink to={link} className="moliya_link" activeClassName="active">{title}</NavLink>
+      <NavLink 
+      onClick={() => setClose(false)}
+      to={link} className="moliya_link" activeClassName="active">{title}</NavLink>
    )
 }
 

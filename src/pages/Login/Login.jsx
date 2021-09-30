@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/client';
 import { useLogin } from '../../context/LoginProvider'
 import { useParams } from 'react-router';
 import PhoneNumberInput from '../../components/PhoneNumberInput/PhoneNumberInput'
+import PasswordInput from '../../components/PasswordInput/PasswordInput';
 
 const Login = () => {
 
@@ -40,20 +41,9 @@ const Login = () => {
       })
    }
 
-   if (token.token) window.location.assign('/') 
+   if (token.token) window.location.assign('/')
 
-   useEffect(() => {
-      let inp = document.querySelector('.passwordLogin')
 
-      inp.addEventListener('focus', () => {
-         inp.style.border = '1px solid #090761'
-         inp.style.boxShadow = ' rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
-      })
-      inp.addEventListener('blur', () => {
-         inp.style.border = '1px solid #C9D5E4'
-         inp.style.boxShadow = 'none'
-      })
-   }, [])
 
    return (
       <div className="container">
@@ -92,7 +82,9 @@ const Login = () => {
                            />
 
                            <label className="mtt" htmlFor="">Parol *</label>
-                           <input className="passwordLogin" onKeyUp={e => setPassword(e.target.value)} type="password" name="" id="" />
+                           <PasswordInput
+                              setPassword={setPassword}
+                           />
 
                            <button className="log_btn" type="submit">Login</button>
                         </form>

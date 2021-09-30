@@ -25,6 +25,7 @@ import Archive from "../Settings_Pages/Archive/Archive";
 import LidForm from "../Settings_Pages/LidForm/LidForm";
 import EnterForm from "../Settings_Pages/EnterForm/EnterForm";
 import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
+import Lids from "../Lids/Lids";
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
   const [token, setToken] = useState(window.localStorage.getItem('token'))
@@ -68,11 +69,12 @@ const App = () => {
             <Route path="/groups/groupsProfil/:groupID" component={GroupProfil} exact />
             <Route path="/coursesAddLesson" component={CoursesAddLesson} exact />
             <Route path="/coursesInner/:courseID" component={CoursesInner} exact />
+            <Route path="/lidlar" component={Lids}/>
             <Route path="/studentProfile/:studentID" exact>
               <StudentProfile role="student"/>
             </Route>
-            <Route path="/teacherProfile" exact>
-              <StudentProfile role="teacher"/>
+            <Route path="/teacherProfile/:collegueID" exact>
+              <StudentProfile role="teacher" />
             </Route>
 
             {/* ==============     MOLIYA =============== */}

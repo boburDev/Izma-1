@@ -24,6 +24,9 @@ import {StudentTableProvider} from './context/StudentTableProvider'
 import { StudentPayProvider } from './context/StudentPay';
 import { StudentFilterProvider } from './context/StudentFilter';
 import { CourseFilterProvider } from './context/CourseFilterProvider';
+import {TeachersTableProvider} from './context/TeachersTableProvider'
+import { LidsProvider } from './context/LidsProvider';
+import { LidsProvider2 } from './context/LidsProvider2';
 const isTester = false
 
 // http://api.al-azhar.uz/api/graphql
@@ -98,7 +101,13 @@ const Main = () => {
 								<StudentPayProvider>
 									<StudentFilterProvider>
 								   	<CourseFilterProvider>
-											<App />
+											<TeachersTableProvider>
+												<LidsProvider>
+													<LidsProvider2>
+														<App />
+													</LidsProvider2>
+												</LidsProvider>
+											</TeachersTableProvider>
 										</CourseFilterProvider>
 									</StudentFilterProvider>
 								</StudentPayProvider>

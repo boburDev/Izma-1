@@ -14,7 +14,7 @@ const COURSES = gql `
 const TEACHER_FILTERS = gql `
     query {
         colleagues {
-            id
+            Id
             name
         }
     }

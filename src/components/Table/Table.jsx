@@ -2,9 +2,11 @@ import Pagination from '../Pagination/Pagination'
 import TableBlock from '../TableBlock/TableBlock'
 import './Table.scss'
 import { useStudentData } from '../../context/StudentTableProvider'
+import { useTeacherData } from '../../context/TeachersTableProvider'
 
 const Table = ({ block, arr, showDrawer}) => {
    const [data] = useStudentData(false)
+   const [teacherData] = useTeacherData(false)
 
    return (
       <div className="table">
@@ -28,24 +30,38 @@ const Table = ({ block, arr, showDrawer}) => {
                      <h4 className={block}>{''}</h4>
                   </div>
 
-                  <div className="table-body">
+                  {
+                     block === 'studentHash' ?
+                        <div className="table-body">
 
-                     {
-                        data && data?.studentData?.students.map((el, index) => (
-                           <TableBlock
-                              block={block}
-                              info={el}
-                              index={index}
-                              showDrawer={showDrawer}
-                              key={index}
-                           />
-                        ))
-                     }
+                           {
+                              data && data?.studentData?.students.map((el, index) => (
+                                 <TableBlock
+                                    block={block}
+                                    info={el}
+                                    index={index}
+                                    showDrawer={showDrawer}
+                                    key={index}
+                                 />
+                              ))
+                           }
 
-                     {
-                        block === 'studentHash' && <Pagination />
-                     }
-                  </div>
+                            <Pagination />
+                        </div>
+                        :
+                        <div className="table-body">
+                           {
+                              teacherData && teacherData?.colleagues?.map((el, index) => (
+                                 <TableBlock
+                                    block={block}
+                                    info={el}
+                                    index={index}
+                                    key={index}
+                                 />
+                              ))
+                           }
+                        </div>
+                  }
 
 
                </> :

@@ -5,11 +5,15 @@ import { useMutation, useQuery, useSubscription } from '@apollo/client';
 import { DELETE_TEACHER, TEACHERS, TEACHER_SUBSCRIPTION } from '../../../../Querys/Teacher_Query';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useTeacherData } from '../../../../context/TeachersTableProvider';
+import {
+   gql
+} from '@apollo/client'
 
 const TeachersTable = ({ setMainTableData, mainTableData, values, setRowId, setValues }) => {
 
    const { data: teachers } = useQuery(TEACHERS)
-   const [teachersData, setTeachersData] = useState()
+   const [setTeacherData] = useTeacherData(true)
 
    const [deleteTeacher] = useMutation(DELETE_TEACHER, {
       update: (cache, data) => {
@@ -18,9 +22,10 @@ const TeachersTable = ({ setMainTableData, mainTableData, values, setRowId, setV
    })
 
    useEffect(() => {
-      console.log(teachers);
-      setTeachersData(teachers)
+      setTeacherData(teachers)
    }, [teachers])
+
+   
 
 
 
@@ -45,48 +50,22 @@ const TeachersTable = ({ setMainTableData, mainTableData, values, setRowId, setV
          cache.modify({
             fields: {
                colleagues: (colleagues = []) => {
-                  // const newClassifiedRef = cache.writeFragment({
-                  // 	data: data.newClassified,
-                  // 	fragment: gql `
-                  // 		fragment NewClassified on Classified {
-                  // 			id
-                  // 			type
-                  // 		}
-                  // 	`
-                  // })
+                  const newClassifiedRef = cache.writeFragment({
+                  	data: data.newClassified,
+                  	fragment: gql `
+                  		fragment NewClassified on Classified {
+                  			id
+                  			type
+                  		}
+                  	`
+                  })
                }
             }
          })
       },
    })
 
-   const columns = [
-      {
-         title: 'Id',
-         key: "index",
-         render: (text, record, index) => index + 1,
-      },
-      {
-         title: 'Ism',
-         dataIndex: 'name',
-         key: 'name',
-         render: (names, id) =>
-            <Link className="name_links" to={`/teachersProfile/` + id.id}>{names}</Link>
-      },
-      {
-         title: 'Telefon',
-         dataIndex: 'phoneNumber',
-         key: 'phoneNumber',
-      },
-      {
-         title: <div className="table_head"></div>,
-         dataIndex: "fd",
-         width: "20px",
-         key: "fd",
-         render: (_, record) =>
-            <img className="izma__table-delete-btn" src={DeleteImg} alt="delete img" onClick={() => handleDelete(record)} />
-      },
-   ];
+
 
 
    return (

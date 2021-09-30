@@ -2,14 +2,14 @@ import './DropSearch.scss'
 import { useEffect, useRef } from 'react'
 import Arrow from '../../assets/Icons/arrow_im.svg'
 
-const DropSearch = ({arr, pInput,  fnc}) => {
+const DropSearch = ({ arr, pInput, fnc }) => {
    const input = useRef()
    const browsers = useRef()
    const arrow = useRef()
 
-   
 
-   
+
+
    useEffect(() => {
 
       arrow.current.addEventListener('click', () => {
@@ -17,34 +17,34 @@ const DropSearch = ({arr, pInput,  fnc}) => {
             arrow.current.classList.remove('active')
             browsers.current.style.display = 'none';
             input.current.style.borderRadius = "5px";
-            
-         }else {
+
+         } else {
             arrow.current.classList.add('active')
             browsers.current.style.display = 'block';
             input.current.style.borderRadius = "5px 5px 0 0";
-            
+
          }
       })
       input.current.onfocus = function () {
          arrow.current.classList.add('active')
          browsers.current.style.display = 'block';
          input.current.style.borderRadius = "5px 5px 0 0";
-         
-         
+
+
          for (let option of browsers.current.childNodes) {
-            if (input.current.value === option.textContent) {
+            if (input.current.value === option.textContent && input.current.value !== '') {
                option.classList.add('selected')
-            }else {
+            } else {
                option.classList.remove('selected')
             }
          }
       };
       for (let option of browsers.current.childNodes) {
-         
+
          option.onclick = function () {
             if (option.className === 'selected') {
                input.current.value = '';
-            }else {
+            } else {
                input.current.value = option.textContent;
             }
             arrow.current.classList.remove('active')
@@ -52,7 +52,7 @@ const DropSearch = ({arr, pInput,  fnc}) => {
             input.current.style.borderRadius = "5px";
          }
       };
-      
+
       input.current.oninput = function () {
          currentFocus = -1;
          var text = input.current.value.toUpperCase();
@@ -98,29 +98,29 @@ const DropSearch = ({arr, pInput,  fnc}) => {
    }, [arr])
 
 
-   return(
+   return (
       <div className="dropSearch">
          <div className="inputWrapper">
-            <input autocomplete="off"  list="" name="browsers" placeholder={pInput} className="dropSearchInput"
-            ref={input}
+            <input autocomplete="off" list="" name="browsers" placeholder={pInput} className="dropSearchInput"
+               ref={input}
             />
-            <span ref={arrow} className="dropSearchArrow"><img src={Arrow} alt="" 
-               
+            <span ref={arrow} className="dropSearchArrow"><img src={Arrow} alt=""
+
             /></span>
          </div>
          <datalist className="dropSearchDatalist" ref={browsers}>
             {
                arr && arr.map((e, i) => (
-                  <option 
-                  
-                  onClick={(e) => {
-                     if(e.target.className === 'selected') {
-                        fnc('')
-                     }else {
-                        fnc(e.target.value)
-                     }
-                  }}
-                  key={i} value={e.id}>{e.name}</option>
+                  <option
+
+                     onClick={(e) => {
+                        if (e.target.className === 'selected') {
+                           fnc('')
+                        } else {
+                           fnc(e.target.value)
+                        }
+                     }}
+                     key={i} value={e.id}>{e.name ? e.name : e.room}</option>
                ))
             }
          </datalist>

@@ -7,6 +7,8 @@ import { TEACHER_FILTERS } from '../../../Querys/FilterSoha';
 import { ROOMS, UPDATE_GROUP } from '../../../Querys/Group_Query';
 import { useQuery, useMutation } from '@apollo/client';
 import { useState } from 'react';
+import DropSearch from '../../../components/DropSearch/DropSearch';
+import PasswordInput from '../../../components/PasswordInput/PasswordInput';
 
 const format = 'HH:mm';
 
@@ -52,6 +54,29 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
       onClose()
    }
 
+   const daysArr = [
+      {
+         name: 'Toq kunlar',
+         id: 'odd',
+      },
+      {
+         name: 'Juft kunlar',
+         id: 'even',
+      },
+      {
+         name: 'Dam olish kuni',
+         id: 'sat',
+      },
+      {
+         name: 'Har kuni',
+         id: 'every',
+      },
+      {
+         name: 'Boshqa',
+         id: 'boshqa',
+      }
+   ]
+
    function SelectDate(e) {
       if (e.target.checked) {
          setselectedDate([e.target.id, ...selectedDate])
@@ -83,39 +108,28 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
                   </div>
                   <div className="form_inputs">
                      <label htmlFor="">Kurs tanlash</label>
-                     <select onChange={e => {
-                        setCourseID(e.target.value)
-                     }} name="" id="">
-                        <option style={{ "display": "none" }}>Choose course</option>
-                        {
-                           courses && courses.courses.map((e, i) => (
+                     <DropSearch
+                        arr={courses && courses.courses}
+                        pInput={'Variantlarni tanlang'}
+                        fnc={setCourseID}
+                     />
 
-                              <option selected={e.id === courseID} key={i} value={e.id}>{e.name}</option>
-                           ))
-                        }
-                     </select>
                   </div>
                   <div className="form_inputs">
                      <label htmlFor="">O'qituvchini tanlang</label>
-                     <select name="" id="" onChange={e => setTeacherID(e.target.value)}>
-                        <option style={{ "display": "none" }}>Choose teacher</option>
-                        {
-                           teachers && teachers.colleagues.map((e, i) => (
-                              <option selected={e.id === teacherID} key={i} value={e.id}>{e.name}</option>
-                           ))
-                        }
-                     </select>
+                     <DropSearch
+                        arr={teachers && teachers.colleagues}
+                        pInput={'Variantlarni tanlang'}
+                        fnc={setTeacherID}
+                     />
                   </div>
                   <div className="form_inputs">
                      <label htmlFor="">Kunlar</label>
-                     <select onChange={e => setDays(e.target.value)} name="" id="">
-                        <option style={{ "display": "none" }}>Choose days</option>
-                        <option selected={days === 'odd'} value="odd">Toq kunlar</option>
-                        <option selected={days === 'even'} value="even">Juft kunlar</option>
-                        <option selected={days === 'sat'} value="sat">Dam olish kuni</option>
-                        <option selected={days === 'every'} value="every">Har kuni</option>
-                        <option selected={days === 'boshqa'} value="boshqa">Boshqa</option>
-                     </select>
+                     <DropSearch
+                        arr={daysArr && daysArr}
+                        pInput={'Variantlarni tanlang'}
+                        fnc={setDays}
+                     />
                   </div>
 
                   {
@@ -154,14 +168,11 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
 
                   <div className="form_inputs">
                      <label htmlFor="">Xonani tanlang</label>
-                     <select onChange={e => setRoomID(e.target.value)} name="" id="">
-                        <option style={{ "display": "none" }}>Choose room</option>
-                        {
-                           rooms && rooms.rooms.map((e, i) => (
-                              <option selected={roomID === e.id} key={i} value={e.id}>{e.room}</option>
-                           ))
-                        }
-                     </select>
+                     <DropSearch
+                        arr={rooms && rooms.rooms}
+                        pInput={'Variantlarni tanlang'}
+                        fnc={setRoomID}
+                     />
                   </div>
 
                   <div className="form-input">

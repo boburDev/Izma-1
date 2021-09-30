@@ -9,7 +9,7 @@ import PhoneInput from "react-phone-input-2";
 import { useState } from 'react'
 
 import Plus from '../../../assets/Icons/plus.png'
-   import Minus from '../../../assets/Icons/minus.png'
+import Minus from '../../../assets/Icons/minus.png'
 import { Input, Space, DatePicker } from 'antd';
 import moment from 'moment'
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
@@ -17,7 +17,9 @@ import 'antd/dist/antd.css'
 import { FOR_EDIT_STUDENT, GROUPS } from './query';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router';
+import DropSearch from '../../../components/DropSearch/DropSearch';
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
+import PasswordInput from '../../../components/PasswordInput/PasswordInput';
 
 
 
@@ -130,7 +132,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                <PhoneNumberInput
                   setPhone={setStPhoneNum}
                />
-               
+
             </div>
 
             <div className="form-input">
@@ -167,14 +169,11 @@ const StudentsEditForm = ({ onCloseF }) => {
             </div>
             <div className="form-input">
                <label htmlFor="group">Guruhni tanlang</label>
-               <select className="new-input" onChange={e => setStGroup(e.target.value)}>
-                  <option value="" selected disabled>Guruhni tanlang</option>
-                  {Groups && Groups.groups.map(item => (
-                     <option key={item.id} value={item.id}>{item.name}</option>
-                  ))}
-                  {/* <option value="">Group 1</option>
-                        <option value="">Group 2</option> */}
-               </select>
+               <DropSearch
+                  arr={Groups && Groups.groups}
+                  pInput={'Variantlarni tanlang'}
+                  fnc={setStGroup}
+               />
             </div>
             <div className="form-input">
                <label htmlFor="group">Komment</label>
@@ -254,7 +253,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                            setParents={setParents}
                            parents={fieldParents}
                         />
-                        
+
                      </div>
                   ))
                }
@@ -270,12 +269,9 @@ const StudentsEditForm = ({ onCloseF }) => {
 
             <div className="form-input">
                <label htmlFor="">Parol</label>
-               <Space direction="vertical">
-                  <Input.Password autoComplete='off'
-                     iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                     onChange={e => setStPassword(e.target.value)}
-                  />
-               </Space>
+               <PasswordInput
+                  setPassword={setStPassword}
+               />
             </div>
 
             <button className="create-btn" onClick={onCloseF}>O'zgartirish</button>

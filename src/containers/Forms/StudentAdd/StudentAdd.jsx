@@ -157,8 +157,8 @@ const StudentAdd = ({ onCloseF }) => {
          }}>
             <div className="form-input">
                <label htmlFor="">Telefon</label>
-               <PhoneNumberInput setPhone={setStPhoneNum}/>
-               
+               <PhoneNumberInput setPhone={setStPhoneNum} />
+
             </div>
 
             <div className="form-input">
@@ -197,7 +197,7 @@ const StudentAdd = ({ onCloseF }) => {
                   pInput={'Variantlarni tanlang'}
                   fnc={setStGroup}
                />
-               
+
                {/* <AutoComplete
                             options={names}
                             style={{
@@ -222,15 +222,15 @@ const StudentAdd = ({ onCloseF }) => {
                            <label htmlFor="">Ikkilamchi Telefon</label>
                            <div className="bla-bla">
                               <button
-                              type="button"
+                                 type="button"
                                  className={`remadd_btn alone ${fieldInput.length === 1 ? 'active' : ''}`}
-                                 onClick={(e) =>{
+                                 onClick={(e) => {
                                     e.preventDefault()
                                     removeField(index)
-                                 } }
+                                 }}
                               ><img src={Minus} alt="" /></button>
                               <button
-                              type='button'
+                                 type='button'
                                  className="remadd_btn"
                                  onClick={(e) => {
                                     e.preventDefault()
@@ -239,7 +239,7 @@ const StudentAdd = ({ onCloseF }) => {
                               ><img src={Plus} alt="" /></button>
                            </div>
                         </div>
-                        <PhoneNumberInput setParents={setInputField}  parents={fieldInput}/>
+                        <PhoneNumberInput setParents={setInputField} parents={fieldInput} />
                      </div>
                   ))
 
@@ -264,7 +264,7 @@ const StudentAdd = ({ onCloseF }) => {
                            </div>
                         </div>
                         <PhoneNumberInput setParents={setParents} parents={fieldParents} />
-                        
+
                      </div>
                   ))
                }
@@ -280,7 +280,7 @@ const StudentAdd = ({ onCloseF }) => {
 
             <div className="form-input">
                <label htmlFor="">Parol</label>
-               <PasswordInput setPassword={setStPassword}/>
+               <PasswordInput setPassword={setStPassword} />
             </div>
 
             <button className="create-btn" onClick={() => {

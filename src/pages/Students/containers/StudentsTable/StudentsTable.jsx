@@ -25,8 +25,6 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    const [courseFilter] = useCourseFilter()
    const [setData] = useStudentData(true)
    const [studentID] = useStudentPay()
-   console.log(courseFilter);
-   console.log(deb);
    const { data: students } = useQuery(ALL_STUDENTS, {
       variables: {
          page: 1,

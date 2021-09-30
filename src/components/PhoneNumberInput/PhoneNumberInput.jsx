@@ -28,11 +28,11 @@ const PhoneNumberInput = ({ setPhone, setParents, parents }) => {
             className="telInput" type="tel"
             onKeyUp={(e) => {
                if(setParents && e.target.value.length == 9) {
-                  setParents(...parents, {number: e.target.value})
-                  e.target.disabled = true
+                  e.target.blur()
+                  console.log(e);
+                  setParents([...parents, {number: e.target.value}])
                }else if(setPhone && e.target.value.length == 9){
                   setPhone('998'+e.target.value)
-                  e.target.disabled = true
                }
             }}
          />

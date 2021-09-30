@@ -5,9 +5,12 @@ import StudentFilterSoha from '../Students/containers/StudentFilterSoha/StudentF
 import GroupAdd from '../../containers/Forms/GroupAdd/GroupAdd';
 import './Groups.scss'
 import FilterTeachers from '../../components/Groups/FilterTeachers/FilterTeachers';
+import { useLoader } from '../../context/Loader';
+import Loader from '../../components/Loader/Loader';
 
 const Groups = () => {
    const [toggleState, setToggleState] = useState(1);
+   const [loading] = useLoader()
 
    const toggleTab = (index) => {
       setToggleState(index);
@@ -23,6 +26,9 @@ const Groups = () => {
    };
    return (
       <div className="izma__teachers-content">
+         {
+            loading ? <Loader/> : <></>
+         }
          <div className="izma__teachers-content-wrapper">
             <div className="izma__teachers-content-up">
                <h2 className="izma__teachers-content-heading">

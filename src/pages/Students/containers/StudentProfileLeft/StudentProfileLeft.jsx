@@ -12,9 +12,12 @@ import StudentProlifeLeftCheck from '../../../../components/StudentComponents/St
 import { Redirect, useParams } from 'react-router';
 import { useSubscription } from '@apollo/client';
 import './StudentProfileLeft.scss'
+import { useLoader } from '../../../../context/Loader';
+import { useEffect } from 'react';
 
 
 const StudentsProfileLeft = (prop) => {
+   const [setLoading] = useLoader(true)
 
    const [openSms, setOpenSms] = useState(false)
 
@@ -26,6 +29,14 @@ const StudentsProfileLeft = (prop) => {
    const { data: Groups } = useQuery(GROUPS, { variables: { teacherID: [], courseID: [] } })
    const { data: checkCash } = useQuery(CHECK_CASH, { variables: { stID: studentID } })
    const { data: filial } = useQuery(FILIAL)
+
+   useEffect(() => {
+      if(oneStudent && Groups && checkCash && filial) {
+         setLoading(false)
+      }else {
+         setLoading(true)
+      }
+   }, [oneStudent, Groups, checkCash, filial])
 
    const [UpdateComment] = useMutation(UPDATE_COMMENT)
    const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)

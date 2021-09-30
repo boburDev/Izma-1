@@ -18,6 +18,7 @@ import { useStudentData } from '../../../../context/StudentTableProvider';
 import { useStudentPay } from '../../../../context/StudentPay';
 import { useStudentFilter } from '../../../../context/StudentFilter';
 import { useCourseFilter } from '../../../../context/CourseFilterProvider';
+import { useLoader } from '../../../../context/Loader';
 
 
 const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
@@ -25,6 +26,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    const [courseFilter] = useCourseFilter()
    const [setData] = useStudentData(true)
    const [studentID] = useStudentPay()
+   const [setLoading] = useLoader(true) 
    const { data: students, loading } = useQuery(ALL_STUDENTS, {
       variables: {
          page: 1,
@@ -85,12 +87,12 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
    };
 
 
+   useEffect(() => {
+      setLoading(loading)
+   }, [loading])
 
-
-   
    
    useEffect(() => {
-      
    setData({
       studentData: students,
       pagination: countSt
@@ -126,9 +128,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch }) => {
 
    return (
       <>
-      {
-         loading ? <></> : 'id'
-      }
+      
          <Drawer
             placement="right"
             closable={false}

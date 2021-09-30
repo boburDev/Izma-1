@@ -34,6 +34,7 @@ h1, h2, h3, h4, h5, h6, p {
       }
 
       &-center {
+         position: relative;
          background: #F7F9FB;
          height: 85%;
          overflow-y: scroll;

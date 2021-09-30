@@ -9,10 +9,13 @@ import TeacherProfileLeft from '../../Teachers/containers/TeacherProfileLeft/Tea
 import TeacherProfileCenter from '../../Teachers/containers/TeacherProfileCenter/TeacherProfileCenter'
 import TeacherProfileHistory from '../../Teachers/containers/TeacherProfileHistory/TeacherProfileHistory'
 import { useState } from 'react'
+import { useLoader } from '../../../context/Loader'
+import Loader from '../../../components/Loader/Loader'
 
 const StudentProfile = ({ role }) => {
    const [toggleState, setToggleState] = useState(1);
    const [studentName, setStName] = useState()
+   const [loading] = useLoader()
 
    const toggleTab = (index) => {
       setToggleState(index);
@@ -21,6 +24,9 @@ const StudentProfile = ({ role }) => {
    return (
       <>
          <div className="izma__students-profile-content">
+            {
+               loading ? <Loader/> : <></>
+            }
             <div className="izma__students-profile-inner-headings">
                <h2 className="izma__finance-payment-inner-heading">
                   {studentName && studentName}

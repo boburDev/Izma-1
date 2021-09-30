@@ -6,10 +6,13 @@ import StudentFilterDebtors from '../../components/StudentComponents/StudentFilt
 import StudentAdd from '../../containers/Forms/StudentAdd/StudentAdd'
 import FilterTeachers from '../../components/Groups/FilterTeachers/FilterTeachers'
 import { Drawer } from 'antd';
+import { useLoader } from '../../context/Loader'
+import Loader from '../../components/Loader/Loader'
 
 const Students = () => {
    const [deb, setDeb] = useState()
    const [search, setSearch] = useState()
+   const [loading] = useLoader()
 
    const [visibleF, setVisibleF] = useState(false);
    const showDrawerF = () => {
@@ -21,6 +24,12 @@ const Students = () => {
    };
    return (
       <div className="izma__students-content" >
+         {
+            loading ?
+               <Loader />
+               :
+               <></>
+         }
          <div className="izma__students-content-wrapper">
             <div className="izma__students-content-up">
                <h2 className="izma__students-content-heading">

@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import './CoursesCard.scss'
 import { useQuery, useSubscription } from '@apollo/client';
 import { COURSES, COURSE_SUBSCRIPTION } from '../../../Querys/Courses_Query';
+import { useLoader } from '../../../context/Loader';
+import { useEffect } from 'react';
 
 const CoursesCard = () => {
+   const [setLoading] = useLoader(true)
 
-   const { data: courses } = useQuery(COURSES)
-
+   const { data: courses, loading } = useQuery(COURSES)
+   useEffect(() => {
+      setLoading(loading)
+   }, [loading])
    useSubscription(COURSE_SUBSCRIPTION, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({

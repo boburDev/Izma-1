@@ -2,6 +2,7 @@ import './LidForm.scss'
 import Banner from '../../../assets/banner.jpg'
 import QoraBanner from '../../../assets/qorabanenr.svg'
 import PhoneInput from "react-phone-input-2";
+import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
 import { useMutation, useQuery } from '@apollo/client';
 import { COURSES, NEW_LEAD } from './query';
 import { useParams } from 'react-router-dom';
@@ -64,32 +65,9 @@ const LidForm = () => {
 
                <div className="user_name">
                   <label className="name_label" htmlFor="">Telefon *</label>
-                  <div className="number">
-                     <span>+998</span>
-                     <PhoneInput
-                        className="phone_number"
-                        country={"uz"}
-                        inputStyle={{
-                           width: "100%",
-                           padding: "13px 10px 13px 44px",
-                           background: "#ffffff",
-                           border: "2px solid #EDF2F8",
-                           boxSizing: "border-box",
-                           fontSize: "16px",
-                           outline: "none"
-                        }}
-                        specialLabel={false}
-                        disableDropdown={true}
-                        countryCodeEditable={false}
-                        areaCodes={{
-                           uz: ["+998"],
-                        }}
-                        masks={{ uz: "(..) ...-..-.." }}
-                        prefix="+"
-                        onChange={e => setPhone(e)}
-
-                     />
-                  </div>
+                  <PhoneNumberInput
+                     setPhone={setPhone}
+                  />
                </div>
 
                <div className="user_name">

@@ -2,11 +2,12 @@ import './SettingsArchiveForm.scss'
 import CloceBtn from '../../../assets/Icons/Group 26.svg'
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Radio } from 'antd';
-import PhoneInput from "react-phone-input-2";
 import { Input, Space, DatePicker } from 'antd';
 import { useState } from 'react'
 import { CREATE_COLLEAGUE } from './query'
 import { useMutation } from '@apollo/client';
+import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
+import PasswordInput from '../../../components/PasswordInput/PasswordInput';
 
 const SettingsArchiveForm = ({ onClose }) => {
 
@@ -53,32 +54,9 @@ const SettingsArchiveForm = ({ onClose }) => {
             <form action="" onSubmit={(e) => e.preventDefault()}>
                <div className="form-input">
                   <label htmlFor="">Telefon</label>
-                  <div className="number">
-                     <span>+998</span>
-                     <PhoneInput
-                        className="phone_number"
-                        country={"uz"}
-                        onChange={e => setPhone(e)}
-                        inputStyle={{
-                           width: "100%",
-                           padding: "13px 10px 13px 44px",
-                           background: "#F7F9FB",
-                           border: "2px solid #EDF2F8",
-                           boxSizing: "border-box",
-                           bordeRadius: "7px",
-                           fontSize: "16px"
-                        }}
-                        specialLabel={false}
-                        disableDropdown={true}
-                        countryCodeEditable={false}
-                        areaCodes={{
-                           uz: ["+998"],
-                        }}
-                        masks={{ uz: "(..) ...-..-.." }}
-                        prefix="+"
-
-                     />
-                  </div>
+                  <PhoneNumberInput
+                     setPhone={setPhone}
+                  />
                </div>
 
                <div className="form-input">
@@ -119,11 +97,9 @@ const SettingsArchiveForm = ({ onClose }) => {
                </div>
                <div className="form_one">
                   <label htmlFor="">Parol</label>
-                  <Space direction="vertical">
-                     <Input.Password onKeyUp={e => setPassword(e.target.value)}
-                        iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                     />
-                  </Space>
+                  <PasswordInput
+                     setPassword={setPassword}
+                  />
                </div>
 
                <div>

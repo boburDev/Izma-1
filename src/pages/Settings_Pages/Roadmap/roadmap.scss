@@ -1,0 +1,202 @@
+.settings{
+    .inner{
+        padding: 45px 30px;
+        background: var(--background-main);
+        border: 1px solid #E7E7EC;
+        box-sizing: border-box;
+        box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
+        border-radius: 4px;
+        width: 100%;
+        .seetings_navbar {
+            padding: 24px 0;
+            background: #090761;
+            border-radius: 4px 4px 4px 0px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            h3{
+                font-family: Calibri;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 22px;
+                color: #FFFFFF;
+            }
+            .direct{
+                width: 11.07%;
+                text-align: center;
+            }
+            .info{
+                display: flex;
+                align-items: center;
+                width: 81.33%;
+                justify-content: space-between;
+                .ball{
+                    margin-right: 127px;
+                }
+                .questions{
+                    margin-left: 21px;
+                }
+            }
+            .response{
+                width: 17%;
+            }
+        }
+        .main_settings{
+            width: 100%;
+            display: flex;
+            .name_direct{
+                max-width: 7%;
+                min-width: 7%;
+                background: #C6D0EA;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                p{
+                    font-family: "Jost";
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 30px;
+                    line-height: 30px;
+                    color: #000000;
+                    transform: rotate(-90deg);
+                }
+            }
+
+            .name_questions{
+                width: 80%;
+                .questions_item{
+                    padding: 17px 80px 17px 28px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background: #F7F9FB;
+                    border-radius: 4px;
+                    &.white{
+                        background-color: #fff;
+                    }
+                    p{
+                        font-family: "Jost";
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 30px;
+                        color: #77838F;
+                    }
+                    .counter{
+                        width: 132px;
+                        background: #C4D2DF;
+                        border-radius: 4px;
+                        display: flex;
+                        align-items: center;
+                        padding: 3px 13px;
+                        button{
+                            width: 35%;
+                            border: none;
+                            background-color: transparent;
+                            img{
+                                width: 14px;
+                            }
+                        }
+                        span{
+                            width:30%;
+                            display: block;
+                            text-align: center;
+                            font-family: "Jost";
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 16px;
+                            line-height: 30px;
+                            color: #000000;
+                        }
+                    }
+                }
+            }
+
+
+            .name_response{
+                width: 17%;
+                background: #C6D0EA;
+                h2{
+                    font-family: "Jost";
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 30px;
+                    color: #040404;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+            }
+
+            &.second_settings{
+                .name_response{
+                    background: #C6EAC6;
+                }
+                .name_direct{
+                    background: #C6EAC6;
+                }
+            }
+        }
+
+        .bottom_navbar{
+            display: flex;
+            align-items: center;
+            background: #92BBBB;
+            border-radius: 0px 0px 4px 4px;
+            padding: 24px 0;
+            width: 100%;
+            .total_ball{
+                width: 85%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 169px 0 48px;
+                 h4 {
+                     font-family: "Jost";
+                     font-style: normal;
+                     font-weight: 500;
+                     font-size: 16px;
+                     line-height: 23px;
+
+                     color: #000000;
+                 }
+
+                 span {
+                     font-family: "Jost";
+                     font-style: normal;
+                     font-weight: 500;
+                     font-size: 16px;
+                     line-height: 23px;
+
+                     color: #000000;
+                 }
+            }
+            .user_ball{
+                width: 15%;
+                .div{
+                    width: 100%;
+                    text-align: left;
+                }
+                h4{
+                    font-family: "Jost";
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 23px;
+
+                    color: #000000;
+                }
+                span{
+                    font-family: "Jost";
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 23px;
+                    color: #000000;
+                }
+            }
+        }
+    }
+}

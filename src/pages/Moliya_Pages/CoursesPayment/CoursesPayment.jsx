@@ -1,43 +1,46 @@
 import './CoursesPayment.scss'
 import FinanceCostsImg from '../../../assets/Icons/008-dollar.svg'
 import OrderDetails from '../../../components/MoliyaComponents/OrderDetelis/OrderDetails'
-const CoursesPayment = ({ setMainTableData, mainTableData, data, values, setRowId, setValues }) => {
-   // useEffect(() => {
-   //    setMainTableData([
-   //       { id: 1, courses: "#The Complete JavaScript Course 2020: Real Projects!	", price: '$96.00', },
-   //       { id: 2, courses: "Standart guruhlar", price: '$96.00', },
-   //    ]);
-
-   // }, [setMainTableData]);
 
 
 
-   // const onRowClicked = (item) => {
-   //   return {
-   //     onClick: () => {
-   //       setRowId(item.id);
-   //       setValues(item);
+// import FinanceDollarImg from '../../../assets/Icons/finance-dolor-icon.svg'
+// import FinanceAllpaymentsTable from '../financeAllpaymentsTable/financeAllpaymentsTable'
+// import FinanceGraph from '../financeGraph/financeGraph'
+import { DatePicker, } from "antd"
+import { FINANCE_STUDENT, FINANCE_STUDENT_FILTER } from '../../../Querys/Finance_All'
+import { useQuery } from '@apollo/client'
+import { useEffect, useState } from 'react'
 
-   //     },
-   //   };
-   // };
+const CoursesPayment = () => {
+   
 
-   // const columns = [
+   const { RangePicker } = DatePicker
+    const [date,setDate] = useState('')
+    const [dateFilterDefaultData,setDateFilterDefaultData] = useState({})
+    const [dateFilter, setDateFilter] = useState([])
+    const [dateFilterValue, setDateFilterValue] = useState({})
 
-   //     {
-   //       title: "Kurslar",
-   //       dataIndex: 'courses',
-   //       key: 'courses',
-   //     },
+    const { data: financeStudent } = useQuery(FINANCE_STUDENT)
+    
 
 
-   //       {
-   //         title: 'So’m',
-   //         dataIndex: 'price',
-   //         key: 'price',
-   //       },
+    useEffect(()=>{
+        const date = new Date()
 
-   //   ];
+        const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
+        const month = (date.getMonth() + 1) >= 9 ? (date.getMonth() + 1) : `0${date.getMonth() + 1}`
+        console.log(date.getMonth());
+        const year = date.getFullYear()
+
+        setDateFilterDefaultData({
+            startDate: `${year}-${month}-01`,
+            endDate: `${year}-${month}-${day}`
+        })
+        setDate(`${year}.${month}.01 - ${year}.${month}.${day}`)
+    },[])
+
+
    return (
       <>
          <div className="izma__finance-payment-groups">
@@ -48,7 +51,7 @@ const CoursesPayment = ({ setMainTableData, mainTableData, data, values, setRowI
             </div>
             <div className="izma__finance-payment-right-tabs-second-up">
                <p className="izma__finance-payment-right-tabs-second-text">
-                  Davr uchun tushumlar 2021.08.01 - 2021.08.31: 750,000 so'm
+                  Davr uchun tushumlar {date}: 750,000 so'm
                </p>
                <img className='izma__finance-payment-right-tabs-second-img' src={FinanceCostsImg} alt="" />
             </div>
@@ -102,4 +105,4 @@ const CoursesPayment = ({ setMainTableData, mainTableData, data, values, setRowI
    )
 }
 
-export default CoursesPayment;
+export default CoursesPayment

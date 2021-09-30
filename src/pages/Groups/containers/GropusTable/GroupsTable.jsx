@@ -20,7 +20,7 @@ const GroupsTable = ({  setRowId, setValues }) => {
    })
    useEffect(() => {
       setLoading(loading)
-   }, [loading])
+   }, [loading, setLoading])
 
 
 
@@ -38,54 +38,6 @@ const GroupsTable = ({  setRowId, setValues }) => {
          })
       },
    })
-
-
-   
-
-   // const columns = [
-   //    {
-   //       title: 'Kod',
-   //       dataIndex: 'id',
-   //       key: 'id',
-   //       defaultSortOrder: 'descend',
-   //       sorter: (a, b) => a.Id - b.Id,
-   //       render: (text, record, index) => index + 1,
-
-   //    },
-   //    {
-   //       title: 'Kurs nomi',
-   //       dataIndex: 'name',
-   //       key: 'name',
-   //    },
-   //    {
-   //       title: "O'qituvchi ",
-   //       dataIndex: 'teacher',
-   //       key: 'teacher',
-   //    },
-   //    {
-   //       title: "Kunlar",
-   //       dataIndex: 'days',
-   //       key: 'days',
-   //       width: '100px'
-   //    },
-   //    {
-   //       title: "Mashg'ulotlar sanalari",
-   //       dataIndex: 'startDate',
-   //       key: 'startDate',
-   //       width: '150px'
-   //    },
-   //    {
-   //       title: "Xonalar",
-   //       dataIndex: 'rooms',
-   //       key: 'rooms',
-   //    },
-   //    {
-   //       title: "Talabalar",
-   //       dataIndex: 'studentsCount',
-   //       key: 'studentsCount',
-   //    },
-
-   // ];
 
 
    return (

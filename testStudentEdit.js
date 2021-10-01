@@ -10,9 +10,8 @@ import { useState } from 'react'
 
 import Plus from '../../../assets/Icons/plus.png'
 import Minus from '../../../assets/Icons/minus.png'
-import { Input, Space, DatePicker } from 'antd';
+import { DatePicker } from 'antd';
 import moment from 'moment'
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import 'antd/dist/antd.css'
 import { FOR_EDIT_STUDENT, GROUPS } from './query';
 import { useQuery } from '@apollo/client';

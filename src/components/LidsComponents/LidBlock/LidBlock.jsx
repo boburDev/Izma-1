@@ -27,7 +27,7 @@ const LidBlock = ({
    return (
       <>
          {
-            (item.id == 1 || item.id == 4 || item.id == 7) &&  isBlock ?
+            (item.id === '1' || item.id === '4' || item.id === '7') &&  isBlock ?
                <div className={`block${active ? 'active' : ''}`}>
                   <div className="block-center"
                      onDragOver={(e) => dragOverHandler(e, item)}
@@ -55,7 +55,7 @@ const LidBlock = ({
                   :
                <>
                   {
-                     item.id == 1 || item.id == 4 || item.id == 7 ?
+                     item.id === '1' || item.id === '4' || item.id === '7' ?
                      <>
                            
                      </> :

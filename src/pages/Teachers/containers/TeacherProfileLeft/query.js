@@ -13,7 +13,53 @@ query colleague_by_id($id: ID!) {
   }
 }
 `
+const FILIAL = gql `
+query{
+  byBranchID{
+    branchName
+  }
+}
+`
+
+const UPDATE_COLLEGUES = gql`
+  mutation
+  updateColleague(
+    $Id: ID!
+    $name: String!
+    $phoneNumber: String!
+    $gender: String!
+    $password: String!
+    $comment: String
+    $birthday: String
+  ) { updateColleague(
+      Id: $Id
+      name: $name
+      phoneNumber: $phoneNumber
+      gender: $gender
+      password: $password
+      comment: $comment
+      birthday: $birthday
+  ) {
+    Id
+  }
+  }
+`
+
+const SUBCRIPTION_TEACHER = gql `
+  subscription {
+    colleagues{
+      Id
+      phoneNumber
+      gender
+      comment
+      birthday
+    }
+  }
+`
 
 export {
-    BY_COLLEGUE_ID
+    BY_COLLEGUE_ID,
+    FILIAL,
+    UPDATE_COLLEGUES,
+    SUBCRIPTION_TEACHER
 }

@@ -1,10 +1,8 @@
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation, useSubscription } from '@apollo/client'
 import { useParams } from 'react-router'
-import { BY_COLLEGUE_ID } from './query'
+import { BY_COLLEGUE_ID, FILIAL, UPDATE_COLLEGUES, SUBCRIPTION_TEACHER } from './query'
 import './TeacherProfileLeft.scss'
-import PhoneInput from "react-phone-input-2";
-import { Input, Space, DatePicker } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { DatePicker } from 'antd';
 import { useState } from 'react';
 import Close from '../../../../assets/Icons/Group 26.svg'
 import { Drawer, } from 'antd';
@@ -12,20 +10,48 @@ import PasswordInput from '../../../../components/PasswordInput/PasswordInput';
 import { useLoader } from '../../../../context/Loader';
 import { useEffect } from 'react';
 import PhoneNumberInput from '../../../../components/PhoneNumberInput/PhoneNumberInput';
+import moment from 'moment';
+
 
 const TeacherProfileLeft = () => {
-   const [openEdit, setOpenEdit] = useState(false)
    const { collegueID } = useParams()
+
+   const [openEdit, setOpenEdit] = useState(false)
    const [setLoader] = useLoader(true)
 
+   const [collegueInfo, setCollgueInfo] = useState()
+   const { data: collegue, loading } = useQuery(BY_COLLEGUE_ID, { variables: { id: collegueID } })
+   const {data: filial} = useQuery(FILIAL)
 
-   const { data: collegue, loading } = useQuery(BY_COLLEGUE_ID, {
-      variables: { id: collegueID }
-   })
+   const [UpdateColleguee] = useMutation(UPDATE_COLLEGUES)
+
+   const [ name, setName ] = useState("")
+   const [ birthDay, setBirthDay ] = useState("")
+   const [ phone, setPhone ] = useState("")
+   const [ gender, setGender ] = useState()
+   const [ password, setPassword ] = useState("")
+   const [ comment, setComment ] = useState("")
+
+   useSubscription(SUBCRIPTION_TEACHER, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+        cache.modify({
+          fields: {
+              colleague_by_id: () => {}
+          }
+        })
+      },
+    })
 
    useEffect(() => {
       setLoader(loading)
-   }, [loading])
+   }, [loading, setLoader])
+
+
+   useEffect(() => {
+      setCollgueInfo(collegue && collegue.colleague_by_id)
+   }, [collegue])
+   
+
 
    const [visible, setVisible] = useState(false);
    const showDrawer = () => {
@@ -35,6 +61,49 @@ const TeacherProfileLeft = () => {
    const onClose = () => {
       setVisible(false);
    };
+
+   const takeName = (e) => {
+      setName(e.target.value)
+  }
+
+  const takeBirth = (date, dateString) => {
+      setBirthDay(dateString)
+  }
+
+  const takePhone = (e) => {
+      setPhone(e)
+  }
+
+  const takeGender = (e) => {
+      setGender(e.target.value)
+  }
+
+  const takePass = (e) => {
+      setPassword(e)
+  }
+
+  const takeComment = (e) => {
+      setComment(e.target.value)
+
+  }
+
+  const handleTeacher = () => {
+ 
+   const data = {
+       Id: collegueID,
+       name: name || (collegueInfo?.name),
+       phoneNumber: phone || (collegueInfo?.phoneNumber),
+       birthday: birthDay || (collegueInfo?.birthday),
+       gender: gender || (collegueInfo?.gender === 'Ayol' ? '2' : '1' ),
+       password: password,
+       comment: comment || (collegueInfo?.comment),
+       }
+
+      UpdateColleguee({
+         variables: data
+      })
+}
+
 
 
    return (
@@ -54,7 +123,7 @@ const TeacherProfileLeft = () => {
                      <div className="izma__teachers-payment-inner-left-up-left">
                         <div className="izma__teachers-payment-inner-left-up-box-black"></div>
                         <p className="izma__teachers-payment-inner-left-up-left-name">
-                           {collegue && collegue.colleague_by_id.name}
+                           {collegueInfo?.name}
                         </p>
 
                      </div>
@@ -64,7 +133,7 @@ const TeacherProfileLeft = () => {
                               Telefon :
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-number-number izma__teachers-payment-inner-left-center-number-number-wrapper">
-                              +{collegue && collegue.colleague_by_id.phoneNumber}
+                              +{collegueInfo?.phoneNumber}
                            </p>
                         </div>
 
@@ -73,7 +142,7 @@ const TeacherProfileLeft = () => {
                               To’g’ilgan sana:
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-balans-balans izma__teachers-payment-inner-left-center-number-number-wrapper">
-                              {collegue && collegue.colleague_by_id.birthday}
+                              {collegueInfo?.birthday}
                            </p>
                         </div>
 
@@ -82,7 +151,7 @@ const TeacherProfileLeft = () => {
                               Jinsi:
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-role-role izma__teachers-payment-inner-left-center-role-role-wrapper">
-                              {collegue && collegue.colleague_by_id.gender}
+                              {collegueInfo?.gender}
                            </p>
                         </div>
 
@@ -91,7 +160,7 @@ const TeacherProfileLeft = () => {
                               Rollar:
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-role-role izma__teachers-payment-inner-left-center-role-role-wrapper">
-                              {collegue && collegue.colleague_by_id.status}
+                              O’qituvchi
                            </p>
                         </div>
 
@@ -100,7 +169,7 @@ const TeacherProfileLeft = () => {
                               Filiallar:
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-filial-filial izma__teachers-payment-inner-left-center-role-role-wrapper">
-                              {collegue && collegue.colleague_by_id.branchName}
+                              {filial && filial.byBranchID.branchName}
                            </p>
                         </div>
 
@@ -129,32 +198,24 @@ const TeacherProfileLeft = () => {
                      <div className="form_one">
                         <label htmlFor="">Telefon</label>
                         <PhoneNumberInput
-                           // setPhone={}
+                           placeholder={collegueInfo?.phoneNumber}
+                           setPhone={takePhone}
                         />
                         
                      </div>
 
                      <div className="form_one">
                         <label htmlFor="name">Ism</label>
-                        <input type="text" name="name" id="name" />
+                        <input type="text" name="name" id="name" onChange={takeName} defaultValue={collegueInfo?.name} />
                      </div>
                      <div className="form_group">
                         <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
 
                         <DatePicker
                            className='date__picker lid-edit-date'
-                           // onChange={(value, dateString) => {
-                           //   const v = {
-                           //     target: {
-                           //       name: "sana",
-                           //       value: dateString,
-                           //     },
-                           //   };
-                           //   handleChange(v);
-                           // }}
-
+                           defaultPickerValue={moment(collegueInfo?.birthday, 'DD-MM-YYYY')}
+                           onChange={takeBirth}
                            placeholder={"Kun-Oy-Yil"}
-                           //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                            format={"DD-MM-YYYY"}
                         />
                      </div>
@@ -164,12 +225,12 @@ const TeacherProfileLeft = () => {
 
                         <div className="genders">
                            <div className="gen_one">
-                              <input value="" type="radio" name="gender" id="men" />
+                              <input value={'1'} type="radio" name="gender" id="men" onChange={takeGender}/>
                               <label htmlFor="men"></label>
                               <span>Erkak</span>
                            </div>
                            <div className="gen_one">
-                              <input value="" type="radio" name="gender" id="women" />
+                              <input value={'2'} type="radio" name="gender" id="women" onChange={takeGender}/>
                               <label htmlFor="women"></label>
                               <span>Ayol</span>
                            </div>
@@ -177,7 +238,7 @@ const TeacherProfileLeft = () => {
                      </div>
                      <div className="form_one">
                         <label htmlFor="comment">Komment</label>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <textarea name="" id="" cols="30" rows="10" defaultValue={collegueInfo?.comment} onChange={takeComment}></textarea>
                      </div>
 
                      <div className="form_one">
@@ -187,10 +248,16 @@ const TeacherProfileLeft = () => {
                      </div>
                      <div className="form_one">
                         <label htmlFor="">Parol</label>
-                        <PasswordInput/>
+                        <PasswordInput
+                           setPassword={takePass}
+                        />
                      </div>
 
-                     <button onClick={() => setOpenEdit(false)} className="cre_btn">O'zgartirish</button>
+                     <button onClick={(e) => {
+                        e.preventDefault()
+                        onClose()
+                        handleTeacher()
+                     }} className="cre_btn">O'zgartirish</button>
                   </form>
                </div>
             </div>

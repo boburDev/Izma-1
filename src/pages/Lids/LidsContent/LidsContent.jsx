@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Plus from '../../../assets/Icons/plus.svg'
 import LidBlock from '../../../components/LidsComponents/LidBlock/LidBlock'
 import List from '../../../assets/Icons/list.svg'
@@ -23,7 +23,8 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
       setLoad(true)
       async function getQuestions() {
          try {
-            const { data } = await request.get(`/`);
+            const { data } = await request.get(`/leads`);
+            console.log(data)
             setBoards(data.results);
             setLoad(false)
 
@@ -46,9 +47,9 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
          list: currentList.id
       });
    }
-   const userName = useRef()
-   const userNumber = useRef()
-   const userComment = useRef()
+   // const userName = useRef()  
+   // const userNumber = useRef()
+   // const userComment = useRef()
 
    const [currentBoard, setCurrentBoard] = useState(null)
    const [currentItem, setCurrentItem] = useState(null)
@@ -57,15 +58,15 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
 
    const dragOverHandler = (e, item) => {
       e.preventDefault()
-      if (e.target.className == 'block-inner') {
+      if (e.target.className === 'block-inner') {
          e.target.style.boxShadow = 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
 
-      } else if (e.target.className == 'block-inner-user') {
+      } else if (e.target.className === 'block-inner-user') {
          console.log(e.nativeEvent.path);
          e.nativeEvent.path['1'].style.boxShadow = 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-      } else if (e.target.className == 'span') {
+      } else if (e.target.className === 'span') {
          e.nativeEvent.path['2'].style.boxShadow = 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-      } else if (e.target.className == 'block-center' && !item.lists.length) {
+      } else if (e.target.className === 'block-center' && !item.lists.length) {
          e.target.style.boxShadow = 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
       }
 
@@ -98,20 +99,21 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
 
       let new1 = []
       boards.map(b => {
-         if (b.id == board.id) {
+         if (b.id === board.id) {
             new1.push(board)
-         } else if (b.id == currentBoard.id) {
+         } else if (b.id === currentBoard.id) {
             new1.push(currentBoard)
          } else {
             new1.push(b)
          }
+         return ''
       })
       setBoards(new1);
       postHandle(currentList, item)
       e.target.style.boxShadow = 'none'
-      if (e.target.className == 'block-inner-user') {
+      if (e.target.className === 'block-inner-user') {
          e.nativeEvent.path['1'].style.boxShadow = 'none'
-      } else if (e.target.className == 'span') {
+      } else if (e.target.className === 'span') {
          e.nativeEvent.path['2'].style.boxShadow = 'none'
       }
 
@@ -129,19 +131,20 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
          currentBoard.items[currentIndex].lists.splice(currentIndex2, 1)
          let new1 = []
          boards.map(b => {
-            if (b.id == board.id) {
+            if (b.id === board.id) {
                new1.push(board)
-            } else if (b.id == currentBoard.id) {
+            } else if (b.id === currentBoard.id) {
                new1.push(currentBoard)
             } else {
                new1.push(b)
             }
+            return ''
          })
          setBoards(new1);
          postHandle(currentList, item)
 
       }
-      if (e.target.className == 'block-center') {
+      if (e.target.className === 'block-center') {
          e.target.style.boxShadow = 'none'
       }
    }
@@ -157,7 +160,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
             }
          </>
          {
-            boards.map((board, index) =>
+            boards && boards.map((board, index) =>
                <div className="lids-column">
                   <div className={`lids-column-top ${arr[index] ? 'active' : ''}`}>
                      <h2>{board.title}</h2>
@@ -203,7 +206,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
                                  {
                                     board.items.map(item => (
                                        
-                                       item.id == 1 ||item.id == 4 || item.id == 7 ?
+                                       item.id === '1' ||item.id === '4' || item.id === '7' ?
                                          <LidBlock
                                              board={board}
                                              item={item}

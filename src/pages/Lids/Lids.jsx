@@ -30,8 +30,7 @@ const Lids = () => {
             placement="right"
             closable={false}
             onClose={onClose}
-            visible={visible}
-         >
+            visible={visible}>
             {
                ind === 2 ? 
                   <LidAddItem1 onClose={onClose} />

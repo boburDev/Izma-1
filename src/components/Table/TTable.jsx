@@ -1,7 +1,7 @@
 import TTableBlock from '../TableBlock/TTableBlock'
 import './Table.scss'
 
-const TTable = ({ block, arr, showDrawer, setInfo, openModal}) => {
+const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId , openModal}) => {
 
    return (
       <div className="table">
@@ -23,6 +23,9 @@ const TTable = ({ block, arr, showDrawer, setInfo, openModal}) => {
                         info={el}
                         index={index+1}
                         key={index}
+                        showDrawer={showDrawer}
+                        setDeleteId={setDeleteId}
+                        setEditId={setEditId}
                     />
                 ))
             }

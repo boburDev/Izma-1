@@ -36,7 +36,7 @@ const StudentsProfileLeft = (prop) => {
       }else {
          setLoading(true)
       }
-   }, [oneStudent, Groups, checkCash, filial])
+   }, [oneStudent, Groups, checkCash, filial, setLoading])
 
    const [UpdateComment] = useMutation(UPDATE_COMMENT)
    const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)

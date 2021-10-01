@@ -21,27 +21,13 @@ const TeacherAdd = ({ onClose, setVisible }) => {
    const [comment, setComment] = useState("")
    // const [ photo, setPhoto ] = useState("")
 
-   const [newTeacher] = useMutation(NEW_TEACHER, {
-      update: (cache, data) => {
-         console.log(data)
-      }
-   })
+   const [newTeacher] = useMutation(NEW_TEACHER)
 
    const handleTeacher = (e) => {
       setVisible(false)
       e.preventDefault()
-      // console.log({
-      //     name,
-      //     phoneNumber: phone,
-      //     birthDay,
-      //     gender: parseInt(gender),
-      //     password,
-      //     comment,
-      //     status: 5
-      // })
 
-      newTeacher({
-         variables: {
+      const data = {
             name,
             phoneNumber: phone,
             birthDay,
@@ -50,6 +36,9 @@ const TeacherAdd = ({ onClose, setVisible }) => {
             comment,
             status: 5
          }
+
+      newTeacher({
+         variables: data
       })
       onClose()
 

@@ -30,10 +30,10 @@ const TTable = ({ block, arr, showDrawer}) => {
 
             </> : block === "settingsHashRooms" ? <>
                <div className="table-header">
-                  <h4 className={'studentHash'}>Id</h4>
-                  <h4 className={'studentHash'}>Ism</h4>
-                  <h4 className={'studentHash'}>Tahrirlash</h4>
-                  <h4 className={'studentHash'}>Amallar</h4>
+                  <h4 className={'settingsHashRooms'}>Id</h4>
+                  <h4 className={'settingsHashRooms'}>Ism</h4>
+                  <h4 className={'settingsHashRooms'}>Tahrirlash</h4>
+                  <h4 className={'settingsHashRooms'}>Amallar</h4>
                </div>
 
                <div className="table-group-body">
@@ -72,12 +72,12 @@ const TTable = ({ block, arr, showDrawer}) => {
 
             </> : block === "financeCostHash" ? <>
                <div className="table-header">
-                  <h4 className={'studentHash'}>Nomi</h4>
-                  <h4 className={'studentHash'}>Sana</h4>
-                  <h4 className={'studentHash'}>Turkum</h4>
-                  <h4 className={'studentHash'}>Oluvchi</h4>
-                  <h4 className={'studentHash'}>So'm</h4>
-                  <h4 className={'studentHash'}>Amallar</h4>
+                  <h4 className={'studentHash3'}>Nomi</h4>
+                  <h4 className={'studentHash3'}>Sana</h4>
+                  <h4 className={'studentHash3'}>Turkum</h4>
+                  <h4 className={'studentHash3'}>Oluvchi</h4>
+                  <h4 className={'studentHash3'}>So'm</h4>
+                  <h4 className={'studentHash3'}>Amallar</h4>
                </div>
 
                <div className="table-group-body">
@@ -95,11 +95,11 @@ const TTable = ({ block, arr, showDrawer}) => {
 
             </> : block === "financeGroupHash" ? <>
                <div className="table-header">
-                  <h4 className={'studentHash'}>Guruhlar</h4>
-                  <h4 className={'studentHash'}>O’qituvchilar</h4>
-                  <h4 className={'studentHash'}>Kurslar</h4>
-                  <h4 className={'studentHash'}>O'quvchilar soni</h4>
-                  <h4 className={'studentHash'}>So'm</h4>
+                              <h4 className={'financeGroupHash'}>Guruhlar</h4>
+                              <h4 className={'financeGroupHash'}>O’qituvchilar</h4>
+                              <h4 className={'financeGroupHash'}>Kurslar</h4>
+                              <h4 className={'financeGroupHash'}>O'quvchilar soni</h4>
+                              <h4 className={'financeGroupHash'}>So'm</h4>
                </div>
 
                <div className="table-group-body">
@@ -117,13 +117,13 @@ const TTable = ({ block, arr, showDrawer}) => {
 
             </> : block === "paymentHistory" ? <>
                <div className="table-header">
-                  <h4 className={'studentHash'}>Yozib olingan sana</h4>
-                  <h4 className={'studentHash'}>To'lov usuli</h4>
-                  <h4 className={'studentHash'}>Sana</h4>
-                  <h4 className={'studentHash'}>Debit</h4>
-                  <h4 className={'studentHash'}>Credit</h4>
-                  <h4 className={'studentHash'}>Izoh</h4>
-                  <h4 className={'studentHash'}>Xodim</h4>
+                                 <h4 className={'paymentHistory'}>Yozib olingan sana</h4>
+                                 <h4 className={'paymentHistory'}>To'lov usuli</h4>
+                                 <h4 className={'paymentHistory'}>Sana</h4>
+                                 <h4 className={'paymentHistory'}>Debit</h4>
+                                 <h4 className={'paymentHistory'}>Credit</h4>
+                                 <h4 className={'paymentHistory'}>Izoh</h4>
+                                 <h4 className={'paymentHistory'}>Xodim</h4>
                </div>
 
                <div className="table-group-body">

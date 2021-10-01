@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './Rooms.scss'
 import {  Button, Input } from 'antd';
-import { ROOMS, CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM } from './query'
-import { useMutation, useQuery } from '@apollo/client'
+import { ROOMS, CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM, SUBCRIPTIONS_ROOM } from './query'
+import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
 import Modal from '../../../components/Modal/Modal'
 
@@ -18,6 +18,16 @@ const Rooms = () => {
    const [newRoom] = useMutation(CREATE_ROOM)
    const [UpdateRoom] = useMutation(UPDATE_ROOM)
    const [deleteRoom] = useMutation(DELETE_ROOM)
+
+   useSubscription(SUBCRIPTIONS_ROOM, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+        cache.modify({
+          fields: {
+            rooms: () => {}
+          }
+        })
+      },
+    })
 
    useEffect(()=>{
       if (Srooms && Srooms.rooms) {

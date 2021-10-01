@@ -1,9 +1,9 @@
 .izma__students-profile-center-wrapper {
    display: flex;
+   width: 100%;
 }
 
 .izma__students-profile-content {
-   padding: 50px 30px;
    background-color: var(--background-main);
 }
 
@@ -54,6 +54,7 @@
 
    .content-tabs {
       flex-grow: 1;
+      width: 100%;
    }
 
    .content {
@@ -76,6 +77,7 @@
 
    .active-content {
       display: contents;
+      width: 100%;
    }
 
 }

@@ -25,12 +25,13 @@ input[type=text] {
    justify-content: space-between;
    padding-bottom: 8px;
    border-bottom: 1px solid #000;
-
-   .place_name {
+   
+   .place-name {
+      margin-bottom: 0;
       font-family: Jost;
       font-style: normal;
       font-weight: 600;
-      font-size: 30px;
+      font-size: 17px;
       line-height: 43px;
       color: #000000;
    }
@@ -39,6 +40,10 @@ input[type=text] {
       border: none;
       outline: none;
       background-color: transparent;
+      img {
+         width: 20px;
+         height: 20px;
+      }
    }
 }
 
@@ -50,7 +55,7 @@ input[type=text] {
       padding: 15px 23px;
       display: block;
       background: #E0E6F1;
-      border: 2px solid #EDF2F8;
+      border: 2px solid #F7F9FB;
       box-sizing: border-box;
       border-radius: 7px;
    }
@@ -70,23 +75,33 @@ input[type=text] {
 
 .numberTwo {
    display: flex;
-   border: 2px solid #EDF2F8;
+   border: 2px solid #C9D5E4;
    border-radius: 7px;
    background: rgb(247, 249, 251);
 
    span {
       font-family: "Calibri";
-      padding: 15px 33px;
-      display: block;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #E0E6F1;
       box-sizing: border-box;
       border-radius: 7px;
+   }
+
+   input[type=text] {
+      border: none;
    }
 }
 
 .form-input {
    font-family: "Calibri";
-   margin-top: 35px;
+   margin-top: 15px;
+
+   input {
+      font-size: .8rem;
+   }
 
    label {
       display: block;
@@ -101,7 +116,7 @@ input[type=text] {
       background: #F7F9FB;
       border: 2px solid #EDF2F8;
       border-radius: 7px;
-      padding: 12px;
+      padding: 10px !important;
       width: 100%;
    }
 
@@ -170,38 +185,65 @@ input[type=text] {
    font-family: "Jost";
    font-style: normal;
    font-weight: 600;
-   border: none;
-   font-size: 18px;
-   line-height: 29px;
+   font-size: .8rem;
    color: #FFFFFF;
-   margin-top: 40px;
-   margin-bottom: 35px;
-   padding: 12px 40px;
+   border: none;
    background: #090761;
    border-radius: 57px;
-   cursor: pointer;
-   margin-bottom: 35px;
+   padding: 12px 40px;
+   margin-bottom: 30px;
+   margin-top: 15px;
 }
 
-.gender {
+.genders {
    display: flex;
    align-items: center;
 
-   input[type=radio] {
-      width: 26px;
-      height: 26px;
-      margin-right: 10px;
+   .gen_one {
+      display: flex;
+      align-items: center;
+
+      span {
+         margin-right: 42px;
+         margin-top: 0;
+         display: block;
+         font-style: normal;
+         font-weight: 600;
+         font-size: .8rem;
+         line-height: 29px;
+         color: #222222;
+
+      }
+
+      label {
+         width: 20px;
+         height: 20px;
+         font-style: normal;
+         font-weight: 600;
+         font-size: 20px;
+         line-height: 29px;
+         color: #222222;
+         border: 2px solid #090761;
+         border-radius: 50%;
+         margin-right: 10px;
+         cursor: pointer;
+         margin-bottom: 0;
+      }
+
+      input[type=radio] {
+         display: none;
+      }
+
+      input[type=radio]:checked+label {
+         background: #090761;
+      }
    }
+}
 
-   span {
-      font-family: "Calibri";
-      font-style: normal;
-      font-weight: 600;
-
-      font-size: 19px;
-      line-height: 29px;
-      color: #222222;
-      margin-right: 42px;
+.form-input {
+   textarea.comment {
+      padding: 10px;
+      max-height: 100px;
    }
 }
 
@@ -214,6 +256,11 @@ input[type=text] {
       cursor: pointer;
       border: none;
       background-color: transparent;
+
+      img {
+         width: 20px;
+         height: 20px;
+      }
 
       &.alone {
          margin-right: 16px;
@@ -234,6 +281,11 @@ input[type=text] {
 
    .bla-bla {
       display: flex;
+
+      img {
+         width: 20px;
+         height: 20px;
+      }
    }
 }
 
@@ -270,16 +322,20 @@ input[type=text] {
    }
 }
 
+
+
 .parent-phone {
    font-family: "Calibri" !important;
 }
+
+
 
 .react-tel-input {
    font-family: "Calibri" !important;
 }
 
 .many-input {
-   margin-bottom: 35px;
+   margin-bottom: 25px;
 }
 
 .user_name {

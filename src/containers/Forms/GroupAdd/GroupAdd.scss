@@ -1,7 +1,6 @@
 .groupForm {
    .inner {
       max-width: 670px;
-      padding: 33px 30px 40px 30px;
       box-sizing: border-box;
       background: #FFFFFF;
 
@@ -17,36 +16,43 @@
             font-family: "Jost";
             font-style: normal;
             font-weight: 600;
-            font-size: 30px;
-            line-height: 43px;
+            font-size: 17px;
             color: #000000;
+            margin-bottom: 0;
          }
 
          button {
             border: none;
             background-color: transparent;
             cursor: pointer;
+            img {
+               width: 20px;
+               height: 20px;
+            }
          }
       }
 
       .form_wrapper {
          font-family: "Calibri";
-         margin-top: 60px;
+         margin-top: 20px;
+
+         .ant-picker.date__picker {
+            padding: 0 7px;
+         }
 
          .form_inputs {
-            margin-bottom: 26px;
+            margin-bottom: 20px;
          }
 
          .izma__clock-time-wrapper  {
             .izma__clock-time-label + .ant-picker {
-               padding: 15px;
                border: none;
                outline: none;
                background: #F7F9FB;
-               // border: 2px solid #EDF2F8;
+               border: 2px solid #C9D5E4;
                box-sizing: border-box;
                border-radius: 7px;
-               // padding: 10px;
+              padding: 0 7px !important;
                width: 100%;
                display: block;
             }
@@ -57,15 +63,18 @@
                font-family: Calibri;
                font-style: normal;
                font-weight: normal;
-               font-size: 20px;
+               font-size: .8rem;
                line-height: 24px;
                color: #000000;
                margin-bottom: 8px;
                display: block;
+               padding-left: 5px;
             }
 
             input[type=text] {
                padding: 10px;
+               border: 2px solid #C9D5E4;
+               background: #F7F9FB;
             }
 
             input,
@@ -73,26 +82,26 @@
                border: none;
                outline: none;
                background: #F7F9FB;
-               // border: 2px solid #EDF2F8;
+               
                box-sizing: border-box;
                border-radius: 7px;
-               // padding: 10px;
+               padding: 10px;
                width: 100%;
                display: block;
             }
 
             button {
-               border: none;
-               background: #090761;
-               border-radius: 57px;
-               font-family: "Jost";
-               font-style: normal;
-               font-weight: 600;
-               font-size: 20px;
-               line-height: 29px;
-               color: #FFFFFF;
-               padding: 12px 37px;
-               margin-top: 44px;
+              font-family: "Jost";
+              font-style: normal;
+              font-weight: 600;
+              font-size: .8rem;
+              color: #FFFFFF;
+              border: none;
+              background: #090761;
+              border-radius: 57px;
+              padding: 12px 40px;
+              margin-bottom: 30px;
+              margin-top: 15px;
             }
 
             .hasBefore {

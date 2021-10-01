@@ -16,7 +16,6 @@
          font-style: normal;
          font-weight: bold;
          font-size: 16px;
-         line-height: 24px;
          text-transform: capitalize;
          color: #2F2D51;
          margin-bottom: 0 !important;
@@ -48,6 +47,55 @@
 
          
       }
+      .settingsHashRooms {
+         display: flex;
+         align-items: center;
+         padding: 16px;
+         text-align: start;
+         box-sizing: border-box;
+         font-style: normal;
+         font-weight: bold;
+         font-size: 16px;
+         line-height: 24px;
+         text-transform: capitalize;
+         color: #2F2D51;
+         margin-bottom: 0 !important;
+
+         a {
+            color: #2F2D51;
+         }
+
+         &:nth-child(1) {
+            width: 5%;
+         }
+
+         &:nth-child(2) {
+            width: 70%;
+
+         }
+
+         &:nth-child(3) {
+            width: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            
+
+         }
+
+         &:nth-child(4) {
+            width: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+         }
+
+         
+      }
 
 
 
@@ -70,11 +118,11 @@
          }
 
          &:nth-child(1) {
-            width: 7.3%;
+            width: 5%;
          }
 
          &:nth-child(2) {
-            width: 14.1%;
+            width: 24.1%;
 
          }
 
@@ -84,7 +132,7 @@
          }
 
          &:nth-child(4) {
-            width: 43.4%;
+            width: 30%;
 
          }
 
@@ -95,6 +143,144 @@
 
          &:nth-child(6) {
             width: 8.9%;
+
+         }
+      }
+      .paymentHistory {
+         display: flex;
+         align-items: center;
+         padding: 16px;
+         text-align: start;
+         box-sizing: border-box;
+         font-style: normal;
+         font-weight: bold;
+         font-size: 13px;
+         line-height: 24px;
+         text-transform: capitalize;
+         color: #2F2D51;
+         margin-bottom: 0 !important;
+
+         a {
+            color: #2F2D51;
+         }
+
+         &:nth-child(1) {
+            width: 22%;
+         }
+
+         &:nth-child(2) {
+            width: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+         }
+
+         &:nth-child(3) {
+            width: 15%;
+
+         }
+
+         &:nth-child(4) {
+            width: 10%;
+
+         }
+
+         &:nth-child(5) {
+            width: 10%;
+
+         }
+
+         &:nth-child(6) {
+            width: 10%;
+
+         }
+         &:nth-child(7) {
+            width: 15%;
+
+         }
+      }
+
+
+      .financeGroupHash {
+         display: flex;
+         align-items: center;
+         padding: 16px;
+         text-align: start;
+         box-sizing: border-box;
+         font-style: normal;
+         font-weight: bold;
+         font-size: 16px;
+         line-height: 24px;
+         text-transform: capitalize;
+         margin-bottom: 0 !important;
+
+         &:nth-child(1) {
+            width: 20%;
+         }
+
+         &:nth-child(2) {
+            width: 15%;
+
+         }
+
+         &:nth-child(3) {
+            width: 15%;
+
+         }
+
+         &:nth-child(4) {
+            width: 15%;
+
+         }
+
+         &:nth-child(5) {
+            width: 15%;
+         }
+      }
+      .studentHash3 {
+         display: flex;
+         align-items: center;
+         padding: 16px;
+         text-align: start;
+         box-sizing: border-box;
+         font-style: normal;
+         font-weight: bold;
+         font-size: 16px;
+         line-height: 24px;
+         text-transform: capitalize;
+         color: #2F2D51;
+         margin-bottom: 0 !important;
+
+         a {
+            color: #2F2D51;
+         }
+
+         &:nth-child(1) {
+            width: 15%;
+         }
+
+         &:nth-child(2) {
+            width: 15%;
+
+         }
+
+         &:nth-child(3) {
+            width: 15%;
+
+         }
+
+         &:nth-child(4) {
+            width: 15%;
+
+         }
+
+         &:nth-child(5) {
+            width: 10%;
+
+         }
+         &:nth-child(6) {
+            width: 10%;
 
          }
       }
@@ -141,26 +327,36 @@
                
             }
             &:nth-child(3) {
-               width: 18%;
+               width: 15%;
                
             }
             &:nth-child(4) {
                width: 10%;
-               
+               display: flex;
+               align-items: center;
+               justify-content: center;
             }
             &:nth-child(5) {
                width: 15%;
-               
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               text-align: center;
             }
             &:nth-child(6) {
-               width: 11%;
-
+               width: 10%;
+               display: flex;
+               align-items: center;
+               justify-content: center;
             }
             &:nth-child(7) {
-               width: 12%;
-
+               width: 10%;
+               display: flex;
+               align-items: center;
+               justify-content: center;
             }
          }
+         
          
       }
    }

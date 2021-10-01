@@ -1,16 +1,10 @@
 import './RoomsTableWrapper.scss'
 import { useState } from 'react'
-// import {
-// 	OtherDays,
-// 	Holidays,
-// 	EveryDays,
-// 	JuftKun
-// }from '../allDays/index'
 import RoomsTable from '../RoomsTable/RoomsTable'
 
 const RoomsTableWrapper = () => {
 
-   const [days, setDays] = useState('even')
+   const [days, setDays] = useState('1')
 
    console.log(days)
 
@@ -23,25 +17,22 @@ const RoomsTableWrapper = () => {
 
             <div className="table_navbar">
                <div className="inner-navbar">
-                  <button className={`${days === 'odd' ? 'active' : ''}`}
-                     onClick={() => setDays('odd')}
-                  >Toq kunlar</button>
+
+                  <button className={`${days === '1' ? 'active' : ''}`} 
+                  onClick={() => setDays('1')}>Dushanba</button>
+                  
+                  <button className={`${days === '2' ? 'active' : ''}`} onClick={() => setDays('2')}>Seshanba</button>
+
                   <button
-                     className={`${days === 'even' ? 'active' : ''}`}
-                     onClick={() => setDays('even')}
-                  >Juft kunlar</button>
+                     className={`${days === '3' ? 'active' : ''}`} 
+                     onClick={() => setDays('3')}>Chorchanba</button>
                   <button
-                     className={`${days === 'sun' ? 'active' : ''}`}
-                     onClick={() => setDays('sun')}
-                  >Dam olish kunlar</button>
-                  <button
-                     className={`${days === 'all' ? 'active' : ''}`}
-                     onClick={() => setDays('all')}
-                  >Har Kuni</button>
-                  <button
-                     className={`${days === 'esle' ? 'active' : ''}`}
-                     onClick={() => setDays('esle')}
-                  >Boshqa</button>
+                     className={`${days === '4' ? 'active' : ''}`}
+                     onClick={() => setDays('4')}
+                  >Payshanba</button>
+                  <button className={`${days === '5' ? 'active' : ''}`} onClick={() => setDays('5')}>Juma</button>
+                  <button className={`${days === '6' ? 'active' : ''}`} onClick={() => setDays('6')}>Shanba</button>
+                  <button className={`${days === '7' ? 'active' : ''}`} onClick={() => setDays('7')}>Yakshanba</button>
                </div>
             </div>
          </div>

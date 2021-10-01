@@ -1,8 +1,6 @@
-import {
-   gql
-} from '@apollo/client'
+import { gql } from '@apollo/client'
 
-const ROOMS = gql `
+const ROOMS = gql`
 {
     rooms{
       id
@@ -11,16 +9,16 @@ const ROOMS = gql `
   }
 `
 
-const DAYS = gql `
-query tableRoomsTimes($day: String!){
+const DAYS = gql`
+query tableRoomsTimes($day: String){
   tableRoomsTimes(day: $day){
     time
   }
 }
 `
 
-const GROUPS = gql `
-query tableRoomsGroups($day: String!){
+const GROUPS = gql`
+query tableRoomsGroups($day: String){
   tableRoomsGroups(day: $day){
     time
     id
@@ -35,7 +33,7 @@ query tableRoomsGroups($day: String!){
 `
 
 export {
-   ROOMS,
-   DAYS,
-   GROUPS
+    ROOMS,
+    DAYS,
+    GROUPS
 }

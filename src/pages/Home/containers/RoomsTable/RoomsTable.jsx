@@ -1,18 +1,36 @@
 
 import { DAYS, GROUPS, ROOMS } from './query'
 import { useQuery } from '@apollo/client'
+import { useEffect, useState } from 'react'
 
-function RoomsTable({ days = 'odd' }) {
-
-
+function RoomsTable({ days = '1' }) {
 
    const { data: rooms } = useQuery(ROOMS)
+	const { data: time } = useQuery(DAYS, { variables: { day: days }})
+	const { data: group } = useQuery(GROUPS, { variables: { day: days }})
 
-   const { data: time } = useQuery(DAYS, { variables: { day: days } })
+    const [room, setRoom] = useState([])
+    const [times, setTimes] = useState([])
+    const [groups,setGroups] = useState([])
 
-   const { data: group } = useQuery(GROUPS, { variables: { day: days } })
 
+    useEffect(()=>{
+        if (rooms && rooms.rooms) {
+            setRoom(rooms && rooms.rooms)
+        }
+    },[rooms])
 
+    useEffect(()=>{
+        if (time && time.tableRoomsTimes) {
+            setTimes(time && time.tableRoomsTimes)
+        }
+    },[time])
+
+    useEffect(()=>{
+        if (group && group.tableRoomsGroups) {
+            setGroups(group && group.tableRoomsGroups)
+        }
+    },[group])
 
    return (
       <>
@@ -25,16 +43,16 @@ function RoomsTable({ days = 'odd' }) {
                         <tr>
                            <th></th>
                            {
-                              rooms && rooms.rooms.map((value, key) => <th key={key}>{value.room}</th>)
+                              room.map((value, key) => <th key={key}>{value.room}</th>)
                            }
                         </tr>
                         {
-                           time && time && time.tableRoomsTimes.map((value, index) => <tr key={index}>
+                           times.map((value, index) => <tr key={index}>
                               <td className="table-td">{value.time}</td>
                               {
-                                 rooms && rooms.rooms.map((i, key) => <td key={key}>
+                                 room.map((i, key) => <td key={key}>
                                     {
-                                       group && group.tableRoomsGroups.map((data, indexKey) => {
+                                       groups.map((data, indexKey) => {
                                           if (data.rooms === i.room && data.time === value.time) {
                                              return <div className="table-item" key={indexKey}>
                                                 <div className="table-top">

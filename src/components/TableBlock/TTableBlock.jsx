@@ -52,6 +52,13 @@ const TTableBlock = ({ block, info, showDrawer, index }) => {
                <h4 className={'groupHash'}>{info?.stCount}</h4>
                <h4 className={'groupHash'}>{info?.price}</h4>
                <h4 className={'groupHash'}>{info?.paymentAmount}</h4>
+            </> : block === 'paymentHistory' ? <>
+               <h4 className={'groupHash'}>{info?.groups}</h4>
+               <h4 className={'groupHash'}>{info?.teachers}</h4>
+               <h4 className={'groupHash'}>{info?.courses}</h4>
+               <h4 className={'groupHash'}>{info?.stCount}</h4>
+               <h4 className={'groupHash'}>{info?.price}</h4>
+               <h4 className={'groupHash'}>{info?.paymentAmount}</h4>
             </> : <>ok</>
          }
       </div>

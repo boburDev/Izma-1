@@ -38,11 +38,11 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
   }
 
   const {data: forCheck} = useQuery(CHECK_CASH, {
-	  variables: {stID: studenID && studenID.studentID}
+		variables: {stID: studenID && studenID.studentID}
 	})
 
   const {data: stGroups} = useQuery(STUDENT_GROUPS, {
-	  variables: {id: studenID && studenID.studentID}
+		variables: {id: studenID && studenID.studentID}
 	})
 
   const { data: count } = useQuery(COUNT)

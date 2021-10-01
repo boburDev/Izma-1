@@ -3,8 +3,7 @@ import CloseBtn from '../../../assets/Icons/Group 26.svg'
 import { Form, Input, } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { useMutation, useQuery } from '@apollo/client';
-import { CREATE_COURSE } from '../../../Querys/Courses_Query';
-import { UPDATE_COURSE, ONE_COURSE_TO_EDIT } from '../../../Querys/Courses_Query';
+import { UPDATE_COURSE, ONE_COURSE_TO_EDIT, CREATE_COURSE } from '../../../Querys/Courses_Query';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 

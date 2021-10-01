@@ -27,7 +27,6 @@ const CREATE_COURSE = gql `
       id
       name
       price
-      description
     }
   }
 `

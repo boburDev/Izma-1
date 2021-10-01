@@ -50,7 +50,6 @@ const GroupProfilLeft = (prop) => {
    const { data: groups } = useQuery(BY_GROUP_ID, {
       variables: { groupID }
    })
-   // console.log()
 
    const { data: grStudents } = useQuery(GROUP_STUDENTS, {
       variables: { grID: groupID }

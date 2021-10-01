@@ -67,9 +67,19 @@ const DELETE_DEGREE = gql `
   }
 `
 
+const SUBSCRIPTION_DEGREE = gql `
+  subscription {
+    subCourses {
+      id
+      name
+    }
+  }
+`
+
 export {
    NEW_DEGREE,
    ALL_DEGREES,
    UPDATE_DEGREE,
-   DELETE_DEGREE
+   DELETE_DEGREE,
+   SUBSCRIPTION_DEGREE
 }

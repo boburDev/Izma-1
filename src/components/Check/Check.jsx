@@ -7,6 +7,7 @@ import { useCheck } from '../../context/CheckProvider'
 const Check = ({ handleCancelY ,  handleOkY  })=>{
     let componentRef = useRef(null)
     const [check, setCheck] = useCheck()
+    console.log(check)
 
     const style = {
         fontFamily: 'Jost',
@@ -71,16 +72,16 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
                     <div className="check-items">
                         <p
                             style={style}
-                        >Chek raqami: <span style={styleTwo}>error</span></p>
+                        >Chek raqami: <span style={styleTwo}>{check && check.checkData.count}</span></p>
                         <p
                             style={style}
-                        >Talaba: <span style={styleTwo}>{check &&  check?.checkData?.data?.studentName}</span></p>
+                        >Talaba: <span style={styleTwo}>{check &&  check.checkData.stName}</span></p>
                         <p
                             style={style}
                         >Turi: <span style={styleTwo}>Naqd pul</span></p>
                         <p
                             style={style}
-                        >To’lov miqdori: <span style={styleTwo}>{check && check?.checkData?.data?.cashAmm}so'm</span></p>
+                        >To’lov miqdori: <span style={styleTwo}>{check && check.checkData.cashAmm}so'm</span></p>
                         <p
                             style={style}
                         >Vaqt: <span style={styleTwo}>08.08.2021 | 12:22:22</span></p>

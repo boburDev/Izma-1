@@ -60,7 +60,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 
   useEffect(() => {
     setGroups(stGroups)
-	console.log(stGroups, 1)
   }, [stGroups])
 
   if (test) {
@@ -240,14 +239,14 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
               variables: ddd
             })
 
-            // setCheck({
-            //   check: true,
-            //   checkData: {
-            //     ...cache,
-            //     ...data,
-            //     count: count && count.checksCounts + 1
-            //   }
-            // })
+            setCheck({
+              check: true,
+              checkData: {
+                ...cache,
+                data,
+                count: count && count.checksCounts + 1
+              }
+            })
 		    }}>Yarating</button>
 		</div>
 		

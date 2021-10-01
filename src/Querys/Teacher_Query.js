@@ -14,7 +14,7 @@ const TEACHERS = gql `
 const NEW_TEACHER = gql `
     mutation createColleague($name: String! $phoneNumber: String! $birthDay: String! $gender: Int! $password: String! $comment: String $photo: Data $status: Int!) {
         createColleague(name: $name phoneNumber: $phoneNumber birthday: $birthDay gender: $gender password: $password comment: $comment photo: $photo status: $status) {
-            id
+            Id
             name
             phoneNumber
             password
@@ -29,7 +29,7 @@ const NEW_TEACHER = gql `
 const TEACHER_SUBSCRIPTION = gql `
     subscription {
         colleagues {
-            id
+            Id
             name
             phoneNumber
         }
@@ -39,7 +39,7 @@ const TEACHER_SUBSCRIPTION = gql `
 const DELETE_TEACHER = gql `
     mutation deleteColleague($id: ID!) {
         deleteColleague(id: $id) {
-            id
+            Id
             name
         }
     }

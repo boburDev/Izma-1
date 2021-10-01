@@ -97,6 +97,7 @@ const TeacherProfileLeft = () => {
        gender: gender || (collegueInfo?.gender === 'Ayol' ? '2' : '1' ),
        password: password,
        comment: comment || (collegueInfo?.comment),
+       status: 5
        }
 
       UpdateColleguee({

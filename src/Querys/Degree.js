@@ -7,7 +7,7 @@ const NEW_DEGREE = gql `
   createSubcourse(
     $degreeName: String!
     $degreePrice: String!
-    $degreeDesc: String!
+    $degreeDesc: String
     $courseID: ID!
   ) {
     createSubcourse(

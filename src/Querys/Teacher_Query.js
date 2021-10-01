@@ -38,7 +38,7 @@ const TEACHER_SUBSCRIPTION = gql `
 
 const DELETE_TEACHER = gql `
     mutation deleteColleague($id: ID!) {
-        deleteColleague(id: $id) {
+        deleteColleague(Id: $id) {
             Id
             name
         }

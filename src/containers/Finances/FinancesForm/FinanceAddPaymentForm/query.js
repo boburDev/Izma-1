@@ -10,6 +10,7 @@ const CHECK_CASH = gql `
     }
   }
 `
+
 const NEW_CASH = gql `
   mutation createCash (
     $stID: ID!
@@ -57,6 +58,7 @@ const UPDATE_CASH = gql `
     }
   }
 `
+
 
 const STATUS_3_4 = gql `
   mutation updateStatus (

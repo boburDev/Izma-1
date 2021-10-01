@@ -322,14 +322,7 @@ const StudentsProfileLeft = (prop) => {
                // ))}
             })}
       </Select>
-         {/* <AutoComplete
-       options={namesFind.length ? namesFind : names}
-       onSearch={onSearch}
-       onSelect={(v, o) => {
-          setGrID(o.id);
-       has({variables: {stID: studentID, grID: o.id}})
-       }}
-       /> */}
+
          </div>
          <div className="form_group">
            <label>Sanadan boshlab</label>

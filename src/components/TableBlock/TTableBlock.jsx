@@ -4,7 +4,6 @@ import EditImg from '../../assets/Icons/settings-edit.svg'
 import moment from 'moment'
 
 const TTableBlock = ({ block, info, showDrawer, index }) => {
-   console.log(info)
    return (
       <div className="tableBlock">
          {

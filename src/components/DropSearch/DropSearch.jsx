@@ -7,6 +7,7 @@ const DropSearch = ({ arr, pInput, fnc }) => {
    const browsers = useRef()
    const arrow = useRef()
 
+   console.log(arr)
 
 
 

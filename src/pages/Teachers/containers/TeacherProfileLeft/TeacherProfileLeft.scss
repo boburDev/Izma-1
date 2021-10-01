@@ -1,7 +1,7 @@
 .izma__teachers-payment-inner-left {
    display: flex;
    flex-wrap: wrap;
-   margin-top: 150px;
+   margin-top: 95px;
 }
 
 .izma__teachers-payment-inner {
@@ -36,17 +36,18 @@
 .izma__teachers-payment-inner-left-up {
    position: relative;
    width: 350px;
-   padding-left: 35px;
    background: #FFFFFF;
    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
    border-radius: 15px;
    margin-right: 45px;
 }
+.izma__teachers-payment-inner-left-centerizma__teachers-payment-inner-left-center {
+   padding-left: 35px;
+}
 
 .izma__teachers-payment-inner-left-up-box-black {
    position: absolute;
    top: -42.5px;
-   left: 158px;
    width: 85px;
    height: 85px;
    background: #C9C9C9;
@@ -56,8 +57,8 @@
 .izma__teachers-payment-inner-left-up-box {
    position: absolute;
    right: 25px;
-   width: 40px;
-   height: 40px;
+   width: 35px;
+   height: 35px;
    border: none;
    outline: none;
    background-size: contain;
@@ -79,11 +80,16 @@
 
 .izma__teachers-payment-inner-left-up-left-name {
    font-style: normal;
-   font-weight: normal;
+   font-weight: bold;
    margin-top: 70px;
-   font-size: 22px;
+   font-size: 17px;
    line-height: 32px;
    color: #000000;
+   width: 100%;
+   padding: 0 100px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .izma__teachers-payment-inner-left-up-left-id {

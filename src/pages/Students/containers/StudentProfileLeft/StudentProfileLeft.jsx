@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Close from '../../../../assets/Icons/Group 26.svg'
-import { Drawer, Modal, Input, Select, DatePicker } from 'antd';
+import { Drawer,  Input, Select, DatePicker } from 'antd';
 import { Option } from "antd/lib/mentions";
 import StudentEdit from '../../../../containers/Forms/StudentAdd/StudentEdit';
 import FinanceRepaymentForm from '../../../../containers/Finances/FinancesForm/FinanceRepaymeynForm/FinanceRepaymeynForm';
@@ -13,6 +13,7 @@ import { Redirect, useParams } from 'react-router';
 import './StudentProfileLeft.scss'
 // import { useLoader } from '../../../../context/Loader';
 import { useEffect } from 'react';
+import  Modal  from '../../../../components/Modal/Modal';
 
 
 const StudentsProfileLeft = (prop) => {
@@ -114,10 +115,10 @@ const StudentsProfileLeft = (prop) => {
  
      const [isModalVisible, setIsModalVisible] = useState(false);
  
-     const showModal = () => {
-       setIsModalVisible(true);
+    //  const showModal = () => {
+    //    setIsModalVisible(true);
      
-     };
+    //  };
        
        
      const handleOk = (e) => {
@@ -209,12 +210,17 @@ const StudentsProfileLeft = (prop) => {
          >
            <StudentEdit onCloseF={onCloseF} />
        </Drawer>
+
+         <Modal
+           myModal={isModalVisible}
+           setMymodal={setIsModalVisible}
+         />
            
          <div className={`izma__students-payment-inner-left-wrapper ${openSms? 'active' : ''}`}>
                      
                      <div className="izma__students-payment-inner-left-up">
                      <div className="izma__finance-payment-inner-boxses-wrapper">
-                     <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-blue" onClick={showModal} ></button>
+               <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-blue" onClick={() => setIsModalVisible(true)} ></button>
                      <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-green" onClick={showDrawerF} ></button>
                      <button onClick={()=> setOpenSms(!openSms)} className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-orange"></button>
                      <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-red" onClick={() => {

@@ -53,14 +53,14 @@ const TTableBlock = ({ block, info, showDrawer, index }) => {
                <h4 className={'groupHash'}>{info?.price}</h4>
                <h4 className={'groupHash'}>{info?.paymentAmount}</h4>
             </> : block === 'paymentHistory' ? <>
-               <h4 className={'groupHash'}>{moment(info?.createdAt-0).format('YYYY-MM-DD')}</h4>
+               <h4 className={'groupHash'}>{moment(info?.createdAt-0).format('YYYY-MM-DD, HH:MM')}</h4>
                <h4 className={'groupHash'}>{info?.paymentType}</h4>
                <h4 className={'groupHash'}>{info?.payed_at}</h4>
                <h4 className={'groupHash'}>{info?.debit}</h4>
                <h4 className={'groupHash'}>{info?.credit}</h4>
                <h4 className={'groupHash'}>{info?.comment}</h4>
                <h4 className={'groupHash'}>
-                  
+
                </h4>
             </> : <>ok</>
          }

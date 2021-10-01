@@ -1,7 +1,7 @@
 import TTableBlock from '../TableBlock/TTableBlock'
 import './Table.scss'
 
-const TTable = ({ block, arr, showDrawer}) => {
+const TTable = ({ block, arr, showDrawer, setInfo, openModal}) => {
 
    return (
       <div className="table">
@@ -44,6 +44,8 @@ const TTable = ({ block, arr, showDrawer}) => {
                               info={el}
                               index={index+1}
                               key={index}
+                              setInfo={setInfo}
+                              openModal={openModal}
                         />
                      ))
                   }

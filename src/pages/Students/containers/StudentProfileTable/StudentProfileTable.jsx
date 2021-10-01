@@ -30,7 +30,6 @@ const StudentsProfileTable = () => {
 
    return (
       <div className="finance__inner-table" >
-         {/* <Table className="izma__table__home" columns={columns} pagination={false} onRow={onRowClicked} dataSource={history} /> */}
          <TTable arr={history} block={"paymentHistory"} />
       </div>
    )

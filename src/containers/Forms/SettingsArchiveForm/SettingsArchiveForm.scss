@@ -28,7 +28,7 @@
 
    .input-izma {
       background: #F7F9FB !important;
-      border: 2px solid #EDF2F8;
+      border: 2px solid #C9D5E4;
       border-radius: 7px;
    }
 
@@ -177,18 +177,25 @@
 
       .gen_one {
          display: flex;
+         align-items: center;
 
          span {
             margin-right: 42px;
+            margin-top: 0;
             display: block;
-            margin-top: 3px;
+            font-style: normal;
+            font-weight: bold;
+            font-size: .8rem;
+            line-height: 29px;
+            color: #222222;
+
          }
 
          label {
-            width: 26px;
-            height: 26px;
+            width: 20px;
+            height: 20px;
             font-style: normal;
-            font-weight: 600;
+            font-weight: bold;
             font-size: 20px;
             line-height: 29px;
             color: #222222;
@@ -196,6 +203,7 @@
             border-radius: 50%;
             margin-right: 10px;
             cursor: pointer;
+            margin-bottom: 0;
          }
 
          input[type=radio]:checked+label {
@@ -221,32 +229,7 @@
       display: none;
    }
 
-   .genders {
-      display: flex;
-      align-items: center;
-
-      .gen_one {
-         display: flex;
-
-         span {
-            margin-right: 42px;
-            display: block;
-         }
-
-         label {
-            width: 26px;
-            height: 26px;
-            border: 2px solid #090761;
-            border-radius: 50%;
-            margin-right: 10px;
-            cursor: pointer;
-         }
-
-         input[type=radio]:checked+label {
-            background: #090761;
-         }
-      }
-   }
+   
 
 
 
@@ -269,10 +252,9 @@
       width: 100%;
       padding: 10px;
       background: #F7F9FB;
-      border: 2px solid #EDF2F8;
+      border: 2px solid #C9D5E4;
       box-sizing: border-box;
       border-radius: 7px;
-      height: 53px;
       font-family: Calibri;
       font-style: normal;
       font-weight: normal;
@@ -284,11 +266,12 @@
          position: absolute;
          content: 'Browse';
          width: 95px;
+         height: 100%;
+         bottom: 0;
          right: 0;
          background: #E0E6F1;
-         border: 2px solid #EDF2F8;
          box-sizing: border-box;
-         border-radius: 7px;
+         border-radius: 6px;
          text-align: center;
          padding: 10px 0;
          top: 0;
@@ -314,7 +297,6 @@
 
 .izma__settings-archive-form-wrapper {
    max-height: 100%;
-   padding: 15px 25px 35px 25px;
    background: #FFFFFF;
    box-sizing: border-box;
 
@@ -323,7 +305,6 @@
 
 .izma__settings-archive-form-wrapper {
    max-height: 100%;
-   padding: 15px 25px 35px 25px;
    background: #FFFFFF;
    box-sizing: border-box;
    width: 520px;
@@ -339,9 +320,8 @@
          font-style: normal;
          font-weight: 600;
          font-size: 28px;
-         font-size: 25px;
-         margin-right: 80px;
-         line-height: 43px;
+         font-size: 17px;
+         margin-right: 10px;
          color: #000000;
       }
 
@@ -380,8 +360,8 @@
       label {
          font-family: "Calibri";
          font-style: normal;
-         font-weight: normal;
-         font-size: 20px;
+         font-weight: bold;
+         font-size: 17px;
          line-height: 24px;
          color: #000000;
          margin-bottom: 8px;
@@ -431,7 +411,7 @@
 }
 
 .lid-edit-date {
-   padding: 10px !important;
+   padding: 0 10px !important;
 }
 
 .izma__settings-archive {

@@ -4,22 +4,28 @@
    top: 0;
    right: 0;
    bottom: 0;
-   display: flex;
    align-items: center;
    justify-content: center;
    width: 100%;
    height: 100%;
    background: rgba(0, 0, 0, 0.582);
    z-index: 10000000;
-   display: none;
-   transition: all ease 0.5s;
+   display: flex;
+   transform: scale(0) translateY(-50%);
    
    &.active {
-      display: flex;
+      transform: scale(1);
+
+      .myModal-inner {
+         transform: scale(1) translateY(-50%);
+         transition: all ease 0.5s;
+      }
    }
    
    
    &-inner {
+      transition: all ease 0.5s;
+      transform: scale(0);
       padding: 0 30px 20px 30px;
       border-radius: 1px;
       width: 50%;
@@ -32,12 +38,14 @@
          align-items: center;
          justify-content: space-between;
          padding: 20px 0;
-         border-bottom: 1px solid black;
+         border-bottom: 1px solid #090761;
          margin-bottom: 20px;
 
          h2 {
             font-size: 17px;
             margin-bottom: 0;
+            color: #090761;
+            font-weight: bold;
          }
 
          .burger {
@@ -63,7 +71,7 @@
                   position: absolute;
                   width: 20px;
                   height: 2px;
-                  background: black;
+                  background: #090761;
                   transform: rotate(45deg);
                }
 
@@ -72,7 +80,7 @@
                   position: absolute;
                   width: 20px;
                   height: 2px;
-                  background: black;
+                  background: #090761;
                   transform: rotate(-45deg);
 
                }
@@ -82,6 +90,33 @@
 
       &-form {
 
+         display: flex;
+         flex-direction: column;
+
+         label {
+            color: #090761;
+            font-size: .8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+         }
+
+         textarea {
+            outline: none;
+            padding: 10px;
+            color: #090761;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            border: 1px solid #090761;
+         }
+
+         input {
+            padding: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            color: #090761;
+         }
+
 
 
          button {
@@ -90,12 +125,20 @@
             font-weight: 600;
             font-size: .8rem;
             color: #FFFFFF;
-            border: none;
+            border: 1px solid #090761;
             background: #090761;
-            border-radius: 57px;
+            border-radius: 10px;
             padding: 12px 40px;
-            margin-bottom: 20px;
             margin-top: 15px;
+            transition: all ease 0.5s;
+            cursor: pointer;
+            
+            &:hover {
+               transition: all ease 0.5s;
+               color: #090761;
+               background: white;
+            }
+            
          }
       }
    }

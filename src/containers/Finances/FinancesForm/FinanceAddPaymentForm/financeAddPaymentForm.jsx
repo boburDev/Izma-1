@@ -60,6 +60,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 
   useEffect(() => {
     setGroups(stGroups)
+	console.log(stGroups);
   }, [stGroups])
 
   if (test) {
@@ -68,8 +69,9 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 	  status: 3
 	}})
 
-  SetStatus3_4({variables: {status: 3, stID: studenID.studentID}})
+  	SetStatus3_4({variables: {status: 3, stID: studenID.studentID}})
   }
+
 
   if (forCheck && forCheck.studentCash.cashAmount < '0') {
 	localStorage.setItem(studenID && studenID.studentID, JSON.stringify(forCheck && forCheck.studentCash.cashAmount))
@@ -80,23 +82,16 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
   }
 
   useEffect(()=>{
-    if (stGroups && stGroups.student){
-        const guruh = stGroups.student.groups.map(item =>{
-            return {
-                key: item.id,
-                value: item.name,
-                text: item.name
-            }
-        })
-		
-        setNames(guruh)
+    if (stGroups && stGroups.student && stGroups.student.groups){
+        setNames(stGroups.student.groups)
     }
-    // stGroups && stGroups.student.groups
 }, [stGroups])
   
   const onChange = e => {
     setPayType(e.target.value);
   };
+
+  console.log(names)
 
     return (
         <>

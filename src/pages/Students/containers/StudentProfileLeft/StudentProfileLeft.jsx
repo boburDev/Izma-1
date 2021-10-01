@@ -214,6 +214,8 @@ const StudentsProfileLeft = (prop) => {
          <Modal
            myModal={isModalVisible}
            setMymodal={setIsModalVisible}
+           title={`Yangi eslatma qo'shing`}
+           block={'comment'}
          />
            
          <div className={`izma__students-payment-inner-left-wrapper ${openSms? 'active' : ''}`}>
@@ -300,7 +302,7 @@ const StudentsProfileLeft = (prop) => {
             />
        </Drawer>
                  
-         <Modal footer={null} visible={isModalVisible} title="Yangi eslatma qo'shing" onOk={handleOk} onCancel={handleCancel}>
+         {/* <Modal footer={null} visible={isModalVisible} title="Yangi eslatma qo'shing" onOk={handleOk} onCancel={handleCancel}>
              <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
              <label className='izma__courses__form-bolim-form-label'>Comment</label>
              <TextArea onChange={e => setComme(e.target.value)}  rows={4} />
@@ -311,7 +313,7 @@ const StudentsProfileLeft = (prop) => {
            Saqlash
            </button>
          </div>
-       </Modal>
+       </Modal> */}
        <Modal footer={null} visible={isModalVisibleD} title="Talabani guruhga qo'shish" onOk={handleOkD} onCancel={handleCancelD}>
        <div className="form_group" style={{width: "100%"}}>
                      
@@ -328,14 +330,7 @@ const StudentsProfileLeft = (prop) => {
                // ))}
             })}
       </Select>
-         {/* <AutoComplete
-       options={namesFind.length ? namesFind : names}
-       onSearch={onSearch}
-       onSelect={(v, o) => {
-          setGrID(o.id);
-       has({variables: {stID: studentID, grID: o.id}})
-       }}
-       /> */}
+
          </div>
          <div className="form_group">
            <label>Sanadan boshlab</label>

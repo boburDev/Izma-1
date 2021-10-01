@@ -7,8 +7,6 @@ import SettingsArchiveFormEdit from '../../../containers/Forms/SettingsArchiveFo
 import './Employees.scss'
 import { COLLEGUES } from '../../../Querys/Settings'
 import { useQuery } from '@apollo/client'
-import EditImg from '../../../assets/Icons/settings-edit.svg'
-import DeleteImg from '../../../assets/Icons/settings-delete.svg'
 import TTable from '../../../components/Table/TTable'
 
 const Employees = () => {
@@ -23,12 +21,12 @@ const Employees = () => {
 	useEffect(()=>{
 		if (all_colleagues && all_colleagues.all_colleagues) {
 			setColleguages(all_colleagues && all_colleagues.all_colleagues)
-			// console.log(all_colleagues && all_colleagues.all_colleagues)
 		}
 	},[all_colleagues])
+	
 	const editable = colleguages.find(e => e.Id === editId)
 	
-	
+	console.log(deleteId, editId)
 	
 	const showDrawer = () => {
 		setVisible(true)
@@ -46,45 +44,6 @@ const Employees = () => {
 		setVisiblee(false)
 	}
 	
-	const columns = [
-		{
-			title: "",
-			dataIndex: 'id',
-			width: "1px",
-			key: 'Id',
-			render: () =>
-			<img className="izma__table-delete-btn" src={PersonImg} alt="delete img" />
-		},
-		{
-			title: "First name / Surname",
-			dataIndex: 'name',
-		},
-		{
-			title: 'Roli',
-			dataIndex: 'status',
-		},
-		{
-			title: 'Telefon',
-			dataIndex: 'phoneNumber',
-		},
-		{
-			title: 'Tahrirlash',
-			width: "20px",
-			render: ( text, record, index) =>
-			<img id={record.Id} key={record.Id} onClick={(e) => {
-				setEditId(e.target.id)
-				showDrawerr()
-			}}className="izma__table-settings-delete-btn" src={EditImg} alt="delete img"  />
-		},
-		{
-			title: 'Amallar',
-			width: "20px",
-			render: ( text, record, index) =>
-			<img id={record.Id} key={record.Id} 
-			onClick={(e) => {setDeleteId(e.target.id)}}
-			className="izma__table-settings-delete-btn" src={DeleteImg} alt="delete img"  />
-		},
-	]
 	return (
 		<>
 		<div className="izma__settings-employees">
@@ -97,7 +56,8 @@ const Employees = () => {
 		</button>
 		</div>
 		<div className="izma__table-g ">
-			<TTable arr={colleguages} block={"settingsHash"} />
+			<TTable showDrawer={showDrawerr} setDeleteId={setDeleteId} setEditId={setEditId}
+			arr={colleguages} block={"settingsHash"} />
 		</div>
 		
 		</div>

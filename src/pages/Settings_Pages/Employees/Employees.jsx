@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Drawer } from 'antd'
-// import { Table } from 'antd'
-import PersonImg from '../../../assets/header-img.svg'
 import SettingsArchiveForm from '../../../containers/Forms/SettingsArchiveForm/SettingsArchiveForm'
 import SettingsArchiveFormEdit from '../../../containers/Forms/SettingsArchiveFormEdit/SettingsArchiveFormEdit'
 import './Employees.scss'

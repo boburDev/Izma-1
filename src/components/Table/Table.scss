@@ -16,7 +16,6 @@
          font-style: normal;
          font-weight: bold;
          font-size: 16px;
-         line-height: 24px;
          text-transform: capitalize;
          color: #2F2D51;
          margin-bottom: 0 !important;
@@ -119,11 +118,11 @@
          }
 
          &:nth-child(1) {
-            width: 7.3%;
+            width: 5%;
          }
 
          &:nth-child(2) {
-            width: 14.1%;
+            width: 24.1%;
 
          }
 
@@ -133,7 +132,7 @@
          }
 
          &:nth-child(4) {
-            width: 43.4%;
+            width: 30%;
 
          }
 
@@ -155,7 +154,7 @@
          box-sizing: border-box;
          font-style: normal;
          font-weight: bold;
-         font-size: 16px;
+         font-size: 13px;
          line-height: 24px;
          text-transform: capitalize;
          color: #2F2D51;
@@ -166,21 +165,24 @@
          }
 
          &:nth-child(1) {
-            width: 28%;
+            width: 22%;
          }
 
          &:nth-child(2) {
             width: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
          }
 
          &:nth-child(3) {
-            width: 25%;
+            width: 15%;
 
          }
 
          &:nth-child(4) {
-            width: 15%;
+            width: 10%;
 
          }
 
@@ -191,6 +193,10 @@
 
          &:nth-child(6) {
             width: 10%;
+
+         }
+         &:nth-child(7) {
+            width: 15%;
 
          }
       }
@@ -321,15 +327,30 @@
                
             }
             &:nth-child(3) {
-               width: 18%;
+               width: 15%;
                
             }
             &:nth-child(4) {
                width: 10%;
-               
+               display: flex;
+               align-items: center;
+               justify-content: center;
             }
             &:nth-child(5) {
                width: 15%;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               text-align: center;
+            }
+            &:nth-child(6) {
+               width: 10%;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+            }
+            &:nth-child(7) {
+               width: 10%;
                display: flex;
                align-items: center;
                justify-content: center;

@@ -88,7 +88,7 @@ const CoursesFormMain = ({ onClose }) => {
                </div>
             </Form>
             <button onClick={handleSubmit} className="izma__lidlar__form-bolim-form-button">
-               Yarating
+               Saqlash
             </button>
          </div>
       </>

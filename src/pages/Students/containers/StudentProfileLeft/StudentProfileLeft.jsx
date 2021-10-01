@@ -214,15 +214,15 @@ const StudentsProfileLeft = (prop) => {
                      
                      <div className="izma__students-payment-inner-left-up">
                      <div className="izma__finance-payment-inner-boxses-wrapper">
-                         <div className="izma__finance-payment-inner-left-up-box-black"></div>
                      <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-blue" onClick={showModal} ></button>
                      <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-green" onClick={showDrawerF} ></button>
                      <button onClick={()=> setOpenSms(!openSms)} className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-orange"></button>
                      <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-red" onClick={() => {
                        delStudent({variables: {studentID}})
-                     }}></button>
+                      }}></button>
                     </div>
                         <div className="izma__students-payment-inner-left-up-left">
+                      <div className="izma__finance-payment-inner-left-up-box-black"></div>
                             <p className="izma__students-payment-inner-left-up-left-name">
                              {oneStudent && oneStudent.student.name}
                             </p>
@@ -236,7 +236,7 @@ const StudentsProfileLeft = (prop) => {
                              Telefon :
                              </p>
                              <p className="izma__students-payment-inner-left-center-number-number izma__students-payment-inner-left-center-number-number-wrapper">
-                             {oneStudent && oneStudent.student.phoneNumber[0] && oneStudent.student.phoneNumber[0].phone}
+                             {oneStudent && oneStudent.student.phoneNumber[0] && "+" + oneStudent.student.phoneNumber[0].phone}
                              {oneStudent && !oneStudent.student.phoneNumber[0] && <>Telefon kiritilmagan</>}
                              </p>
                              </div>
@@ -246,7 +246,7 @@ const StudentsProfileLeft = (prop) => {
                              Balans:
                              </p>
                              <p className="izma__students-payment-inner-left-center-balans-balans izma__students-payment-inner-left-center-number-number-wrapper">
-                             {checkCash && checkCash.studentCash.cashAmount + ' сум'}
+                             {checkCash && new Intl.NumberFormat().format(checkCash.studentCash.cashAmount) + ' сум'}
                              {!checkCash && '0 сум'}
                              </p>
                              </div>

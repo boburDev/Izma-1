@@ -146,12 +146,17 @@ const StudentsEditForm = ({ onCloseF }) => {
                </div>
                <div className="form-input">
                    <label htmlFor="date">Jinsi</label>
-                   <div className="gender">
-                       <input type="radio" name="gender" id="" defaultChecked={forEdit && forEdit.student.gender === 1 ? 'checked' : false} value={1} onChange={e => setStGender(e.target.value)} />
-                       <span>Erkak</span>
-
-                       <input type="radio" name="gender" id="" defaultChecked={forEdit && forEdit.student.gender === 2 ? 'checked' : false} value={2} onChange={e => setStGender(e.target.value)} />
-                       <span>Ayol</span>
+                   <div className="genders">
+                       <div className="gen_one">
+                           <input value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
+                           <label htmlFor="men"></label>
+                           <span>Erkak</span>
+                       </div>
+                       <div className="gen_one">
+                           <input value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
+                           <label htmlFor="women"></label>
+                           <span>Ayol</span>
+                       </div>
                    </div>
                </div>
                <div className="form-input">

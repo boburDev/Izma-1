@@ -15,12 +15,12 @@
    .paymentHistory {
          display: flex;
          align-items: center;
-         padding: 16px;
+         padding: 10px 16px;
          text-align: start;
          box-sizing: border-box;
          font-style: normal;
          font-weight: bold;
-         font-size: 16px;
+         font-size: 13px;
          line-height: 24px;
          text-transform: capitalize;
          color: #2F2D51;
@@ -30,50 +30,53 @@
             color: #2F2D51;
          }
 
-         &:nth-child(1) {
-            width: 27%;
-         }
+        &:nth-child(1) {
+           width: 22%;
+        }
 
-         &:nth-child(2) {
-            width: 10%;
+        &:nth-child(2) {
+           width: 10%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
 
-         }
+        }
 
-         &:nth-child(3) {
-            width: 20%;
+        &:nth-child(3) {
+           width: 15%;
 
-         }
+        }
 
-         &:nth-child(4) {
-            width: 15%;
+        &:nth-child(4) {
+           width: 10%;
 
-         }
+        }
 
-         &:nth-child(5) {
-            width: 10%;
+        &:nth-child(5) {
+           width: 10%;
 
-         }
+        }
 
-         &:nth-child(6) {
-            width: 10%;
+        &:nth-child(6) {
+           width: 10%;
 
-         }
-         &:nth-child(7) {
-            width: 10%;
+        }
+        &:nth-child(7) {
+           width: 15%;
 
-         }
+        }
       }
    
 
    .studentHash {
       display: flex;
       align-items: center;
-      padding: 16px;
+      padding: 10px 16px;
       text-align: start;
       box-sizing: border-box;
       font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
+      font-weight: bold;
+      font-size: 13px;
       line-height: 24px;
       text-transform: capitalize;
       color: #2F2D51;
@@ -87,11 +90,11 @@
       }
 
       &:nth-child(1) {
-         width: 7.3%;
+         width: 5%;
       }
 
       &:nth-child(2) {
-         width: 14.1%;
+         width: 24.1%;
 
       }
 
@@ -116,7 +119,8 @@
       }
       
       &:nth-child(4) {
-         width: 43.4%;
+         width: 30%;
+         font-weight: normal;
          overflow: hidden;
          
          span {
@@ -139,11 +143,19 @@
 
       &:nth-child(5) {
          width: 5.4%;
+         img {
+            width: 30px;
+            height: 30px;
+         }
 
       }
 
       &:nth-child(6) {
          width: 8.9%;
+         img {
+            width: 30px;
+            height: 30px;
+         }
 
       }
    }
@@ -151,12 +163,12 @@
    .teacherHash {
       display: flex;
       align-items: center;
-      padding: 16px;
+      padding: 10px 16px;
       text-align: start;
       box-sizing: border-box;
       font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
+      font-weight: bold;
+      font-size: 13px;
       line-height: 24px;
       text-transform: capitalize;
       color: #2F2D51;
@@ -185,7 +197,10 @@
 
       &:nth-child(4) {
          width: 10%;
-
+         img {
+            width: 30px;
+            height: 30px;
+         }
       }
 
 
@@ -194,12 +209,12 @@
    .settingsHashRooms {
       display: flex;
       align-items: center;
-      padding: 16px;
+      padding: 10px 16px;
       text-align: start;
       box-sizing: border-box;
       font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
+      font-weight: bold;
+      font-size: 13px;
       line-height: 24px;
       text-transform: capitalize;
       color: #2F2D51;
@@ -236,6 +251,11 @@
          align-items: center;
          justify-content: center;
          text-align: center;
+
+         img {
+            width: 30px;
+            height: 30px;
+         }
       }
 
 
@@ -245,12 +265,12 @@
    .groupHash {
       display: flex;
       align-items: center;
-      padding: 16px;
+      padding: 10px 16px;
       text-align: start;
       box-sizing: border-box;
       font-style: normal;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 24px;
       text-transform: capitalize;
       color: #2F2D51;
@@ -267,7 +287,7 @@
       }
 
       &:nth-child(3) {
-         width: 18%;
+         width: 15%;
 
       }
 
@@ -276,11 +296,30 @@
          display: flex;
          align-items: center;
          justify-content: center;
+         
 
       }
 
       &:nth-child(5) {
          width: 15%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+
+         img {
+            width: 30px;
+            height: 30px;
+         }
+      }
+      &:nth-child(6) {
+         width: 10%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      &:nth-child(7) {
+         width: 10%;
          display: flex;
          align-items: center;
          justify-content: center;
@@ -290,12 +329,12 @@
    .financeGroupHash {
       display: flex;
       align-items: center;
-      padding: 16px;
+      padding: 10px 16px;
       text-align: start;
       box-sizing: border-box;
       font-style: normal;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 13px;
       line-height: 24px;
       text-transform: capitalize;
       margin-bottom: 0 !important;
@@ -330,7 +369,7 @@
    .financeCostHash {
       display: flex;
       align-items: center;
-      padding: 16px;
+     padding: 10px 16px;
       text-align: start;
       box-sizing: border-box;
       font-style: normal;
@@ -363,6 +402,17 @@
 
       &:nth-child(5) {
          width: 10%;
+
+      }
+      &:nth-child(6) {
+         width: 10%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         img {
+            width: 30px;
+            height: 30px;
+         }
 
       }
    }

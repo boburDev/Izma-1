@@ -1,5 +1,5 @@
 .izma__students-payment-inner-left-section {
-   margin-top: 165px;
+   margin-top: 30px;
    width: 67%;
 }
 
@@ -18,15 +18,31 @@
 
 .izma__students-payment-inner-left-section-center-wrapper {
    display: flex;
+   align-items: center;
+   position: relative;
+   width: 600px;
+   padding: 20px 0;
+   box-sizing: border-box;
+   overflow-x: auto;
+   &::-webkit-scrollbar {
+      width: 10px;
+   }
+
+   &::-webkit-scrollbar-track {
+      background: #fff;
+   }
+
+   &::-webkit-scrollbar-thumb {
+      background: #090761;
+   }
 }
 
 .izma__students-payment-inner-left-section-center-wrapper-left {
    padding: 35px 16px;
    display: flex;
    align-items: center;
-   width: 50%;
    background: #E8ECF8;
-   border: 1px solid #314FA5;
+   border: 2px solid #314FA5;
    border-radius: 4px;
 }
 
@@ -43,14 +59,30 @@
 
 .izma__students-payment-inner-left-section-center-wrapper-lefts {
    margin-right: 40px;
-   display: flex;
-   align-items: center;
+   width: 500px;
+
+
+   p{
+      margin-bottom: 0;
+      
+   }
+   
+   a {
+      display: flex;
+      align-items: center;
+
+      .izma__students-payment-inner-left-section-center-wrapper-inner-right {
+         margin-left: 40px;
+      }
+   }
 }
 
 .izma__students-payment-inner-left-section-center-wrapper-left-id {
    padding: 2px 15px;
+   display: flex;
    background: #FFFFFF;
    border-radius: 5px;
+       text-align: center;
 }
 
 .izma__students-payment-inner-left-section-center-wrapper-left-name {
@@ -61,6 +93,7 @@
    line-height: 20px;
    margin-left: 22px;
    color: #222222;
+   margin-bottom: 0;
 }
 
 .izma__students-payment-inner-left-section-center-wrapper-left-date {

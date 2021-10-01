@@ -59,7 +59,9 @@ const TTableBlock = ({ block, info, showDrawer, index }) => {
                <h4 className={'groupHash'}>{info?.debit}</h4>
                <h4 className={'groupHash'}>{info?.credit}</h4>
                <h4 className={'groupHash'}>{info?.comment}</h4>
-               <h4 className={'groupHash'}></h4>
+               <h4 className={'groupHash'}>
+                  
+               </h4>
             </> : <>ok</>
          }
       </div>

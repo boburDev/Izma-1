@@ -3,9 +3,14 @@ import DeleteImg from '../../assets/Icons/delete-border.svg'
 import DollarImg from '../../assets/Icons/dollar-border.svg'
 import { Link } from 'react-router-dom'
 import { useStudentPay } from '../../context/StudentPay'
+import { DELETE_STUDENT } from  '../../Querys/Table_Query'
+import { useMutation } from '@apollo/client'
 
 const TableBlock = ({ block, info, index, showDrawer }) => {
-   const [setStudentID] = useStudentPay(true)
+   const [stID, setStudentID] = useStudentPay()
+
+   const [getID] = useMutation(DELETE_STUDENT)
+
    
    return (
       <div className="tableBlock">
@@ -76,7 +81,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
 
 
                   <h4 className={`${block}`}>
-                     <img src={DeleteImg} alt=""/>
+                     <img src={DeleteImg} alt="" onClick={() => getID({variables: {studentID: info.id}})}/>
                   </h4>
                </> :
 

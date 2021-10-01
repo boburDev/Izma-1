@@ -29,16 +29,15 @@ import { LoaderProvider } from './context/Loader';
 import { DavomatProvider } from './context/DavomatProvider';
 import { Pagination } from './context/Pagination';
 
-const isTester = true
+const isTester = false
 
 // http://api.al-azhar.uz/api/graphql
 
-const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
-const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+// const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+// const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
 
-// const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
-// const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
-
+const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
 // console.log(api, wssApi)
 
 

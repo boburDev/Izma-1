@@ -8,8 +8,8 @@ import CoursesFormMain from '../containers/CoursesFormMain/CoursesFormMain';
 import { useState, useEffect} from 'react';
 import { Drawer, } from 'antd';
 import { useParams, Redirect } from 'react-router-dom';
-import { BY_COURSE_ID, DELETE_BY_COURSE_ID } from '../../../Querys/Courses_Query';
-import { useQuery, useMutation } from '@apollo/client';
+import { BY_COURSE_ID, DELETE_BY_COURSE_ID, COURSE_SUBSCRIPTION } from '../../../Querys/Courses_Query';
+import { useQuery, useMutation, useSubscription } from '@apollo/client';
 import { useLoader } from '../../../context/Loader';
 
 const CoursesInner = () => {
@@ -17,7 +17,17 @@ const CoursesInner = () => {
 
    const { courseID } = useParams()
    const { data: courses, loading } = useQuery(BY_COURSE_ID, {
-      variables: { courseID: courseID && courseID }
+      variables: { courseID }
+   })
+
+   useSubscription(COURSE_SUBSCRIPTION, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               courses: () => {}
+            }
+         })
+      },
    })
 
    useEffect(() => {

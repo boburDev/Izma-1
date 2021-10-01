@@ -17,17 +17,7 @@ const CoursesCard = () => {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
             fields: {
-               courses: () => {
-                  // const newClassifiedRef = cache.writeFragment({
-                  // 	data: data.newClassified,
-                  // 	fragment: gql `
-                  // 		fragment NewClassified on Classified {
-                  // 			id
-                  // 			type
-                  // 		}
-                  // 	`
-                  // })
-               }
+               courses: () => {}
             }
          })
       },

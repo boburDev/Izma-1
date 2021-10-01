@@ -7,53 +7,17 @@ const ADD_NEW_STUDENTS = gql `
 mutation CreateStudent(
   $mainPhone: [PhoneInput]
   $name: String!
-  $birthday: String
-  $password: String
   $gender: Int
-  $photo: String
   $groupID: [GroupInput]
-  $comment: String
-  $newNumber: [PhoneInput]
-  $parentNumber: [PhoneInput]
-  $telegram: [TelegramInput]
-  $address: [AddressInput]
 ) {
   createStudent(
     mainPhone: $mainPhone
     name: $name
-    birthday: $birthday
-    password: $password
     gender: $gender
-    photo: $photo
     groupID: $groupID
-    comment: $comment
-    newNumber: $newNumber
-    parentNumber: $parentNumber
-    telegram: $telegram
-    address: $address
   ) {
     id
-    name
-    comment
-    birthday
-    gender
-    password
-    mainPhone {
-      phone
     }
-    parentNumber {
-      phone
-    }
-    telegram {
-      telegram
-    }
-    address {
-      address
-    }
-    groups {
-      name
-    }
-  }
 }
 
 `

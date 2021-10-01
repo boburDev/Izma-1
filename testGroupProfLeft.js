@@ -78,6 +78,7 @@ const GroupProfilLeft = (prop) => {
 
 
    const [deletGroup, { data: delData }] = useMutation(DELETE_GROUP)
+   console.log(delData)
 
    const [HistoryPay] = useMutation(HISTORY_PAYMENT)
    const [AddStudentToGroup] = useMutation(SELECT_STUDENT_GROUP)

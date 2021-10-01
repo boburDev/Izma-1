@@ -1,6 +1,6 @@
 import './financeAddPaymentForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
-import { Form, Input,  DatePicker, AutoComplete, } from "antd";
+import { Form, Input,  DatePicker } from "antd";
 import { useEffect, useState } from 'react';
 import { Radio } from 'antd';
 import TextArea from "antd/lib/input/TextArea";
@@ -59,6 +59,8 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
   };
 
   const [ names, setNames ] = useState([])
+
+  console.log(names)
 
   useEffect(()=>{
     if (stGroups && stGroups.student){

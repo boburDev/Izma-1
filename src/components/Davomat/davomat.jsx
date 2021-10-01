@@ -108,6 +108,8 @@ function Davomat() {
         setArr(arr)
     }
     
+
+    
     const closer = (e) => {
         e.target.parentNode.classList.remove(`${st.show}`)
         e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)

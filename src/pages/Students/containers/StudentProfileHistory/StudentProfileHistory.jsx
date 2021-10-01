@@ -1,5 +1,6 @@
 import './StudentProfileHistory.scss'
 
+
 const StudentsProfileHistory = () => {
    return (
       <>

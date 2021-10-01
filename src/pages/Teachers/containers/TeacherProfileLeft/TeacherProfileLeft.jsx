@@ -116,12 +116,12 @@ const TeacherProfileLeft = () => {
 
                   <div className="izma__teachers-payment-inner-left-up">
                      <div className="izma__teachers-payment-inner-boxses-wrapper">
-                        <div className="izma__teachers-payment-inner-left-up-box-black"></div>
                         <button
                            onClick={showDrawer}
                            className="izma__teachers-payment-inner-left-up-box izma__teachers-payment-inner-left-up-box-blue"></button>
                      </div>
                      <div className="izma__teachers-payment-inner-left-up-left">
+                        <div className="izma__teachers-payment-inner-left-up-box-black"></div>
                         <p className="izma__teachers-payment-inner-left-up-left-name">
                            {collegueInfo?.name}
                         </p>

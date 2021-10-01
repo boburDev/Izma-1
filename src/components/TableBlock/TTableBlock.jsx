@@ -3,7 +3,7 @@ import DeleteImg from '../../assets/Icons/delete-border.svg'
 import EditImg from '../../assets/Icons/settings-edit.svg'
 import moment from 'moment'
 
-const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index }) => {
+const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, setInfo, openModal }) => {
    return (
       <div className="tableBlock">
          {
@@ -25,7 +25,10 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index })
             </> : block === 'settingsHashRooms' ? <>
                   <h4 className={'settingsHashRooms'}>{index}</h4>
                   <h4 className={'settingsHashRooms'}>{info?.room}</h4>
-                  <h4 className={'settingsHashRooms'}><img src={EditImg} alt="" /></h4>
+                  <h4 className={'settingsHashRooms'} onClick={() => {
+                     setInfo(info?.room)
+                     openModal(true)
+                  }}><img src={EditImg} alt="" /></h4>
                   <h4 className={'settingsHashRooms'}>
                   <img src={DeleteImg} alt="" />
                </h4>

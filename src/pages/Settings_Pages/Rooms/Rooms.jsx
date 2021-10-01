@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './Rooms.scss'
-import { Modal, Button, Input } from 'antd';
+import {  Button, Input } from 'antd';
 import { ROOMS, CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM } from './query'
 import { useMutation, useQuery } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
+import Modal from '../../../components/Modal/Modal'
 
 
 const Rooms = () => {
@@ -91,12 +92,28 @@ const Rooms = () => {
                </button>
                </div>
             <div className="izma__settings-employees-inner-button">
-               <TTable arr={rooms} block={"settingsHashRooms"} />
+               <TTable arr={rooms} block={"settingsHashRooms"} setInfo={setRoomName} openModal={setEditIsModalVisible}/>
             </div>
          </div>
 
+         <Modal
+            block={`roomAdd`}
+            title={`Yangi xona yaratish`}
+            setMymodal={handleCancel}
+            myModal={isModalVisible}
+            setInfo={setRoomName}
+         />
+         <Modal
+            block={`roomEdit`}
+            title={`Xonani tahrirlash`}
+            setMymodal={setEditIsModalVisible}
+            myModal={isEditModalVisible}
+            setInfo={setRoomName}
+            info={roomName}
+         />
 
-		 <Modal visible={isModalVisible} footer={null} onCancel={handleCancel}>
+
+		 {/* <Modal visible={isModalVisible} footer={null} onCancel={handleCancel}>
                   <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
                      <label className='izma__courses__form-bolim-form-label'>Xona nomi</label>
                      <Input
@@ -110,9 +127,9 @@ const Rooms = () => {
                         Saqlash
                      </button>
                   </div>
-               </Modal>
+               </Modal> */}
 
-               <Modal footer={null} visible={isEditModalVisible} onOk={updateRoom} onCancel={handleEditCancel}>
+               {/* <Modal footer={null} visible={isEditModalVisible} onOk={updateRoom} onCancel={handleEditCancel}>
                   <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
 				  <label className='izma__courses__form-bolim-form-label'>Xonani tahrirlash</label>
 				  <Input defaultValue={roomName} className={"section_name_input"} onKeyUp={e => setEditRoomName(e.target.value)} name={"nomi"} />
@@ -124,7 +141,7 @@ const Rooms = () => {
 				  Saqlash
 				  </button>
                   </div>
-				</Modal>
+				</Modal> */}
       </>
    )
 }

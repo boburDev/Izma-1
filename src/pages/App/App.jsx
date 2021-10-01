@@ -25,7 +25,6 @@ import Archive from "../Settings_Pages/Archive/Archive";
 import LidForm from "../Settings_Pages/LidForm/LidForm";
 import EnterForm from "../Settings_Pages/EnterForm/EnterForm";
 import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
-import Loader from "../../components/Loader/Loader";
 import Lids from "../Lids/Lids";
 import SettingsRoadMap from "../Settings_Pages/Roadmap/roadmap";
 const App = () => {

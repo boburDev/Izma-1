@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-  split,
-  createHttpLink
-} from '@apollo/client'
-import '../src/assets/izma fonts/fonts.scss'
+import { ApolloClient, ApolloProvider, InMemoryCache, split, createHttpLink } from '@apollo/client'
 import ReactDOM from 'react-dom';
 import App from './pages/App/App';
 import {BrowserRouter} from 'react-router-dom'
 import { CourseProvider } from './context/CourseProvider'
+import '../src/assets/izma fonts/fonts.scss'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { setContext } from '@apollo/client/link/context'
@@ -29,11 +23,14 @@ import { Pagination } from './context/Pagination';
 
 const isTester = true
 
+// http://api.al-azhar.uz/api/graphql
+
 const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
 const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
 
 // const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
 // const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+// console.log(api, wssApi)
 
 
 const httpLink = createHttpLink({

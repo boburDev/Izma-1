@@ -133,7 +133,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
                   </div>
 
                   {
-                           days === 'boshqa' &&  <div>
+                           days.id === 'boshqa' &&  <div>
                            <div>
                            <label style={{display: 'flex', alignItems: 'center'}} htmlFor="mon">Dushanba
                            <input value="1" onChange={SelectDate} style={{marginLeft: '2px'}} type="checkbox" id="mon" /></label>

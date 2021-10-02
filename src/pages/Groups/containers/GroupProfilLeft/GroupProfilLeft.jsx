@@ -220,15 +220,12 @@ const GroupProfilLeft = (prop) => {
    const [isModalVisible, setIsModalVisible] = useState(false)
 
    const handleDelete = () => {
-      if (confirm('Are you sure you want to save this thing into the database?')) {
          deletGroup({
             variables: {
                id: groupID
             }
          })
-      } else {
-         console.log('Thing was not saved to the database.')
-      }
+         window.location.replace('/groups')
    }
 
 

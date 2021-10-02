@@ -39,14 +39,6 @@ const TEACHER_SUBSCRIPTION = gql `
     }
 `
 
-const DELETE_COLLEGUE = gql `
-  mutation deleteColleague($id: ID) {
-    deleteColleague(Id: $id){
-      Id
-    }
-  }
-`
-
 const UPT_STATUS = gql `
   mutation updateColleagueStatus($id: ID!, $status: Int) {
     updateColleagueStatus(Id: $id, status: $status) {
@@ -60,6 +52,5 @@ export {
   COLLEGUES,
   ROADMAP,
   TEACHER_SUBSCRIPTION,
-  DELETE_COLLEGUE,
   UPT_STATUS
 }

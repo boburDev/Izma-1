@@ -1,10 +1,10 @@
-.request-wrapper {
+.request-wrapper1 {
    padding: 30px 30px;
 
-   .inner {
+   .inner1 {
       width: 100%;
 
-      .banner {
+      .banner1 {
          width: 100%;
          height: 238px;
          box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
@@ -19,7 +19,7 @@
          }
       }
 
-      .anony_block {
+      .anony_block1 {
          width: 100%;
          height: 200px;
          display: flex;
@@ -48,7 +48,7 @@
             }
          }
 
-         .circle-pen {
+         .circle-pen1 {
             cursor: pointer;
             width: 47px;
             height: 47px;
@@ -73,7 +73,7 @@
             left: 0;
          }
 
-         .request_set {
+         .request_set1 {
             font-family: "Jost";
             font-style: normal;
             font-weight: 600;
@@ -84,7 +84,7 @@
          }
       }
 
-      .login_page {
+      .login_page1 {
          background: #FFFFFF;
          box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
          border-radius: 7px;
@@ -94,7 +94,7 @@
          box-sizing: border-box;
          align-items: center;
 
-         .right_part {
+         .right_part1 {
             margin-right: 38px;
             width: 100px;
             height: 100px;
@@ -107,11 +107,11 @@
             }
          }
 
-         .left_part {
+         .left_part1 {
             font-family: "Calibri";
             width: 70%;
 
-            .top_items {
+            .top_items1 {
                display: flex;
                justify-content: space-between;
                align-items: center;
@@ -138,7 +138,7 @@
                   position: relative;
                   cursor: pointer;
 
-                  &.center_btn {
+                  &.center_btn1 {
                      padding: 0 15px;
 
                      &::before {
@@ -186,7 +186,7 @@
                   margin-bottom: 14px;
                   display: block;
 
-                  &.mtt {
+                  &.mtt1 {
                      margin-top: 25px;
                   }
                }
@@ -219,7 +219,7 @@
                //    width: 100%;
                // }
 
-               .log_btn {
+               .log_btn1 {
                   border: none;
                   background: #090761;
                   border-radius: 57px;

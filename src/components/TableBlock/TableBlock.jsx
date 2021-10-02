@@ -88,10 +88,10 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                      block="delete"
                         myModal={modal}
                         setMymodal={setModal}
-                        title={info.__typename === 'Colleagues' ? `O'qituvchini o'chirish` : `O'quvchini o'chirish`}
+                        title={info.__typename === 'Colleagues' ? `O'qituvchini o'chirish` : info.__typename === 'Students' ? `O'quvchini o'chirish` : ''}
                         text={info?.name + `ni o'chirilshni hohlaysizmi ?`}
-                        info={info.__typename === 'Colleagues' ? { variables: { id: info.Id } } : { variables: { studentID: info.id } }}
-                        setInfo={info.__typename === 'Colleagues' ? deleteTeacher : getID}
+                        info={info.__typename === 'Colleagues' ? { variables: { id: info.Id } } : info.__typename === 'Students' ? { variables: { studentID: info.id } } : ''}
+                        setInfo={info.__typename === 'Colleagues' ? deleteTeacher : info.__typename === 'Students' ? getID : ''}
                      />
                      <img src={DeleteImg} alt="" onClick={() => {
                         setModal(true)

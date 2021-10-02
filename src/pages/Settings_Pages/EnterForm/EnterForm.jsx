@@ -1,4 +1,4 @@
-// import './EnterForm.scss'
+import './EnterForm.scss'
 // import Banner from '../../../assets/banner.jpg'
 import Pen from '../../../assets/Icons/pen.svg'
 import { useState } from 'react';
@@ -51,27 +51,27 @@ const EnterForm = () => {
          <div className="main-page">
             <div className="form-side">
                <div className="containers">
-                  <div className="request-wrapper">
-                     <div className="inner">
-                        <div className="banner">
+                  <div className="request-wrapper1">
+                     <div className="inner1">
+                        <div className="banner1">
                            <Avatar />
                         </div>
-                        <div className="anony_block">
+                        <div className="anony_block1">
                            <input type="text" defaultValue="O'quv markaziga so'rov qoldiring" name="" id="req"
                               onKeyUp={e => setSendReq(e.target.value)}
                            />
-                           <label className="circle-pen" htmlFor="req"><img src={Pen} alt="" /></label>
+                           <label className="circle-pen1" htmlFor="req"><img src={Pen} alt="" /></label>
                         </div>
-                        <div className="login_page">
-                           <div className="right_part">
+                        <div className="login_page1">
+                           <div className="right_part1">
                               <Avatar />
                            </div>
-                           <div className="left_part">
-                              <div className="top_items">
+                           <div className="left_part1">
+                              <div className="top_items1">
                                  <span>Login</span>
-                                 <div className="lang">
+                                 <div className="lang1">
                                     <button>ENG</button>
-                                    <button className="center_btn">RU </button>
+                                    <button className="center_btn1">RU </button>
                                     <button>UZ</button>
                                  </div>
                               </div>
@@ -84,12 +84,12 @@ const EnterForm = () => {
                                  />
                                  
 
-                                 <label className="mtt" htmlFor="">Parol *</label>
+                                 <label className="mtt1" htmlFor="">Parol *</label>
                                  <PasswordInput
                                     setPassword={setPassword}
                                  />
 
-                                 <button className="log_btn">Login</button>
+                                 <button className="log_btn1">Login</button>
                               </form>
                            </div>
                         </div>

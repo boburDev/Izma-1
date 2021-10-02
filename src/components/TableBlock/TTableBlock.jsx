@@ -4,7 +4,7 @@ import EditImg from '../../assets/Icons/settings-edit.svg'
 import moment from 'moment'
 
 
-const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, setInfo, openModal, setID, deleteRoom }) => {
+const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, setInfo, openModal, setID, deleteRoom, setTakeID }) => {
    return (
       <div className="tableBlock">
          {
@@ -71,7 +71,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                               <h4 className={'paymentHistory'}>{info?.status}</h4>
                               <h4 className={'paymentHistory'}>{info?.phoneNumber}</h4>
                               <h4 className={'paymentHistory'}>
-                                 <img id={info.Id} src={DeleteImg} alt="" onClick={e => setDeleteId(e.target.id)} />
+                                 <img id={info.Id} src={DeleteImg} alt="" onClick={e => setTakeID(e.target.id)} />
                               </h4>
             </> : <>ok</>
          }

@@ -48,9 +48,22 @@ const UPT_STATUS = gql `
   }
 `
 
+const COLLEGUES_BY_STATUS = gql`
+    query {
+      selectByStatus{
+            Id
+            name
+            status
+            phoneNumber
+            gender
+          }  
+    }
+`
+
 export {
   COLLEGUES,
   ROADMAP,
   TEACHER_SUBSCRIPTION,
-  UPT_STATUS
+  UPT_STATUS,
+  COLLEGUES_BY_STATUS
 }

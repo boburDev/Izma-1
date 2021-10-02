@@ -1,9 +1,8 @@
 import '../SettingsArchiveForm/query'
 import CloceBtn from '../../../assets/Icons/Group 26.svg'
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
 import { Radio } from 'antd'
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput'
-import { Input, Space,DatePicker } from 'antd'
+import { DatePicker } from 'antd'
 import { useState, useEffect } from 'react'
 import { UPDATE_COLLEGUES } from '../SettingsArchiveForm/query'
 import { useMutation } from '@apollo/client'
@@ -30,23 +29,24 @@ const SettingsArchiveForm = ({onClose, editableData}) => {
 
     useEffect(() => {
 
-        editableData.status === 'CEO' && setStat(1)  
-        editableData.status === 'Marketer' && setStat(2) 
-        editableData.status === 'Adminstrator' && setStat(3)  
-        editableData.status === 'Casher' && setStat(4) 
-        editableData.status === 'Teacher' && setStat(5) 
+        editableData?.status === 'CEO' && setStat(1)  
+        editableData?.status === 'Marketer' && setStat(2) 
+        editableData?.status === 'Adminstrator' && setStat(3)  
+        editableData?.status === 'Casher' && setStat(4) 
+        editableData?.status === 'Teacher' && setStat(5) 
 
     }, [setStat, editableData])
 
 
     function createColleague() {
         const data = {
-            name: name ? name : editableData.name,
-            phoneNumber: phone ? phone : editableData.phoneNumber,
-            gender: gender-0 ? gender-0 : editableData.gender,
+            Id: editableData?.Id,
+            name: name || editableData?.name,
+            phoneNumber: phone || editableData?.phoneNumber,
+            gender: gender-0 || editableData?.gender === 'Ayol' ? '2' : '1',
             password: password,
-            status: value ? value : stat,
-            birthday: date ? date : editableData.date
+            status: value || stat,
+            birthday: date || editableData?.date
         }
 
         uptdateColleague({
@@ -70,24 +70,25 @@ const SettingsArchiveForm = ({onClose, editableData}) => {
                         <label htmlFor="">Telefon</label>
                         <PhoneNumberInput
                             setPhone={setPhone}
+                            placeholder={editableData?.phoneNumber}
                         />
                     </div>
     
                     <div className="form-input">
                         <label htmlFor="name">Ism</label>
-                        <input onKeyUp={e => setName(e.target.value)} type="text" name="" id="name" placeholder='sdwawdwa'  className="input-izma"/>
+                        <input onKeyUp={e => setName(e.target.value)} type="text" id="name" placeholder={editableData?.name} className="input-izma"/>
                     </div>
                     <div className="form_group">
                             <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
        
-          <DatePicker
-          className='date__picker lid-edit-date'
-                onChange={(value, dateString) => setDate(dateString)}
-                placeholder={"Kun-Oy-Yil"}
-              format={"DD-MM-YYYY"}
-              />
-          </div>
-          <div className="form_one">
+                    <DatePicker
+                        className='date__picker lid-edit-date'
+                        onChange={(value, dateString) => setDate(dateString)}
+                        placeholder={"Kun-Oy-Yil"}
+                        format={"DD-MM-YYYY"}
+                    />
+                    </div>
+                    <div className="form_one">
                         <label htmlFor="name">Jinsi</label>
 
                         <div className="genders">
@@ -119,6 +120,7 @@ const SettingsArchiveForm = ({onClose, editableData}) => {
                    <div>
                     <Radio.Group
                     className="izma__settings-checkbox-wrapper" onChange={onChange}>
+                    
                    <Radio value={1}>CEO</Radio>
                    <Radio value={3}>Adminstrator</Radio>
                    <Radio value={5}>Teacher</Radio>

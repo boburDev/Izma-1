@@ -1,7 +1,7 @@
 import Table from '../../../../components/Table/Table';
 // import DeleteImg from '../../../../assets/Icons/delete-border.svg'
 import './TeachersTable.scss'
-import { useMutation, useQuery, useSubscription } from '@apollo/client';
+import { useQuery, useSubscription } from '@apollo/client';
 import { TEACHERS, TEACHER_SUBSCRIPTION } from '../../../../Querys/Teacher_Query';
 import { useEffect} from 'react';
 import { useTeacherData } from '../../../../context/TeachersTableProvider';
@@ -15,11 +15,11 @@ const TeachersTable = () => {
 
    useEffect(() => {
       setTeacherData(teachers)
-   }, [teachers])
+   }, [teachers, setTeacherData])
 
    useEffect(() => {
       setLoading(loading)
-   }, [loading])
+   }, [loading, setLoading])
 
  
 
@@ -32,8 +32,6 @@ const TeachersTable = () => {
          })
       },
    })
-
-
 
 
    return (

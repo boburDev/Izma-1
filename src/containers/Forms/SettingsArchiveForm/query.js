@@ -26,6 +26,7 @@ const UPDATE_COLLEGUES = gql`
     $password: String!
     $comment: String
     $birthday: String
+    $status: Int
   ) { updateColleague(
       Id: $Id
       name: $name
@@ -34,6 +35,7 @@ const UPDATE_COLLEGUES = gql`
       password: $password
       comment: $comment
       birthday: $birthday
+      status: $status
   ) {
     Id
   }
@@ -42,5 +44,5 @@ const UPDATE_COLLEGUES = gql`
 
 export {
     CREATE_COLLEAGUE,
-    UPDATE_COLLEGUES
+    UPDATE_COLLEGUES,
 }

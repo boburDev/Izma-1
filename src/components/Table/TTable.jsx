@@ -1,7 +1,7 @@
 import TTableBlock from '../TableBlock/TTableBlock'
 import './Table.scss'
 
-const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId , openModal, setInfo}) => {
+const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId, setInfo, openModal, setID, deleteRoom}) => {
 
    return (
       <div className="table">
@@ -49,17 +49,19 @@ const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId , openModal, se
                               key={index}
                               setInfo={setInfo}
                               openModal={openModal}
+                              setID={setID}
+                              deleteRoom={deleteRoom}
                         />
                      ))
                   }
                   </div>
             </> : block === "financeHash" ? <>
                <div className="table-header">
-                  <h4 className={'studentHash'}>Talabalar ismi</h4>
-                  <h4 className={'studentHash'}>Yaratilgan</h4>
-                  <h4 className={'studentHash'}>Tulov turi</h4>
-                  <h4 className={'studentHash'}>So’m</h4>
-                  <h4 className={'studentHash'}>Izoh</h4>
+                        <h4 className={'financeHash'}>Talabalar ismi</h4>
+                        <h4 className={'financeHash'}>Yaratilgan</h4>
+                        <h4 className={'financeHash'}>Tulov turi</h4>
+                        <h4 className={'financeHash'}>So’m</h4>
+                        <h4 className={'financeHash'}>Izoh</h4>
                </div>
 
                <div className="table-group-body">

@@ -1,13 +1,13 @@
 import './financeAddPaymentForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
-import { Form, Input,  DatePicker, AutoComplete, } from "antd";
-import { useEffect, useState } from 'react';
-import { Radio } from 'antd';
-import TextArea from "antd/lib/input/TextArea";
-import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT_GROUPS, CREATE_CHECK, SUBSCRIPTION_CHECK, UPDATE_GR_STATUS, COUNT } from '../../../../Querys/FinanceAddPayForm_Query';
-import { useMutation, useQuery, useSubscription } from '@apollo/client';
-import DropSearch from '../../../../components/DropSearch/DropSearch';
-import { useCheck } from '../../../../context/CheckProvider';
+import { Form, Input,  DatePicker } from "antd"
+import { useEffect, useState } from 'react'
+import { Radio } from 'antd'
+import TextArea from "antd/lib/input/TextArea"
+import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT_GROUPS, CREATE_CHECK, SUBSCRIPTION_CHECK, UPDATE_GR_STATUS, COUNT } from '../../../../Querys/FinanceAddPayForm_Query'
+import { useMutation, useQuery, useSubscription } from '@apollo/client'
+import DropSearch from '../../../../components/DropSearch/DropSearch'
+import { useCheck } from '../../../../context/CheckProvider'
 
 
 const FinanceAddPaymentForm = ({ onClose, studenID }) => {
@@ -38,11 +38,11 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
   }
 
   const {data: forCheck} = useQuery(CHECK_CASH, {
-		variables: {stID: studenID && studenID.studentID}
+		variables: {stID: studenID && (studenID.studentID || studenID.studentId)}
 	})
 
   const {data: stGroups} = useQuery(STUDENT_GROUPS, {
-		variables: {id: studenID && studenID.studentID}
+		variables: {id: studenID && (studenID.studentID || studenID.studentId)}
 	})
 
   const { data: count } = useQuery(COUNT)
@@ -60,25 +60,24 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 
   useEffect(() => {
     setGroups(stGroups)
-	console.log(stGroups);
   }, [stGroups])
 
   if (test) {
 	CheckBalanc({variables: {
-	  stID: studenID && studenID.studentID,
+	  stID: studenID && (studenID.studentID || studenID.studentId),
 	  status: 3
 	}})
 
-  	SetStatus3_4({variables: {status: 3, stID: studenID.studentID}})
+  	SetStatus3_4({variables: {status: 3, stID: (studenID.studentID || studenID.studentId)}})
   }
 
 
   if (forCheck && forCheck.studentCash.cashAmount < '0') {
-	localStorage.setItem(studenID && studenID.studentID, JSON.stringify(forCheck && forCheck.studentCash.cashAmount))
+	localStorage.setItem(studenID && (studenID.studentID || studenID.studentId), JSON.stringify(forCheck && forCheck.studentCash.cashAmount))
   }
 
   if (forCheck && forCheck.studentCash.cashAmount >= '0') {
-	localStorage.removeItem(studenID && studenID.studentID)
+	localStorage.removeItem(studenID && (studenID.studentID || studenID.studentId))
   }
 
   useEffect(()=>{
@@ -88,11 +87,10 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 }, [stGroups])
   
   const onChange = e => {
-    setPayType(e.target.value);
-  };
+    setPayType(e.target.value)
+  }
 
   console.log(names)
-
     return (
         <>
         <div className="izma__courses__form-bolim">
@@ -142,6 +140,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
             placeholder={"Kun-Oy-Yil"}
             format={"DD-MM-YYYY"}/>
           </div>
+		  
           <div className="form_group izma__form__teaxtarea" style={{ width: 400 }}>
             <label>Izoh</label>
             <TextArea
@@ -155,7 +154,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
           <button className="izma__courses__form-bolim-form-button" onClick={() => {
             
             const cache = {
-              stID: studenID.studentID,
+              stID: (studenID.studentID || studenID.studentId),
               stName: studenID.studentName,
               cashAmm: ammountt,
               comment: comment,
@@ -165,7 +164,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
             }
 
             const upCash = {
-              stID: studenID.studentID,
+              stID: (studenID.studentID || studenID.studentId),
               cashAmm: String((ammountt - 0) + (forCheck && forCheck.studentCash.cashAmount - 0)),
               comment: comment,
               type: payType,
@@ -183,13 +182,13 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
               debit: ammountt,
               comment: comment,
               paymentType: payType,
-              studentID: studenID.studentID,
+              studentID: (studenID.studentID || studenID.studentId),
               payedAt: payedData.payed
             }
 
-            if (localStorage.getItem(studenID && studenID.studentID)) {
+            if (localStorage.getItem(studenID && (studenID.studentID || studenID.studentId))) {
     
-              const credit = String(-(JSON.parse(localStorage.getItem(studenID && studenID.studentID))))
+              const credit = String(-(JSON.parse(localStorage.getItem(studenID && (studenID.studentID || studenID.studentId)))))
 
               if (Number(credit) >= Number(ammountt)) {
                 
@@ -198,7 +197,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
                   credit: ammountt,
                   comment: comment,
                   paymentType: payType,
-                  studentID: studenID.studentID,
+                  studentID: (studenID.studentID || studenID.studentId),
                   payedAt: payedData.payed
                 }})
 				
@@ -208,7 +207,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
                   credit: credit,
                   comment: comment,
                   paymentType: payType,
-                  studentID: studenID.studentID,
+                  studentID: (studenID.studentID || studenID.studentId),
                   payedAt: payedData.payed
                 }})
               }
@@ -244,13 +243,11 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
               check: true,
               checkData: {
                 ...cache,
-                ...data,
+                data,
                 count: count && count.checksCounts + 1
               }
             })
-		      }}>
-		Yarating
-		</button>
+		    }}>Yarating</button>
 		</div>
 		
 		

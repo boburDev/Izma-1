@@ -1,6 +1,6 @@
 import './Modal.scss';
 import { useEffect, useRef } from 'react';
-const Modal = ({ myModal, setMymodal, block, title, setInfo, info }) => {
+const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom }) => {
    const commentText = useRef()
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
@@ -30,7 +30,7 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info }) => {
                   <span></span>
                </div>
             </div>
-            <form action="" className="myModal-inner-form">
+            <form className="myModal-inner-form" onSubmit={e => e.preventDefault()}>
                {
                   block === 'addComment' ?
                      <>
@@ -47,7 +47,7 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info }) => {
                                  <label className='myModal-inner-form-label'>Xonani nomi</label>
                                  <input type="text" defaultValue={info && info} onKeyUp={(e) => setInfo(e.target.value)} />
                                  <div className="buttonWrapper">
-                                    <button>Saqlash</button>
+                                    <button onClick={uptRoom}>Saqlash</button>
                                  </div>
                               </> :
                               <>
@@ -57,7 +57,7 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info }) => {
                                           <label className='myModal-inner-form-label'>Xona nomi</label>
                                           <input type="text" onKeyUp={(e) => setInfo(e.target.value)} />
                                           <div className="buttonWrapper">
-                                             <button>Yaratish</button>
+                                             <button onClick={submitOK}>Yaratish</button>
                                           </div>
                                        </> :
                                        <>

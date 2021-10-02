@@ -1,15 +1,9 @@
 import './StudentAdd.scss'
-
-
-
 import CloceBtn from '../../../assets/Icons/Group 26.svg'
-// import { AutoComplete } from 'antd';
 import { useState } from 'react'
-
 import Plus from '../../../assets/Icons/plus.png'
 import Minus from '../../../assets/Icons/minus.png'
-import { Input, Space, DatePicker } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { DatePicker } from 'antd';
 import 'antd/dist/antd.css'
 import { ADD_NEW_STUDENTS, GROUPS, NEW_CASH } from '../../../Querys/Students_Query';
 import { useMutation, useQuery } from '@apollo/client';
@@ -172,11 +166,8 @@ const StudentAdd = ({ onCloseF }) => {
                   className='date__picker lid-edit-date'
                   onChange={(value, dateString) => {
                      setStBirth(dateString)
-                     //   handleChange(v);
                   }}
-                  // onChange={(e) => console.log(e.day)}
                   placeholder={"Kun-Oy-Yil"}
-                  //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                   format={"DD-MM-YYYY"}
                />
             </div>
@@ -202,17 +193,6 @@ const StudentAdd = ({ onCloseF }) => {
                   pInput={'Variantlarni tanlang'}
                   fnc={setStGroup}
                />
-
-               {/* <AutoComplete
-                            options={names}
-                            style={{
-                                width: 100,
-                            }}
-
-                            onSelect={onSelect}
-                            // onSearch={onSearch}
-                            placeholder="input here"
-                        /> */}
             </div>
             <div className="form-input">
                <label htmlFor="group">Komment</label>
@@ -279,7 +259,7 @@ const StudentAdd = ({ onCloseF }) => {
                <label htmlFor="">Telegram user name</label>
                <div className="numberTwo">
                   <span>@</span>
-                  <input type="text" name="" id="" autoComplete="off" className="user_name" onChange={e => setStTg('@' + e.target.value)} />
+                  <input type="text" name="" autoComplete="off" className="user_name" onChange={e => setStTg('@' + e.target.value)} />
                </div>
             </div>
 

@@ -84,7 +84,12 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                   <h4 className={`${block}`}>
                      <img src={DeleteImg} alt="" onClick={() => {
 
-                        getID({variables: {studentID: info.id}})
+                        if(info.__typename === 'Colleagues') {
+                           deleteTeacher({variables: {id: info.Id}})
+                        }
+                        if (info.__typename === 'Students') {
+                           getID({variables: {studentID: info.id}})
+                        }
                      }}/>
                   </h4>
                </> :

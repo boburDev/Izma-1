@@ -38,9 +38,20 @@ mutation deleteRoom($ID: ID!) {
       }
   }
 `
+
+const SUBCRIPTIONS_ROOM = gql `
+  subscription {
+    rooms{
+      id
+      room
+    }
+  }
+`
+
 export {
    ROOMS,
    CREATE_ROOM,
    UPDATE_ROOM,
-   DELETE_ROOM
+   DELETE_ROOM,
+   SUBCRIPTIONS_ROOM
 }

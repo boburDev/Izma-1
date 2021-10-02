@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './Rooms.scss'
 import {  Button, Input } from 'antd';
-import { ROOMS, CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM } from './query'
-import { useMutation, useQuery } from '@apollo/client'
+import { ROOMS, CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM, SUBCRIPTIONS_ROOM } from './query'
+import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
 import Modal from '../../../components/Modal/Modal'
 
@@ -12,13 +12,22 @@ const Rooms = () => {
    const [isModalVisible, setIsModalVisible] = useState(false)
    const [isEditModalVisible, setEditIsModalVisible] = useState(false)
    const [roomName, setRoomName] = useState('')
-   const [editRoomName, setEditRoomName] = useState('')
    const [getId, setGetId] = useState('')
 
    const { data: Srooms } = useQuery(ROOMS)
    const [newRoom] = useMutation(CREATE_ROOM)
    const [UpdateRoom] = useMutation(UPDATE_ROOM)
    const [deleteRoom] = useMutation(DELETE_ROOM)
+
+   useSubscription(SUBCRIPTIONS_ROOM, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+        cache.modify({
+          fields: {
+            rooms: () => {}
+          }
+        })
+      },
+    })
 
    useEffect(()=>{
       if (Srooms && Srooms.rooms) {
@@ -37,24 +46,21 @@ const Rooms = () => {
     const handleCancel = () => {
       setIsModalVisible(false);
     };
-   const showEditModal = (e) => {
-      setGetId(e.target.id)
+   const showEditModal = (id) => {
+      setGetId(id)
       setEditIsModalVisible(true)
    }
 
-   // const handleOk = (e) => {
-   //    // newRoom({
-   //    //    variables: {
-   //    //       name: roomName
-   //    //    }
-   //    // })
-   //    // setRoomName('')
-   //    setIsModalVisible(false)
-   // }
+   const handleOkk = () => {
+      newRoom({
+         variables: {
+            name: roomName
+         }
+      })
+      setRoomName('')
+      setIsModalVisible(false)
+   }
 
-   // const handleCancel = () => {
-   //    setIsModalVisible(false)
-   // }
 
    const handleEditCancel = () => {
       setEditIsModalVisible(false)
@@ -65,17 +71,17 @@ const Rooms = () => {
       UpdateRoom({
          variables: {
             ID: getId,
-            name: editRoomName
+            name: roomName
          }
       })
       setEditIsModalVisible(false)
    }
 
 
-   const DeleteRoom = function (e) {
+   const DeleteRoom = (id) => {
       deleteRoom({
          variables: {
-            ID: e.target.id
+            ID: id
          }
       })
    }
@@ -92,7 +98,7 @@ const Rooms = () => {
                </button>
                </div>
             <div className="izma__settings-employees-inner-button">
-               <TTable arr={rooms} block={"settingsHashRooms"} setInfo={setRoomName} openModal={setEditIsModalVisible}/>
+               <TTable arr={rooms} block={"settingsHashRooms"} setInfo={setRoomName} deleteRoom={DeleteRoom} setID={showEditModal} openModal={setEditIsModalVisible}/>
             </div>
          </div>
 
@@ -102,6 +108,7 @@ const Rooms = () => {
             setMymodal={handleCancel}
             myModal={isModalVisible}
             setInfo={setRoomName}
+            submitOK={handleOkk}
          />
          <Modal
             block={`roomEdit`}
@@ -110,6 +117,7 @@ const Rooms = () => {
             myModal={isEditModalVisible}
             setInfo={setRoomName}
             info={roomName}
+            uptRoom={updateRoom}
          />
 
 

@@ -3,13 +3,13 @@ import { Drawer } from 'antd'
 import SettingsArchiveForm from '../../../containers/Forms/SettingsArchiveForm/SettingsArchiveForm'
 import SettingsArchiveFormEdit from '../../../containers/Forms/SettingsArchiveFormEdit/SettingsArchiveFormEdit'
 import './Employees.scss'
-import { COLLEGUES } from '../../../Querys/Settings'
-import { useQuery } from '@apollo/client'
+import { COLLEGUES, TEACHER_SUBSCRIPTION, DELETE_COLLEGUE } from '../../../Querys/Settings'
+import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
 
 const Employees = () => {
 	const [visible, setVisible] = useState(false)
-	const [deleteId, setDeleteId] = useState('')
+	const [deleteId, setDeleteId] = useState()
 	const [editId, setEditId] = useState('')
 	const [colleguages, setColleguages] = useState([])
 	const [visiblee, setVisiblee] = useState(false)
@@ -23,8 +23,22 @@ const Employees = () => {
 	},[all_colleagues])
 	
 	const editable = colleguages.find(e => e.Id === editId)
-	
-	console.log(deleteId, editId)
+
+	const [deleteCollegue] = useMutation(DELETE_COLLEGUE)
+
+	useEffect(() => {
+		deleteCollegue({variables: {id: deleteId}})
+	}, [deleteCollegue, deleteId])
+
+	useSubscription(TEACHER_SUBSCRIPTION, {
+		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+			cache.modify({
+				fields: {
+					all_colleagues: () => {}
+				}
+			})
+		},
+	})
 	
 	const showDrawer = () => {
 		setVisible(true)

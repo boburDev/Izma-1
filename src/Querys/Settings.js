@@ -7,7 +7,7 @@ const COLLEGUES = gql`
             name
             status
             phoneNumber
-            
+            gender
           }  
     }
 `
@@ -27,8 +27,29 @@ const ROADMAP = gql`
   }
 `
 
+const TEACHER_SUBSCRIPTION = gql `
+    subscription {
+        colleagues {
+            Id
+            name
+            phoneNumber
+            status
+            gender
+        }
+    }
+`
+
+const DELETE_COLLEGUE = gql `
+  mutation deleteColleague($id: ID) {
+    deleteColleague(Id: $id){
+      Id
+    }
+  }
+`
 
 export {
-    COLLEGUES,
-    ROADMAP,
+  COLLEGUES,
+  ROADMAP,
+  TEACHER_SUBSCRIPTION,
+  DELETE_COLLEGUE
 }

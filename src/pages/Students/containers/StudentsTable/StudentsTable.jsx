@@ -17,7 +17,7 @@ import { useLoader } from '../../../../context/Loader'
 import { usePagination } from '../../../../context/Pagination'
 
 
-const StudentsTable = ({ setRowId, setValues, studentSearch='' }) => {
+const StudentsTable = ({ studentSearch='' }) => {
    const [page] = usePagination()
    const [truFalse] = useStudentFilter()
    const [course] = useCourseFilter()
@@ -110,7 +110,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch='' }) => {
 
    useEffect(() => {
       setLoading(loading)
-   }, [loading])
+   }, [loading, setLoading])
 
    
    useEffect(() => {
@@ -118,7 +118,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch='' }) => {
       studentData: userData,
       pagination: countSt
    })
-   }, [countSt, userData])
+   }, [countSt, setData, userData])
 
 
 
@@ -146,6 +146,7 @@ const StudentsTable = ({ setRowId, setValues, studentSearch='' }) => {
       setIsModalVisibleY(false)
    }
 
+   // console.log(studentID)
 
    return (
       <>

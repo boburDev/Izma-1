@@ -1,10 +1,13 @@
 import DeleteImg from '../../../assets/Icons/settings-delete.svg'
+import TTable from '../../../components/Table/TTable';
 import './Archive.scss'
 
 
-const Archive = ({ setMainTableData, mainTableData, setRowId, setValues }) => {
+const Archive = () => {
 
-   console.log(12);
+   console.log(12)
+
+   const data = []
 
 
    return (
@@ -21,7 +24,7 @@ const Archive = ({ setMainTableData, mainTableData, setRowId, setValues }) => {
 
             </div>
             <div className="izma__settings-archive-button">
-               {/* <Table className="izma__table__home" columns={columns} pagination={false} onRow={onRowClicked} dataSource={mainTableData} /> */}
+               <TTable arr={data} block={"settingsArchive"} />
             </div>
          </div>
 

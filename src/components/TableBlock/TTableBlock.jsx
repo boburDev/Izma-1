@@ -62,7 +62,17 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                               <h4 className={'paymentHistory'}>{info?.debit}</h4>
                               <h4 className={'paymentHistory'}>{info?.credit}</h4>
                               <h4 className={'paymentHistory'}>{info?.comment}</h4>
-                              <h4 className={'paymentHistory'}></h4>
+                              <h4 className={'paymentHistory'}>
+
+                              </h4>
+            </> : block === 'settingsArchive' ? <>
+                              <h4 className={'paymentHistory'}>{index + 1}</h4>
+                              <h4 className={'paymentHistory'}>{info?.name}</h4>
+                              <h4 className={'paymentHistory'}>{info?.status}</h4>
+                              <h4 className={'paymentHistory'}>{info?.phoneNumber}</h4>
+                              <h4 className={'paymentHistory'}>
+                                 <img id={info.Id} src={DeleteImg} alt="" onClick={e => setDeleteId(e.target.id)} />
+                              </h4>
             </> : <>ok</>
          }
       </div>

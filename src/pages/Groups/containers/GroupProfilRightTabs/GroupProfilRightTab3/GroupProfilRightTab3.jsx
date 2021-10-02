@@ -5,10 +5,9 @@ import CalendarImg from '../../../../../assets/Icons/calendar.svg'
 import { CREATE_SALE, GROUP_SALE, SUBSCRIP_SALE } from './query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client';
 import { useParams } from 'react-router';
-// import { useSale } from '../filterSoha/context'
 
 
-const GroupProfilRightTab3 = ({ setRowId, setValues, studentData }) => {
+const GroupProfilRightTab3 = ({ studentData }) => {
 
   const {groupID} = useParams()
 
@@ -136,7 +135,7 @@ const GroupProfilRightTab3 = ({ setRowId, setValues, studentData }) => {
             <br />
             <br />
             <div className="groups__attendance-right-tabs-third-table" >
-            <Table className="groups__attendance-right-tabs-third-tables"  columns={columns} pagination={false}  /* onRow={onRowClicked} */ dataSource={dataSale}  />
+            <Table className="groups__attendance-right-tabs-third-tables"  columns={columns} pagination={false}  dataSource={dataSale}  />
             </div>
             
         </div>

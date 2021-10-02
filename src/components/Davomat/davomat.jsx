@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 // import data from './data.json'
 import st from './davomat.module.scss'
-import { useGroupStudents } from '../groupsAttendance/context'
+import { useDavomat } from '../../context/DavomatProvider'
 function Davomat() {
     const [arr, setArr] = useState([])
-    const [groupStudents] = useGroupStudents()
+    const [davomat] = useDavomat()
     const [state, setState] = useState([])
     const [start, setStart] = useState('')
     const [startDay, setStartDay] = useState('')
@@ -20,15 +20,15 @@ function Davomat() {
     
     
     useEffect(() => {
-        if (groupStudents.groups) {
-            setStart(groupStudents.groups.startDate.split('-')[1])
-            setStartDay(groupStudents.groups.startDate.split('-')[2])
-            setDays(groupStudents.groups.days)
-            setYearStart(groupStudents.groups.startDate.split('-')[0])
-            setStartDate(groupStudents.groups.startDate)
-            setEndDate(groupStudents.groups.endDate)
+        if (davomat.groups) {
+            setStart(davomat.groups.startDate.split('-')[1])
+            setStartDay(davomat.groups.startDate.split('-')[2])
+            setDays(davomat.groups.days)
+            setYearStart(davomat.groups.startDate.split('-')[0])
+            setStartDate(davomat.groups.startDate)
+            setEndDate(davomat.groups.endDate)
         }
-    }, [groupStudents])
+    }, [davomat])
     
     
     const monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ]
@@ -107,6 +107,8 @@ function Davomat() {
         arr.push(body)
         setArr(arr)
     }
+    
+
     
     const closer = (e) => {
         e.target.parentNode.classList.remove(`${st.show}`)
@@ -198,7 +200,7 @@ function Davomat() {
             </thead>
             <tbody>
             {
-                groupStudents.students && groupStudents.students.map((item, index) => (
+                davomat.students && davomat.students.map((item, index) => (
                     <tr key={index}>
                     <td className={`${st.pupil} ${
                         item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''

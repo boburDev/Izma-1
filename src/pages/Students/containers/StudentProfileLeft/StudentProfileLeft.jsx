@@ -22,7 +22,7 @@ const StudentsProfileLeft = (prop) => {
    // const [state, setState] = useState([])
    // const [userInput, setUserInput] = useState('')
     const [visibleF, setVisibleF] = useState(false);
- 
+    const [deleteStudent, setDeleteStudent] = useState()
      const { studentID } = useParams()
  
      const {data: oneStudent} = useQuery(ONE_STUDENT, {variables: {id: studentID}})
@@ -212,6 +212,16 @@ const StudentsProfileLeft = (prop) => {
        </Drawer>
 
          <Modal
+           myModal={deleteStudent}
+           setMymodal={setDeleteStudent}
+           title={`O'quvchini o'chirish`}
+           text={oneStudent && oneStudent.student.name + 'ni o`chirishni hohlaysizmi ?'}
+           block={'delete'}
+           setInfo={delStudent}
+           info={{variables: {studentID}}}
+         />
+
+         <Modal
            myModal={isModalVisible}
            setMymodal={setIsModalVisible}
            title={`Yangi eslatma qo'shing`}
@@ -226,7 +236,7 @@ const StudentsProfileLeft = (prop) => {
                      <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-green" onClick={showDrawerF} ></button>
                      <button onClick={()=> setOpenSms(!openSms)} className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-orange"></button>
                      <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-red" onClick={() => {
-                       delStudent({variables: {studentID}})
+                       setDeleteStudent(true)
                       }}></button>
                     </div>
                         <div className="izma__students-payment-inner-left-up-left">

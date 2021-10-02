@@ -9,7 +9,7 @@ import Add from '../../../assets/Icons/add.svg'
 import Link from '../../../assets/Icons/link.svg'
 const LidBlock = ({
    board,
-   item,
+   item = [{}],
    dragOverHandler,
    dragLeaveHandler,
    dragEndHandler,

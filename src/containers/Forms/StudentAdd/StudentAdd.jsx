@@ -173,7 +173,7 @@ const StudentAdd = ({ onCloseF }) => {
                <label htmlFor="name">Ism</label>
                <input type="text" name="" id="name" className="new-input" onChange={e => setStName(e.target.value)} required />
             </div>
-            <div className="form_group">
+            <div className="form_group" id='sty'>
                <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
 
                <DatePicker

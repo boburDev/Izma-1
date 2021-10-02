@@ -80,7 +80,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
                   <label htmlFor="name">Ism</label>
                   <input onKeyUp={e => setName(e.target.value)} type="text" name="name" id="name" />
                </div>
-               <div className="form_group">
+               <div className="form_group" id='sty2'>
                   <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
 
                   <DatePicker

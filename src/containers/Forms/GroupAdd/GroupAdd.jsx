@@ -7,6 +7,7 @@ import { CREATE_GROUP, ROOMS } from '../../../Querys/Group_Query';
 import { useMutation, useQuery } from '@apollo/client';
 import { useState } from 'react';
 import DropSearch from '../../../components/DropSearch/DropSearch';
+import { useSnackbar } from 'notistack';
 
 const format = 'HH:mm';
 
@@ -50,6 +51,7 @@ const GroupAdd = ({ onClose }) => {
          variables: data
       })
       onClose()
+      handleClick()
    }
 
    function SelectDate(e) {
@@ -89,6 +91,15 @@ const GroupAdd = ({ onClose }) => {
       }
    ]
 
+   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+   const handleClick = () => {
+      const message = 'Guruh qo`shildi'
+      enqueueSnackbar(message, {
+         variant: 'success',
+      });
+
+   };
 
    
 

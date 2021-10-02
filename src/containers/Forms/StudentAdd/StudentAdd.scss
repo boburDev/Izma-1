@@ -165,12 +165,18 @@ input[type=text] {
 
 
 }
+#sty,  #sty2{
+   .ant-picker-input{
+      padding:  10px 0;
+   }
+}
 
 .form_group {
    label {
       margin-bottom: 8px;
       display: block;
    }
+
 
    .date__picker,
    .ant-picker {

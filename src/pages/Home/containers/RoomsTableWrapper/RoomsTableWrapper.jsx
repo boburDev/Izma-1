@@ -6,7 +6,7 @@ const RoomsTableWrapper = () => {
 
    const [days, setDays] = useState('1')
 
-   console.log(days)
+   // console.log(days)
 
    return (
       <div className="table_wrapper">

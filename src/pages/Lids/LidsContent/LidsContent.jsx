@@ -24,7 +24,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
       async function getQuestions() {
          try {
             const { data } = await request.get(`/`);
-            console.log(data)
+            // console.log(data)
             setBoards(data.results)
             setLoad(false)
          } catch (err) { console.log(err) }

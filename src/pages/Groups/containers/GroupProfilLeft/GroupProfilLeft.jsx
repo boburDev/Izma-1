@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import './GroupProfilLeft.scss'
 import { useState } from 'react'
 import { useParams } from 'react-router'
@@ -5,35 +6,43 @@ import { Link } from 'react-router-dom'
 import GroupEdit from '../../../../containers/Forms/GroupEdit/GroupEdit';
 import { Drawer } from 'antd'
 import { Modal, AutoComplete, DatePicker } from 'antd'
-import { useMutation, useQuery, useSubscription, /* useLazyQuery */ } from '@apollo/client'
-import { BY_GROUP_ID, DELETE_GROUP, GET_STUDENTS, SELECT_STUDENT_GROUP, STATUS_6, SET_STATUS_6, SUBSCRIPTION_STATUS, GROUP_STUDENTS, NEW_SUB_STUDENT, SUBSCRIPTION_GROUP_INFO } from '../../../../Querys/GroupTabs'
-import { DELETE_FROM_GROUP, CHECK_CASH, UPDATE_CASH, STATUS_3_4, HISTORY_PAYMENT, SUBSCRIPTION_GROUPS, HAS_STUDENT, UPDATE_GR_STATUS, SUBSCRIPTION_ADD_STUDENT, /* SUBSCRIPTION_CASH */ /* CHECK_CASH_GROUP */ } from '../../../../Querys/GroupTabs'
+import {  useMutation, useQuery, useSubscription } from '@apollo/client'
+import { 
+   BY_GROUP_ID,
+   DELETE_GROUP,
+   GET_STUDENTS,
+   SELECT_STUDENT_GROUP,
+   STATUS_6,
+   SET_STATUS_6,
+   SUBSCRIPTION_STATUS,
+   GROUP_STUDENTS,
+   NEW_SUB_STUDENT,
+   SUBSCRIPTION_GROUP_INFO
+} from '../../../../Querys/GroupTabs'
+
+import {
+   DELETE_FROM_GROUP,
+   CHECK_CASH,
+   UPDATE_CASH,
+   STATUS_3_4,
+   HISTORY_PAYMENT,
+   SUBSCRIPTION_GROUPS,
+   HAS_STUDENT,
+   UPDATE_GR_STATUS,
+   SUBSCRIPTION_ADD_STUDENT
+} from '../../../../Querys/GroupTabs'
 import confirm from 'antd/lib/modal/confirm'
-import { useEffect } from 'react'
+
 import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
 import Check from '../../../../components/Check/Check'
 import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
-// import StudentAdd from '../forms/studentsAddFormByGroup/studentsAddForm'
-// import { useGroupStudents } from './context'
-// import { useCloseModal } from './contextModalClose'
+import { useDavomat } from '../../../../context/DavomatProvider'
 
 const GroupProfilLeft = (prop) => {
+   const [setGroupStudents] = useDavomat(true)
 
-   // const [setGroupStudents] = useGroupStudents(true)
-   // const [closeModal] = useCloseModal(true)
-
-   const newNoteStyle = {
-      width: '100%',
-      outline: 'none',
-      height: '100px',
-      resize: 'none',
-      padding: '10px 20px',
-      background: '#F7F9FB',
-      border: '2px solid #EDF2F8',
-      boxSizing: 'border-box',
-      borderRadius: '7px',
-   }
+   
 
    const [userInput, setUserInput] = useState('')
    const [selectedUser, setSelectedUser] = useState()
@@ -56,12 +65,12 @@ const GroupProfilLeft = (prop) => {
    })
 
 
-   // useEffect(() => {
-   //    setGroupStudents({
-   //       students: grStudents && grStudents.findStudByGrId,
-   //       groups: groups && groups.byGroupID
-   //    })
-   // }, [grStudents, setGroupStudents, groups])
+   useEffect(() => {
+      setGroupStudents({
+         students: grStudents && grStudents.findStudByGrId,
+         groups: groups && groups.byGroupID
+      })
+   }, [grStudents, setGroupStudents, groups])
 
 
    prop.studData(groups && groups.byGroupID.students)
@@ -118,7 +127,7 @@ const GroupProfilLeft = (prop) => {
    }, [students])
 
    const [deletGroup, { data: delData }] = useMutation(DELETE_GROUP)
-   console.log(delData)
+   // console.log(delData)
 
    const [HistoryPay] = useMutation(HISTORY_PAYMENT)
    const [AddStudentToGroup] = useMutation(SELECT_STUDENT_GROUP)
@@ -226,7 +235,7 @@ const GroupProfilLeft = (prop) => {
             }
          })
       } else {
-         console.log('Thing was not saved to the database.')
+         // console.log('Thing was not saved to the database.')
       }
    }
 
@@ -307,6 +316,20 @@ const GroupProfilLeft = (prop) => {
    const filtered = grStudents && grStudents.findStudByGrId.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
 
    // if (delData && delData) return <Redirect to='/groups' />
+
+
+
+   const newNoteStyle = {
+      width: '100%',
+      outline: 'none',
+      height: '100px',
+      resize: 'none',
+      padding: '10px 20px',
+      background: '#F7F9FB',
+      border: '2px solid #EDF2F8',
+      boxSizing: 'border-box',
+      borderRadius: '7px',
+   }
 
    return (
       <>

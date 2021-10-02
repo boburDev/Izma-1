@@ -19,7 +19,7 @@ const TeacherProfileRight = () => {
       variables: { groupID: groupId && groupId }
    })
 
-   console.log(group);
+   // console.log(group);
    return (
       <>
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
-// import data from './data.json'
-import st from './davomat.module.scss'
 import { useDavomat } from '../../context/DavomatProvider'
+import st from './davomat.module.scss'
+
 function Davomat() {
     const [arr, setArr] = useState([])
-    const [davomat] = useDavomat()
+    const [groupStudents] = useDavomat()
     const [state, setState] = useState([])
     const [start, setStart] = useState('')
     const [startDay, setStartDay] = useState('')
@@ -20,15 +20,15 @@ function Davomat() {
     
     
     useEffect(() => {
-        if (davomat.groups) {
-            setStart(davomat.groups.startDate.split('-')[1])
-            setStartDay(davomat.groups.startDate.split('-')[2])
-            setDays(davomat.groups.days)
-            setYearStart(davomat.groups.startDate.split('-')[0])
-            setStartDate(davomat.groups.startDate)
-            setEndDate(davomat.groups.endDate)
+        if (groupStudents.groups) {
+            setStart(groupStudents.groups.startDate.split('-')[1])
+            setStartDay(groupStudents.groups.startDate.split('-')[2])
+            setDays(groupStudents.groups.days)
+            setYearStart(groupStudents.groups.startDate.split('-')[0])
+            setStartDate(groupStudents.groups.startDate)
+            setEndDate(groupStudents.groups.endDate)
         }
-    }, [davomat])
+    }, [groupStudents])
     
     
     const monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ]
@@ -75,8 +75,8 @@ function Davomat() {
     }
     
     const checkInput = (e) => {
-        console.log(e.target.getAttribute('data-date'))
-        console.log(e.target.getAttribute('data-id'))
+        // console.log(e.target.getAttribute('data-date'))
+        // console.log(e.target.getAttribute('data-id'))
         e.target.parentNode.childNodes[1].classList.toggle(`${st.show}`)
     }
     
@@ -89,7 +89,7 @@ function Davomat() {
             date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
             title: 'keldi'
         }
-        console.log(body)
+        // console.log(body)
         arr.push(body)
         setArr(arr)
     }
@@ -107,8 +107,6 @@ function Davomat() {
         arr.push(body)
         setArr(arr)
     }
-    
-
     
     const closer = (e) => {
         e.target.parentNode.classList.remove(`${st.show}`)
@@ -139,24 +137,30 @@ function Davomat() {
             date: [],
             fullDate: []
         }
+        
+        // console.log(days)
         days.split(',').map(i => {
             DATE.map(item => {
-                if (typeof startDay === 'string') {
-                    if ((moment(item).format('DD') - 0) === (startDay - 0)) {
-                        if((i - 1) === new Date(item).getDay()){
-                            data.date.push(moment(item).format('DD/MM'))
-                            console.log(moment(item).format('YYYY-MM-DD'))
-                        }
-                    }
-                } else {
-                    if ((i - 0) === new Date(item).getDay()) {
-                        data.date.push(moment(item).format('DD/MM'))
-                    }
-                }                
+                // if (typeof startDay === 'string') {
+                //     if ((moment(item).format('DD') - 0) === (startDay - 0)) {
+                //         console.log(moment(item).format('DD') - 0)
+                //         if((i - 1) === new Date(item).getDay()){
+                //             data.date.push(moment(item).format('DD/MM'))
+                //             // console.log(moment(item).format('YYYY-MM-DD'))
+                //         }
+                //     }
+                // } else
+                //  {
+                // }           
+                console.log(item)
+                if ((i - 0) === new Date(item).getDay()) {
+                    data.date.push(moment(item).format('DD/MM'))
+                }
                 return ""
             })
             return ""
         })
+        console.log(data)
         return data
     }
 
@@ -186,11 +190,8 @@ function Davomat() {
         <tr>
         <th className={st.name_table}>Ism</th>
         {
-            console.log(date)
-        }
-        {
-            date.date && date.date.map((item, index) => (
-                <th key={index}>
+            date.map((item, index) => (
+                <th className={st.th} key={index}>
                 {item}
                 &ensp;&ensp;
                 </th>
@@ -200,18 +201,13 @@ function Davomat() {
             </thead>
             <tbody>
             {
-                davomat.students && davomat.students.map((item, index) => (
+                groupStudents.students && groupStudents.students.map((item, index) => (
                     <tr key={index}>
                     <td className={`${st.pupil} ${
-                        item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''
-                        }`} key={index}>{item.name}</td>
-                    
+                        item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''}`} key={index}>{item.name}</td>
                     {
                         date.map((i,key) => (
                             <td className={st.td} key={key}>
-                                {/* {
-                                    console.log(item)
-                                } */}
                             <div
                                 className={st.round}
                                 onClick={checkInput}

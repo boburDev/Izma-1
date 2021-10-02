@@ -23,7 +23,7 @@ const LidForm = () => {
 
    const [newLead] = useMutation(NEW_LEAD, {
       update: (cache, data) => {
-         console.log(data)
+         // console.log(data)
       }
    })
 

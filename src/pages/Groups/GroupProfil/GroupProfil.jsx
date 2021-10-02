@@ -21,7 +21,7 @@ const GroupProfil = () => {
 
    useEffect(() => {
       if (data && data.byGroupID) {
-         console.log(data && data.byGroupID)
+         // console.log(data && data.byGroupID)
          setDataHead(data.byGroupID)
       }
    }, [data])

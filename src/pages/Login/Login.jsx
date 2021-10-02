@@ -60,8 +60,7 @@ const Login = () => {
                </div> */}
                   <div className="login_page">
                      <div className="right_part">
-                        <img src={Logo} alt="" />
-                        <img src={Logo2} alt="" />
+                        <img src={Banner} alt="" />
                      </div>
                      <div className="left_part">
                         <div className="top_items">

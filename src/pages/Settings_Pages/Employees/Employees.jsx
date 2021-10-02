@@ -3,7 +3,7 @@ import { Drawer } from 'antd'
 import SettingsArchiveForm from '../../../containers/Forms/SettingsArchiveForm/SettingsArchiveForm'
 import SettingsArchiveFormEdit from '../../../containers/Forms/SettingsArchiveFormEdit/SettingsArchiveFormEdit'
 import './Employees.scss'
-import { COLLEGUES, TEACHER_SUBSCRIPTION, DELETE_COLLEGUE } from '../../../Querys/Settings'
+import { COLLEGUES, TEACHER_SUBSCRIPTION, UPT_STATUS } from '../../../Querys/Settings'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
 
@@ -24,10 +24,14 @@ const Employees = () => {
 	
 	const editable = colleguages.find(e => e.Id === editId)
 
-	const [deleteCollegue] = useMutation(DELETE_COLLEGUE)
+	const [deleteCollegue] = useMutation(UPT_STATUS)
 
 	useEffect(() => {
-		deleteCollegue({variables: {id: deleteId}})
+
+		if (deleteId) {
+			deleteCollegue({variables: {id: deleteId, status: -1}})
+		}
+
 	}, [deleteCollegue, deleteId])
 
 	useSubscription(TEACHER_SUBSCRIPTION, {

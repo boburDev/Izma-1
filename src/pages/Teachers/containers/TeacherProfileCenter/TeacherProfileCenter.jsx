@@ -28,22 +28,22 @@ const TeacherProfileCenter = () => {
                      style={{ marginBottom: '10px', marginTop: '10px' }}>
                      <div id={i.id} className="izma__teachers-profile-certer-box-left">
                         <div id={i.id} className="izma__teachers-profile-certer-box-left-id">
-                           12798
+                           <span> 12798</span>
                         </div>
                         <div id={i.id} className="izma__teachers-profile-certer-box-left-title">
                            {i.name.toUpperCase()}
                         </div>
                      </div>
                      <div id={i.id} className="izma__teachers-profile-certer-box-right">
-                        <p id={i.id} className="izma__teachers-profile-certer-box-right-date">
+                        <span id={i.id} className="izma__teachers-profile-certer-box-right-date">
                            {i.startDate}
-                        </p>
+                        </span>
                         <span id={i.id} className="izma__teachers-profile-certer-box-right-time">
                            {i.time}
                         </span>
-                        <p id={i.id} className="izma__teachers-profile-certer-box-right-number">
+                        <button id={i.id} className="izma__teachers-profile-certer-box-right-number">
                            {i.students.length}
-                        </p>
+                        </button>
                      </div>
                   </div>
                </div>)

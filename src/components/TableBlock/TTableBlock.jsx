@@ -34,11 +34,11 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                   <img src={DeleteImg} alt="" />
                </h4>
             </> : block === 'financeHash' ? <>
-               <h4 className={'groupHash'}>{info?.studentName}</h4>
-               <h4 className={'groupHash'}>{info?.phone}</h4>
-               <h4 className={'groupHash'}>{info?.typePayment}</h4>
-               <h4 className={'groupHash'}>{info?.amount}</h4>
-               <h4 className={'groupHash'}>{info?.comment}</h4>
+                     <h4 className={'financeHash'}>{info?.studentName}</h4>
+                     <h4 className={'financeHash'}>{info?.phone}</h4>
+                     <h4 className={'financeHash'}>{info?.typePayment}</h4>
+                     <h4 className={'financeHash'}>{info?.amount}</h4>
+                     <h4 className={'financeHash'}>{info?.comment}</h4>
             </> : block === 'financeCostHash' ? <>
                         <h4 className={'financeCostHash'}>{info?.name}</h4>
                         <h4 className={'financeCostHash'}>{moment(info?.createdAt-0).format('DD.MM.YYYY')}</h4>

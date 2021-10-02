@@ -1,12 +1,57 @@
 .izma__teachers-profile-right-wrapper {
    display: flex;
    flex-direction: column;
-   width: 130%;
-   margin-top: 150px;
-   padding: 40px 40px 29px 30px;
+   width: 100%;
    background: #FFFFFF;
-   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
    border-radius: 15px;
+    .burger {
+       position: relative;
+       width: 25px;
+       height: 25px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       cursor: pointer;
+
+       span {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+
+
+          &::before {
+             content: "";
+             position: absolute;
+             width: 20px;
+             height: 2px;
+             background: #090761;
+             transform: rotate(-45deg);
+          }
+
+          &::after {
+             content: "";
+             position: absolute;
+             width: 20px;
+             height: 2px;
+             background: #090761;
+             transform: rotate(45deg);
+          }
+       }
+      }
+
+   .izma_teachers-profile-right-wrapper-header {
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+
+      
+
+   }
 
    .izma__teachers-profile-right-wrapper-id {
       font-family: "Jost";
@@ -18,18 +63,29 @@
       border-radius: 5px;
       padding: 2px 14px;
       color: #222222;
-      width: 75px;
-      margin-bottom: 10px;
    }
 
    .izma__teachers-profile-right-wrapper-title {
       font-family: "Jost";
       font-style: normal;
       font-weight: 500;
-      font-size: 22px;
+      font-size: 18px;
       line-height: 32px;
-      margin-bottom: 7px;
       color: #000000;
+      margin-top: 20px;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button {
+            background: #090761;
+            border: none;
+            outline: none;
+            color: white;
+            min-width: 34px;
+            min-height: 34px;
+      }
    }
 
    .izma__teachers-profile-right-wrapper-time-wrapper {
@@ -40,7 +96,6 @@
       font-size: 16px;
       line-height: 20px;
       color: #000000;
-      padding-bottom: 10px;
       margin-bottom: 10px;
       border-bottom: 1px solid #E0E0E0;
 
@@ -53,14 +108,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 22px;
+      margin-top: 12px;
 
       .izma__teachers-profile-right-wrapper-name-wrapper-name {
          font-family: "Jost";
          font-style: normal;
          font-weight: normal;
-         font-size: 16px;
-         line-height: 23px;
+         font-size: .8rem;
+         margin-bottom: 0;
          color: #000000;
       }
 
@@ -68,10 +123,9 @@
          font-family: "Calibri";
          font-style: normal;
          font-weight: normal;
-         font-size: 16px;
-         line-height: 20px;
+         font-size: 15px;
          color: #000000;
-         padding-right: 30px;
+         margin-bottom: 0;
       }
    }
 
@@ -86,7 +140,6 @@
          font-style: normal;
          font-weight: normal;
          font-size: 14px;
-         line-height: 17px;
          text-decoration-line: underline;
          padding-right: 7px;
          color: #787878;

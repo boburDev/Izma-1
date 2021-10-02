@@ -6,10 +6,12 @@ import { useStudentPay } from '../../context/StudentPay'
 import { DELETE_STUDENT } from  '../../Querys/Table_Query'
 import { DELETE_TEACHER } from '../../Querys/Teacher_Query'
 import { useMutation } from '@apollo/client'
+import { useState } from 'react'
+import  Modal  from '../../components/Modal/Modal'
 
 const TableBlock = ({ block, info, index, showDrawer }) => {
    const [stID, setStudentID] = useStudentPay()
-
+   const [modal, setModal] = useState()
    const [getID] = useMutation(DELETE_STUDENT)
    const [deleteTeacher] = useMutation(DELETE_TEACHER)
   
@@ -82,14 +84,17 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
 
 
                   <h4 className={`${block}`}>
+                     <Modal 
+                     block="delete"
+                        myModal={modal}
+                        setMymodal={setModal}
+                        title={`O'qituvchini o'chirish`}
+                        text={info?.name + `ni o'chirilshni hohlaysizmi ?`}
+                        info={info.__typename === 'Colleagues' ? { variables: { id: info.Id } } : { studentID: info.id }}
+                        setInfo={info.__typename === 'Colleagues' ? deleteTeacher : getID}
+                     />
                      <img src={DeleteImg} alt="" onClick={() => {
-
-                        if(info.__typename === 'Colleagues') {
-                           deleteTeacher({variables: {id: info.Id}})
-                        }
-                        if (info.__typename === 'Students') {
-                           getID({variables: {studentID: info.id}})
-                        }
+                        setModal(true)
                      }}/>
                   </h4>
                </> :

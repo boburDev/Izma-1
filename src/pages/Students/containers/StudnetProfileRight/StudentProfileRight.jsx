@@ -38,7 +38,7 @@ const StudentsProfileRight = () => {
 
                   // {console.log(item) }
                   <div key={item.id} className="izma__students-payment-inner-left-section-center-wrapper-left izma__students-payment-inner-left-section-center-wrapper-lefts">
-                     <Link to={`/groupsInner/${item.id}`}>
+                     <Link to={`/groups/groupsProfil/${item.id}`}>
                         <div className="izma__students-payment-inner-left-section-center-wrapper-inner-left">
                            <p className="izma__students-payment-inner-left-section-center-wrapper-left-id">
                               {item.name}

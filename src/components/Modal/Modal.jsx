@@ -1,6 +1,6 @@
 import './Modal.scss';
 import { useEffect, useRef } from 'react';
-const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom }) => {
+const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text }) => {
    const commentText = useRef()
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
@@ -61,9 +61,19 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
                                           </div>
                                        </> :
                                        <>
-                                          <div className="buttonWrapper">
-                                             <button>Yaratish</button>
-                                          </div>
+                                          {
+                                             block === 'delete' ?
+                                                <>
+                                                   <h2>{text}</h2>
+                                                   <div className="buttonWrapper">
+                                                      <button onClick={() => setMymodal(false)}>Yoq</button>
+                                                      <button onClick={() => setInfo(info)}>Ha</button>
+                                                   </div>
+                                                </> :
+                                                <>
+
+                                                </>
+                                          }
                                        </>
                                  }
                               </>

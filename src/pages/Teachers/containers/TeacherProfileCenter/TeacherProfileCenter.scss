@@ -1,9 +1,12 @@
 .izma__teachers-profile-certer {
    display: flex;
-   width: 32%;
+   width: 100%;
    margin-top: 40px;
    margin-right: 45px;
    flex-direction: column;
+   cursor: pointer;
+
+  
 
    .izma__teachers-profile-certer-heading {
       font-family: "Jost";
@@ -23,19 +26,35 @@
       padding-right: 30px;
       border-radius: 4px;
 
+       &:hover {
+          background: #314FA5;
+
+          span {
+             color: white;
+          }
+
+          .izma__teachers-profile-certer-box-left .izma__teachers-profile-certer-box-left-title {
+             color: white;
+          }
+          
+          .izma__teachers-profile-certer-box-right-number {
+            background: #fff;
+            color: #314FA5;
+          }
+       }
+
       .izma__teachers-profile-certer-box-left {
          display: flex;
          margin: 24px 0;
          flex-direction: column;
 
-         .izma__teachers-profile-certer-box-left-id {
+         .izma__teachers-profile-certer-box-left-id span{
             font-family: "Jost";
             font-style: normal;
             padding: 2px 16px;
             font-weight: normal;
             font-size: 16px;
             border-radius: 5px;
-            width: 75px;
             line-height: 23px;
             background-color: #fff;
             color: #222222;
@@ -47,7 +66,6 @@
             font-weight: normal;
             margin-top: 10px;
             font-size: 16px;
-            line-height: 20px;
             color: #222222;
          }
       }
@@ -61,8 +79,7 @@
          font-family: "Calibri";
          font-style: normal;
          font-weight: normal;
-         font-size: 16px;
-         line-height: 20px;
+         font-size: 17px;
          text-align: right;
          padding-right: 7px;
          color: #797979;
@@ -72,8 +89,7 @@
          font-family: "Calibri";
          font-style: normal;
          font-weight: normal;
-         font-size: 16px;
-         line-height: 20px;
+         font-size: 17px;
          text-align: right;
          color: #797979;
          padding-right: 24px;
@@ -82,12 +98,13 @@
       .izma__teachers-profile-certer-box-right-number {
          background: #8D2727;
          border-radius: 5px;
-         padding: 3px 8px;
+         min-width: 34px;
+         min-height: 34px;
+
          font-family: "Jost";
          font-style: normal;
          font-weight: 500;
          font-size: 14px;
-         line-height: 20px;
          color: #FFFFFF;
       }
    }

@@ -47,6 +47,59 @@
 
          
       }
+
+      .financeHash {
+         display: flex;
+         align-items: center;
+         padding: 10px 16px;
+         text-align: start;
+         box-sizing: border-box;
+         font-style: normal;
+         font-weight: bold;
+         font-size: 14px;
+         line-height: 24px;
+         text-transform: capitalize;
+         color: #2F2D51;
+         margin-bottom: 0 !important;
+         flex-wrap: wrap;
+
+         &:nth-child(1) {
+            width: 25%;
+         }
+
+         &:nth-child(2) {
+            width: 15%;
+
+         }
+
+         &:nth-child(3) {
+            width: 15%;
+
+         }
+
+         &:nth-child(4) {
+            width: 15%;
+
+         }
+
+         &:nth-child(5) {
+            width: 10%;
+
+         }
+
+         &:nth-child(6) {
+            width: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+               width: 30px;
+               height: 30px;
+            }
+
+         }
+      }
       .settingsHashRooms {
          display: flex;
          align-items: center;

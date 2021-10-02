@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 
 import { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
@@ -11,9 +11,16 @@ query colleagues ($truee: String){
 }
 `
 
+const mut = gql `
+mutation createColleagueSalary($teach: ID){
+  createColleagueSalary(teachId: $teach)
+}
+`
+
 const StudentsTablee = () => {
 
   const {data: collagueee} = useQuery(collague_id, {variables: {truee: 'truee'}})
+  const [newSalary] = useMutation(mut)
   
   
   useEffect(() => {
@@ -32,8 +39,8 @@ const StudentsTablee = () => {
         if (index === arr.length) {
           timee = 100000
         } else {
-          console.log(arr[index++])
-          // newSalary({variables: {stID: arr[index++], cashAmm: '0'}})
+          // console.log(arr[index++])
+          newSalary({variables: {teach: arr[index++]}})
         }
 
       }, timee);

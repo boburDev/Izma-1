@@ -17,7 +17,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router';
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
 import PasswordInput from '../../../components/PasswordInput/PasswordInput';
-
+import { useSnackbar } from 'notistack';
 
 
 const StudentsEditForm = ({ onCloseF }) => {
@@ -88,6 +88,16 @@ const StudentsEditForm = ({ onCloseF }) => {
    const [stTg, setStTg] = useState()
    const [stPassword, setStPassword] = useState(null)
 
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+    const handleClick = () => {
+        const message = 'O`zgartirildi'
+        enqueueSnackbar(message, {
+            variant: 'success',
+        });
+
+    };
+
    return (
        <div className="form-wrapper">
            <div className="top-place">
@@ -116,6 +126,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                }
 
                UpdateStudents({ variables: data })
+                   handleClick()
            }
            }}>
                <div className="form-input">

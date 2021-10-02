@@ -8,7 +8,7 @@ import { ROOMS, UPDATE_GROUP } from '../../../Querys/Group_Query';
 import { useQuery, useMutation } from '@apollo/client';
 import { useState } from 'react';
 import DropSearch from '../../../components/DropSearch/DropSearch';
-import PasswordInput from '../../../components/PasswordInput/PasswordInput';
+import { useSnackbar } from 'notistack';
 
 const format = 'HH:mm';
 
@@ -52,6 +52,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
          variables: data
       })
       onClose()
+      handleClick()
    }
 
    const daysArr = [
@@ -88,6 +89,16 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
          }
       }
    }
+
+   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+   const handleClick = () => {
+      const message = 'O`zgartirildi'
+      enqueueSnackbar(message, {
+         variant: 'success',
+      });
+
+   };
 
    // console.log(days)
 

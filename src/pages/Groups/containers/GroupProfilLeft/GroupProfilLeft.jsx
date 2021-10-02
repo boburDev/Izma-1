@@ -17,11 +17,13 @@ import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddG
 // import StudentAdd from '../forms/studentsAddFormByGroup/studentsAddForm'
 // import { useGroupStudents } from './context'
 // import { useCloseModal } from './contextModalClose'
+import Modal1 from '../../../../components/Modal/Modal';
 
 const GroupProfilLeft = (prop) => {
 
    // const [setGroupStudents] = useGroupStudents(true)
    // const [closeModal] = useCloseModal(true)
+   const [deleteGroup, setDeleteGroup] = useState()
 
    const newNoteStyle = {
       width: '100%',
@@ -118,7 +120,6 @@ const GroupProfilLeft = (prop) => {
    }, [students])
 
    const [deletGroup, { data: delData }] = useMutation(DELETE_GROUP)
-   console.log(delData)
 
    const [HistoryPay] = useMutation(HISTORY_PAYMENT)
    const [AddStudentToGroup] = useMutation(SELECT_STUDENT_GROUP)
@@ -327,9 +328,17 @@ const GroupProfilLeft = (prop) => {
                   >
                      <GroupEdit dataForEdit={groups && groups.byGroupID} onClose={onClose} />
                   </Drawer>
-                  <button onClick={handleDelete} className="izma__groups-attendance-left-up-btn-del">
+                  <button onClick={setDeleteGroup} className="izma__groups-attendance-left-up-btn-del">
                      <img src={Trash} alt="" />
                   </button>
+                  <Modal1
+                     myModal={deleteGroup}
+                     setMymodal={setDeleteGroup}
+                     setInfo={handleDelete}
+                     block={`delete`}
+                     title={`Guruhni o'chirish`}
+                     text={groups && groups.byGroupID.name + 'ni o`chirishni hohlaysizmi ?'}
+                  />
 
                </div>
             </div>

@@ -90,7 +90,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                         setMymodal={setModal}
                         title={info.__typename === 'Colleagues' ? `O'qituvchini o'chirish` : `O'quvchini o'chirish`}
                         text={info?.name + `ni o'chirilshni hohlaysizmi ?`}
-                        info={info.__typename === 'Colleagues' ? { variables: { id: info.Id } } : { studentID: info.id }}
+                        info={info.__typename === 'Colleagues' ? { variables: { id: info.Id } } : { variables: { studentID: info.id } }}
                         setInfo={info.__typename === 'Colleagues' ? deleteTeacher : getID}
                      />
                      <img src={DeleteImg} alt="" onClick={() => {

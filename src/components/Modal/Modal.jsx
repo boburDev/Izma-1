@@ -81,7 +81,7 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
                                                       <button onClick={() => {
                                                          setInfo(info)
                                                          handleClick()
-                                                         }}>Ha</button>
+                                                      }}>Ha</button>
                                                    </div>
                                                 </> :
                                                 <>

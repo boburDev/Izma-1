@@ -1,6 +1,6 @@
 import './StudentAdd.scss'
 import CloceBtn from '../../../assets/Icons/Group 26.svg'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Plus from '../../../assets/Icons/plus.png'
 import Minus from '../../../assets/Icons/minus.png'
 import { DatePicker } from 'antd';
@@ -91,14 +91,18 @@ const StudentAdd = ({ onCloseF }) => {
    const [AddNewSudents, { data: checkStudent }] = useMutation(ADD_NEW_STUDENTS)
    const [newCash] = useMutation(NEW_CASH)
 
-   if (checkStudent && checkStudent.createStudent.id) {
-      newCash({
-         variables: {
-            stID: checkStudent && checkStudent.createStudent.id,
-            cashAmm: '0'
-         }
-      })
-   }
+   useEffect(() => {
+
+      if (checkStudent && checkStudent.createStudent.id) {
+         newCash({
+            variables: {
+               stID: checkStudent && checkStudent.createStudent.id,
+               cashAmm: '0'
+            }
+         })
+      }
+   }, [checkStudent, newCash])
+
 
 
    const { data: dataGroups } = useQuery(GROUPS, { variables: { teacherID: [], courseID: [] } })
@@ -156,7 +160,6 @@ const StudentAdd = ({ onCloseF }) => {
                   address: [{ address: 'null' }]
                }
 
-               // console.log(stPhoneNum.number.length)
                AddNewSudents({ variables: data })
             }
          }}>

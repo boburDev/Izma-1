@@ -2,7 +2,7 @@ import './TeacherAdd.scss'
 import Closebtn from '../../../assets/Icons/Group 26.svg'
 import PhoneInput from "react-phone-input-2";
 import { Input, Space, DatePicker } from 'antd';
-
+import { useSnackbar } from 'notistack';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import 'antd/dist/antd.css'
 import { useMutation } from '@apollo/client';
@@ -10,6 +10,7 @@ import { NEW_TEACHER } from '../../../Querys/Teacher_Query';
 import { useState } from 'react';
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
 import PasswordInput from '../../../components/PasswordInput/PasswordInput';
+
 
 const TeacherAdd = ({ onClose, setVisible }) => {
 
@@ -20,6 +21,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
    const [password, setPassword] = useState("")
    const [comment, setComment] = useState("")
    // const [ photo, setPhoto ] = useState("")
+   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
    const [newTeacher] = useMutation(NEW_TEACHER)
 
@@ -40,6 +42,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
       newTeacher({
          variables: data
       })
+      handleClick()
       onClose()
 
    }
@@ -47,6 +50,14 @@ const TeacherAdd = ({ onClose, setVisible }) => {
    function onChange(date, dateString) {
       setBirthDay(dateString)
    }
+
+   const handleClick = () => {
+      const message = 'O`qituvchi yaratildi'
+      enqueueSnackbar(message, {
+         variant: 'success',
+      });
+
+   };
 
 
    return (

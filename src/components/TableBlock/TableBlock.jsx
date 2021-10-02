@@ -88,7 +88,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                      block="delete"
                         myModal={modal}
                         setMymodal={setModal}
-                        title={`O'qituvchini o'chirish`}
+                        title={info.__typename === 'Colleagues' ? `O'qituvchini o'chirish` : `O'quvchini o'chirish`}
                         text={info?.name + `ni o'chirilshni hohlaysizmi ?`}
                         info={info.__typename === 'Colleagues' ? { variables: { id: info.Id } } : { studentID: info.id }}
                         setInfo={info.__typename === 'Colleagues' ? deleteTeacher : getID}

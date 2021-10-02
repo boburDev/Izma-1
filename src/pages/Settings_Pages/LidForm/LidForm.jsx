@@ -41,44 +41,44 @@ const LidForm = () => {
 
    return (
       <div className="container">
-         <div className="lidFormm">
-            <div className="inner">
-               <div className="banner">
+         <div className="lidFormm1">
+            <div className="inner1">
+               <div className="banner1">
                   <img src={Banner} alt="" />
                </div>
 
-               <div className="request_center">
-                  <div className="top_iteems">
+               <div className="request_center1">
+                  <div className="top_iteems1">
                      <h3>O'quv markaziga so'rov qoldiring</h3>
                      <img src={QoraBanner} alt="" />
                   </div>
-                  <div className="top_iteems">
+                  <div className="top_iteems1">
                      <p>Keling bir ajoyib hikoya yozamiz</p>
 
                   </div>
                </div>
 
-               <div className="user_name">
-                  <label className="name_label" htmlFor="">Ism va familya *</label>
-                  <input onKeyUp={e => setName(e.target.value)} className="name_input" type="text" name="" id="" />
+               <div className="user_name1">
+                  <label className="name_label1" htmlFor="">Ism va familya *</label>
+                  <input onKeyUp={e => setName(e.target.value)} className="name_input1" type="text" name="" id="" />
                </div>
 
-               <div className="user_name">
-                  <label className="name_label" htmlFor="">Telefon *</label>
+               <div className="user_name1">
+                  <label className="name_label1" htmlFor="">Telefon *</label>
                   <PhoneNumberInput
                      setPhone={setPhone}
                   />
                </div>
 
-               <div className="user_name">
-                  <label className="name_label" htmlFor="">Izoh</label>
+               <div className="user_name1">
+                  <label className="name_label1" htmlFor="">Izoh</label>
 
-                  <textarea onKeyUp={e => setComment(e.target.value)} className="name_input comment" type="text" name="" id="" />
+                  <textarea onKeyUp={e => setComment(e.target.value)} className="name_input1 comment1" type="text" name="" id="" />
                </div>
 
-               <div className="user_name">
-                  <label className="name_label" htmlFor="">Kursingizni tanlang *</label>
-                  <select onChange={e => setCourse(e.target.value)} className="name_input" name="" id="">
+               <div className="user_name1">
+                  <label className="name_label1" htmlFor="">Kursingizni tanlang *</label>
+                  <select onChange={e => setCourse(e.target.value)} className="name_input1" name="" id="">
                      {
                         courses && courses.byHashtag.map((e, i) => (
                            <option key={i} value={e.id}>{e.name}</option>

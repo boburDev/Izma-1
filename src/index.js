@@ -20,6 +20,8 @@ import {TeachersTableProvider} from './context/TeachersTableProvider'
 import { LoaderProvider } from './context/Loader';
 import { DavomatProvider } from './context/DavomatProvider';
 import { Pagination } from './context/Pagination';
+import { SnackbarProvider } from 'notistack';
+import Slide from '@material-ui/core/Slide';
 
 const isTester = false
 
@@ -84,6 +86,14 @@ const Main = () => {
 	return(
 		<React.StrictMode>
     <BrowserRouter>
+	 <SnackbarProvider 
+	 	maxSnack={3}
+		anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+    }}
+    TransitionComponent={Slide}
+	>
       <ApolloProvider client={client}>
 		<LoginProvider>
 			<CourseProvider>
@@ -98,7 +108,8 @@ const Main = () => {
 												<LoaderProvider>
 													<DavomatProvider>
 														<Pagination>
-															<App />
+															
+																<App />
 														</Pagination>
 													</DavomatProvider>
 												</LoaderProvider>
@@ -113,6 +124,7 @@ const Main = () => {
 			</CourseProvider>
 		</LoginProvider>
 		</ApolloProvider>
+		</SnackbarProvider>
     </BrowserRouter>
   </React.StrictMode>
 	)

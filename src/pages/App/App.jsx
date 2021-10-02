@@ -27,6 +27,9 @@ import EnterForm from "../Settings_Pages/EnterForm/EnterForm";
 import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
 import Lids from "../Lids/Lids";
 import SettingsRoadMap from "../Settings_Pages/Roadmap/roadmap";
+
+import StudentsTablee from '../../test';
+
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
   const [token, setToken] = useState(window.localStorage.getItem('token'))
@@ -101,6 +104,8 @@ const App = () => {
                       <Route path="/enterForm" component={EnterForm} />
 
 
+
+                      <Route path="/test" component={StudentsTablee} />
 
 
 

@@ -107,7 +107,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
          }
          return ''
       })
-      setBoards(new1);
+      setBoards(new1)
       postHandle(currentList, item)
       e.target.style.boxShadow = 'none'
       if (e.target.className === 'block-inner-user') {
@@ -163,9 +163,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
                <div className="lids-column">
                   <div className={`lids-column-top ${arr[index] ? 'active' : ''}`}>
                      <h2>{board.title}</h2>
-                     <div className="lids-column-top-click"
-
-                     >
+                     <div className="lids-column-top-click">
                         <span className="lids-column-top-click-left"
                            onClick={() => {
                               setItemId(itemIds[index])
@@ -202,7 +200,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
                            <LidAddForm add={arr[index]} setAdd={arr2[index]} itemId={itemId}/>
 
                      <div className="lids-zero">
-                                 {/* {
+                                 {
                                     board.items.map(item => (
                                        
                                        item.id === '1' ||item.id === '4' || item.id === '7' ?
@@ -222,7 +220,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
                                           :
                                           <></>
                                     ))
-                                 } */}
+                                 }
                               
                      </div>
                   </div>
@@ -230,7 +228,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
 
                   <div className="lids-column-center">
 
-                     {/* {
+                     {
                         board.items.map(item =>
                            <LidBlock
                               board={board}
@@ -244,7 +242,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
                               setEdit={setEdit}
                            />
                         )
-                     } */}
+                     }
                   </div>
                </div>
             )

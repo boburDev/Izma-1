@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './Rooms.scss'
-import {  Button, Input } from 'antd';
 import { ROOMS, CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM, SUBCRIPTIONS_ROOM } from './query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
@@ -39,9 +38,9 @@ const Rooms = () => {
       setIsModalVisible(true);
     };
   
-    const handleOk = () => {
-      setIsModalVisible(false);
-    };
+   //  const handleOk = () => {
+   //    setIsModalVisible(false);
+   //  };
   
     const handleCancel = () => {
       setIsModalVisible(false);
@@ -62,9 +61,9 @@ const Rooms = () => {
    }
 
 
-   const handleEditCancel = () => {
-      setEditIsModalVisible(false)
-   }
+   // const handleEditCancel = () => {
+   //    setEditIsModalVisible(false)
+   // }
 
 
    const updateRoom = () => {

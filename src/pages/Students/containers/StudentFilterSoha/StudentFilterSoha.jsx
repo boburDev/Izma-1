@@ -3,7 +3,6 @@ import StudentFilterCheck from '../../../../components/StudentComponents/Student
 import { useQuery } from '@apollo/client'
 import { COURSES } from '../../../../Querys/FilterSoha'
 import { useState } from 'react'
-import { useCourse } from '../../../../context/CourseProvider'
 import {useCourseFilter} from '../../../../context/CourseFilterProvider'
 import { useEffect } from 'react'
 
@@ -15,7 +14,7 @@ const StudentFilterSoha = () => {
 
    useEffect(() => {
       setCourseFilter(state);
-   }, [state])
+   }, [state, setCourseFilter])
    
 
 

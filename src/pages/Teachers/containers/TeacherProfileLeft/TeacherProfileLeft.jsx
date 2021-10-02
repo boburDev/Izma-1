@@ -16,7 +16,7 @@ import moment from 'moment';
 const TeacherProfileLeft = () => {
    const { collegueID } = useParams()
 
-   const [openEdit, setOpenEdit] = useState(false)
+   // const [openEdit, setOpenEdit] = useState(false)
    const [setLoader] = useLoader(true)
 
    const [collegueInfo, setCollgueInfo] = useState()
@@ -108,7 +108,7 @@ const TeacherProfileLeft = () => {
 
 
    return (
-      <div className={`overlay ${openEdit ? 'active' : ''}`}>
+      <div className={`overlay ${false ? 'active' : ''}`}>
          <div className="izma__teachers-payment-inner">
 
 

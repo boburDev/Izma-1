@@ -12,7 +12,8 @@ const CoursesCard = () => {
    const { data: courses, loading } = useQuery(COURSES)
    useEffect(() => {
       setLoading(loading)
-   }, [loading])
+   }, [loading, setLoading])
+
    useSubscription(COURSE_SUBSCRIPTION, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Close from '../../../../assets/Icons/Group 26.svg'
-import { Drawer,  Input, Select, DatePicker } from 'antd';
+import { Drawer, Select, DatePicker } from 'antd';
 import { Option } from "antd/lib/mentions";
 import StudentEdit from '../../../../containers/Forms/StudentAdd/StudentEdit';
 import FinanceRepaymentForm from '../../../../containers/Finances/FinancesForm/FinanceRepaymeynForm/FinanceRepaymeynForm';
@@ -96,7 +96,6 @@ const StudentsProfileLeft = (prop) => {
    
      const [ comme, setComme ] = useState('')
    
-     const { TextArea } = Input;
      const [visible, setVisible] = useState(false);
      const showDrawer = () => {
            setVisible(true);

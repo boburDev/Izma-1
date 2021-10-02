@@ -15,7 +15,7 @@ const FilterTeachers = () => {
 
    useEffect(()=>{
       setTeacher(state)
-   },[state])
+   },[state, setTeacher])
 
    useEffect(() => {
       setArr(teachers)

@@ -4,8 +4,6 @@ import { useEvent } from '../../../../context/EventProvider'
 import { GROUP_INFO } from './query'
 import { useQuery } from '@apollo/client'
 import { Drawer } from 'antd';
-import { useState } from 'react';
-import userEvent from '@testing-library/user-event';
 import { Link } from 'react-router-dom';
 const TeacherProfileRight = () => {
 

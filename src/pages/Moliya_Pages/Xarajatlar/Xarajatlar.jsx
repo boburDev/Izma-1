@@ -1,7 +1,6 @@
 import './Xarajatlar.scss'
 import FinanceCostsImg from '../../../assets/Icons/finance-dolor-icon.svg'
 import { DatePicker, } from "antd"
-import DeleteImg from '../../../assets/Icons/settings-delete.svg'
 import XarajatlarForm from './containers/XarajatlarForm/XarajatlarForm'
 import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'

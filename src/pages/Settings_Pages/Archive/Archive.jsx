@@ -1,7 +1,7 @@
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation, useSubscription } from '@apollo/client';
 import { useState, useEffect } from 'react';
 import TTable from '../../../components/Table/TTable';
-import { COLLEGUES_BY_STATUS, UPT_STATUS } from '../../../Querys/Settings';
+import { COLLEGUES_BY_STATUS, UPT_STATUS, TEACHER_SUBSCRIPTION } from '../../../Querys/Settings';
 import './Archive.scss'
 
 
@@ -15,7 +15,6 @@ const Archive = () => {
 
    const {data: minusStatus} = useQuery(COLLEGUES_BY_STATUS)
 	const [deleteCollegue] = useMutation(UPT_STATUS)
-
 
    useEffect(() => {
       if (minusStatus && minusStatus.selectByStatus) {  
@@ -84,7 +83,18 @@ const Archive = () => {
          deleteCollegue({variables: {id: takeID, status: stat * 10}})
       }
 
-   }, [deleteCollegue, stat])
+   }, [deleteCollegue, stat, takeID])
+
+   useSubscription(TEACHER_SUBSCRIPTION, {
+		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+			cache.modify({
+				fields: {
+					selectByStatus: () => {}
+				}
+			})
+		},
+	})   
+
 
    return (
       <>

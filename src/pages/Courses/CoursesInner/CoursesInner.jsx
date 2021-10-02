@@ -32,7 +32,7 @@ const CoursesInner = () => {
 
    useEffect(() => {
       setLoading(loading)
-   }, [loading])
+   }, [loading, setLoading])
 
 
 

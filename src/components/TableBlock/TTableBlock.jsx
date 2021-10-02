@@ -3,6 +3,7 @@ import DeleteImg from '../../assets/Icons/delete-border.svg'
 import EditImg from '../../assets/Icons/settings-edit.svg'
 import moment from 'moment'
 
+
 const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, setInfo, openModal, setID, deleteRoom }) => {
    return (
       <div className="tableBlock">

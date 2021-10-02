@@ -1,5 +1,6 @@
 import './Modal.scss';
 import { useEffect, useRef } from 'react';
+import { useSnackbar } from 'notistack';
 const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text }) => {
    const commentText = useRef()
    const useOutsideAlerter = (ref) => {
@@ -16,6 +17,16 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
          };
       }, [ref])
    }
+
+   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+   const handleClick = () => {
+      const message = 'O`chirildi'
+      enqueueSnackbar(message, {
+         variant: 'error',
+      });
+
+   };
 
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
@@ -67,7 +78,10 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
                                                    <h2>{text}</h2>
                                                    <div className="buttonWrapper">
                                                       <button onClick={() => setMymodal(false)}>Yoq</button>
-                                                      <button onClick={() => setInfo(info)}>Ha</button>
+                                                      <button onClick={() => {
+                                                         setInfo(info)
+                                                         handleClick()
+                                                         }}>Ha</button>
                                                    </div>
                                                 </> :
                                                 <>

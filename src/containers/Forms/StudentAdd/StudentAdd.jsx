@@ -10,6 +10,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
 import DropSearch from '../../../components/DropSearch/DropSearch';
 import PasswordInput from '../../../components/PasswordInput/PasswordInput'
+import { useSnackbar } from 'notistack';
 
 
 
@@ -114,6 +115,16 @@ const StudentAdd = ({ onCloseF }) => {
    //       setNames(guruh)
    //    }
    // }, [dataGroups])
+
+   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+   const handleClick = () => {
+      const message = 'O`quvchi yaratildi'
+      enqueueSnackbar(message, {
+         variant: 'success',
+      });
+
+   };
 
 
    return (
@@ -271,6 +282,7 @@ const StudentAdd = ({ onCloseF }) => {
             <button className="create-btn" onClick={() => {
                (stName && stGender) && onCloseF()
                console.log(stPhoneNum, stName, stBirth, stGender, stTextInfo, stTg, stGroup, stPassword, fieldInput, fieldParents)
+               handleClick()
 
             }}>Yarating</button>
          </form>

@@ -47,9 +47,19 @@ const DELETE_COLLEGUE = gql `
   }
 `
 
+const UPT_STATUS = gql `
+  mutation updateColleagueStatus($id: ID!, $status: Int) {
+    updateColleagueStatus(Id: $id, status: $status) {
+      Id
+      status
+    }
+  }
+`
+
 export {
   COLLEGUES,
   ROADMAP,
   TEACHER_SUBSCRIPTION,
-  DELETE_COLLEGUE
+  DELETE_COLLEGUE,
+  UPT_STATUS
 }

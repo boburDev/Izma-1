@@ -107,6 +107,7 @@ query student($id: ID!) {
       id
       name
       teacher
+      teacherID
     }
   }
 }
@@ -126,6 +127,7 @@ mutation createCheck(
 	$paymentType: String!
 	$paymentAmount: Int!
 	$paymentTime: String!
+	$teachId: String
 	$teacherName: String
 	$groupId: ID
 	$groupName: String
@@ -137,6 +139,7 @@ mutation createCheck(
     paymentType: $paymentType
     paymentAmount: $paymentAmount
     paymentTime: $paymentTime
+    teachId: $teachId
     teacherName: $teacherName
     groupId: $groupId
     groupName: $groupName

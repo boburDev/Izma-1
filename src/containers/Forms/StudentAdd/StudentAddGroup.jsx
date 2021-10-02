@@ -18,8 +18,6 @@ const StudentAddGroup = ({ onCloseF }) => {
 
    const { groupID } = useParams()
 
-   console.log(groupID)
-
    const [stPhoneNum, setStPhoneNum] = useState('')
    const [stName, setStName] = useState('')
    const [stGender, setStGender] = useState()

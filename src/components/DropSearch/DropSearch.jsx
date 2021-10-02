@@ -7,8 +7,6 @@ const DropSearch = ({ arr, pInput, fnc }) => {
    const browsers = useRef()
    const arrow = useRef()
 
-   console.log(arr)
-
 
 
    useEffect(() => {
@@ -111,17 +109,17 @@ const DropSearch = ({ arr, pInput, fnc }) => {
          </div>
          <datalist className="dropSearchDatalist" ref={browsers}>
             {
-               arr && arr.map((e, i) => (
+               arr && arr.map((z, i) => (
                   <option
                   
                      onClick={(e) => {
                         if (e.target.className === 'selected') {
                            fnc('')
                         } else {
-                           fnc(e.target.value)
+                           fnc(z)
                         }
                      }}
-                     key={i} value={e.id ? e.id : e.Id}>{e.name ? e.name : e.room}</option>
+                     key={i} value={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</option>
                ))
             }
          </datalist>

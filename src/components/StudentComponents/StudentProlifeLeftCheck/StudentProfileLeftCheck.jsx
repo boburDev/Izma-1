@@ -1,7 +1,7 @@
 import './check.scss'
 import ReactToPrint from 'react-to-print';
 import Close from '../../assets/Icons/Group 26.svg'
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Logo from '../../assets/Icons/Sertifikat.png'
 import { useCheck } from '../studentsTable/context'
 const StudentProlifeLeftCheck = ({ handleCancelY, handleOkY }) => {
@@ -31,9 +31,6 @@ const StudentProlifeLeftCheck = ({ handleCancelY, handleOkY }) => {
       paddingLeft: '10px',
    }
 
-   useEffect(() => {
-      console.log(check && check.checkData && check.checkData)
-   }, [check])
 
    return (
       <div className="check-wrapper">

@@ -228,9 +228,10 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
             'UZCARD' : 'Bank hisobi',
             paymentAmount: cache.cashAmm - 0,
             paymentTime: cache.payed_at,
+            teachId: data.teacherID,
             teacherName: data.teacher,
-            groupId: data.key,
-            groupName: data.value,
+            groupId: data.id,
+            groupName: data.name,
             studentName: cache.stName,
             comments: cache.comment
             }
@@ -243,7 +244,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
               check: true,
               checkData: {
                 ...cache,
-                data,
+                ...data,
                 count: count && count.checksCounts + 1
               }
             })

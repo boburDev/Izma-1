@@ -79,7 +79,7 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
                                                    <div className="buttonWrapper">
                                                       <button onClick={() => setMymodal(false)}>Yoq</button>
                                                       <button onClick={() => {
-                                                         setInfo(info)
+                                                         info ? setInfo(info) : setInfo()
                                                          setMymodal(false)
                                                          handleClick()
                                                       }}>Ha</button>

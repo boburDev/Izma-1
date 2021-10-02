@@ -59,7 +59,7 @@ const Employees = () => {
 			deleteCollegue(data)
 		}
 
-	},[stat, deleteCollegue])
+	},[stat, deleteCollegue, deleteId])
 
 
 

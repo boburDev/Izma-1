@@ -37,10 +37,10 @@ const GroupAdd = ({ onClose }) => {
       e.preventDefault()
       const data = {
          name,
-         courseID,
-         teacherID,
-         days: days === 'boshqa' ? selectedDate.sort().join() : days,
-         roomID,
+         courseID: courseID.id,
+         teacherID: teacherID.Id,
+         days: days === 'boshqa' ? selectedDate.sort().join() : days.id,
+         roomID: roomID.id,
          time,
          startDate,
          endDate

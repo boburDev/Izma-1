@@ -23,11 +23,10 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
       setLoad(true)
       async function getQuestions() {
          try {
-            const { data } = await request.get(`/leads`);
+            const { data } = await request.get(`/`);
             console.log(data)
-            setBoards(data.results);
+            setBoards(data.results)
             setLoad(false)
-
          } catch (err) { console.log(err) }
       }
       !isCancelled && getQuestions();
@@ -203,7 +202,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
                            <LidAddForm add={arr[index]} setAdd={arr2[index]} itemId={itemId}/>
 
                      <div className="lids-zero">
-                                 {
+                                 {/* {
                                     board.items.map(item => (
                                        
                                        item.id === '1' ||item.id === '4' || item.id === '7' ?
@@ -223,7 +222,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
                                           :
                                           <></>
                                     ))
-                                 }
+                                 } */}
                               
                      </div>
                   </div>
@@ -231,7 +230,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
 
                   <div className="lids-column-center">
 
-                     {
+                     {/* {
                         board.items.map(item =>
                            <LidBlock
                               board={board}
@@ -245,7 +244,7 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
                               setEdit={setEdit}
                            />
                         )
-                     }
+                     } */}
                   </div>
                </div>
             )

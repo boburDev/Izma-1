@@ -80,6 +80,7 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
                                                       <button onClick={() => setMymodal(false)}>Yoq</button>
                                                       <button onClick={() => {
                                                          setInfo(info)
+                                                         setMymodal(false)
                                                          handleClick()
                                                       }}>Ha</button>
                                                    </div>

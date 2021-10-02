@@ -2,7 +2,7 @@ import React from 'react';
 import { ApolloClient, ApolloProvider, InMemoryCache, split, createHttpLink } from '@apollo/client'
 import ReactDOM from 'react-dom';
 import App from './pages/App/App';
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { CourseProvider } from './context/CourseProvider'
 import '../src/assets/izma fonts/fonts.scss'
 import { getMainDefinition } from '@apollo/client/utilities'
@@ -12,7 +12,7 @@ import { LoginProvider } from './context/LoginProvider'
 import { TeacherProvider } from './context/TeacherProvider'
 import { EventProvider } from './context/EventProvider'
 import { CheckProvider } from './context/CheckProvider'
-import {StudentTableProvider} from './context/StudentTableProvider'
+import { StudentTableProvider } from './context/StudentTableProvider'
 import { StudentPayProvider } from './context/StudentPay';
 import { StudentFilterProvider } from './context/StudentFilter';
 import { CourseFilterProvider } from './context/CourseFilterProvider';
@@ -23,15 +23,15 @@ import { Pagination } from './context/Pagination';
 import { SnackbarProvider } from 'notistack';
 import Slide from '@material-ui/core/Slide';
 
-const isTester = false
+const isTester = true
 
 // http://api.al-azhar.uz/api/graphql
 
-// const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
-// const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
 
-const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
-const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+// const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+// const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
 // console.log(api, wssApi)
 
 

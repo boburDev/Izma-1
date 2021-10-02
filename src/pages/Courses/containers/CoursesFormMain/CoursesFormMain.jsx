@@ -27,7 +27,7 @@ const CoursesFormMain = ({ onClose }) => {
 
    const [newCourse] = useMutation(CREATE_COURSE, {
       update: (cache, data) => {
-         console.log(data)
+         // console.log(data)
       }
    })
 

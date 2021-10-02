@@ -109,6 +109,7 @@ query student($id: ID!) {
       id
       name
       teacher
+      teacherID
     }
   }
 }

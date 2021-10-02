@@ -9,7 +9,6 @@ const LoginProvider = ({ children }) => {
 
    useEffect(() => {
       if (!localStorage.getItem('token') && state.token) {
-         console.log(state.token)
          window.localStorage.setItem('token', state.token)
          window.localStorage.setItem('hashtag', state.hashtag)
       }

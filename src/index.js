@@ -23,7 +23,7 @@ import { Pagination } from './context/Pagination';
 import { SnackbarProvider } from 'notistack';
 import Slide from '@material-ui/core/Slide';
 
-const isTester = false
+const isTester = true
 
 // http://api.al-azhar.uz/api/graphql
 

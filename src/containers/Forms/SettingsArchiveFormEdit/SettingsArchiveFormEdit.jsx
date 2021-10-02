@@ -29,6 +29,11 @@ const SettingsArchiveForm = ({onClose, editableData}) => {
 
     useEffect(() => {
 
+        // editableData?.status === 1 && setStat('CEO')  
+        // editableData?.status === 2 && setStat('Marketer') 
+        // editableData?.status === 3 && setStat('Adminstrator')  
+        // editableData?.status === 4 && setStat('Casher') 
+        // editableData?.status === 5 && setStat('Teacher') 
         editableData?.status === 'CEO' && setStat(1)  
         editableData?.status === 'Marketer' && setStat(2) 
         editableData?.status === 'Adminstrator' && setStat(3)  

@@ -13,6 +13,8 @@ const Employees = () => {
 	const [editId, setEditId] = useState('')
 	const [colleguages, setColleguages] = useState([])
 	const [visiblee, setVisiblee] = useState(false)
+    const [stat, setStat] = useState('')
+
 
 	const { data: all_colleagues } = useQuery(COLLEGUES)
 	
@@ -23,16 +25,43 @@ const Employees = () => {
 	},[all_colleagues])
 	
 	const editable = colleguages.find(e => e.Id === editId)
+	const deletble = colleguages.find(e => e.Id === deleteId)
 
 	const [deleteCollegue] = useMutation(UPT_STATUS)
 
+	
 	useEffect(() => {
-
+		
 		if (deleteId) {
-			deleteCollegue({variables: {id: deleteId, status: -1}})
+
+			if (deletble?.status === 'CEO'){
+				setStat(-1)
+			} else if (deletble?.status === 'Marketer'){
+				setStat(-2)}
+			else if (deletble?.status === 'Adminstrator'){
+				setStat(-3)
+			} else if (deletble?.status === 'Casher'){
+				setStat(-4)
+			} else if (deletble?.status === 'Teacher'){
+				setStat(-5)
+			}
+
+		}
+		
+
+	}, [deleteId, deletble, setStat])
+
+	useEffect(()=>{
+		if (stat) {
+
+			const data = {variables: {id: deleteId, status: stat}}
+			
+			deleteCollegue(data)
 		}
 
-	}, [deleteCollegue, deleteId])
+	},[stat, deleteCollegue])
+
+
 
 	useSubscription(TEACHER_SUBSCRIPTION, {
 		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -91,7 +120,7 @@ const Employees = () => {
 		</Drawer>
 		</>
 		)
-	}
+}
 	
 	
 	

@@ -1,0 +1,244 @@
+.home {
+    max-width: 100%;
+    margin-top: 10px;
+    box-sizing: border-box;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+
+    &_wrapper {
+        border: 1px solid grey;
+        width: 100%;
+        height: auto;
+        padding: 50px;
+        padding-left: 0;
+        overflow-x: scroll;
+        box-sizing: border-box;
+        background-color: #fff;
+        border-radius: 10px;
+
+
+        .top {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 10px;
+            margin-bottom: 10px;
+
+            &__btn {
+
+                border: none;
+                outline: none;
+                color: #fff;
+                background-color: transparent;
+                color: darkblue;
+
+                &:not(:last-child) {
+                    margin-right: 10px;
+                }
+
+                cursor: pointer;
+                padding: 5px 10px;
+            }
+
+            &__btn_active {
+                background-color: #090761;
+                border-radius: 20px;
+                color: #fff;
+            }
+        }
+
+        .name-wrapper {
+            border-bottom: 1px solid grey;
+        }
+    }
+
+}
+
+.round {
+    width: 30px;
+    cursor: pointer;
+    height: 30px;
+    display: block;
+    border: 1px solid rgb(216, 202, 202);
+    border-radius: 50%;
+    position: relative;
+    left: -9px;
+    right: 0;
+    margin: 0 auto;
+
+    &.true {
+        background-color: green;
+    }
+
+    &.false {
+        background-color: red;
+    }
+}
+
+.checker {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+
+    h4 {
+        cursor: pointer;
+    }
+
+    &_true {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: green;
+
+        &:first-child {
+            &:hover {
+                color: green;
+            }
+        }
+    }
+
+    &_false {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: red;
+
+        &:hover {
+            color: red;
+        }
+    }
+    &_close {
+        width: 25px;
+        height: 25px;
+        font-size: 20px;
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        background-color: transparent;
+    }
+
+    &.show {
+        display: flex;
+        width: 133px;
+        height: 40px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: #f1f1f1 !important;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        top: -20px;
+        z-index: 99;
+        right: 0;
+        margin: auto;
+    }
+}
+
+th:first-child {
+    width: 100px;
+}
+
+.customer {
+    border-collapse: collapse;
+    width: 110%;
+    overflow-x: scroll;
+}
+
+.customer_thead {
+    margin-bottom: 20px;
+    border-bottom: 1px solid grey;
+
+    th {
+        padding: 8px 0;
+    }
+
+    tr {
+        th:first-child {
+            width: 100px !important;
+        }
+    }
+}
+
+tbody {
+    width: 100%;
+    overflow-x: auto;
+
+    tr {
+        background-color: #fff !important;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #777;
+        }
+
+        td {
+            padding: 8px 0;
+        }
+    }
+}
+
+.td {
+    position: relative;
+}
+
+.davomat {
+    margin-bottom: 30px;
+    padding-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    left: 0;
+}
+
+.name_table {
+    position: sticky;
+    left: 0;
+    background-color: #fff;
+}
+
+
+
+.pupil {
+    width: 100px;
+    position: sticky;
+    left: 0;
+    padding: 11px 0;
+    padding-left: 50px;
+    background-color: #fff;
+    z-index: 88;
+    padding-right: 20px;
+
+    &::before {
+        content: '';
+        width: 10px;
+        border-radius: 50%;
+        height: 10px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 35px;
+    }
+
+    &.red {
+        &::before {
+            background-color: red;
+        }
+    }
+    &.blue {
+        &::before {
+            background-color: darkblue;
+        }
+    }
+    &.orange {
+        &::before {
+            background-color: orange;
+        }
+    }
+}

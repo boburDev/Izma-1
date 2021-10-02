@@ -5,9 +5,12 @@
    &-left {
       width: 32%;
       margin-right: 40px;
+
+      .courses-left-center {
          min-height: 430px;
          max-height: 430px;
          overflow-y: scroll;
+
          &::-webkit-scrollbar {
             width: 10px;
          }
@@ -19,6 +22,8 @@
          &::-webkit-scrollbar-thumb {
             background: #090761;
          }
+      }
+         
 
          
 

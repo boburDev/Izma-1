@@ -39,18 +39,21 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
       const data = {
          groupID: dataForEdit.id,
          name,
-         courseID,
-         teacherID,
-         days: days.id === 'boshqa' ? selectedDate.sort().join() : days,
-         roomID,
+         courseID: courseID.id,
+         teacherID: teacherID?.Id,
+         days: days.id === 'boshqa' ? selectedDate.sort().join() : days.id,
+         roomID: roomID?.id,
          time,
          startDate,
          endDate
       }
 
-      updateGroup({
-         variables: data
-      })
+      console.log(data)
+
+      // updateGroup({
+      //    variables: data
+      // })
+
       onClose()
       handleClick()
    }

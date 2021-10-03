@@ -14,7 +14,6 @@ const format = 'HH:mm';
 
 const GroupEdit = ({ onClose, dataForEdit }) => {
 
-
    const [name, setName] = useState(dataForEdit.name)
    const [courseID, setCourseID] = useState(dataForEdit.courseId)
    const [teacherID, setTeacherID] = useState(dataForEdit.teacherID)
@@ -33,26 +32,23 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
 
    const [updateGroup] = useMutation(UPDATE_GROUP)
 
-
    const handleGroup = (e) => {
       e.preventDefault()
       const data = {
          groupID: dataForEdit.id,
          name,
-         courseID: courseID.id,
-         teacherID: teacherID?.Id,
-         days: days.id === 'boshqa' ? selectedDate.sort().join() : days.id,
-         roomID: roomID?.id,
+         courseID: courseID.id || dataForEdit.courseId,
+         teacherID: teacherID.Id || dataForEdit.teacherID,
+         days: days.id === 'boshqa' ? selectedDate.sort().join() : dataForEdit.days,
+         roomID: roomID.id || dataForEdit.roomId,
          time,
          startDate,
          endDate
       }
 
-      console.log(data)
-
-      // updateGroup({
-      //    variables: data
-      // })
+      updateGroup({
+         variables: data
+      })
 
       onClose()
       handleClick()

@@ -41,7 +41,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
          name,
          courseID,
          teacherID,
-         days: days === 'boshqa' ? selectedDate.sort().join() : days,
+         days: days.id === 'boshqa' ? selectedDate.sort().join() : days,
          roomID,
          time,
          startDate,

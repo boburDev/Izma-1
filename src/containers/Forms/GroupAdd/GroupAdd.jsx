@@ -40,13 +40,14 @@ const GroupAdd = ({ onClose }) => {
          name,
          courseID: courseID.id,
          teacherID: teacherID.Id,
-         days: days === 'boshqa' ? selectedDate.sort().join() : days.id,
+         days: days.id === 'boshqa' ? selectedDate.sort().join() : days.id,
          roomID: roomID.id,
          time,
          startDate,
          endDate
       }
 
+      console.log(data)
       createGroup({
          variables: data
       })

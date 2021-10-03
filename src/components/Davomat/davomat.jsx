@@ -152,7 +152,7 @@ function Davomat() {
                 // } else
                 //  {
                 // }           
-                console.log(item)
+                // console.log(item)
                 if ((i - 0) === new Date(item).getDay()) {
                     data.date.push(moment(item).format('DD/MM'))
                 }
@@ -160,7 +160,7 @@ function Davomat() {
             })
             return ""
         })
-        console.log(data)
+        // console.log(data)
         return data
     }
 

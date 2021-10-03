@@ -19,7 +19,7 @@ import {
    NEW_SUB_STUDENT,
    SUBSCRIPTION_GROUP_INFO
 } from '../../../../Querys/GroupTabs'
-
+import { useDayDivider } from '../../../../context/DayDividerProvider'
 import {
    DELETE_FROM_GROUP,
    CHECK_CASH,
@@ -41,9 +41,7 @@ import { useDavomat } from '../../../../context/DavomatProvider'
 
 const GroupProfilLeft = (prop) => {
    const [setGroupStudents] = useDavomat(true)
-
-   
-
+   const [dayDivide, setDayDivide] = useDayDivider()
    const [userInput, setUserInput] = useState('')
    const [selectedUser, setSelectedUser] = useState()
    const [startedDate, setStartedDate] = useState('')
@@ -52,7 +50,10 @@ const GroupProfilLeft = (prop) => {
    const [stID, setStID] = useState()
    const [idName, setIdName] = useState()
    const [onKeyUp, setOnKeyUp] = useState('')
-
+   const days = ['mon', 'tue', 'wed', 'thue', 'fri', 'sat', 'sun']
+   const daysInNumber = [1, 2, 3, 4, 5, 6, 7]
+   const daysOdd = [1, 3, 5]
+   const daysEven = [2, 4, 6]
 
    const { groupID } = useParams()
 
@@ -70,7 +71,10 @@ const GroupProfilLeft = (prop) => {
          students: grStudents && grStudents.findStudByGrId,
          groups: groups && groups.byGroupID
       })
-   }, [grStudents, setGroupStudents, groups])
+      if (groups && groups.byGroupID) {
+         setDayDivide(groups.byGroupID.days)
+      }
+   }, [grStudents, setGroupStudents, groups, setDayDivide])
 
 
    prop.studData(groups && groups.byGroupID.students)
@@ -375,7 +379,7 @@ const GroupProfilLeft = (prop) => {
                         Vaqt:
                      </p>
                      <p className="izma__groups-attendance-left-center-time-number">
-                        {groups.byGroupID.days} ・ {groups.byGroupID.time}
+                        { dayDivide } ・ {groups.byGroupID.time}
                      </p>
                   </div>
 

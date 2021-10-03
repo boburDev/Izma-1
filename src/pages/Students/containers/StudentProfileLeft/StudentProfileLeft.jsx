@@ -81,6 +81,7 @@ const StudentsProfileLeft = (prop) => {
  
      const [grID, setGrID] = useState()
      const [createAt, setCreateAt] = useState()
+     const [gr, setGr] = useState([])
  
      oneStudent && prop.stName(oneStudent.student.name)
  
@@ -196,6 +197,14 @@ const StudentsProfileLeft = (prop) => {
        })
        setNames(guruh)
     },[Groups])
+
+    useEffect(() => {
+
+      if (Groups && Groups.groups) {
+        setGr(Groups && Groups.groups)
+      }
+
+    }, [Groups])
  
      if(frRedirect && frRedirect.deleteStudent.id) return <Redirect to='/students' />
  
@@ -333,7 +342,7 @@ const StudentsProfileLeft = (prop) => {
                has({variables: {stID: studentID, grID: e}})
             }}
          >
-            {Groups && Groups.groups.map((item) => {
+            {gr?.map((item) => {
                // {oneStudent && oneStudent.student.groups.map(gName => (
                return <Option key={item.id} value={item.id} >{/* (item.name !== gName.name) &&  */item.name}</Option>
                // ))}

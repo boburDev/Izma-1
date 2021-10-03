@@ -47,7 +47,7 @@ const StudentsTablee = () => {
   
     }
 
-  }, [collagueee])
+  }, [collagueee, newSalary])
   
   
   return ( <> <h1>test!!!</h1> </> )

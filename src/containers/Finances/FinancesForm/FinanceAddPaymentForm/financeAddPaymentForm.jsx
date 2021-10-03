@@ -84,7 +84,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
     if (stGroups && stGroups.student && stGroups.student.groups){
         setNames(stGroups.student.groups)
     }
-}, [stGroups])
+  }, [stGroups])
   
   const onChange = e => {
     setPayType(e.target.value)

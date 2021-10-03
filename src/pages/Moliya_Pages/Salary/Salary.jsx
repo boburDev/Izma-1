@@ -11,7 +11,7 @@ const Salary = () => {
          <div className="izma__finance-salary">
             <SalaryUp />
             <div className="izma__finance-salary-up-dates-line-up"></div>
-            <div className="izma__finance-salary-up-dates" style={{ width: "350px" }}>
+            <div className="izma__finance-salary-up-dates">
                <p className="izma__finance-allpayment-up-dates-btn-text">
                   Sana bo'yicha
                </p>

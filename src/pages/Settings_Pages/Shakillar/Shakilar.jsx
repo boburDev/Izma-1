@@ -65,7 +65,7 @@ const Shakillar = ({ setMainTableData, mainTableData, data, values, setRowId, se
                <h3 className="izma__settings-shapes-up-heading">
                   Formalar
                </h3>
-               <button className="izma__settings-shapes-up-button">
+               <button className="izma__students-content-button">
                   Yarating
                </button>
             </div>

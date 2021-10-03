@@ -92,7 +92,7 @@ const Rooms = () => {
                <h3 className="izma__settings-employees-inner-up-heading">
                   Xonalar
                </h3>
-               <button className="izma__settings-archive-up-button" onClick={showModal} >
+               <button className="izma__students-content-button" onClick={showModal} >
                   Yangi xona qo’shing
                </button>
                </div>

@@ -191,31 +191,37 @@
 }
 
 .student-sendSms {
-   position: fixed;
-   top: 0;
-   right: -500px;
-   width: 400px;
+   width: 100%;
    height: 100%;
    background-color: #fff;
-   z-index: 10;
    transition: 0.3s;
 
-   &.active {
-      right: 0;
-   }
+  
 
    .sms-heading {
       display: flex;
       align-items: center;
-      padding: 30px 20px;
       justify-content: space-between;
       border-bottom: 1px solid #000;
+      padding-bottom: 20px;
 
       h1 {
          font-size: 20px;
+         margin-bottom: 0;
       }
 
       button {
+         width: 20px;
+         height: 20px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         
+         img {
+            width: 20px;
+            height: 20px;
+
+         }
          border: none;
          background-color: transparent;
          cursor: pointer;

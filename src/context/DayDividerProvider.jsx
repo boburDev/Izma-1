@@ -5,6 +5,7 @@ const Context = createContext()
 const DayDividerProvider = ({ children }) => {
    const [state, setState] = useState('')
    
+   // eslint-disable-next-line react-hooks/exhaustive-deps
    const days = ['mon', 'tue', 'wed', 'thue', 'fri', 'sat', 'sun']
    // eslint-disable-next-line react-hooks/exhaustive-deps
    const daysInNumber = [1, 2, 3, 4, 5, 6, 7]
@@ -24,15 +25,15 @@ const DayDividerProvider = ({ children }) => {
            setState('Juft kuni')
        } else {
            if (state) {
-                const x = state.split(',').map(i => days[i - 1])
-                console.log(x.join())
+                const days = state.split(',').map(i => days[i - 1])
+                setState(days.join())
            }
        }
 
 
 
 
-   },[daysEven, daysInNumber, daysOdd, state])
+   },[daysEven, daysInNumber, daysOdd, state, days])
 
    const value = {
       state,

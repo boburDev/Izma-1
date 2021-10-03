@@ -233,7 +233,7 @@ const StudentsProfileLeft = (prop) => {
            myModal={isModalVisible}
            setMymodal={setIsModalVisible}
            title={`Yangi eslatma qo'shing`}
-           block={'comment'}
+           block={'addComment'}
          />
            
          <div className={`izma__students-payment-inner-left-wrapper ${openSms? 'active' : ''}`}>
@@ -397,17 +397,27 @@ const StudentsProfileLeft = (prop) => {
              />
            </Modal>
         </div>
+
+         <Drawer
+           placement="right"
+           closable={false}
+           onClose={setOpenSms}
+           visible={openSms}
+         >
+           <div className={`student-sendSms`}>
+             <div className="sms-heading">
+               <h1>Talabaga SMS yuboring</h1>
+               <button onClick={() => setOpenSms(false)}><img src={Close} alt="" /></button>
+             </div>
+
+             <div className="sms-content">
+               <p>Sizning o'quv markazingiz uchun faollashtrilmagan !</p>
+             </div>
+           </div>
+         </Drawer>
+
  
-         <div className={`student-sendSms  ${openSms ? 'active' : ''}`}>
-          <div className="sms-heading">
-             <h1>Talabaga SMS yuboring</h1>
-             <button onClick={()=> setOpenSms(false)}><img src={Close} alt="" /></button>
-          </div>
- 
-          <div className="sms-content">
-            <p>Sizning o'quv markazingiz uchun faollashtrilmagan !</p>
-          </div>
-        </div>
+         
  
          </>
      )

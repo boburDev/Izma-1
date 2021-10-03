@@ -96,7 +96,7 @@ const Employees = () => {
 		<h2 className="izma__settings-employees-heading">
 		Hodimlar
 		</h2>
-		<button className="izma__settings-archive-up-button" onClick={showDrawer} >
+		<button className="izma__students-content-button" onClick={showDrawer} >
 		Yangisini qo’shing
 		</button>
 		</div>

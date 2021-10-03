@@ -1,7 +1,8 @@
-
+import './RoomsTable.scss'
 import { DAYS, GROUPS, ROOMS } from './query'
 import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function RoomsTable({ days = '1' }) {
 
@@ -22,6 +23,7 @@ function RoomsTable({ days = '1' }) {
 
     useEffect(()=>{
         if (time && time.tableRoomsTimes) {
+
             setTimes(time && time.tableRoomsTimes)
         }
     },[time])
@@ -54,7 +56,8 @@ function RoomsTable({ days = '1' }) {
                                     {
                                        groups.map((data, indexKey) => {
                                           if (data.rooms === i.room && data.time === value.time) {
-                                             return <div className="table-item" key={indexKey}>
+                                             return <Link 
+                                             to={`groups/groupsProfil/${data.id}`} className="table-item" key={indexKey}>
                                                 <div className="table-top">
                                                    <p className="comp">Completed</p>
                                                    <p className="name">{data.name}</p>
@@ -66,7 +69,7 @@ function RoomsTable({ days = '1' }) {
                                                    <p className="table-date">{data.startDate} - {data.endDate}</p>
                                                    <p className="total"> {data.studentsCount}tal</p>
                                                 </div>
-                                             </div>
+                                             </Link>
                                           } else {
                                              return <div key={indexKey}></div>
                                           }

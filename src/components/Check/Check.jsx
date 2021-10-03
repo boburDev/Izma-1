@@ -56,7 +56,7 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
             <div className="check-holder">
                 <h1>Kvitansiya</h1>
                  <button><img src={Close} onClick={() => {
-                     setCheck({ check: false})
+                     setCheck({ check: false, checkData: check && check.checkData })
                  }} alt="" /></button>
             </div>
             <div className="check-inner" ref={el => (componentRef = el)}

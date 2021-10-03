@@ -17,6 +17,10 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
    let arr2 = [setFirstCol1, setFirstCol2, setFirstCol3]
    const [boards, setBoards] = useState([])
   const [load, setLoad] = useState()
+   const [data,setDate] = useState({})
+   const [data3,setDate1] = useState({})
+   const [data2,setDate2] = useState({})
+
 
    useEffect(() => {
       let isCancelled = false;
@@ -24,7 +28,10 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
       async function getQuestions() {
          try {
             const { data } = await request.get(`/`);
-            // console.log(data)
+            const res = data.results
+            setDate(res[0])
+            setDate1(res[1])
+            setDate2(res[2])
             setBoards(data.results)
             setLoad(false)
          } catch (err) { console.log(err) }
@@ -46,10 +53,6 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
          list: currentList.id
       });
    }
-   // const userName = useRef()  
-   // const userNumber = useRef()
-   // const userComment = useRef()
-
    const [currentBoard, setCurrentBoard] = useState(null)
    const [currentItem, setCurrentItem] = useState(null)
    const [currentList, setCurrentList] = useState(null)
@@ -115,10 +118,6 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
       } else if (e.target.className === 'span') {
          e.nativeEvent.path['2'].style.boxShadow = 'none'
       }
-
-
-
-
    }
 
    const dropCardHandler = (e, board, item) => {

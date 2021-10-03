@@ -16,7 +16,7 @@ const Table = ({ block, arr, showDrawer}) => {
 
                <>
                   <div className="table-header">
-                     <h4 className={block}>id</h4>
+                     <h4 className={block}>{block !== 'studentHash' && 'id'}</h4>
                      <h4 className={block}>Ism</h4>
                      <h4 className={block}>telefon</h4>
                      {

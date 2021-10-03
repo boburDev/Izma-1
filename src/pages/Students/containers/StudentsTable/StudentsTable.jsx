@@ -136,7 +136,7 @@ const StudentsTable = ({ studentSearch='' }) => {
 
 
 
-   const [isModalVisible, setIsModalVisibleY] = useState(false)
+   const [, setIsModalVisibleY] = useState(false)
 
    const handleOkY = () => {
       setIsModalVisibleY(false)

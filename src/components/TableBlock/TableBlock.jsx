@@ -10,7 +10,7 @@ import { useState } from 'react'
 import  Modal  from '../../components/Modal/Modal'
 
 const TableBlock = ({ block, info, index, showDrawer }) => {
-   const [stID, setStudentID] = useStudentPay()
+   const [ /*stID*/, setStudentID] = useStudentPay()
    const [modal, setModal] = useState()
    const [getID] = useMutation(DELETE_STUDENT)
    const [deleteTeacher] = useMutation(DELETE_TEACHER)
@@ -21,7 +21,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
             block !== 'groupHash' ?
 
                <>
-                  <h4 className={`${block}`}>{index + 1}</h4>
+                  <h4 className={`${block}`}>{block !== 'studentHash' && index+1}</h4>
                   <h4 className={`${block}`}>
 
                      {

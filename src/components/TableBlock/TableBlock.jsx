@@ -6,15 +6,24 @@ import { useStudentPay } from '../../context/StudentPay'
 import { DELETE_STUDENT } from  '../../Querys/Table_Query'
 import { DELETE_TEACHER } from '../../Querys/Teacher_Query'
 import { useMutation } from '@apollo/client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import  Modal  from '../../components/Modal/Modal'
+import { useDayDivider } from '../../.../../context/DayDividerProvider'
 
 const TableBlock = ({ block, info, index, showDrawer }) => {
    const [ /*stID*/, setStudentID] = useStudentPay()
    const [modal, setModal] = useState()
+   const [dayDivider,setDayDivider] = useDayDivider()
    const [getID] = useMutation(DELETE_STUDENT)
    const [deleteTeacher] = useMutation(DELETE_TEACHER)
-  
+   
+   useEffect(()=>{
+      // setDayDivider
+      console.log(info)
+   }, [info])
+
+
+
    return (
       <div className="tableBlock">
          {

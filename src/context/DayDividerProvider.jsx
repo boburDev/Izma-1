@@ -4,7 +4,6 @@ const Context = createContext()
 
 const DayDividerProvider = ({ children }) => {
    const [state, setState] = useState('')
-   const [testState, setTestState] = useState('')
    // eslint-disable-next-line react-hooks/exhaustive-deps
    const daysAll = ['mon', 'tue', 'wed', 'thue', 'fri', 'sat', 'sun']
    // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -15,8 +14,6 @@ const DayDividerProvider = ({ children }) => {
    const daysEven = [2, 4, 6]
 
    useEffect(() => {
-    //    state === daysInNumber.join() ?  'Har kuni' : state === daysOdd.join() ?  'Toq kuni' : state === daysEven.join() ? 'Juft kuni' : ''
-       
        if (state === daysInNumber.join()) {
            setState('Har kuni')
        } else if (state === daysOdd.join()) {
@@ -30,10 +27,6 @@ const DayDividerProvider = ({ children }) => {
         }
    }
    },[daysAll, daysEven, daysInNumber, daysOdd, state])
-
-   useEffect(()=>{
-        console.log(testState)
-   }, [testState])
 
    const value = {
       state,

@@ -1,9 +1,7 @@
 import './TeacherAdd.scss'
 import Closebtn from '../../../assets/Icons/Group 26.svg'
-import PhoneInput from "react-phone-input-2";
-import { Input, Space, DatePicker } from 'antd';
+import { DatePicker } from 'antd';
 import { useSnackbar } from 'notistack';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import 'antd/dist/antd.css'
 import { useMutation } from '@apollo/client';
 import { NEW_TEACHER } from '../../../Querys/Teacher_Query';

@@ -1,16 +1,30 @@
 import { Table } from 'antd';
 import '../SalaryUpTable/SalaryUpTable.scss'
 import EditImg from '../../../../../assets/Icons/settings-edit.svg'
+import { CHECK_TEACHER } from '../SalaryUp/query'
+import { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 
-const SalaryBottom = ({ setMainTableData, mainTableData, data, values, setRowId, setValues }) => {
+const SalaryBottom = ({ setMainTableData, mainTableData,  values, setRowId, setValues }) => {
 
-   // useEffect(() => {
-   //    setMainTableData([
-   //       { id: 1, teacher: "Генерик", price: '30 000', },
-   //       { id: 2, teacher: "Генерик", price: '30 000', },
-   //    ]);
 
-   // }, [setMainTableData]);
+   const [data, setData] = useState([])
+   const {data: checkSumm} = useQuery(CHECK_TEACHER, {variables: {text: 'text'}})
+
+
+   useEffect(() => {
+
+
+      if (checkSumm && checkSumm) {
+         console.log(checkSumm)
+      }
+
+      // setMainTableData([
+      //    { id: 1, teacher: "Генерик", price: '30 000', },
+      //    { id: 2, teacher: "Генерик", price: '30 000', },
+      // ]);
+
+   }, [checkSumm]);
 
 
 
@@ -41,9 +55,11 @@ const SalaryBottom = ({ setMainTableData, mainTableData, data, values, setRowId,
          dataIndex: 'edit',
          key: 'edit',
          width: "20px",
-         render: (text, record, index) =>
+         render: (text, record, index) => (
 
             <img className="izma__table-settings-delete-btn" src={EditImg} alt="delete img" />
+         )
+
       },
 
 

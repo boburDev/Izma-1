@@ -1,21 +1,37 @@
 import './SalaryUpTable.scss'
+import { TEACHER_SALARY_TYPE } from '../SalaryUp/query'
+import { useQuery } from '@apollo/client'
+import { useEffect, useState } from 'react'
 
 
 const SalaryUpTable = () => {
+   const [data, setData] = useState([])
+   const [someArr, setSomeArr] = useState([])
 
+   const {data: teachSalary} = useQuery(TEACHER_SALARY_TYPE)
 
-   const someArr = [
-      {
-         teacher: "Генерик",
-         discount: "30 talaba to'lovidan %",
-      },
-      {
-         teacher: "Генерик",
-         discount: "30 talaba to'lovidan %",
+   useEffect(() => {
+      if (teachSalary && teachSalary.colleguagesSalary) {
+         setData(teachSalary && teachSalary.colleguagesSalary)
       }
-   ]
+
+   }, [teachSalary])
 
 
+   useEffect(() => {
+
+      if (data.length) {
+         const newData = data.map(i => {
+            const data = {
+               teacher: i.teacherName,
+               discount: i.type === 1 ? i.amount + ' Sum' : i.amount + '% Foizga'
+            }
+            return data
+         })
+         setSomeArr(newData)
+      }
+
+   }, [data])
 
    const columns = [
       {

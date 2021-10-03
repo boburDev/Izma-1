@@ -50,6 +50,9 @@ const GroupProfilLeft = (prop) => {
    const [stID, setStID] = useState()
    const [idName, setIdName] = useState()
    const [onKeyUp, setOnKeyUp] = useState('')
+
+   const [payment, setPayment] = useState(false)
+
    const days = ['mon', 'tue', 'wed', 'thue', 'fri', 'sat', 'sun']
    const daysInNumber = [1, 2, 3, 4, 5, 6, 7]
    const daysOdd = [1, 3, 5]
@@ -88,35 +91,8 @@ const GroupProfilLeft = (prop) => {
 
    // const [cashCheck, {data: forCheck}] = useLazyQuery(CHECK_CASH_GROUP)
 
-   const payment = () => {
-
-      if (staatus !== 5) {
-
-         let backCash = (checkCache && checkCache.studentCash.cashAmount) - (groups && groups.byGroupID.price)
-         UpdatePayment({ variables: { stID: selectedUser, cashAmm: String(backCash) } })
-
-         const test = Number(checkCache && checkCache.studentCash.cashAmount) <= Number(groups && groups.byGroupID.price)
-
-         const data = {
-            credit: test ? (checkCache && checkCache.studentCash.cashAmount) : (groups && groups.byGroupID.price),
-            studentID: selectedUser,
-            debit: backCash < 0 ? String(backCash) : null
-         }
-
-         HistoryPay({ variables: data })
-      } else {
-         SetStatus3_4({
-            variables: {
-               status: (checkCache && checkCache.studentCash.cashAmount - 0) < 0 ? 4 : 3,
-               stID: selectedUser,
-               grID: groupID
-            }
-         })
-      }
-
-
-   }
-
+   
+   
    const { data: students } = useQuery(GET_STUDENTS, {
       variables: { name: userInput }
    })
@@ -129,10 +105,10 @@ const GroupProfilLeft = (prop) => {
          setDataUser(users)
       }
    }, [students])
-
+   
    const [deletGroup, { data: delData }] = useMutation(DELETE_GROUP)
    // console.log(delData)
-
+   
    const [HistoryPay] = useMutation(HISTORY_PAYMENT)
    const [AddStudentToGroup] = useMutation(SELECT_STUDENT_GROUP)
    const [SetStatus_6] = useMutation(STATUS_6)
@@ -141,10 +117,10 @@ const GroupProfilLeft = (prop) => {
    const [SetStatus_4] = useMutation(STATUS_3_4)
    const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
    const [SetStatus_5] = useMutation(UPDATE_GR_STATUS)
-
-
+   
+   
    useEffect(() => {
-
+      
 
       if (forStatus && forStatus.updateCash.cashAmount) {
          SetStatus_4({
@@ -153,7 +129,7 @@ const GroupProfilLeft = (prop) => {
                status: (forStatus.updateCash.cashAmount - 0) < 0 ? 4 : 3
             }
          })
-
+         
          SetStatus3_4({
             variables: {
                status: (forStatus.updateCash.cashAmount - 0) < 0 ? 4 : 3,
@@ -161,14 +137,14 @@ const GroupProfilLeft = (prop) => {
                grID: groupID
             }
          })
-
-         window.location.reload(true)
+         
+         // window.location.reload(true)
       }
-
+      
    }, [forStatus, SetStatus3_4, SetStatus_4, groupID, selectedUser])
-
-
-
+   
+   
+   
    useSubscription(SUBSCRIPTION_GROUPS, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -178,7 +154,7 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-
+   
    useSubscription(NEW_SUB_STUDENT, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -188,7 +164,7 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-
+   
    useSubscription(SUBSCRIPTION_STATUS, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -198,7 +174,7 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-
+   
    useSubscription(SUBSCRIPTION_ADD_STUDENT, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -208,7 +184,7 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-
+   
    useSubscription(SUBSCRIPTION_GROUP_INFO, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -218,23 +194,23 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-
+   
    // useSubscription(SUBSCRIPTION_CASH, {
-   //     onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
-   //       cache.modify({
-   //         fields: {
-   //           studentCash: () => {}
-   //         }
-   //       })
-   //     },
-   //   })
+      //     onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         //       cache.modify({
+            //         fields: {
+               //           studentCash: () => {}
+               //         }
+               //       })
+               //     },
+               //   })
+               
+               const [isModalVisible, setIsModalVisible] = useState(false)
 
-   const [isModalVisible, setIsModalVisible] = useState(false)
-
-   const handleDelete = () => {
-      if (confirm('Are you sure you want to save this thing into the database?')) {
-         deletGroup({
-            variables: {
+               const handleDelete = () => {
+                  if (confirm('Are you sure you want to save this thing into the database?')) {
+                     deletGroup({
+                        variables: {
                id: groupID
             }
          })
@@ -242,8 +218,42 @@ const GroupProfilLeft = (prop) => {
          // console.log('Thing was not saved to the database.')
       }
    }
+   
+   useEffect(() => {
 
+      const paymentt = () => {
+   
+         if (staatus !== 5) {
+   
+            let backCash = (checkCache && checkCache.studentCash.cashAmount) - (groups && groups.byGroupID.price)
+            UpdatePayment({ variables: { stID: selectedUser, cashAmm: String(backCash) } })
+   
+            const test = Number(checkCache && checkCache.studentCash.cashAmount) <= Number(groups && groups.byGroupID.price)
+   
+            const data = {
+               credit: test ? (checkCache && checkCache.studentCash.cashAmount) : (groups && groups.byGroupID.price),
+               studentID: selectedUser,
+               debit: backCash < 0 ? String(backCash) : null
+            }
+   
+            HistoryPay({ variables: data })
+         } else {
+            SetStatus3_4({
+               variables: {
+                  status: (checkCache && checkCache.studentCash.cashAmount - 0) < 0 ? 4 : 3,
+                  stID: selectedUser,
+                  grID: groupID
+               }
+            })
+         }
+   
+      }
+      console.log('okay')
+      payment && paymentt()
+      payment && setPayment(false)
 
+   }, [payment, HistoryPay, SetStatus3_4, UpdatePayment, checkCache, groupID, groups, selectedUser, staatus])
+   
    const showModal = () => {
       setIsModalVisible(true)
    }
@@ -464,7 +474,7 @@ const GroupProfilLeft = (prop) => {
                                           })
                                        }}>Muzlash</Link>}
 
-                                       {(staatus === 2 || staatus === 5) && <Link to="#" className="del_link" onClick={payment} >Faollashtirish</Link>}
+                                       {(staatus === 2 || staatus === 5) && <Link to="#" className="del_link" onClick={() => setPayment(true)} >Faollashtirish</Link>}
                                        <Link to="#" className="del_link" onClick={showFinanceDrawer}>To’lov</Link>
                                        <Link to="#" className="del_link" onClick={showNote}>Yangi eslatma qo’shish</Link>
                                        <Link to="#" className="del_link">Talabani guruhga o’tkazing</Link>

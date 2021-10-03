@@ -99,10 +99,6 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
 
    };
 
-   // console.log(days)
-
-   // console.log(selectedDate)
-
    return (
       <div className="groupForm">
          <div className="inner">

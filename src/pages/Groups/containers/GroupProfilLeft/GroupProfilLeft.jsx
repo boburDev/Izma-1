@@ -29,7 +29,8 @@ import {
    SUBSCRIPTION_GROUPS,
    HAS_STUDENT,
    UPDATE_GR_STATUS,
-   SUBSCRIPTION_ADD_STUDENT
+   SUBSCRIPTION_ADD_STUDENT,
+   // SUBSCRIPTION_CASH
 } from '../../../../Querys/GroupTabs'
 import confirm from 'antd/lib/modal/confirm'
 
@@ -138,7 +139,7 @@ const GroupProfilLeft = (prop) => {
             }
          })
          
-         // window.location.reload(true)
+         window.location.reload(true)
       }
       
    }, [forStatus, SetStatus3_4, SetStatus_4, groupID, selectedUser])
@@ -196,14 +197,14 @@ const GroupProfilLeft = (prop) => {
    })
    
    // useSubscription(SUBSCRIPTION_CASH, {
-      //     onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
-         //       cache.modify({
-            //         fields: {
-               //           studentCash: () => {}
-               //         }
-               //       })
-               //     },
-               //   })
+   //    onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+   //       cache.modify({
+   //          fields: {
+   //             studentCash: () => {}
+   //          }
+   //       })
+   //    },
+   // })
                
                const [isModalVisible, setIsModalVisible] = useState(false)
 

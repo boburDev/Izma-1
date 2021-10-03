@@ -13,6 +13,8 @@ const DayDividerProvider = ({ children }) => {
    // eslint-disable-next-line react-hooks/exhaustive-deps
    const daysEven = [2, 4, 6]
 
+
+   
    useEffect(() => {
        if (state === daysInNumber.join()) {
            setState('Har kuni')
@@ -25,7 +27,7 @@ const DayDividerProvider = ({ children }) => {
         if (days.join().length) {
             setState(days.join(' '))
         }
-   }
+        }
    },[daysAll, daysEven, daysInNumber, daysOdd, state])
 
    const value = {
@@ -39,9 +41,30 @@ const DayDividerProvider = ({ children }) => {
    )
 }
 
+
 const useDayDivider = (setterOnly) => {
-   const { state, setState } = useContext(Context)
-   return setterOnly ? [setState] : [state, setState]
+    const { state, setState } = useContext(Context)
+    return setterOnly ? [setState] : [state, setState]
+ }
+
+const dayDivider = (state) => {
+   const daysAll = ['mon', 'tue', 'wed', 'thue', 'fri', 'sat', 'sun']
+   const daysInNumber = [1, 2, 3, 4, 5, 6, 7]
+   const daysOdd = [1, 3, 5]
+   const daysEven = [2, 4, 6]
+    if (state === daysInNumber.join()) {
+        return 'Har kuni'
+    } else if (state === daysOdd.join()) {
+        return 'Toq kuni'
+    } else if (state === daysEven.join()) {
+        return 'Juft kuni'
+    } else if (state.length) {
+        const days = state.split(',').map(i => i.length && daysAll[i - 1])
+        if (days.join().length) {
+            return days.join(' ')
+        }
+    }
 }
 
-export { DayDividerProvider, useDayDivider }
+
+export { DayDividerProvider, useDayDivider, dayDivider }

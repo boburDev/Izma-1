@@ -8,20 +8,15 @@ import { DELETE_TEACHER } from '../../Querys/Teacher_Query'
 import { useMutation } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import  Modal  from '../../components/Modal/Modal'
-import { useDayDivider } from '../../.../../context/DayDividerProvider'
+import { dayDivider } from '../../.../../context/DayDividerProvider'
 
 const TableBlock = ({ block, info, index, showDrawer }) => {
    const [ /*stID*/, setStudentID] = useStudentPay()
    const [modal, setModal] = useState()
-   const [dayDivider,setDayDivider] = useDayDivider()
    const [getID] = useMutation(DELETE_STUDENT)
    const [deleteTeacher] = useMutation(DELETE_TEACHER)
    
-   useEffect(()=>{
-      // setDayDivider
-      console.log(info)
-   }, [info])
-
+   
 
 
    return (
@@ -112,7 +107,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                   <h4 className={`${block}`}>{index}</h4>
                   <h4 className={`${block}`}>{info?.name}</h4>
                   <h4 className={`${block}`}>{info?.teacher}</h4>
-                  <h4 className={`${block}`}>{info?.days}</h4>
+                  <h4 className={`${block}`}>{dayDivider(info.days)}</h4>
                   <h4 className={`${block}`}><span>{info?.startDate}</span> <span>{info?.endDate}</span></h4>
                   <h4 className={`${block}`}>{info?.rooms}</h4>
                   <h4 className={`${block}`}>{info?.studentsCount}</h4>

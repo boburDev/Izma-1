@@ -1,9 +1,9 @@
 import './LidAddItem.scss'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import request from '../../../services'
 const LidAddItem = ({ active, setActive, setRefresh, ind, refresh, onClose }) => {
    const itemName = useRef()
-   const boardIn = useRef()
+   // const boardIn = useRef()
 
 
    const handleSub = async (e) => {

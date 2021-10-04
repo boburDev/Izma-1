@@ -1,14 +1,12 @@
-import { Table } from 'antd';
+import { Table } from 'antd'
 import '../SalaryUpTable/SalaryUpTable.scss'
 import EditImg from '../../../../../assets/Icons/settings-edit.svg'
 import { CHECK_TEACHER } from '../SalaryUp/query'
-import { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import { useEffect } from 'react'
+import { useQuery } from '@apollo/client'
 
-const SalaryBottom = ({ setMainTableData, mainTableData,  values, setRowId, setValues }) => {
+const SalaryBottom = ({ mainTableData, setRowId, setValues }) => {
 
-
-   const [data, setData] = useState([])
    const {data: checkSumm} = useQuery(CHECK_TEACHER, {variables: {text: 'text'}})
 
 
@@ -22,21 +20,21 @@ const SalaryBottom = ({ setMainTableData, mainTableData,  values, setRowId, setV
       // setMainTableData([
       //    { id: 1, teacher: "Генерик", price: '30 000', },
       //    { id: 2, teacher: "Генерик", price: '30 000', },
-      // ]);
+      // ])
 
-   }, [checkSumm]);
+   }, [checkSumm])
 
 
 
    const onRowClicked = (item) => {
       return {
          onClick: () => {
-            setRowId(item.id);
-            setValues(item);
+            setRowId(item.id)
+            setValues(item)
 
          },
-      };
-   };
+      }
+   }
 
    const columns = [
       {
@@ -64,7 +62,7 @@ const SalaryBottom = ({ setMainTableData, mainTableData,  values, setRowId, setV
 
 
 
-   ];
+   ]
    return (
       <>
          <div className="izma__finance-salary-bottom-wrapper">
@@ -77,4 +75,4 @@ const SalaryBottom = ({ setMainTableData, mainTableData,  values, setRowId, setV
 }
 
 
-export default SalaryBottom;
+export default SalaryBottom

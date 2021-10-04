@@ -1,8 +1,7 @@
 import './SettingsArchiveForm.scss'
 import CloceBtn from '../../../assets/Icons/Group 26.svg'
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Radio } from 'antd';
-import { Input, Space, DatePicker } from 'antd';
+import { DatePicker } from 'antd';
 import { useState } from 'react'
 import { CREATE_COLLEAGUE } from './query'
 import { useMutation } from '@apollo/client';

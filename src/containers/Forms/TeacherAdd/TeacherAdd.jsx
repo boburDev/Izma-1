@@ -19,7 +19,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
    const [password, setPassword] = useState("")
    const [comment, setComment] = useState("")
    // const [ photo, setPhoto ] = useState("")
-   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+   const { enqueueSnackbar } = useSnackbar()
 
    const [newTeacher] = useMutation(NEW_TEACHER)
 

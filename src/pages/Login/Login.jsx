@@ -1,8 +1,6 @@
 import './Login.scss'
 import Banner from '../../assets/banner.jpg'
-import Logo from '../../assets/Icons/top.svg'
-import Logo2 from '../../assets/Group 12.svg'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { LOGIN } from './query'
 import { useMutation } from '@apollo/client';
 import { useLogin } from '../../context/LoginProvider'

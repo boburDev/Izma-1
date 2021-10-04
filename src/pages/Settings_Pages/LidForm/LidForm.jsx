@@ -1,12 +1,11 @@
 import './LidForm.scss'
 import Banner from '../../../assets/banner.jpg'
 import QoraBanner from '../../../assets/qorabanenr.svg'
-import PhoneInput from "react-phone-input-2";
-import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
-import { useMutation, useQuery } from '@apollo/client';
-import { COURSES, NEW_LEAD } from './query';
-import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput'
+import { useMutation, useQuery } from '@apollo/client'
+import { COURSES, NEW_LEAD } from './query'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react'
 
 
 const LidForm = () => {

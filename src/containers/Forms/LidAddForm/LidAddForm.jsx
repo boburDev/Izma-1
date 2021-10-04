@@ -28,9 +28,10 @@ const LidAddForm = ({ setAdd, itemId }) => {
                if (el.className === 'home-column-top__name' || el.className === 'home-column-top__number' || el.className === 'home-column-top__coment') {
                   closeOrAdd++
                }
+               return ''
             })
 
-            if (userName.current.value || userNumber.current.value && closeOrAdd > 0) {
+            if ((userName.current.value || userNumber.current.value) && closeOrAdd > 0) {
                setAdd(false)
                handleSubmit()
             }
@@ -53,7 +54,7 @@ const LidAddForm = ({ setAdd, itemId }) => {
          <input type="text" className="home-column-top__name"
             placeholder="ism va familiya" required ref={userName}
             onKeyUp={(e) => {
-               if (e.keyCode == 13) {
+               if (e.keyCode === 13) {
                   handleSubmit()
                }
             }}
@@ -61,7 +62,7 @@ const LidAddForm = ({ setAdd, itemId }) => {
          <input type="text" className="home-column-top__number"
             placeholder="telefon" required ref={userNumber} minLength={12} maxLength={12}
             onKeyUp={(e) => {
-               if (e.keyCode == 13) {
+               if (e.keyCode === 13) {
                   handleSubmit()
                }
             }}
@@ -69,7 +70,7 @@ const LidAddForm = ({ setAdd, itemId }) => {
          <input type="text" className="home-column-top__coment"
             placeholder="comment" required ref={userComment}
             onKeyUp={(e) => {
-               if (e.keyCode == 13) {
+               if (e.keyCode === 13) {
                   handleSubmit()
                }
             }} />

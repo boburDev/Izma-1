@@ -88,7 +88,7 @@ const StudentsEditForm = ({ onCloseF }) => {
    const [stTg, setStTg] = useState()
    const [stPassword, setStPassword] = useState(null)
 
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleClick = () => {
         const message = 'O`zgartirildi'

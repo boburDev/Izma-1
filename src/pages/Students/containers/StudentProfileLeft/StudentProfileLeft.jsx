@@ -1,19 +1,19 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import Close from '../../../../assets/Icons/Group 26.svg'
-import { Drawer, Select, DatePicker } from 'antd';
-import { Option } from "antd/lib/mentions";
-import StudentEdit from '../../../../containers/Forms/StudentAdd/StudentEdit';
-import FinanceRepaymentForm from '../../../../containers/Finances/FinancesForm/FinanceRepaymeynForm/FinanceRepaymeynForm';
+import { Drawer, Select, DatePicker } from 'antd'
+import { Option } from "antd/lib/mentions"
+import StudentEdit from '../../../../containers/Forms/StudentAdd/StudentEdit'
+import FinanceRepaymentForm from '../../../../containers/Finances/FinancesForm/FinanceRepaymeynForm/FinanceRepaymeynForm'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
-import { ONE_STUDENT, DELETE_STUDENT, GROUPS, SELECT_STUDENT_GROUP, CHECK_CASH, UPDATE_COMMENT, HAS_STUDENT } from './query';
-import { SUBSCRIPTION_STUDENT, SUBSCRIPTION_CASH, FILIAL, STATUS_3_4, UPDATE_STATUS_4, SUBSCRIPTION_ST_EDIT } from './query';
-import { useQuery, useMutation, useSubscription, useLazyQuery } from '@apollo/client';
+import { ONE_STUDENT, DELETE_STUDENT, GROUPS, SELECT_STUDENT_GROUP, CHECK_CASH, UPDATE_COMMENT, HAS_STUDENT } from './query'
+import { SUBSCRIPTION_STUDENT, SUBSCRIPTION_CASH, FILIAL, STATUS_3_4, UPDATE_STATUS_4, SUBSCRIPTION_ST_EDIT } from './query'
+import { useQuery, useMutation, useSubscription, useLazyQuery } from '@apollo/client'
 import StudentProlifeLeftCheck from '../../../../components/StudentComponents/StudentFilterCheck/StudentFilterCheck'
-import { Redirect, useParams } from 'react-router';
+import { Redirect, useParams } from 'react-router'
 import './StudentProfileLeft.scss'
-// import { useLoader } from '../../../../context/Loader';
-import { useEffect } from 'react';
-import  Modal  from '../../../../components/Modal/Modal';
+// import { useLoader } from '../../../../context/Loader'
+import { useEffect } from 'react'
+import  Modal  from '../../../../components/Modal/Modal'
 
 
 const StudentsProfileLeft = (prop) => {
@@ -21,7 +21,7 @@ const StudentsProfileLeft = (prop) => {
    const [openSms, setOpenSms] = useState(false)
    // const [state, setState] = useState([])
    // const [userInput, setUserInput] = useState('')
-    const [visibleF, setVisibleF] = useState(false);
+    const [visibleF, setVisibleF] = useState(false)
     const [deleteStudent, setDeleteStudent] = useState()
      const { studentID } = useParams()
  
@@ -88,73 +88,73 @@ const StudentsProfileLeft = (prop) => {
      // console.log(oneStudent)
  
      const showDrawerF = () => {
-       setVisibleF(true);
-     }; 
+       setVisibleF(true)
+     } 
    
      const onCloseF = () => {
-       setVisibleF(false);
-     };
+       setVisibleF(false)
+     }
    
      const [ comme, setComme ] = useState('')
    
-     const [visible, setVisible] = useState(false);
+     const [visible, setVisible] = useState(false)
      const showDrawer = () => {
-           setVisible(true);
-     }; 
+           setVisible(true)
+     } 
      const onClose = () => {
-       setVisible(false);
-     };
-     const [visibleS, setVisibleS] = useState(false);
+       setVisible(false)
+     }
+     const [visibleS, setVisibleS] = useState(false)
      const showDrawerS = () => {
-         setVisibleS(true);
-     }; 
+         setVisibleS(true)
+     } 
      const onCloseS = () => {
-       setVisibleS(false);
-     };
+       setVisibleS(false)
+     }
      
  
-     const [isModalVisible, setIsModalVisible] = useState(false);
+     const [isModalVisible, setIsModalVisible] = useState(false)
  
     //  const showModal = () => {
-    //    setIsModalVisible(true);
+    //    setIsModalVisible(true)
      
-    //  };
+    //  }
        
        
      const handleOk = (e) => {
        e.preventDefault()
        UpdateComment({variables: {stID: studentID, stComment: comme}})
-       setIsModalVisible(false);
-     };
+       setIsModalVisible(false)
+     }
        
      const handleCancel = () => {
-       setIsModalVisible(false);
-     };
-     const [isModalVisibleD, setIsModalVisibleD] = useState(false);
+       setIsModalVisible(false)
+     }
+     const [isModalVisibleD, setIsModalVisibleD] = useState(false)
  
      const showModalD = () => {
-       setIsModalVisibleD(true);
+       setIsModalVisibleD(true)
      
-     };
+     }
        
        
      const handleOkD = () => {
-       setIsModalVisibleD(false);
-     };
+       setIsModalVisibleD(false)
+     }
    
          //  const showModalD = () => {
-         //    setIsModalVisibleD(true);
+         //    setIsModalVisibleD(true)
            
-         //  };
+         //  }
          
         
          //  const handleOkD = () => {
-         //    setIsModalVisibleD(false);
-         //  };
+         //    setIsModalVisibleD(false)
+         //  }
         
          //  const handleCancelD = () => {
-         //    setIsModalVisibleD(false);
-         //  };
+         //    setIsModalVisibleD(false)
+         //  }
        const [ names, setNames ] = useState([])
        const [ namesFind, setNamesFind ] = useState([])
  
@@ -168,28 +168,28 @@ const StudentsProfileLeft = (prop) => {
           } else {
              setNamesFind([])
           }
-       };
+       }
     
  
          
  
-   const [isModalVisibleY, setIsModalVisibleY] = useState(false);
+   const [isModalVisibleY, setIsModalVisibleY] = useState(false)
  
    const showModalY = () => {
-     setIsModalVisibleY(true);
-   };
+     setIsModalVisibleY(true)
+   }
  
  
    const handleOkY = () => {
-     setIsModalVisibleY(false);
-   };
+     setIsModalVisibleY(false)
+   }
  
    const handleCancelY = () => {
-     setIsModalVisibleY(false);
-   };
+     setIsModalVisibleY(false)
+   }
      const handleCancelD = () => {
-       setIsModalVisibleD(false);
-     };
+       setIsModalVisibleD(false)
+     }
  
     useEffect(()=>{
        const guruh = Groups && Groups.groups.map((i, index) => {
@@ -359,7 +359,6 @@ const StudentsProfileLeft = (prop) => {
                    setCreateAt(dateString)
                  }}
                  placeholder={"Kun-Oy-Yil"}
-             //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                format={"DD-MM-YYYY"}
                />
              {hasStud && hasStud.hasStudent && <>O'quvchi siz tanlagan guruhga qo'shilgan</>}

@@ -54,11 +54,6 @@ const GroupProfilLeft = (prop) => {
 
    const [payment, setPayment] = useState(false)
 
-   const days = ['mon', 'tue', 'wed', 'thue', 'fri', 'sat', 'sun']
-   const daysInNumber = [1, 2, 3, 4, 5, 6, 7]
-   const daysOdd = [1, 3, 5]
-   const daysEven = [2, 4, 6]
-
    const { groupID } = useParams()
 
    const { data: groups } = useQuery(BY_GROUP_ID, {
@@ -108,7 +103,7 @@ const GroupProfilLeft = (prop) => {
    }, [students])
    
    const [deletGroup, { data: delData }] = useMutation(DELETE_GROUP)
-   // console.log(delData)
+   console.log(delData)
    
    const [HistoryPay] = useMutation(HISTORY_PAYMENT)
    const [AddStudentToGroup] = useMutation(SELECT_STUDENT_GROUP)

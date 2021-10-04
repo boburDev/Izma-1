@@ -120,7 +120,7 @@ const StudentAdd = ({ onCloseF }) => {
    //    }
    // }, [dataGroups])
 
-   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+   const { enqueueSnackbar } = useSnackbar();
 
    const handleClick = () => {
       const message = 'O`quvchi yaratildi'

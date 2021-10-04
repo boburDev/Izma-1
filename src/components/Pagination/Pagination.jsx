@@ -42,8 +42,7 @@ const Pagination = () => {
 
       if (numberOfPages.length < 4) {
          tempNumberOfPages = [...numberOfPages]
-      }
-      else if(activeBtn >= 1 && activeBtn < 3) {
+      } else if(activeBtn >= 1 && activeBtn < 3) {
          tempNumberOfPages = [1, 2, 3,  dotsRight, numberOfPages.length]
       } else if (activeBtn === 3) {
          const slised = numberOfPages.slice(0, 4)
@@ -63,6 +62,8 @@ const Pagination = () => {
          setActiveBtn(arrOfCurrBtn[3] + 2)
       }
       setArrOfCurrBtn(tempNumberOfPages)
+   
+   // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [activeBtn, data?.pagination?.studentCount])
 
 

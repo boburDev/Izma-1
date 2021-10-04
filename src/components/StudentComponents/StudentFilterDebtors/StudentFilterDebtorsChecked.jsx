@@ -1,6 +1,4 @@
 import './StudentFilterDebtors.scss'
-
-import { useState } from 'react'
 import { useStudentFilter } from '../../../context/StudentFilter'
 
 const StudentFilterDebtorsChecked = ()=>{

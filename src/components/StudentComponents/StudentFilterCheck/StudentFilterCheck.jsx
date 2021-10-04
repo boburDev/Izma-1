@@ -1,6 +1,6 @@
 import './StudentFilterCheck.scss'
 import { useState } from 'react'
-import { useSearch } from '../../../context/SearchProvider'
+// import { useSearch } from '../../../context/SearchProvider'
 
 const StudentFilterCheck = ({ nameSoha, id, setState, state }) => {
 

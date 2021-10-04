@@ -6,7 +6,7 @@ import { useStudentPay } from '../../context/StudentPay'
 import { DELETE_STUDENT } from  '../../Querys/Table_Query'
 import { DELETE_TEACHER } from '../../Querys/Teacher_Query'
 import { useMutation } from '@apollo/client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import  Modal  from '../../components/Modal/Modal'
 import { dayDivider } from '../../.../../context/DayDividerProvider'
 

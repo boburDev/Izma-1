@@ -158,7 +158,10 @@ const StudentsProfileLeft = (prop) => {
          //    setIsModalVisibleD(false)
          //  }
        const [ names, setNames ] = useState([])
-       console.log(names)
+       
+       useEffect(()=>{
+
+       },[names])
       //  const [ namesFind, setNamesFind ] = useState([])
  
  

@@ -1,6 +1,6 @@
 import './EnterForm.scss'
 import Pen from '../../../assets/Icons/pen.svg'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PhoneNumberInput from "../../../components/PhoneNumberInput/PhoneNumberInput";
 import Avatar from './containers/UploadFoto/UploadFoto'
 import PasswordInput from '../../../components/PasswordInput/PasswordInput';
@@ -13,7 +13,7 @@ const EnterForm = () => {
 	// const [isFilePicked, setIsFilePicked] = useState(false)
 
    const [sendReq, setSendReq] = useState('O\'quv markaziga so\'rov qoldiring')
-
+   console.log(sendReq)
 
 
    const changeHandler = (event) => {

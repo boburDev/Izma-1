@@ -99,7 +99,7 @@ const App = () => {
                       <Route path="/settingsEmployeesInner" component={Rooms} />
                       <Route path="/settingsMagazine" component={Jurnals} />
                       <Route path="/settingsArchive" component={Archive} />
-                      <Route path="/settingsLidform" component={LidForm} />
+                      <Route path="/:hashtag/entry/lead" component={LidForm} />
                       <Route path="/settingsShapes" component={Shakillar} />
                       <Route path="/enterForm" component={EnterForm} />
 
@@ -119,6 +119,7 @@ const App = () => {
           <Switch>
             
               <Route path="/login/:centerHashtag" component={Login} />
+              <Route path="/:hashtag/entry/lead" component={LidForm} />
 
           </Switch>
         </>

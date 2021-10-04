@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Plus from '../../../assets/Icons/plus.svg'
 import LidsBox from '../../../components/LidsComponents/LidsBox/LidsBox'
 import Menu from '../../../assets/Icons/menuForm.svg'
-import List from '../../../assets/Icons/list.svg'
 import './LidsContent.scss'
-import request from '../../../services'
 import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm'
-import Loader from '../../../components/Loader/Loader'
 import LidAddItem1 from '../../../containers/Forms/LidAddItem1/LidAddItem1'
 import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem'
 import { Drawer } from 'antd';

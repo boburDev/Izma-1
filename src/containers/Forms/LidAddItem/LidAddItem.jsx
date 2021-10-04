@@ -1,6 +1,5 @@
 import './LidAddItem.scss'
-import { useRef, useState } from 'react'
-import request from '../../../services'
+import { useRef } from 'react'
 const LidAddItem = ({ columns, setColumn,  onClose }) => {
    const itemName = useRef()
    const boardIn = useRef()

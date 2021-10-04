@@ -8,10 +8,11 @@ import Delete from '../../../assets/Icons/delete.svg'
 import Add from '../../../assets/Icons/add.svg'
 import Link from '../../../assets/Icons/link.svg'
 import { useState } from 'react';
+import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm';
 
-const LidsBox = ({ column, columnId, isVisible }) => {
+const LidsBox = ({ column, columnId, isVisible, columns, setColumns }) => {
 
-   
+   const [form1, setForm1] = useState()
    const [menu, setMenu] = useState()
 
    const [active, setActive] = useState(false)
@@ -48,7 +49,10 @@ const LidsBox = ({ column, columnId, isVisible }) => {
                            <div className={`boxmenu ${menu ? 'active' : ''}`}>
                               <span><img src={Edit} alt="" />Tahrirlash</span>
                               <span><img src={Add} alt="" />Formaga havolani nusxalash</span>
-                              <span><img src={Link} alt="" />So’rov qo’shish</span>
+                              <span onClick={() =>{
+                                 setForm1(true)
+                                 setMenu(false)
+                              }}><img src={Link} alt="" />So’rov qo’shish</span>
                               <span><img src={Delete} alt="" />O’chirish</span>
                            </div>
                         </div>
@@ -58,6 +62,19 @@ const LidsBox = ({ column, columnId, isVisible }) => {
                            minHeight: isVisible ? '0' : ''
                         }}
                      >
+                        <div className="lidItem-center-form"
+                           style={{
+                              display: form1 ? '' : 'none'
+                           }}
+                        >
+                           <LidAddForm
+                              setAdd={setForm1}
+                              formId={1}
+                              columns={columns}
+                              setColumns={setColumns}
+                              itemId={column.id}
+                           />
+                        </div>
                         {column.items.map((item, index) => {
                            return (
                               <LidsItem

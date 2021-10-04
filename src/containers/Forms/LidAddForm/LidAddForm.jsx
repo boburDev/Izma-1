@@ -14,7 +14,9 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
       //    itemId: itemId
       // });
 
-      let item = columns.find(el => el.boxStatus === itemId)
+      let item = typeof itemId === 'string' ? columns.find(el => el.id === itemId) : columns.find(el => el.boxStatus === itemId)
+      
+      
       item.items.push({
          id: 'adsfadf',
          userName: userName.current.value,
@@ -58,7 +60,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
    useOutsideAlerter(wrapperRef);
    return (
 
-      <form id={`form` + formId}>
+      <form id={`form` + formId} className="lllid">
       <div className="addForm" ref={wrapperRef}>
          <input type="text" className="home-column-top__name"
             placeholder="ism va familiya" required ref={userName}

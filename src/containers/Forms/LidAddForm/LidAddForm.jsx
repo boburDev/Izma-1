@@ -42,7 +42,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
                return ''
             })
 
-            if ((userName.current.value || userNumber.current.value) && closeOrAdd > 0) {
+            if ((userName.current.value || userNumber.current.value) && closeOrAdd === 0) {
                setAdd(false)
                handleSubmit()
             }

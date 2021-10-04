@@ -8,20 +8,71 @@ import Delete from '../../../assets/Icons/delete.svg'
 import Add from '../../../assets/Icons/add.svg'
 import Link from '../../../assets/Icons/link.svg'
 import { useState } from 'react';
+import { useEffect, useRef } from 'react'
 import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm';
+import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem';
+import { Drawer } from 'antd';
 
 const LidsBox = ({ column, columnId, isVisible, columns, setColumns }) => {
 
    const [form1, setForm1] = useState()
    const [menu, setMenu] = useState()
-
+   const [defaultInfo, setDefaultInfo] = useState('')
    const [active, setActive] = useState(false)
+   const [openEdit, setOpenEdit] = useState(false)
+
+   const closeEdit = () => {
+      setOpenEdit(false)
+   }
+   const useOutsideAlerter = (ref) => {
+      useEffect(() => {
+         function handleClickOutside(event) {
+            let coun = 0
+            event.path && event.path.map(el => {
+               if (el.className === 'boxmenu active' || el.className === 'lidItem-top-right') {
+                  coun++
+               }
+               return ''
+            })
+
+            
+            if(coun === 0) {
+               setMenu(false)
+            }
+            
+         }
+         document.addEventListener("mousedown", handleClickOutside);
+
+         return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+         };
+      }, [ref])
+   }
+
+   const wrapperRef = useRef(null);
+   useOutsideAlerter(wrapperRef);
+
+
    return (
       <Droppable droppableId={columnId} key={columnId}>
          {(provided, snapshot) => {
             return (
                <div className="lidListWrapper">
+                  <Drawer
+                     placement="right"
+                     closable={false}
+                     onClose={closeEdit}
+                     visible={openEdit}
+                  >
+                     <LidAddItem
+                        onClose={closeEdit}
+                        setColumns={setColumns}
+                        columns={columns}
+                        defaultInfo={defaultInfo}
+                        boxId={column.id}
 
+                     />
+                  </Drawer>
                   <div
                      className={`lidItem ${active ? 'active' : ''}`}
                      {...provided.droppableProps}
@@ -46,12 +97,18 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns }) => {
                         <div className="lidItem-top-right">
                            <button onClick={() => setActive(!active)} className={`arrow ${active ? 'active' : ''}`}><img src={Arrow} alt="" /></button>
                            <button onClick={() => setMenu(!menu)}><img src={MenuIcon} alt="" /></button>
-                           <div className={`boxmenu ${menu ? 'active' : ''}`}>
-                              <span><img src={Edit} alt="" />Tahrirlash</span>
+                           <div className={`boxmenu ${menu ? 'active' : ''}`} ref={wrapperRef}>
+                              <span
+                                 onClick={() => {
+                                    setMenu(false)
+                                    setDefaultInfo(column?.name)
+                                    setOpenEdit(true)
+                                 }}
+                              ><img src={Edit} alt=""/>Tahrirlash</span>
                               <span><img src={Add} alt="" />Formaga havolani nusxalash</span>
                               <span onClick={() =>{
-                                 setForm1(true)
                                  setMenu(false)
+                                 setForm1(true)
                               }}><img src={Link} alt="" />So’rov qo’shish</span>
                               <span><img src={Delete} alt="" />O’chirish</span>
                            </div>
@@ -73,6 +130,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns }) => {
                               columns={columns}
                               setColumns={setColumns}
                               itemId={column.id}
+                              formId={column.id}
                            />
                         </div>
                         {column.items.map((item, index) => {

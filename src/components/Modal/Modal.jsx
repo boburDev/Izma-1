@@ -2,7 +2,6 @@ import './Modal.scss';
 import { useEffect, useRef } from 'react';
 import { useSnackbar } from 'notistack';
 const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text }) => {
-   const commentText = useRef()
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
          function handleClickOutside(event) {
@@ -18,7 +17,7 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
       }, [ref])
    }
 
-   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+   const { enqueueSnackbar } = useSnackbar();
 
    const handleClick = () => {
       const message = 'O`chirildi'

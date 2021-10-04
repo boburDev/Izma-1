@@ -92,7 +92,7 @@ const GroupAdd = ({ onClose }) => {
       }
    ]
 
-   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+   const { enqueueSnackbar } = useSnackbar();
 
    const handleClick = () => {
       const message = 'Guruh qo`shildi'

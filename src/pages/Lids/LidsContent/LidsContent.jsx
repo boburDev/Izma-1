@@ -17,9 +17,9 @@ const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDraw
    let arr2 = [setFirstCol1, setFirstCol2, setFirstCol3]
    const [boards, setBoards] = useState([])
   const [load, setLoad] = useState()
-   const [data,setDate] = useState({})
-   const [data3,setDate1] = useState({})
-   const [data2,setDate2] = useState({})
+   const [,setDate] = useState({})
+   const [,setDate1] = useState({})
+   const [,setDate2] = useState({})
 
 
    useEffect(() => {

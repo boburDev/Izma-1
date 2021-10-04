@@ -27,19 +27,20 @@ const PhoneNumberInput = ({ setPhone, setParents, parents, placeholder }) => {
             maxLength="14"
             className="telInput" type="tel"
             onKeyPress={(e) => {
-               if (e.target.value.length == 2) {
+               if (e.target.value.length === 2) {
+                  // eslint-disable-next-line no-useless-concat
                   e.target.value = '(' + e.target.value + ')' + ' '
-               } else if (e.target.value.length == 8) {
+               } else if (e.target.value.length === 8) {
                   e.target.value = e.target.value + '-'
-               } else if (e.target.value.length == 11) {
+               } else if (e.target.value.length === 11) {
                   e.target.value = e.target.value + '-'
                }
             }}
             onKeyUp={(e) => {
                
-               if(setParents && e.target.value.length == 14) {
+               if(setParents && e.target.value.length === 14) {
                   e.target.blur()
-               }else if(setPhone && e.target.value.length == 14){
+               }else if(setPhone && e.target.value.length === 14){
                   setPhone('998'+e.target.value.replace(/[^\d|.-]/g, '').split('-').join(''))
                }
             }}

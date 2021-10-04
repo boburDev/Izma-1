@@ -11,8 +11,8 @@ const Pagination = () => {
    const [count, setCount] = useState(10)
    const [activeBtn ,setActiveBtn] = useState(1)
    const [arrOfCurrBtn, setArrOfCurrBtn] = useState([])
-   // eslint-disable-next-line react-hooks/exhaustive-deps
-   
+
+
    let numberOfPages = []
    let arrayLen = Array(data && data?.pagination?.studentCount).fill('@')
    arrayLen.map((key, index) => {
@@ -25,10 +25,6 @@ const Pagination = () => {
          count:count
       })
    }, [activeBtn, count, setPage])
-   
-   
-   
-   
    
    
    
@@ -67,12 +63,6 @@ const Pagination = () => {
 
 
 
-
-   
-
-
- 
-   
    return(
       <div className="pagination">
          <div className="pagination-left">

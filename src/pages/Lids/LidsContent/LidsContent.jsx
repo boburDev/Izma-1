@@ -17,6 +17,7 @@ const [form2, setForm2] = useState()
 const [form3, setForm3] = useState()
 const [lidAdd, setLidAdd] = useState(false)
 const [lidAdd1, setLidAdd1] = useState(false)
+const [formNum, setFormNum] = useState()
 
 const openForm1 = () => {
    setForm1(true)
@@ -74,6 +75,8 @@ const closeLidAdd1 = () => {
                   onClose={closeLidAdd} 
                   setColumns={setColumns}
                   columns={columns}
+                  formNum={formNum}
+
                />
             </Drawer>
             <div className="status1">
@@ -94,6 +97,7 @@ const closeLidAdd1 = () => {
                      <div className="status1-header-row-right">
                         <img src={Menu} alt="" 
                            onClick={() => {
+                              setFormNum(1)
                               setLidAdd(true)
                            }}
                          />
@@ -148,6 +152,9 @@ const closeLidAdd1 = () => {
                                  <LidsBox
                                     column={item}
                                     columnId={item.id}
+                                 columns={columns}
+                                 setColumns={setColumns}
+
                                  />
                               </div>
                            
@@ -174,7 +181,10 @@ const closeLidAdd1 = () => {
 
                      <div className="status1-header-row-right">
                         <img src={Menu} alt="" 
-                           onClick={() => setLidAdd(true)}
+                           onClick={() => {
+                              setFormNum(2)
+                              setLidAdd(true)
+                           }}
                         />
                      </div>
                   </div>
@@ -200,6 +210,7 @@ const closeLidAdd1 = () => {
                                        column={item}
                                        columnId={item.id}
                                        isVisible={true}
+
                                     />
                                  </div>
                            }
@@ -224,6 +235,8 @@ const closeLidAdd1 = () => {
                                  <LidsBox
                                     column={item}
                                     columnId={item.id}
+                                 columns={columns}
+                                 setColumns={setColumns}
                                  />
                               </div>
                         }
@@ -275,6 +288,7 @@ const closeLidAdd1 = () => {
                                        column={item}
                                        columnId={item.id}
                                        isVisible={true}
+                                       
                                     />
                                  </div>
                            }
@@ -299,6 +313,8 @@ const closeLidAdd1 = () => {
                                  <LidsBox
                                     column={item}
                                     columnId={item.id}
+                                 columns={columns}
+                                 setColumns={setColumns}
                                  />
                               </div>
                         }

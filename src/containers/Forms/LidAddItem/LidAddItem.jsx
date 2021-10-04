@@ -1,17 +1,25 @@
 import './LidAddItem.scss'
 import { useRef } from 'react'
-const LidAddItem = ({ columns, setColumn,  onClose }) => {
+const LidAddItem = ({ columns, setColumns, onClose, formNum }) => {
    const itemName = useRef()
    // const boardIn = useRef()
 
 
    const handleSub = async (e) => {
       e.preventDefault()
-      
+      columns.push({
+         id: 'aorrij',
+         name: itemName.current.value,
+         boxStatus: formNum,
+         items: []
+      })
+
+
+      setColumns(columns)
       onClose()
    }
    return (
-      <div className={`form1}`}>
+      <div className={`form1`}>
          <div className="form1-header">
             <h2>Bo’lim yaratish</h2>
 

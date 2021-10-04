@@ -9,39 +9,9 @@ const EnterForm = () => {
 
    const [, setPassword] = useState("")
    const [, setPhone] = useState("")
-   const [selectedFile, setSelectedFile] = useState()
-	// const [isFilePicked, setIsFilePicked] = useState(false)
 
    const [sendReq, setSendReq] = useState('O\'quv markaziga so\'rov qoldiring')
    console.log(sendReq)
-
-
-   const changeHandler = (event) => {
-		setSelectedFile(event.target.files[0]);
-		// setIsFilePicked(true);
-	}
-   console.log(selectedFile)
-
-   const handleSubmission = () => {
-		const formData = new FormData();
-
-		formData.append('File', selectedFile);
-
-		fetch(
-			'http://localhost:4000/file-upload',
-			{
-				method: 'POST',
-				body: formData,
-			}
-		)
-			.then((response) => response.json())
-			.then((result) => {
-				console.log('Success:', result);
-			})
-			.catch((error) => {
-				console.error('Error:', error);
-			});
-	};
    
    return (
       <>
@@ -90,12 +60,6 @@ const EnterForm = () => {
                                  <button className="log_btn1">Login</button>
                               </form>
                               <div>
-                                 <form onSubmit={e => e.preventDefault()} encType="multipart/form-data">
-                                    <input type="file" name="file" onChange={changeHandler} />
-                                    <div>
-                                       <button onClick={handleSubmission}>Submit</button>
-                                    </div>
-                                 </form>
                               </div>
                            </div>
                         </div>

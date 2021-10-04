@@ -52,13 +52,15 @@ class Avatar extends Component {
       );
       return (
          <Upload
-            name="avatar"
+            name="File"
             listType="picture-card"
             className="avatar-uploader"
             showUploadList={false}
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            action='http://localhost:4000/file-upload'
             beforeUpload={beforeUpload}
             onChange={this.handleChange}
+            encType="multipart/form-data"
+            method="POST"
          >
             {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
          </Upload>

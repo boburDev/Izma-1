@@ -27,7 +27,6 @@ import EnterForm from "../Settings_Pages/EnterForm/EnterForm";
 import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
 import Lids from "../Lids/Lids";
 import SettingsRoadMap from "../Settings_Pages/Roadmap/roadmap";
-
 import StudentsTablee from '../../test';
 
 const App = () => {
@@ -35,12 +34,12 @@ const App = () => {
   const [token, setToken] = useState(window.localStorage.getItem('token'))
 
 
- 
+  
   return (
     <div className="app">
 
       {
-        token ? 
+        token  ?
         <>
           {/* ================  NAVBAR  =====================*/}
     

@@ -138,20 +138,16 @@ function Davomat() {
             fullDate: []
         }
         
-        // console.log(days)
         days.split(',').map(i => {
             DATE.map(item => {
                 if (typeof startDay === 'string') {
                     if ((moment(item).format('DD') - 0) === (startDay - 0)) {
-                        console.log(moment(item).format('DD') - 0)
                         if((i - 1) === new Date(item).getDay()){
                             data.date.push(moment(item).format('DD/MM'))
-                            // console.log(moment(item).format('YYYY-MM-DD'))
                         }
                     }
                 }
-                // console.log(item)
-                if ((i - 0) === new Date(item).getDay()) {
+                if ((i - 1) === new Date(item).getDay()) {
                     data.date.push(moment(item).format('DD/MM'))
                 }
                 return ""

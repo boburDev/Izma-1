@@ -39,7 +39,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
          name,
          courseID: courseID.id || dataForEdit.courseId,
          teacherID: teacherID.Id || dataForEdit.teacherID,
-         days: days.id === 'boshqa' ? selectedDate.sort().join() : dataForEdit.days,
+         days: days.id === 'boshqa' ? selectedDate.sort().join() : (days.id || dataForEdit.days),
          roomID: roomID.id || dataForEdit.roomId,
          time,
          startDate,

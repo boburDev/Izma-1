@@ -24,11 +24,7 @@ const openForm1 = () => {
    setForm3(false)
 }
 
-const ollClose = () => {
-   setForm1(false)
-   setForm2(false)
-   setForm3(false)
-}
+
 const openForm2 = () => {
    setForm2(true)
    setForm1(false)
@@ -120,17 +116,17 @@ const closeLidAdd1 = () => {
                      {
                         columns.map((item, index) => {
                            if (item.boxStatus === -1) {
-                              return <>
-                                 <div style={{ margin: 8, width: '100%' }}>
+                              return  <div style={{ margin: 8, width: '100%' }} key={index}>
                                     <LidsBox
                                        column={item}
                                        columnId={item.id}
                                        isVisible={true}
+                                       
                                     />
                                     
                                  </div>
-                              </>
                            }
+                           return ""
                         })
                      }
                   </div>
@@ -148,15 +144,15 @@ const closeLidAdd1 = () => {
                   {
                      columns.map((item, index) => {
                         if (item.boxStatus === 1) {
-                           return <>
-                              <div style={{ margin: 8, width: '100%' }}>
+                           return <div style={{ margin: 8, width: '100%' }} key={index}>
                                  <LidsBox
                                     column={item}
                                     columnId={item.id}
                                  />
                               </div>
-                           </>
+                           
                         }
+                        return ""
                      })
                   }
                </div>
@@ -199,16 +195,15 @@ const closeLidAdd1 = () => {
                      {
                         columns.map((item, index) => {
                            if (item.boxStatus === -2) {
-                              return <>
-                                 <div style={{ margin: 8, width: '100%' }}>
+                              return <div style={{ margin: 8, width: '100%' }} key={index}>
                                     <LidsBox
                                        column={item}
                                        columnId={item.id}
                                        isVisible={true}
                                     />
                                  </div>
-                              </>
                            }
+                           return ""
                         })
                      }
                   </div>
@@ -225,15 +220,14 @@ const closeLidAdd1 = () => {
                   {
                      columns.map((item, index) => {
                         if (item.boxStatus === 2) {
-                           return <>
-                              <div style={{ margin: 8, width: '100%' }}>
+                           return <div style={{ margin: 8, width: '100%' }} key={index}>
                                  <LidsBox
                                     column={item}
                                     columnId={item.id}
                                  />
                               </div>
-                           </>
                         }
+                        return ""
                      })
                   }
                </div>
@@ -276,16 +270,15 @@ const closeLidAdd1 = () => {
                      {
                         columns.map((item, index) => {
                            if (item.boxStatus === -3) {
-                              return <>
-                                 <div style={{ margin: 8, width: '100%' }}>
+                              return <div style={{ margin: 8, width: '100%' }} key={index}>
                                     <LidsBox
                                        column={item}
                                        columnId={item.id}
                                        isVisible={true}
                                     />
                                  </div>
-                              </>
                            }
+                           return ""
                         })
                      }
                   </div>
@@ -302,15 +295,14 @@ const closeLidAdd1 = () => {
                   {
                      columns.map((item, index) => {
                         if (item.boxStatus === 3) {
-                           return <>
-                              <div style={{ margin: 8, width: '100%' }}>
+                           return <div style={{ margin: 8, width: '100%' }} key={index}>
                                  <LidsBox
                                     column={item}
                                     columnId={item.id}
                                  />
                               </div>
-                           </>
                         }
+                        return ""
                      })
                   }
                </div>

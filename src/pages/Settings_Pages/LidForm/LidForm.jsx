@@ -5,7 +5,7 @@ import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberIn
 import { useMutation, useQuery } from '@apollo/client'
 import { COURSES, NEW_LEAD } from './query'
 import { useParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 const LidForm = () => {
@@ -14,19 +14,24 @@ const LidForm = () => {
    const [phone, setPhone] = useState("")
    const [comment, setComment] = useState("")
    const [course, setCourse] = useState("")
+   const [allCourse, setAllCourse] = useState([])
    const { hashtag } = useParams()
 
    const { data: courses } = useQuery(COURSES, {
       variables: { hashtag }
    })
 
-   const [newLead] = useMutation(NEW_LEAD, {
-      update: (cache, data) => {
-         // console.log(data)
+   const [newLead] = useMutation(NEW_LEAD)
+
+   useEffect(() => {
+      if (courses && courses.byHashtag) {
+         setAllCourse(courses && courses.byHashtag)
       }
-   })
+   }, [courses])
+
 
    const handleRequest = () => {
+
       newLead({
          variables: {
             name,
@@ -78,8 +83,9 @@ const LidForm = () => {
                <div className="user_name1">
                   <label className="name_label1" htmlFor="">Kursingizni tanlang *</label>
                   <select onChange={e => setCourse(e.target.value)} className="name_input1" name="" id="">
+                     <option value="" selected disabled>Kurs tanlang</option>
                      {
-                        courses && courses.byHashtag.map((e, i) => (
+                        allCourse?.map((e, i) => (
                            <option key={i} value={e.id}>{e.name}</option>
                         ))
                      }

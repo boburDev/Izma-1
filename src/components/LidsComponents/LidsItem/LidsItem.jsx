@@ -4,9 +4,37 @@ import { useState } from 'react';
 import MenuIcon from '../../../assets/Icons/menu.svg'
 import Edit from '../../../assets/Icons/edit.svg'
 import Delete from '../../../assets/Icons/delete.svg'
+import { useEffect, useRef } from 'react'
 
 const LidsItem = ({ item, index }) => {
    const [menu, setMenu] = useState()
+   const useOutsideAlerter = (ref) => {
+      useEffect(() => {
+         function handleClickOutside(event) {
+            let coun = 0
+            event.path && event.path.map(el => {
+               if (el.className === 'boxmenu active') {
+                  coun++
+               }
+               return ''
+            })
+
+
+            if (coun === 0) {
+               setMenu(false)
+            }
+
+         }
+         document.addEventListener("mousedown", handleClickOutside);
+
+         return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+         };
+      }, [ref])
+   }
+
+   const wrapperRef = useRef(null);
+   useOutsideAlerter(wrapperRef);
    return (
       <Draggable
          key={item.id}
@@ -32,9 +60,9 @@ const LidsItem = ({ item, index }) => {
                >
                   <div className="lidList-inner-user">
                      <span className='span'>{item.userName} / {item.userNumber}</span>
-                     <div className="menuWrapper">
+                     <div className="menuWrapper" >
                         <button className="lidList-inner-user-button" onClick={() => setMenu(!menu)}><img src={MenuIcon} alt="" /></button>
-                        <div className={`boxmenu ${menu ? 'active' : ''}`}>
+                        <div className={`boxmenu ${menu ? 'active' : ''}`} ref={wrapperRef}>
                            <span onClick={() => {
                               setMenu(false)
                               // setEdit(true)

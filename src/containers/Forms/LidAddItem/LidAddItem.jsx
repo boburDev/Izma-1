@@ -1,19 +1,27 @@
 import './LidAddItem.scss'
 import { useRef } from 'react'
-const LidAddItem = ({ columns, setColumns, onClose, formNum }) => {
+const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}) => {
    const itemName = useRef()
    // const boardIn = useRef()
 
 
    const handleSub = async (e) => {
       e.preventDefault()
-      columns.push({
-         id: 'aorrij',
-         name: itemName.current.value,
-         boxStatus: formNum,
-         items: []
-      })
 
+      if(defaultInfo) {
+         let obj = columns.find(el => el.id === boxId)
+         obj.name = itemName.current.value
+      }else {
+         columns.push({
+            id: 'aorrij',
+            name: itemName.current.value,
+            boxStatus: formNum,
+            items: []
+         })
+      }
+
+      let form = document.querySelector('#formItems')
+      form.reset()
 
       setColumns(columns)
       onClose()
@@ -27,9 +35,14 @@ const LidAddItem = ({ columns, setColumns, onClose, formNum }) => {
                <span></span>
             </div>
          </div>
-         <form action="" onSubmit={handleSub}>
+         <form id="formItems" onSubmit={handleSub}>
             <label htmlFor="Nomi">Nomi</label>
-            <input type="text" ref={itemName} />
+            {
+               defaultInfo !== undefined ?
+               <input type="text" ref={itemName} defaultValue={defaultInfo}/>
+               :
+               <input type="text" ref={itemName} />
+            }
             <div className="box" style={{ display: 'flex', justifyContent: 'space-between' }}>
                <button type="submit" >Yaratish</button>
             </div>

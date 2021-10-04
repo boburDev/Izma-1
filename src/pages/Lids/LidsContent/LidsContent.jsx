@@ -1,252 +1,324 @@
 import { useEffect, useState } from 'react'
 import Plus from '../../../assets/Icons/plus.svg'
-import LidBlock from '../../../components/LidsComponents/LidBlock/LidBlock'
+import LidsBox from '../../../components/LidsComponents/LidsBox/LidsBox'
+import Menu from '../../../assets/Icons/menuForm.svg'
 import List from '../../../assets/Icons/list.svg'
 import './LidsContent.scss'
 import request from '../../../services'
 import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm'
 import Loader from '../../../components/Loader/Loader'
-
-const LidsContent = ({ setActive, setInd, refresh, setActive1, setEdit, showDrawer }) => {
-   const [firstCol1, setFirstCol1] = useState(false)
-   const [firstCol2, setFirstCol2] = useState(false)
-   const [firstCol3, setFirstCol3] = useState(false)
-   const [itemId, setItemId] = useState()
-   const itemIds = [1, 4, 7]
-   let arr = [firstCol1, firstCol2, firstCol3]
-   let arr2 = [setFirstCol1, setFirstCol2, setFirstCol3]
-   const [boards, setBoards] = useState([])
-  const [load, setLoad] = useState()
-   const [data,setDate] = useState({})
-   const [data3,setDate1] = useState({})
-   const [data2,setDate2] = useState({})
+import LidAddItem1 from '../../../containers/Forms/LidAddItem1/LidAddItem1'
+import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem'
+import { Drawer } from 'antd';
 
 
-   useEffect(() => {
-      let isCancelled = false;
-      setLoad(true)
-      async function getQuestions() {
-         try {
-            const { data } = await request.get(`/`);
-            const res = data.results
-            setDate(res[0])
-            setDate1(res[1])
-            setDate2(res[2])
-            setBoards(data.results)
-            setLoad(false)
-         } catch (err) { console.log(err) }
-      }
-      !isCancelled && getQuestions();
-
-
-   }, [firstCol1, firstCol2, firstCol3, refresh])
-
-  
-
- 
-
-
-
-   const postHandle = async (currentList, item) => {
-      await request.post(`/`, {
-         to: item.id,
-         list: currentList.id
-      });
-   }
-   const [currentBoard, setCurrentBoard] = useState(null)
-   const [currentItem, setCurrentItem] = useState(null)
-   const [currentList, setCurrentList] = useState(null)
-
-
-   const dragOverHandler = (e, item) => {
-      e.preventDefault()
-      if (e.target.className === 'block-inner') {
-         e.target.style.boxShadow = 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-
-      } else if (e.target.className === 'block-inner-user') {
-         console.log(e.nativeEvent.path);
-         e.nativeEvent.path['1'].style.boxShadow = 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-      } else if (e.target.className === 'span') {
-         e.nativeEvent.path['2'].style.boxShadow = 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-      } else if (e.target.className === 'block-center' && !item.lists.length) {
-         e.target.style.boxShadow = 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-      }
-
-   }
-   const dragLeaveHandler = (e) => {
-      e.preventDefault()
-      e.target.style.boxShadow = 'none'
-
-   }
-   const dragStartHandler = (e, board, item, el) => {
-      setCurrentBoard(board)
-      setCurrentItem(item)
-      setCurrentList(el)
-   }
-
-   const dragEndHandler = (e) => {
-      e.preventDefault()
-      e.target.style.boxShadow = 'none'
-
-   }
-   const dropHandler = (e, board, item, el) => {
-      e.preventDefault()
-      const currentIndex = currentBoard.items.indexOf(currentItem)
-      const currentIndex2 = currentItem.lists.indexOf(currentList)
-      currentBoard.items[currentIndex].lists.splice(currentIndex2, 1)
-      const dropIndex = board.items.indexOf(item)
-      const dropIndex2 = item.lists.indexOf(el)
-      board.items[dropIndex].lists.splice(dropIndex2 + 1, 0, currentList)
-
-
-      let new1 = []
-      boards.map(b => {
-         if (b.id === board.id) {
-            new1.push(board)
-         } else if (b.id === currentBoard.id) {
-            new1.push(currentBoard)
-         } else {
-            new1.push(b)
-         }
-         return ''
-      })
-      setBoards(new1)
-      postHandle(currentList, item)
-      e.target.style.boxShadow = 'none'
-      if (e.target.className === 'block-inner-user') {
-         e.nativeEvent.path['1'].style.boxShadow = 'none'
-      } else if (e.target.className === 'span') {
-         e.nativeEvent.path['2'].style.boxShadow = 'none'
-      }
-   }
-
-   const dropCardHandler = (e, board, item) => {
-      e.preventDefault()
-      if (!item.lists.length) {
-         item.lists.push(currentList)
-         const currentIndex = currentBoard.items.indexOf(currentItem)
-         const currentIndex2 = currentItem.lists.indexOf(currentList)
-         currentBoard.items[currentIndex].lists.splice(currentIndex2, 1)
-         let new1 = []
-         boards.map(b => {
-            if (b.id === board.id) {
-               new1.push(board)
-            } else if (b.id === currentBoard.id) {
-               new1.push(currentBoard)
-            } else {
-               new1.push(b)
-            }
-            return ''
-         })
-         setBoards(new1);
-         postHandle(currentList, item)
-
-      }
-      if (e.target.className === 'block-center') {
-         e.target.style.boxShadow = 'none'
-      }
-   }
-
-
-
+const LidsContent = ({ columns, setColumns}) => {
    
+
+const [form1, setForm1] = useState()
+const [form2, setForm2] = useState()
+const [form3, setForm3] = useState()
+const [lidAdd, setLidAdd] = useState(false)
+const [lidAdd1, setLidAdd1] = useState(false)
+
+const openForm1 = () => {
+   setForm1(true)
+   setForm2(false)
+   setForm3(false)
+}
+
+const ollClose = () => {
+   setForm1(false)
+   setForm2(false)
+   setForm3(false)
+}
+const openForm2 = () => {
+   setForm2(true)
+   setForm1(false)
+   setForm3(false)
+}
+const openForm3 = () => {
+   setForm3(true)
+   setForm2(false)
+   setForm1(false)
+}
+
+const closeLidAdd = () => {
+   setLidAdd(false)
+}
+
+const closeLidAdd1 = () => {
+   setLidAdd1(false)
+}
+
+
+
    return (
-      <div className="lids container">
-         <>
-            {
-               load ? <Loader/> : <></>
-            }
-         </>
-         {
-            boards && boards.map((board, index) =>
-               <div className="lids-column">
-                  <div className={`lids-column-top ${arr[index] ? 'active' : ''}`}>
-                     <h2>{board.title}</h2>
-                     <div className="lids-column-top-click">
-                        <span className="lids-column-top-click-left"
-                           onClick={() => {
-                              setItemId(itemIds[index])
-                              arr2.forEach(el => {
-                                 el(false)
-                              })
-                              arr2[index](true)
-                           }}
-                        >
-                           <img src={Plus} alt="" />
-                           So'rov qo'shish
-                        </span>
-                        <span className="lids-column-top-click-right" >
-                           {
-                              index !== 2 ?
-                                 <img src={List} alt=""
-                                    onClick={() => {
-                                       setInd(index)
-                                       showDrawer(true)
-                                    }}
-                                 />
+      <div className="lids">
+         <div className="lidsWrapper">
+            <Drawer
+               placement="right"
+               closable={false}
+               onClose={closeLidAdd1}
+               visible={lidAdd1}
+            >
+               <LidAddItem1 
+                  onClose={closeLidAdd1} 
+                  setColumns={setColumns}
+                  columns={columns}
+               />
+            </Drawer>
 
-                                 :
+            
 
-                                 <img src={List} alt=""
-                                    onClick={() => {
-                                       setInd(index)
-                                       showDrawer(true)
-                                    }}
-                                 />
-                           }
-                        </span>
+            <Drawer
+               placement="right"
+               closable={false}
+               onClose={closeLidAdd}
+               visible={lidAdd}
+            >
+               <LidAddItem 
+                  onClose={closeLidAdd} 
+                  setColumns={setColumns}
+                  columns={columns}
+               />
+            </Drawer>
+            <div className="status1">
+               <h2 className="status1-header-title" >So'rovlar</h2>
+               <div className="status1-header">
+                  <div className="status1-header-row"
+                     style={{
+                        display: form1 ? 'none' : 'flex'
+                     }}
+                  >
+                     <div className="status1-header-row-left"
+                        onClick={openForm1}
+                     >
+                        <img src={Plus} alt="" />
+                        <h4>So'rov qo'shish</h4>
                      </div>
-                           <LidAddForm add={arr[index]} setAdd={arr2[index]} itemId={itemId}/>
 
-                     <div className="lids-zero">
-                                 {
-                                    board.items.map(item => (
-                                       
-                                       item.id === '1' ||item.id === '4' || item.id === '7' ?
-                                         <LidBlock
-                                             board={board}
-                                             item={item}
-                                             dragOverHandler={dragOverHandler}
-                                             dragLeaveHandler={dragLeaveHandler}
-                                             dragEndHandler={dragEndHandler}
-                                             dropCardHandler={dropCardHandler}
-                                             dragStartHandler={dragStartHandler}
-                                             dropHandler={dropHandler}
-                                             setEdit={setEdit} 
-                                             isBlock={true}
-                                             />
-
-                                          :
-                                          <></>
-                                    ))
-                                 }
-                              
+                     <div className="status1-header-row-right">
+                        <img src={Menu} alt="" 
+                           onClick={() => {
+                              setLidAdd(true)
+                           }}
+                         />
                      </div>
                   </div>
-
-
-                  <div className="lids-column-center">
-
+                  <div className="status1-header-row"
+                     style={{
+                        display: form1 ? 'flex' : 'none'
+                     }}
+                  >
+                     <LidAddForm 
+                        setAdd={setForm1}
+                        formId={1}
+                        columns={columns}
+                        setColumns={setColumns}
+                        itemId={-1}
+                     />
+                  </div>
+                  <div className="status1-header-row">
                      {
-                        board.items.map(item =>
-                           <LidBlock
-                              board={board}
-                              item={item}
-                              dragOverHandler={dragOverHandler}
-                              dragLeaveHandler={dragLeaveHandler}
-                              dragEndHandler={dragEndHandler}
-                              dropCardHandler={dropCardHandler}
-                              dragStartHandler={dragStartHandler}
-                              dropHandler={dropHandler}
-                              setEdit={setEdit}
-                           />
-                        )
+                        columns.map((item, index) => {
+                           if (item.boxStatus === -1) {
+                              return <>
+                                 <div style={{ margin: 8, width: '100%' }}>
+                                    <LidsBox
+                                       column={item}
+                                       columnId={item.id}
+                                       isVisible={true}
+                                    />
+                                    
+                                 </div>
+                              </>
+                           }
+                        })
                      }
                   </div>
                </div>
-            )
-         }
+               <div
+                  className="centerCoulumn"
+                  style={{
+                     display: "flex",
+                     flexDirection: "column",
+                     alignItems: "center",
+                     width: '100%'
+                  }}
+                  key={1}
+               >
+                  {
+                     columns.map((item, index) => {
+                        if (item.boxStatus === 1) {
+                           return <>
+                              <div style={{ margin: 8, width: '100%' }}>
+                                 <LidsBox
+                                    column={item}
+                                    columnId={item.id}
+                                 />
+                              </div>
+                           </>
+                        }
+                     })
+                  }
+               </div>
+            </div>
+            <div className="status2">
+               <h2 className="status1-header-title" >Kutish</h2>
+               <div className="status1-header">
+                  <div className="status1-header-row"
+                     style={{
+                        display: form2 ? 'none' : 'flex'
+                     }}
+                  >
+                     <div className="status1-header-row-left"
+                        onClick={openForm2}
+                     >
+                        <img src={Plus} alt="" />
+                        <h4>So'rov qo'shish</h4>
+                     </div>
 
+                     <div className="status1-header-row-right">
+                        <img src={Menu} alt="" 
+                           onClick={() => setLidAdd(true)}
+                        />
+                     </div>
+                  </div>
+                  <div className="status1-header-row"
+                     style={{
+                        display: form2 ? 'flex' : 'none'
+                     }}
+                  >
+                     <LidAddForm 
+                        setAdd={setForm2}
+                        formId={2}
+                        columns={columns}
+                        setColumns={setColumns}
+                        itemId={-2}
+                     />
+                  </div>
+                  <div className="status1-header-row">
+                     {
+                        columns.map((item, index) => {
+                           if (item.boxStatus === -2) {
+                              return <>
+                                 <div style={{ margin: 8, width: '100%' }}>
+                                    <LidsBox
+                                       column={item}
+                                       columnId={item.id}
+                                       isVisible={true}
+                                    />
+                                 </div>
+                              </>
+                           }
+                        })
+                     }
+                  </div>
+               </div>
+               <div
+                  style={{
+                     display: "flex",
+                     flexDirection: "column",
+                     alignItems: "center",
+                     width: '100%'
+                  }}
+                  key={1}
+               >
+                  {
+                     columns.map((item, index) => {
+                        if (item.boxStatus === 2) {
+                           return <>
+                              <div style={{ margin: 8, width: '100%' }}>
+                                 <LidsBox
+                                    column={item}
+                                    columnId={item.id}
+                                 />
+                              </div>
+                           </>
+                        }
+                     })
+                  }
+               </div>
+            </div>
+            <div className="status3">
+               <h2 className="status1-header-title" >To’plam</h2>
+               <div className="status1-header">
+                  <div className="status1-header-row" 
+                     style={{
+                        display: form3 ? 'none' : 'flex'
+                     }}
+                  >
+                     <div className="status1-header-row-left"
+                        onClick={openForm3}
+                     >
+                        <img src={Plus} alt="" />
+                        <h4>So'rov qo'shish</h4>
+                     </div>
+
+                     <div className="status1-header-row-right">
+                        <img src={Menu} alt="" 
+                           onClick={() => setLidAdd1(true)}
+                        />
+                     </div>
+                  </div>
+                  <div className="status1-header-row"
+                     style={{
+                        display: form3 ? 'flex' : 'none'
+                     }}
+                  >
+                     <LidAddForm
+                        setAdd={setForm3}
+                        formId={3}
+                        columns={columns}
+                        setColumns={setColumns}
+                        itemId={-3}
+                     />
+                  </div>
+                  <div className="status1-header-row">
+                     {
+                        columns.map((item, index) => {
+                           if (item.boxStatus === -3) {
+                              return <>
+                                 <div style={{ margin: 8, width: '100%' }}>
+                                    <LidsBox
+                                       column={item}
+                                       columnId={item.id}
+                                       isVisible={true}
+                                    />
+                                 </div>
+                              </>
+                           }
+                        })
+                     }
+                  </div>
+               </div>
+               <div
+                  style={{
+                     display: "flex",
+                     flexDirection: "column",
+                     alignItems: "center",
+                     width: '100%'
+                  }}
+                  key={1}
+               >
+                  {
+                     columns.map((item, index) => {
+                        if (item.boxStatus === 3) {
+                           return <>
+                              <div style={{ margin: 8, width: '100%' }}>
+                                 <LidsBox
+                                    column={item}
+                                    columnId={item.id}
+                                 />
+                              </div>
+                           </>
+                        }
+                     })
+                  }
+               </div>
+            </div>
+         </div>
       </div>
    )
 }

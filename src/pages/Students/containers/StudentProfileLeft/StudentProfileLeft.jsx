@@ -5,7 +5,7 @@ import { Option } from "antd/lib/mentions"
 import StudentEdit from '../../../../containers/Forms/StudentAdd/StudentEdit'
 import FinanceRepaymentForm from '../../../../containers/Finances/FinancesForm/FinanceRepaymeynForm/FinanceRepaymeynForm'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
-import { ONE_STUDENT, DELETE_STUDENT, GROUPS, SELECT_STUDENT_GROUP, CHECK_CASH, UPDATE_COMMENT, HAS_STUDENT } from './query'
+import { ONE_STUDENT, DELETE_STUDENT, GROUPS, SELECT_STUDENT_GROUP, CHECK_CASH, /*UPDATE_COMMENT, */ HAS_STUDENT } from './query'
 import { SUBSCRIPTION_STUDENT, SUBSCRIPTION_CASH, FILIAL, STATUS_3_4, UPDATE_STATUS_4, SUBSCRIPTION_ST_EDIT } from './query'
 import { useQuery, useMutation, useSubscription, useLazyQuery } from '@apollo/client'
 import StudentProlifeLeftCheck from '../../../../components/StudentComponents/StudentFilterCheck/StudentFilterCheck'
@@ -32,7 +32,7 @@ const StudentsProfileLeft = (prop) => {
      const [has, {data: hasStud}] = useLazyQuery(HAS_STUDENT)
  
      const [CheckBalanc] = useMutation(STATUS_3_4)
-     const [UpdateComment] = useMutation(UPDATE_COMMENT)
+    //  const [UpdateComment] = useMutation(UPDATE_COMMENT)
      const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)
      const [setStatus_3] = useMutation(UPDATE_STATUS_4)
      const [delStudent, {data: frRedirect}] = useMutation(DELETE_STUDENT)
@@ -95,7 +95,7 @@ const StudentsProfileLeft = (prop) => {
        setVisibleF(false)
      }
    
-     const [ comme, setComme ] = useState('')
+    //  const [ comme, setComme ] = useState('')
    
      const [visible, setVisible] = useState(false)
      const showDrawer = () => {
@@ -121,15 +121,17 @@ const StudentsProfileLeft = (prop) => {
     //  }
        
        
-     const handleOk = (e) => {
-       e.preventDefault()
-       UpdateComment({variables: {stID: studentID, stComment: comme}})
-       setIsModalVisible(false)
-     }
+    //  const handleOk = (e) => {
+    //    e.preventDefault()
+    //    UpdateComment({variables: {stID: studentID, stComment: comme}})
+    //    setIsModalVisible(false)
+    //  }
        
-     const handleCancel = () => {
-       setIsModalVisible(false)
-     }
+    //  const handleCancel = () => {
+    //    setIsModalVisible(false)
+    //  }
+
+
      const [isModalVisibleD, setIsModalVisibleD] = useState(false)
  
      const showModalD = () => {
@@ -156,19 +158,20 @@ const StudentsProfileLeft = (prop) => {
          //    setIsModalVisibleD(false)
          //  }
        const [ names, setNames ] = useState([])
-       const [ namesFind, setNamesFind ] = useState([])
+       console.log(names)
+      //  const [ namesFind, setNamesFind ] = useState([])
  
  
-       const onSearch = (searchText) => {
-          const s = names.filter(i => i.value.toLowerCase().includes(searchText.toLowerCase()))
-          // console.log(s)
+      //  const onSearch = (searchText) => {
+      //     const s = names.filter(i => i.value.toLowerCase().includes(searchText.toLowerCase()))
+      //     // console.log(s)
     
-          if (s.length) {
-             setNamesFind(s)
-          } else {
-             setNamesFind([])
-          }
-       }
+      //     if (s.length) {
+      //        setNamesFind(s)
+      //     } else {
+      //        setNamesFind([])
+      //     }
+      //  }
     
  
          

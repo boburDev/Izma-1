@@ -1,15 +1,15 @@
 import './Lids.scss'
 import LidsContent from './LidsContent/LidsContent'
 import { useState } from 'react'
-import LidAddForm from '../../containers/Forms/LidAddForm/LidAddForm'
+// import LidAddForm from '../../containers/Forms/LidAddForm/LidAddForm'
 import { Drawer } from 'antd'
-import LidForm from '../Settings_Pages/LidForm/LidForm'
+// import LidForm from '../Settings_Pages/LidForm/LidForm'
 import LidAddItem from '../../containers/Forms/LidAddItem/LidAddItem'
 import LidAddItem1 from '../../containers/Forms/LidAddItem1/LidAddItem1'
 const Lids = () => {
-   const [active, setActive] = useState(false)
-   const [active1, setActive1] = useState(false)
-   const [edit, setEdit] = useState(false)
+   const [, setActive] = useState(false)
+   const [, setActive1] = useState(false)
+   const [, setEdit] = useState(false)
    const [refresh, setRefresh] = useState(false)
    const [ind, setInd] = useState('')
 

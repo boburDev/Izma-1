@@ -89,7 +89,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
       }
    }
 
-   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+   const { enqueueSnackbar } = useSnackbar();
 
    const handleClick = () => {
       const message = 'O`zgartirildi'

@@ -12,22 +12,27 @@ const Pagination = () => {
    const [activeBtn ,setActiveBtn] = useState(1)
    const [arrOfCurrBtn, setArrOfCurrBtn] = useState([])
    // eslint-disable-next-line react-hooks/exhaustive-deps
-   const numberOfPages = []
    
+   let numberOfPages = []
    let arrayLen = Array(data && data?.pagination?.studentCount).fill('@')
-
+   arrayLen.map((key, index) => {
+      return numberOfPages.push(index + 1)
+   })
+   
    useEffect(() => {
       setPage({
          page:activeBtn,
          count:count
       })
    }, [activeBtn, count, setPage])
-  
-   arrayLen.map((key, index) => {
-      return numberOfPages.push(index + 1)
-   })
-
-
+   
+   
+   
+   
+   
+   
+   
+   
    useEffect(() => {
       let tempNumberOfPages = [...arrOfCurrBtn]
       const dotsInitial = '...'
@@ -58,7 +63,10 @@ const Pagination = () => {
          setActiveBtn(arrOfCurrBtn[3] + 2)
       }
       setArrOfCurrBtn(tempNumberOfPages)
-   }, [activeBtn, arrOfCurrBtn, numberOfPages, numberOfPages.length])
+   }, [activeBtn, data?.pagination?.studentCount])
+
+
+
 
    
 

@@ -1,29 +1,39 @@
 import { useEffect, useRef } from 'react'
 import './LidAddForm.scss'
-import request from '../../../services'
+// import request from '../../../services'
 
-const LidAddForm = ({ setAdd, itemId }) => {
+const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
    const userName = useRef()
    const userNumber = useRef()
    const userComment = useRef()
 
    const handleSubmit = async () => {
-      await request.post(`/list`, {
+      // await request.post(`/list`, {
+      //    userName: userName.current.value,
+      //    userNumber: userNumber.current.value,
+      //    userComment: userComment.current.value,
+      //    itemId: itemId
+      // });
+
+      let item = columns.find(el => el.boxStatus === itemId)
+      item.items.push({
+         id: 'adsfadf',
          userName: userName.current.value,
          userNumber: userNumber.current.value,
-         userComment: userComment.current.value,
-         itemId: itemId
-      });
-      setAdd(false)
-      let form = document.querySelector('#form')
+         userComment: userComment.current.value
+
+      })
+      setColumns(columns)
+      setAdd()
+      let form = document.querySelector('#form' + formId)
       form.reset()
    }
 
 
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
-         let closeOrAdd = 0
          function handleClickOutside(event) {
+            let closeOrAdd = 0
             event.path && event.path.map(el => {
                if (el.className === 'home-column-top__name' || el.className === 'home-column-top__number' || el.className === 'home-column-top__coment') {
                   closeOrAdd++
@@ -49,7 +59,7 @@ const LidAddForm = ({ setAdd, itemId }) => {
    useOutsideAlerter(wrapperRef);
    return (
 
-      <form id={`form`}>
+      <form id={`form` + formId}>
       <div className="addForm" ref={wrapperRef}>
          <input type="text" className="home-column-top__name"
             placeholder="ism va familiya" required ref={userName}

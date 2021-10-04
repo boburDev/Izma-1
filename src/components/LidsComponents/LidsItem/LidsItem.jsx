@@ -13,7 +13,7 @@ const LidsItem = ({ item, index }) => {
          function handleClickOutside(event) {
             let coun = 0
             event.path && event.path.map(el => {
-               if (el.className === 'boxmenu active') {
+               if (el.className === 'boxmenu active' || el.className === 'lidList-inner-user-button') {
                   coun++
                }
                return ''

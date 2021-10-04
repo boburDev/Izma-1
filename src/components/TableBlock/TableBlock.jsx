@@ -111,7 +111,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                   <h4 className={`${block}`}>{info?.name}</h4>
                   <h4 className={`${block}`}>{info?.teacher}</h4>
                   <h4 className={`${block}`}>{dayDivider(info.days)}</h4>
-                  <h4 className={`${block}`}><span>{info?.startDate}</span> <span>{info?.endDate}</span></h4>
+                  <h4 className={`${block}`}><span>{info?.startDate}</span>&nbsp;&nbsp;&nbsp;<span>{info?.endDate}</span></h4>
                   <h4 className={`${block}`}>{info?.rooms}</h4>
                   <h4 className={`${block}`}>{info?.studentsCount}</h4>
                </Link>

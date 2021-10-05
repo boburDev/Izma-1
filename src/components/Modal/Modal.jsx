@@ -82,7 +82,9 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                                       <button onClick={() => {
                                                          info ? setInfo(info) : setInfo()
                                                          setMymodal(false)
-                                                         window.location.replace(redir)
+                                                        if(redir) {
+                                                           window.location.replace(redir)
+                                                        }
                                                          handleClick()
                                                       }}>Ha</button>
                                                    </div>

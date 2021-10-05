@@ -151,7 +151,7 @@ const StudentAdd = ({ onCloseF }) => {
                   birthday: stBirth,
                   password: stPassword,
                   gender: stGender - 0,
-                  groupID: [{ groupID: stGroup.id }],
+                  groupID: [{ groupID: stGroup?.id || null }],
                   comment: stTextInfo,
                   newNumber: fieldInput,
                   parentNumber: fieldParents,

@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { BY_HASHTAG } from './query'
 // import Close from '../../../assets/Icons/close.svg'
 import Icon from '../../../assets/Icons/arrow_im.svg'
 import LogoTwo from '../../../assets/Group 12.svg'
@@ -35,6 +37,7 @@ import NavbarLinks from '../NavbarLinks/NavbarLinks'
 import NavbarPlus from '../NavbarPlus/NavbarPlus'
 
 
+
 const Navbar = ({ sidebarActive }) => {
    const [dragActive, setDragActive] = useState()
    const [settingActive, setSettingActive] = useState(false)
@@ -43,6 +46,16 @@ const Navbar = ({ sidebarActive }) => {
    const [openOfis, setOpenOfis] = useState(false)
    const [openJurnal, setOpenJurnal] = useState(false)
    const [openShakl, setOpenShakl] = useState(false)
+   const [hashName, setHashName] = useState('')
+
+   const {data: hashtag} = useQuery(BY_HASHTAG)
+
+   useEffect(() => {
+      if (hashtag && hashtag) {
+         setHashName(hashtag.hashtag)
+      }
+
+   }, [hashtag])
 
    const openFinance1 = () => {
       setOpenMoliya(!openMoliya)
@@ -260,7 +273,7 @@ const Navbar = ({ sidebarActive }) => {
          isBox: true,
          links: [
             {
-               link: '/settingsLidform',
+               link: `/${hashName}/entry/lead`,
                title: 'Lid forma',
                icon: Icon6
             }, {

@@ -33,7 +33,6 @@ import {
    SUBSCRIPTION_ADD_STUDENT,
    // SUBSCRIPTION_CASH
 } from '../../../../Querys/GroupTabs'
-import confirm from 'antd/lib/modal/confirm'
 
 import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'

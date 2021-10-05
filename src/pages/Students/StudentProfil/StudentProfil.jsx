@@ -14,7 +14,7 @@ import Loader from '../../../components/Loader/Loader'
 
 const StudentProfile = ({ role }) => {
    const [toggleState, setToggleState] = useState(1);
-   const [studentName, setStName] = useState()
+   const [studentName, setStudentName] = useState()
    const [loading] = useLoader()
 
    const toggleTab = (index) => {
@@ -68,7 +68,7 @@ const StudentProfile = ({ role }) => {
                         {
                            role === 'student' ?
                               <>
-                                 <StudentsProfileLeft stName={stname => setStName(stname)} />
+                                 <StudentsProfileLeft stName={setStudentName} />
                                  <StudentsProfileRight /></>
                               :
                               <>

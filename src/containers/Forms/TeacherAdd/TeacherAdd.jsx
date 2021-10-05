@@ -40,6 +40,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
       newTeacher({
          variables: data
       })
+      document.getElementById('teacherFormRes').reset()
       handleClick()
       onClose()
 
@@ -66,7 +67,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
          </div>
 
          <div className="forms">
-            <form action="">
+            <form action="" id="teacherFormRes">
                <div className="form_one">
                   <label htmlFor="">Telefon</label>
                   <PhoneNumberInput

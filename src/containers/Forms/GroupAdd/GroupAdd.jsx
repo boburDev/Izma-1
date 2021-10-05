@@ -47,6 +47,7 @@ const GroupAdd = ({ onClose }) => {
       createGroup({
          variables: data
       })
+      document.getElementById('grouFormRes').reset()
       onClose()
       handleClick()
    }
@@ -110,7 +111,7 @@ const GroupAdd = ({ onClose }) => {
                <button onClick={onClose}><img src={CloseBtn} alt="img" /></button>
             </div>
             <div className="form_wrapper">
-               <form action="">
+               <form action="" id="grouFormRes">
                   <div className="form_inputs">
                      <label htmlFor="">Nomi</label>
                      <input onKeyUp={e => setName(e.target.value)} type="text" name="" id="" />

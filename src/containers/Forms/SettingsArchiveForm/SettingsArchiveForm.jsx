@@ -37,6 +37,7 @@ const SettingsArchiveForm = ({ onClose }) => {
       newColleague({
          variables: data
       })
+      document.getElementById('archiveFormRes').reset()
    }
 
 
@@ -50,7 +51,7 @@ const SettingsArchiveForm = ({ onClose }) => {
                </button>
             </div>
 
-            <form action="" onSubmit={(e) => e.preventDefault()}>
+            <form action="" onSubmit={(e) => e.preventDefault()} id="archiveFormRes">
                <div className="form-input">
                   <label htmlFor="">Telefon</label>
                   <PhoneNumberInput

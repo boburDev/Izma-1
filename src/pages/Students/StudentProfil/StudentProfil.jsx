@@ -21,8 +21,6 @@ const StudentProfile = ({ role }) => {
    };
 
 
-   console.log(peopleName);
-
    return (
       <>
          <div className="izma__students-profile-content">

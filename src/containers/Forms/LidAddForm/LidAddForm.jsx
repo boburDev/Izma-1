@@ -28,6 +28,9 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
       setAdd()
       let form = document.querySelector('#form' + formId)
       form.reset()
+      userName.current.value = ''
+      userNumber.current.value = ''
+      userComment.current.value = ''
    }
 
 
@@ -45,6 +48,8 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
             if ((userName.current.value || userNumber.current.value) && closeOrAdd === 0) {
                setAdd(false)
                handleSubmit()
+            } else if ((!userName.current.value || !userNumber.current.value) && closeOrAdd === 0) {
+               setAdd(false)
             }
          }
          document.addEventListener("mousedown", handleClickOutside);

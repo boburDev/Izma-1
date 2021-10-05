@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import './GroupProfilLeft.scss'
 import { useState } from 'react'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import GroupEdit from '../../../../containers/Forms/GroupEdit/GroupEdit';
 import { Drawer } from 'antd'
 import {  Modal, AutoComplete, DatePicker } from 'antd'
@@ -33,7 +33,6 @@ import {
    SUBSCRIPTION_ADD_STUDENT,
    // SUBSCRIPTION_CASH
 } from '../../../../Querys/GroupTabs'
-
 import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
 import Check from '../../../../components/Check/Check'
@@ -321,7 +320,7 @@ const GroupProfilLeft = (prop) => {
 
    const filtered = grStudents && grStudents.findStudByGrId.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
 
-   // if (delData && delData) return <Redirect to='/groups' />
+   if (delData && delData) return <Redirect to='/groups' />
 
 
 

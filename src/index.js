@@ -26,14 +26,14 @@ import { LangProvider } from './context/LanguageProvider'
 import { NameProvider } from './context/NameProvider'
 import Slide from '@material-ui/core/Slide'
 
-const isTester = false
+const isTester = true
 // http://api.al-azhar.uz/api/graphql
 
-// const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
-// const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
-
-const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
-const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+// 
+// const api = `https://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
+// const wssApi = `wss://${isTester ? 'localhost:4001' : 'api.triiipple.uz'}/graphql`
 // console.log(api, wssApi)
 
 

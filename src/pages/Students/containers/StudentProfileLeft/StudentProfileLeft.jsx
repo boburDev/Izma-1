@@ -4,7 +4,7 @@ import { Drawer } from 'antd'
 import StudentEdit from '../../../../containers/Forms/StudentAdd/StudentEdit'
 import FinanceRepaymentForm from '../../../../containers/Finances/FinancesForm/FinanceRepaymeynForm/FinanceRepaymeynForm'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
-import { ONE_STUDENT, DELETE_STUDENT, GROUPS, /*SELECT_STUDENT_GROUP*/ CHECK_CASH, /*UPDATE_COMMENT, *//* HAS_STUDENT*/ } from './query'
+import { ONE_STUDENT, DELETE_STUDENT, GROUPS, SELECT_STUDENT_GROUP, CHECK_CASH, /*UPDATE_COMMENT, *//* HAS_STUDENT*/ } from './query'
 import { SUBSCRIPTION_STUDENT, SUBSCRIPTION_CASH, FILIAL, STATUS_3_4, UPDATE_STATUS_4, SUBSCRIPTION_ST_EDIT } from './query'
 import { useQuery, useMutation, useSubscription } from '@apollo/client'
 import StudentProlifeLeftCheck from '../../../../components/StudentComponents/StudentFilterCheck/StudentFilterCheck'
@@ -27,6 +27,10 @@ const StudentsProfileLeft = () => {
   // const [userInput, setUserInput] = useState('')
   const [visibleF, setVisibleF] = useState(false)
   const [deleteStudent, setDeleteStudent] = useState()
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModalVisibleD, setIsModalVisibleD] = useState(false)
+
+
   const { studentID } = useParams()
 
   const { data: oneStudent } = useQuery(ONE_STUDENT, { variables: { id: studentID } })
@@ -37,9 +41,15 @@ const StudentsProfileLeft = () => {
 
   const [CheckBalanc] = useMutation(STATUS_3_4)
   //  const [UpdateComment] = useMutation(UPDATE_COMMENT)
-  //  const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)
+   const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)
   const [setStatus_3] = useMutation(UPDATE_STATUS_4)
   const [delStudent, { data: frRedirect }] = useMutation(DELETE_STUDENT)
+
+  useEffect(() => {
+    if (groupAdd && groupAddDate && !isModalVisibleD) {
+     SetStudentGroup({variables: {idGroup: groupAdd.id, idStudent: studentID, startAt: groupAddDate}})
+    }
+  }, [groupAdd, groupAddDate, studentID, SetStudentGroup, isModalVisibleD])
 
   useSubscription(SUBSCRIPTION_STUDENT, {
     onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -119,7 +129,6 @@ const StudentsProfileLeft = () => {
   }
 
 
-  const [isModalVisible, setIsModalVisible] = useState(false)
 
   //  const showModal = () => {
   //    setIsModalVisible(true)
@@ -138,7 +147,6 @@ const StudentsProfileLeft = () => {
   //  }
 
 
-  const [isModalVisibleD, setIsModalVisibleD] = useState(false)
 
   //  const showModalD = () => {
   //    setIsModalVisibleD(true)

@@ -151,15 +151,14 @@ const StudentAdd = ({ onCloseF }) => {
                   birthday: stBirth,
                   password: stPassword,
                   gender: stGender - 0,
-                  photo: 'null',
-                  groupID: [{ groupID: stGroup }],
+                  groupID: [{ groupID: stGroup.id }],
                   comment: stTextInfo,
                   newNumber: fieldInput,
                   parentNumber: fieldParents,
-                  telegram: [{ telegram: stTg }],
-                  address: [{ address: 'null' }]
+                  telegram: [{ telegram: (stTg !== '@') ? stTg : null}],
                }
 
+               // console.log(data)
                AddNewSudents({ variables: data })
             }
          }}>

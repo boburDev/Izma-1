@@ -9,12 +9,26 @@ mutation CreateStudent(
   $name: String!
   $gender: Int
   $groupID: [GroupInput]
+  $birthday: String
+  $password: String!
+  $comment: String
+  $newNumber: [PhoneInput]
+  $parentNumber: [PhoneInput]
+  $telegram: [TelegramInput]
+
 ) {
   createStudent(
     mainPhone: $mainPhone
     name: $name
     gender: $gender
     groupID: $groupID
+    birthday: $birthday
+    password: $password
+    comment: $comment
+    newNumber: $newNumber
+    parentNumber: $parentNumber
+    telegram: $telegram
+
   ) {
     id
     }

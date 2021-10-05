@@ -6,6 +6,7 @@ import './LidsContent.scss'
 import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm'
 import LidAddItem1 from '../../../containers/Forms/LidAddItem1/LidAddItem1'
 import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem'
+import LidAddItem2 from '../../../containers/Forms/LidAddItem2/LidAddItem2'
 import { Drawer } from 'antd';
 
 
@@ -17,6 +18,7 @@ const [form2, setForm2] = useState()
 const [form3, setForm3] = useState()
 const [lidAdd, setLidAdd] = useState(false)
 const [lidAdd1, setLidAdd1] = useState(false)
+const [lidAdd2, setLidAdd2] = useState(false)
 const [formNum, setFormNum] = useState()
 
 const openForm1 = () => {
@@ -44,6 +46,9 @@ const closeLidAdd = () => {
 const closeLidAdd1 = () => {
    setLidAdd1(false)
 }
+const closeLidAdd2 = () => {
+   setLidAdd2(false)
+}
 
 
 
@@ -58,6 +63,18 @@ const closeLidAdd1 = () => {
             >
                <LidAddItem1 
                   onClose={closeLidAdd1} 
+                  setColumns={setColumns}
+                  columns={columns}
+               />
+            </Drawer>
+            <Drawer
+               placement="right"
+               closable={false}
+               onClose={closeLidAdd2}
+               visible={lidAdd2}
+            >
+               <LidAddItem2
+                  onClose={closeLidAdd2}
                   setColumns={setColumns}
                   columns={columns}
                />
@@ -150,8 +167,9 @@ const closeLidAdd1 = () => {
                         if (item.boxStatus === 1) {
                            return <div style={{ margin: 8, width: '100%' }} key={index}>
                                  <LidsBox
-                                 column={item}
-                                 columnId={item.id}
+                                 sorov={true}
+                                    column={item}
+                                    columnId={item.id}
                                  columns={columns}
                                  setColumns={setColumns}
 
@@ -315,6 +333,7 @@ const closeLidAdd1 = () => {
                                     columnId={item.id}
                                  columns={columns}
                                  setColumns={setColumns}
+                                 groupCreate={setLidAdd2}
                                  />
                               </div>
                         }

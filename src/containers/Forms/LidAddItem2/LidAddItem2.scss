@@ -1,0 +1,127 @@
+.form2 {
+
+   .row {
+      margin-bottom: 10px;
+   }
+
+   &-header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      border-bottom: 1px solid #000000;
+
+      padding-bottom: 20px;
+
+      h2 {
+         font-style: normal;
+         font-weight: 600;
+         font-size: 17px;
+         margin-bottom: 0;
+         line-height: 43px;
+
+         color: #000000;
+
+      }
+
+
+      .closeBox {
+         position: relative;
+         width: 25px;
+         height: 25px;
+         display: flex;
+         align-items: center;
+         cursor: pointer;
+         justify-content: center;
+
+
+         span {
+            position: absolute;
+            width: 20px;
+
+
+            &::before {
+               content: "";
+               position: absolute;
+               width: 20px;
+               height: 2px;
+               background: black;
+               transform: rotate(-45deg);
+               border-radius: 50px;
+            }
+
+            &::after {
+               content: "";
+               position: absolute;
+               width: 20px;
+               height: 2px;
+               background: black;
+               transform: rotate(45deg);
+               border-radius: 50px;
+            }
+         }
+      }
+   }
+
+
+   form {
+      margin-top: 30px;
+   }
+
+
+   .ant-picker {
+      background: #F7F9FB;
+      position: relative;
+      border: 2px solid #C9D5E4;
+      background: #F7F9FB;
+      width: 100%;
+      border-radius: 5px;
+      padding: 10px;
+
+      input {
+         border: none;
+         padding: 0;
+      }
+   }
+
+   &.active {
+      transform: translateX(0);
+      transition: all ease 0.5s;
+   }
+
+   label {
+      font-style: normal;
+      font-weight: normal;
+      font-size: .8rem;
+      margin-left: 5px;
+      line-height: 27px;
+      color: #111111;
+   }
+
+   input {
+      width: 100%;
+      outline: none;
+      font-size: .8rem;
+      background: #F7F9FB;
+      border: 2px solid #EDF2F8;
+      box-sizing: border-box;
+      border-radius: 7px;
+      padding: 10px;
+
+   }
+
+   button {
+      font-family: "Jost";
+      font-style: normal;
+      font-weight: 600;
+      font-size: .8rem;
+      color: #FFFFFF;
+      border: none;
+      background: #090761;
+      border-radius: 57px;
+      padding: 12px 40px;
+      margin-bottom: 30px;
+      margin-top: 15px;
+   }
+
+}

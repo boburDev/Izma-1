@@ -13,7 +13,7 @@ import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm';
 import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem';
 import { Drawer } from 'antd';
 
-const LidsBox = ({ column, columnId, isVisible, columns, setColumns }) => {
+const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate, sorov }) => {
 
    const [form1, setForm1] = useState()
    const [menu, setMenu] = useState()
@@ -105,7 +105,24 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns }) => {
                                     setOpenEdit(true)
                                  }}
                               ><img src={Edit} alt=""/>Tahrirlash</span>
-                              <span><img src={Add} alt="" />Formaga havolani nusxalash</span>
+                              {
+                                 groupCreate ?
+                                 <span
+                                       onClick={() => {
+                                          groupCreate(true)
+                                          setMenu(false)
+                                       }}
+                                 ><img src={Add} alt="" />Guruh yaratish</span>
+                                  :
+                                 <>
+                                   {
+                                      sorov ? 
+                                      <span><img src={Add} alt="" />Formaga havolani nusxalash</span>
+                                        :
+                                      <></>
+                                   }
+                                 </>
+                              }
                               <span onClick={() =>{
                                  setMenu(false)
                                  setForm1(true)

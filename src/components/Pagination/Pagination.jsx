@@ -96,6 +96,7 @@ const Pagination = () => {
                data && data?.pagination?.studentCount > 10 ?
                   <select name="" id=""
                      onChange={(e) => setCount(e.target.value)}
+                     value={count}
                   >
                      <option value="10">10 / page</option>
                      <option value="20">20 / page</option>

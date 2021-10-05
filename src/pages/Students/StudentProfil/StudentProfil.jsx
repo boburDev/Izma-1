@@ -2,8 +2,6 @@ import './StudentProfil.scss'
 import StudentsProfileLeft from '../containers/StudentProfileLeft/StudentProfileLeft'
 import StudentsProfileRight from '../containers/StudnetProfileRight/StudentProfileRight'
 import StudentsProfileHistory from '../containers/StudentProfileHistory/StudentProfileHistory'
-
-
 import TeacherProfileRight from '../../Teachers/containers/TeacherProfileRight/TeacherProfileRight'
 import TeacherProfileLeft from '../../Teachers/containers/TeacherProfileLeft/TeacherProfileLeft'
 import TeacherProfileCenter from '../../Teachers/containers/TeacherProfileCenter/TeacherProfileCenter'
@@ -11,25 +9,29 @@ import TeacherProfileHistory from '../../Teachers/containers/TeacherProfileHisto
 import { useState } from 'react'
 import { useLoader } from '../../../context/Loader'
 import Loader from '../../../components/Loader/Loader'
+import { useName1 } from '../../../context/NameProvider'
 
 const StudentProfile = ({ role }) => {
+   const [peopleName] = useName1()
    const [toggleState, setToggleState] = useState(1);
-   const [studentName, setStudentName] = useState()
    const [loading] = useLoader()
 
    const toggleTab = (index) => {
       setToggleState(index);
    };
 
+
+   console.log(peopleName);
+
    return (
       <>
          <div className="izma__students-profile-content">
             {
-               loading ? <Loader/> : <></>
+               loading ? <Loader /> : <></>
             }
             <div className="izma__students-profile-inner-headings">
                <h2 className="izma__finance-payment-inner-heading">
-                  {studentName && studentName}
+                  {peopleName && peopleName}
                </h2>
                <p className="izma__finance-payment-inner-title">
 
@@ -68,8 +70,9 @@ const StudentProfile = ({ role }) => {
                         {
                            role === 'student' ?
                               <>
-                                 <StudentsProfileLeft stName={setStudentName} />
-                                 <StudentsProfileRight /></>
+                                 <StudentsProfileLeft />
+                                 <StudentsProfileRight />
+                              </>
                               :
                               <>
                                  <TeacherProfileLeft />

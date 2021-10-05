@@ -1,5 +1,5 @@
 .request-wrapper1 {
-   padding: 50px 90px;
+   padding: 50px 150px;
 
    .inner1 {
       width: 100%;
@@ -34,7 +34,7 @@
          input {
             border: none;
             width: 80%;
-            padding: 13px 10px 13px 41px;
+            padding: 10px 10px 10px 41px;
             background: #F7F9FB;
             border: 2px solid #EDF2F8;
             box-sizing: border-box;
@@ -221,18 +221,16 @@
                // }
 
                .log_btn1 {
+                  font-style: normal;
+                  font-weight: 600;
+                  font-size: .8rem;
+                  color: #FFFFFF;
                   border: none;
                   background: #090761;
                   border-radius: 57px;
-                  font-family: "Jost";
-                  font-style: normal;
-                  font-weight: 600;
-                  font-size: 20px;
-                  line-height: 29px;
-                  text-align: center;
-                  color: #FFFFFF;
-                  padding: 12px 44px;
-                  margin-top: 35px;
+                  padding: 12px 40px;
+                  margin-bottom: 30px;
+                  margin-top: 15px;
                }
             }
          }

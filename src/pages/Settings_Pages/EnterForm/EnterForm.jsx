@@ -1,5 +1,5 @@
 import './EnterForm.scss'
-import Pen from '../../../assets/Icons/pen.svg'
+// import Pen from '../../../assets/Icons/pen.svg'
 import { useState } from 'react';
 import PhoneNumberInput from "../../../components/PhoneNumberInput/PhoneNumberInput";
 import Avatar from './containers/UploadFoto/UploadFoto'

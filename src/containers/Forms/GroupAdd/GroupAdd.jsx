@@ -111,10 +111,13 @@ const GroupAdd = ({ onClose }) => {
                <button onClick={onClose}><img src={CloseBtn} alt="img" /></button>
             </div>
             <div className="form_wrapper">
-               <form action="" id="grouFormRes">
+               <form action="" id="grouFormRes" onSubmit={(e) =>{
+                  e.preventDefault()
+                  handleGroup()
+               }}>
                   <div className="form_inputs">
                      <label htmlFor="">Nomi</label>
-                     <input onKeyUp={e => setName(e.target.value)} type="text" name="" id="" />
+                     <input  required onKeyUp={e => setName(e.target.value)} type="text" name="" id="" />
                   </div>
                   <div className="form_inputs">
                      <label htmlFor="">Kurs tanlash</label>
@@ -191,7 +194,7 @@ const GroupAdd = ({ onClose }) => {
                         <label className="izma__clock-time-label">
                            Darsning boshlanish vaqti
                         </label>
-                        <TimePicker onChange={e => setTime(e.format('HH:mm'))} defaultValue={moment('00:00', format)} format={format} />
+                        <TimePicker required onChange={e => setTime(e.format('HH:mm'))} defaultValue={moment('00:00', format)} format={format} />
                      </div>
                   </div>
                   <div className="form_group">
@@ -201,7 +204,8 @@ const GroupAdd = ({ onClose }) => {
                         className='date__picker'
                         onChange={(value, dateString) => {
                            setStartDate(dateString)
-                        }}
+                        }} 
+                        required
                         placeholder={"Kun-Oy-Yil"}
                         //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                         format={"DD-MM-YYYY"}
@@ -215,12 +219,13 @@ const GroupAdd = ({ onClose }) => {
                         onChange={(value, dateString) => {
                            setEndDate(dateString)
                         }}
+                        required
                         placeholder={"Kun-Oy-Yil"}
                         //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                         format={"DD-MM-YYYY"}
                      />
                   </div>
-                  <button onClick={handleGroup}>Yarating</button>
+                  <button type="submit" >Yarating</button>
                </form>
             </div>
          </div>

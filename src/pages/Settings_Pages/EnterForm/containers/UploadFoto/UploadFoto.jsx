@@ -61,6 +61,7 @@ class Avatar extends Component {
             onChange={this.handleChange}
             encType="multipart/form-data"
             method="POST"
+            headers={{authorization: localStorage.getItem('token')}}
          >
             {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
          </Upload>

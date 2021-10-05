@@ -429,8 +429,7 @@ const GroupProfilLeft = (prop) => {
                   <div className="izma__groups-attendance-left-bottom-wrapper">
                      {
                         filtered && filtered.map((s, i) => (
-                           <>
-                              <div key={i} className="izma__groups-attendance-left-bottom">
+                           <div key={i} className="izma__groups-attendance-left-bottom">
                                  {s.groupStatus === 2 && <div className="izma__groups-attendance-left-bottom-box-white"></div>}
                                  {s.groupStatus === 3 && <div className="izma__groups-attendance-left-bottom-box"></div>}
                                  {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
@@ -442,7 +441,7 @@ const GroupProfilLeft = (prop) => {
                                  </Link>
                                  <p className="izma__groups-attendance-left-bottom-phone">
                                     {
-                                       s.studentPhone.map((i) => <>+{i.phone}<br /></>)
+                                       s.studentPhone.map((i, key) => <span key={key}> +{i.phone}<br /> </span>)
                                     }
                                  </p>
 
@@ -503,9 +502,7 @@ const GroupProfilLeft = (prop) => {
 
 
                                  </div>
-
                               </div>
-                           </>
                         ))
                      }
 

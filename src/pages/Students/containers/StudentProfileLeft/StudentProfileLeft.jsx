@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import Close from '../../../../assets/Icons/Group 26.svg'
-import { Drawer, Select, DatePicker } from 'antd'
-import { Option } from "antd/lib/mentions"
+import { Drawer } from 'antd'
 import StudentEdit from '../../../../containers/Forms/StudentAdd/StudentEdit'
 import FinanceRepaymentForm from '../../../../containers/Finances/FinancesForm/FinanceRepaymeynForm/FinanceRepaymeynForm'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
-import { ONE_STUDENT, DELETE_STUDENT, GROUPS, SELECT_STUDENT_GROUP, CHECK_CASH, /*UPDATE_COMMENT, */ HAS_STUDENT } from './query'
+import { ONE_STUDENT, DELETE_STUDENT, GROUPS, /*SELECT_STUDENT_GROUP*/ CHECK_CASH, /*UPDATE_COMMENT, *//* HAS_STUDENT*/ } from './query'
 import { SUBSCRIPTION_STUDENT, SUBSCRIPTION_CASH, FILIAL, STATUS_3_4, UPDATE_STATUS_4, SUBSCRIPTION_ST_EDIT } from './query'
-import { useQuery, useMutation, useSubscription, useLazyQuery } from '@apollo/client'
+import { useQuery, useMutation, useSubscription } from '@apollo/client'
 import StudentProlifeLeftCheck from '../../../../components/StudentComponents/StudentFilterCheck/StudentFilterCheck'
 import { Redirect, useParams } from 'react-router'
 import './StudentProfileLeft.scss'
@@ -32,11 +31,11 @@ const StudentsProfileLeft = ({stName}) => {
      const {data: Groups} = useQuery(GROUPS, {variables: {teacherID: [], courseID: []}})
      const {data: checkCash} = useQuery(CHECK_CASH, {variables: {stID: studentID}})
      const {data: filial} = useQuery(FILIAL)
-     const [has, {data: hasStud}] = useLazyQuery(HAS_STUDENT)
+    //  const [has, {data: hasStud}] = useLazyQuery(HAS_STUDENT)
  
      const [CheckBalanc] = useMutation(STATUS_3_4)
     //  const [UpdateComment] = useMutation(UPDATE_COMMENT)
-     const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)
+    //  const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)
      const [setStatus_3] = useMutation(UPDATE_STATUS_4)
      const [delStudent, {data: frRedirect}] = useMutation(DELETE_STUDENT)
  
@@ -82,9 +81,7 @@ const StudentsProfileLeft = ({stName}) => {
        }})
      }
  
-     const [grID, setGrID] = useState()
-     const [createAt, setCreateAt] = useState()
-     const [gr, setGr] = useState([])
+    //  const [gr, setGr] = useState([])
  
      oneStudent && stName(oneStudent.student.name)
  
@@ -137,16 +134,6 @@ const StudentsProfileLeft = ({stName}) => {
 
      const [isModalVisibleD, setIsModalVisibleD] = useState(false)
  
-     const showModalD = () => {
-       setIsModalVisibleD(true)
-     
-     }
-       
-       
-     const handleOkD = () => {
-       setIsModalVisibleD(false)
-     }
-   
          //  const showModalD = () => {
          //    setIsModalVisibleD(true)
            
@@ -196,9 +183,7 @@ const StudentsProfileLeft = ({stName}) => {
    const handleCancelY = () => {
      setIsModalVisibleY(false)
    }
-     const handleCancelD = () => {
-       setIsModalVisibleD(false)
-     }
+    
  
     useEffect(()=>{
        const guruh = Groups && Groups.groups.map((i, index) => {
@@ -207,13 +192,13 @@ const StudentsProfileLeft = ({stName}) => {
        setNames(guruh)
     },[Groups])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-      if (Groups && Groups.groups) {
-        setGr(Groups && Groups.groups)
-      }
+    //   if (Groups && Groups.groups) {
+    //     setGr(Groups && Groups.groups)
+    //   }
 
-    }, [Groups])
+    // }, [Groups])
  
      if(frRedirect && frRedirect.deleteStudent.id) return <Redirect to='/students' />
  

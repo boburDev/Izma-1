@@ -33,11 +33,10 @@
 
    }
 
+
    &-comment {
       position: absolute;
-      top: -100%;
-      left: 0;
-      right: 0;
+      bottom: 0;
       border-radius: 4px;
       width: auto;
       padding: 14px;
@@ -50,12 +49,12 @@
       justify-content: center;
       box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
 
-      &:hover {
 
-         .hasComment {
-            display: flex;
-         }
+      &:hover {
+         display: flex;
       }
+
+
 
       &::before {
          content: "";
@@ -85,6 +84,10 @@
       align-items: flex-end;
       color: #5E5873;
       position: relative;
+
+      .span:hover~.hasComment {
+         display: flex;
+      }
 
       &:hover~.hasComment {
          display: flex;

@@ -17,15 +17,16 @@
       transform: scale(1);
 
       .myModal-inner {
-         transform: scale(1) translateY(-50%);
+         top: 50px;
          transition: all ease 0.5s;
       }
    }
    
    
    &-inner {
+      position: absolute;
+      top: -150%;
       transition: all ease 0.5s;
-      transform: scale(0);
       padding: 0 30px 20px 30px;
       border-radius: 1px;
       width: 50%;

@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { BY_HASHTAG } from './query'
 // import Close from '../../../assets/Icons/close.svg'
 import Icon from '../../../assets/Icons/arrow_im.svg'
 import LogoTwo from '../../../assets/Group 12.svg'
@@ -33,8 +35,7 @@ import './Navbar.scss'
 
 import NavbarLinks from '../NavbarLinks/NavbarLinks'
 import NavbarPlus from '../NavbarPlus/NavbarPlus'
-import { useQuery } from '@apollo/client'
-import { BY_HASHTAG } from './query'
+
 
 
 const Navbar = ({ sidebarActive }) => {

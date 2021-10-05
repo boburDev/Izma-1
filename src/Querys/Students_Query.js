@@ -35,6 +35,24 @@ mutation CreateStudent(
 }
 
 `
+const ADD_NEW_STUDENTS_GROUP = gql `
+mutation CreateStudent(
+  $mainPhone: [PhoneInput]
+  $name: String!
+  $gender: Int
+  $groupID: [GroupInput]
+  ) {
+  createStudent(
+    mainPhone: $mainPhone
+    name: $name
+    gender: $gender
+    groupID: $groupID
+  ) {
+    id
+    }
+}
+
+`
 
 const FOR_EDIT_STUDENT = gql `
 query student ($id: ID!){
@@ -157,6 +175,7 @@ const NEW_CASH = gql `
 
 export {
    ADD_NEW_STUDENTS,
+   ADD_NEW_STUDENTS_GROUP,
    FOR_EDIT_STUDENT,
    UPDATE_STUDENT,
    GROUPS,

@@ -160,8 +160,11 @@ const StudentAdd = ({ onCloseF }) => {
 
                // console.log(data)
                AddNewSudents({ variables: data })
+               
             }
-         }}>
+
+            document.getElementById('studentFormRes').reset()
+         }} id="studentFormRes">
             <div className="form-input">
                <label htmlFor="">Telefon</label>
                <PhoneNumberInput setPhone={setStPhoneNum} />

@@ -31,20 +31,22 @@ function Davomat() {
                 return new Date(i.day-0)
             })
             setGroupMonth(mapped)
-            setStartDate(moment(mapped[0]).format('YYYY-MM-DD'))
-            setEndDate(moment(mapped[mapped.length-1]).format('YYYY-MM-DD'))
-            setYearStart(moment(mapped[0]).format('YYYY'))
-            setStart(moment(mapped[0]).format('MM'))
         }
     },[groupAtt])
 
     useEffect(() => {
-        if (groupStudents.groups) {            
+        if (groupStudents.groups) {
+            setStart(groupStudents.groups.startDate.split('-')[1])
+            setStartDay(groupStudents.groups.startDate.split('-')[2])
             setDays(groupStudents.groups.days)
-            console.log(groupStudents.groups.startDate)
-            // setStartDay(moment(mapped[0]).format('DD'))
+            setYearStart(groupStudents.groups.startDate.split('-')[0])
+            setStartDate(groupStudents.groups.startDate)
+            setEndDate(groupStudents.groups.endDate)
         }
     }, [groupStudents])
+
+
+
 
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
@@ -70,11 +72,14 @@ function Davomat() {
 
     const [date, setDate] = useState([])
 
-    const getDaysInMonth = (months, year) => {
-        console.log(months, year)
+    const getDaysInMonth = (months, year, start) => {
+        let startDay = start
         const daysInMonth = groupMonth.map(i => {
             if (year >= moment(i).format('YYYY') && months >= moment(i).format('MM')) {
-                return i
+                if (startDay <= moment(i).format('DD') ) {
+                    startDay = '01'
+                    return i
+                }
             }
             return ''
         })
@@ -84,12 +89,11 @@ function Davomat() {
                 data.push(i)
             }
         }
-
         return data
     }
 
     function davomatCalendar(start, yearStart, startDay = 1) {
-        const DATE = getDaysInMonth(start, yearStart)
+        const DATE = getDaysInMonth(start, yearStart, startDay)
         const data = {
             date: [],
             fullDate: []

@@ -27,6 +27,10 @@ const StudentsProfileLeft = () => {
   // const [userInput, setUserInput] = useState('')
   const [visibleF, setVisibleF] = useState(false)
   const [deleteStudent, setDeleteStudent] = useState()
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModalVisibleD, setIsModalVisibleD] = useState(false)
+
+
   const { studentID } = useParams()
 
   const { data: oneStudent } = useQuery(ONE_STUDENT, { variables: { id: studentID } })
@@ -42,10 +46,10 @@ const StudentsProfileLeft = () => {
   const [delStudent, { data: frRedirect }] = useMutation(DELETE_STUDENT)
 
   useEffect(() => {
-    if (groupAdd && groupAddDate) {
+    if (groupAdd && groupAddDate && !isModalVisibleD) {
      SetStudentGroup({variables: {idGroup: groupAdd.id, idStudent: studentID, startAt: groupAddDate}})
     }
-  }, [groupAdd, groupAddDate, studentID, SetStudentGroup])
+  }, [groupAdd, groupAddDate, studentID, SetStudentGroup, isModalVisibleD])
 
   useSubscription(SUBSCRIPTION_STUDENT, {
     onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -125,7 +129,6 @@ const StudentsProfileLeft = () => {
   }
 
 
-  const [isModalVisible, setIsModalVisible] = useState(false)
 
   //  const showModal = () => {
   //    setIsModalVisible(true)
@@ -144,7 +147,6 @@ const StudentsProfileLeft = () => {
   //  }
 
 
-  const [isModalVisibleD, setIsModalVisibleD] = useState(false)
 
   //  const showModalD = () => {
   //    setIsModalVisibleD(true)

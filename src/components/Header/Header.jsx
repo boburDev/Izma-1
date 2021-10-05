@@ -2,8 +2,11 @@ import NotificationImg from "../../assets/notification.svg";
 import HeaderImg from '../../assets/header-img.svg'
 import './Header.scss'
 import Close from '../../assets/Icons/close.svg'
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
+   const [active, setActive] = useState()
    return (
       <>
          <header className="izma__header">
@@ -16,12 +19,23 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
             <div className="izma__header-left-wrapper">
                <img src={NotificationImg} className="izma__header-notification-img" alt="img" />
                <img onClick={() => {
-                  localStorage.removeItem('token')
-                  const x = localStorage.getItem('hashtag')
-                  window.location.href = '/login/' + x
-                  setToken('')
+                  setActive(!active)
                }}
                   src={HeaderImg} alt="img" className="izma__header-img" />
+
+               <div className={`izma__header-dropdown ${active ? 'active' : ''}`}>
+                     <Link
+                     onClick={()=> setActive(false)}
+                     to={`/`}>Hisob qaytnomasi</Link>
+                     <span
+                        onClick={() => {
+                        localStorage.removeItem('token')
+                        const x = localStorage.getItem('hashtag')
+                        window.location.href = '/login/' + x
+                        setToken('')
+                        }}
+                    >Chiqish</span>
+                  </div>
             </div>
          </header>
       </>

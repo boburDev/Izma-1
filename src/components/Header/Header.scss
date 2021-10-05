@@ -55,6 +55,7 @@
    display: flex;
    align-items: center;
    margin-left: auto;
+   position: relative;
 }
 
 .izma__header-notification-img {
@@ -66,5 +67,46 @@
 .izma__header-img {
    width: 70px;
    height: 70px;
+   cursor: pointer;
    margin-right: 50px;
+}
+
+.izma__header-dropdown {
+   display: flex;
+   position: absolute;
+   bottom: -73px;
+   z-index: -1000000;
+   padding: 10px;
+   color: black;
+   flex-direction: column;
+   background: white;
+   transform: translateY(-10%);
+   transition: all ease 0.5s;
+   opacity: 0;
+   
+   &.active {
+      z-index: 1000000;
+      opacity: 1;
+      transform: translateY(0);
+      transition: all ease 0.5s;
+   }
+   
+   box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+   span {
+      padding: 5px;
+      &:hover {
+         background: #E7E7EC;
+         cursor: pointer;
+      }
+   }
+   
+   a {
+      padding: 5px;
+      &:hover {
+         color: black;
+         cursor: pointer;
+         background: #E7E7EC;
+      }
+      color: black;
+   }
 }

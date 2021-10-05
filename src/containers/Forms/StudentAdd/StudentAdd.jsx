@@ -284,7 +284,6 @@ const StudentAdd = ({ onCloseF }) => {
 
             <button className="create-btn" onClick={() => {
                (stName && stGender) && onCloseF()
-               console.log(stPhoneNum, stName, stBirth, stGender, stTextInfo, stTg, stGroup, stPassword, fieldInput, fieldParents)
                handleClick()
 
             }}>Yarating</button>

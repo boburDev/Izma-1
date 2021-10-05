@@ -140,7 +140,7 @@
     }
 }
 
-th:first-child {
+.th:first-child {
     width: 100px;
 }
 
@@ -158,25 +158,25 @@ th:first-child {
         padding: 8px 0;
     }
 
-    tr {
+    .tr {
         th:first-child {
             width: 100px !important;
         }
     }
 }
 
-tbody {
+.tbody {
     width: 100%;
     overflow-x: auto;
 
-    tr {
+    .tr_tbody {
         background-color: #fff !important;
 
         &:not(:last-child) {
             border-bottom: 1px solid #777;
         }
 
-        td {
+        .td {
             padding: 8px 0;
         }
     }

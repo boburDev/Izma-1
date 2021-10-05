@@ -1,7 +1,9 @@
 import './Modal.scss';
 import { useEffect, useRef } from 'react';
 import { useSnackbar } from 'notistack';
-const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text }) => {
+import DropSearch from '../DropSearch/DropSearch';
+import { DatePicker } from 'antd'
+const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text, groups,setInfo2, redir  }) => {
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
          function handleClickOutside(event) {
@@ -40,7 +42,7 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
                   <span></span>
                </div>
             </div>
-            <form className="myModal-inner-form" onSubmit={e => e.preventDefault()}>
+            <form className="myModal-inner-form" id="modalForm"onSubmit={e => e.preventDefault()}>
                {
                   block === 'addComment' ?
                      <>
@@ -80,12 +82,47 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
                                                       <button onClick={() => {
                                                          info ? setInfo(info) : setInfo()
                                                          setMymodal(false)
+                                                         window.location.replace(redir)
                                                          handleClick()
                                                       }}>Ha</button>
                                                    </div>
                                                 </> :
                                                 <>
+                                                   {
+                                                      block === 'addGroupStudent' ?
+                                                      <>
+                                                        <div className="addGroup-row">
+                                                               <label>Guruhni tanlang</label>
+                                                               <DropSearch
+                                                                  arr={groups}
+                                                                  pInput={`Guruhni tanlang`}
+                                                                  fnc={setInfo}
+                                                               />
+                                                        </div>
+                                                        <div className="addGroup-row">
+                                                               <label>Sanadan boshlab</label>
+                                                               <DatePicker
+                                                                  className='date__picker'
+                                                                  onChange={(value, dateString) => {
+                                                                     setInfo2(dateString)
+                                                                  }}
+                                                                  placeholder={"Kun-Oy-Yil"}
+                                                                  //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
+                                                                  format={"DD-MM-YYYY"}
+                                                               />
+                                                        </div>
+                                                            <div className="buttonWrapper">
+                                                               <button onClick={() => {
+                                                                  setMymodal(false)
+                                                               }}>Talabni guruhga qo'shish</button>
+                                                            </div>
 
+
+                                                      </> :
+                                                      <>
+                                                      
+                                                      </>
+                                                   }
                                                 </>
                                           }
                                        </>
@@ -101,4 +138,6 @@ const Modal = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, upt
    )
 }
 
-export default Modal
+
+
+export default Modal1

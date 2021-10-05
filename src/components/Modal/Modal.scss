@@ -9,10 +9,11 @@
    width: 100%;
    height: 100%;
    background: rgba(0, 0, 0, 0.582);
-   z-index: 10000000;
+   z-index: 1000000000;
    display: flex;
    transform: scale(0) translateY(-50%);
-   
+
+  
    &.active {
       transform: scale(1);
 
@@ -94,6 +95,24 @@
          display: flex;
          flex-direction: column;
 
+          .addGroup-row {
+             margin-bottom: 20px;
+             &:nth-child(2) {
+              input {
+                  padding: 10px !important;
+              }
+             }
+             label {
+               margin-bottom: 10px;
+             }
+
+             input {
+                padding: 0;
+                font-size: .8rem;
+                
+             }
+          }
+
          label {
             color: #090761;
             font-size: .8rem;
@@ -131,28 +150,22 @@
             font-weight: 600;
             font-size: .8rem;
             color: #FFFFFF;
-            border: 1px solid #090761;
             background: #090761;
             border-radius: 10px;
             padding: 12px 40px;
             margin-top: 15px;
             transition: all ease 0.5s;
             cursor: pointer;
+            border: 1px solid #090761;
             
             &:nth-child(2) {
                background: red;
                border: 1px solid red;
 
-               &:hover {
-                  color: red;
-               }
+              
             }
             
-            &:hover {
-               transition: all ease 0.5s;
-               color: #090761;
-               background: white;
-            }
+            
             
          }
       }

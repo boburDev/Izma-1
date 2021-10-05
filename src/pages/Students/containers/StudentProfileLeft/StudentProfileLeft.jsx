@@ -12,12 +12,15 @@ import StudentProlifeLeftCheck from '../../../../components/StudentComponents/St
 import { Redirect, useParams } from 'react-router'
 import './StudentProfileLeft.scss'
 // import { useLoader } from '../../../../context/Loader'
+import { Modal } from 'antd'
 import { useEffect } from 'react'
-import  Modal  from '../../../../components/Modal/Modal'
+import  Modal1  from '../../../../components/Modal/Modal'
 
 
 const StudentsProfileLeft = (prop) => {
-
+    const [groupAdd, setGroupAdd] = useState()
+    const [groupAddDate, setGroupAddDate] = useState()
+    
    const [openSms, setOpenSms] = useState(false)
    // const [state, setState] = useState([])
    // const [userInput, setUserInput] = useState('')
@@ -225,7 +228,7 @@ const StudentsProfileLeft = (prop) => {
            <StudentEdit onCloseF={onCloseF} />
        </Drawer>
 
-         <Modal
+         <Modal1
            myModal={deleteStudent}
            setMymodal={setDeleteStudent}
            title={`O'quvchini o'chirish`}
@@ -233,9 +236,10 @@ const StudentsProfileLeft = (prop) => {
            block={'delete'}
            setInfo={delStudent}
            info={{variables: {studentID}}}
+           redir={`/students`}
          />
 
-         <Modal
+         <Modal1
            myModal={isModalVisible}
            setMymodal={setIsModalVisible}
            title={`Yangi eslatma qo'shing`}
@@ -303,6 +307,15 @@ const StudentsProfileLeft = (prop) => {
  
                          </div>
                          <div className="izma__finance-payment-inner-left-bottom">
+                           <Modal
+                              block={`addGroupStudent`}
+                              title={`Talabani guruhga qo'shish`}
+                              myModal={isModalVisibleD}
+                              setMymodal={setIsModalVisibleD}
+                              setInfo={setGroupAdd}
+                              groups={Groups && Groups?.groups}
+                              setInfo2={setGroupAddDate}
+                           />
                             <button className="izma__finance-payment-inner-left-btn izma__finance-payment-inner-drive" onClick={showModalD} >
                             </button>
                             <button className="izma__finance-payment-inner-left-btn izma__finance-payment-inner-card" onClick={showDrawer} >
@@ -326,63 +339,7 @@ const StudentsProfileLeft = (prop) => {
             />
        </Drawer>
                  
-         {/* <Modal footer={null} visible={isModalVisible} title="Yangi eslatma qo'shing" onOk={handleOk} onCancel={handleCancel}>
-             <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
-             <label className='izma__courses__form-bolim-form-label'>Comment</label>
-             <TextArea onChange={e => setComme(e.target.value)}  rows={4} />
- 
-           </div>
-           <div >
-           <button onClick={handleOk} className={"btn btn-submit izma__group__modal"}>
-           Saqlash
-           </button>
-         </div>
-       </Modal> */}
-       <Modal footer={null} visible={isModalVisibleD} title="Talabani guruhga qo'shish" onOk={handleOkD} onCancel={handleCancelD}>
-       <div className="form_group" style={{width: "100%"}}>
-                     
-       <Select
-            defaultValue="Guruhni tanlang"
-            onChange={(e) => {
-               setGrID(e)
-               has({variables: {stID: studentID, grID: e}})
-            }}
-         >
-            {gr?.map((item) => {
-               // {oneStudent && oneStudent.student.groups.map(gName => (
-               return <Option key={item.id} value={item.id} >{/* (item.name !== gName.name) &&  */item.name}</Option>
-               // ))}
-            })}
-      </Select>
-
-         </div>
-         <div className="form_group">
-           <label>Sanadan boshlab</label>
-        
-           <DatePicker
-           className='date__picker'
-                 onChange={(value, dateString) => {
-                   setCreateAt(dateString)
-                 }}
-                 placeholder={"Kun-Oy-Yil"}
-               format={"DD-MM-YYYY"}
-               />
-             {hasStud && hasStud.hasStudent && <>O'quvchi siz tanlagan guruhga qo'shilgan</>}
-           </div>
-           <div >
-           <button onClick={() => {
-             const rr = {idGroup: grID, idStudent: studentID, startAt: createAt}
- 
-             if (hasStud && !hasStud.hasStudent) {
-               SetStudentGroup({variables: rr})
-             }
-             
-             handleOkD()
-           }} className={"btn btn-submit izma__group__modal"}>
-           Saqlash
-           </button>
-         </div>
-       </Modal>
+       
        <Drawer
          placement="right"
          closable={false}

@@ -2,9 +2,13 @@ import './TableBlock.scss'
 import DeleteImg from '../../assets/Icons/delete-border.svg'
 import EditImg from '../../assets/Icons/settings-edit.svg'
 import moment from 'moment'
+import { useState } from 'react'
+import Modal1 from '../Modal/Modal'
 
 
 const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, setInfo, openModal, setID, deleteRoom, setTakeID }) => {
+   const [modal, setModal] = useState()
+   const [modal1, setModal1] = useState()
    return (
       <div className="tableBlock">
          {
@@ -21,7 +25,18 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                   }} />
                </h4>
                <h4 className={'groupHash'}>
-                  <img id={info.Id} src={DeleteImg} alt="" onClick={e => setDeleteId(e.target.id)} />
+                  <Modal1
+                     block="delete"
+                     myModal={modal}
+                     setMymodal={setModal}
+                     title={`Xodimni o'chirish`}
+                     text={info?.name + `ni o'chirilshni hohlaysizmi ?`}
+                     info={info.Id}
+                     setInfo={setDeleteId}
+                  />
+                  <img id={info.Id} src={DeleteImg} alt="" onClick={e => {
+                     setModal(true)
+                  }} />
                </h4>
             </> : block === 'settingsHashRooms' ? <>
                   <h4 className={'settingsHashRooms'}>{index}</h4>
@@ -31,7 +46,18 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                      setID(info.id)
                      openModal(true)
                   }}><img src={EditImg} alt="" /></h4>
-                  <h4 className={'settingsHashRooms'} onClick={() => deleteRoom(info.id)}>
+                  <h4 className={'settingsHashRooms'} onClick={() => {
+                     setModal1(true)
+                  }}>
+                  <Modal1
+                     block="delete"
+                     myModal={modal1}
+                     setMymodal={setModal1}
+                     title={`Xonani o'chirish`}
+                     text={info?.room+ `ni o'chirilshni hohlaysizmi ?`}
+                     info={info.id}
+                        setInfo={deleteRoom}
+                  />
                   <img src={DeleteImg} alt="" />
                </h4>
             </> : block === 'financeHash' ? <>

@@ -5,12 +5,13 @@ import CoursesTabs1 from '../containers/CoursesInner_Tabs/CoursesInner_Tab1/Cour
 import CoursesTabs2 from '../containers/CoursesInner_Tabs/CoursesInner_Tab2/CoursesInner_Tab2';
 import CoursesTabs3 from '../containers/CoursesInner_Tabs/CoursesInner_Tab3/CoursesInner_Tab3';
 import CoursesFormMain from '../containers/CoursesFormMain/CoursesFormMain';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { Drawer, } from 'antd';
 import { useParams, Redirect } from 'react-router-dom';
 import { BY_COURSE_ID, DELETE_BY_COURSE_ID, COURSE_SUBSCRIPTION } from '../../../Querys/Courses_Query';
 import { useQuery, useMutation, useSubscription } from '@apollo/client';
 import { useLoader } from '../../../context/Loader';
+import Modal1 from '../../../components/Modal/Modal';
 
 const CoursesInner = () => {
    const [setLoading] = useLoader(true)
@@ -24,7 +25,7 @@ const CoursesInner = () => {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
             fields: {
-               courses: () => {}
+               courses: () => { }
             }
          })
       },
@@ -37,7 +38,12 @@ const CoursesInner = () => {
 
 
    const [Delete_course, { data: deleted_data }] = useMutation(DELETE_BY_COURSE_ID)
+   const [deleteModal, setDeleteModal] = useState()
 
+   const deleteCourse = () => {
+      Delete_course({ variables: { id: courseID } })
+
+   }
 
    const [visible, setVisible] = useState(false);
 
@@ -53,10 +59,18 @@ const CoursesInner = () => {
    const toggleTab = (index) => {
       setToggleState(index);
    };
-
    if (deleted_data) return <Redirect to='/courses' />
    return (
       <>
+         <Modal1
+            myModal={deleteModal}
+            setMymodal={setDeleteModal}
+            title={`Kursni o'chirish`}
+            text={courses && courses?.byCourseID[0].name + 'ni o`chirishni hohlaysizmi ?'}
+            block={'delete'}
+            setInfo={deleteCourse}
+            redir={`/courses`}
+         />
          {
             courses && courses.byCourseID.map((e, i) => (
                <div key={i} className="izma__courses__inner-content">
@@ -89,7 +103,7 @@ const CoursesInner = () => {
 
                                  </button>
                                  <button className='izma__courses-card-wrapper-bottom-btn-wrapper-btn izma__courses-card-wrapper-bottom-btn-wrapper-btn-del' onClick={() => {
-                                    Delete_course({ variables: { id: courseID } })
+                                    setDeleteModal(true)
                                  }}>
 
                                  </button>

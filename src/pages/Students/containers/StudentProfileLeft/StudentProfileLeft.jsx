@@ -17,7 +17,7 @@ import { useEffect } from 'react'
 import  Modal1  from '../../../../components/Modal/Modal'
 
 
-const StudentsProfileLeft = (prop) => {
+const StudentsProfileLeft = ({stName}) => {
     const [groupAdd, setGroupAdd] = useState()
     const [groupAddDate, setGroupAddDate] = useState()
     
@@ -86,7 +86,7 @@ const StudentsProfileLeft = (prop) => {
      const [createAt, setCreateAt] = useState()
      const [gr, setGr] = useState([])
  
-     oneStudent && prop.stName(oneStudent.student.name)
+     oneStudent && stName(oneStudent.student.name)
  
      // console.log(oneStudent)
  
@@ -307,7 +307,7 @@ const StudentsProfileLeft = (prop) => {
  
                          </div>
                          <div className="izma__finance-payment-inner-left-bottom">
-                           <Modal
+                           <Modal1
                               block={`addGroupStudent`}
                               title={`Talabani guruhga qo'shish`}
                               myModal={isModalVisibleD}
@@ -316,7 +316,10 @@ const StudentsProfileLeft = (prop) => {
                               groups={Groups && Groups?.groups}
                               setInfo2={setGroupAddDate}
                            />
-                            <button className="izma__finance-payment-inner-left-btn izma__finance-payment-inner-drive" onClick={showModalD} >
+                            <button className="izma__finance-payment-inner-left-btn izma__finance-payment-inner-drive" onClick={() => {
+                            console.log(isModalVisibleD);
+                              setIsModalVisibleD(true)
+                            }} >
                             </button>
                             <button className="izma__finance-payment-inner-left-btn izma__finance-payment-inner-card" onClick={showDrawer} >
                             </button>

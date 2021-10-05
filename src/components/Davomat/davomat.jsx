@@ -4,7 +4,7 @@ import { useDavomat } from '../../context/DavomatProvider'
 import st from './davomat.module.scss'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
-import { GROUP_DAVOMAT } from './query'
+import { GROUP_DAVOMAT, STUDENT_DAVOMAT } from './query'
 
 // react-redux uninstall qivor
 function Davomat() {
@@ -22,8 +22,12 @@ function Davomat() {
 
 
     const [groupMonth,setGroupMonth] = useState([])
+    const [groupStuMonth,setGroupStuMonth] = useState([])
+    const [monthlyGr, setMonthlyGr] = useState([])
+
     const { data: groupAtt } = useQuery(GROUP_DAVOMAT, { variables: { groupID: id && id.groupID}})
 
+    const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
 
     useEffect(()=>{
         if (groupAtt && groupAtt.groupAttendences) {
@@ -31,20 +35,49 @@ function Davomat() {
                 return new Date(i.day-0)
             })
             setGroupMonth(mapped)
-            setStartDate(moment(mapped[0]).format('YYYY-MM-DD'))
-            setEndDate(moment(mapped[mapped.length-1]).format('YYYY-MM-DD'))
-            setYearStart(moment(mapped[0]).format('YYYY'))
-            setStart(moment(mapped[0]).format('MM'))
         }
     },[groupAtt])
 
+    useEffect(()=>{
+        if ((studentGrAtt && studentGrAtt.studentAttendence) &&
+        (groupStudents && groupStudents.students)) {
+            const mapped = groupStudents.students && groupStudents.students.map(i => {
+                const mappedAtt = studentGrAtt.studentAttendence.map(j => {
+                    if (i.id === j.studentID) {
+                        return j
+                    }
+                    return ''
+                })
+                const data = []
+                for (const i of mappedAtt) {
+                    if (i !== '') {
+                        data.push({ status: i.status, stId: i.studentID, day: i.day })
+                    }
+                }
+                return {id: i.id, month: data}
+            })
+            setGroupStuMonth(mapped)
+
+            // console.log(mapped)
+
+
+
+        }
+    },[studentGrAtt, groupStudents])
+
     useEffect(() => {
-        if (groupStudents.groups) {            
+        if (groupStudents.groups) {
+            setStart(groupStudents.groups.startDate.split('-')[1])
+            setStartDay(groupStudents.groups.startDate.split('-')[2])
             setDays(groupStudents.groups.days)
-            console.log(groupStudents.groups.startDate)
-            // setStartDay(moment(mapped[0]).format('DD'))
+            setYearStart(groupStudents.groups.startDate.split('-')[0])
+            setStartDate(groupStudents.groups.startDate)
+            setEndDate(groupStudents.groups.endDate)
         }
     }, [groupStudents])
+
+
+
 
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
@@ -68,13 +101,14 @@ function Davomat() {
         setState(getMonths(new Date(startDate), new Date(endDate)))
     },[endDate, startDate])
 
-    const [date, setDate] = useState([])
-
-    const getDaysInMonth = (months, year) => {
-        console.log(months, year)
+    const getDaysInMonth = (months, year, start) => {
+        let startDay = start
         const daysInMonth = groupMonth.map(i => {
-            if (year >= moment(i).format('YYYY') && months >= moment(i).format('MM')) {
-                return i
+            if (year >= moment(i).format('YYYY') && (months-0) === (moment(i).format('MM')-0)) {
+                if (startDay <= moment(i).format('DD') ) {
+                    startDay = '01'
+                    return i
+                }
             }
             return ''
         })
@@ -84,12 +118,11 @@ function Davomat() {
                 data.push(i)
             }
         }
-
         return data
     }
 
     function davomatCalendar(start, yearStart, startDay = 1) {
-        const DATE = getDaysInMonth(start, yearStart)
+        const DATE = getDaysInMonth(start, yearStart, startDay)
         const data = {
             date: [],
             fullDate: []
@@ -97,15 +130,10 @@ function Davomat() {
         
         days.split(',').map(i => {
             DATE.map(item => {
-                if (typeof startDay === 'string') {
-                    if ((moment(item).format('DD') - 0) === (startDay - 0)) {
-                        if((i - 1) === new Date(item).getDay()){
-                            data.date.push(moment(item).format('DD/MM'))
-                        }
+                if (endDate >= moment(item).format('YYYY-MM-DD')) {
+                    if ((i - 1) === new Date(item).getDay()) {
+                        data.date.push(moment(item).format('DD/MM'))
                     }
-                }
-                if ((i - 1) === new Date(item).getDay()) {
-                    data.date.push(moment(item).format('DD/MM'))
                 }
                 return ""
             })
@@ -148,8 +176,8 @@ function Davomat() {
     
     const monthly = (month,year, day = 1) => {
         setArr(arr)
-        setDate(davomatCalendar(month, year, day).date.sort())
-        console.log(davomatCalendar(month, year, day).date.sort())
+        setMonthlyGr(davomatCalendar(month, year, day).date.sort())
+
         let roun = document.querySelectorAll(`${st.round}`)
         roun.forEach(item => {
             item.classList.remove(`${st.false}`)
@@ -165,11 +193,10 @@ function Davomat() {
     
     
     useEffect(() => {
-        
         const data = davomatCalendar(start, yearStart, startDay)
         // setArr(arr)
         setActive(start-1)
-        setDate(data.date.sort())
+        setMonthlyGr(data.date.sort())
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [start, startDay, yearStart])
 
@@ -261,7 +288,7 @@ function Davomat() {
         <tr className={st.tr}>
         <th className={`${st.name_table} ${st.th}`}>Ism</th>
         {
-            date.map((item, index) => (
+            monthlyGr.map((item, index) => (
                 <th className={st.th} key={index}>
                 {item}
                 &ensp;&ensp;
@@ -272,41 +299,55 @@ function Davomat() {
             </thead>
             <tbody className={st.tbody}>
             {
-                groupStudents.students && groupStudents.students.map((item, index) => (
-                    <tr className={st.tr_tbody} key={index}>
+                // groupStuMonth
+                groupStudents.students && groupStudents.students.map((item, index) => {
+
+                    return <tr className={st.tr_tbody} key={index}>
                     <td className={`${st.pupil} ${st.td_tbody} ${
                         item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''}`} key={index}>{item.name}</td>
                     {
-                        date.map((i,key) => (
-                            <td className={st.td} key={key}>
-                            <div
-                                className={st.round}
-                                onClick={checkInput}
-                                data-date={i}
-                                data-id={item.id}>
-                            </div>
-                            <div className={st.checker}>
-                            <h4
-                            onClick={come} className={st.checker_true}>
+                        groupStuMonth.map(i => {
+                            console.log(i)
+                            console.log(item)
+                        })
+                        // monthlyGr.map((i,key) => {
+                        //     // groupStuMonth.month.day
+                        //     // console.log(i)
+                        //     // groupStuMonth.month.day
+                        //     // console.log(moment(i).format('DD/MM'))
+                        //     // console.log(groupMonth)
+    
+    
+                        //     return <td className={st.td} key={key}>
+                        //     <div
+                        //         className={st.round}
+                        //         onClick={checkInput}
+                        //         data-date={i}
+                        //         data-id={item.id}>
+                        //     </div>
+                        //     <div className={st.checker}>
+                        //     <h4
+                        //     onClick={come} className={st.checker_true}>
                             
-                            </h4>
-                            <h4 onClick={dontCome} className={st.checker_false}>
+                        //     </h4>
+                        //     <h4 onClick={dontCome} className={st.checker_false}>
                             
-                            </h4>
-                            <button className={st.checker_close} onClick={closer}>&times; </button>
-                            </div>
-                            </td>
-                            ))
+                        //     </h4>
+                        //     <button className={st.checker_close} onClick={closer}>&times; </button>
+                        //     </div>
+                        //     </td>
+                        // })
                         }
                         </tr>
-                        ))
-                    }
-                    </tbody>
-                    </table>
+                })
                     
-                    
-                    </div>
-                    </div>
+            }
+            </tbody>
+            </table>
+            
+            
+            </div>
+            </div>
                     )
                 }
                 

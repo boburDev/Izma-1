@@ -53,6 +53,10 @@ const CoursesAdd = ({ onClose }) => {
          })
       }
 
+      setName('')
+      setPrice('')
+      setDescription('')
+
    }
 
  

@@ -59,14 +59,13 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                         {
                            info && info.groups.length > 0 ?
                            <>
-                                 <h4 key={block} className={`${block}`}>
+                                 <h4 key={block} className={`${block}`} style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                               {
-                                    info?.groups?.map(el =>
-                                          <span className="stuentGrWr"><span className="studentGr">{el?.name}</span>({el?.teacher} - {el?.time})</span>
-
-                                          )
-                                       }
-                                       </h4>
+                                 info?.groups?.map(el =>
+                                    <span className="stuentGrWr"><span className="studentGr">{el?.name}</span>({el?.teacher} - {el?.time})</span>
+                                    )
+                              }
+                                 </h4>
                            </> 
                            :
                            <>

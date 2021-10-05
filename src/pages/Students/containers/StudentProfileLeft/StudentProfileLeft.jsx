@@ -4,7 +4,7 @@ import { Drawer } from 'antd'
 import StudentEdit from '../../../../containers/Forms/StudentAdd/StudentEdit'
 import FinanceRepaymentForm from '../../../../containers/Finances/FinancesForm/FinanceRepaymeynForm/FinanceRepaymeynForm'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
-import { ONE_STUDENT, DELETE_STUDENT, GROUPS, /*SELECT_STUDENT_GROUP*/ CHECK_CASH, /*UPDATE_COMMENT, *//* HAS_STUDENT*/ } from './query'
+import { ONE_STUDENT, DELETE_STUDENT, GROUPS, SELECT_STUDENT_GROUP, CHECK_CASH, /*UPDATE_COMMENT, *//* HAS_STUDENT*/ } from './query'
 import { SUBSCRIPTION_STUDENT, SUBSCRIPTION_CASH, FILIAL, STATUS_3_4, UPDATE_STATUS_4, SUBSCRIPTION_ST_EDIT } from './query'
 import { useQuery, useMutation, useSubscription } from '@apollo/client'
 import StudentProlifeLeftCheck from '../../../../components/StudentComponents/StudentFilterCheck/StudentFilterCheck'
@@ -19,13 +19,14 @@ import  Modal1  from '../../../../components/Modal/Modal'
 const StudentsProfileLeft = ({stName}) => {
     const [groupAdd, setGroupAdd] = useState()
     const [groupAddDate, setGroupAddDate] = useState()
+
+    const { studentID } = useParams()
     
-   const [openSms, setOpenSms] = useState(false)
+    const [openSms, setOpenSms] = useState(false)
    // const [state, setState] = useState([])
    // const [userInput, setUserInput] = useState('')
     const [visibleF, setVisibleF] = useState(false)
     const [deleteStudent, setDeleteStudent] = useState()
-     const { studentID } = useParams()
  
      const {data: oneStudent} = useQuery(ONE_STUDENT, {variables: {id: studentID}})
      const {data: Groups} = useQuery(GROUPS, {variables: {teacherID: [], courseID: []}})
@@ -35,10 +36,17 @@ const StudentsProfileLeft = ({stName}) => {
  
      const [CheckBalanc] = useMutation(STATUS_3_4)
     //  const [UpdateComment] = useMutation(UPDATE_COMMENT)
-    //  const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)
+     const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)
      const [setStatus_3] = useMutation(UPDATE_STATUS_4)
      const [delStudent, {data: frRedirect}] = useMutation(DELETE_STUDENT)
  
+
+     useEffect(() => {
+       if (groupAdd && groupAddDate) {
+        SetStudentGroup({variables: {idGroup: groupAdd.id, idStudent: studentID, startAt: groupAddDate}})
+       }
+     }, [groupAdd, groupAddDate, studentID, SetStudentGroup])
+
      useSubscription(SUBSCRIPTION_STUDENT, {
        onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -302,7 +310,6 @@ const StudentsProfileLeft = ({stName}) => {
                               setInfo2={setGroupAddDate}
                            />
                             <button className="izma__finance-payment-inner-left-btn izma__finance-payment-inner-drive" onClick={() => {
-                            console.log(isModalVisibleD);
                               setIsModalVisibleD(true)
                             }} >
                             </button>

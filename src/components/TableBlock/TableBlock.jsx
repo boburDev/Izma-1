@@ -59,14 +59,14 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                         {
                            info && info.groups.length > 0 ?
                            <>
+                                 <h4 key={block} className={`${block}`}>
                               {
                                     info?.groups?.map(el =>
-                                             <h4 key={el?.name} className={`${block}`}>
                                           <span className="stuentGrWr"><span className="studentGr">{el?.name}</span>({el?.teacher} - {el?.time})</span>
 
-                                             </h4>
-                                    )
-                              }
+                                          )
+                                       }
+                                       </h4>
                            </> 
                            :
                            <>

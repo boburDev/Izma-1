@@ -75,7 +75,7 @@ function Davomat() {
     const getDaysInMonth = (months, year, start) => {
         let startDay = start
         const daysInMonth = groupMonth.map(i => {
-            if (year >= moment(i).format('YYYY') && months >= moment(i).format('MM')) {
+            if (year >= moment(i).format('YYYY') && (months-0) === (moment(i).format('MM')-0)) {
                 if (startDay <= moment(i).format('DD') ) {
                     startDay = '01'
                     return i
@@ -101,15 +101,10 @@ function Davomat() {
         
         days.split(',').map(i => {
             DATE.map(item => {
-                if (typeof startDay === 'string') {
-                    if ((moment(item).format('DD') - 0) === (startDay - 0)) {
-                        if((i - 1) === new Date(item).getDay()){
-                            data.date.push(moment(item).format('DD/MM'))
-                        }
+                if (endDate >= moment(item).format('YYYY-MM-DD')) {
+                    if ((i - 1) === new Date(item).getDay()) {
+                        data.date.push(moment(item).format('DD/MM'))
                     }
-                }
-                if ((i - 1) === new Date(item).getDay()) {
-                    data.date.push(moment(item).format('DD/MM'))
                 }
                 return ""
             })
@@ -153,7 +148,7 @@ function Davomat() {
     const monthly = (month,year, day = 1) => {
         setArr(arr)
         setDate(davomatCalendar(month, year, day).date.sort())
-        console.log(davomatCalendar(month, year, day).date.sort())
+        // console.log(davomatCalendar(month, year, day).date.sort())
         let roun = document.querySelectorAll(`${st.round}`)
         roun.forEach(item => {
             item.classList.remove(`${st.false}`)

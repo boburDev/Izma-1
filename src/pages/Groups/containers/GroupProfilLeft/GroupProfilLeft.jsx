@@ -5,9 +5,10 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import GroupEdit from '../../../../containers/Forms/GroupEdit/GroupEdit';
 import { Drawer } from 'antd'
-import { Modal, AutoComplete, DatePicker } from 'antd'
-import {  useMutation, useQuery, useSubscription } from '@apollo/client'
-import { 
+import {  Modal, AutoComplete, DatePicker } from 'antd'
+import  Modal1  from '../../../../components/Modal/Modal'
+import { useMutation, useQuery, useSubscription } from '@apollo/client'
+import {
    BY_GROUP_ID,
    DELETE_GROUP,
    GET_STUDENTS,
@@ -87,8 +88,8 @@ const GroupProfilLeft = (prop) => {
 
    // const [cashCheck, {data: forCheck}] = useLazyQuery(CHECK_CASH_GROUP)
 
-   
-   
+
+
    const { data: students } = useQuery(GET_STUDENTS, {
       variables: { name: userInput }
    })
@@ -101,10 +102,9 @@ const GroupProfilLeft = (prop) => {
          setDataUser(users)
       }
    }, [students])
-   
+
    const [deletGroup, { data: delData }] = useMutation(DELETE_GROUP)
-   console.log(delData)
-   
+
    const [HistoryPay] = useMutation(HISTORY_PAYMENT)
    const [AddStudentToGroup] = useMutation(SELECT_STUDENT_GROUP)
    const [SetStatus_6] = useMutation(STATUS_6)
@@ -113,10 +113,10 @@ const GroupProfilLeft = (prop) => {
    const [SetStatus_4] = useMutation(STATUS_3_4)
    const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
    const [SetStatus_5] = useMutation(UPDATE_GR_STATUS)
-   
-   
+
+
    useEffect(() => {
-      
+
 
       if (forStatus && forStatus.updateCash.cashAmount) {
          SetStatus_4({
@@ -125,7 +125,7 @@ const GroupProfilLeft = (prop) => {
                status: (forStatus.updateCash.cashAmount - 0) < 0 ? 4 : 3
             }
          })
-         
+
          SetStatus3_4({
             variables: {
                status: (forStatus.updateCash.cashAmount - 0) < 0 ? 4 : 3,
@@ -133,14 +133,14 @@ const GroupProfilLeft = (prop) => {
                grID: groupID
             }
          })
-         
+
          window.location.reload(true)
       }
-      
+
    }, [forStatus, SetStatus3_4, SetStatus_4, groupID, selectedUser])
-   
-   
-   
+
+
+
    useSubscription(SUBSCRIPTION_GROUPS, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -150,7 +150,7 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-   
+
    useSubscription(NEW_SUB_STUDENT, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -160,7 +160,7 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-   
+
    useSubscription(SUBSCRIPTION_STATUS, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -170,7 +170,7 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-   
+
    useSubscription(SUBSCRIPTION_ADD_STUDENT, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -180,7 +180,7 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-   
+
    useSubscription(SUBSCRIPTION_GROUP_INFO, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
@@ -190,7 +190,7 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
-   
+
    // useSubscription(SUBSCRIPTION_CASH, {
    //    onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
    //       cache.modify({
@@ -200,38 +200,35 @@ const GroupProfilLeft = (prop) => {
    //       })
    //    },
    // })
-               
-               const [isModalVisible, setIsModalVisible] = useState(false)
 
-               const handleDelete = () => {
-                  if (confirm('Are you sure you want to save this thing into the database?')) {
-                     deletGroup({
-                        variables: {
-               id: groupID
-            }
-         })
-      } else {
-         // console.log('Thing was not saved to the database.')
-      }
+   const [isModalVisible, setIsModalVisible] = useState(false)
+   const [isModalDelete, setIsModalDelete] = useState(false)
+
+   const handleDelete = () => {
+      deletGroup({
+         variables: {
+            id: groupID
+         }
+      })
    }
-   
+
    useEffect(() => {
 
       const paymentt = () => {
-   
+
          if (staatus !== 5) {
-   
+
             let backCash = (checkCache && checkCache.studentCash.cashAmount) - (groups && groups.byGroupID.price)
             UpdatePayment({ variables: { stID: selectedUser, cashAmm: String(backCash) } })
-   
+
             const test = Number(checkCache && checkCache.studentCash.cashAmount) <= Number(groups && groups.byGroupID.price)
-   
+
             const data = {
                credit: test ? (checkCache && checkCache.studentCash.cashAmount) : (groups && groups.byGroupID.price),
                studentID: selectedUser,
                debit: backCash < 0 ? String(backCash) : null
             }
-   
+
             HistoryPay({ variables: data })
          } else {
             SetStatus3_4({
@@ -242,14 +239,14 @@ const GroupProfilLeft = (prop) => {
                }
             })
          }
-   
+
       }
       console.log('okay')
       payment && paymentt()
       payment && setPayment(false)
 
    }, [payment, HistoryPay, SetStatus3_4, UpdatePayment, checkCache, groupID, groups, selectedUser, staatus])
-   
+
    const showModal = () => {
       setIsModalVisible(true)
    }
@@ -360,7 +357,16 @@ const GroupProfilLeft = (prop) => {
                   >
                      <GroupEdit dataForEdit={groups && groups.byGroupID} onClose={onClose} />
                   </Drawer>
-                  <button onClick={handleDelete} className="izma__groups-attendance-left-up-btn-del">
+                  <button onClick={() => setIsModalDelete(true)} className="izma__groups-attendance-left-up-btn-del">
+                     <Modal1
+                        block="delete"
+                        title="Guruhni o'chirish"
+                        text={groups && groups.byGroupID.name + 'ni o`chirishni hohlaysizmi ?'}
+                        setInfo={handleDelete}
+                        setMymodal={setIsModalDelete}
+                        myModal={isModalDelete}
+                        redir={`/groups`}
+                     />
                      <img src={Trash} alt="" />
                   </button>
 
@@ -385,7 +391,7 @@ const GroupProfilLeft = (prop) => {
                         Vaqt:
                      </p>
                      <p className="izma__groups-attendance-left-center-time-number">
-                        { dayDivide } ・ {groups.byGroupID.time}
+                        {dayDivide} ・ {groups.byGroupID.time}
                      </p>
                   </div>
 
@@ -531,11 +537,10 @@ const GroupProfilLeft = (prop) => {
                />
                {hasStud && hasStud.hasStudent && <>Siz tanlagan o'quvchi guruhga qo'shilgan</>}
             </div>
-            <div >
+            <div>
                <button onClick={() => {
 
                   if (hasStud && !hasStud.hasStudent) {
-
                      AddStudentToGroup({ variables: { idGroup: groupID, idStudent: stID, startAt: startedDate } })
                   }
                   handleOk()

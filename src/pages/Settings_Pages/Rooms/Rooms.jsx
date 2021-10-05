@@ -3,7 +3,7 @@ import './Rooms.scss'
 import { ROOMS, CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM, SUBCRIPTIONS_ROOM } from './query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
-import Modal from '../../../components/Modal/Modal'
+import Modal1 from '../../../components/Modal/Modal'
 
 
 const Rooms = () => {
@@ -101,7 +101,7 @@ const Rooms = () => {
             </div>
          </div>
 
-         <Modal
+         <Modal1
             block={`roomAdd`}
             title={`Yangi xona yaratish`}
             setMymodal={handleCancel}
@@ -109,7 +109,7 @@ const Rooms = () => {
             setInfo={setRoomName}
             submitOK={handleOkk}
          />
-         <Modal
+         <Modal1
             block={`roomEdit`}
             title={`Xonani tahrirlash`}
             setMymodal={setEditIsModalVisible}

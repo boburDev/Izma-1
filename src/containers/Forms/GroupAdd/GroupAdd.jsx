@@ -28,11 +28,7 @@ const GroupAdd = ({ onClose }) => {
    const { data: courses } = useQuery(COURSES)
    const { data: rooms } = useQuery(ROOMS)
    
-   const [createGroup] = useMutation(CREATE_GROUP, {
-      update: (cache, data) => {
-         // console.log(data)
-      }
-   })
+   const [createGroup] = useMutation(CREATE_GROUP)
 
    const handleGroup = (e) => {
       e.preventDefault()
@@ -47,7 +43,7 @@ const GroupAdd = ({ onClose }) => {
          endDate
       }
 
-      console.log(data)
+      // console.log(data)
       createGroup({
          variables: data
       })

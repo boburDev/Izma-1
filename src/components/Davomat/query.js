@@ -11,13 +11,24 @@ import {
      status
      comment
    }
+ } 
+ `
+
+ const STUDENT_DAVOMAT = gql`
+ query studentAttendence($groupID: ID!){
+   studentAttendence(groupID:$groupID){
+     id
+     groupID
+     studentID
+     day
+     status
+   }
  }
- 
- 
  `
 
 
  
  export {
    GROUP_DAVOMAT,
+   STUDENT_DAVOMAT,
  }

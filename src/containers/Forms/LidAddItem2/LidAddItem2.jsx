@@ -11,6 +11,7 @@ const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
    const itemName = useRef()
    const [time, setTime] = useState('')
    const [startDate, setStartDate] = useState()
+   console.log(startDate)
    // const boardIn = useRef()
 
 

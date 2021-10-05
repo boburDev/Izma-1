@@ -7,7 +7,7 @@ import { DELETE_STUDENT } from  '../../Querys/Table_Query'
 import { DELETE_TEACHER } from '../../Querys/Teacher_Query'
 import { useMutation } from '@apollo/client'
 import { useState } from 'react'
-import  Modal  from '../../components/Modal/Modal'
+import  Modal1  from '../../components/Modal/Modal'
 import { dayDivider } from '../../.../../context/DayDividerProvider'
 
 const TableBlock = ({ block, info, index, showDrawer }) => {
@@ -91,7 +91,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
 
 
                   <h4 className={`${block}`}>
-                     <Modal 
+                     <Modal1
                      block="delete"
                         myModal={modal}
                         setMymodal={setModal}

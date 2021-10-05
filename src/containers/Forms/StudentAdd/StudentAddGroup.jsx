@@ -7,7 +7,7 @@ import CloceBtn from '../../../assets/Icons/Group 26.svg'
 import { useState } from 'react'
 
 import 'antd/dist/antd.css'
-import { ADD_NEW_STUDENTS, NEW_CASH } from '../../../Querys/Students_Query';
+import { ADD_NEW_STUDENTS_GROUP, NEW_CASH } from '../../../Querys/Students_Query';
 import { useMutation } from '@apollo/client';
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
 import { useParams } from 'react-router';
@@ -23,7 +23,7 @@ const StudentAddGroup = ({ onCloseF }) => {
    const [stGender, setStGender] = useState()
 
 
-   const [AddNewSudents, { data: checkStudent }] = useMutation(ADD_NEW_STUDENTS)
+   const [AddNewSudents, { data: checkStudent }] = useMutation(ADD_NEW_STUDENTS_GROUP)
    const [newCash] = useMutation(NEW_CASH)
 
    if (checkStudent && checkStudent.createStudent.id) {

@@ -10,8 +10,6 @@ const EnterForm = () => {
    const [, setPassword] = useState("")
    const [, setPhone] = useState("")
 
-   const [sendReq, setSendReq] = useState('O\'quv markaziga so\'rov qoldiring')
-   console.log(sendReq)
    
    return (
       <>
@@ -24,12 +22,12 @@ const EnterForm = () => {
                         <div className="banner1">
                            <Avatar />
                         </div>
-                        <div className="anony_block1">
+                        {/* <div className="anony_block1">
                            <input type="text" defaultValue="O'quv markaziga so'rov qoldiring" name="" id="req"
                               onKeyUp={e => setSendReq(e.target.value)}
                            />
                            <label className="circle-pen1" htmlFor="req"><img src={Pen} alt="" /></label>
-                        </div>
+                        </div> */}
                         <div className="login_page1">
                            <div className="right_part1">
                               <Avatar />

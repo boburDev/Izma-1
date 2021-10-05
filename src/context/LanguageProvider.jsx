@@ -3,13 +3,13 @@ import { createContext, useContext, useEffect, useState } from "react"
 const Context = createContext()
 
 const LangProvider = ({ children }) => {
-  const [state, setState] = useState(localStorage.getItem("lang") || 'ru')
+  const [state, setState] = useState(localStorage.getItem("lang") || 'en')
 
   useEffect(() => {
     if (state) {
       localStorage.setItem("lang", state)
     } else {
-      localStorage.setItem("lang", "ru")
+      localStorage.setItem("lang", "en")
     }
   }, [state])
 

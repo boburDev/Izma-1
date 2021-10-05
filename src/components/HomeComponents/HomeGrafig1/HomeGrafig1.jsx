@@ -1,11 +1,8 @@
-import { Component } from "react"
 import ReactApexCharts from "react-apexcharts"
 import React from 'react';
 import './HomeGrafig1.scss'
 
-class HomeGrafig1 extends Component {
-   constructor(props) {
-      super(props);
+function HomeGrafig1 (props) {
       let total = 42459
       let elTotal = total / 100
       let telegram = 23043
@@ -17,7 +14,7 @@ class HomeGrafig1 extends Component {
       let Facebook = 4758
       let elFacebook = Facebook / elTotal
       let elFacebooks = elFacebook.toFixed(2)
-      this.state = {
+      const state = {
 
          series: [elTelegrams, elInstagrams, elFacebooks],
          options: {
@@ -37,7 +34,7 @@ class HomeGrafig1 extends Component {
                      },
                      total: {
                         show: true,
-                        label: 'Umumiy',
+                        label: props.lang.all,
                         formatter: function (w) {
                            return total
                         }
@@ -50,11 +47,7 @@ class HomeGrafig1 extends Component {
 
 
       };
-   }
 
-
-
-   render() {
       return (
 
          <>
@@ -62,13 +55,12 @@ class HomeGrafig1 extends Component {
 
 
                <div className="graph__section">
-
                   <div id="chart">
                      <h2 className='izma__graph-heading' >
-                        Mijoz manbalari
+                        {props.lang.cResources}
                      </h2>
                      <div className="chart-wrapper">
-                        <ReactApexCharts className="react-chart-izma" options={this.state.options} series={this.state.series} type="radialBar" height={250} />
+                        <ReactApexCharts className="react-chart-izma" options={state.options} series={state.series} type="radialBar" height={250} />
                      </div>
                      <div className="izma__graph-info">
 
@@ -116,19 +108,9 @@ class HomeGrafig1 extends Component {
                      </div>
                   </div>
                </div>
-
-
             </div>
-
-
-
-
          </>
-
-
       )
-
-   }
 }
 
 

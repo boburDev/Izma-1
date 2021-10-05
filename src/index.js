@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import { ApolloClient, ApolloProvider, InMemoryCache, split, createHttpLink } from '@apollo/client'
-import ReactDOM from 'react-dom';
-import App from './pages/App/App';
+import ReactDOM from 'react-dom'
+import App from './pages/App/App'
 import { BrowserRouter } from 'react-router-dom'
 import { CourseProvider } from './context/CourseProvider'
 import '../src/assets/izma fonts/fonts.scss'
@@ -13,16 +13,17 @@ import { TeacherProvider } from './context/TeacherProvider'
 import { EventProvider } from './context/EventProvider'
 import { CheckProvider } from './context/CheckProvider'
 import { StudentTableProvider } from './context/StudentTableProvider'
-import { StudentPayProvider } from './context/StudentPay';
-import { StudentFilterProvider } from './context/StudentFilter';
-import { CourseFilterProvider } from './context/CourseFilterProvider';
+import { StudentPayProvider } from './context/StudentPay'
+import { StudentFilterProvider } from './context/StudentFilter'
+import { CourseFilterProvider } from './context/CourseFilterProvider'
 import {TeachersTableProvider} from './context/TeachersTableProvider'
-import { LoaderProvider } from './context/Loader';
-import { DavomatProvider } from './context/DavomatProvider';
-import { Pagination } from './context/Pagination';
-import { SnackbarProvider } from 'notistack';
+import { LoaderProvider } from './context/Loader'
+import { DavomatProvider } from './context/DavomatProvider'
+import { Pagination } from './context/Pagination'
+import { SnackbarProvider } from 'notistack'
 import { DayDividerProvider } from './context/DayDividerProvider'
-import Slide from '@material-ui/core/Slide';
+import { LangProvider } from './context/LanguageProvider'
+import Slide from '@material-ui/core/Slide'
 
 const isTester = true
 // http://api.al-azhar.uz/api/graphql
@@ -109,7 +110,9 @@ const Main = () => {
 													<DavomatProvider>
 														<Pagination>
 															<DayDividerProvider>
-																<App />
+																<LangProvider>
+																	<App />
+																</LangProvider>
 															</DayDividerProvider>
 														</Pagination>
 													</DavomatProvider>
@@ -134,4 +137,4 @@ const Main = () => {
 ReactDOM.render(
   <Main/>,
   document.getElementById('root')
-);
+)

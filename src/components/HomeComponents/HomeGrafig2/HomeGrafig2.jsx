@@ -1,40 +1,37 @@
 import './HomeGrafig2.scss'
 import ApexChart from './chart'
 
-const HomeGrafig2 = () => {
+const HomeGrafig2 = (props) => {
    return (
       <div className="shoppingStatus">
          <div className="inner">
-            <div className="heading"><h2>Sotuv jarayoni</h2></div>
+            <div className="heading"><h2>{props.lang.mProcess}</h2></div>
             <div className="top_graph">
                <div className="left_side">
                   <div className="same_days">
-                     <h3>Haftalik Detallar</h3>
-                     <span>Last 7 days</span>
+                     <h3>{props.lang.wStatistics}</h3>
+                     <span>{props.lang.lSevenDay}</span>
                   </div>
-                  <button className="total_view">Detalno ko'rish</button>
+                  <button className="total_view">{props.lang.seeAll}</button>
                </div>
                <div className="right_side">
-                  <ApexChart />
+                  <ApexChart lang={props.lang.daysShort} />
                </div>
             </div>
 
             <div className="bottom_graph">
 
                <div className="left_side">
-                  <span>2 lidlar</span>
+                  <span>2 {props.lang.leads}</span>
                   <div className="per_wrap four"><div className="per_color"></div></div>
 
-                  <span>Kutish va to’plam</span>
+                  <span>{ props.lang.waitAndPack }</span>
                   <div className="per_wrap one"><div className="per_color"></div></div>
                </div>
 
                <div className="right_side">
-                  <span>Guruhdagi qarz</span>
+                  <span>{props.lang.groupDebpt}</span>
                   <div className="per_wrap two"><div className="per_color"></div></div>
-
-                  <span>Guruhdagi qarz</span>
-                  <div className="per_wrap thre"><div className="per_color"></div></div>
                </div>
 
             </div>

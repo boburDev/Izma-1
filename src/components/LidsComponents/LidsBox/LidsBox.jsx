@@ -130,7 +130,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns }) => {
                               columns={columns}
                               setColumns={setColumns}
                               itemId={column.id}
-                              formId={column.id}
+                              // formId={column.id}
                            />
                         </div>
                         {column.items.map((item, index) => {

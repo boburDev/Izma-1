@@ -9,9 +9,10 @@ const EnterForm = () => {
 
    const [, setPassword] = useState("")
    const [, setPhone] = useState("")
-   
+
    const [sendReq, setSendReq] = useState('O\'quv markaziga so\'rov qoldiring')
    console.log(sendReq)
+   
    return (
       <>
 
@@ -58,6 +59,8 @@ const EnterForm = () => {
 
                                  <button className="log_btn1">Login</button>
                               </form>
+                              <div>
+                              </div>
                            </div>
                         </div>
                      </div>

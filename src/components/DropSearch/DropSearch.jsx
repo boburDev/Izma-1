@@ -102,6 +102,7 @@ const DropSearch = ({ arr, pInput, fnc }) => {
          <div className="inputWrapper">
             <input autoComplete="off" list="" name="browsers" placeholder={pInput} className="dropSearchInput"
                ref={input}
+               required
             />
             <span ref={arrow} className="dropSearchArrow"><img src={Arrow} alt=""
 

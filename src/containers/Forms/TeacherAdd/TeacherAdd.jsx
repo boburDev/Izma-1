@@ -25,7 +25,6 @@ const TeacherAdd = ({ onClose, setVisible }) => {
 
    const handleTeacher = (e) => {
       setVisible(false)
-      e.preventDefault()
 
       const data = {
             name,
@@ -67,7 +66,10 @@ const TeacherAdd = ({ onClose, setVisible }) => {
          </div>
 
          <div className="forms">
-            <form action="" id="teacherFormRes">
+            <form action="" id="teacherFormRes" onSubmit={(e) => {
+               e.preventDefault()
+               handleTeacher()
+            }}>
                <div className="form_one">
                   <label htmlFor="">Telefon</label>
                   <PhoneNumberInput
@@ -77,7 +79,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
 
                <div className="form_one">
                   <label htmlFor="name">Ism</label>
-                  <input onKeyUp={e => setName(e.target.value)} type="text" name="name" id="name" />
+                  <input required onKeyUp={e => setName(e.target.value)} type="text" name="name" id="name" />
                </div>
                <div className="form_group" id='sty2'>
                   <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
@@ -121,7 +123,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
                   <PasswordInput setPassword={setPassword}/>
                </div>
 
-               <button onClick={handleTeacher} className="cre_btn">Yarating</button>
+               <button type="submit" className="cre_btn">Yarating</button>
             </form>
          </div>
       </div>

@@ -23,6 +23,7 @@ import { Pagination } from './context/Pagination'
 import { SnackbarProvider } from 'notistack'
 import { DayDividerProvider } from './context/DayDividerProvider'
 import { LangProvider } from './context/LanguageProvider'
+import { NameProvider } from './context/NameProvider'
 import Slide from '@material-ui/core/Slide'
 
 const isTester = true
@@ -111,7 +112,9 @@ const Main = () => {
 														<Pagination>
 															<DayDividerProvider>
 																<LangProvider>
-																	<App />
+																	<NameProvider>
+																	  <App />
+																	</NameProvider>
 																</LangProvider>
 															</DayDividerProvider>
 														</Pagination>

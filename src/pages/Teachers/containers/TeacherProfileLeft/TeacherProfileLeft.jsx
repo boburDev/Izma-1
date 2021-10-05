@@ -11,11 +11,12 @@ import { useLoader } from '../../../../context/Loader';
 import { useEffect } from 'react';
 import PhoneNumberInput from '../../../../components/PhoneNumberInput/PhoneNumberInput';
 import moment from 'moment';
+import { useName1 } from '../../../../context/NameProvider';
 
 
 const TeacherProfileLeft = () => {
    const { collegueID } = useParams()
-
+   const [setPeopleName] = useName1(true)
    // const [openEdit, setOpenEdit] = useState(false)
    const [setLoader] = useLoader(true)
 
@@ -104,6 +105,10 @@ const TeacherProfileLeft = () => {
          variables: data
       })
 }
+
+useEffect(() => {
+   collegueInfo &&  setPeopleName(collegueInfo?.name)
+})
 
 
 

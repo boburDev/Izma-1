@@ -4,6 +4,8 @@ const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}
    const itemName = useRef()
    // const boardIn = useRef()
 
+   // console.log(columns, boxId)
+
 
    const handleSub = async (e) => {
       e.preventDefault()

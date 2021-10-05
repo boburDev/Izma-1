@@ -150,8 +150,8 @@ const closeLidAdd1 = () => {
                         if (item.boxStatus === 1) {
                            return <div style={{ margin: 8, width: '100%' }} key={index}>
                                  <LidsBox
-                                    column={item}
-                                    columnId={item.id}
+                                 column={item}
+                                 columnId={item.id}
                                  columns={columns}
                                  setColumns={setColumns}
 

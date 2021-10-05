@@ -8,7 +8,6 @@ const Table = ({ block, arr, showDrawer}) => {
    const [data] = useStudentData()
    const [teacherData] = useTeacherData()
 
-   console.log(data);
 
    return (
       <div className="table">

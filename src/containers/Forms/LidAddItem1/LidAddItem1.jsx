@@ -14,9 +14,11 @@ const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
 
 
    const handleSub = async () => {
+      
       await request.post(`/item`, {
          itemName: itemName.current.value,
-         boardIn: 3
+         boardIn: 3,
+         time: time
       });
       setRefresh(!refresh)
    }

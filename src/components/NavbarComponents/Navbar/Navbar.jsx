@@ -35,10 +35,12 @@ import './Navbar.scss'
 
 import NavbarLinks from '../NavbarLinks/NavbarLinks'
 import NavbarPlus from '../NavbarPlus/NavbarPlus'
+import { useNavbar } from '../../../context/NavbarProvider'
 
 
 
 const Navbar = ({ sidebarActive }) => {
+   const [navbarP] = useNavbar()
    const [dragActive, setDragActive] = useState()
    const [settingActive, setSettingActive] = useState(false)
    const [openMoliya, setOpenMoliya] = useState(false)
@@ -155,58 +157,72 @@ const Navbar = ({ sidebarActive }) => {
       console.log(location.pathname ,paths);
       switch (location.pathname) {
          case "/settingsEmployeesInner":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/finance":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/financeCosts":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/financeSalary":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/financePaymentGroups":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/financePayment":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/settingsRoadmap":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsEmployees":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsMagazine":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsArchive":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsLidform":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsEnter":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsShapes":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsCompany":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
@@ -217,7 +233,7 @@ const Navbar = ({ sidebarActive }) => {
             break;
          case "/studentProfile/" + paths[paths.length - 1]:
             closeAll()
-            setSettingActive(true)
+            setStudentActive(true)
             
             break;
          case "/teacherProfile/" + paths[paths.length - 1]:
@@ -241,7 +257,7 @@ const Navbar = ({ sidebarActive }) => {
             setDragActive(false)
             break;
       }
-   }, [location.pathname]);
+   }, [location.pathname, navbarP]);
 
    const MoliyaLinks = [
       {

@@ -126,15 +126,14 @@ function Davomat() {
     function davomatCalendar(start, yearStart, startDay = 1) {
         const DATE = getDaysInMonth(start, yearStart, startDay)
         const data = {
-            date: [],
-            fullDate: []
+            date: []
         }
         
         days.split(',').map(i => {
             DATE.map(item => {
                 if (endDate >= moment(item).format('YYYY-MM-DD')) {
                     if ((i - 1) === new Date(item).getDay()) {
-                        data.date.push(moment(item).format('DD/MM'))
+                        data.date.push(moment(item).format('DD/MM-YYYY'))
                     }
                 }
                 return ""
@@ -292,7 +291,7 @@ function Davomat() {
         {
             monthlyGr.map((item, index) => (
                 <th className={st.th} key={index}>
-                {item}
+                {item.split('-')[0]}
                 &ensp;&ensp;
                 </th>
                 ))
@@ -306,27 +305,8 @@ function Davomat() {
                     <td className={`${st.pupil} ${st.td_tbody} ${
                         item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''}`} key={index}>{item.name}</td>
                     {
-                        monthlyGr.map((i,key) => {
-                            return <td className={st.td} key={key}>
-                            <div
-                                className={st.round}
-                                onClick={checkInput}
-                                data-date={i}
-                                data-id={item.id}>
-                            </div>
-                            <div className={st.checker}>
-                            <h4
-                            onClick={come} className={st.checker_true}>
-                            
-                            </h4>
-                            <h4 onClick={dontCome} className={st.checker_false}>
-                            
-                            </h4>
-                            <button className={st.checker_close} onClick={closer}>&times; </button>
-                            </div>
-                            </td>
-                        })
-                        }
+                        console.log(groupStuMonth, monthlyGr[0], monthlyGr[monthlyGr.length-1])
+                    }
                         </tr>
                 })
                     
@@ -341,3 +321,28 @@ function Davomat() {
                 }
                 
     export default Davomat
+
+
+
+
+
+     // monthlyGr.map((i,key) => {
+                        //     return <td className={st.td} key={key}>
+                        //     <div
+                        //         className={st.round}
+                        //         onClick={checkInput}
+                        //         data-date={i}
+                        //         data-id={item.id}>
+                        //     </div>
+                        //     <div className={st.checker}>
+                        //     <h4
+                        //     onClick={come} className={st.checker_true}>
+                            
+                        //     </h4>
+                        //     <h4 onClick={dontCome} className={st.checker_false}>
+                            
+                        //     </h4>
+                        //     <button className={st.checker_close} onClick={closer}>&times; </button>
+                        //     </div>
+                        //     </td>
+                        // })

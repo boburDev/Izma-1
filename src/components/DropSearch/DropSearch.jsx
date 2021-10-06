@@ -2,7 +2,7 @@ import './DropSearch.scss'
 import { useEffect, useRef } from 'react'
 import Arrow from '../../assets/Icons/arrow_im.svg'
 
-const DropSearch = ({ arr, pInput, fnc }) => {
+const DropSearch = ({ arr, pInput, fnc, notReq }) => {
    const input = useRef()
    const browsers = useRef()
    const arrow = useRef()
@@ -102,7 +102,7 @@ const DropSearch = ({ arr, pInput, fnc }) => {
          <div className="inputWrapper">
             <input autoComplete="off" list="" name="browsers" placeholder={pInput} className="dropSearchInput"
                ref={input}
-               required
+               required={notReq ? false : true}
             />
             <span ref={arrow} className="dropSearchArrow"><img src={Arrow} alt=""
 

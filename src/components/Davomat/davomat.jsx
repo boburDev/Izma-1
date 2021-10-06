@@ -23,6 +23,7 @@ function Davomat() {
     const [groupStuMonth,setGroupStuMonth] = useState([])
     // console.log(groupStuMonth)
     const [monthlyGr, setMonthlyGr] = useState([])
+    const [monthlyStGr, setMonthlyStGr] = useState([])
 
     const { data: groupAtt } = useQuery(GROUP_DAVOMAT, { variables: { groupID: id && id.groupID}})
 
@@ -63,6 +64,7 @@ function Davomat() {
                 }))
                 return { id: i.id, data }
             })
+            console.log(resultMapped)
             setGroupStuMonth(resultMapped)
         }
     },[studentGrAtt, groupStudents])
@@ -200,6 +202,14 @@ function Davomat() {
         setMonthlyGr(data.date.sort())
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [start, startDay, yearStart])
+    
+    useEffect(() => {
+        const data = davomatCalendar(start, yearStart, startDay)
+        // setArr(arr)
+        setActive(start-1)
+        setMonthlyStGr(data.date.sort())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [start, startDay, yearStart])
 
     
 
@@ -305,7 +315,26 @@ function Davomat() {
                     <td className={`${st.pupil} ${st.td_tbody} ${
                         item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''}`} key={index}>{item.name}</td>
                     {
-                        console.log(groupStuMonth, monthlyGr[0], monthlyGr[monthlyGr.length-1])
+                        monthlyGr.map((val, key) => {
+                                return <td className={st.td} key={key}>
+                                <div
+                                    className={st.round}
+                                    onClick={checkInput}
+                                    data-date={val.id}
+                                    data-id={item.id}>
+                                </div>
+                                <div className={st.checker}>
+                                <h4
+                                onClick={come} className={st.checker_true}>
+                                
+                                </h4>
+                                <h4 onClick={dontCome} className={st.checker_false}>
+                                
+                                </h4>
+                                <button className={st.checker_close} onClick={closer}>&times; </button>
+                                </div>
+                                </td>
+                        })
                     }
                         </tr>
                 })
@@ -321,28 +350,3 @@ function Davomat() {
                 }
                 
     export default Davomat
-
-
-
-
-
-     // monthlyGr.map((i,key) => {
-                        //     return <td className={st.td} key={key}>
-                        //     <div
-                        //         className={st.round}
-                        //         onClick={checkInput}
-                        //         data-date={i}
-                        //         data-id={item.id}>
-                        //     </div>
-                        //     <div className={st.checker}>
-                        //     <h4
-                        //     onClick={come} className={st.checker_true}>
-                            
-                        //     </h4>
-                        //     <h4 onClick={dontCome} className={st.checker_false}>
-                            
-                        //     </h4>
-                        //     <button className={st.checker_close} onClick={closer}>&times; </button>
-                        //     </div>
-                        //     </td>
-                        // })

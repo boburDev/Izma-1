@@ -24,10 +24,10 @@ function Davomat() {
     // console.log(groupStuMonth)
     const [monthlyGr, setMonthlyGr] = useState([])
     const [monthlyStGr, setMonthlyStGr] = useState([])
-
     const { data: groupAtt } = useQuery(GROUP_DAVOMAT, { variables: { groupID: id && id.groupID}})
 
     const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
+
 
     useEffect(()=>{
         if (groupAtt && groupAtt.groupAttendences) {
@@ -60,11 +60,12 @@ function Davomat() {
             const resultMapped = mapped.map(i => {
                 const data = i.month.map(j => ({
                     s: j.status,
-                    d: moment(new Date(j.day-0)).format('DD/MM-YYYY')
+                    d: j.day
+                    // moment(new Date(j.day-0)).format('DD/MM-YYYY')
                 }))
                 return { id: i.id, data }
             })
-            console.log(resultMapped)
+            // console.log(resultMapped)
             setGroupStuMonth(resultMapped)
         }
     },[studentGrAtt, groupStudents])
@@ -135,7 +136,8 @@ function Davomat() {
             DATE.map(item => {
                 if (endDate >= moment(item).format('YYYY-MM-DD')) {
                     if ((i - 1) === new Date(item).getDay()) {
-                        data.date.push(moment(item).format('DD/MM-YYYY'))
+                        data.date.push(item)
+                        // data.date.push(moment(item).format('DD/MM-YYYY'))
                     }
                 }
                 return ""
@@ -246,7 +248,7 @@ function Davomat() {
             date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
             title: 'keldi'
         }
-        // console.log(body)
+        console.log(body)
         arr.push(body)
         setArr(arr)
     }
@@ -260,7 +262,7 @@ function Davomat() {
             date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
             title: 'kelmadi'
         }
-        
+        console.log(body)
         arr.push(body)
         setArr(arr)
     }
@@ -298,10 +300,11 @@ function Davomat() {
         <thead className={st.customer_thead}>
         <tr className={st.tr}>
         <th className={`${st.name_table} ${st.th}`}>Ism</th>
+        {console.log(monthlyGr.sort((a, b) => new Date(b).getTime() - new Date(a).getTime()))}
         {
-            monthlyGr.map((item, index) => (
+            monthlyGr.sort().map((item, index) => (
                 <th className={st.th} key={index}>
-                {item.split('-')[0]}
+                {moment(item).format('DD/MM')}
                 &ensp;&ensp;
                 </th>
                 ))
@@ -315,26 +318,40 @@ function Davomat() {
                     <td className={`${st.pupil} ${st.td_tbody} ${
                         item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''}`} key={index}>{item.name}</td>
                     {
-                        monthlyGr.map((val, key) => {
-                                return <td className={st.td} key={key}>
-                                <div
-                                    className={st.round}
-                                    onClick={checkInput}
-                                    data-date={val.id}
-                                    data-id={item.id}>
-                                </div>
-                                <div className={st.checker}>
-                                <h4
-                                onClick={come} className={st.checker_true}>
+                    //  console.log(groupStuMonth, item)
+                    groupStuMonth.map(i => {
+                        // console.log(moment(monthlyGr[0]).format("DD/MM"), moment(monthlyGr[monthlyGr.length-1]).format("DD/MM"))
+                        if ((i.id === item.id) && monthlyGr.length > 0) {
+                            i.data.map(j => {
+                                if (moment(monthlyGr.sort()[0]).format() <= moment(j.d-0).format()
+                                && moment(monthlyGr.sort()[monthlyGr.length-1]).format() >= moment(j.d-0).format()) {
+                                    console.log(moment(j.d-0).format("DD-MM"))
+                                }
+                                return ''
+                            })
+                        }
+                        return ''
+                    })
+                        // monthlyGr.map((val, key) => {
+                        //         return <td className={st.td} key={key}>
+                        //         <div
+                        //             className={st.round}
+                        //             onClick={checkInput}
+                        //             data-date={val}
+                        //             data-id={item.id}>
+                        //         </div>
+                        //         <div className={st.checker}>
+                        //         <h4
+                        //         onClick={come} className={st.checker_true}>
                                 
-                                </h4>
-                                <h4 onClick={dontCome} className={st.checker_false}>
+                        //         </h4>
+                        //         <h4 onClick={dontCome} className={st.checker_false}>
                                 
-                                </h4>
-                                <button className={st.checker_close} onClick={closer}>&times; </button>
-                                </div>
-                                </td>
-                        })
+                        //         </h4>
+                        //         <button className={st.checker_close} onClick={closer}>&times; </button>
+                        //         </div>
+                        //         </td>
+                        // })
                     }
                         </tr>
                 })

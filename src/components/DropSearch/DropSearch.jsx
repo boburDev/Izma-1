@@ -59,7 +59,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
          currentFocus = -1;
          var text = input.current.value.toUpperCase();
          for (let option of browsers.current.childNodes) {
-            if (option.value.toUpperCase().indexOf(text) > -1) {
+            if (option.dataset.name.toUpperCase().indexOf(text) > -1) {
                option.style.display = "block";
             } else {
                option.style.display = "none";
@@ -153,11 +153,10 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
                         if (e.target.className === 'selected') {
                            fnc('')
                         } else {
-                           console.log(z);
                            fnc(z)
                         }
                      }}
-                     key={i} value={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
+                     key={i} data-name={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
                ))
             }
          </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { /* useMutation, */ useQuery } from '@apollo/client'
 import { BOXES_NAME, BOXES_CONTENT/* , CREATE_BOX, UPDATE_BOX_NAME, DELETE_BOX */ } from './query'
+import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
 // const itemsBackend = [
@@ -71,6 +72,13 @@ const Lids = () => {
 
    const {data: boxesName} = useQuery(BOXES_NAME)
    const {data: boxesContent} = useQuery(BOXES_CONTENT)
+
+   const { data: courses } = useQuery(COURSES)
+   const { data: teachers } = useQuery(TEACHER_FILTERS)
+
+   console.log(courses)
+   console.log(teachers)
+
 
    const [allBox, setBoxName] = useState([])
    const [boxesCont, setBoxesCont] = useState([])

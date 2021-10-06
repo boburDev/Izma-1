@@ -2,93 +2,77 @@ import './Lids.scss'
 import LidsContent from './LidsContent/LidsContent'
 import { useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
-import { /* useMutation, */ useQuery } from '@apollo/client'
-import { BOXES_NAME, BOXES_CONTENT/* , CREATE_BOX, UPDATE_BOX_NAME, DELETE_BOX */ } from './query'
+import { /* useMutation, */ useQuery, useSubscription } from '@apollo/client'
+import { BOXES_NAME, BOXES_CONTENT/* , CREATE_BOX, UPDATE_BOX_NAME, DELETE_BOX */ , SUBCRIP_CONTENT} from './query'
 import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
-const itemsBackend = [
-   {
-      id: 'asd',
-      userName: 'Birinchi block',
-      userNumber: '998943821261',
-      userComment: 'salom'
-   },
-   { id: 'asdgag', userName: 'Ikkinchi block' },
-   { id: 'asdgag1', userName: '4 block' },
-   { id: 'asdgag2', userName: '5 block' },
-   { id: 'asdgag3', userName: '6 block' },
-   { id: 'asdgag4', userName: '7 block' },
-   { id: 'asdgag5', userName: '8 block' },
-]
+// const itemsBackend = [
+//    {
+//       id: 'asd',
+//       userName: 'Birinchi block',
+//       userNumber: '998943821261',
+//       userComment: 'salom'
+//    },
+//    { id: 'asdgag', userName: 'Ikkinchi block' },
+//    { id: 'asdgag1', userName: '4 block' },
+//    { id: 'asdgag2', userName: '5 block' },
+//    { id: 'asdgag3', userName: '6 block' },
+//    { id: 'asdgag4', userName: '7 block' },
+//    { id: 'asdgag5', userName: '8 block' },
+// ]
 
 const LidsBoxes = [
    {
-      id: 'adkfjakdf',
-      name: 'Instagram',
-      boxStatus: 1,
-      items: itemsBackend
-   },
-   {
-      id: 'sdfadfa',
-      name: 'Instagram',
+      id: '',
+      name: '',
       boxStatus: -1,
       items: []
    },
    {
-      id: 'sdfaaddfa',
-      name: 'Instagram',
+      id: '',
+      name: '',
       boxStatus: -2,
       items: []
    },
    {
-      id: 'sdfadfasdfa',
-      name: 'Instagram',
+      id: '',
+      name: '',
       boxStatus: -3,
-      items: []
-   },
-   {
-      id: 'adkfjasdfagaakdf',
-      name: 'Telegram',
-      boxStatus: 1,
-      items: []
-   },
-   {
-      id: 'asdf',
-      name: 'Instagram',
-      boxStatus: 2,
-      items: []
-   },
-   {
-      id: 'sdfa',
-      name: 'Instagram',
-      boxStatus: 3,
       items: []
    }
 ]
 
 const Lids = () => {
-   const [columns, setColumns] = useState(LidsBoxes)
+   const [columns, setColumns] = useState([])
 
-   // const {data: boxesName} = useQuery(BOXES_NAME)
-   // const {data: boxesContent} = useQuery(BOXES_CONTENT)
+   const {data: boxesName} = useQuery(BOXES_NAME)
+   const {data: boxesContent} = useQuery(BOXES_CONTENT)
 
    const { data: courses } = useQuery(COURSES)
    const { data: teachers } = useQuery(TEACHER_FILTERS)
 
-   console.log(courses)
-   console.log(teachers)
+   
 
 
    const [allBox, setBoxName] = useState([])
    const [boxesCont, setBoxesCont] = useState([])
-
  
+
+   useSubscription(SUBCRIP_CONTENT, {
+
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               leadBoxContent: () => { }
+            }
+         })
+      },
+   })
 
    // BOXES //
    
-   // const [createBox] = useMutation(CREATE_BOX)
-   // createBox({variables: {boxName: '', status: number}})
+  
 
    // const [updateBoxName] = useMutation(UPDATE_BOX_NAME)
    // updateBoxName({variables: {boxID: id, boxName: '', status: number}})
@@ -126,35 +110,38 @@ const Lids = () => {
 
 
 
-   // useEffect(() => {
-   //    if (boxesName?.leadsBoxName && boxesContent?.leadBoxContent) {
-   //       setBoxName(boxesName.leadsBoxName)
-   //       setBoxesCont(boxesContent.leadBoxContent)
-   //    }
-   // }, [boxesName, boxesContent])
+   useEffect(() => {
+      if (boxesName?.leadsBoxName && boxesContent?.leadBoxContent) {
+         setBoxName(boxesName.leadsBoxName)
+         setBoxesCont(boxesContent.leadBoxContent)
+      }
+   }, [boxesName, boxesContent])
 
    
-   // useEffect(() => {
-   //    if (allBox.length) {
+   useEffect(() => {
+      if (allBox.length) {
 
-   //       const newArr = []
+         const newArr = []
 
-   //       allBox?.map(i => {
+         allBox?.map(i => {
 
-   //          const aaa = boxesCont?.filter(item => item.status === i.status ? {id: item.id, userName: item.name, userNumber: item.phone, status: item.status} : '')
+            const aaa = boxesCont?.filter(item => item.status === i.status ? {id: item.id, userName: item.name, userNumber: item.phone, status: item.status} : '')
 
-   //          const data = {
-   //             id: i.id,
-   //             name: i.boxname,
-   //             boxStatus: i.status,
-   //             items: aaa
-   //          }
-   //          newArr.push(data)
-   //          return ''
-   //       })
-   //       setColumns(newArr)
-   //    }
-   // }, [allBox, boxesCont])
+            const data = {
+               id: i.id,
+               name: i.boxname,
+               boxStatus: i.status,
+               items: aaa
+            }
+            newArr.push(data)
+            return ''
+         })
+         setColumns(newArr)
+      }
+   }, [allBox, boxesCont])
+
+   console.log(boxesCont)
+   console.log(boxesContent)
 
 
 
@@ -190,6 +177,8 @@ const Lids = () => {
       }
 
    };
+
+   // console.log(columns)
    
    return(
       <div className="lids">

@@ -62,12 +62,18 @@ const CREATE_BOX_CONTENT = gql `
     $phone: String
     $comment: String
     $status: Int
+    $l_id_1: ID
+    $l_id_2: ID
+    $l_id_3: ID
   ) {
     createBoxContnt (
       name: $name
       phone: $phone
       comment: $comment
       status: $status
+      l_id_1: $l_id_1
+      l_id_2: $l_id_2
+      l_id_3: $l_id_3
     ) {
       id
       name
@@ -88,6 +94,9 @@ const CREATE_BOX_CONTENT_GROUP = gql `
     $teachName: String
     $days: String
     $time: String
+    $l_id_1: ID
+    $l_id_2: ID
+    $l_id_3: ID
   ) {
     createBoxContnt (
       name: $name
@@ -98,6 +107,9 @@ const CREATE_BOX_CONTENT_GROUP = gql `
       teachName: $teachName
       courseDays: $days
       courseTime: $time
+      l_id_1: $l_id_1
+      l_id_2: $l_id_2
+      l_id_3: $l_id_3
     ) {
       id
       name
@@ -116,6 +128,12 @@ const BOXES_CONTENT = gql `
       phone
       comment
       status
+      courseID
+      courseName
+      teachID
+      teachName
+      courseDays
+      courseTime
     }
   }
 `
@@ -154,6 +172,24 @@ const DELETE_CONTENT = gql `
   }
 `
 
+const SUBCRIP_CONTENT = gql `
+  subscription {
+    newContent{
+      id
+      name
+      phone
+      comment
+      status
+      courseID
+      courseName
+      teachID
+      teachName
+      courseDays
+      courseTime
+    }
+  }
+`
+
 export {
   BOXES_NAME,
   BOXES_CONTENT,
@@ -164,5 +200,6 @@ export {
   CREATE_BOX_CONTENT_GROUP,
   UPDATE_BOX_CONTENT,
   UPDATE_BOX_CONT_STATUS,
-  DELETE_CONTENT
+  DELETE_CONTENT,
+  SUBCRIP_CONTENT
 }

@@ -1,30 +1,35 @@
 import { useEffect, useRef } from 'react'
 import './LidAddForm.scss'
+import { useMutation } from '@apollo/client'
+import { CREATE_BOX_CONTENT } from '../../../pages/Lids/query'
+
 
 const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
    const userName = useRef()
    const userNumber = useRef()
    const userComment = useRef()
+   const [createBoxContent] = useMutation(CREATE_BOX_CONTENT)
 
    const handleSubmit = async () => {
-      // await request.post(`/list`, {
-      //    userName: userName.current.value,
-      //    userNumber: userNumber.current.value,
-      //    userComment: userComment.current.value,
-      //    itemId: itemId
-      // });
+   
 
-      let item = typeof itemId === 'string' ? columns.find(el => el.id === itemId) : columns.find(el => el.boxStatus === itemId)
-      
-      
-      item.items.push({
-         id: 'adsfadf',
-         userName: userName.current.value,
-         userNumber: userNumber.current.value,
-         userComment: userComment.current.value
+      // let item = typeof itemId === 'string' ? columns.find(el => el.id === itemId) : columns.find(el => el.boxStatus === itemId)
 
-      })
-      setColumns(columns)
+      console.log(itemId);
+      console.log(formId);
+      
+      createBoxContent({ variables: { 
+         name: userName.current.value, 
+         phone: userNumber.current.value, 
+         comment: userComment.current.value,
+         status: formId,
+         l_id_1: formId === 1 || formId === -1 ? itemId : null,
+         l_id_2: formId === 2 || formId === -2 ? itemId : null,
+         l_id_3: formId === 3 || formId === -3 ? itemId : null
+      
+      } })
+     
+      // setColumns(columns)
       setAdd()
       let form = document.querySelector('#form' + formId)
       form.reset()

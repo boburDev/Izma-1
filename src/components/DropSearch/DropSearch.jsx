@@ -10,6 +10,9 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
 
 
    useEffect(() => {
+      arrow.current.classList.remove('active')
+      browsers.current.style.display = 'none';
+      input.current.style.borderRadius = "5px";
 
       arrow.current.addEventListener('click', () => {
          if (arrow.current.className === 'dropSearchArrow active') {
@@ -96,34 +99,68 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
       }
    }, [arr])
 
+   const useOutsideAlerter = (ref) => {
+      useEffect(() => {
+         function handleClickOutside(event) {
+            let coun = 0
+            event.path && event.path.map(el => {
+               if (el.className === 'dropSearch') {
+                  coun++
+               }
+               return ''
+            })
+
+
+            if (coun === 0) {
+               arrow.current.classList.remove('active')
+               browsers.current.style.display = 'none';
+               input.current.style.borderRadius = "5px";
+            }
+
+         }
+         document.addEventListener("mousedown", handleClickOutside);
+
+         return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+         };
+      }, [ref])
+   }
+
+
+
+  
+   const wrapperRef = useRef(null);
+   useOutsideAlerter(wrapperRef);
+
 
    return (
-      <div className="dropSearch">
+      <div className="dropSearch" ref={wrapperRef}>
          <div className="inputWrapper">
             <input autoComplete="off" list="" name="browsers" placeholder={pInput} className="dropSearchInput"
                ref={input}
                required={notReq ? false : true}
             />
-            <span ref={arrow} className="dropSearchArrow"><img src={Arrow} alt=""
+            <span ref={arrow} className="dropSearchArrow" ><img src={Arrow} alt=""
 
             /></span>
          </div>
-         <datalist className="dropSearchDatalist" ref={browsers}>
+         <div className="dropSearchDatalist" ref={browsers}>
             {
                arr && arr.map((z, i) => (
-                  <option
+                  <span
                   
                      onClick={(e) => {
                         if (e.target.className === 'selected') {
                            fnc('')
                         } else {
+                           console.log(z);
                            fnc(z)
                         }
                      }}
-                     key={i} value={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</option>
+                     key={i} value={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
                ))
             }
-         </datalist>
+         </div>
       </div>
    )
 }

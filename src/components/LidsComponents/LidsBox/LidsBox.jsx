@@ -12,6 +12,8 @@ import { useEffect, useRef } from 'react'
 import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm';
 import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem';
 import { Drawer } from 'antd';
+import { useMutation } from '@apollo/client';
+import { DELETE_BOX } from '../../../pages/Lids/query';
 
 const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate, sorov }) => {
 
@@ -20,6 +22,8 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
    const [defaultInfo, setDefaultInfo] = useState('')
    const [active, setActive] = useState(false)
    const [openEdit, setOpenEdit] = useState(false)
+
+   const [deleteBox] = useMutation(DELETE_BOX)
 
    const closeEdit = () => {
       setOpenEdit(false)
@@ -51,7 +55,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
 
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
-
+console.log(column);
 
    return (
       <Droppable droppableId={columnId} key={columnId}>
@@ -70,6 +74,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                         columns={columns}
                         defaultInfo={defaultInfo}
                         boxId={column.id}
+                        formNum={column.boxStatus}
 
                      />
                   </Drawer>
@@ -127,7 +132,11 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                                  setMenu(false)
                                  setForm1(true)
                               }}><img src={Link} alt="" />So’rov qo’shish</span>
-                              <span><img src={Delete} alt="" />O’chirish</span>
+                              <span
+                                 onClick={() => {
+                                    deleteBox({ variables: { boxID: column.id, status: column.boxStatus } })
+                                 }}
+                              ><img src={Delete} alt="" />O’chirish</span>
                            </div>
                         </div>
                      </div>
@@ -147,7 +156,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                               columns={columns}
                               setColumns={setColumns}
                               itemId={column.id}
-                              // formId={column.id}
+                              formId={column.boxStatus}
                            />
                         </div>
                         {column.items.map((item, index) => {

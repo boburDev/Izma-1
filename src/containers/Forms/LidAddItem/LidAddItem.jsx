@@ -1,7 +1,13 @@
 import './LidAddItem.scss'
 import { useRef } from 'react'
+import { useMutation } from '@apollo/client'
+import { CREATE_BOX, UPDATE_BOX_NAME } from '../../../pages/Lids/query'
 const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}) => {
    const itemName = useRef()
+
+    const [createBox] = useMutation(CREATE_BOX)
+  const [updateBoxName] = useMutation(UPDATE_BOX_NAME)
+  
    // const boardIn = useRef()
 
    // console.log(columns, boxId)
@@ -9,17 +15,10 @@ const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}
 
    const handleSub = async (e) => {
       e.preventDefault()
-
       if(defaultInfo) {
-         let obj = columns.find(el => el.id === boxId)
-         obj.name = itemName.current.value
+         updateBoxName({ variables: { boxID: boxId, boxName: itemName.current.value, status: formNum}})
       }else {
-         columns.push({
-            id: 'aorrij',
-            name: itemName.current.value,
-            boxStatus: formNum,
-            items: []
-         })
+         createBox({ variables: { boxName: itemName.current.value, status: formNum } })
       }
 
       document.getElementById('formItems').reset()

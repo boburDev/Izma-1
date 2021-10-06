@@ -24,6 +24,7 @@ import { SnackbarProvider } from 'notistack'
 import { DayDividerProvider } from './context/DayDividerProvider'
 import { LangProvider } from './context/LanguageProvider'
 import { NameProvider } from './context/NameProvider'
+import { NavbarProvider } from './context/NavbarProvider'
 import Slide from '@material-ui/core/Slide'
 
 const isTester = true
@@ -112,7 +113,9 @@ const Main = () => {
 															<DayDividerProvider>
 																<LangProvider>
 																	<NameProvider>
-																	  <App />
+																		<NavbarProvider>
+																	    <App />
+																		</NavbarProvider>
 																	</NameProvider>
 																</LangProvider>
 															</DayDividerProvider>

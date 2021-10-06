@@ -18,14 +18,14 @@ const XarajatlarForm = () => {
    return (
       <>
          <div className="izma__finance-cost__form-bolim">
-            <Form className="izma__finance-cost__form-bolim-form" style={{ width: 300 }}>
+            <Form id="xarajatFormRes" className="izma__finance-cost__form-bolim-form" style={{ width: 300 }}>
                <div className="izma__finance-cost__form-bolim-form-up">
                   <h3 className='izma__finance-cost__form-bolim-form-heading' >Yangi xarajatlar</h3>
                </div>
 
                <div className="form_group izma__finance-cost__form-bolim-form-center" style={{ width: "100%" }}>
                   <label className='izma__finance-cost__form-bolim-form-label'>Nomi</label>
-                  <Input onKeyUp={e => setName(e.target.value)} className={"section_name_input"} name={"nomi"} />
+                  <Input autoComplete="off"  onKeyUp={e => setName(e.target.value)} className={"section_name_input"} name={"nomi"} />
                </div>
 
                <div className="form_group">
@@ -54,12 +54,12 @@ const XarajatlarForm = () => {
 
                <div className="form_group" style={{ width: "100%" }}>
                   <label className='izma__finance-cost__form-bolim-form-label'>Oluvchi</label>
-                  <Input onKeyUp={e => setBuyer(e.target.value)}
+                  <Input autoComplete="off"  onKeyUp={e => setBuyer(e.target.value)}
 				  className={"section_name_input"} name={"nomi"} />
                </div>
                <div className="form_group" style={{ width: "100%" }}>
                   <label className='izma__finance-cost__form-bolim-form-label'>Sum</label>
-                  <Input onKeyUp={e => setSum(e.target.value - 0)} type="number"
+                  <Input autoComplete="off"  onKeyUp={e => setSum(e.target.value - 0)} type="number"
 				  className={"section_name_input"} name={"nomi"} />
                </div>
 
@@ -80,6 +80,7 @@ const XarajatlarForm = () => {
                     })
                     // window.location.reload()
                 }
+               document.getElementById('xarajatFormRes').reset()
         }}
 			className="izma__finance-cost__form-bolim-form-button">
                Yarating

@@ -108,7 +108,7 @@ const CoursesAddLesson = () => {
    return (
       <div className="addFeadback">
          <div className="heading">
-            <input type="text" placeholder="Sarlavhani shu yerga kiriting" name="" id="" />
+            <input autoComplete="off"  type="text" placeholder="Sarlavhani shu yerga kiriting" name="" id="" />
             <button className="save_btn">Saqlash</button>
          </div>
 

@@ -35,10 +35,12 @@ import './Navbar.scss'
 
 import NavbarLinks from '../NavbarLinks/NavbarLinks'
 import NavbarPlus from '../NavbarPlus/NavbarPlus'
+import { useNavbar } from '../../../context/NavbarProvider'
 
 
 
 const Navbar = ({ sidebarActive }) => {
+   const [navbarP] = useNavbar()
    const [dragActive, setDragActive] = useState()
    const [settingActive, setSettingActive] = useState(false)
    const [openMoliya, setOpenMoliya] = useState(false)
@@ -76,43 +78,68 @@ const Navbar = ({ sidebarActive }) => {
       setOpenMoliya(false)
       setOpenSetting(false)
    }
+
+
+   
+
+   const [homeActive, setHomeActive] = useState()
+   const [lidActive, setLidActive] = useState()
+   const [studentActive, setStudentActive] = useState()
+   const [teachrtActive, setTeacherActive] = useState()
+   const [groupActive, setGroupActive] = useState()
+   const [courseActive, setCourseActive] = useState()
+
+   const closeAll = () => {
+      setHomeActive(false)
+      setLidActive(false)
+      setStudentActive(false)
+      setTeacherActive(false)
+      setGroupActive(false)
+      setCourseActive(false)
+   }
    const links = [
       {
          title: 'Home',
          icon: <Home />,
          link: '/',
-         isButton: false
+         isButton: false,
+         nav: homeActive
 
       },
       {
          title: 'Lidlar',
          icon: <Lidrlar />,
          link: '/lidlar',
-         isButton: false
+         isButton: false,
+         nav: lidActive
       },
       {
          title: 'Talabalar',
          icon: <Talabalar />,
          link: '/students',
-         isButton: false
+         isButton: false,
+         nav: studentActive
       },
       {
          title: 'O’qituvchilar',
          icon: <Teacher />,
          link: '/teachers',
-         isButton: false
+         isButton: false,
+         nav: teachrtActive
       },
       {
          title: 'Guruhlar',
          icon: <Guruhlar />,
          link: '/groups',
-         isButton: false
+         isButton: false,
+         nav: groupActive
       },
       {
          title: 'Kurslar',
          icon: <Kurslar />,
          link: '/courses',
-         isButton: false
+         isButton: false,
+         nav: courseActive
       },
       {
          title: 'Moliya',
@@ -126,74 +153,110 @@ const Navbar = ({ sidebarActive }) => {
 
    const { location } = useHistory()
    useEffect(() => {
+      let paths = window.location.pathname.split('/')
       switch (location.pathname) {
          case "/settingsEmployeesInner":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/finance":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/financeCosts":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/financeSalary":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/financePaymentGroups":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/financePayment":
+            closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
          case "/settingsRoadmap":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsEmployees":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsMagazine":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsArchive":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsLidform":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsEnter":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsShapes":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
          case "/settingsCompany":
+            closeAll()
             setSettingActive(true)
             setDragActive(false)
+            break;
+         case "/groups/groupsProfil/" + paths[paths.length - 1]:
+            closeAll()
+            setGroupActive(true)
+            
+            break;
+         case "/studentProfile/" + paths[paths.length - 1]:
+            closeAll()
+            setStudentActive(true)
+            
+            break;
+         case "/teacherProfile/" + paths[paths.length - 1]:
+            closeAll()
+            setTeacherActive(true)
+            
+            break;
+         case "/coursesInner/" + paths[paths.length - 1]:
+            closeAll()
+            setCourseActive(true)
+            
             break;
 
          case "/": 
          
             break;
          default:
+            closeAll()
             closeFinSet() 
             setSettingActive(false)
             setDragActive(false)
             break;
       }
-   }, [location.pathname]);
+   }, [location.pathname, navbarP]);
 
    const MoliyaLinks = [
       {
@@ -339,6 +402,7 @@ const Navbar = ({ sidebarActive }) => {
                         link2={closeFinSet}
                         key={el.title}
                         quitButton={quitButton}
+                        nav={el.nav}
                      />
                   }
                })

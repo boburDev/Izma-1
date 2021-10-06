@@ -200,7 +200,7 @@ useEffect(() => {
                </div>
 
                <div className="forms">
-                  <form action="">
+                  <form action="" id="teacherProfilRes">
                      <div className="form_one">
                         <label htmlFor="">Telefon</label>
                         <PhoneNumberInput
@@ -212,7 +212,7 @@ useEffect(() => {
 
                      <div className="form_one">
                         <label htmlFor="name">Ism</label>
-                        <input type="text" name="name" id="name" onChange={takeName} defaultValue={collegueInfo?.name} />
+                        <input autoComplete="off"  type="text" name="name" id="name" onChange={takeName} defaultValue={collegueInfo?.name} />
                      </div>
                      <div className="form_group">
                         <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
@@ -231,12 +231,12 @@ useEffect(() => {
 
                         <div className="genders">
                            <div className="gen_one">
-                              <input value={'1'} type="radio" name="gender" id="men" onChange={takeGender}/>
+                              <input autoComplete="off"  value={'1'} type="radio" name="gender" id="men" onChange={takeGender}/>
                               <label htmlFor="men"></label>
                               <span>Erkak</span>
                            </div>
                            <div className="gen_one">
-                              <input value={'2'} type="radio" name="gender" id="women" onChange={takeGender}/>
+                              <input autoComplete="off"  value={'2'} type="radio" name="gender" id="women" onChange={takeGender}/>
                               <label htmlFor="women"></label>
                               <span>Ayol</span>
                            </div>
@@ -250,7 +250,7 @@ useEffect(() => {
                      <div className="form_one">
                         <span className="file">Foto</span>
                         <label htmlFor="file" className="choose_file">Hech qanday fayl tanlanmadi</label>
-                        <input type="file" name="" id="file" />
+                        <input autoComplete="off"  type="file" name="" id="file" />
                      </div>
                      <div className="form_one">
                         <label htmlFor="">Parol</label>
@@ -263,6 +263,7 @@ useEffect(() => {
                         e.preventDefault()
                         onClose()
                         handleTeacher()
+                        document.getElementById('teacherProfilRes').reset()
                      }} className="cre_btn">O'zgartirish</button>
                   </form>
                </div>

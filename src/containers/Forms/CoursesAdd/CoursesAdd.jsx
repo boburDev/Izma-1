@@ -57,6 +57,8 @@ const CoursesAdd = ({ onClose }) => {
       setPrice('')
       setDescription('')
 
+      
+
    }
 
  
@@ -79,7 +81,7 @@ const CoursesAdd = ({ onClose }) => {
                </div>
                <div className="form_group" style={{ width: "100%" }}>
                   <label className='izma__lidlar__form-bolim-form-label'>Narxi</label>
-                  <Input onChange={e => setPrice(e.target.value)} className={"section_name_input"} name={"nomi"} value={price} />
+                  <Input autoComplete="off"  onChange={e => setPrice(e.target.value)} className={"section_name_input"} name={"nomi"} value={price} />
                </div>
                <div className="form_group izma__form__teaxtarea" style={{ width: 400 }}>
                   <label>Tavsif</label>

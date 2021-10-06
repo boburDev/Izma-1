@@ -22,6 +22,7 @@ const PhoneNumberInput = ({ setPhone, setParents, parents, placeholder }) => {
       <div className="phoneInput">
          <span className="numb">+998</span>
          <input
+            autoComplete="off"
             placeholder={placeholder && placeholder}
             minLength="14"
             maxLength="14"

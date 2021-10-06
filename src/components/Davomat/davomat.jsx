@@ -20,7 +20,7 @@ function Davomat() {
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [groupMonth,setGroupMonth] = useState([])
-    const [groupStuMonth,setGroupStuMonth] = useState([])
+    const [/* groupStuMonth */,setGroupStuMonth] = useState([])
     // console.log(groupStuMonth)
     const [monthlyGr, setMonthlyGr] = useState([])
 

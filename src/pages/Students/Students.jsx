@@ -45,6 +45,7 @@ const Students = () => {
             </div>
             <div>
             <input
+                  autoComplete="off"
                className='izma__students-content-input'
                placeholder="Ism yoki telefon orqali qidirish"
                type="text"

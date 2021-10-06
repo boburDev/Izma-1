@@ -70,7 +70,7 @@ const SalaryUp = () => {
                   <label htmlFor="">Xarajat qiymati</label>
                   <div className="input_items">
                      <div className="inputs">
-                           <input onKeyUp={e => setSalary(e.target.value)} type="text" />
+                     <input autoComplete="off"  onKeyUp={e => setSalary(e.target.value)} type="text" />
                            <select onChange={e => setSalaryType(e.target.value)}>
                               <option value="1">Naqt</option>
                               <option value="2">Foiz</option>
@@ -104,7 +104,7 @@ const SalaryUp = () => {
                      <label htmlFor="">Xarajat qiymati</label>
                      <div className="input_items">
                            <div className="inputs">
-                              <input type="text"
+                        <input autoComplete="off"  type="text"
                               onKeyUp={e => setSalary2(e.target.value)} />
                               <select onChange={e => setSalaryType2(e.target.value)}>
                                  <option value="1">Naqt</option>

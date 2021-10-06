@@ -22,8 +22,7 @@ const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}
          })
       }
 
-      let form = document.querySelector('#formItems')
-      form.reset()
+      document.getElementById('formItems').reset()
 
       setColumns(columns)
       onClose()
@@ -41,9 +40,9 @@ const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}
             <label htmlFor="Nomi">Nomi</label>
             {
                defaultInfo !== undefined ?
-               <input type="text" ref={itemName} defaultValue={defaultInfo}/>
+                  <input autoComplete="off"  type="text" ref={itemName} defaultValue={defaultInfo}/>
                :
-               <input type="text" ref={itemName} />
+                  <input autoComplete="off"  type="text" ref={itemName} />
             }
             <div className="box" style={{ display: 'flex', justifyContent: 'space-between' }}>
                <button type="submit" >Yaratish</button>

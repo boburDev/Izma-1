@@ -113,11 +113,13 @@ const GroupAdd = ({ onClose }) => {
             <div className="form_wrapper">
                <form action="" id="grouFormRes" onSubmit={(e) =>{
                   e.preventDefault()
+
                   handleGroup()
+                  document.getElementById('grouFormRes').reset()
                }}>
                   <div className="form_inputs">
                      <label htmlFor="">Nomi</label>
-                     <input  required onKeyUp={e => setName(e.target.value)} type="text" name="" id="" />
+                     <input autoComplete="off"   required onKeyUp={e => setName(e.target.value)} type="text" name="" id="" />
                   </div>
                   <div className="form_inputs">
                      <label htmlFor="">Kurs tanlash</label>
@@ -149,31 +151,31 @@ const GroupAdd = ({ onClose }) => {
                            days.id === 'boshqa' &&  <div>
                            <div>
                            <label style={{display: 'flex', alignItems: 'center'}} htmlFor="mon">Dushanba
-                           <input value="1" onChange={SelectDate} style={{marginLeft: '2px'}} type="checkbox" id="mon" /></label>
+                              <input autoComplete="off"  value="1" onChange={SelectDate} style={{marginLeft: '2px'}} type="checkbox" id="mon" /></label>
                            </div>
                            <div>
                            <label style={{display: 'flex', alignItems: 'center'}} htmlFor="tue">Seshanba
-                           <input onChange={SelectDate} value="2" style={{marginLeft: '2px'}} type="checkbox" id="tue" /></label>
+                              <input autoComplete="off"  onChange={SelectDate} value="2" style={{marginLeft: '2px'}} type="checkbox" id="tue" /></label>
                            </div>
                            <div>
                            <label style={{display: 'flex', alignItems: 'center'}} htmlFor="wed">Chorshanba
-                           <input onChange={SelectDate} value="3" style={{marginLeft: '2px'}} type="checkbox" id="wed" /></label>
+                              <input autoComplete="off"  onChange={SelectDate} value="3" style={{marginLeft: '2px'}} type="checkbox" id="wed" /></label>
                            </div>
                            <div>
                            <label style={{display: 'flex', alignItems: 'center'}} htmlFor="thu">Payshanba
-                           <input onChange={SelectDate} value="4" style={{marginLeft: '2px'}} type="checkbox" id="thu" /></label>
+                              <input autoComplete="off"  onChange={SelectDate} value="4" style={{marginLeft: '2px'}} type="checkbox" id="thu" /></label>
                            </div>
                            <div>
                            <label style={{display: 'flex', alignItems: 'center'}} htmlFor="fri">Juma
-                           <input onChange={SelectDate} value="5" style={{marginLeft: '2px'}} type="checkbox" id="fri" /></label>
+                              <input autoComplete="off"  onChange={SelectDate} value="5" style={{marginLeft: '2px'}} type="checkbox" id="fri" /></label>
                            </div>
                            <div>
                            <label style={{display: 'flex', alignItems: 'center'}} htmlFor="sut">Shanba
-                           <input onChange={SelectDate} value="6" style={{marginLeft: '2px'}} type="checkbox" id="sut" /></label>
+                              <input autoComplete="off"  onChange={SelectDate} value="6" style={{marginLeft: '2px'}} type="checkbox" id="sut" /></label>
                            </div>
                            <div>
                            <label style={{display: 'flex', alignItems: 'center'}} htmlFor="sun">Yakshanba
-                           <input onChange={SelectDate} value="7" style={{marginLeft: '2px'}} type="checkbox" id="sun" /></label>
+                              <input autoComplete="off"  onChange={SelectDate} value="7" style={{marginLeft: '2px'}} type="checkbox" id="sun" /></label>
                            </div>
                            <br />
                        </div>

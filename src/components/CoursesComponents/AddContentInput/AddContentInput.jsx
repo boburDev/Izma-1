@@ -89,7 +89,7 @@ const AddContentIput = ({
             </div>
          </div>
 
-         <input type="text" name="" placeholder="Dars mazmunini qo’shing" id="for" />
+         <input type="text" name="" autoComplete="off" placeholder="Dars mazmunini qo’shing" id="for" />
          <button className="grid"><img src={Grid} alt="" /></button>
 
 

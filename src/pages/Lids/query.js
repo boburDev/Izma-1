@@ -78,6 +78,36 @@ const CREATE_BOX_CONTENT = gql `
   }
 `
 
+const CREATE_BOX_CONTENT_GROUP = gql `
+  mutation createBoxContnt(
+    $name: String
+    $status: Int
+    $courseID: ID
+    $courseName: String
+    $teachID: ID
+    $teachName: String
+    $days: String
+    $time: String
+  ) {
+    createBoxContnt (
+      name: $name
+      status: $status
+      courseID: $courseID
+      courseName: $courseName
+      teachID: $teachID
+      teachName: $teachName
+      courseDays: $days
+      courseTime: $time
+    ) {
+      id
+      name
+      phone
+      comment
+      status
+    }
+  }
+`
+
 const BOXES_CONTENT = gql `
   query {
     leadBoxContent{
@@ -131,6 +161,7 @@ export {
   DELETE_BOX,
   CREATE_BOX,
   CREATE_BOX_CONTENT,
+  CREATE_BOX_CONTENT_GROUP,
   UPDATE_BOX_CONTENT,
   UPDATE_BOX_CONT_STATUS,
   DELETE_CONTENT

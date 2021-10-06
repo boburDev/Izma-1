@@ -68,9 +68,7 @@ const GroupProfilRightTab3 = ({ studentData }) => {
 
                 {grSale && grSale.groupSaleInfo.map(item => {
 
-                  return (item.studentID === record.stID) && <input type="text"
-				  style={{marginRight: '10px'}}
-				   className='izma__groups-attendance-right-tabs-third-up-input' defaultValue={item.groupSale}/>
+                  return (item.studentID === record.stID) && <input autoComplete="off" type="text" style={{ marginRight: '10px' }} className='izma__groups-attendance-right-tabs-third-up-input' defaultValue={item.groupSale}/>
                 })}
                <button
                data-stid={record.stID}
@@ -112,7 +110,7 @@ const GroupProfilRightTab3 = ({ studentData }) => {
             </div>
             </div> 
         <div className="izma__groups-attendance-right-tabs-third">
-            <input type="text" placeholder="search" onChange={e => setOnKeyUp(e.target.value)}/>
+          <input autoComplete="off"  type="text" placeholder="search" onChange={e => setOnKeyUp(e.target.value)}/>
             <br />
             <br />
             <div className="groups__attendance-right-tabs-third-table" >

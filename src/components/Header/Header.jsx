@@ -14,7 +14,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
             className="izma__header-burger"
                onClick={() => setSidebarActive(!sidebarActive)}
             ><img src={Close} alt="" /></button>
-            <input className="izma__header-input" type="text" placeholder='Search' />
+            <input autoComplete="off"  className="izma__header-input" type="text" placeholder='Search' />
 
             <div className="izma__header-left-wrapper">
                <img src={NotificationImg} className="izma__header-notification-img" alt="img" />

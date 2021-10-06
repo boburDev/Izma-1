@@ -6,8 +6,9 @@ import { useState } from 'react'
 import Modal1 from '../Modal/Modal'
 
 
+
 const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, setInfo, openModal, setID, deleteRoom, setTakeID }) => {
-   console.log(info)
+   
    const [modal, setModal] = useState()
    const [modal1, setModal1] = useState()
    return (

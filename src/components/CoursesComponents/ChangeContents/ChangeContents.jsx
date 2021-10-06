@@ -31,7 +31,7 @@ const Heading = ({ remActiveOne, remover1 }) => {
    return (
       <div className="heading-text">
          <div className="input_heading">
-            <input type="text" name="" id=""
+            <input autoComplete="off"  type="text" name="" id=""
                className={`
                         ${changeSize ? 'activeOne' : ''}
                         ${changeSize2 ? 'activeTwo' : ''}
@@ -84,7 +84,7 @@ const Warning = ({ remActiveFive, remover5 }) => {
    return (
       <div className="warning">
          <div className="inner_warning">
-            <input placeholder="Text here" className="warning_in" type="text" name="" id="" />
+            <input autoComplete="off"  placeholder="Text here" className="warning_in" type="text" name="" id="" />
             <textarea placeholder="Message here" className="warning_in comment" name="" id="" cols="30" rows="10"></textarea>
          </div>
          <div>
@@ -159,9 +159,9 @@ const Quote = ({ remActiveSeven, remover7 }) => {
       <div className="quote">
          <div className="inner_quote">
             <div className="has_before">
-               <input placeholder="Quote here" type="text" name="" id="" />
+               <input autoComplete="off"  placeholder="Quote here" type="text" name="" id="" />
             </div>
-            <input placeholder="Quote author here" type="text" name="" id="" />
+            <input autoComplete="off"  placeholder="Quote author here" type="text" name="" id="" />
          </div>
          <div>
             <button className="btn_heading">
@@ -190,20 +190,21 @@ const Cheklist = ({ remActiveFour, remover4 }) => {
    const AddNewCheklist = (e) => {
       e.preventDefault()
       setCkeckList([...chekList, { checklist: '' }])
+      document.getElementById('changeFormRes').reset()
    }
 
    return (
       <div className="chekList">
          <div className="inner_cheklist">
-            <form action="" onSubmit={AddNewCheklist}>
+            <form action="" id="changeFormRes"onSubmit={AddNewCheklist}>
                {
                   chekList.map((v, i) => (
                      <div key={i} className="cheklist_item">
-                        <input type="checkbox" name="" id="checklist" />
+                        <input autoComplete="off"  type="checkbox" name="" id="checklist" />
                         {/* <label htmlFor="checklist">
                                     <Chek/>
                                 </label> */}
-                        <input type="text" name="" id="" />
+                        <input autoComplete="off"  type="text" name="" id="" />
                      </div>
                   ))
                }
@@ -241,17 +242,18 @@ const List = ({ remActiveTwo, remover2 }) => {
    const AddList = (e) => {
       e.preventDefault()
       setList([...list, { list: '' }])
+      document.getElementById('changeForm2Res').reset()
    }
 
    return (
       <div className="list">
          <div className="inner_list">
             <ul>
-               <form action="" onSubmit={AddList}>
+               <form action="" id="changeForm2Res" onSubmit={AddList}>
                   {
                      list.map((item, i) => (
                         <li key={i} className="li_item">
-                           <input type="text" name="" id="" />
+                           <input autoComplete="off"  type="text" name="" id="" />
                         </li>
                      ))
                   }

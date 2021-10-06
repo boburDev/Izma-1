@@ -22,6 +22,10 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 
   const [groups, setGroups] = useState()
 
+  useEffect(() => {
+
+  }, [names])
+
 
   useSubscription(SUBSCRIPTION_CHECK, {
     onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -90,11 +94,10 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
     setPayType(e.target.value)
   }
 
-  console.log(names)
     return (
         <>
         <div className="izma__courses__form-bolim">
-        <Form className="izma__courses__form-bolim-form"  style={{ width: 400 }}>
+        <Form className="izma__courses__form-bolim-form"  style={{ width: 400 }} id="financeFormRes">
         <div className="izma__courses__form-bolim-form-up">
                     <h3 className='izma__courses__form-bolim-form-heading' >To’lov qo’shish</h3>
                     <button className="izma__courses__form-bolim-form-close-btn" onClick={onClose} >
@@ -105,7 +108,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 
           <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
             <label className='izma__courses__form-bolim-form-label'>Ism</label>
-            <Input className={"section_name_input"}  name={"nomi"} value={studenID && studenID.studentName} />
+              <Input autoComplete="off"  className={"section_name_input"}  name={"nomi"} value={studenID && studenID.studentName} />
           </div>
           <div className="form_group">
           <p className='izma__finance-form-radio-heading'>To'lov usuli</p>
@@ -118,7 +121,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
           </div>
           <div className="form_group" style={{ width: "100%" }}>
             <label className='izma__courses__form-bolim-form-label'>Miqdor</label>
-            <Input className={"section_name_input"}  name={"nomi"} onChange={e => setAmmoun(e.target.value)}/>
+              <Input autoComplete="off"  className={"section_name_input"}  name={"nomi"} onChange={e => setAmmoun(e.target.value)}/>
               <label className='izma__courses__form-bolim-form-label'>Group</label>
               <DropSearch
                 arr={groups && groups.student.groups}
@@ -248,6 +251,8 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
                 count: count && count.checksCounts + 1
               }
             })
+            
+            document.getElementById('financeFormRes').reset()
 		    }}>Yarating</button>
 		</div>
 		

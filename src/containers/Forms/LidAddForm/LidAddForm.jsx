@@ -67,7 +67,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
 
       <form id={`form` + formId} className="lllid">
       <div className="addForm" ref={wrapperRef}>
-         <input type="text" className="home-column-top__name"
+            <input autoComplete="off"  type="text" className="home-column-top__name"
             placeholder="ism va familiya" required ref={userName}
             onKeyUp={(e) => {
                if (e.keyCode === 13) {
@@ -75,7 +75,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
                }
             }}
          />
-         <input type="text" className="home-column-top__number"
+            <input autoComplete="off"  type="text" className="home-column-top__number"
             placeholder="telefon" required ref={userNumber} minLength={12} maxLength={12}
             onKeyUp={(e) => {
                if (e.keyCode === 13) {
@@ -83,7 +83,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
                }
             }}
          />
-         <input type="text" className="home-column-top__coment"
+            <input autoComplete="off"  type="text" className="home-column-top__coment"
             placeholder="comment" required ref={userComment}
             onKeyUp={(e) => {
                if (e.keyCode === 13) {

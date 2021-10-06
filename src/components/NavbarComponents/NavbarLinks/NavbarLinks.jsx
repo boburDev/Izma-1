@@ -2,8 +2,10 @@ import './NavbarLinks.scss'
 import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router'
 import { useState, useEffect } from 'react'
+import { useNavbar } from '../../../context/NavbarProvider'
 
-const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitButton }) => {
+const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitButton, nav }) => {
+   const [setNavbarP] = useNavbar(true)
    const [links, setLinks] = useState(link)
    const { location } = useHistory()
    useEffect(() => {
@@ -53,10 +55,11 @@ const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitB
 
                </NavLink>
             ) : (
-               <NavLink exact className="navbar_links" to={`${link}`} activeClassName="active"
+               <NavLink exact className={`navbar_links ${nav ? 'active' : ''}`} to={`${link}`} activeClassName="active"
                      onClick={() => {
                         quitButton()
                         link2()
+                        setNavbarP(link)
                      }}
                >
                   <div className="open_navbar ">

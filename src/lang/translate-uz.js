@@ -88,6 +88,7 @@ const uz = {
             paymentTitle: 'TO\'LOVLAR',
             recordedDate: 'Qayd etilgan sana',
             paymentId: 'ID',
+            paymentType: 'To\'lov usuli',
             paymentDate: 'Sana',
             debt: 'Qarz',
             credit: 'Kredit',
@@ -126,9 +127,18 @@ const uz = {
             acceptedPaymentValue: 'Qabul qilingan pul miqdori:',
             groupName: 'Guruh',
             AcceptedDate: 'Qabul qilingan sana',
+            date: 'Kun/Oy/Yil',
+            comment: 'Izoh',
+            failedPayment: 'QAYTGAN TO\'LOV',
+            amount: 'Miqdori:',
+            save: 'Saqlash'
+        },
+        addedStudentToGroup: {
+            addedStudentToGroupTitle: 'O\'QUVCHINI GURUHGA QO\'SHISH',
+            addedDate: 'Qo\'shilgan sana:',
             save: 'Saqlash',
-            accountReplenished: 'Hisob to\'ldirildi:',
-            situationEdited: 'Holati o\'zgartirildi: Harakatsiz (Sinov darsi)'
+            payToAccount: 'Hisob to\'ldirildi:',
+            editedAction: 'Holati o\'zgartirildi: Harakatsiz (Sinov darsi)'
         },
         addNewStudentTitle: {
             addNewStudentTitle: 'YANGI O\'QUVCHI QO\'SHISH',

@@ -166,6 +166,24 @@ const DELETE_CONTENT = gql `
   }
 `
 
+const SUBCRIP_CONTENT = gql `
+  subscription {
+    newContent{
+      id
+      name
+      phone
+      comment
+      status
+      courseID
+      courseName
+      teachID
+      teachName
+      courseDays
+      courseTime
+    }
+  }
+`
+
 export {
   BOXES_NAME,
   BOXES_CONTENT,
@@ -176,5 +194,6 @@ export {
   CREATE_BOX_CONTENT_GROUP,
   UPDATE_BOX_CONTENT,
   UPDATE_BOX_CONT_STATUS,
-  DELETE_CONTENT
+  DELETE_CONTENT,
+  SUBCRIP_CONTENT
 }

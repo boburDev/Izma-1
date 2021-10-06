@@ -22,50 +22,26 @@ import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 //    { id: 'asdgag5', userName: '8 block' },
 // ]
 
-// const LidsBoxes = [
-//    {
-//       id: 'adkfjakdf',
-//       name: 'Instagram',
-//       boxStatus: 1,
-//       items: itemsBackend
-//    },
-//    {
-//       id: 'sdfadfa',
-//       name: 'Instagram',
-//       boxStatus: -1,
-//       items: []
-//    },
-//    {
-//       id: 'sdfaaddfa',
-//       name: 'Instagram',
-//       boxStatus: -2,
-//       items: []
-//    },
-//    {
-//       id: 'sdfadfasdfa',
-//       name: 'Instagram',
-//       boxStatus: -3,
-//       items: []
-//    },
-//    {
-//       id: 'adkfjasdfagaakdf',
-//       name: 'Telegram',
-//       boxStatus: 1,
-//       items: []
-//    },
-//    {
-//       id: 'asdf',
-//       name: 'Instagram',
-//       boxStatus: 2,
-//       items: []
-//    },
-//    {
-//       id: 'sdfa',
-//       name: 'Instagram',
-//       boxStatus: 3,
-//       items: []
-//    }
-// ]
+const LidsBoxes = [
+   {
+      id: '',
+      name: '',
+      boxStatus: -1,
+      items: []
+   },
+   {
+      id: '',
+      name: '',
+      boxStatus: -2,
+      items: []
+   },
+   {
+      id: '',
+      name: '',
+      boxStatus: -3,
+      items: []
+   }
+]
 
 const Lids = () => {
    const [columns, setColumns] = useState([])
@@ -76,8 +52,7 @@ const Lids = () => {
    const { data: courses } = useQuery(COURSES)
    const { data: teachers } = useQuery(TEACHER_FILTERS)
 
-   console.log(courses)
-   console.log(teachers)
+   
 
 
    const [allBox, setBoxName] = useState([])
@@ -165,6 +140,9 @@ const Lids = () => {
       }
    }, [allBox, boxesCont])
 
+   console.log(boxesCont)
+   console.log(boxesContent)
+
 
 
 
@@ -199,6 +177,8 @@ const Lids = () => {
       }
 
    };
+
+   // console.log(columns)
    
    return(
       <div className="lids">

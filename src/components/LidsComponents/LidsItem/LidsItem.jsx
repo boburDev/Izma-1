@@ -43,6 +43,7 @@ const LidsItem = ({ item, index }) => {
    const closeEdit = () => {
      setOpenEdit(false)
    }
+
    return (
       <Draggable
          key={item.id}
@@ -79,7 +80,7 @@ const LidsItem = ({ item, index }) => {
 
                         />
                      </Drawer>
-                     <span className='span'>{item.userName} / {item.userNumber}</span>
+                     <span className='span'>{item.name} / {item.phone}</span>
                      <div className="menuWrapper" >
                         <button className="lidList-inner-user-button" onClick={() => setMenu(!menu)}><img src={MenuIcon} alt="" /></button>
                         <div className={`boxmenu ${menu ? 'active' : ''}`} ref={wrapperRef}>
@@ -90,8 +91,8 @@ const LidsItem = ({ item, index }) => {
                            <span><img src={Delete} alt="" /> O’chirish</span>
                         </div>
                      </div>
-                     <span className={`lidList-inner-comment ${item?.userComment ? 'hasComment' : ''}`}>
-                        {item.userComment}
+                     <span className={`lidList-inner-comment ${item?.comment ? 'hasComment' : ''}`}>
+                        {item.comment}
                      </span>
                   </div>
                </div>

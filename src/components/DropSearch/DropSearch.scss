@@ -54,6 +54,9 @@
    max-height: 10rem;
    overflow-y: auto;
    box-sizing: content-box;
+   display: flex;
+   align-items: flex-start;
+   flex-direction: column;
 
    &::-webkit-scrollbar {
       width: 10px;
@@ -67,7 +70,9 @@
       background: #090761;
    }
 
-   option {
+   span {
+      width: 100%;
+      display: block;
       cursor: pointer;
       background-color: white;
           color: inherit;
@@ -116,7 +121,7 @@
       }
    }
 
-   option:hover,
+   span:hover,
    .active {
       background-color: #40B682;
       color: white;

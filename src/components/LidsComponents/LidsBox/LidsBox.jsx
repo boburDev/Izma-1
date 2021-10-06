@@ -55,7 +55,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
 
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
-
+console.log(column);
 
    return (
       <Droppable droppableId={columnId} key={columnId}>
@@ -156,7 +156,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                               columns={columns}
                               setColumns={setColumns}
                               itemId={column.id}
-                              // formId={column.id}
+                              formId={column.boxStatus}
                            />
                         </div>
                         {column.items.map((item, index) => {

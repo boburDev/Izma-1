@@ -18,11 +18,16 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
       console.log(itemId);
       console.log(formId);
       
-      // createBoxContent({ variables: { 
-      //    name: userName.current.value, 
-      //    phone: userNumber.current.value, 
-      //    comment: userComment.current.value,
-      //    status: formId } })
+      createBoxContent({ variables: { 
+         name: userName.current.value, 
+         phone: userNumber.current.value, 
+         comment: userComment.current.value,
+         status: formId,
+         l_id_1: formId === 1 || formId === -1 ? itemId : null,
+         l_id_2: formId === 2 || formId === -2 ? itemId : null,
+         l_id_3: formId === 3 || formId === -3 ? itemId : null
+      
+      } })
      
       // setColumns(columns)
       setAdd()

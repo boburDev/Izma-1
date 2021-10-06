@@ -38,7 +38,6 @@ import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/
 import Check from '../../../../components/Check/Check'
 import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
 import { useDavomat } from '../../../../context/DavomatProvider'
-
 const GroupProfilLeft = (prop) => {
    const [setGroupStudents] = useDavomat(true)
    const [dayDivide, setDayDivide] = useDayDivider()
@@ -239,7 +238,6 @@ const GroupProfilLeft = (prop) => {
          }
 
       }
-      console.log('okay')
       payment && paymentt()
       payment && setPayment(false)
 

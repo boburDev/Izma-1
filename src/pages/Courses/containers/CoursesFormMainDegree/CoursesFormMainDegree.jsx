@@ -42,7 +42,7 @@ const CoursesFormMainDegree = ({ onClose }) => {
    return (
       <>
          <div className="izma__lidlar__form-bolim">
-            <Form id="courseformRes2" className="izma__lidlar__form-bolim-form" style={{ width: 400 }} id={disabled}>
+            <Form id="courseformRes2" className="izma__lidlar__form-bolim-form" style={{ width: 400 }} data={disabled}>
                <div className="izma__lidlar__form-bolim-form-up">
                   <h3 className='izma__lidlar__form-bolim-form-heading' >Kursni tahrirlash</h3>
                   <button className="izma__lidlar__form-bolim-form-close-btn" onClick={onClose} >

@@ -233,7 +233,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                    <label htmlFor="">Telegram user name</label>
                    <div className="numberTwo">
                        <span>@</span>
-                       <input autoComplete="off"  type="text" name="" id="" autoComplete="off" className="user_name" defaultValue={forEdit && forEdit.student.telegram[0]?.telegram} onChange={e => setStTg(e.target.value)} />
+                       <input   type="text" name="" id="" autoComplete="off" className="user_name" defaultValue={forEdit && forEdit.student.telegram[0]?.telegram} onChange={e => setStTg(e.target.value)} />
                    </div>
                </div>
 

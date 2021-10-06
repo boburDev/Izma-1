@@ -1,5 +1,4 @@
 import '../SalaryUpTable/SalaryUpTable.scss'
-import EditImg from '../../../../../assets/Icons/settings-edit.svg'
 import { CHECK_TEACHER } from '../SalaryUp/query'
 import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'

@@ -22,6 +22,10 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 
   const [groups, setGroups] = useState()
 
+  useEffect(() => {
+
+  }, [names])
+
 
   useSubscription(SUBSCRIPTION_CHECK, {
     onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {

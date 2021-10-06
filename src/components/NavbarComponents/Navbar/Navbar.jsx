@@ -154,7 +154,6 @@ const Navbar = ({ sidebarActive }) => {
    const { location } = useHistory()
    useEffect(() => {
       let paths = window.location.pathname.split('/')
-      console.log(location.pathname ,paths);
       switch (location.pathname) {
          case "/settingsEmployeesInner":
             closeAll()

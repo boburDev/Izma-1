@@ -72,7 +72,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                                  <h4 key={block} className={`${block}`} style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                               {
                                  info?.groups?.map(el =>
-                                    <span className="stuentGrWr"><span className="studentGr">{el?.name}</span>({el?.teacher} - {el?.time})</span>
+                                    <span className="stuentGrWr" key={el?.name}><span className="studentGr">{el?.name}</span>({el?.teacher} - {el?.time})</span>
                                     )
                               }
                                  </h4>

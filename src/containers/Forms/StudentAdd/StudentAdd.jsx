@@ -275,7 +275,7 @@ const StudentAdd = ({ onCloseF }) => {
                <label htmlFor="">Telegram user name</label>
                <div className="numberTwo">
                   <span>@</span>
-                  <input autoComplete="off"  type="text" name="" autoComplete="off" className="user_name" onChange={e => setStTg('@' + e.target.value)} />
+                  <input   type="text" name="" autoComplete="off" className="user_name" onChange={e => setStTg('@' + e.target.value)} />
                </div>
             </div>
 

@@ -272,8 +272,7 @@ function Davomat() {
         e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
         e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
     }
-    
-    
+
     // console.log(monthlyGr)
 
     return (
@@ -300,11 +299,11 @@ function Davomat() {
         <thead className={st.customer_thead}>
         <tr className={st.tr}>
         <th className={`${st.name_table} ${st.th}`}>Ism</th>
-        {console.log(monthlyGr.sort((a, b) => new Date(b).getTime() - new Date(a).getTime()))}
         {
             monthlyGr.sort().map((item, index) => (
                 <th className={st.th} key={index}>
                 {moment(item).format('DD/MM')}
+                {/* {console.log(typeof item)} */}
                 &ensp;&ensp;
                 </th>
                 ))

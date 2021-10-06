@@ -5,7 +5,7 @@ import { DragDropContext} from 'react-beautiful-dnd'
 import { /* useMutation, */ useQuery } from '@apollo/client'
 import { BOXES_NAME, BOXES_CONTENT/* , CREATE_BOX, UPDATE_BOX_NAME, DELETE_BOX */ } from './query'
 import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
-// import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
+// import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
 // const itemsBackend = [
 //    {
@@ -101,6 +101,18 @@ const Lids = () => {
 
    // const [createBoxContent] = useMutation(CREATE_BOX_CONTENT)
    // createBoxContent({variables: {name: '', phone: '', comment: '', status: number}})
+
+   // const [createBoxContentGr] = useMutation(CREATE_BOX_CONTENT_GROUP)
+   // createBoxContentGr({variables: {
+      // name: '',
+      // status: number,
+      // courseID: id,
+      // courseName: '',
+      // teachID: id,
+      // teachName: '',
+      // days: '',
+      // time: ''
+   // }})
 
    // const [updateBoxContent] = useMutation(UPDATE_BOX_CONTENT)
    // updateBoxContent({variables: {id: id, name: '', phone: '', comment: ''}})

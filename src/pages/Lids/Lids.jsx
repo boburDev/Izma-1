@@ -75,6 +75,8 @@ const Lids = () => {
    const [allBox, setBoxName] = useState([])
    const [boxesCont, setBoxesCont] = useState([])
 
+ 
+
    // BOXES //
    
    // const [createBox] = useMutation(CREATE_BOX)
@@ -134,7 +136,7 @@ const Lids = () => {
       }
    }, [allBox, boxesCont])
 
-   console.log(columns)
+
 
 
 

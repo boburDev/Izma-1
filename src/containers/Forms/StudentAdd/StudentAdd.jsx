@@ -208,6 +208,7 @@ const StudentAdd = ({ onCloseF }) => {
                   arr={dataGroups && dataGroups.groups}
                   pInput={'Variantlarni tanlang'}
                   fnc={setStGroup}
+                  notReq={true}
                />
             </div>
             <div className="form-input">

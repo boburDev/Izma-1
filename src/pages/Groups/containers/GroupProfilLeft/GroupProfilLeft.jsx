@@ -454,7 +454,7 @@ const GroupProfilLeft = (prop) => {
                                           settStatus(s.groupStatus)
                                           setIdName({ studentID: s.id, studentName: s.name })
                                        }}>
-
+                                          <span></span>
                                     </button>
 
 

@@ -43,7 +43,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
       };
       for (let option of browsers.current.childNodes) {
 
-         option.onclick = function () {
+         option.onClick = function () {
             if (option.className === 'selected') {
                input.current.value = '';
             } else {

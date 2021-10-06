@@ -158,7 +158,6 @@ const StudentAdd = ({ onCloseF }) => {
                   telegram: [{ telegram: (stTg !== '@') ? stTg : null}],
                }
 
-               // console.log(data)
                AddNewSudents({ variables: data })
                
             }

@@ -128,6 +128,12 @@ const BOXES_CONTENT = gql `
       phone
       comment
       status
+      courseID
+      courseName
+      teachID
+      teachName
+      courseDays
+      courseTime
     }
   }
 `

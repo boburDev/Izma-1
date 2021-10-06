@@ -13,7 +13,7 @@ import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm';
 import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem';
 import { Drawer } from 'antd';
 import { useMutation } from '@apollo/client';
-import { DELETE_BOX } from '../../../pages/Lids/query';
+import { DELETE_BOX } from '../../../pages/Lids/queryy';
 
 const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate, sorov }) => {
 

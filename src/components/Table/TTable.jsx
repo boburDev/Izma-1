@@ -102,11 +102,12 @@ const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId, setInfo, openM
 
             </> : block === "financeGroupHash" ? <>
                <div className="table-header">
-                              <h4 className={'financeGroupHash'}>Guruhlar</h4>
-                              <h4 className={'financeGroupHash'}>O’qituvchilar</h4>
-                              <h4 className={'financeGroupHash'}>Kurslar</h4>
-                              <h4 className={'financeGroupHash'}>O'quvchilar soni</h4>
-                              <h4 className={'financeGroupHash'}>So'm</h4>
+                     <h4 className={'financeGroupHash'}>Guruhlar</h4>
+                     <h4 className={'financeGroupHash'}>O’qituvchilar</h4>
+                     <h4 className={'financeGroupHash'}>Kurslar</h4>
+                     <h4 className={'financeGroupHash'}>O'quvchilar soni</h4>
+                     <h4 className={'financeGroupHash'}>So'm</h4>
+                     <h4 className={'financeGroupHash'}>Umumiy So'm</h4>
                </div>
 
                <div className="table-group-body">

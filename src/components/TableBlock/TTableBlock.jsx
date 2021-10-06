@@ -7,6 +7,7 @@ import Modal1 from '../Modal/Modal'
 
 
 const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, setInfo, openModal, setID, deleteRoom, setTakeID }) => {
+   console.log(info)
    const [modal, setModal] = useState()
    const [modal1, setModal1] = useState()
    return (
@@ -40,12 +41,16 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                </h4>
             </> : block === 'settingsHashRooms' ? <>
                   <h4 className={'settingsHashRooms'}>{index}</h4>
-                  <h4 className={'settingsHashRooms'}>{info?.room}</h4>
-                  <h4 className={'settingsHashRooms'} onClick={(e) => {
-                     setInfo(info?.room)
-                     setID(info.id)
-                     openModal(true)
-                  }}><img src={EditImg} alt="" /></h4>
+                  <h4 className={'settingsHashRooms'}>{info?.room || info?.name}</h4>
+                  {
+                     (info?.summa-0 >= 0) ? <h4>
+                     <b>{ info?.summa }</b>
+                     </h4> : <h4 className={'settingsHashRooms'} onClick={(e) => {
+                        setInfo(info?.room)
+                        setID(info.id)
+                        openModal(true)
+                     }}><img src={EditImg} alt="" /></h4>
+                  }
                   <h4 className={'settingsHashRooms'} onClick={() => {
                      setModal1(true)
                   }}>
@@ -81,6 +86,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                            <h4 className={'financeGroupHash'}>{info?.courses}</h4>
                            <h4 className={'financeGroupHash'}>{info?.stCount}</h4>
                            <h4 className={'financeGroupHash'}>{info?.price}</h4>
+                           <h4 className={'financeGroupHash'}>{info?.price * info?.stCount}</h4>
             </> : block === 'paymentHistory' ? <>
                               <h4 className={'paymentHistory'}>{moment(info?.createdAt-0).format('YYYY-MM-DD, HH:MM')}</h4>
                               <h4 className={'paymentHistory'}>{info?.paymentType}</h4>

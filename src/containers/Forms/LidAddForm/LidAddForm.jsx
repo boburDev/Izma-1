@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './LidAddForm.scss'
 import { useMutation } from '@apollo/client'
-import { CREATE_BOX_CONTENT } from '../../../pages/Lids/query'
+import { CREATE_BOX_CONTENT } from '../../../pages/Lids/queryy'
 
 
 const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {

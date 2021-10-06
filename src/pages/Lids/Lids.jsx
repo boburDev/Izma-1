@@ -3,7 +3,7 @@ import LidsContent from './LidsContent/LidsContent'
 import { useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { /* useMutation, */ useQuery, useSubscription } from '@apollo/client'
-import { BOXES_NAME, BOXES_CONTENT/* , CREATE_BOX, UPDATE_BOX_NAME, DELETE_BOX */ , SUBCRIP_CONTENT} from './query'
+import { SUBCRIP_BOXES } from './query'
 import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
@@ -46,25 +46,26 @@ const LidsBoxes = [
 const Lids = () => {
    const [columns, setColumns] = useState([])
 
-   const {data: boxesName} = useQuery(BOXES_NAME)
-   const {data: boxesContent} = useQuery(BOXES_CONTENT)
+   // const {data: boxesName} = useQuery(BOXES_NAME)
+   // const {data: boxesContent} = useQuery(BOXES_CONTENT)
 
    const { data: courses } = useQuery(COURSES)
    const { data: teachers } = useQuery(TEACHER_FILTERS)
 
-   
+   // console.log(courses)
+   // console.log(teachers)
 
 
-   const [allBox, setBoxName] = useState([])
-   const [boxesCont, setBoxesCont] = useState([])
+   // const [allBox, setBoxName] = useState([])
+   // const [boxesCont, setBoxesCont] = useState([])
  
 
-   useSubscription(SUBCRIP_CONTENT, {
+   useSubscription(SUBCRIP_BOXES, {
 
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
             fields: {
-               leadBoxContent: () => { }
+               leadsBoxName: () => { }
             }
          })
       },
@@ -108,42 +109,7 @@ const Lids = () => {
    // deleteContent({variables: {id: id}})
 
 
-
-
-   useEffect(() => {
-      if (boxesName?.leadsBoxName && boxesContent?.leadBoxContent) {
-         setBoxName(boxesName.leadsBoxName)
-         setBoxesCont(boxesContent.leadBoxContent)
-      }
-   }, [boxesName, boxesContent])
-
-   
-   useEffect(() => {
-      if (allBox.length) {
-
-         const newArr = []
-
-         allBox?.map(i => {
-
-            const aaa = boxesCont?.filter(item => item.status === i.status ? {id: item.id, userName: item.name, userNumber: item.phone, status: item.status} : '')
-
-            const data = {
-               id: i.id,
-               name: i.boxname,
-               boxStatus: i.status,
-               items: aaa
-            }
-            newArr.push(data)
-            return ''
-         })
-         setColumns(newArr)
-      }
-   }, [allBox, boxesCont])
-
-   console.log(boxesCont)
-   console.log(boxesContent)
-
-
+   // console.log(columns, boxesCont)
 
 
 

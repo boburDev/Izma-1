@@ -21,7 +21,7 @@ function Davomat() {
     const [endDate, setEndDate] = useState('')
     const [groupMonth,setGroupMonth] = useState([])
     const [groupStuMonth,setGroupStuMonth] = useState([])
-    console.log(groupStuMonth)
+    // console.log(groupStuMonth)
     const [monthlyGr, setMonthlyGr] = useState([])
 
     const { data: groupAtt } = useQuery(GROUP_DAVOMAT, { variables: { groupID: id && id.groupID}})
@@ -55,12 +55,15 @@ function Davomat() {
                 }
                 return {id: i.id, month: data}
             })
-            setGroupStuMonth(mapped)
-
-            // console.log(mapped)
-
-
-
+            
+            const resultMapped = mapped.map(i => {
+                const data = i.month.map(j => ({
+                    s: j.status,
+                    d: moment(new Date(j.day-0)).format('DD/MM-YYYY')
+                }))
+                return { id: i.id, data }
+            })
+            setGroupStuMonth(resultMapped)
         }
     },[studentGrAtt, groupStudents])
 
@@ -260,7 +263,7 @@ function Davomat() {
     }
     
     
-    
+    // console.log(monthlyGr)
 
     return (
         <div className={st.home}>
@@ -298,39 +301,11 @@ function Davomat() {
             </thead>
             <tbody className={st.tbody}>
             {
-                // groupStuMonth
                 groupStudents.students && groupStudents.students.map((item, index) => {
                     return <tr className={st.tr_tbody} key={index}>
                     <td className={`${st.pupil} ${st.td_tbody} ${
                         item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''}`} key={index}>{item.name}</td>
                     {
-                        // groupStuMonth.map(i => {
-                        //     if (item.id === i.id) {
-                        //         console.log(i.month)
-                        //         i.month.map((i, key) => {
-                        //             return <td className={st.td} key={key}>
-                        //     <div
-                        //         className={st.round}
-                        //         onClick={checkInput}
-                        //         data-date={i.day}
-                        //         data-id={item.id}>
-                        //     </div>
-                        //     <div className={st.checker}>
-                        //     <h4
-                        //     onClick={come} className={st.checker_true}>
-                            
-                        //     </h4>
-                        //     <h4 onClick={dontCome} className={st.checker_false}>
-                            
-                        //     </h4>
-                        //     <button className={st.checker_close} onClick={closer}>&times; </button>
-                        //     </div>
-                        //     </td>
-                        //         })
-                        //     }
-                        //     // console.log(item)
-                        //     return ''
-                        // })
                         monthlyGr.map((i,key) => {
                             return <td className={st.td} key={key}>
                             <div

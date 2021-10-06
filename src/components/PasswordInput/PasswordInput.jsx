@@ -7,7 +7,7 @@ const PasswordInput = ({ setPassword }) => {
    const [show, setShow] = useState(false)
    return (
       <div className="password">
-         <input className="inputPassword" type={show ? 'text' : 'password'} onKeyUp={(e) => setPassword(e.target.value)} />
+         <input autoComplete="off"  className="inputPassword" type={show ? 'text' : 'password'} onKeyUp={(e) => setPassword(e.target.value)} />
          <span onClick={() => setShow(!show)}>
             {
                show ?

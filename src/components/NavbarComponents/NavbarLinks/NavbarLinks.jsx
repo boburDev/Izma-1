@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router'
 import { useState, useEffect } from 'react'
 
-const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitButton }) => {
+const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitButton, nav }) => {
    const [links, setLinks] = useState(link)
    const { location } = useHistory()
    useEffect(() => {
@@ -53,7 +53,7 @@ const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitB
 
                </NavLink>
             ) : (
-               <NavLink exact className="navbar_links" to={`${link}`} activeClassName="active"
+               <NavLink exact className={`navbar_links ${nav ? 'active' : ''}`} to={`${link}`} activeClassName="active"
                      onClick={() => {
                         quitButton()
                         link2()

@@ -76,43 +76,68 @@ const Navbar = ({ sidebarActive }) => {
       setOpenMoliya(false)
       setOpenSetting(false)
    }
+
+
+   
+
+   const [homeActive, setHomeActive] = useState()
+   const [lidActive, setLidActive] = useState()
+   const [studentActive, setStudentActive] = useState()
+   const [teachrtActive, setTeacherActive] = useState()
+   const [groupActive, setGroupActive] = useState()
+   const [courseActive, setCourseActive] = useState()
+
+   const closeAll = () => {
+      setHomeActive(false)
+      setLidActive(false)
+      setStudentActive(false)
+      setTeacherActive(false)
+      setGroupActive(false)
+      setCourseActive(false)
+   }
    const links = [
       {
          title: 'Home',
          icon: <Home />,
          link: '/',
-         isButton: false
+         isButton: false,
+         nav: homeActive
 
       },
       {
          title: 'Lidlar',
          icon: <Lidrlar />,
          link: '/lidlar',
-         isButton: false
+         isButton: false,
+         nav: lidActive
       },
       {
          title: 'Talabalar',
          icon: <Talabalar />,
          link: '/students',
-         isButton: false
+         isButton: false,
+         nav: studentActive
       },
       {
          title: 'O’qituvchilar',
          icon: <Teacher />,
          link: '/teachers',
-         isButton: false
+         isButton: false,
+         nav: teachrtActive
       },
       {
          title: 'Guruhlar',
          icon: <Guruhlar />,
          link: '/groups',
-         isButton: false
+         isButton: false,
+         nav: groupActive
       },
       {
          title: 'Kurslar',
          icon: <Kurslar />,
          link: '/courses',
-         isButton: false
+         isButton: false,
+         nav: courseActive
       },
       {
          title: 'Moliya',
@@ -126,6 +151,8 @@ const Navbar = ({ sidebarActive }) => {
 
    const { location } = useHistory()
    useEffect(() => {
+      let paths = window.location.pathname.split('/')
+      console.log(location.pathname ,paths);
       switch (location.pathname) {
          case "/settingsEmployeesInner":
             setSettingActive(true)
@@ -183,11 +210,32 @@ const Navbar = ({ sidebarActive }) => {
             setSettingActive(true)
             setDragActive(false)
             break;
+         case "/groups/groupsProfil/" + paths[paths.length - 1]:
+            closeAll()
+            setGroupActive(true)
+            
+            break;
+         case "/studentProfile/" + paths[paths.length - 1]:
+            closeAll()
+            setSettingActive(true)
+            
+            break;
+         case "/teacherProfile/" + paths[paths.length - 1]:
+            closeAll()
+            setTeacherActive(true)
+            
+            break;
+         case "/coursesInner/" + paths[paths.length - 1]:
+            closeAll()
+            setCourseActive(true)
+            
+            break;
 
          case "/": 
          
             break;
          default:
+            closeAll()
             closeFinSet() 
             setSettingActive(false)
             setDragActive(false)
@@ -339,6 +387,7 @@ const Navbar = ({ sidebarActive }) => {
                         link2={closeFinSet}
                         key={el.title}
                         quitButton={quitButton}
+                        nav={el.nav}
                      />
                   }
                })

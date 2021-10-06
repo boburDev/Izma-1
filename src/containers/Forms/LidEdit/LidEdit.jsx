@@ -13,26 +13,29 @@ const LidsEdit = ({ setEdit, edit }) => {
          </div>
          <div className="lidsedit-body">
             <div className="lidsedit-body-left">
-               <form action="" >
+               <form action="formLIdAddRes3" id="" onSubmit={(e) => {
+                  e.preventDefault()
+                  document.getElementById('formLIdAddRes3').reset()
+               }}>
                   <div className="row">
                      <label htmlFor="Nomi">Nomi</label>
-                     <input type="text" />
+                     <input autoComplete="off"  type="text" />
                   </div>
                   <div className="row">
                      <label htmlFor="Nomi">Kursni tanlash</label>
-                     <input type="text" />
+                     <input autoComplete="off"  type="text" />
                   </div>
                   <div className="row">
                      <label htmlFor="Nomi">O’qituvchini tanlang</label>
-                     <input type="text" />
+                     <input autoComplete="off"  type="text" />
                   </div>
                   <div className="row">
                      <label htmlFor="Nomi">Kunlar</label>
-                     <input type="text" />
+                     <input autoComplete="off"  type="text" />
                   </div>
                   <div className="row">
                      <label htmlFor="Nomi">Darsning boshlanish vaqti</label>
-                     <input type="text" />
+                     <input autoComplete="off"  type="text" />
                   </div>
                   <button type="submit" >Yaratish</button>
                </form>

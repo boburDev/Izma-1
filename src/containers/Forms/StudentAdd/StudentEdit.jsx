@@ -107,7 +107,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                </button>
            </div>
 
-           <form onSubmit={(e) => {
+           <form id="studenEditFormRes" onSubmit={(e) => {
                e.preventDefault()
 
                if(forEdit && forEdit) {
@@ -127,6 +127,7 @@ const StudentsEditForm = ({ onCloseF }) => {
 
                UpdateStudents({ variables: data })
                    handleClick()
+                   document.getElementById('studenEditFormRes').reset()
            }
            }}>
                <div className="form-input">
@@ -140,7 +141,7 @@ const StudentsEditForm = ({ onCloseF }) => {
 
                <div className="form-input">
                    <label htmlFor="name">Ism</label>
-                   <input type="text" name="" id="name" className="new-input" defaultValue={forEdit && forEdit.student.name} onChange={e => setStName(e.target.value)} />
+                   <input autoComplete="off"  type="text" name="" id="name" className="new-input" defaultValue={forEdit && forEdit.student.name} onChange={e => setStName(e.target.value)} />
                </div>
                <div className="form_group">
                    <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
@@ -159,12 +160,12 @@ const StudentsEditForm = ({ onCloseF }) => {
                    <label htmlFor="date">Jinsi</label>
                    <div className="genders">
                        <div className="gen_one">
-                           <input value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
+                           <input autoComplete="off"  value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
                            <label htmlFor="men"></label>
                            <span>Erkak</span>
                        </div>
                        <div className="gen_one">
-                           <input value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
+                           <input autoComplete="off"  value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
                            <label htmlFor="women"></label>
                            <span>Ayol</span>
                        </div>
@@ -232,7 +233,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                    <label htmlFor="">Telegram user name</label>
                    <div className="numberTwo">
                        <span>@</span>
-                       <input type="text" name="" id="" autoComplete="off" className="user_name" defaultValue={forEdit && forEdit.student.telegram[0]?.telegram} onChange={e => setStTg(e.target.value)} />
+                       <input autoComplete="off"  type="text" name="" id="" autoComplete="off" className="user_name" defaultValue={forEdit && forEdit.student.telegram[0]?.telegram} onChange={e => setStTg(e.target.value)} />
                    </div>
                </div>
 

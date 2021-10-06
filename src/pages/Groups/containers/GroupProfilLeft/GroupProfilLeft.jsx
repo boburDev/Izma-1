@@ -411,6 +411,7 @@ const GroupProfilLeft = (prop) => {
                      </p>
                      <br />
                      <input
+                     autoComplete="off"
                         type="text"
                         placeholder="search"
                         onChange={e => setOnKeyUp(e.target.value)} />

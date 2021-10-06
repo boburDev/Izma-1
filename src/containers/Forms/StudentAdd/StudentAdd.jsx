@@ -173,7 +173,7 @@ const StudentAdd = ({ onCloseF }) => {
 
             <div className="form-input">
                <label htmlFor="name">Ism</label>
-               <input type="text" name="" id="name" className="new-input" onChange={e => setStName(e.target.value)} required />
+               <input autoComplete="off"  type="text" name="" id="name" className="new-input" onChange={e => setStName(e.target.value)} required />
             </div>
             <div className="form_group" id='sty'>
                <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
@@ -191,12 +191,12 @@ const StudentAdd = ({ onCloseF }) => {
                <label htmlFor="date">Jinsi</label>
                <div className="genders">
                   <div className="gen_one">
-                     <input value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
+                     <input autoComplete="off"  value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
                      <label htmlFor="men"></label>
                      <span>Erkak</span>
                   </div>
                   <div className="gen_one">
-                     <input value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
+                     <input autoComplete="off"  value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
                      <label htmlFor="women"></label>
                      <span>Ayol</span>
                   </div>
@@ -275,7 +275,7 @@ const StudentAdd = ({ onCloseF }) => {
                <label htmlFor="">Telegram user name</label>
                <div className="numberTwo">
                   <span>@</span>
-                  <input type="text" name="" autoComplete="off" className="user_name" onChange={e => setStTg('@' + e.target.value)} />
+                  <input autoComplete="off"  type="text" name="" autoComplete="off" className="user_name" onChange={e => setStTg('@' + e.target.value)} />
                </div>
             </div>
 

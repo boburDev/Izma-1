@@ -2,8 +2,8 @@ import './Lids.scss'
 import LidsContent from './LidsContent/LidsContent'
 import { useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
-import { /* useMutation, */ useQuery } from '@apollo/client'
-import { BOXES_NAME, BOXES_CONTENT/* , CREATE_BOX, UPDATE_BOX_NAME, DELETE_BOX */ } from './query'
+import { /* useMutation, */ useQuery, useSubscription } from '@apollo/client'
+import { BOXES_NAME, BOXES_CONTENT/* , CREATE_BOX, UPDATE_BOX_NAME, DELETE_BOX */ , SUBCRIP_CONTENT} from './query'
 import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
@@ -82,8 +82,18 @@ const Lids = () => {
 
    const [allBox, setBoxName] = useState([])
    const [boxesCont, setBoxesCont] = useState([])
-
  
+
+   useSubscription(SUBCRIP_CONTENT, {
+
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               leadBoxContent: () => { }
+            }
+         })
+      },
+   })
 
    // BOXES //
    

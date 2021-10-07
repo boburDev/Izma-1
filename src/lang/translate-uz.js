@@ -419,7 +419,7 @@ const uz = {
             teacher: 'O\'qituvchi',
             methodCount: 'Hisoblash usuli',
             byDate: 'Sana bo\'yicha',
-            filter: 'Sana bo\'yicha',
+            filter: 'Filtr',
             teacher: 'O\'qituvchi',
             currency: 'So\'m'
         },

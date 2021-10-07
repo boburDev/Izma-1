@@ -179,5 +179,5 @@ export {
    FOR_EDIT_STUDENT,
    UPDATE_STUDENT,
    GROUPS,
-   NEW_CASH
+   NEW_CASH,
 }

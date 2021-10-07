@@ -3,7 +3,7 @@ import LidsContent from './LidsContent/LidsContent'
 import {  useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { useMutation, useLazyQuery, useQuery, useSubscription } from '@apollo/client'
-import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX, NEW_BOX, UPDATE_BOX, DELETE_BOX, ALL_LEADS, NEW_LEAD, UPDATE_LEAD, DELETE_LEAD, SUBCRIP_LEADS } from './query'
+import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX, NEW_BOX, UPDATE_BOX, DELETE_BOX, NEW_LEAD, UPDATE_LEAD, DELETE_LEAD, SUBCRIP_LEADS } from './query'
 import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
@@ -66,8 +66,6 @@ const Lids = () => {
 
    // leads
 
-   const { data: leads } = useQuery(ALL_LEADS)
-
    // const [createLead] = useMutation(NEW_LEAD)
    // createLead({variables: {name: '', phone: '', leadBoxID: id}})
 
@@ -81,8 +79,7 @@ const Lids = () => {
    useEffect(() => {
       check({variables: {check: 'string'}})
       console.log(boxes)
-      // console.log(leads)
-   }, [check, leads, boxes])
+   }, [check, boxes])
 
    useSubscription(SUBCRIP_BOXES, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {

@@ -87,21 +87,6 @@ const CHECK_BOX_MINUS = gql `
 
 
 
-const ALL_LEADS = gql `
-    query {
-        leads{
-        id
-        name
-        phone
-        gender
-        comment
-        birthday
-        courseID
-        teachID
-        leadBoxID
-        }
-    }
-`
 
 const NEW_LEAD = gql `
     mutation newLeadForm(

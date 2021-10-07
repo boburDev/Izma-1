@@ -93,11 +93,108 @@ const CHECK_BOX_MINUS = gql `
     }
 `
 
+
+
+
+
+const ALL_LEADS = gql `
+    query {
+        leads{
+        id
+        name
+        phone
+        gender
+        comment
+        birthday
+        courseID
+        teachID
+        leadBoxID
+        }
+    }
+`
+
+const NEW_LEAD = gql `
+    mutation newLeadForm(
+        $name: String
+        $phone: String
+        $leadBoxID: ID
+        $birthday: String
+        $gender: Int
+        $comment: String
+        $courseID: ID
+        $teachID: ID
+    ) {
+        newLeadForm(
+        name: $name
+        phone: $phone
+        leadBoxID: $leadBoxID
+        birthday: $birthday
+        gender: $gender
+        comment: $comment
+        courseID: $courseID
+        teachID: $teachID
+        ) {
+        id
+        }
+    }
+`
+
+const UPDATE_LEAD = gql `
+    mutation updateLead(
+        $leadID: ID
+        $name: String
+        $phone: String
+        $leadBoxID: ID
+        $birthday: String
+        $gender: Int
+        $comment: String
+        $courseID: ID
+        $teachID: ID
+    ) {
+        updateLead(
+        id: $leadID
+        name: $name
+        phone: $phone
+        leadBoxID: $leadBoxID
+        birthday: $birthday
+        gender: $gender
+        comment: $comment
+        courseID: $courseID
+        teachID: $teachID
+        ) {
+        id
+        }
+    }
+`
+
+const DELETE_LEAD = gql `
+    mutation deleteLead($leadID: ID) {
+        deleteLead(leadID: $leadID){
+        id
+        }
+    }
+`
+
+const SUBCRIP_LEADS = gql `
+    subscription {
+        leads {
+        id
+        name
+        phone
+        }
+    }
+`
+
 export {
     ALL_BOX,
     NEW_BOX,
     CHECK_BOX_MINUS,
     UPDATE_BOX,
     DELETE_BOX,
-    SUBCRIP_BOXES
+    SUBCRIP_BOXES,
+    ALL_LEADS,
+    NEW_LEAD,
+    UPDATE_LEAD,
+    DELETE_LEAD,
+    SUBCRIP_LEADS
 }

@@ -4,6 +4,7 @@ import Close from '../../assets/Icons/Group 26.svg'
 import { useEffect, useState, useRef } from 'react'
 import Logo from '../../assets/Icons/Sertifikat.png'
 import { useCheck } from '../../context/CheckProvider'
+import moment from 'moment'
 
 const Check = ({ handleCancelY ,  handleOkY  })=>{
     let componentRef = useRef(null)
@@ -48,7 +49,7 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
         var mm = String(today.getMonth() + 1).padStart(2, '0')
         var yyyy = today.getFullYear()
         today = dd + '-' + mm + '-' + yyyy
-        setToday(today)
+        setToday(moment(new Date()).format('DD-MM-YYYY / HH:MM:SS'))
     },[])
 
     return (

@@ -128,7 +128,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
           </div>
           <div className="form_group" style={{ width: "100%" }}>
             <label className='izma__courses__form-bolim-form-label'>Miqdor</label>
-              <Input autoComplete="off"  className={"section_name_input"}  name={"nomi"} onChange={e => setAmmoun(e.target.value)}/>
+              <input value={ammountt} autoComplete="off"  className={"section_name_input"}  name={"nomi"} onChange={e => setAmmoun(e.target.value)}/>
               {
 				  (groupID === '') && <>
 				  <label className='izma__courses__form-bolim-form-label'>Group</label>
@@ -144,6 +144,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
           <label>Қабул қилинган сана</label>
        
           <DatePicker
+            value={payedData !== "" ? moment(moment().format("DD-MM-YYYY"), "DD-MM-YYYY") : null}
           className='date__picker'
             onChange={(value, dateString) => setPayedData({
             payed: dateString,
@@ -151,7 +152,9 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 				})
 			}
             placeholder={"Kun-Oy-Yil"}
-            format={"DD-MM-YYYY"}/>
+            format={"DD-MM-YYYY"}
+           
+            />
           </div>
 		  
           <div className="form_group izma__form__teaxtarea" style={{ width: 400 }}>
@@ -161,6 +164,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
               name={"description"}
               autoSize
               onChange={e => setComment(e.target.value)}
+              value={comment}
             />
           </div>
         </Form>
@@ -262,7 +266,9 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
               }
             })
             
-            document.getElementById('financeFormRes').reset()
+            setAmmoun('')
+            setPayedData('')
+            setComment('')
 		    }}>Yarating</button>
 		</div>
 		

@@ -38,7 +38,6 @@ import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/
 import Check from '../../../../components/Check/Check'
 import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
 import { useDavomat } from '../../../../context/DavomatProvider'
-
 const GroupProfilLeft = (prop) => {
    const [setGroupStudents] = useDavomat(true)
    const [dayDivide, setDayDivide] = useDayDivider()
@@ -239,7 +238,6 @@ const GroupProfilLeft = (prop) => {
          }
 
       }
-      console.log('okay')
       payment && paymentt()
       payment && setPayment(false)
 
@@ -411,6 +409,7 @@ const GroupProfilLeft = (prop) => {
                      </p>
                      <br />
                      <input
+                     autoComplete="off"
                         type="text"
                         placeholder="search"
                         onChange={e => setOnKeyUp(e.target.value)} />
@@ -455,7 +454,7 @@ const GroupProfilLeft = (prop) => {
                                           settStatus(s.groupStatus)
                                           setIdName({ studentID: s.id, studentName: s.name })
                                        }}>
-
+                                          <span></span>
                                     </button>
 
 

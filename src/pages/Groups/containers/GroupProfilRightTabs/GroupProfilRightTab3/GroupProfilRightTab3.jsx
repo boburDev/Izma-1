@@ -17,12 +17,6 @@ const GroupProfilRightTab3 = ({ studentData }) => {
   const [UpdateSale] = useMutation(CREATE_SALE)
   const {data: grSale} = useQuery(GROUP_SALE, {variables: {groupID}})
 
-  
-  // const saleArr = grSale && grSale.groupSaleInfo.map(i => Number(i.groupSale))
-  // const summaryy = saleArr && saleArr.reduce((a, b) => a + b , 0)
-
-  // console.log(summaryy)
-
   useSubscription(SUBSCRIP_SALE, {
     onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
       cache.modify({
@@ -53,16 +47,6 @@ const GroupProfilRightTab3 = ({ studentData }) => {
     
 
     
-   //  const onRowClicked = (item) => {
-   //    return {
-   //      onClick: () => {
-   //        setRowId(item.id);
-   //        setValues(item);
-         
-   //      },
-   //    };
-   //  };
-    
         const columns = [
             {
               title: 'Ism',
@@ -79,23 +63,18 @@ const GroupProfilRightTab3 = ({ studentData }) => {
               dataIndex: 'price',
               key: 'price',
               render: ( text, record, index) => {
-                return (<><div className="izma__groups-attendance-right-tabs-third-up-wrapper">
+                return (<><div style={{display: 'flex'}}
+				className="izma__groups-attendance-right-tabs-third-up-wrapper">
 
                 {grSale && grSale.groupSaleInfo.map(item => {
 
-                  return (item.studentID === record.stID) && <input type="text" className='izma__groups-attendance-right-tabs-third-up-input' defaultValue={item.groupSale}/>
+                  return (item.studentID === record.stID) && <input autoComplete="off" type="text" style={{ marginRight: '10px' }} className='izma__groups-attendance-right-tabs-third-up-input' defaultValue={item.groupSale}/>
                 })}
                <button
                data-stid={record.stID}
-              //  data-name={record.name}
-              //  data-phone={record.phone}
                className='izma__groups-attendance-right-tabs-third-up-btn' onClick={e => {
                  const saleAmount = e.currentTarget.parentNode.children[0].value
                   const id = e.target.getAttribute('data-stid')
-                  // const name = e.target.getAttribute('data-name')
-                  // const phone = e.target.getAttribute('data-phone')
-
-
                   const data = {
                     stID: id,
                     sale: saleAmount,
@@ -131,7 +110,7 @@ const GroupProfilRightTab3 = ({ studentData }) => {
             </div>
             </div> 
         <div className="izma__groups-attendance-right-tabs-third">
-            <input type="text" placeholder="search" onChange={e => setOnKeyUp(e.target.value)}/>
+          <input autoComplete="off"  type="text" placeholder="search" onChange={e => setOnKeyUp(e.target.value)}/>
             <br />
             <br />
             <div className="groups__attendance-right-tabs-third-table" >

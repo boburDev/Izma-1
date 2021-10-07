@@ -1,7 +1,13 @@
 import './LidAddItem.scss'
 import { useRef } from 'react'
+import { useMutation } from '@apollo/client'
+import { CREATE_BOX, UPDATE_BOX_NAME } from '../../../pages/Lids/queryy'
 const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}) => {
    const itemName = useRef()
+
+    const [createBox] = useMutation(CREATE_BOX)
+  const [updateBoxName] = useMutation(UPDATE_BOX_NAME)
+  
    // const boardIn = useRef()
 
    // console.log(columns, boxId)
@@ -9,21 +15,13 @@ const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}
 
    const handleSub = async (e) => {
       e.preventDefault()
-
       if(defaultInfo) {
-         let obj = columns.find(el => el.id === boxId)
-         obj.name = itemName.current.value
+         updateBoxName({ variables: { boxID: boxId, boxName: itemName.current.value, status: formNum}})
       }else {
-         columns.push({
-            id: 'aorrij',
-            name: itemName.current.value,
-            boxStatus: formNum,
-            items: []
-         })
+         createBox({ variables: { boxName: itemName.current.value, status: formNum } })
       }
 
-      let form = document.querySelector('#formItems')
-      form.reset()
+      document.getElementById('formItems').reset()
 
       setColumns(columns)
       onClose()
@@ -41,9 +39,9 @@ const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}
             <label htmlFor="Nomi">Nomi</label>
             {
                defaultInfo !== undefined ?
-               <input type="text" ref={itemName} defaultValue={defaultInfo}/>
+                  <input autoComplete="off"  type="text" ref={itemName} defaultValue={defaultInfo}/>
                :
-               <input type="text" ref={itemName} />
+                  <input autoComplete="off"  type="text" ref={itemName} />
             }
             <div className="box" style={{ display: 'flex', justifyContent: 'space-between' }}>
                <button type="submit" >Yaratish</button>

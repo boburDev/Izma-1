@@ -1,0 +1,261 @@
+.companySetting {
+   padding: 50px 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+
+   .wrapper {
+      width: 648px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+   }
+
+   .company__settings-heading {
+      font-family: "Jost";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 43px;
+      margin-bottom: 38px;
+      color: #000000;
+   }
+
+   .companySetting-inner {
+      width: 850px;
+      padding: 34px 48px 55px 40px;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.08);
+      border-radius: 7px;
+      max-width: 648px;
+
+      .logo {
+         margin-bottom: 17px;
+      }
+
+      .forms-wrapper {
+         .browse-file {
+            .ant-upload-list {
+               width: 100%;
+               height: 207px;
+               background-color: #c4c4c4;
+               border-radius: 6px;
+               overflow: none;
+            }
+
+            .ant-upload {
+               margin-bottom: 24px;
+               width: 100%;
+            }
+
+            .ant-btn {
+               width: 100%;
+               height: 50px;
+               border: 1px solid #AEC0D6;
+               box-sizing: border-box;
+               border-radius: 4px;
+            }
+
+            .ant-btn-icon-only {
+               border: none;
+            }
+
+            .ant-upload-list-item {
+               background-color: #fff;
+               margin-bottom: 4px;
+               margin-top: 0;
+            }
+
+            .place_name {
+               font-family: "Jost";
+               font-style: normal;
+               font-weight: 500;
+               font-size: 16px;
+               line-height: 23px;
+               color: #000000;
+               margin-bottom: 17px;
+
+            }
+
+            &.mt_5 {
+               margin-top: 46px;
+            }
+
+            &.alone_file {
+               .ant-upload-list {
+                  width: 71px;
+                  height: 71px;
+                  background: #C4C4C4;
+                  border-radius: 5px;
+                  overflow: visible;
+               }
+
+               .ant-upload-list-item {
+                  width: 100%;
+                  height: 100%;
+               }
+
+               .ant-upload-list-item-name {
+                  position: absolute;
+                  left: 70px;
+               }
+
+               .anticon-delete {
+                  left: 85px;
+                  position: absolute;
+                  top: 23px;
+               }
+            }
+         }
+
+         .browse-theme {
+            margin-top: 40px;
+
+            .theme_name {
+               font-family: "Jost";
+
+               font-style: normal;
+               font-weight: 500;
+               font-size: 16px;
+               line-height: 23px;
+               color: #000000;
+               margin-bottom: 28px;
+            }
+
+            .thems {
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+
+               .site_theme {
+                  input[type=radio] {
+                     display: none;
+                  }
+
+                  input[type=radio]:checked+label {
+                     &.one {
+                        background-color: #314FA5
+                     }
+
+                     &.two {
+                        background-color: #FF0000
+                     }
+
+                     &.thre {
+                        background-color: #01CDC0
+                     }
+
+                     &.four {
+                        background-color: #314FA5
+                     }
+
+                     &.five {
+                        background-color: #FF0000
+                     }
+
+                     &.six {
+                        background-color: #01CDC0
+                     }
+                  }
+
+                  .theme_btn {
+                     width: 38px;
+                     height: 38px;
+                     border: none;
+                     border-radius: 50%;
+                     display: block;
+                     border: 2px solid;
+                     cursor: pointer;
+
+                     &.one {
+                        border-color: #314FA5
+                     }
+
+                     &.two {
+                        border-color: #FF0000
+                     }
+
+                     &.thre {
+                        border-color: #01CDC0
+                     }
+
+                     &.four {
+                        border-color: #314FA5
+                     }
+
+                     &.five {
+                        border-color: #FF0000
+                     }
+
+                     &.six {
+                        border-color: #01CDC0
+                     }
+                  }
+               }
+            }
+
+            .center_name {
+               margin: 48px 0 32px 0;
+
+               label {
+                  display: block;
+                  font-family: "Jost";
+                  font-style: normal;
+                  font-weight: 500;
+                  font-size: 16px;
+                  line-height: 23px;
+                  color: #000000;
+                  margin-bottom: 17px;
+               }
+
+
+               input {
+                  border: none;
+                  outline: none;
+                  border: 1px solid #AEC0D6;
+                  box-sizing: border-box;
+                  border-radius: 4px;
+                  width: 100%;
+                  padding: 15px;
+               }
+
+               select {
+                  border: none;
+                  outline: none;
+                  border: 1px solid #AEC0D6;
+                  box-sizing: border-box;
+                  border-radius: 4px;
+                  width: 100%;
+                  padding: 15px;
+               }
+            }
+
+            .paynet {
+               .center_name {
+                  margin: 28px 0 27px 0;
+               }
+
+
+            }
+
+            .save_btn {
+               border: none;
+               background: #090761;
+               border-radius: 57px;
+               padding: 12px 39px;
+               font-family: "Jost";
+               font-style: normal;
+               font-weight: 600;
+               font-size: 20px;
+               line-height: 29px;
+               text-align: center;
+               color: #FFFFFF;
+               margin-top: 53px;
+               cursor: pointer;
+            }
+         }
+      }
+   }
+}

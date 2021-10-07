@@ -64,7 +64,7 @@ const LidForm = () => {
 
                <div className="user_name1">
                   <label className="name_label1" htmlFor="">Ism va familya *</label>
-                  <input onKeyUp={e => setName(e.target.value)} className="name_input1" type="text" name="" id="" />
+                  <input autoComplete="off"  onKeyUp={e => setName(e.target.value)} className="name_input1" type="text" name="" id="" />
                </div>
 
                <div className="user_name1">

@@ -1,137 +1,96 @@
 import { gql } from '@apollo/client'
 
-const CREATE_BOX = gql `
-  mutation createBoxName(
-    $boxName: String
-    $status: Int
-  ) {
-    createBoxName(
-      boxName: $boxName
-      status: $status
-      ) {
-      id
-      boxName
-      status
+const ALL_BOX = gql `
+    query {
+        leadsBoxName{
+        id
+        boxName
+        status
+        courseID
+        courseName
+        teachID
+        teachName
+        courseDays
+        courseTime
+        }
     }
-  }
 `
 
-const BOXES_NAME = gql `
-  query {
-    leadsBoxName
-  }
-`
-
-const UPDATE_BOX_NAME = gql `
-  mutation updateBoxName(
-    $boxID: ID
-    $boxName: String
-    $status: Int
-  ) {
-    updateBoxName(
-      boxID: $boxID
-      boxName: $boxName
-      status: $status
+const NEW_BOX = gql `
+    mutation createBoxName(
+        $boxName: String
+        $status: Int
+        $courseID: ID
+        $courseName: String
+        $teachID: ID
+        $teachName: String
+        $courseDays: String
+        $courseTime: String
     ){
-      id
-      boxName
-      status
+    createBoxName(
+        boxName: $boxName
+        status: $status
+        courseID: $courseID
+        courseName: $courseName
+        teachID: $teachID
+        teachName: $teachName
+        courseDays: $courseDays
+        courseTime: $courseTime
+    ){
+        id
     }
-  }
+}
+`
+
+const UPDATE_BOX = gql `
+    mutation updateBoxName(
+        $boxID: ID
+        $boxName: String
+        $status: Int
+        $courseID: ID
+        $courseName: String
+        $teachID: ID
+        $teachName: String
+        $courseDays: String
+        $courseTime: String
+    ){
+    updateBoxName(
+        boxID: $boxID
+        boxName: $boxName
+        status: $status
+        courseID: $courseID
+        courseName: $courseName
+        teachID: $teachID
+        teachName: $teachName
+        courseDays: $courseDays
+        courseTime: $courseTime
+    ){
+        id
+    }
+    }
 `
 
 const DELETE_BOX = gql `
-  mutation deleteBoxName(
-    $boxID: ID
-    $status: Int
-  ) {
-    deleteBoxName(
-      boxID: $boxID
-      status: $status
-    ) {
-      id
-      boxName
-      status
+    mutation deleteBoxName($boxID: ID) {
+        deleteBoxName(boxID: $boxID){
+        id
+        }
     }
-  }
 `
 
-const CREATE_BOX_CONTENT = gql `
-  mutation createBoxContnt(
-    $name: String
-    $phone: String
-    $comment: String
-    $status: Int
-  ) {
-    createBoxContnt (
-      name: $name
-      phone: $phone
-      comment: $comment
-      status: $status
-    ) {
-      id
-      name
-      phone
-      comment
-      status
+const SUBCRIP_BOXES = `
+    subscription {
+        newBoxes {
+        id
+        boxName
+        }
     }
-  }
-`
-
-const BOXES_CONTENT = gql `
-  query {
-    leadBoxContent{
-      id
-      name
-      phone
-      comment
-      status
-    }
-  }
-`
-
-const UPDATE_BOX_CONTENT = gql `
-  mutation updateBoxContnt(
-    $id: ID
-    $name: String
-    $phone: String
-    $comment: String  
-  ) {
-    updateBoxContnt (
-      id: $id
-      name: $name
-      phone: $phone
-      comment: $comment
-    ) {
-      id
-    }
-  }
-`
-
-const UPDATE_BOX_CONT_STATUS = gql `
-  mutation updateBoxStatus($id: ID $status: Int) {
-    updateBoxStatus(id: $id status: $status){
-      status
-    }
-  }
-`
-
-const DELETE_CONTENT = gql `
-  mutation deleteBoxContent($id: ID) {
-    deleteBoxContent(id: $id) {
-      id
-    }
-  }
 `
 
 export {
-  BOXES_NAME,
-  BOXES_CONTENT,
-  UPDATE_BOX_NAME,
-  DELETE_BOX,
-  CREATE_BOX,
-  CREATE_BOX_CONTENT,
-  UPDATE_BOX_CONTENT,
-  UPDATE_BOX_CONT_STATUS,
-  DELETE_CONTENT
+    ALL_BOX,
+    NEW_BOX,
+    UPDATE_BOX,
+    DELETE_BOX,
+    SUBCRIP_BOXES
 }

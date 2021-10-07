@@ -40,6 +40,8 @@ class Avatar extends Component {
             }),
          );
       }
+
+      console.log(info)
    };
 
    render() {

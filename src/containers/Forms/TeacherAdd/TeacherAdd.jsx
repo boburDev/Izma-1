@@ -79,7 +79,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
 
                <div className="form_one">
                   <label htmlFor="name">Ism</label>
-                  <input required onKeyUp={e => setName(e.target.value)} type="text" name="name" id="name" />
+                  <input autoComplete="off"  required onKeyUp={e => setName(e.target.value)} type="text" name="name" id="name" />
                </div>
                <div className="form_group" id='sty2'>
                   <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
@@ -97,12 +97,12 @@ const TeacherAdd = ({ onClose, setVisible }) => {
 
                   <div className="genders">
                      <div className="gen_one">
-                        <input value={1} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="men" />
+                        <input autoComplete="off"  value={1} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="men" />
                         <label htmlFor="men"></label>
                         <span>Erkak</span>
                      </div>
                      <div className="gen_one">
-                        <input value={2} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="women" />
+                        <input autoComplete="off"  value={2} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="women" />
                         <label htmlFor="women"></label>
                         <span>Ayol</span>
                      </div>
@@ -116,7 +116,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
                <div className="form_one">
                   <span className="file">Foto</span>
                   <label htmlFor="file" className="choose_file">Hech qanday fayl tanlanmadi</label>
-                  <input type="file" name="" id="file" />
+                  <input autoComplete="off"  type="file" name="" id="file" />
                </div>
                <div className="form_one">
                   <label htmlFor="">Parol</label>

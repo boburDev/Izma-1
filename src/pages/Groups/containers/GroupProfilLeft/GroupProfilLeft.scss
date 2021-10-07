@@ -7,6 +7,12 @@
    width: 32%;
 }
 
+.izma__groups-attendance-left-center-communicate-wrapper {
+   input {
+      padding: 10px;
+   }
+}
+
 .izma__groups-attendance-left-up-wrapper {
    display: flex;
    align-items: center;
@@ -222,6 +228,7 @@
    line-height: 15px;
    color: #7D7D7D;
    margin-right: 25px;
+   margin-bottom: 0;
 }
 
 .izma__groups-attendance-left-bottom-button {
@@ -248,21 +255,62 @@
    // background-repeat: no-repeat;
    // background-size: contain;
    // padding: 5px;
-   width: 56px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 50px;
    position: relative;
    outline: none;
-   height: 23px;
+   height: 20px;
    background-color: #fff;
-}
+   cursor: pointer;
 
-.izma__groups-attendance-left-bottom-btn:after {
-   content: '\2026';
-   top: -27px;
-   right: 23px;
-   font-size: 35px;
-   width: 20px;
-   height: 15px;
-   position: absolute;
+   &:hover {
+      background: #090761;
+      span {
+         background: white;
+
+         &::before {
+            background: white;
+         }
+         &::after {
+            background: white;
+         }
+      }
+   }
+
+   span {
+
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before {
+         content: "";
+         position: absolute;
+         width: 4px;
+         height: 4px;
+         border-radius: 50%;
+         background: black;
+         transform: translateX(-8px);
+      }
+
+      &::after {
+         content: "";
+         position: absolute;
+         width: 4px;
+         height: 4px;
+         border-radius: 50%;
+         background: black;
+         transform: translateX(8px);
+      }
+   }
+
 }
 
 .izma__groups-attendance-left-bottom-button {
@@ -273,6 +321,7 @@
    background-size: contain;
    background-repeat: no-repeat;
    outline: none;
+   margin-right: 10px;
 }
 
 .izma__groups-attendance-left-bottom-button-add {

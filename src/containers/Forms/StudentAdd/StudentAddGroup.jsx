@@ -46,7 +46,7 @@ const StudentAddGroup = ({ onCloseF }) => {
             </button>
          </div>
 
-         <form onSubmit={(e) => {
+         <form id="settingFormRes2" onSubmit={(e) => {
             e.preventDefault()
 
             if (stName && stGender) {
@@ -61,6 +61,8 @@ const StudentAddGroup = ({ onCloseF }) => {
                // console.log(stPhoneNum.number.length)
                AddNewSudents({ variables: data })
             }
+
+            document.getElementById('settingFormRes2').reset()
          }}>
             <div className="form-input">
                <label htmlFor="">Telefon</label>
@@ -69,18 +71,23 @@ const StudentAddGroup = ({ onCloseF }) => {
             </div>
 
             <div className="form-input">
-               <label htmlFor="name">Ismmmmm</label>
-               <input type="text" name="" id="name" className="new-input" onChange={e => setStName(e.target.value)} required />
+               <label htmlFor="name">Ism</label>
+               <input autoComplete="off"  type="text" name="" id="name" className="new-input" onChange={e => setStName(e.target.value)} required />
             </div>
            
             <div className="form-input">
                <label htmlFor="date">Jinsi</label>
-               <div className="gender">
-                  <input type="radio" name="gender" id="" value={1} onChange={e => setStGender(e.target.value)} required />
-                  <span>Erkak</span>
-
-                  <input type="radio" name="gender" id="" value={2} onChange={e => setStGender(e.target.value)} required />
-                  <span>Ayol</span>
+               <div className="genders">
+                  <div className="gen_one">
+                     <input autoComplete="off" value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
+                     <label htmlFor="men"></label>
+                     <span>Erkak</span>
+                  </div>
+                  <div className="gen_one">
+                     <input autoComplete="off" value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
+                     <label htmlFor="women"></label>
+                     <span>Ayol</span>
+                  </div>
                </div>
             </div>
 

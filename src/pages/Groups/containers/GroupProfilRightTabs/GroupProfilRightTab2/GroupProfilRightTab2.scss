@@ -31,6 +31,27 @@
    margin-top: 16px;
 }
 
+.izma__groups-attendance-right-tabs-third-heading {
+   margin-top: 30px;
+   margin-bottom: 0;
+}
+
+.izma__groups-attendance-right-tabs-first-up {
+   margin-top: 16px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+  background: #090761;
+  border-radius: 4px;
+  padding: 20px 24px;
+}
+
+.izma__groups-attendance-right-tabs-third {
+   margin-top: 20px;
+   input {
+    padding: 10px;
+   }
+}
 .izma__groups-attendance-right-tabs-second-heading {
    font-family: "Jost";
    font-style: normal;
@@ -39,6 +60,7 @@
    line-height: 20px;
    margin-right: 40px;
    color: #FFFFFF;
+  
 }
 
 .izma__groups-attendance-right-tabs-second-bottom-text {

@@ -28,6 +28,7 @@ import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
 import Lids from "../Lids/Lids";
 import SettingsRoadMap from "../Settings_Pages/Roadmap/roadmap";
 import StudentsTablee from '../../test';
+import SettigsCompany from "../Settings_Pages/SettingsCompany/SettingsCompany";
 
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
@@ -101,6 +102,7 @@ const App = () => {
                       <Route path="/:hashtag/entry/lead" component={LidForm} />
                       <Route path="/settingsShapes" component={Shakillar} />
                       <Route path="/enterForm" component={EnterForm} />
+                      <Route path="/settingsCompany" component={SettigsCompany} />
 
 
 

@@ -9,8 +9,10 @@ import { useMutation } from '@apollo/client'
 import { useState } from 'react'
 import  Modal1  from '../../components/Modal/Modal'
 import { dayDivider } from '../../.../../context/DayDividerProvider'
+import { useNavbar } from '../../context/NavbarProvider'
 
 const TableBlock = ({ block, info, index, showDrawer }) => {
+   const [setNavbarP] = useNavbar(true)
    const [ /*stID*/, setStudentID] = useStudentPay()
    const [modal, setModal] = useState()
    const [getID] = useMutation(DELETE_STUDENT)
@@ -30,11 +32,19 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
 
                      {
                         block === 'studentHash' ?
-                           <Link to={`/studentProfile/${info?.id}`}>
+                           <Link to={`/studentProfile/${info?.id}`}
+                              onClick={() => {
+                                 setNavbarP(info?.id)
+                              }}
+                           >
                               {info?.name}
                            </Link>
                            :
-                           <Link to={`/teacherProfile/${info?.Id}`}>
+                           <Link to={`/teacherProfile/${info?.Id}`}
+                              onClick={() => {
+                                 setNavbarP(info?.id)
+                              }}
+                           >
                               {info?.name}
                            </Link>
 
@@ -62,7 +72,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                                  <h4 key={block} className={`${block}`} style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                               {
                                  info?.groups?.map(el =>
-                                    <span className="stuentGrWr"><span className="studentGr">{el?.name}</span>({el?.teacher} - {el?.time})</span>
+                                    <span className="stuentGrWr" key={el?.name}><span className="studentGr">{el?.name}</span>({el?.teacher} - {el?.time})</span>
                                     )
                               }
                                  </h4>
@@ -105,7 +115,11 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                   </h4>
                </> :
 
-               <Link to={`/groups/groupsProfil/${info?.id}`}>
+               <Link to={`/groups/groupsProfil/${info?.id}`}
+                 onClick={() => {
+                    setNavbarP(info?.id)
+                 }}
+               >
                   <h4 className={`${block}`}>{index}</h4>
                   <h4 className={`${block}`}>{info?.name}</h4>
                   <h4 className={`${block}`}>{info?.teacher}</h4>

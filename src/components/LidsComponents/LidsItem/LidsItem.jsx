@@ -5,6 +5,8 @@ import MenuIcon from '../../../assets/Icons/menu.svg'
 import Edit from '../../../assets/Icons/edit.svg'
 import Delete from '../../../assets/Icons/delete.svg'
 import { useEffect, useRef } from 'react'
+import LidsEdit from '../../../containers/Forms/LidEdit/LidEdit';
+import { Drawer } from 'antd';
 
 const LidsItem = ({ item, index }) => {
    const [menu, setMenu] = useState()
@@ -35,6 +37,13 @@ const LidsItem = ({ item, index }) => {
 
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
+
+   const [openEdit, setOpenEdit] = useState()
+
+   const closeEdit = () => {
+     setOpenEdit(false)
+   }
+
    return (
       <Draggable
          key={item.id}
@@ -59,19 +68,31 @@ const LidsItem = ({ item, index }) => {
                   }}
                >
                   <div className="lidList-inner-user">
-                     <span className='span'>{item.userName} / {item.userNumber}</span>
+                     <Drawer
+                        placement="right"
+                        closable={false}
+                        onClose={closeEdit}
+                        visible={openEdit}
+                     >
+                        <LidsEdit
+                           setEdit={setOpenEdit}
+                           edit={openEdit}
+
+                        />
+                     </Drawer>
+                     <span className='span'>{item.name} / {item.phone}</span>
                      <div className="menuWrapper" >
                         <button className="lidList-inner-user-button" onClick={() => setMenu(!menu)}><img src={MenuIcon} alt="" /></button>
                         <div className={`boxmenu ${menu ? 'active' : ''}`} ref={wrapperRef}>
                            <span onClick={() => {
                               setMenu(false)
-                              // setEdit(true)
+                              setOpenEdit(true)
                            }}><img src={Edit} alt="" /> Tahrirlash</span>
                            <span><img src={Delete} alt="" /> O’chirish</span>
                         </div>
                      </div>
-                     <span className={`lidList-inner-comment ${item?.userComment ? 'hasComment' : ''}`}>
-                        {item.userComment}
+                     <span className={`lidList-inner-comment ${item?.comment ? 'hasComment' : ''}`}>
+                        {item.comment}
                      </span>
                   </div>
                </div>

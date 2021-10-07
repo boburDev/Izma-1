@@ -24,15 +24,16 @@ import { SnackbarProvider } from 'notistack'
 import { DayDividerProvider } from './context/DayDividerProvider'
 import { LangProvider } from './context/LanguageProvider'
 import { NameProvider } from './context/NameProvider'
+import { NavbarProvider } from './context/NavbarProvider'
 import Slide from '@material-ui/core/Slide'
 
 const isTester = true
 // http://api.al-azhar.uz/api/graphql
 
-// const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
-// const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
-const api = `https://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
-const wssApi = `wss://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
+const api = `http://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+const wssApi = `ws://${isTester ? 'localhost:4000' : '159.65.235.181'}/graphql`
+// const api = `https://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
+// const wssApi = `wss://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
 // console.log(api, wssApi)
 
 
@@ -112,7 +113,9 @@ const Main = () => {
 															<DayDividerProvider>
 																<LangProvider>
 																	<NameProvider>
-																	  <App />
+																		<NavbarProvider>
+																	    <App />
+																		</NavbarProvider>
 																	</NameProvider>
 																</LangProvider>
 															</DayDividerProvider>

@@ -2,7 +2,7 @@ import './DropSearch.scss'
 import { useEffect, useRef } from 'react'
 import Arrow from '../../assets/Icons/arrow_im.svg'
 
-const DropSearch = ({ arr, pInput, fnc }) => {
+const DropSearch = ({ arr, pInput, fnc, notReq }) => {
    const input = useRef()
    const browsers = useRef()
    const arrow = useRef()
@@ -10,6 +10,9 @@ const DropSearch = ({ arr, pInput, fnc }) => {
 
 
    useEffect(() => {
+      arrow.current.classList.remove('active')
+      browsers.current.style.display = 'none';
+      input.current.style.borderRadius = "5px";
 
       arrow.current.addEventListener('click', () => {
          if (arrow.current.className === 'dropSearchArrow active') {
@@ -56,7 +59,7 @@ const DropSearch = ({ arr, pInput, fnc }) => {
          currentFocus = -1;
          var text = input.current.value.toUpperCase();
          for (let option of browsers.current.childNodes) {
-            if (option.value.toUpperCase().indexOf(text) > -1) {
+            if (option.dataset.name.toUpperCase().indexOf(text) > -1) {
                option.style.display = "block";
             } else {
                option.style.display = "none";
@@ -96,22 +99,55 @@ const DropSearch = ({ arr, pInput, fnc }) => {
       }
    }, [arr])
 
+   const useOutsideAlerter = (ref) => {
+      useEffect(() => {
+         function handleClickOutside(event) {
+            let coun = 0
+            event.path && event.path.map(el => {
+               if (el.className === 'dropSearch') {
+                  coun++
+               }
+               return ''
+            })
+
+
+            if (coun === 0) {
+               arrow.current.classList.remove('active')
+               browsers.current.style.display = 'none';
+               input.current.style.borderRadius = "5px";
+            }
+
+         }
+         document.addEventListener("mousedown", handleClickOutside);
+
+         return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+         };
+      }, [ref])
+   }
+
+
+
+  
+   const wrapperRef = useRef(null);
+   useOutsideAlerter(wrapperRef);
+
 
    return (
-      <div className="dropSearch">
+      <div className="dropSearch" ref={wrapperRef}>
          <div className="inputWrapper">
             <input autoComplete="off" list="" name="browsers" placeholder={pInput} className="dropSearchInput"
                ref={input}
-               required
+               required={notReq ? false : true}
             />
-            <span ref={arrow} className="dropSearchArrow"><img src={Arrow} alt=""
+            <span ref={arrow} className="dropSearchArrow" ><img src={Arrow} alt=""
 
             /></span>
          </div>
-         <datalist className="dropSearchDatalist" ref={browsers}>
+         <div className="dropSearchDatalist" ref={browsers}>
             {
                arr && arr.map((z, i) => (
-                  <option
+                  <span
                   
                      onClick={(e) => {
                         if (e.target.className === 'selected') {
@@ -120,10 +156,10 @@ const DropSearch = ({ arr, pInput, fnc }) => {
                            fnc(z)
                         }
                      }}
-                     key={i} value={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</option>
+                     key={i} data-name={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
                ))
             }
-         </datalist>
+         </div>
       </div>
    )
 }

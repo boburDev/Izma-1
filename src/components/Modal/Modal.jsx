@@ -42,7 +42,10 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                   <span></span>
                </div>
             </div>
-            <form className="myModal-inner-form" id="modalForm"onSubmit={e => e.preventDefault()}>
+            <form className="myModal-inner-form" id="modalForm"onSubmit={e => {
+               e.preventDefault()
+               document.getElementById('modalForm').reset()
+               }}>
                {
                   block === 'addComment' ?
                      <>
@@ -57,7 +60,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                            block === 'roomEdit' ?
                               <>
                                  <label className='myModal-inner-form-label'>Xonani nomi</label>
-                                 <input type="text" defaultValue={info && info} onKeyUp={(e) => setInfo(e.target.value)} />
+                                 <input autoComplete="off"  type="text" defaultValue={info && info} onKeyUp={(e) => setInfo(e.target.value)} />
                                  <div className="buttonWrapper">
                                     <button onClick={uptRoom}>Saqlash</button>
                                  </div>
@@ -67,7 +70,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                     block === 'roomAdd' ?
                                        <>
                                           <label className='myModal-inner-form-label'>Xona nomi</label>
-                                          <input type="text" onKeyUp={(e) => setInfo(e.target.value)} />
+                                          <input autoComplete="off"  type="text" onKeyUp={(e) => setInfo(e.target.value)} />
                                           <div className="buttonWrapper">
                                              <button onClick={submitOK}>Yaratish</button>
                                           </div>

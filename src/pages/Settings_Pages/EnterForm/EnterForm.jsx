@@ -44,7 +44,9 @@ const EnterForm = () => {
                                  </div>
 
                                  {/* <form onSubmit={submitLogin} action=""> */}
-                                 <form action="">
+                                 <form id="enterFormRes" action="" onSubmit={() => {
+                                    document.getElementById('enterFormRes').reset()
+                                 }}>
                                     <label htmlFor="">Telefon *</label>
                                     <PhoneNumberInput
                                        setPhone={setPhone}

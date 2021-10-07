@@ -60,18 +60,18 @@ const AddMission = () => {
                         </div>
                         <div className="misson_middle">
                            {
-                              activeBlock === 'one' ? <input type="text" defaultValue="Uzun Javob Kiriting" name="" id="" /> :
-                                 activeBlock === 'two' ? <input type="text" defaultValue="Qisqa Javob Kiriting" name="" id="" /> :
+                              activeBlock === 'one' ? <input autoComplete="off"  type="text" defaultValue="Uzun Javob Kiriting" name="" id="" /> :
+                                 activeBlock === 'two' ? <input autoComplete="off"  type="text" defaultValue="Qisqa Javob Kiriting" name="" id="" /> :
                                     activeBlock === 'thre' ?
 
                                        <div>
-                                          <input className="main_ans" type="text" defaultValue="Bitta variant tanlash" name="" id="" />
+                                          <input autoComplete="off"  className="main_ans" type="text" defaultValue="Bitta variant tanlash" name="" id="" />
 
                                           <div className="answers">
 
                                              {
                                                 answer.map((item, i) => (
-                                                   <input key={i} className="answer" defaultValue="Javob 1" type="text" name="" id="" />
+                                                   <input autoComplete="off"  key={i} className="answer" defaultValue="Javob 1" type="text" name="" id="" />
                                                 ))
                                              }
 
@@ -86,13 +86,13 @@ const AddMission = () => {
                                        :
                                        activeBlock === 'four' ?
                                           <div>
-                                             <input className="main_ans" type="text" defaultValue="Ochiladigan ro’yxat" name="" id="" />
+                                             <input autoComplete="off"  className="main_ans" type="text" defaultValue="Ochiladigan ro’yxat" name="" id="" />
 
                                              <div className="answers">
 
                                                 {
                                                    answer.map((item, i) => (
-                                                      <input key={i} className="answer" defaultValue="Javob 1" type="text" name="" id="" />
+                                                      <input autoComplete="off"  key={i} className="answer" defaultValue="Javob 1" type="text" name="" id="" />
                                                    ))
                                                 }
 
@@ -111,7 +111,7 @@ const AddMission = () => {
 
                         </div>
                         <div className="mission_bottom">
-                           <input type="checkbox" name="" id="" />
+                           <input autoComplete="off"  type="checkbox" name="" id="" />
                            <label htmlFor="">Shart</label>
                         </div>
                      </div>

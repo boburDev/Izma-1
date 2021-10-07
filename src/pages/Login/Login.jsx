@@ -40,6 +40,8 @@ const Login = () => {
       login({
          variables: data
       })
+
+      document.getElementById('loginFormRes').reset()
    }
 
    if (token.token) window.location.assign('/')
@@ -83,7 +85,7 @@ const Login = () => {
                            </div>
                         </div>
 
-                        <form onSubmit={submitLogin} action="">
+                        <form id="loginFormRes" onSubmit={submitLogin} action="">
                            <label htmlFor="">{language.phone} *</label>
                            <PhoneNumberInput
                               setPhone={setPhone}

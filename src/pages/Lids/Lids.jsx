@@ -46,6 +46,8 @@ import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 
 console.log(LidsBoxes)
 
+console.log(LidsBoxes)
+
 const Lids = () => {
    
    const [check] = useLazyQuery(CHECK_BOX_MINUS)

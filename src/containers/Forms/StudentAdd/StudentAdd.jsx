@@ -5,8 +5,8 @@ import Plus from '../../../assets/Icons/plus.png'
 import Minus from '../../../assets/Icons/minus.png'
 import { DatePicker } from 'antd';
 import 'antd/dist/antd.css'
-import { ADD_NEW_STUDENTS, GROUPS, NEW_CASH, test } from '../../../Querys/Students_Query';
-import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
+import { ADD_NEW_STUDENTS, GROUPS, NEW_CASH } from '../../../Querys/Students_Query';
+import { useMutation, useQuery } from '@apollo/client';
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
 import DropSearch from '../../../components/DropSearch/DropSearch';
 import PasswordInput from '../../../components/PasswordInput/PasswordInput'
@@ -107,14 +107,6 @@ const StudentAdd = ({ onCloseF }) => {
 
    const { data: dataGroups } = useQuery(GROUPS, { variables: { teacherID: [], courseID: [] } })
 
-   const [testing] = useLazyQuery(test)
-
-
-   useEffect(() => {
-
-      testing({ variables: {test: 'test'}})
-      console.log('okay')
-   }, [testing])
 
    // useEffect(() => {
    //    if (dataGroups && dataGroups.groups) {

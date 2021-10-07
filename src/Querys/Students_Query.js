@@ -173,14 +173,6 @@ const NEW_CASH = gql `
   }
 `
 
-const test = gql `
-query studentCashsh($test: String) {
-  studentCashsh (sss: $test){
-    id
-  }
-}
-`
-
 export {
    ADD_NEW_STUDENTS,
    ADD_NEW_STUDENTS_GROUP,
@@ -188,6 +180,4 @@ export {
    UPDATE_STUDENT,
    GROUPS,
    NEW_CASH,
-   test
-
 }

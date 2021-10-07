@@ -1,6 +1,6 @@
 import './SalaryUpTable.scss'
-import { CHECK_TEACHER, TEACHER_SALARY_TYPE } from '../SalaryUp/query'
-import { useQuery } from '@apollo/client'
+import { CHECK_TEACHER, TEACHER_SALARY_TYPE, SUBSCRIP_SALARY } from '../SalaryUp/query'
+import { useQuery, useSubscription } from '@apollo/client'
 import { useEffect, useState } from 'react'
 
 
@@ -12,6 +12,15 @@ const SalaryUpTable = (props) => {
    const {data: teachSalary} = useQuery(TEACHER_SALARY_TYPE)
    const {data: checkSumm} = useQuery(CHECK_TEACHER, {variables: {text: 'text'}})
 
+   useSubscription(SUBSCRIP_SALARY, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               colleguagesSalary: () => { }
+            }
+         })
+      },
+   })
 
    useEffect(() => {
       if (teachSalary?.colleguagesSalary && checkSumm?.checksCollegues) {

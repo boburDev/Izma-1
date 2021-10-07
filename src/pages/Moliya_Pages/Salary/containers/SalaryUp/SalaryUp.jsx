@@ -30,8 +30,8 @@ const SalaryUp = () => {
       function updateFixedSalary() {
 
          setSalaryForAll({variables: {
-            salary: salary - 0,
-            type: salaryType - 0
+            salary: salary - 0 || infoo?.amount,
+            type: salaryType - 0 || infoo?.amount
          }})
 
       }

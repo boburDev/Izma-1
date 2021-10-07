@@ -27,7 +27,7 @@ import { NameProvider } from './context/NameProvider'
 import { NavbarProvider } from './context/NavbarProvider'
 import Slide from '@material-ui/core/Slide'
 
-const isTester = true
+// const isTester = true
 // http://api.al-azhar.uz/api/graphql
 
 const api = `http://localhost:4000/graphql`

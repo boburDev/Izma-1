@@ -50,11 +50,21 @@ const CHECK_TEACHER = gql `
   }
 `
 
+const SUBSCRIP_SALARY = gql `
+  subscription {
+    salary{
+      amount
+      type
+    }
+  }
+`
+
 
 export {
     COLLEGUES,
     CREATE_SALARY,
     CHECK_TEACHER,
     TEACHER_SALARY_TYPE,
-    CREATE_SALARY_FOR_ALL
+    CREATE_SALARY_FOR_ALL,
+    SUBSCRIP_SALARY
 }

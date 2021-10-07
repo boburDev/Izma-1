@@ -38,9 +38,11 @@ const ru = {
             groupDebpt: 'Долг в группе'
         },
         journals: {
+            title: 'Журналы',
             courseStarted: 'Курс открыт:'
         },
         tabels: {
+            title: 'Таблица',
             oddDays: 'Нечетные дни ',
             evenDays: 'Несколько дней ',
             weekends: 'Выходные',
@@ -55,16 +57,19 @@ const ru = {
         search: {
             searchHolder: 'Поиск по имени или номеру телефона'
         },
+        studentCreated: {
+            title: 'Студент создан'
+        },
         addNewStudent: {
             addStudent: 'Добавить новое'
         },
         abtCourse: {
-            debt: 'Qarzdorlar',
-            discount: 'Chegirmalar'
+            debt: 'Должники',
+            discount: 'Скидки'
         },
         id: {
             fullName: 'Ф.И.О',
-            phoneNumber: 'Telefon',
+            phoneNumber: 'Телефон',
             groupNames: 'Группы'
         },
         studentInfoTitle: {
@@ -94,7 +99,8 @@ const ru = {
             debt: 'Долг',
             credit: 'Кредит',
             comment: 'Примечание',
-            employee: 'Работник'
+            employee: 'Работник',
+            successfullyPayment: 'Аккаунт пополнен'
         },
         background: {
             data: 'Нет данных',
@@ -107,6 +113,7 @@ const ru = {
             phoneNumber: 'Номер телефона',
             fullName: 'Ф.И.О',
             birthday: 'Дата рождения',
+            genderTitle: 'Пол',
             gender: ['Мужской ', 'Женский'],
             comment: 'Примечание',
             secondaryPhone: 'Дополнительный телефон',

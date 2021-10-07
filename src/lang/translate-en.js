@@ -54,12 +54,15 @@ const en = {
         search: {
             searchHolder: 'Search by name or phone number'
         },
+        studentCreated: {
+            title: 'Student created'
+        },
         addNewStudent: {
             addStudent: 'Add new'
         },
         abtCourse: {
-            debt: 'Qarzdorlar',
-            discount: 'Chegirmalar'
+            debt: 'Debtors',
+            discount: 'Discounts'
         },
         id: {
             fullName: 'F.I.O.',
@@ -93,7 +96,8 @@ const en = {
             debt: 'Debt',
             credit: 'Credit',
             comment: 'Note',
-            employee: 'Employee'
+            employee: 'Employee',
+            successfullyPayment: 'Account replenished'
         },
         background: {
             data: 'No data',
@@ -106,6 +110,7 @@ const en = {
             phoneNumber: 'Phone number',
             fullName: 'F.I.O',
             birthday: 'Date of birth',
+            genderTitle: 'Gender',
             gender: ['Male ', 'Female'],
             comment: 'Note',
             secondaryPhone: 'Secondary telephone',

@@ -11,7 +11,7 @@ const StudentsProfileHistory = () => {
                <div className="izma__students-history-right-tabs-fourth-items-up">
                   <div className="izma__students-history-right-tabs-fourth-items-up-left">
                      <h4 className="izma__students-history-right-tabs-fourth-items-up-left-heading">
-                        Hisob to'ldirildi
+                        {}
                      </h4>
                   </div>
                   <div className="izma__students-history-right-tabs-fourth-items-up-right">

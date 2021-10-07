@@ -54,6 +54,9 @@ const uz = {
         search: {
             searchHolder: 'Ism yoki telefon raqam orqali qidirish'
         },
+        studentCreated: {
+            title: 'O`quvchi yaratildi'
+        },
         addNewStudent: {
             addStudent: 'Yangi o\'quvchi qo\'shish'
         },
@@ -93,7 +96,8 @@ const uz = {
             debt: 'Qarz',
             credit: 'Kredit',
             comment: 'Izoh',
-            employee: 'Xodim'
+            employee: 'Xodim',
+            successfullyPayment: 'Hisob to\'ldirildi'
         },
         background: {
             data: 'Ma\'lumotlar yo\'q',
@@ -106,6 +110,7 @@ const uz = {
             phoneNumber: 'Telefon raqam',
             fullName: 'F.I.O',
             birthday: 'Tug\'ilgan sana',
+            genderTitle: 'Jinsi',
             gender: ['Erkak', 'Ayol'],
             comment: 'Izoh',
             secondaryPhone: 'Ikkilamchi telefon',

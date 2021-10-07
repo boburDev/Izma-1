@@ -87,9 +87,16 @@ const SUBCRIP_BOXES = gql `
     }
 `
 
+const CHECK_BOX_MINUS = gql `
+    query checkBox($check: String){
+        checkBox(check: $check)
+    }
+`
+
 export {
     ALL_BOX,
     NEW_BOX,
+    CHECK_BOX_MINUS,
     UPDATE_BOX,
     DELETE_BOX,
     SUBCRIP_BOXES

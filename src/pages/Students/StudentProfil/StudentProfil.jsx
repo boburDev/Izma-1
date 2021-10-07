@@ -10,16 +10,29 @@ import { useState } from 'react'
 import { useLoader } from '../../../context/Loader'
 import Loader from '../../../components/Loader/Loader'
 import { useName1 } from '../../../context/NameProvider'
+import { Modal } from 'antd'
+import Check from '../../../components/Check/Check'
+import { useCheck } from '../../../context/CheckProvider'
 
 const StudentProfile = ({ role }) => {
    const [peopleName] = useName1()
    const [toggleState, setToggleState] = useState(1);
    const [loading] = useLoader()
-
+   const [checkOpen] = useCheck()
    const toggleTab = (index) => {
       setToggleState(index);
    };
 
+   
+   const [, setIsModalVisibleY] = useState(false)
+
+   const handleOkY = () => {
+      setIsModalVisibleY(false)
+   }
+
+   const handleCancelY = () => {
+      setIsModalVisibleY(false)
+   }
 
    return (
       <>
@@ -101,7 +114,14 @@ const StudentProfile = ({ role }) => {
 
                   </div>
 
-
+                  <div>
+                     <Modal className="check-modal" footer={null} visible={checkOpen && checkOpen.check} onOk={handleOkY} onCancel={handleCancelY}>
+                        <Check
+                           handleCancelY={handleCancelY}
+                           handleOkY={handleOkY}
+                        />
+                     </Modal>
+                  </div>
 
                </div>
             </div>

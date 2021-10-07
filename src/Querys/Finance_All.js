@@ -15,14 +15,16 @@ query financeStudentsFilter($startDate: String, $endDate: String){
 
 const FINANCE_STUDENT_TABLE = gql`
 {
-    financeStudentsList {
-      id
-      phone
-      studentName
-      typePayment
-      amount
-      comment
-    }
+  financeStudentsList {
+    id
+    phone
+    studentName
+    typePayment
+    amount
+    comment
+    payed_at
+    payed_time
+  }
 }
 `
 

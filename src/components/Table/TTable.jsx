@@ -126,7 +126,7 @@ const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId, setInfo, openM
             </> : block === "paymentHistory" ? <>
                <div className="table-header">
                                  <h4 className={'paymentHistory'}>Yozib olingan sana</h4>
-                                 <h4 className={'paymentHistory'}>To'lov usuli</h4>
+                                 <h4 className={'paymentHistory'} style={{width: '150px'}}>To'lov usuli</h4>
                                  <h4 className={'paymentHistory'}>Sana</h4>
                                  <h4 className={'paymentHistory'}>Debit</h4>
                                  <h4 className={'paymentHistory'}>Credit</h4>

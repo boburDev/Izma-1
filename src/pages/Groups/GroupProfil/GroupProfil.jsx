@@ -9,11 +9,14 @@ import GroupProfilLeft from '../containers/GroupProfilLeft/GroupProfilLeft'
 import { BY_GROUP_ID } from '../../../Querys/GroupTabs'
 import { useEffect } from 'react';
 import Loader from '../../../components/Loader/Loader';
+import { Modal } from 'antd';
+import { useCheck } from '../../../context/CheckProvider';
+import Check from '../../../components/Check/Check';
 
 const GroupProfil = () => {
    const [dataHead, setDataHead] = useState({})
    const { groupID } = useParams()
-
+   const [checkOpen] = useCheck()
    const { data, loading } = useQuery(BY_GROUP_ID, {
       variables: { groupID }
    })
@@ -25,6 +28,17 @@ const GroupProfil = () => {
          setDataHead(data.byGroupID)
       }
    }, [data])
+
+   
+   const [, setIsModalVisibleY] = useState(false)
+
+   const handleOkY = () => {
+      setIsModalVisibleY(false)
+   }
+
+   const handleCancelY = () => {
+      setIsModalVisibleY(false)
+   }
 
    return (
       <>
@@ -44,6 +58,15 @@ const GroupProfil = () => {
                   <GroupProfilRight studentsData={students} />
                </div>
             </div>
+
+            <div>
+                     <Modal className="check-modal" footer={null} visible={checkOpen && checkOpen.check} onOk={handleOkY} onCancel={handleCancelY}>
+                        <Check
+                           handleCancelY={handleCancelY}
+                           handleOkY={handleOkY}
+                        />
+                     </Modal>
+                  </div>
          </div>
       </>
    )

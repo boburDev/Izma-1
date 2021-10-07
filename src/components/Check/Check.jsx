@@ -5,8 +5,12 @@ import { useEffect, useState, useRef } from 'react'
 import Logo from '../../assets/Icons/Sertifikat.png'
 import { useCheck } from '../../context/CheckProvider'
 // <<<<<<< HEAD
+// <<<<<<< HEAD
 import { useLang } from '../../context/LanguageProvider'
 import Language from '../../lang/index'
+// =======
+// import moment from 'moment'
+// >>>>>>> c04b809d7707571f9b5ab2be88f56b5b67741ffc
 // =======
 import moment from 'moment'
 // >>>>>>> c04b809d7707571f9b5ab2be88f56b5b67741ffc

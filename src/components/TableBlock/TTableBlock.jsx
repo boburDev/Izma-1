@@ -68,7 +68,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                </h4>
             </> : block === 'financeHash' ? <>
                      <h4 className={'financeHash'}>{info?.studentName}</h4>
-                     <h4 className={'financeHash'}>{info?.phone}</h4>
+                     <h4 className={'financeHash'}>{info?.payed_time}</h4>
                      <h4 className={'financeHash'}>{info?.typePayment}</h4>
                      <h4 className={'financeHash'}>{info?.amount}</h4>
                      <h4 className={'financeHash'}>{info?.comment}</h4>
@@ -90,7 +90,9 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                            <h4 className={'financeGroupHash'}>{info?.price * info?.stCount}</h4>
             </> : block === 'paymentHistory' ? <>
                               <h4 className={'paymentHistory'}>{moment(info?.createdAt-0).format('YYYY-MM-DD, HH:MM')}</h4>
-                              <h4 className={'paymentHistory'}>{info?.paymentType}</h4>
+                              <h4 className={'paymentHistory'} style={{width: '150px'}}>{
+                              info?.paymentType === 1 ? 'Naqt pul' :
+                              info?.paymentType === 2 ? 'UZCARD' : 'Bank hisobi'}</h4>
                               <h4 className={'paymentHistory'}>{info?.payed_at}</h4>
                               <h4 className={'paymentHistory'}>{info?.debit}</h4>
                               <h4 className={'paymentHistory'}>{info?.credit}</h4>

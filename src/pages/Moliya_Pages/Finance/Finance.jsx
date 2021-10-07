@@ -27,6 +27,8 @@ const Finance = () => {
       variables: Object.keys(dateFilterValue).length ? dateFilterValue : dateFilterDefaultData
   })
 
+  console.log(financeStudent)
+
   useEffect(()=>{
       if (financeStudent && financeStudent.financeStudents) {
          setAmount(financeStudent && financeStudent.financeStudents)

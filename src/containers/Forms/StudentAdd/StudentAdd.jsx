@@ -107,6 +107,7 @@ const StudentAdd = ({ onCloseF }) => {
 
    const { data: dataGroups } = useQuery(GROUPS, { variables: { teacherID: [], courseID: [] } })
 
+
    // useEffect(() => {
    //    if (dataGroups && dataGroups.groups) {
    //       const guruh = dataGroups.groups.map(item => {

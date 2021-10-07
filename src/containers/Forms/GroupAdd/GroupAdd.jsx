@@ -31,7 +31,6 @@ const GroupAdd = ({ onClose }) => {
    const [createGroup] = useMutation(CREATE_GROUP)
 
    const handleGroup = (e) => {
-      e.preventDefault()
       const data = {
          name,
          courseID: courseID.id,

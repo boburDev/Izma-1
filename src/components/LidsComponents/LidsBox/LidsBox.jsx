@@ -55,7 +55,6 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
 
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
-console.log(column);
 
    return (
       <Droppable droppableId={columnId} key={columnId}>
@@ -97,7 +96,7 @@ console.log(column);
                         }}
                      >
                         <div className="lidItem-top-left">
-                           <h2>{column.name}</h2>
+                           <h2>{column.boxName}</h2>
                         </div>
                         <div className="lidItem-top-right">
                            <button onClick={() => setActive(!active)} className={`arrow ${active ? 'active' : ''}`}><img src={Arrow} alt="" /></button>
@@ -106,7 +105,7 @@ console.log(column);
                               <span
                                  onClick={() => {
                                     setMenu(false)
-                                    setDefaultInfo(column?.name)
+                                    setDefaultInfo(column?.boxName)
                                     setOpenEdit(true)
                                  }}
                               ><img src={Edit} alt=""/>Tahrirlash</span>

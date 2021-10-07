@@ -38,6 +38,7 @@ import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/
 import Check from '../../../../components/Check/Check'
 import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
 import { useDavomat } from '../../../../context/DavomatProvider'
+import moment from 'moment'
 const GroupProfilLeft = (prop) => {
    const [setGroupStudents] = useDavomat(true)
    const [dayDivide, setDayDivide] = useDayDivider()
@@ -525,12 +526,18 @@ const GroupProfilLeft = (prop) => {
             </div>
             <div className="form_group">
                <label>Sanadan boshlab</label>
+               {
+                  console.log(groups.byGroupID.endDate)
+               }
                <DatePicker
                   className='date__picker'
                   onChange={(value, dateString) => setStartedDate(dateString)}
                   placeholder={"Kun-Oy-Yil"}
-                  //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                   format={"DD-MM-YYYY"}
+                  disabledDate={(current) => {
+                     let customDate = groups.byGroupID.endDate
+                     return current && current < moment(customDate, "DD-MM-YYYY")
+                  }}
                />
                {hasStud && hasStud.hasStudent && <>Siz tanlagan o'quvchi guruhga qo'shilgan</>}
             </div>
@@ -554,6 +561,7 @@ const GroupProfilLeft = (prop) => {
                onClose={closeFinanceDrawer}
                showCheck={showCheck}
                studenID={idName}
+               groupID={groupID}
             />
          </Drawer>
 

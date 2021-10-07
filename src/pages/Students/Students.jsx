@@ -7,10 +7,13 @@ import StudentAdd from '../../containers/Forms/StudentAdd/StudentAdd'
 import { Drawer } from 'antd';
 import { useLoader } from '../../context/Loader'
 import Loader from '../../components/Loader/Loader'
+import { useLang } from '../../context/LanguageProvider'
+import Language from '../../lang/index'
 
 const Students = () => {
    const [search, setSearch] = useState()
    const [loading] = useLoader()
+   const [lang] = useLang()
 
    const [visibleF, setVisibleF] = useState(false);
    const showDrawerF = () => {
@@ -31,14 +34,14 @@ const Students = () => {
          <div className="izma__students-content-wrapper">
             <div className="izma__students-content-up">
                <h2 className="izma__students-content-heading">
-                  Talabalar
+                  {Language[lang].students.title.pageTitle}
                </h2>
 
                <div className="ds">
                   <button className='izma__students-content-button' 
                      onClick={() => showDrawerF()}
                   >
-                     Yangisini qo’shish
+                     {Language[lang].students.addNewStudent.addStudent}
                   </button>
                </div>
 
@@ -47,7 +50,7 @@ const Students = () => {
             <input
                   autoComplete="off"
                className='izma__students-content-input'
-               placeholder="Ism yoki telefon orqali qidirish"
+               placeholder={Language[lang].students.search.searchHolder}
                type="text"
                onChange={e => setSearch(e.target.value)}
             />

@@ -7,7 +7,7 @@ import { useLang } from '../../../../context/LanguageProvider'
 const Grafig = () =>{
    const [lang] = useLang()
    const language = Language[lang].home
-   console.log(language.graph2)
+
    return(
       <div className="grafig">
          <HomeGrafig1 lang={language.graph1}/>

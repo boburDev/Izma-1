@@ -11,10 +11,13 @@ import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberIn
 import DropSearch from '../../../components/DropSearch/DropSearch';
 import PasswordInput from '../../../components/PasswordInput/PasswordInput'
 import { useSnackbar } from 'notistack';
-
+import Language from '../../../lang/index'
+import { useLang } from '../../../context/LanguageProvider'
 
 
 const StudentAdd = ({ onCloseF }) => {
+
+   const [lang] = useLang();
 
    const [fieldInput, setInputField] = useState([
       {
@@ -124,7 +127,7 @@ const StudentAdd = ({ onCloseF }) => {
    const { enqueueSnackbar } = useSnackbar();
 
    const handleClick = () => {
-      const message = 'O`quvchi yaratildi'
+      const message = Language[lang].students.studentCreated.title
       enqueueSnackbar(message, {
          variant: 'success',
       });
@@ -135,7 +138,7 @@ const StudentAdd = ({ onCloseF }) => {
    return (
       <div className="form-wrapper">
          <div className="top-place">
-            <h1 className="place-name">Yangi foydalanuvchi qo’shish</h1>
+            <h1 className="place-name">{Language[lang].students.addNewStudent.addStudent}</h1>
             <button className="x-btn" onClick={onCloseF} >
                <img src={CloceBtn} alt="img" />
             </button>
@@ -166,17 +169,17 @@ const StudentAdd = ({ onCloseF }) => {
             document.getElementById('studentFormRes').reset()
          }} id="studentFormRes">
             <div className="form-input">
-               <label htmlFor="">Telefon</label>
+               <label htmlFor="">{Language[lang].students.editStudentInfo.phoneNumber}</label>
                <PhoneNumberInput setPhone={setStPhoneNum} />
 
             </div>
 
             <div className="form-input">
-               <label htmlFor="name">Ism</label>
+               <label htmlFor="name">{Language[lang].students.id.fullName}</label>
                <input autoComplete="off"  type="text" name="" id="name" className="new-input" onChange={e => setStName(e.target.value)} required />
             </div>
             <div className="form_group" id='sty'>
-               <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
+               <label htmlFor="date" className="form_label">{Language[lang].students.editStudentInfo.birthday}</label>
 
                <DatePicker
                   className='date__picker lid-edit-date'
@@ -188,22 +191,22 @@ const StudentAdd = ({ onCloseF }) => {
                />
             </div>
             <div className="form-input">
-               <label htmlFor="date">Jinsi</label>
+               <label htmlFor="date">{Language[lang].students.editStudentInfo.genderTitle}</label>
                <div className="genders">
                   <div className="gen_one">
                      <input autoComplete="off"  value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
                      <label htmlFor="men"></label>
-                     <span>Erkak</span>
+                     <span>{Language[lang].students.editStudentInfo.gender[0]}</span>
                   </div>
                   <div className="gen_one">
                      <input autoComplete="off"  value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
                      <label htmlFor="women"></label>
-                     <span>Ayol</span>
+                     <span>{Language[lang].students.editStudentInfo.gender[1]}</span>
                   </div>
                </div>
             </div>
             <div className="form-input">
-               <label htmlFor="group">Guruhni tanlang</label>
+               <label htmlFor="group">{Language[lang].students.addNewStudentTitle.selectGroup}</label>
                <DropSearch
                   arr={dataGroups && dataGroups.groups}
                   pInput={'Variantlarni tanlang'}
@@ -212,7 +215,7 @@ const StudentAdd = ({ onCloseF }) => {
                />
             </div>
             <div className="form-input">
-               <label htmlFor="group">Komment</label>
+               <label htmlFor="group">{Language[lang].students.addNewStudentTitle.comment}</label>
                <textarea className="comment" name="" id="" cols="30" rows="10" onChange={e => setStTextInfo(e.target.value)}></textarea>
             </div>
 
@@ -221,7 +224,7 @@ const StudentAdd = ({ onCloseF }) => {
                   fieldInput.map((item, index) => (
                      <div className="form-input" key={index}>
                         <div className="buttosn">
-                           <label htmlFor="">Ikkilamchi Telefon</label>
+                           <label htmlFor="">{Language[lang].students.addNewStudentTitle.secondaryPhone}</label>
                            <div className="bla-bla">
                               <button
                                  type="button"
@@ -253,7 +256,7 @@ const StudentAdd = ({ onCloseF }) => {
                   fieldParents.map((item, index) => (
                      <div className="form-inpun" key={index}>
                         <div className="buttosn">
-                           <label htmlFor="">Ota-onalar telefoni</label>
+                           <label htmlFor="">{Language[lang].students.addNewStudentTitle.parentPhoneNumber}</label>
                            <div className="bla-bla">
                               <button
                                  className={`remadd_btnTwo aloneTwo ${fieldParents.length === 1 ? 'active' : ' '}`}
@@ -273,7 +276,7 @@ const StudentAdd = ({ onCloseF }) => {
             </div>
 
             <div className="form-input alone">
-               <label htmlFor="">Telegram user name</label>
+               <label htmlFor="">{Language[lang].students.addNewStudentTitle.telegramUsername}</label>
                <div className="numberTwo">
                   <span>@</span>
                   <input   type="text" name="" autoComplete="off" className="user_name" onChange={e => setStTg('@' + e.target.value)} />
@@ -281,7 +284,7 @@ const StudentAdd = ({ onCloseF }) => {
             </div>
 
             <div className="form-input">
-               <label htmlFor="">Parol</label>
+               <label htmlFor="">{Language[lang].students.addNewStudentTitle.password}</label>
                <PasswordInput setPassword={setStPassword} />
             </div>
 
@@ -289,7 +292,7 @@ const StudentAdd = ({ onCloseF }) => {
                (stName && stGender) && onCloseF()
                handleClick()
 
-            }}>Yarating</button>
+            }}>{Language[lang].students.addNewStudentTitle.save}</button>
          </form>
       </div>
    )

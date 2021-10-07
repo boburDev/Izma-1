@@ -5,6 +5,8 @@ import { useState } from 'react';
 import './Teachers.scss'
 import Loader from '../../components/Loader/Loader';
 import { useLoader } from '../../context/Loader';
+import Language from '../../lang/index'
+import { useLang } from '../../context/LanguageProvider'
 
 const Teachers = () => {
    const [loading] = useLoader()
@@ -16,6 +18,11 @@ const Teachers = () => {
    const onClose = () => {
       setVisible(false);
    };
+
+   const [lang] = useLang();
+
+   console.log(Language[lang].teachers)
+
    return (
       <div className="izma__teachers-content">
          {

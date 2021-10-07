@@ -70,7 +70,7 @@
       background: #090761;
    }
 
-   span {
+   option {
       width: 100%;
       display: block;
       cursor: pointer;
@@ -121,7 +121,7 @@
       }
    }
 
-   span:hover,
+   option:hover,
    .active {
       background-color: #40B682;
       color: white;

@@ -7,21 +7,21 @@ import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX, NEW_BOX, UPDATE_BOX, DELETE_BO
 import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
-const itemsBackend = [
-   { id: 'asdgag', userName: 'Ikkinchi block' },
-   { id: 'asdgag1', userName: '4 block' },
-   { id: 'asdgag2', userName: '5 block' },
-   { id: 'asdgag3', userName: '6 block' },
-   { id: 'asdgag4', userName: '7 block' },
-   { id: 'asdgag5', userName: '8 block' },
-]
+
 
 const LidsBoxes = [
    {
       id: '',
       name: '',
       boxStatus: -1,
-      items: []
+      items: [
+         { id: 'asdgag', userName: 'Ikkinchi block' },
+         { id: 'asdgag1', userName: '4 block' },
+         { id: 'asdgag2', userName: '5 block' },
+         { id: 'asdgag3', userName: '6 block' },
+         { id: 'asdgag4', userName: '7 block' },
+         { id: 'asdgag5', userName: '8 block' },
+      ]
    },
    {
       id: '',

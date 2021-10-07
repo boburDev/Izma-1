@@ -253,6 +253,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
           <label>Қабул қилинган сана</label>
        
           <DatePicker
+		  	aria-required={true}
             defaultPickerValue={payedData !== "" ? moment(moment().format("DD-MM-YYYY"), "DD-MM-YYYY") : null}
           className='date__picker'
             onChange={(value, dateString) => setPayedData({

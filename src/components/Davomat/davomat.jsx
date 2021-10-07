@@ -21,9 +21,10 @@ function Davomat() {
     const [endDate, setEndDate] = useState('')
     const [groupMonth,setGroupMonth] = useState([])
     const [groupStuMonth,setGroupStuMonth] = useState([])
-    // console.log(groupStuMonth)
+    console.log(groupStuMonth)
     const [monthlyGr, setMonthlyGr] = useState([])
     const [monthlyStGr, setMonthlyStGr] = useState([])
+    console.log(monthlyStGr)
     const { data: groupAtt } = useQuery(GROUP_DAVOMAT, { variables: { groupID: id && id.groupID}})
 
     const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
@@ -235,43 +236,43 @@ function Davomat() {
 
 
     
-    const checkInput = (e) => {
-        e.target.parentNode.childNodes[1].classList.toggle(`${st.show}`)
-    }
+    // const checkInput = (e) => {
+    //     e.target.parentNode.childNodes[1].classList.toggle(`${st.show}`)
+    // }
     
-    const come = e => {
-        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
-        e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.true}`)
-        e.target.parentNode.classList.remove(`${st.show}`)
-        let body = {
-            name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
-            date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
-            title: 'keldi'
-        }
-        console.log(body)
-        arr.push(body)
-        setArr(arr)
-    }
+    // const come = e => {
+    //     e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
+    //     e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.true}`)
+    //     e.target.parentNode.classList.remove(`${st.show}`)
+    //     let body = {
+    //         name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
+    //         date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
+    //         title: 'keldi'
+    //     }
+    //     console.log(body)
+    //     arr.push(body)
+    //     setArr(arr)
+    // }
     
-    const dontCome = e => {
-        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
-        e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.false}`)
-        e.target.parentNode.classList.remove(`${st.show}`)
-        let body = {
-            name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
-            date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
-            title: 'kelmadi'
-        }
-        console.log(body)
-        arr.push(body)
-        setArr(arr)
-    }
+    // const dontCome = e => {
+    //     e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
+    //     e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.false}`)
+    //     e.target.parentNode.classList.remove(`${st.show}`)
+    //     let body = {
+    //         name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
+    //         date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
+    //         title: 'kelmadi'
+    //     }
+    //     console.log(body)
+    //     arr.push(body)
+    //     setArr(arr)
+    // }
     
-    const closer = (e) => {
-        e.target.parentNode.classList.remove(`${st.show}`)
-        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
-        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
-    }
+    // const closer = (e) => {
+    //     e.target.parentNode.classList.remove(`${st.show}`)
+    //     e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
+    //     e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
+    // }
 
     // console.log(monthlyGr)
 
@@ -317,20 +318,6 @@ function Davomat() {
                     <td className={`${st.pupil} ${st.td_tbody} ${
                         item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''}`} key={index}>{item.name}</td>
                     {
-                    //  console.log(groupStuMonth, item)
-                    groupStuMonth.map(i => {
-                        // console.log(moment(monthlyGr[0]).format("DD/MM"), moment(monthlyGr[monthlyGr.length-1]).format("DD/MM"))
-                        if ((i.id === item.id) && monthlyGr.length > 0) {
-                            i.data.map(j => {
-                                if (moment(monthlyGr.sort()[0]).format() <= moment(j.d-0).format()
-                                && moment(monthlyGr.sort()[monthlyGr.length-1]).format() >= moment(j.d-0).format()) {
-                                    console.log(moment(j.d-0).format("DD-MM"))
-                                }
-                                return ''
-                            })
-                        }
-                        return ''
-                    })
                         // monthlyGr.map((val, key) => {
                         //         return <td className={st.td} key={key}>
                         //         <div

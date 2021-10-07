@@ -8,9 +8,10 @@ import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import DropSearch from '../../../../components/DropSearch/DropSearch'
 import { useCheck } from '../../../../context/CheckProvider'
+import moment from 'moment'
 
 
-const FinanceAddPaymentForm = ({ onClose, studenID }) => {
+const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
   
   const [payType, setPayType] = useState(1)
   const [ammountt, setAmmoun] = useState()
@@ -71,7 +72,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 	  stID: studenID && (studenID.studentID || studenID.studentId),
 	  status: 3
 	}})
-
   	SetStatus3_4({variables: {status: 3, stID: (studenID.studentID || studenID.studentId)}})
   }
 
@@ -86,9 +86,17 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
 
   useEffect(()=>{
     if (stGroups && stGroups.student && stGroups.student.groups){
+      if (groupID !== '') {
+        for (const i of stGroups.student.groups) {
+			if (i.id === groupID) {
+				setData(i)
+			}
+		}
+      } else {
         setNames(stGroups.student.groups)
+        }
     }
-  }, [stGroups])
+  }, [stGroups, groupID])
   
   const onChange = e => {
     setPayType(e.target.value)
@@ -122,12 +130,16 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
           <div className="form_group" style={{ width: "100%" }}>
             <label className='izma__courses__form-bolim-form-label'>Miqdor</label>
               <Input autoComplete="off"  className={"section_name_input"}  name={"nomi"} onChange={e => setAmmoun(e.target.value)}/>
-              <label className='izma__courses__form-bolim-form-label'>Group</label>
-              <DropSearch
-                arr={groups && groups.student.groups}
-                pInput={'Variantlarni tanlang'}
-                fnc={setData}
-              />
+              {
+				  (groupID === '') && <>
+				  <label className='izma__courses__form-bolim-form-label'>Group</label>
+				  <DropSearch
+					arr={groups && groups.student.groups}
+					pInput={'Variantlarni tanlang'}
+					fnc={setData}
+				  />
+				  </>
+			  }
           </div>
           <div className="form_group">
           <label>Қабул қилинган сана</label>
@@ -137,9 +149,12 @@ const FinanceAddPaymentForm = ({ onClose, studenID }) => {
             onChange={(value, dateString) => setPayedData({
             payed: dateString,
             payed_at: value._d
-            
-          })
-        }
+				})
+			}
+			disabledDate={(current) => {
+				let customDate = moment().format("DD-MM-YYYY")
+				return current && current >= moment(customDate, "DD-MM-YYYY")
+			}}
             placeholder={"Kun-Oy-Yil"}
             format={"DD-MM-YYYY"}/>
           </div>

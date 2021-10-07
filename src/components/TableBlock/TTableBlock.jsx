@@ -68,7 +68,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                </h4>
             </> : block === 'financeHash' ? <>
                      <h4 className={'financeHash'}>{info?.studentName}</h4>
-                     <h4 className={'financeHash'}>{info?.phone}</h4>
+                     <h4 className={'financeHash'}>{info?.payed_time}</h4>
                      <h4 className={'financeHash'}>{info?.typePayment}</h4>
                      <h4 className={'financeHash'}>{info?.amount}</h4>
                      <h4 className={'financeHash'}>{info?.comment}</h4>

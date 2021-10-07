@@ -78,7 +78,7 @@ const StudentsTable = ({ studentSearch='' }) => {
         else if (searchedStudent) {
     
           setUserData(searchedStudent)
-        } else if(filterCourseArr.length) {
+        } else if(course.length) {
     
           setUserData(filterCourseArr)
         } else if (truFalse.sales) {

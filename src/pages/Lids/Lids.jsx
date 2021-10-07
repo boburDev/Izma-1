@@ -1,19 +1,13 @@
 import './Lids.scss'
 import LidsContent from './LidsContent/LidsContent'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
-import { /* useMutation, */ useQuery, useSubscription } from '@apollo/client'
-import { SUBCRIP_BOXES } from './query'
+import { useMutation, useLazyQuery, useQuery, useSubscription } from '@apollo/client'
+import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX, NEW_BOX, UPDATE_BOX, DELETE_BOX } from './query'
 import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
 // const itemsBackend = [
-//    {
-//       id: 'asd',
-//       userName: 'Birinchi block',
-//       userNumber: '998943821261',
-//       userComment: 'salom'
-//    },
 //    { id: 'asdgag', userName: 'Ikkinchi block' },
 //    { id: 'asdgag1', userName: '4 block' },
 //    { id: 'asdgag2', userName: '5 block' },
@@ -22,43 +16,49 @@ import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 //    { id: 'asdgag5', userName: '8 block' },
 // ]
 
-const LidsBoxes = [
-   {
-      id: '',
-      name: '',
-      boxStatus: -1,
-      items: []
-   },
-   {
-      id: '',
-      name: '',
-      boxStatus: -2,
-      items: []
-   },
-   {
-      id: '',
-      name: '',
-      boxStatus: -3,
-      items: []
-   }
-]
+// const LidsBoxes = [
+//    {
+//       id: '',
+//       name: '',
+//       boxStatus: -1,
+//       items: []
+//    },
+//    {
+//       id: '',
+//       name: '',
+//       boxStatus: -2,
+//       items: []
+//    },
+//    {
+//       id: '',
+//       name: '',
+//       boxStatus: -3,
+//       items: []
+//    }
+// ]
 
 const Lids = () => {
    const [columns, setColumns] = useState([])
 
-   // const {data: boxesName} = useQuery(BOXES_NAME)
-   // const {data: boxesContent} = useQuery(BOXES_CONTENT)
+   const [check] = useLazyQuery(CHECK_BOX_MINUS)
 
    const { data: courses } = useQuery(COURSES)
    const { data: teachers } = useQuery(TEACHER_FILTERS)
 
-   // console.log(courses)
-   // console.log(teachers)
+   const { data: boxes } = useQuery(ALL_BOX)
 
+   // const [createBox] = useMutation(NEW_BOX)
+   // createBox({variables: {boxName: '', status: int}})
 
-   // const [allBox, setBoxName] = useState([])
-   // const [boxesCont, setBoxesCont] = useState([])
- 
+   // const [updateBox] = useMutation(UPDATE_BOX)
+   // updateBox({variables: {boxID: id, boxName: '', status: int}})
+
+   // const [deleteBox] = useMutation(DELETE_BOX)
+   // deleteBox({variables: {boxID: id}})
+
+   useEffect(() => {
+      check({variables: {check: 'string'}})
+   }, [check])
 
    useSubscription(SUBCRIP_BOXES, {
 
@@ -78,8 +78,7 @@ const Lids = () => {
    // const [updateBoxName] = useMutation(UPDATE_BOX_NAME)
    // updateBoxName({variables: {boxID: id, boxName: '', status: number}})
 
-   // const [deleteBox] = useMutation(DELETE_BOX)
-   // deleteBox({variables: {boxID: id, status: number}})
+   
 
 
    // BOX_CONTENTS //
@@ -107,9 +106,6 @@ const Lids = () => {
 
    // const [deleteContent] = useMutation(DELETE_CONTENT)
    // deleteContent({variables: {id: id}})
-
-
-   // console.log(columns, boxesCont)
 
 
 

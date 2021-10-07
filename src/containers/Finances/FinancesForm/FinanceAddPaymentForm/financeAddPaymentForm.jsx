@@ -8,7 +8,6 @@ import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import DropSearch from '../../../../components/DropSearch/DropSearch'
 import { useCheck } from '../../../../context/CheckProvider'
-import moment from 'moment'
 
 
 const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
@@ -151,10 +150,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
             payed_at: value._d
 				})
 			}
-			disabledDate={(current) => {
-				let customDate = moment().format("DD-MM-YYYY")
-				return current && current >= moment(customDate, "DD-MM-YYYY")
-			}}
             placeholder={"Kun-Oy-Yil"}
             format={"DD-MM-YYYY"}/>
           </div>

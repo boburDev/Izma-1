@@ -8,9 +8,6 @@ const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}
     const [createBox] = useMutation(CREATE_BOX)
   const [updateBoxName] = useMutation(UPDATE_BOX_NAME)
   
-   // const boardIn = useRef()
-
-   // console.log(columns, boxId)
 
 
    const handleSub = async (e) => {

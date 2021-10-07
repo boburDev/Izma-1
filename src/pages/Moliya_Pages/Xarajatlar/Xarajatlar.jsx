@@ -3,8 +3,8 @@ import FinanceCostsImg from '../../../assets/Icons/finance-dolor-icon.svg'
 import { DatePicker, } from "antd"
 import XarajatlarForm from './containers/XarajatlarForm/XarajatlarForm'
 import { useEffect, useState } from 'react'
-import { useQuery } from '@apollo/client'
-import { FILTER_DATA, HARAJATLAR } from '../../../Querys/Finance_All'
+import { useQuery, useSubscription } from '@apollo/client'
+import { FILTER_DATA, HARAJATLAR, SUBSCRIP_HARAJAT } from '../../../Querys/Finance_All'
 import TTable from '../../../components/Table/TTable'
 
 
@@ -47,6 +47,16 @@ const Xarajatlar = () => {
          setCost(costs && costs.harajatlar)
       }
    },[costs])
+
+   useSubscription(SUBSCRIP_HARAJAT, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               harajatlar: () => { }
+            }
+         })
+      },
+   })
 
    return (
       <div className="dwBox">

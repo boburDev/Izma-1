@@ -14,6 +14,9 @@ const SalaryUp = () => {
    const [collegueId,setCollegueId] = useState('')
    const [data, setData] = useState([])
 
+   const [info, setInfo] = useState([])
+   const [infoo, setInfoo] = useState([])
+
    const { data: collegues } = useQuery(COLLEGUES)
    const [setSalaryCollegue] = useMutation(CREATE_SALARY) 
    const [setSalaryForAll] = useMutation(CREATE_SALARY_FOR_ALL) 
@@ -42,6 +45,11 @@ const SalaryUp = () => {
          }})
 
       }
+
+      useEffect(() => {
+         setInfoo(...info.filter(i => i.teacherID === collegueId))
+
+      }, [info, collegueId])
 
 
 
@@ -104,11 +112,11 @@ const SalaryUp = () => {
                      <label htmlFor="">Xarajat qiymati</label>
                      <div className="input_items">
                            <div className="inputs">
-                        <input autoComplete="off"  type="text"
+                        <input autoComplete="off"  type="text" defaultValue={infoo?.amount}
                               onKeyUp={e => setSalary2(e.target.value)} />
                               <select onChange={e => setSalaryType2(e.target.value)}>
-                                 <option value="1">Naqt</option>
-                                 <option value="2">Foiz</option>
+                                 <option selected={infoo?.type === 1} value="1">Naqt</option>
+                                 <option selected={infoo?.type === 2} value="2">Foiz</option>
                               </select>
                            </div>
                            <button onClick={updateSlary}>Saqlash</button>
@@ -118,7 +126,7 @@ const SalaryUp = () => {
                </div>
                
                <div className="izma__finance-salary-bootom-dates-line-up"></div>
-               <SalaryUpTable/>
+               <SalaryUpTable info={(e) => setInfo(e)}/>
          </div>
          
       </div>

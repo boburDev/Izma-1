@@ -4,6 +4,8 @@ import EditImg from '../../assets/Icons/settings-edit.svg'
 import moment from 'moment'
 import { useState } from 'react'
 import Modal1 from '../Modal/Modal'
+import { useMutation } from '@apollo/client'
+import { DELETE_HARAJAT } from '../../Querys/Finance_All'
 
 
 
@@ -11,6 +13,8 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
    
    const [modal, setModal] = useState()
    const [modal1, setModal1] = useState()
+
+   const [deleteCost] = useMutation(DELETE_HARAJAT)
    return (
       <div className="tableBlock">
          {
@@ -79,7 +83,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                         <h4 className={'financeCostHash'}>{info?.buyer}</h4>
                         <h4 className={'financeCostHash'}>{info?.paymentAmount}</h4>
                         <h4 className={'financeCostHash'}>
-                  <img src={DeleteImg} alt="" />
+                  <img src={DeleteImg} alt="" onClick={() => deleteCost({variables: {id: info.id}})}/>
                </h4>
             </> : block === 'financeGroupHash' ? <>
                            <h4 className={'financeGroupHash'}>{info?.groups}</h4>

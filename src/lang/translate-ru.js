@@ -349,6 +349,219 @@ const ru = {
         shapes: 'Формы',
         companySettings: 'Настройки компании'
     },
+    finance: {
+        financeTitle: 'ФИНАНСЫ (все студенты)',
+        countStudentOverSum: 'Итого на счетах студентов: сум.',
+        receiptsForPeriod: 'Выручка за период:',
+        currency: ' сумов',
+        startDay: 'От даты ',
+        endDay: 'до даты',
+        filter: {
+            filterTitle: 'Фильтр',
+            studentsFullName: 'Студенты Ф.И.О',
+            phoneNumber: 'Номер телефона',
+            typePayment: 'Тип платежа',
+            currency: 'Сум',
+            comment: 'Примечание'
+        },
+        costs: {
+            costsTitle: 'РАСХОДЫ',
+            startDay: 'От даты ',
+            endDay: 'до даты',
+            filter: 'Фильтр'
+        },
+        costsForPeriod : {
+            costsForPeriodTitle: 'Расходы за период',
+            name: 'Номи',
+            date: 'Число ',
+            type: 'Категория',
+            recipient: 'Получатель',
+            currency: 'Сум',
+            actions: 'Действия'
+        },
+        newCosts: {
+            newCostsTitle: 'Новые затраты',
+            name: 'Название ',
+            recievedDate: 'Дата получения',
+            yymmdd: 'день месяц год',
+            type: 'Категория',
+            others: 'Другие',
+            recipient: 'Получатель',
+            currency: 'Сум',
+            save: 'Сохранить'
+        },
+        select: {
+            selectTitle: 'Выбор',
+            administrativeExpenses: 'Административные затраты',
+            rent: 'Аренда',
+            salary: 'Зарплата',
+            invest: 'Инвестиции',
+            tools: 'Инструменты для обучения',
+            taxes: 'Налоги',
+            operatingExpenses: 'Хозяйственные расходы'
+        },
+        salary: {
+            salaryTitle: 'ЗАРПЛАТА',
+            settingsSalaryCalculator: 'Настройка счетчика заработной платы'
+        },
+        firstSettingsSalary: {
+            firstSettingsSalaryTitle: '1. Укажите стандартные параметры настройки стоимости для всех учителей.',
+            optionExpances: 'Стоимость ',
+            cash: 'Наличные',
+            save: 'Сохранить'
+        },
+        secondSettingsSalary: {
+            secondSettingsSalaryTitle: '2. Можно рассчитать индивидуально для некоторых учителей.',
+            chooseTeacher: 'Выбор учителя',
+            choose: 'Выбор',
+            optionExpances: 'Стоимость ',
+            cash: 'Наличные',
+            save: 'Сохранить',
+            teacher: 'Учитель',
+            methodCount: 'Метод расчета',
+            byDate: 'По дате',
+            filter: 'Фильтр',
+            teacher: 'Учитель',
+            currency: 'Сум'
+        },
+        paymentGroup: {
+            paymentGroupTitle: 'ПЛАТЕЖНАЯ ГРУППА',
+            incomeForPeriod: 'Выручка за период',
+            showAmount: 'дата и количество указаны',
+            id: 'ID',
+            startDay: 'С даты',
+            amount: 'Количество',
+            paymentType: 'Тип денежного перевода',
+            currency: 'Сум'
+        },
+        orderInfoGroup: {
+            orderInfoTitle: 'Запросить информацию',
+            groups: 'Группы',
+            teachers: 'Учителя',
+            courses: 'Курсы',
+            currency: 'Сум'
+        },
+        paymentCourses: {
+            paymentCoursesTitle: 'ПЛАТА ЗА ОБУЧЕНИЕ',
+            incomeForPeriod: 'Квитанции за период: (указаны дата и сумма)',
+            id: 'ID',
+            startDay: 'С даты',
+            amount: 'Количество',
+            typePayment: 'Тип денежного перевода',
+            currency: 'Сум'
+        },
+        orderInfoCourse: {
+            orderInfoTitle: 'Запросить информацию',
+            courses: 'Курсы',
+            sum: 'Сумма',
+            overAll: 'Общий:'
+        }
+
+    },
+    groups: {
+        groupsTitle: 'ГРУППЫ',
+        addNewGroup: 'Добавить новое',
+        activeGroups: 'Добавить новое',
+        archivedGroups: 'Архивные группы',
+        teacherNames: 'Имена учителей',
+        tableRow: {
+            code: 'Код',
+            courseName: 'Название курса',
+            teacher: 'Учитель',
+            days: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+            daysShort: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Су', 'Вос'],
+            trainingDates: 'Даты обучения',
+            room: 'Комната',
+            countStudents: 'Количество студентов'
+        },
+        addNewGroups: {
+            addNewGroupTitle: 'Добавить новую группу',
+            name: 'Название ',
+            course: 'Курс',
+            selectCourse:'Выберите курс',
+            teacher: 'Учитель',
+            selectTeacher: 'Выберите учителя',
+            days: 'Дни',
+            selectDays: 'Выберите даты',
+            room: 'Комната',
+            selectRoom: 'Выберите комнату',
+            oddDays: 'Нечетные дни',
+            evenDays: 'Нечетные дни',
+            weekends: 'Выходные',
+            everyDay: 'Каждый день (5 дней в неделю)',
+            other: 'Другой',
+            startTimeLesson: 'Время начала урока',
+            startGroupDate: 'Дата старта группы',
+            endGroupDate: 'Дата окончания группы',
+            save: 'Сохранить'
+        },
+        groupInfo: {
+            groupsGroupsName: 'Группы | Название группы |',
+            groupName: 'Имя группы',
+            courseTeacher: 'Курс | Учитель Ф.И.О ',
+            price: 'Цена:',
+            time: 'Время:',
+            room: 'Комната:',
+            traningDates: 'Даты занятий:',
+            search: 'Поиск',
+            attendance: 'Посещаемость',
+            onlineLessonMaterials: 'Онлайн-уроки и материалы',
+            costs: 'Скидки',
+            history: 'История',
+            courseNotStarted: 'Курс не начался'
+        },
+        months: {
+            monthsTitle: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май','Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Noyabr', 'Декабрь']
+        },
+        attendance: {
+            attendanceTitle: 'Посещаемость',
+            fullName: 'Ф.И.О'
+        },
+        studentsCanUseMaterials: 'Студенты могут использовать материалы урока.',
+        youCanDownloadMaterials: 'Студенты могут использовать материалы урока.',
+        materialsDontDownloadedYet: 'Уроки и материалы еще не загружены.',
+        individualPrice: {
+            individualPriceTitle: 'Индивидуальная цена',
+            everyStudentPrice: 'Вы можете выставить отдельную оценку для каждого ученика. Введите цену со скидкой и нажмите Enter.',
+            search: 'Поиск',
+            fullName: 'Ф.И.О',
+            phoneNumber: 'Номер телефона',
+            individualPrice: 'Индивидуальная цена'
+        },
+        groupEdited: 'Группа отредактирована',
+        newStudent: 'Новый студент',
+        selectStudent: 'Новый студент',
+        searchByNameOrNumber: 'Найти по имени или номеру телефона',
+        comeToCourse: 'Дата прибытия на курс',
+        date: 'день месяц год',
+        send: 'Отправить ',
+        additionalOption: {
+            freeze: 'Отправить ',
+            payment: 'Оплата',
+            addNewNote: 'Добавить новую заметку',
+            addToGroupStudent: 'Добавить новую заметку',
+            changeGroup: 'Добавить новую заметку'
+        },
+        activate: {
+            activateTitle: 'Активация',
+            payment: 'Оплата',
+            addNewNote: 'Добавить новую заметку',
+            changeGroupStudent: 'Перевести студента в другую группу'
+        },
+        exitToGroup: 'Удаление из группы',
+        receipt: 'Чек',
+        paymentInfo: {
+            receiptNumber: 'Номер чека:',
+            student: 'Ученик:',
+            paymentType: 'Способ оплаты:',
+            amountPayment: 'Сумма платежа:',
+            paymentDate: 'Дата оплаты:',
+            currentDate: 'Текущая дата:',
+            teacher: 'Учитель:',
+            group: 'Группа:'
+        },
+        print: 'Печать'
+    }
 }
 
 export default ru

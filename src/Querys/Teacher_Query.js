@@ -37,10 +37,10 @@ const TEACHER_SUBSCRIPTION = gql `
 `
 
 const DELETE_TEACHER = gql `
-    mutation deleteColleague($id: ID!) {
-        deleteColleague(Id: $id) {
-            Id
-            name
+    mutation updateColleagueStatus($id: ID!, $status: Int) {
+        updateColleagueStatus(Id: $id, status: $status) {
+        Id
+        status
         }
     }
 `

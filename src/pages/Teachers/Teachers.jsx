@@ -20,8 +20,7 @@ const Teachers = () => {
    };
 
    const [lang] = useLang();
-
-   console.log(Language[lang].teachers)
+   console.log(lang)
 
    return (
       <div className="izma__teachers-content">

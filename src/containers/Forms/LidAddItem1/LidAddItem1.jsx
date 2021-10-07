@@ -10,7 +10,6 @@ const format = 'HH:mm';
 const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
    const itemName = useRef()
    const [time, setTime] = useState('')
-   // const boardIn = useRef()
 
 
    const handleSub = async () => {

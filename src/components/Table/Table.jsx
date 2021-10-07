@@ -3,10 +3,14 @@ import TableBlock from '../TableBlock/TableBlock'
 import './Table.scss'
 import { useStudentData } from '../../context/StudentTableProvider'
 import { useTeacherData } from '../../context/TeachersTableProvider'
+import { useLang } from '../../context/LanguageProvider'
+import Language from '../../lang/index'
 
 const Table = ({ block, arr, showDrawer}) => {
    const [data] = useStudentData()
    const [teacherData] = useTeacherData()
+
+   const [lang] = useLang()
 
 
    return (
@@ -18,12 +22,12 @@ const Table = ({ block, arr, showDrawer}) => {
                <>
                   <div className="table-header">
                      <h4 className={block}>{block !== 'studentHash' && 'id'}</h4>
-                     <h4 className={block}>Ism</h4>
-                     <h4 className={block}>telefon</h4>
+                     <h4 className={block}>{Language[lang].settings.forms.name}</h4>
+                     <h4 className={block}>{Language[lang].teachers.editTeacherInfo.phoneNumber}</h4>
                      {
                         block === 'studentHash' ?
                            <>
-                              <h4 className={block}>guruh</h4>
+                              <h4 className={block}>{Language[lang].students.recordPayment.groupName}</h4>
                               <h4 className={block}>{''}</h4>
                            </> : <></>
                      }
@@ -66,13 +70,13 @@ const Table = ({ block, arr, showDrawer}) => {
 
                <>
                   <div className="table-group-header">
-                     <h4 className={block}>Kod</h4>
-                     <h4 className={block}>Kurs nomi</h4>
-                     <h4 className={block}>O'qituvchi</h4>
-                     <h4 className={block}>Kunlar</h4>
-                     <h4 className={block}>Mashg'ulotlar sanalari</h4>
-                     <h4 className={block}>Xonalar</h4>
-                     <h4 className={block}>Talabalar</h4>
+                     <h4 className={block}>{Language[lang].groups.tableRow.code}</h4>
+                     <h4 className={block}>{Language[lang].groups.tableRow.courseName}</h4>
+                     <h4 className={block}>{Language[lang].groups.tableRow.teacher}</h4>
+                     <h4 className={block}>{Language[lang].groups.tableRow.daysTitle}</h4>
+                     <h4 className={block}>{Language[lang].groups.tableRow.trainingDates}</h4>
+                     <h4 className={block}>{Language[lang].groups.tableRow.room}</h4>
+                     <h4 className={block}>{Language[lang].groups.tableRow.countStudents}</h4>
                   </div>
 
                   <div className="table-group-body">

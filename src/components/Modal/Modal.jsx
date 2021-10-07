@@ -3,6 +3,10 @@ import { useEffect, useRef } from 'react';
 import { useSnackbar } from 'notistack';
 import DropSearch from '../DropSearch/DropSearch';
 import { DatePicker } from 'antd'
+
+import { useLang } from '../../context/LanguageProvider';
+import Language from '../../lang/index'
+
 const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text, groups,setInfo2, redir  }) => {
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
@@ -20,6 +24,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
    }
 
    const { enqueueSnackbar } = useSnackbar();
+   const [lang] = useLang();
 
    const handleClick = () => {
       const message = 'O`chirildi'
@@ -49,30 +54,30 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                {
                   block === 'addComment' ?
                      <>
-                        <label className='myModal-inner-form-label'>Comment</label>
+                        <label className='myModal-inner-form-label'>{Language[lang].students.payment.comment}</label>
                         <textarea name="" id="" cols="30" onKeyUp={(e) => setInfo(e.target.value)} rows="4"></textarea>
                         <div className="buttonWrapper">
-                           <button>Saqlash</button>
+                           <button>{Language[lang].students.background.save}</button>
                         </div>
                      </> :
                      <>
                         {
                            block === 'roomEdit' ?
                               <>
-                                 <label className='myModal-inner-form-label'>Xonani nomi</label>
+                                 <label className='myModal-inner-form-label'>{Language[lang].students.editStudentInfo.nameOfRoom}</label>
                                  <input autoComplete="off"  type="text" defaultValue={info && info} onKeyUp={(e) => setInfo(e.target.value)} />
                                  <div className="buttonWrapper">
-                                    <button onClick={uptRoom}>Saqlash</button>
+                                    <button onClick={uptRoom}>{Language[lang].students.background.save}</button>
                                  </div>
                               </> :
                               <>
                                  {
                                     block === 'roomAdd' ?
                                        <>
-                                          <label className='myModal-inner-form-label'>Xona nomi</label>
+                                          <label className='myModal-inner-form-label'>{Language[lang].students.editStudentInfo.nameOfRoom}</label>
                                           <input autoComplete="off"  type="text" onKeyUp={(e) => setInfo(e.target.value)} />
                                           <div className="buttonWrapper">
-                                             <button onClick={submitOK}>Yaratish</button>
+                                             <button onClick={submitOK}>{Language[lang].students.background.save}</button>
                                           </div>
                                        </> :
                                        <>
@@ -97,21 +102,21 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                                       block === 'addGroupStudent' ?
                                                       <>
                                                         <div className="addGroup-row">
-                                                               <label>Guruhni tanlang</label>
+                                                               <label>{Language[lang].students.addNewStudentTitle.selectGroup}</label>
                                                                <DropSearch
                                                                   arr={groups}
-                                                                  pInput={`Guruhni tanlang`}
+                                                                  pInput={Language[lang].students.addNewStudentTitle.selectGroup}
                                                                   fnc={setInfo}
                                                                />
                                                         </div>
                                                         <div className="addGroup-row">
-                                                               <label>Sanadan boshlab</label>
+                                                               <label>{Language[lang].finance.startDay}</label>
                                                                <DatePicker
                                                                   className='date__picker'
                                                                   onChange={(value, dateString) => {
                                                                      setInfo2(dateString)
                                                                   }}
-                                                                  placeholder={"Kun-Oy-Yil"}
+                                                                  placeholder={Language[lang].teachers.addNewUser.date}
                                                                   //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                                                                   format={"DD-MM-YYYY"}
                                                                />
@@ -119,7 +124,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                                             <div className="buttonWrapper">
                                                                <button onClick={() => {
                                                                   setMymodal(false)
-                                                               }}>Talabni guruhga qo'shish</button>
+                                                               }}>{Language[lang].groups.additionalOption.addToGroupStudent}</button>
                                                             </div>
 
 

@@ -4,12 +4,19 @@ import Close from '../../assets/Icons/Group 26.svg'
 import { useEffect, useState, useRef } from 'react'
 import Logo from '../../assets/Icons/Sertifikat.png'
 import { useCheck } from '../../context/CheckProvider'
+// <<<<<<< HEAD
+import { useLang } from '../../context/LanguageProvider'
+import Language from '../../lang/index'
+// =======
+import moment from 'moment'
+// >>>>>>> c04b809d7707571f9b5ab2be88f56b5b67741ffc
 
 const Check = ({ handleCancelY ,  handleOkY  })=>{
     let componentRef = useRef(null)
     const [check, setCheck] = useCheck()
     const [today,setToday] = useState('')
     const [month,setMonth] = useState('')
+    const [lang] = useLang()
 
     const style = {
         fontFamily: 'Jost',
@@ -48,7 +55,7 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
         var mm = String(today.getMonth() + 1).padStart(2, '0')
         var yyyy = today.getFullYear()
         today = dd + '-' + mm + '-' + yyyy
-        setToday(today)
+        setToday(moment(new Date()).format('DD-MM-YYYY / HH:MM:SS'))
     },[])
 
     return (
@@ -87,28 +94,28 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
                     <div className="check-items">
                         <p
                             style={style}
-                        >Chek raqami: <span style={styleTwo}>#{check && check.checkData.count}</span></p>
+                        >{Language[lang].groups.paymentInfo.receiptNumber} <span style={styleTwo}>#{check && check.checkData.count}</span></p>
                         <p
                             style={style}
-                        >Talaba: <span style={styleTwo}>{check &&  check.checkData.stName}</span></p>
+                        >{Language[lang].groups.paymentInfo.student} <span style={styleTwo}>{check &&  check.checkData.stName}</span></p>
                         <p
                             style={style}
-                        >Turi: <span style={styleTwo}>{check &&  check.checkData.type === 1 ? 'Naqt pul'
+                        >{Language[lang].groups.paymentInfo.paymentType}: <span style={styleTwo}>{check &&  check.checkData.type === 1 ? 'Naqt pul'
                         : check &&  check.checkData.type === 2 ?
                         'UZCARD' : 'Bank hisobi'}</span></p>
                         <p
                             style={style}
-                        >To’lov miqdori: <span style={styleTwo}>{check && check.checkData.cashAmm}so'm</span></p>
+                        >{Language[lang].groups.paymentInfo.amountPayment} <span style={styleTwo}>{check && check.checkData.cashAmm}so'm</span></p>
                         <p style={style}>Vaqt: <span style={styleTwo}>
                             { today }
                             </span></p>
-                        <p style={style}>Qabul qilingan oy: <span style={styleTwo}>
+                        <p style={style}>{Language[lang].students.recordPayment.AcceptedDate} <span style={styleTwo}>
                             { month }
                             </span></p>
-                        <p style={style}>O'qituvchi: <span style={styleTwo}>{check  && check?.checkData?.teacher}</span></p>
+                        <p style={style}>{Language[lang].settings.editable.teacher} <span style={styleTwo}>{check  && check?.checkData?.teacher}</span></p>
                         <p
                             style={style}
-                        >Guruhi: <span style={styleTwo}>{check && check.checkData.name}</span></p>
+                        >{Language[lang].groups.paymentInfo.group} <span style={styleTwo}>{check && check.checkData.name}</span></p>
                     </div>
                 </div>
             </div>

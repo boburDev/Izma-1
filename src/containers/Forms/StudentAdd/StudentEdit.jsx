@@ -18,6 +18,8 @@ import { useParams } from 'react-router';
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput';
 import PasswordInput from '../../../components/PasswordInput/PasswordInput';
 import { useSnackbar } from 'notistack';
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 
 const StudentsEditForm = ({ onCloseF }) => {
@@ -27,6 +29,8 @@ const StudentsEditForm = ({ onCloseF }) => {
            number: null
        }
    ])
+
+   const [lang] = useLang();
 
 
    const [fieldParents, setParents] = useState([
@@ -101,7 +105,7 @@ const StudentsEditForm = ({ onCloseF }) => {
    return (
        <div className="form-wrapper">
            <div className="top-place">
-               <h1 className="place-name">Tahrirlash</h1>
+               <h1 className="place-name">{Language[lang].settings.employee.edit}</h1>
                <button className="x-btn" onClick={onCloseF} >
                    <img src={CloceBtn} alt="img" />
                </button>
@@ -131,7 +135,7 @@ const StudentsEditForm = ({ onCloseF }) => {
            }
            }}>
                <div className="form-input">
-               <label htmlFor="">Telefon</label>
+               <label htmlFor="">{Language[lang].settings.employee.phoneNumber}</label>
                <PhoneNumberInput
                   setPhone={setStPhoneNum}
                   placeholder={forEdit && forEdit.student.mainPhone[0]?.phone}
@@ -140,11 +144,11 @@ const StudentsEditForm = ({ onCloseF }) => {
             </div>
 
                <div className="form-input">
-                   <label htmlFor="name">Ism</label>
+                   <label htmlFor="name">{Language[lang].settings.employee.fullName}</label>
                    <input autoComplete="off"  type="text" name="" id="name" className="new-input" defaultValue={forEdit && forEdit.student.name} onChange={e => setStName(e.target.value)} />
                </div>
                <div className="form_group">
-                   <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
+                   <label htmlFor="date" className="form_label">{Language[lang].settings.editable.birthday}</label>
 
                    <DatePicker
                        className='date__picker lid-edit-date'
@@ -157,22 +161,22 @@ const StudentsEditForm = ({ onCloseF }) => {
                    />
                </div>
                <div className="form-input">
-                   <label htmlFor="date">Jinsi</label>
+                   <label htmlFor="date">{Language[lang].students.editStudentInfo.genderTitle}</label>
                    <div className="genders">
                        <div className="gen_one">
                            <input autoComplete="off"  value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
                            <label htmlFor="men"></label>
-                           <span>Erkak</span>
+                           <span>{Language[lang].students.editStudentInfo.gender[0]}</span>
                        </div>
                        <div className="gen_one">
                            <input autoComplete="off"  value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
                            <label htmlFor="women"></label>
-                           <span>Ayol</span>
+                           <span>{Language[lang].students.editStudentInfo.gender[1]}</span>
                        </div>
                    </div>
                </div>
                <div className="form-input">
-                   <label htmlFor="group">Komment</label>
+                   <label htmlFor="group">{Language[lang].students.editStudentInfo.comment}</label>
                    <textarea className="comment" name="" id="" cols="30" rows="10" defaultValue={forEdit && forEdit.student.comment} onChange={e => setStTextInfo(e.target.value)}></textarea>
                </div>
 
@@ -181,7 +185,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                        fieldInput.map((item, index) => (
                            <div className="form-input" key={index}>
                                <div className="buttosn">
-                                   <label htmlFor="">Ikkilamchi Telefon</label>
+                                   <label htmlFor="">{Language[lang].students.editStudentInfo.secondaryPhone}</label>
                                    <div className="bla-bla">
                                        <button
                                            className="remadd_btn alone"
@@ -208,7 +212,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                        fieldParents.map((item, index) => (
                            <div className="form-inpun" key={index}>
                                <div className="buttosn">
-                                   <label htmlFor="">Ota-onalar telefoni</label>
+                                   <label htmlFor="">{Language[lang].students.editStudentInfo.parentPhoneNumber}</label>
                                    <div className="bla-bla">
                                        <button
                                            className="remadd_btnTwo aloneTwo"
@@ -230,7 +234,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                </div>
 
                <div className="form-input alone">
-                   <label htmlFor="">Telegram user name</label>
+                   <label htmlFor="">{Language[lang].students.editStudentInfo.telegramUsername}</label>
                    <div className="numberTwo">
                        <span>@</span>
                        <input   type="text" name="" id="" autoComplete="off" className="user_name" defaultValue={forEdit && forEdit.student.telegram[0]?.telegram} onChange={e => setStTg(e.target.value)} />
@@ -238,13 +242,13 @@ const StudentsEditForm = ({ onCloseF }) => {
                </div>
 
                <div className="form-input">
-                   <label htmlFor="">Parol</label>
+                   <label htmlFor="">{Language[lang].students.editStudentInfo.password}</label>
                    <PasswordInput
                      setPassword={setStPassword}
                   />
                </div>
 
-               <button className="create-btn" onClick={onCloseF}>O'zgartirish</button>
+               <button className="create-btn" onClick={onCloseF}>{Language[lang].students.editStudentInfo.edit}</button>
            </form>
        </div>
    )

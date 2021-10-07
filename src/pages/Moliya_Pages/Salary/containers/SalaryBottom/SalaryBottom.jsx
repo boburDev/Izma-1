@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import TTable from '../../../../../components/Table/TTable'
 
-const SalaryBottom = () => {
+const SalaryBottom = (props) => {
 
    const {data: checkSumm} = useQuery(CHECK_TEACHER, {variables: {text: 'text'}})
    const [salaries, setSalaries] = useState([])
@@ -13,14 +13,11 @@ const SalaryBottom = () => {
 
 
       if (checkSumm && checkSumm.checksCollegues) {
-         console.log(checkSumm.checksCollegues)
          setSalaries(checkSumm.checksCollegues)
       }
-
+      
    }, [checkSumm])
-
-
-
+   
    return (
       <>
          <div className="izma__finance-salary-bottom-wrapper">

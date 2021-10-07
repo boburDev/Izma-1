@@ -5,6 +5,8 @@ import st from './davomat.module.scss'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { GROUP_DAVOMAT, STUDENT_DAVOMAT } from './query'
+import {useLang} from '../../context/LanguageProvider'
+import Language from '../../lang/index'
 
 // react-redux uninstall qivor
 function Davomat() {
@@ -24,6 +26,7 @@ function Davomat() {
     const [monthlyGr, setMonthlyGr] = useState([])
     const [monthlyStGr, setMonthlyStGr] = useState([])
     const { data: groupAtt } = useQuery(GROUP_DAVOMAT, { variables: { groupID: id && id.groupID}})
+    const [lang] = useLang()
 
     const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
 
@@ -283,7 +286,7 @@ function Davomat() {
         
         <div className={st.home_wrapper}>
         <div className={st.davomat}>
-        <h4>Davomat</h4>
+        <h4>{Language[lang].groups.groupInfo.attendance}</h4>
         <div className={st.top}>
         {
             state.map((i,key) =>
@@ -301,7 +304,7 @@ function Davomat() {
         <table className={st.customer}>
         <thead className={st.customer_thead}>
         <tr className={st.tr}>
-        <th className={`${st.name_table} ${st.th}`}>Ism</th>
+        <th className={`${st.name_table} ${st.th}`}>{Language[lang].groups.attendance.fullName}</th>
         {
             monthlyGr.sort().map((item, index) => (
                 <th className={st.th} key={index}>

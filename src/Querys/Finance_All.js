@@ -104,6 +104,23 @@ const COURSES_INFO = gql `
     }
 `
 
+const DELETE_HARAJAT = gql `
+  mutation deleteHarajat($id: ID) {
+    deleteHarajat(id: $id) {
+      id
+    }
+  }
+`
+
+const SUBSCRIP_HARAJAT = gql `
+  subscription {
+    harajat{
+      id
+      name
+      paymentAmount
+    }
+  }
+`
 
 export {
     FINANCE_STUDENT,
@@ -113,5 +130,7 @@ export {
     NEW_HARAJAT,
     FILTER_DATA,
     GROUPS_COURSES,
-	COURSES_INFO
+    COURSES_INFO,
+    DELETE_HARAJAT,
+    SUBSCRIP_HARAJAT
 }

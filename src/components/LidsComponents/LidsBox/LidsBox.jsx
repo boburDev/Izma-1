@@ -96,7 +96,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                         }}
                      >
                         <div className="lidItem-top-left">
-                           <h2>{column.boxName}</h2>
+                           <h2>{column.name}</h2>
                         </div>
                         <div className="lidItem-top-right">
                            <button onClick={() => setActive(!active)} className={`arrow ${active ? 'active' : ''}`}><img src={Arrow} alt="" /></button>
@@ -105,7 +105,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                               <span
                                  onClick={() => {
                                     setMenu(false)
-                                    setDefaultInfo(column?.boxName)
+                                    setDefaultInfo(column?.name)
                                     setOpenEdit(true)
                                  }}
                               ><img src={Edit} alt=""/>Tahrirlash</span>
@@ -155,6 +155,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                               columns={columns}
                               setColumns={setColumns}
                               itemId={column.id}
+                              formId={column.boxStatus}
                            />
                         </div>
                         {column.items.map((item, index) => {

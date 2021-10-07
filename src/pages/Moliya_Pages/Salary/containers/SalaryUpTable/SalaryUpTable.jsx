@@ -1,37 +1,54 @@
 import './SalaryUpTable.scss'
-import { TEACHER_SALARY_TYPE } from '../SalaryUp/query'
-import { useQuery } from '@apollo/client'
+import { CHECK_TEACHER, TEACHER_SALARY_TYPE, SUBSCRIP_SALARY } from '../SalaryUp/query'
+import { useQuery, useSubscription } from '@apollo/client'
 import { useEffect, useState } from 'react'
 
 
-const SalaryUpTable = () => {
+const SalaryUpTable = (props) => {
    const [data, setData] = useState([])
    const [someArr, setSomeArr] = useState([])
+   const [salary, setSalary] = useState([])
 
    const {data: teachSalary} = useQuery(TEACHER_SALARY_TYPE)
+   const {data: checkSumm} = useQuery(CHECK_TEACHER, {variables: {text: 'text'}})
+
+   useSubscription(SUBSCRIP_SALARY, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               colleguagesSalary: () => { }
+            }
+         })
+      },
+   })
 
    useEffect(() => {
-      if (teachSalary && teachSalary.colleguagesSalary) {
-         setData(teachSalary && teachSalary.colleguagesSalary)
+      if (teachSalary?.colleguagesSalary && checkSumm?.checksCollegues) {
+         setData(teachSalary?.colleguagesSalary)
+         setSalary(checkSumm?.checksCollegues)
+
+         data.length && props.info(data)
       }
 
-   }, [teachSalary])
-
+   }, [teachSalary, checkSumm, data, props])
 
    useEffect(() => {
 
       if (data.length) {
          const newData = data.map(i => {
+            const allPayment = salary.filter(p => p.id === i.teacherID)
             const data = {
                teacher: i.teacherName,
-               discount: i.type === 1 ? i.amount + ' Sum' : i.amount + '% Foizga'
+               discount: i.type === 1 ? i.amount + ' Sum' : i.amount + '% Foizga',
+               allPay: allPayment[0].summa,
+               salary: (i.type === 2 && allPayment[0].summa !== 0 && Math.ceil(allPayment[0].summa / 100 * i.amount, 1)) || (i.type === 1 && i.amount + ' Sum') || 0
             }
             return data
          })
          setSomeArr(newData)
       }
 
-   }, [data])
+   }, [data, salary])
 
    const columns = [
       {
@@ -43,6 +60,16 @@ const SalaryUpTable = () => {
          title: 'Hisoblash usuli',
          dataIndex: 'discountsdew',
          key: 'discountsdew',
+      },
+      {
+         title: 'Jami to\'lov',
+         dataIndex: 'Jamit',
+         key: 'Jamit',
+      },
+      {
+         title: 'Oylik maosh',
+         dataIndex: 'maosh',
+         key: 'maosh',
       },
 
    ];
@@ -67,6 +94,8 @@ const SalaryUpTable = () => {
                         <div key={i} className="information">
                            <p>{item.teacher}</p>
                            <span >{item.discount}</span>
+                           <span >{item.allPay}</span>
+                           <span >{item.salary}</span>
                         </div>
                      ))
                   }

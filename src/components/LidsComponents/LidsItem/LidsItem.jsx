@@ -46,8 +46,8 @@ const LidsItem = ({ item, index }) => {
 
    return (
       <Draggable
-         key={item.id}
-         draggableId={item.id}
+         key={item.lead_id}
+         draggableId={item.lead_id}
          index={index}
       >
          {(provided, snapshot) => {
@@ -80,7 +80,7 @@ const LidsItem = ({ item, index }) => {
 
                         />
                      </Drawer>
-                     <span className='span'>{item.name} / {item.phone}</span>
+                     <span className='span'>{item.lead_name} / {item.lead_tel}</span>
                      <div className="menuWrapper" >
                         <button className="lidList-inner-user-button" onClick={() => setMenu(!menu)}><img src={MenuIcon} alt="" /></button>
                         <div className={`boxmenu ${menu ? 'active' : ''}`} ref={wrapperRef}>
@@ -91,8 +91,8 @@ const LidsItem = ({ item, index }) => {
                            <span><img src={Delete} alt="" /> O’chirish</span>
                         </div>
                      </div>
-                     <span className={`lidList-inner-comment ${item?.comment ? 'hasComment' : ''}`}>
-                        {item.comment}
+                     <span className={`lidList-inner-comment ${item?.lead_comment ? 'hasComment' : ''}`}>
+                        {item.lead_comment}
                      </span>
                   </div>
                </div>

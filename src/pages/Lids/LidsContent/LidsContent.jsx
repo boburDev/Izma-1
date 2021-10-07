@@ -125,17 +125,18 @@ const closeLidAdd2 = () => {
                         display: form1 ? 'flex' : 'none'
                      }}
                   >
+                     
                      <LidAddForm 
                         setAdd={setForm1}
                         formId={1}
                         columns={columns}
                         setColumns={setColumns}
-                        itemId={-1}
+                        itemId={columns && columns.find(el => el.boxStatus === -1)}
                      />
                   </div>
                   <div className="status1-header-row">
                      {
-                        columns.map((item, index) => {
+                        columns && columns.map((item, index) => {
                            if (item.boxStatus === -1) {
                               return  <div style={{ margin: 8, width: '100%' }} key={index}>
                                     <LidsBox
@@ -163,7 +164,7 @@ const closeLidAdd2 = () => {
                   key={1}
                >
                   {
-                     columns.map((item, index) => {
+                     columns &&  columns.map((item, index) => {
                         if (item.boxStatus === 1) {
                            return <div style={{ margin: 8, width: '100%' }} key={index}>
                                  <LidsBox
@@ -216,12 +217,12 @@ const closeLidAdd2 = () => {
                         formId={2}
                         columns={columns}
                         setColumns={setColumns}
-                        itemId={-2}
+                        itemId={columns &&columns.find(el => el.boxStatus === -2)}
                      />
                   </div>
                   <div className="status1-header-row">
                      {
-                        columns.map((item, index) => {
+                        columns &&  columns.map((item, index) => {
                            if (item.boxStatus === -2) {
                               return <div style={{ margin: 8, width: '100%' }} key={index}>
                                     <LidsBox
@@ -247,7 +248,7 @@ const closeLidAdd2 = () => {
                   key={1}
                >
                   {
-                     columns.map((item, index) => {
+                     columns &&  columns.map((item, index) => {
                         if (item.boxStatus === 2) {
                            return <div style={{ margin: 8, width: '100%' }} key={index}>
                                  <LidsBox
@@ -294,12 +295,12 @@ const closeLidAdd2 = () => {
                         formId={3}
                         columns={columns}
                         setColumns={setColumns}
-                        itemId={-3}
+                        itemId={columns && columns.find(el => el.boxStatus === -3)}
                      />
                   </div>
                   <div className="status1-header-row">
                      {
-                        columns.map((item, index) => {
+                        columns &&  columns.map((item, index) => {
                            if (item.boxStatus === -3) {
                               return <div style={{ margin: 8, width: '100%' }} key={index}>
                                     <LidsBox
@@ -325,7 +326,7 @@ const closeLidAdd2 = () => {
                   key={1}
                >
                   {
-                     columns.map((item, index) => {
+                     columns &&   columns.map((item, index) => {
                         if (item.boxStatus === 3) {
                            return <div style={{ margin: 8, width: '100%' }} key={index}>
                                  <LidsBox

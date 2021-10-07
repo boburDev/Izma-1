@@ -527,7 +527,7 @@ const GroupProfilLeft = (prop) => {
             <div className="form_group">
                <label>Sanadan boshlab</label>
                {
-                  console.log(groups.byGroupID.endDate)
+                  // console.log(groups.byGroupID.endDate)
                }
                <DatePicker
                   className='date__picker'

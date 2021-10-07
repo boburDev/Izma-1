@@ -167,7 +167,6 @@ export {
     UPDATE_BOX,
     DELETE_BOX,
     SUBCRIP_BOXES,
-    ALL_LEADS,
     NEW_LEAD,
     UPDATE_LEAD,
     DELETE_LEAD,

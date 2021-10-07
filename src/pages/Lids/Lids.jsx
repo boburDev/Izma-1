@@ -81,7 +81,7 @@ const Lids = () => {
    useEffect(() => {
       check({variables: {check: 'string'}})
       console.log(boxes)
-      console.log(leads)
+      // console.log(leads)
    }, [check, leads, boxes])
 
    useSubscription(SUBCRIP_BOXES, {

@@ -2,17 +2,7 @@ import { gql } from '@apollo/client'
 
 const ALL_BOX = gql `
     query {
-        leadsBoxName{
-        id
-        boxName
-        status
-        courseID
-        courseName
-        teachID
-        teachName
-        courseDays
-        courseTime
-        }
+        leadsBoxName
     }
 `
 

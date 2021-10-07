@@ -156,7 +156,6 @@ console.log(column);
                               columns={columns}
                               setColumns={setColumns}
                               itemId={column.id}
-                              formId={column.boxStatus}
                            />
                         </div>
                         {column.items.map((item, index) => {

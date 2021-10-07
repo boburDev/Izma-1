@@ -1,6 +1,6 @@
 import './Lids.scss'
 import LidsContent from './LidsContent/LidsContent'
-import { useEffect, useState } from 'react'
+import {  useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { /* useMutation, */ useQuery, useSubscription } from '@apollo/client'
 import { SUBCRIP_BOXES } from './query'
@@ -22,26 +22,26 @@ import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 //    { id: 'asdgag5', userName: '8 block' },
 // ]
 
-const LidsBoxes = [
-   {
-      id: '',
-      name: '',
-      boxStatus: -1,
-      items: []
-   },
-   {
-      id: '',
-      name: '',
-      boxStatus: -2,
-      items: []
-   },
-   {
-      id: '',
-      name: '',
-      boxStatus: -3,
-      items: []
-   }
-]
+// const LidsBoxes = [
+//    {
+//       id: '',
+//       name: '',
+//       boxStatus: -1,
+//       items: []
+//    },
+//    {
+//       id: '',
+//       name: '',
+//       boxStatus: -2,
+//       items: []
+//    },
+//    {
+//       id: '',
+//       name: '',
+//       boxStatus: -3,
+//       items: []
+//    }
+// ]
 
 const Lids = () => {
    const [columns, setColumns] = useState([])
@@ -51,6 +51,10 @@ const Lids = () => {
 
    const { data: courses } = useQuery(COURSES)
    const { data: teachers } = useQuery(TEACHER_FILTERS)
+
+   useEffect(() => {
+
+   }, [courses, teachers])
 
    // console.log(courses)
    // console.log(teachers)

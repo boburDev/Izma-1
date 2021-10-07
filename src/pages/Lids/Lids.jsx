@@ -3,7 +3,7 @@ import LidsContent from './LidsContent/LidsContent'
 import {  useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { useMutation, useLazyQuery, useQuery, useSubscription } from '@apollo/client'
-import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX, NEW_BOX, UPDATE_BOX, DELETE_BOX } from './query'
+import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX, NEW_BOX, UPDATE_BOX, DELETE_BOX, ALL_LEADS, NEW_LEAD, UPDATE_LEAD, DELETE_LEAD, SUBCRIP_LEADS } from './query'
 import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
@@ -38,22 +38,21 @@ const LidsBoxes = [
 ]
 
 const Lids = () => {
-   const [columns, setColumns] = useState(Lead)
+   const [columns, setColumns] = useState([])
 
    const [check] = useLazyQuery(CHECK_BOX_MINUS)
 
    const { data: courses } = useQuery(COURSES)
    const { data: teachers } = useQuery(TEACHER_FILTERS)
 
+   useEffect(() => {
+      
+   }, [courses, teachers])
+   
+
+   // boxes
+
    const { data: boxes } = useQuery(ALL_BOX)
-
-//    useEffect(() => {
-//       setColumns(boxes && boxes?.leadsBoxName)
-//    }, [boxes])
-// console.log(boxes?.leadsBoxName);
-
-   // console.log(courses)
-   // console.log(teachers)
 
    // const [createBox] = useMutation(NEW_BOX)
    // createBox({variables: {boxName: '', status: int}})
@@ -64,12 +63,28 @@ const Lids = () => {
    // const [deleteBox] = useMutation(DELETE_BOX)
    // deleteBox({variables: {boxID: id}})
 
+
+   // leads
+
+   const { data: leads } = useQuery(ALL_LEADS)
+
+   // const [createLead] = useMutation(NEW_LEAD)
+   // createLead({variables: {name: '', phone: '', leadBoxID: id}})
+
+   // const [updateLead] = useMutation(UPDATE_LEAD)
+   // updateLead({variables: {leadID: id, boxName: '', leadBoxID: id, phone: ''}})
+
+   // const [deleteLead] = useMutation(DELETE_LEAD)
+   // deleteLead({variables: {leadID: id}})
+
+
    useEffect(() => {
       check({variables: {check: 'string'}})
-   }, [check])
+      console.log(boxes)
+      console.log(leads)
+   }, [check, leads, boxes])
 
    useSubscription(SUBCRIP_BOXES, {
-
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
          cache.modify({
             fields: {
@@ -79,43 +94,15 @@ const Lids = () => {
       },
    })
 
-   // BOXES //
-   
-  
-
-   // const [updateBoxName] = useMutation(UPDATE_BOX_NAME)
-   // updateBoxName({variables: {boxID: id, boxName: '', status: number}})
-
-   
-
-
-   // BOX_CONTENTS //
-
-   // const [createBoxContent] = useMutation(CREATE_BOX_CONTENT)
-   // createBoxContent({variables: {name: '', phone: '', comment: '', status: number}})
-
-   // const [createBoxContentGr] = useMutation(CREATE_BOX_CONTENT_GROUP)
-   // createBoxContentGr({variables: {
-      // name: '',
-      // status: number,
-      // courseID: id,
-      // courseName: '',
-      // teachID: id,
-      // teachName: '',
-      // days: '',
-      // time: ''
-   // }})
-
-   // const [updateBoxContent] = useMutation(UPDATE_BOX_CONTENT)
-   // updateBoxContent({variables: {id: id, name: '', phone: '', comment: ''}})
-
-   // const [updateBoxContStatus] = useMutation(UPDATE_BOX_CONT_STATUS)
-   // updateBoxContStatus({variables: {id: id, status: number}})
-
-   // const [deleteContent] = useMutation(DELETE_CONTENT)
-   // deleteContent({variables: {id: id}})
-
-
+   useSubscription(SUBCRIP_LEADS, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               leads: () => { }
+            }
+         })
+      },
+   })
 
    const onDragEnd = (result, columns, setColumns) => {
 

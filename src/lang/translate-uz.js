@@ -174,7 +174,7 @@ const uz = {
             password: 'Parol',
             save: 'Saqlash'
         },
-        teacherInfo: {
+        teacherInfoDetail: {
             teacherName: 'O\'qituvchining Ismi',
             archiveProfile: 'PROFIL TARIX',
             phoneNumber: 'Telefon raqam:',
@@ -420,7 +420,6 @@ const uz = {
             methodCount: 'Hisoblash usuli',
             byDate: 'Sana bo\'yicha',
             filter: 'Filtr',
-            teacher: 'O\'qituvchi',
             currency: 'So\'m'
         },
         paymentGroup: {

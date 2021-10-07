@@ -175,7 +175,7 @@ const ru = {
             password: 'Пароль',
             save: 'Сохранить'
         },
-        teacherInfo: {
+        teacherInfoDetail: {
             teacherName: 'Имя учителя',
             archiveProfile: 'ИСТОРИЯ ПРОФИЛЯ',
             phoneNumber: 'Номер телефона:',
@@ -421,7 +421,6 @@ const ru = {
             methodCount: 'Метод расчета',
             byDate: 'По дате',
             filter: 'Фильтр',
-            teacher: 'Учитель',
             currency: 'Сум'
         },
         paymentGroup: {

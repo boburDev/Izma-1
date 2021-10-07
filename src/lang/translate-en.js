@@ -174,7 +174,7 @@ const en = {
             password: 'Password',
             save: 'Save'
         },
-        teacherInfo: {
+        teacherInfoDetail: {
             teacherName: 'Teacher\'s Name',
             archiveProfile: 'PROFILE HISTORY',
             phoneNumber: 'Phone number:',
@@ -420,7 +420,6 @@ const en = {
             methodCount: 'Calculation method',
             byDate: 'By date',
             filter: 'Filter',
-            teacher: 'Teacher',
             currency: 'Soum'
         },
         paymentGroup: {

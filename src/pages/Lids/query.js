@@ -78,7 +78,7 @@ const DELETE_BOX = gql `
     }
 `
 
-const SUBCRIP_BOXES = `
+const SUBCRIP_BOXES = gql `
     subscription {
         newBoxes {
         id

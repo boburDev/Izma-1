@@ -2,17 +2,7 @@ import { gql } from '@apollo/client'
 
 const ALL_BOX = gql `
     query {
-        leadsBoxName{
-        id
-        boxName
-        status
-        courseID
-        courseName
-        teachID
-        teachName
-        courseDays
-        courseTime
-        }
+        leadsBoxName
     }
 `
 
@@ -97,21 +87,6 @@ const CHECK_BOX_MINUS = gql `
 
 
 
-const ALL_LEADS = gql `
-    query {
-        leads{
-        id
-        name
-        phone
-        gender
-        comment
-        birthday
-        courseID
-        teachID
-        leadBoxID
-        }
-    }
-`
 
 const NEW_LEAD = gql `
     mutation newLeadForm(
@@ -192,7 +167,6 @@ export {
     UPDATE_BOX,
     DELETE_BOX,
     SUBCRIP_BOXES,
-    ALL_LEADS,
     NEW_LEAD,
     UPDATE_LEAD,
     DELETE_LEAD,

@@ -146,12 +146,10 @@ const NEW_CASH = gql `
   }
 `
 
-
-
 export {
    ADD_NEW_STUDENTS,
    FOR_EDIT_STUDENT,
    UPDATE_STUDENT,
    GROUPS,
-   NEW_CASH
+   NEW_CASH,
 }

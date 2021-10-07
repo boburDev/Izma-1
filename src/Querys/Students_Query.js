@@ -173,11 +173,21 @@ const NEW_CASH = gql `
   }
 `
 
+const test = gql `
+query studentCashsh($test: String) {
+  studentCashsh (sss: $test){
+    id
+  }
+}
+`
+
 export {
    ADD_NEW_STUDENTS,
    ADD_NEW_STUDENTS_GROUP,
    FOR_EDIT_STUDENT,
    UPDATE_STUDENT,
    GROUPS,
-   NEW_CASH
+   NEW_CASH,
+   test
+
 }

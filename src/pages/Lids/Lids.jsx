@@ -1,6 +1,6 @@
 import './Lids.scss'
 import LidsContent from './LidsContent/LidsContent'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import {  useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { useMutation, useLazyQuery, useQuery, useSubscription } from '@apollo/client'
 import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX, NEW_BOX, UPDATE_BOX, DELETE_BOX } from './query'
@@ -46,6 +46,13 @@ const Lids = () => {
    const { data: teachers } = useQuery(TEACHER_FILTERS)
 
    const { data: boxes } = useQuery(ALL_BOX)
+
+   useEffect(() => {
+
+   }, [courses, teachers])
+
+   // console.log(courses)
+   // console.log(teachers)
 
    // const [createBox] = useMutation(NEW_BOX)
    // createBox({variables: {boxName: '', status: int}})

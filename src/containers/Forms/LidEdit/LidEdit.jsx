@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import DropSearch from '../../../components/DropSearch/DropSearch'
 import LidHistoryBlock from '../../../components/LidsComponents/LidHistoryBlock/LidHistoryBlock'
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput'
@@ -10,7 +10,9 @@ const LidsEdit = ({ setEdit, edit }) => {
    const [stBirth, setStBirth] = useState('')
    const [comment, setComment] = useState('')
    const [stGender, setStGender] = useState()
-   
+   useEffect(() => {
+
+   }, [phone, stBirth, comment, stGender])
    return (
       <div className={`lidsedit ${edit ? 'active' : ''}`}>
          <div className="lidsedit-header">

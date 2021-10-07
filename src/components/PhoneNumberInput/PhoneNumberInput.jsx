@@ -36,7 +36,39 @@ const PhoneNumberInput = ({ setPhone, setParents, parents, placeholder }) => {
                } else if (e.target.value.length === 11) {
                   e.target.value = e.target.value + '-'
                }
+            }} onPaste={(e) => {
+
+              setTimeout(() => {
+                 if(e.target.value.length >= 9) {
+                    let n = e.target.value.split('').splice(0, 9)
+                    e.target.value = `(${n[0]}${n[1]}) ${n[2]}${n[3]}${n[4]}-${n[5]}${n[6]}-${n[7]}${n[8]}`
+                 } else if (e.target.value.length === 1) {
+                    let n = e.target.value.split('').splice(0, 9)
+                    e.target.value = `(${n[0]}`
+                 }
+                  else if (e.target.value.length === 2) {
+                    let n = e.target.value.split('').splice(0, e.target.value.length)
+                    e.target.value = `(${n[0]}${n[1]})`
+                 } else if (e.target.value.length >= 3 && e.target.value.length < 5) {
+                    let n = e.target.value.split('').splice(0, e.target.value.length)
+                    e.target.value = `(${n[0] ? n[0] : ''}${n[1] ? n[1] : ''}) ${n[2] ? n[2] : ''}${n[3] ? n[3] : ''}${n[4] ? n[4] : ''}`
+                 } else if (e.target.value.length >= 5 && e.target.value.length < 7) {
+                    let n = e.target.value.split('').splice(0, e.target.value.length)
+                    e.target.value = `(${n[0] ? n[0] : ''}${n[1] ? n[1] : ''}) ${n[2] ? n[2] : ''}${n[3] ? n[3] : ''}${n[4] ? n[4] : ''}-${n[5] ? n[5] : ''}`
+                 } else if (e.target.value.length >= 6 && e.target.value.length <= 9) {
+                    let n = e.target.value.split('').splice(0, e.target.value.length)
+                    e.target.value = `(${n[0] ? n[0] : ''}${n[1] ? n[1] : ''}) ${n[2] ? n[2] : ''}${n[3] ? n[3] : ''}${n[4] ? n[4] : ''}-${n[5] ? n[5] : ''}${n[6] ? n[6] : ''}-${n[7] ? n[7] : ''}${n[8] ? n[8] : ''}`
+                 }
+                 else if (e.target.value.length < 9) {
+                    let n = e.target.value.split('').splice(0, e.target.value.length)
+                    e.target.value = `(${n[0] ? n[0] : ''}${n[1] ? n[1] : ''}) ${n[2] ? n[2] : ''}${n[3] ? n[3] : ''}${n[4] ? n[4] : ''}-${n[5] ? n[5] : ''}${n[6] ? n[6] : ''}-${n[7] ? n[7] : ''}${n[8] ? n[8] : ''}`
+                 }
+              }, 0);
+
+              
             }}
+
+            
             onKeyUp={(e) => {
                
                if(setParents && e.target.value.length === 14) {

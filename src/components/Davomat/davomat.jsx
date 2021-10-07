@@ -21,13 +21,15 @@ function Davomat() {
     const [endDate, setEndDate] = useState('')
     const [groupMonth,setGroupMonth] = useState([])
     const [groupStuMonth,setGroupStuMonth] = useState([])
-    console.log(groupStuMonth)
     const [monthlyGr, setMonthlyGr] = useState([])
     const [monthlyStGr, setMonthlyStGr] = useState([])
-    console.log(monthlyStGr)
     const { data: groupAtt } = useQuery(GROUP_DAVOMAT, { variables: { groupID: id && id.groupID}})
 
     const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
+
+    useEffect(() => {
+
+    }, [monthlyStGr ,groupStuMonth])
 
 
     useEffect(()=>{

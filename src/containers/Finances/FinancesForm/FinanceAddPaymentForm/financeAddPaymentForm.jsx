@@ -129,7 +129,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
           </div>
           <div className="form_group" style={{ width: "100%" }}>
             <label className='izma__courses__form-bolim-form-label'>Miqdor</label>
-              <input value={ammountt} autoComplete="off"  className={"section_name_input"}  name={"nomi"} onChange={e => setAmmoun(e.target.value)}/>
+              <input value={ammountt} autoComplete="off"  className={"section_name_input"}  name={"nomi"} onChange={e => setAmmoun(e.target.value)} type="number"/>
               {
 				  (groupID === '') && <>
 				  <label className='izma__courses__form-bolim-form-label'>Group</label>

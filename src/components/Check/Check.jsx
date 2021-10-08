@@ -50,7 +50,7 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
 
 
         const today = new Date(check && check.checkData.payed_at)
-        setMonth(months[today.getMonth() - 1])
+        setMonth(months[today.getMonth()])
     },[check])
 
     useEffect(()=>{

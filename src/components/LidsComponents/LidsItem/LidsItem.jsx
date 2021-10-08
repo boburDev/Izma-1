@@ -7,9 +7,14 @@ import Delete from '../../../assets/Icons/delete.svg'
 import { useEffect, useRef } from 'react'
 import LidsEdit from '../../../containers/Forms/LidEdit/LidEdit';
 import { Drawer } from 'antd';
+import { useMutation } from '@apollo/client';
+import { DELETE_LEAD } from '../../../pages/Lids/query';
 
 const LidsItem = ({ item, index }) => {
    const [menu, setMenu] = useState()
+
+   const [deleteLead] = useMutation(DELETE_LEAD)
+
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
          function handleClickOutside(event) {
@@ -46,8 +51,8 @@ const LidsItem = ({ item, index }) => {
 
    return (
       <Draggable
-         key={item.lead_id}
-         draggableId={item.lead_id}
+         key={item.id}
+         draggableId={item.id}
          index={index}
       >
          {(provided, snapshot) => {
@@ -80,7 +85,7 @@ const LidsItem = ({ item, index }) => {
 
                         />
                      </Drawer>
-                     <span className='span'>{item.lead_name} / {item.lead_tel}</span>
+                     <span className='span'>{item.name} / {item.phone} / {item.comment}</span>
                      <div className="menuWrapper" >
                         <button className="lidList-inner-user-button" onClick={() => setMenu(!menu)}><img src={MenuIcon} alt="" /></button>
                         <div className={`boxmenu ${menu ? 'active' : ''}`} ref={wrapperRef}>
@@ -88,7 +93,10 @@ const LidsItem = ({ item, index }) => {
                               setMenu(false)
                               setOpenEdit(true)
                            }}><img src={Edit} alt="" /> Tahrirlash</span>
-                           <span><img src={Delete} alt="" /> O’chirish</span>
+                           <span onClick={() => {
+                              deleteLead({variables: {leadID: item.id}})
+                              setOpenEdit(false)
+                              }}><img src={Delete} alt=""/> O’chirish</span>
                         </div>
                      </div>
                      <span className={`lidList-inner-comment ${item?.lead_comment ? 'hasComment' : ''}`}>

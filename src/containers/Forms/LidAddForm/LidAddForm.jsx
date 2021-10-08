@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import './LidAddForm.scss'
 import { useMutation } from '@apollo/client'
-import { CREATE_BOX_CONTENT } from '../../../pages/Lids/queryy'
 import { NEW_LEAD } from '../../../pages/Lids/query'
 
 
@@ -14,13 +13,10 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
 
    const handleSubmit = async () => {
    
-
-     
-     
       createLead({ variables: { 
          name: userName.current.value,
          phone: userNumber.current.value,
-         leadBoxID: typeof itemId === 'string' ? itemId : itemId.id,
+         leadBoxID: typeof itemId === 'string' ? itemId : itemId?.id,
          gender: null,
          comment: userComment.current.value,
          courseID: null,

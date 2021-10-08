@@ -17,6 +17,8 @@ import Icon7 from '../../../assets/icon7.svg'
 import Icon8 from '../../../assets/icon8.svg'
 import Icon9 from '../../../assets/icon9.svg'
 import NavbarLinkSet from '../NavbarLinkFin/NavbarLinkFin'
+import Language from '../../../lang/index'
+import { useLang } from '../../../context/LanguageProvider'
 
 import {
    Home,
@@ -49,6 +51,7 @@ const Navbar = ({ sidebarActive }) => {
    const [openJurnal, setOpenJurnal] = useState(false)
    const [openShakl, setOpenShakl] = useState(false)
    const [hashName, setHashName] = useState('')
+   const [lang] = useLang()
 
    const {data: hashtag} = useQuery(BY_HASHTAG)
 
@@ -99,7 +102,7 @@ const Navbar = ({ sidebarActive }) => {
    }
    const links = [
       {
-         title: 'Home',
+         title: Language[lang].navigation.main,
          icon: <Home />,
          link: '/',
          isButton: false,
@@ -107,42 +110,42 @@ const Navbar = ({ sidebarActive }) => {
 
       },
       {
-         title: 'Lidlar',
+         title: Language[lang].navigation.lids,
          icon: <Lidrlar />,
          link: '/lidlar',
          isButton: false,
          nav: lidActive
       },
       {
-         title: 'Talabalar',
+         title: Language[lang].navigation.students,
          icon: <Talabalar />,
          link: '/students',
          isButton: false,
          nav: studentActive
       },
       {
-         title: 'O’qituvchilar',
+         title: Language[lang].navigation.teachers,
          icon: <Teacher />,
          link: '/teachers',
          isButton: false,
          nav: teachrtActive
       },
       {
-         title: 'Guruhlar',
+         title: Language[lang].navigation.groups,
          icon: <Guruhlar />,
          link: '/groups',
          isButton: false,
          nav: groupActive
       },
       {
-         title: 'Kurslar',
+         title: Language[lang].navigation.courses,
          icon: <Kurslar />,
          link: '/courses',
          isButton: false,
          nav: courseActive
       },
       {
-         title: 'Moliya',
+         title: Language[lang].navigation.finance,
          icon: <Moliya />,
          link: '/finance',
          isButton: true,
@@ -261,29 +264,29 @@ const Navbar = ({ sidebarActive }) => {
    const MoliyaLinks = [
       {
          link: '/finance',
-         title: 'Barcha to’lovlar'
+         title: Language[lang].navigation.allPayments
       },
       {
          link: '/financeCosts',
-         title: 'Xarajatlar'
+         title: Language[lang].navigation.costs
       },
       {
          link: '/financeSalary',
-         title: 'Ish haqqi'
+         title: Language[lang].navigation.salaryForWork
       },
       {
          link: '/financePaymentGroups',
-         title: 'To’lovlar guruhi'
+         title: Language[lang].navigation.paymentGroups
       },
       {
          link: '/financePayment',
-         title: 'Kurs to’lovlari'
+         title: Language[lang].navigation.paymentCourses
       },
    ]
    const SettingLinks = [
       {
          link: '/settingsRoadmap',
-         title: 'Roadmap',
+         title: Language[lang].navigation.map,
          icon: Icon1,
          isBox: false,
          links: [],
@@ -293,17 +296,17 @@ const Navbar = ({ sidebarActive }) => {
       },
       {
          link: '',
-         title: 'Ofis',
+         title: Language[lang].navigation.office,
          icon: Icon,
          isBox: true,
          links: [
             {
                link: '/settingsEmployees',
-               title: 'Hodimlar',
+               title: Language[lang].navigation.empoyee,
                icon: Icon2
             }, {
                link: '/settingsEmployeesInner',
-               title: 'Xonalar',
+               title: Language[lang].navigation.rooms,
                icon: Icon3
             }
          ],
@@ -312,17 +315,17 @@ const Navbar = ({ sidebarActive }) => {
       },
       {
          link: '',
-         title: 'Qolganlari',
+         title: Language[lang].navigation.others,
          icon: Icon,
          isBox: true,
          links: [
             {
                link: '/settingsMagazine',
-               title: 'Jurnallar',
+               title: Language[lang].navigation.journals,
                icon: Icon4
             }, {
                link: '/settingsArchive',
-               title: 'Arxiv',
+               title: Language[lang].navigation.archive,
                icon: Icon5
             }
          ],
@@ -331,22 +334,22 @@ const Navbar = ({ sidebarActive }) => {
       },
       {
          link: '',
-         title: 'Shakillar',
+         title: Language[lang].navigation.shapes,
          icon: Icon,
          isBox: true,
          links: [
             {
                link: `/${hashName}/entry/lead`,
-               title: 'Lid forma',
+               title: Language[lang].navigation.lidForm,
                icon: Icon6
             }, {
                link: '/enterForm',
-               title: 'Kirish forma',
+               title: Language[lang].navigation.enterForm,
                icon: Icon7
             
             }, {
                link: '/settingsShapes',
-               title: 'Shakillar',
+               title: Language[lang].navigation.shapes,
                icon: Icon8
             }
          ],
@@ -355,7 +358,7 @@ const Navbar = ({ sidebarActive }) => {
       },
       {
          link: '/settingsCompany',
-         title: 'Kampaniya sozlamalari',
+         title: Language[lang].navigation.companySettings,
          icon: Icon9,
          isBox: false,
          links: [],
@@ -409,7 +412,7 @@ const Navbar = ({ sidebarActive }) => {
             }
             <NavbarLinkSet
                icon={<Settings />}
-               title={'Sozlamalar'}
+               title={Language[lang].navigation.settings}
                isButton={true}
                link={'/settingsRoadmap'}
                addClass={openSettings1}

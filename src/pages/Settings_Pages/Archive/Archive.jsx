@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import TTable from '../../../components/Table/TTable';
 import { COLLEGUES_BY_STATUS, UPT_STATUS, TEACHER_SUBSCRIPTION } from '../../../Querys/Settings';
 import './Archive.scss'
-
+import { useLang } from '../../../context/LanguageProvider';
+import Language from '../../../lang/index'
 
 const Archive = () => {
 
@@ -11,6 +12,7 @@ const Archive = () => {
    const [val, setVal] = useState([])
    const [takeID, setTakeID] = useState()
    const [stat, setStat] = useState('')
+   const [lang] = useLang()
 
 
    const {data: minusStatus} = useQuery(COLLEGUES_BY_STATUS)
@@ -101,10 +103,10 @@ const Archive = () => {
          <div className="izma__settings-archive">
             <div className="izma__settings-archive-up">
                <h3 className="izma__settings-archive-up-heading">
-                  Formalar
+                  {Language[lang].settings.forms.formTitle}
                </h3>
                <h4 className="izma__settingsarchive-up-title">
-                  Xodimlar | Arxiv
+                  {Language[lang].settings.employee.employeeTitle} | {Language[lang].settings.forms.formTitle}
                </h4>
 
 

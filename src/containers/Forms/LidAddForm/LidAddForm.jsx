@@ -2,14 +2,22 @@ import { useEffect, useRef } from 'react'
 import './LidAddForm.scss'
 import { useMutation } from '@apollo/client'
 import { NEW_LEAD } from '../../../pages/Lids/query'
+// <<<<<<< HEAD
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
+// =======
 import { useSnackbar } from 'notistack';
 
+// >>>>>>> 19e26c884841d66d8a6c48e3b37e02f80881de1d
 
 const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
    const userName = useRef()
    const userNumber = useRef()
    const userComment = useRef()
    const [createLead] = useMutation(NEW_LEAD)
+// <<<<<<< HEAD
+   const [lang] = useLang()
+// =======
 
    const { enqueueSnackbar } = useSnackbar();
 
@@ -20,6 +28,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
       });
 
    };
+// >>>>>>> 19e26c884841d66d8a6c48e3b37e02f80881de1d
    
 
    const handleSubmit = async () => {
@@ -86,7 +95,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
       <form id={`form` + formId} className="lllid">
       <div className="addForm" ref={wrapperRef}>
             <input autoComplete="off"  type="text" className="home-column-top__name"
-            placeholder="ism va familiya" required ref={userName}
+            placeholder={Language[lang].students.id.fullName} required ref={userName}
             onKeyUp={(e) => {
                if (e.keyCode === 13) {
                   handleSubmit()
@@ -94,7 +103,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
             }}
          />
             <input autoComplete="off"  type="text" className="home-column-top__number"
-            placeholder="telefon" required ref={userNumber} minLength={12} maxLength={12}
+            placeholder={Language[lang].students.payment.comment} required ref={userNumber} minLength={12} maxLength={12}
             onKeyUp={(e) => {
                if (e.keyCode === 13) {
                   handleSubmit()

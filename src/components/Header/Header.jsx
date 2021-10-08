@@ -4,9 +4,12 @@ import './Header.scss'
 import Close from '../../assets/Icons/close.svg'
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Language from '../../lang/index'
+import { useLang } from "../../context/LanguageProvider";
 
 const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
    const [active, setActive] = useState()
+   const [lang] = useLang()
    return (
       <>
          <header className="izma__header">
@@ -14,7 +17,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
             className="izma__header-burger"
                onClick={() => setSidebarActive(!sidebarActive)}
             ><img src={Close} alt="" /></button>
-            <input autoComplete="off"  className="izma__header-input" type="text" placeholder='Search' />
+            <input autoComplete="off"  className="izma__header-input" type="text" placeholder={Language[lang].groups.groupInfo.search} />
 
             <div className="izma__header-left-wrapper">
                <img src={NotificationImg} className="izma__header-notification-img" alt="img" />
@@ -26,7 +29,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
                <div className={`izma__header-dropdown ${active ? 'active' : ''}`}>
                      <Link
                      onClick={()=> setActive(false)}
-                     to={`/`}>Hisob qaytnomasi</Link>
+                     to={`/`}>{Language[lang].home.blocks.accountInfo}</Link>
                      <span
                         onClick={() => {
                         localStorage.removeItem('token')
@@ -34,7 +37,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
                         window.location.href = '/login/' + x
                         setToken('')
                         }}
-                    >Chiqish</span>
+                    >{Language[lang].home.blocks.exit}</span>
                   </div>
             </div>
          </header>

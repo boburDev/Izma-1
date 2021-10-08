@@ -6,6 +6,8 @@ import './Employees.scss'
 import { COLLEGUES, TEACHER_SUBSCRIPTION, UPT_STATUS } from '../../../Querys/Settings'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
+import Language from '../../../lang/index'
+import { useLang } from '../../../context/LanguageProvider'
 
 const Employees = () => {
 	const [visible, setVisible] = useState(false)
@@ -14,6 +16,7 @@ const Employees = () => {
 	const [colleguages, setColleguages] = useState([])
 	const [visiblee, setVisiblee] = useState(false)
     const [stat, setStat] = useState('')
+	const [lang] = useLang()
 
 
 	const { data: all_colleagues } = useQuery(COLLEGUES)
@@ -94,10 +97,10 @@ const Employees = () => {
 		<div className="izma__settings-employees">
 		<div className="hodim_heading">
 		<h2 className="izma__settings-employees-heading">
-		Hodimlar
+			{Language[lang].settings.employee.employeeTitle}
 		</h2>
 		<button className="izma__students-content-button" onClick={showDrawer} >
-		Yangisini qo’shing
+			{Language[lang].settings.employee.addNewEmployee}
 		</button>
 		</div>
 		<div className="izma__table-g ">

@@ -2,6 +2,8 @@ import { Table } from 'antd';
 import './Shakillar.scss'
 import EditImg from '../../../assets/Icons/settings-edit.svg'
 import DeleteImg from '../../../assets/Icons/settings-delete.svg'
+import { useLang } from '../../../context/LanguageProvider';
+import Language from '../../../lang/index'
 
 const Shakillar = ({ setMainTableData, mainTableData, data, values, setRowId, setValues }) => {
 
@@ -24,22 +26,23 @@ const Shakillar = ({ setMainTableData, mainTableData, data, values, setRowId, se
          },
       };
    };
+   const [lang] = useLang()
 
    const columns = [
 
 
       {
-         title: 'id',
+         title: Language[lang].settings.forms.id,
          dataIndex: 'Id',
          key: 'Id',
       },
       {
-         title: "Ism",
+         title: Language[lang].settings.forms.fullName,
          dataIndex: 'name',
          key: 'name',
       },
       {
-         title: 'Tahrirlash',
+         title: Language[lang].settings.rooms.edit,
          dataIndex: 'edit',
          key: 'edit',
          width: "20px",
@@ -48,7 +51,7 @@ const Shakillar = ({ setMainTableData, mainTableData, data, values, setRowId, se
             <img className="izma__table-settings-delete-btn" src={EditImg} alt="delete img" />
       },
       {
-         title: 'Amallar',
+         title: Language[lang].settings.rooms.actions,
          dataIndex: 'actions',
          key: 'actions',
          width: "20px",
@@ -63,10 +66,10 @@ const Shakillar = ({ setMainTableData, mainTableData, data, values, setRowId, se
          <div className="izma__settings-shapes">
             <div className="izma__settings-shapes-up">
                <h3 className="izma__settings-shapes-up-heading">
-                  Formalar
+                  {Language[lang].settings.forms.formTitle}
                </h3>
                <button className="izma__students-content-button">
-                  Yarating
+               {Language[lang].settings.forms.addNewForm}
                </button>
             </div>
             <div className="izma__settings-shapes-button">

@@ -6,7 +6,8 @@ import { useMutation, useQuery } from '@apollo/client'
 import { COURSES, NEW_LEAD } from './query'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 const LidForm = () => {
 
@@ -16,6 +17,7 @@ const LidForm = () => {
    const [course, setCourse] = useState("")
    const [allCourse, setAllCourse] = useState([])
    const { hashtag } = useParams()
+   const [lang] = useLang()
 
    const { data: courses } = useQuery(COURSES, {
       variables: { hashtag }
@@ -53,37 +55,37 @@ const LidForm = () => {
 
                <div className="request_center1">
                   <div className="top_iteems1">
-                     <h3>O'quv markaziga so'rov qoldiring</h3>
+                     <h3>{Language[lang].settings.forms.messageForLc}</h3>
                      <img src={QoraBanner} alt="" />
                   </div>
                   <div className="top_iteems1">
-                     <p>Keling bir ajoyib hikoya yozamiz</p>
+                     <p>{Language[lang].settings.forms.happyWhatWelistening}</p>
 
                   </div>
                </div>
 
                <div className="user_name1">
-                  <label className="name_label1" htmlFor="">Ism va familya *</label>
+                  <label className="name_label1" htmlFor="">{Language[lang].settings.forms.fullName} *</label>
                   <input autoComplete="off"  onKeyUp={e => setName(e.target.value)} className="name_input1" type="text" name="" id="" />
                </div>
 
                <div className="user_name1">
-                  <label className="name_label1" htmlFor="">Telefon *</label>
+                  <label className="name_label1" htmlFor="">{Language[lang].settings.forms.phoneNumber} *</label>
                   <PhoneNumberInput
                      setPhone={setPhone}
                   />
                </div>
 
                <div className="user_name1">
-                  <label className="name_label1" htmlFor="">Izoh</label>
+                  <label className="name_label1" htmlFor="">{Language[lang].settings.forms.comment}</label>
 
                   <textarea onKeyUp={e => setComment(e.target.value)} className="name_input1 comment1" type="text" name="" id="" />
                </div>
 
                <div className="user_name1">
-                  <label className="name_label1" htmlFor="">Kursingizni tanlang *</label>
+                  <label className="name_label1" htmlFor="">{Language[lang].settings.forms.selectCourse} *</label>
                   <select onChange={e => setCourse(e.target.value)} className="name_input1" name="" id="">
-                     <option value="" selected disabled>Kurs tanlang</option>
+                     <option value="" selected disabled>{Language[lang].settings.forms.selectCourse}</option>
                      {
                         allCourse?.map((e, i) => (
                            <option key={i} value={e.id}>{e.name}</option>
@@ -92,7 +94,7 @@ const LidForm = () => {
                   </select>
                </div>
 
-               <button onClick={handleRequest}>Yuborish</button>
+               <button onClick={handleRequest}>{Language[lang].settings.forms.send}</button>
             </div>
          </div>
       </div>

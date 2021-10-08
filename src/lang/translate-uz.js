@@ -19,7 +19,9 @@ const uz = {
             testLesson: 'Sinov darsida',
             paidForMonth: 'Oy uchun to\'lagan',
             stoppedParticipate: 'Yurishni to\'xtatdi',
-            leftAfterFirstLesson: 'Sinov darsidan so\'ng ketganlar'
+            leftAfterFirstLesson: 'Sinov darsidan so\'ng ketganlar',
+            exit: 'Chiqish',
+            accountInfo: 'Hisob qaytnomasi'
         },
         graph1: {
             cResources: 'Mijoz manbalari',
@@ -46,6 +48,12 @@ const uz = {
             everyDay: 'Har kuni',
             others: 'Boshqalar'
         }
+    },
+    lids: {
+        lidsTitle: 'So\'rovlar',
+        addQuery: 'So\'rov qo\'shing',
+        wait: 'Kutish',
+        block: 'To\'plam'
     },
     students: {
         title: {
@@ -352,6 +360,7 @@ const uz = {
         lids: 'Lidlar',
         students: 'O\'quvchilar',
         teachers: 'O\'qituvchilar',
+        groups: 'Guruhlar',
         courses: 'Kurslar',
         finance: 'Moliya',
         settings: 'Sozlamalar',
@@ -364,7 +373,13 @@ const uz = {
         office: 'Ofis',
         others: 'Boshqalar',
         shapes: 'Shakllar',
-        companySettings: 'Kompaniya sozlamalari'
+        companySettings: 'Kompaniya sozlamalari',
+        empoyee: 'Hodimlar',
+        rooms: 'Xonalar',
+        journals: 'Jurnallar',
+        archive: 'Arxiv',
+        lidForm: 'Lid forma',
+        enterForm: 'Kirish forma'
     },
     finance: {
         financeTitle: 'MOLIYA',

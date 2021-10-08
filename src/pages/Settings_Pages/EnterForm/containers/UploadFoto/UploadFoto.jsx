@@ -2,12 +2,15 @@ import { Upload, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import './UploadFoto.scss'
 import { Component } from 'react'
+// import {useLang} from '../../../../../context/LanguageProvider'
+// import Language from '../../../../../lang/index'
 
 function getBase64(img, callback) {
    const reader = new FileReader();
    reader.addEventListener('load', () => callback(reader.result));
    reader.readAsDataURL(img);
 }
+// const [lang] = useLang()
 
 function beforeUpload(file) {
    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';

@@ -19,7 +19,9 @@ const en = {
             testLesson: 'In a test lesson',
             paidForMonth: 'Paid for the month',
             stoppedParticipate: 'Stopped participating',
-            leftAfterFirstLesson: 'Those who left after the test lesson'
+            leftAfterFirstLesson: 'Those who left after the test lesson',
+            exit: 'Exit',
+            accountInfo: 'Account statement'
         },
         graph1: {
             cResources: 'Client resources',
@@ -46,6 +48,12 @@ const en = {
             everyDay: 'Every day',
             others: 'Others '
         }
+    },
+    lids: {
+        lidsTitle: 'Inquiries',
+        addQuery: 'Add a query',
+        wait: 'Wait',
+        block: 'Collection'
     },
     students: {
         title: {
@@ -352,6 +360,7 @@ const en = {
         students: 'Students',
         teachers: 'Teachers',
         courses: 'Courses ',
+        groups: 'Groups',
         finance: 'Finance',
         settings: 'Settings',
         allPayments: 'Payments',
@@ -363,7 +372,13 @@ const en = {
         office: 'Office',
         others: 'Others',
         shapes: 'Forms',
-        companySettings: 'Company settings'
+        companySettings: 'Company settings',
+        empoyee: 'Employee',
+        rooms: 'Rooms',
+        journals: 'Journals',
+        archive: 'Archive',
+        lidForm: 'Lid form',
+        enterForm: 'Entrance form'
     },
     finance: {
         financeTitle: 'FINANCE',

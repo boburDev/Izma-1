@@ -12,9 +12,12 @@ import { useEffect } from 'react';
 import PhoneNumberInput from '../../../../components/PhoneNumberInput/PhoneNumberInput';
 import moment from 'moment';
 import { useName1 } from '../../../../context/NameProvider';
+import {useLang} from '../../../../context/LanguageProvider'
+import Language from '../../../../lang/index.js'
 
 
 const TeacherProfileLeft = () => {
+   const [lang] = useLang();
    const { collegueID } = useParams()
    const [setPeopleName] = useName1(true)
    // const [openEdit, setOpenEdit] = useState(false)
@@ -23,7 +26,6 @@ const TeacherProfileLeft = () => {
    const [collegueInfo, setCollgueInfo] = useState()
    const { data: collegue, loading } = useQuery(BY_COLLEGUE_ID, { variables: { id: collegueID } })
    const {data: filial} = useQuery(FILIAL)
-
    const [UpdateColleguee] = useMutation(UPDATE_COLLEGUES)
 
    const [ name, setName ] = useState("")
@@ -136,7 +138,7 @@ useEffect(() => {
                      <div className="izma__teachers-payment-inner-left-centerizma__teachers-payment-inner-left-center">
                         <div className="izma__teachers-payment-inner-left-center-number izma__teachers-payment-inner-left-center-number-wrapper">
                            <p className="izma__teachers-payment-inner-left-center-number-text izma__teachers-payment-inner-left-center-text">
-                              Telefon :
+                              {Language[lang].teachers.teacherInfoDetail.phoneNumber}
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-number-number izma__teachers-payment-inner-left-center-number-number-wrapper">
                               +{collegueInfo?.phoneNumber}
@@ -145,7 +147,7 @@ useEffect(() => {
 
                         <div className="izma__teachers-payment-inner-left-center-balans izma__teachers-payment-inner-left-center-number-wrapper">
                            <p className="izma__teachers-payment-inner-left-center-balans-text izma__teachers-payment-inner-left-center-text">
-                              To’g’ilgan sana:
+                              {Language[lang].teachers.teacherInfoDetail.birthday}
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-balans-balans izma__teachers-payment-inner-left-center-number-number-wrapper">
                               {collegueInfo?.birthday}
@@ -154,7 +156,7 @@ useEffect(() => {
 
                         <div className="izma__teachers-payment-inner-left-center-role izma__teachers-payment-inner-left-center-number-wrapper">
                            <p className="izma__teachers-payment-inner-left-center-role-text izma__teachers-payment-inner-left-center-text">
-                              Jinsi:
+                              {Language[lang].students.editStudentInfo.genderTitle}
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-role-role izma__teachers-payment-inner-left-center-role-role-wrapper">
                               {collegueInfo?.gender}
@@ -163,7 +165,7 @@ useEffect(() => {
 
                         <div className="izma__teachers-payment-inner-left-center-role izma__teachers-payment-inner-left-center-number-wrapper">
                            <p className="izma__teachers-payment-inner-left-center-role-text izma__teachers-payment-inner-left-center-text">
-                              Rollar:
+                              {Language[lang].teachers.teacherInfoDetail.role}
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-role-role izma__teachers-payment-inner-left-center-role-role-wrapper">
                               O’qituvchi
@@ -172,7 +174,7 @@ useEffect(() => {
 
                         <div className="izma__teachers-payment-inner-left-center-filial izma__teachers-payment-inner-left-center-number-wrapper">
                            <p className="izma__teachers-payment-inner-left-center-filial-text izma__teachers-payment-inner-left-center-text">
-                              Filiallar:
+                           {Language[lang].teachers.teacherInfoDetail.fillial}
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-filial-filial izma__teachers-payment-inner-left-center-role-role-wrapper">
                               {filial && filial.byBranchID.branchName}
@@ -195,14 +197,14 @@ useEffect(() => {
          >
             <div className="form_teacher">
                <div className="teacher_top">
-                  <h1 className="name">O'qituvchini taxrirlash</h1>
+                  <h1 className="name">{Language[lang].teachers.editTeacherInfo.editTeacherInfoTitle}</h1>
                   <button onClick={onClose}><img src={Close} alt="" /></button>
                </div>
 
                <div className="forms">
                   <form action="" id="teacherProfilRes">
                      <div className="form_one">
-                        <label htmlFor="">Telefon</label>
+                        <label htmlFor="">{Language[lang].teachers.editTeacherInfo.phoneNumber}</label>
                         <PhoneNumberInput
                            placeholder={collegueInfo?.phoneNumber}
                            setPhone={takePhone}
@@ -211,11 +213,11 @@ useEffect(() => {
                      </div>
 
                      <div className="form_one">
-                        <label htmlFor="name">Ism</label>
+                        <label htmlFor="name">{Language[lang].teachers.editTeacherInfo.fullName}</label>
                         <input autoComplete="off"  type="text" name="name" id="name" onChange={takeName} defaultValue={collegueInfo?.name} />
                      </div>
                      <div className="form_group">
-                        <label htmlFor="date" className="form_label">To’g’ilgan sana</label>
+                        <label htmlFor="date" className="form_label">{Language[lang].teachers.editTeacherInfo.birthday}</label>
 
                         <DatePicker
                            className='date__picker lid-edit-date'
@@ -227,33 +229,33 @@ useEffect(() => {
                      </div>
 
                      <div className="form_one">
-                        <label htmlFor="name">Jinsi</label>
+                        <label htmlFor="name">{Language[lang].students.editStudentInfo.genderTitle}</label>
 
                         <div className="genders">
                            <div className="gen_one">
                               <input autoComplete="off"  value={'1'} type="radio" name="gender" id="men" onChange={takeGender}/>
                               <label htmlFor="men"></label>
-                              <span>Erkak</span>
+                              <span>{Language[lang].students.editStudentInfo.gender[0]}</span>
                            </div>
                            <div className="gen_one">
                               <input autoComplete="off"  value={'2'} type="radio" name="gender" id="women" onChange={takeGender}/>
                               <label htmlFor="women"></label>
-                              <span>Ayol</span>
+                              <span>{Language[lang].students.editStudentInfo.gender[1]}</span>
                            </div>
                         </div>
                      </div>
                      <div className="form_one">
-                        <label htmlFor="comment">Komment</label>
+                        <label htmlFor="comment">{Language[lang].teachers.editTeacherInfo.comment}</label>
                         <textarea name="" id="" cols="30" rows="10" defaultValue={collegueInfo?.comment} onChange={takeComment}></textarea>
                      </div>
 
                      <div className="form_one">
-                        <span className="file">Foto</span>
-                        <label htmlFor="file" className="choose_file">Hech qanday fayl tanlanmadi</label>
+                        <span className="file">{Language[lang].teachers.editTeacherInfo.photo}</span>
+                        <label htmlFor="file" className="choose_file">{Language[lang].teachers.editTeacherInfo.fileNotChoosen}</label>
                         <input autoComplete="off"  type="file" name="" id="file" />
                      </div>
                      <div className="form_one">
-                        <label htmlFor="">Parol</label>
+                        <label htmlFor="">{Language[lang].teachers.editTeacherInfo.password}</label>
                         <PasswordInput
                            setPassword={takePass}
                         />
@@ -264,7 +266,7 @@ useEffect(() => {
                         onClose()
                         handleTeacher()
                         document.getElementById('teacherProfilRes').reset()
-                     }} className="cre_btn">O'zgartirish</button>
+                     }} className="cre_btn">{Language[lang].teachers.editTeacherInfo.edit}</button>
                   </form>
                </div>
             </div>

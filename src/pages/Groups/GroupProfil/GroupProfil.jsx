@@ -12,6 +12,8 @@ import Loader from '../../../components/Loader/Loader';
 import { Modal } from 'antd';
 import { useCheck } from '../../../context/CheckProvider';
 import Check from '../../../components/Check/Check';
+import { useLang } from '../../../context/LanguageProvider';
+import Language from '../../../lang/index'
 
 const GroupProfil = () => {
    const [dataHead, setDataHead] = useState({})
@@ -21,6 +23,7 @@ const GroupProfil = () => {
       variables: { groupID }
    })
    const [students, setStudents] = useState()
+   const [lang] = useLang()
 
    useEffect(() => {
       if (data && data.byGroupID) {
@@ -48,7 +51,7 @@ const GroupProfil = () => {
             }
                <div className="izma__groups-attendence-headings">
                   <h3 className="izma__groups-attendence-heading">
-                  Guruhlar |   { dataHead.courseName } | { dataHead && dataHead.teacher }
+                  {Language[lang].courses.courseName.groups} |   { dataHead.courseName } | { dataHead && dataHead.teacher }
                   </h3>
 
                </div>

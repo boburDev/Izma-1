@@ -1,7 +1,11 @@
 import './StudentProfileHistory.scss'
+import {useLang} from '../../../../context/LanguageProvider'
+import Language from '../../../../lang/index'
 
 
 const StudentsProfileHistory = () => {
+   const [lang] = useLang();
+
    return (
       <>
 
@@ -11,7 +15,7 @@ const StudentsProfileHistory = () => {
                <div className="izma__students-history-right-tabs-fourth-items-up">
                   <div className="izma__students-history-right-tabs-fourth-items-up-left">
                      <h4 className="izma__students-history-right-tabs-fourth-items-up-left-heading">
-                        {}
+                        {Language[lang].students.payment.successfullyPayment}
                      </h4>
                   </div>
                   <div className="izma__students-history-right-tabs-fourth-items-up-right">
@@ -24,7 +28,7 @@ const StudentsProfileHistory = () => {
                <div className="izma__students-history-line"></div>
                <div className="izma__students-history-right-tabs-fourth-items-bottom">
                   <p className="izma__students-history-right-tabs-fourth-items-bottom-text">
-                     Holati o'zgartirildi: Harakatsiz (Sinov darsi)
+                     {Language[lang].students.addedStudentToGroup.editedAction}
                   </p>
                </div>
             </li>
@@ -33,7 +37,7 @@ const StudentsProfileHistory = () => {
                <div className="izma__students-history-right-tabs-fourth-items-up">
                   <div className="izma__students-history-right-tabs-fourth-items-up-left">
                      <h4 className="izma__students-history-right-tabs-fourth-items-up-left-heading">
-                        Hisob to'ldirildi
+                     {Language[lang].students.addedStudentToGroup.payToAccount}
                      </h4>
                   </div>
                   <div className="izma__students-history-right-tabs-fourth-items-up-right">
@@ -46,7 +50,7 @@ const StudentsProfileHistory = () => {
                <div className="izma__students-history-line"></div>
                <div className="izma__students-history-right-tabs-fourth-items-bottom">
                   <p className="izma__students-history-right-tabs-fourth-items-bottom-text">
-                     Holati o'zgartirildi: Harakatsiz (Sinov darsi)
+                     {Language[lang].students.addedStudentToGroup.editedAction}
                   </p>
                </div>
             </li>

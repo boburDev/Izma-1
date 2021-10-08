@@ -1,6 +1,9 @@
 import './GroupProfilRightTab4.scss'
+import { useLang } from '../../../../../context/LanguageProvider'
+import Language from '../../../../../lang/index'
 
 const GroupProfilRightTab4 = () => {
+   const [lang] = useLang();
    return (
       <>
          <div className="izma__groups-attendance-right-tabs-fourth">
@@ -9,7 +12,7 @@ const GroupProfilRightTab4 = () => {
                   <div className="izma__groups-attendance-right-tabs-fourth-items-up">
                      <div className="izma__groups-attendance-right-tabs-fourth-items-up-left">
                         <h4 className="izma__groups-attendance-right-tabs-fourth-items-up-left-heading">
-                           Guruh tahrirlangan
+                        {Language[lang].groups.groupEdited}
                         </h4>
                      </div>
                      <div className="izma__groups-attendance-right-tabs-fourth-items-up-right">
@@ -30,7 +33,7 @@ const GroupProfilRightTab4 = () => {
                   <div className="izma__groups-attendance-right-tabs-fourth-items-up">
                      <div className="izma__groups-attendance-right-tabs-fourth-items-up-left">
                         <h4 className="izma__groups-attendance-right-tabs-fourth-items-up-left-heading">
-                           Guruh tahrirlangan
+                        {Language[lang].groups.groupEdited}
                         </h4>
                      </div>
                      <div className="izma__groups-attendance-right-tabs-fourth-items-up-right">

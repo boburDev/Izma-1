@@ -13,6 +13,9 @@ import { useName1 } from '../../../context/NameProvider'
 import { Modal } from 'antd'
 import Check from '../../../components/Check/Check'
 import { useCheck } from '../../../context/CheckProvider'
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
+
 
 const StudentProfile = ({ role }) => {
    const [peopleName] = useName1()
@@ -25,6 +28,7 @@ const StudentProfile = ({ role }) => {
 
    
    const [, setIsModalVisibleY] = useState(false)
+   const [lang] = useLang();
 
    const handleOkY = () => {
       setIsModalVisibleY(false)
@@ -47,7 +51,7 @@ const StudentProfile = ({ role }) => {
                <p className="izma__finance-payment-inner-title">
 
                   {
-                     role === 'student' ? <>Talabalar | Profile | menu.1902</> : <>O’qituvchi | Profile</>
+                     role === 'student' ? <>{Language[lang].students.studentInfoTitle.title}</> : <>{Language[lang].teachers.teacher.profileTeacher}</>
                   }
 
                </p>
@@ -59,13 +63,13 @@ const StudentProfile = ({ role }) => {
                      className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
                      onClick={() => toggleTab(1)}
                   >
-                     Profile
+                     {Language[lang].teachers.teacherInfoDetail.archiveProfile}
                   </button>
                   <button
                      className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
                      onClick={() => toggleTab(2)}
                   >
-                     Tarix
+                     {Language[lang].teachers.teacherInfoDetail.history}
                   </button>
 
 

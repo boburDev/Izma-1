@@ -4,10 +4,14 @@ import { useQuery, useSubscription } from '@apollo/client'
 import { useParams } from 'react-router'
 import { STUDENT_GROUPS, SUBSCRIPTION_GROUPS } from './query';
 import { Link } from 'react-router-dom';
+import { useLang } from '../../../../context/LanguageProvider';
+import Language from '../../../../lang/index'
 
 
 
 const StudentsProfileRight = () => {
+
+   const [lang] = useLang();
 
    const { studentID } = useParams()
 
@@ -27,11 +31,11 @@ const StudentsProfileRight = () => {
       <>
          <div className="izma__students-payment-inner-left-section">
             <h3 className="izma__students-payment-inner-left-section-heading">
-               Guruhlar
+               {Language[lang].home.blocks.groups}
             </h3>
             <div className="izma__students-payment-inner-left-section-center-wrapper ">
 
-               {Group && !Group.studentGroups.length && <>Hozirda Guruhlar va Kurslar yo'q</>}
+               {Group && !Group.studentGroups.length && <>{Language[lang].students.studentCreated.notGroup}</>}
 
 
                {Group && Group.studentGroups.map(item => (
@@ -63,7 +67,7 @@ const StudentsProfileRight = () => {
 
             </div>
             <h3 className="izma__students-payment-inner-left-section-bottom-heading">
-               To'lovlar
+               {Language[lang].students.payment.paymentTitle}
             </h3>
             <StudentsProfileTable />  
          </div>

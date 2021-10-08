@@ -15,12 +15,16 @@ import { Modal } from 'antd'
 import { useEffect } from 'react'
 import Modal1 from '../../../../components/Modal/Modal'
 import { useName1 } from '../../../../context/NameProvider'
-
+import { useLang } from '../../../../context/LanguageProvider'
+import Language from '../../../../lang/index'
 
 const StudentsProfileLeft = () => {
   const [groupAdd, setGroupAdd] = useState()
   const [groupAddDate, setGroupAddDate] = useState()
   const [setPeopleName] = useName1(true)
+  const [lang] = useLang();
+
+  console.log(Language[lang].students)
 
   const [openSms, setOpenSms] = useState(false)
   // const [state, setState] = useState([])
@@ -234,7 +238,7 @@ const StudentsProfileLeft = () => {
       <Modal1
         myModal={deleteStudent}
         setMymodal={setDeleteStudent}
-        title={`O'quvchini o'chirish`}
+        title={Language[lang].students.groups.deledeteStudent}
         text={oneStudent && oneStudent.student.name + 'ni o`chirishni hohlaysizmi ?'}
         block={'delete'}
         setInfo={delStudent}
@@ -245,7 +249,7 @@ const StudentsProfileLeft = () => {
       <Modal1
         myModal={isModalVisible}
         setMymodal={setIsModalVisible}
-        title={`Yangi eslatma qo'shing`}
+        title={Language[lang].groups.additionalOption.addNewNote}
         block={'addComment'}
       />
 
@@ -272,17 +276,17 @@ const StudentsProfileLeft = () => {
           <div className="izma__students-payment-inner-left-centerizma__students-payment-inner-left-center">
             <div className="izma__students-payment-inner-left-center-number izma__students-payment-inner-left-center-number-wrapper">
               <p className="izma__students-payment-inner-left-center-number-text izma__students-payment-inner-left-center-text">
-                Telefon :
+                {Language[lang].students.studentsInfo.studentPhoneNumber}
               </p>
               <p className="izma__students-payment-inner-left-center-number-number izma__students-payment-inner-left-center-number-number-wrapper">
                 {oneStudent && oneStudent.student.phoneNumber[0] && "+" + oneStudent.student.phoneNumber[0].phone}
-                {oneStudent && !oneStudent.student.phoneNumber[0] && <>Telefon kiritilmagan</>}
+                {oneStudent && !oneStudent.student.phoneNumber[0] && <></>}
               </p>
             </div>
 
             <div className="izma__students-payment-inner-left-center-balans izma__students-payment-inner-left-center-number-wrapper">
               <p className="izma__students-payment-inner-left-center-balans-text izma__students-payment-inner-left-center-text">
-                Balans:
+              {Language[lang].students.studentsInfo.studentBalance}
               </p>
               <p className="izma__students-payment-inner-left-center-balans-balans izma__students-payment-inner-left-center-number-number-wrapper">
                 {checkCash && new Intl.NumberFormat().format(checkCash.studentCash.cashAmount) + ' сум'}
@@ -292,7 +296,7 @@ const StudentsProfileLeft = () => {
 
             <div className="izma__students-payment-inner-left-center-role izma__students-payment-inner-left-center-number-wrapper">
               <p className="izma__students-payment-inner-left-center-role-text izma__students-payment-inner-left-center-text">
-                Rollar:
+              {Language[lang].students.studentsInfo.role}
               </p>
               <p className="izma__students-payment-inner-left-center-role-role izma__students-payment-inner-left-center-role-role-wrapper">
                 Student
@@ -301,7 +305,7 @@ const StudentsProfileLeft = () => {
 
             <div className="izma__students-payment-inner-left-center-filial izma__students-payment-inner-left-center-number-wrapper">
               <p className="izma__students-payment-inner-left-center-filial-text izma__students-payment-inner-left-center-text">
-                Filiallar:
+              {Language[lang].students.studentsInfo.fillial}
               </p>
               <p className="izma__students-payment-inner-left-center-filial-filial izma__students-payment-inner-left-center-role-role-wrapper">
                 {filial && filial.byBranchID.branchName}
@@ -312,7 +316,7 @@ const StudentsProfileLeft = () => {
           <div className="izma__finance-payment-inner-left-bottom">
             <Modal1
               block={`addGroupStudent`}
-              title={`Talabani guruhga qo'shish`}
+              title={Language[lang].groups.additionalOption.addToGroupStudent}
               myModal={isModalVisibleD}
               setMymodal={setIsModalVisibleD}
               setInfo={setGroupAdd}
@@ -320,7 +324,7 @@ const StudentsProfileLeft = () => {
               setInfo2={setGroupAddDate}
             />
             <button className="izma__finance-payment-inner-left-btn izma__finance-payment-inner-drive" onClick={() => {
-              console.log(isModalVisibleD);
+             
               setIsModalVisibleD(true)
             }} >
             </button>
@@ -374,12 +378,12 @@ const StudentsProfileLeft = () => {
       >
         <div className={`student-sendSms`}>
           <div className="sms-heading">
-            <h1>Talabaga SMS yuboring</h1>
+            <h1>{Language[lang].students.sendMessageToStudent.title}</h1>
             <button onClick={() => setOpenSms(false)}><img src={Close} alt="" /></button>
           </div>
 
           <div className="sms-content">
-            <p>Sizning o'quv markazingiz uchun faollashtrilmagan !</p>
+            <p>{Language[lang].students.sendMessageToStudent.message}</p>
           </div>
         </div>
       </Drawer>

@@ -55,7 +55,8 @@ const en = {
             searchHolder: 'Search by name or phone number'
         },
         studentCreated: {
-            title: 'Student created'
+            title: 'Student created',
+            notGroup : 'There are currently no Groups or Courses'
         },
         addNewStudent: {
             addStudent: 'Add new'
@@ -72,7 +73,8 @@ const en = {
         studentInfoTitle: {
             students: 'Students ',
             profile: 'Profile ',
-            menu: 'Menu'
+            menu: 'Menu',
+            title: 'Students | Profile | Menu'
         },
         archiveStudents: {
             archiveStudent: 'Profile History'
@@ -85,7 +87,8 @@ const en = {
         },
         groups: {
             groupsTitle: 'Groups',
-            groupsSelected: 'Course is selected'
+            groupsSelected: 'Course is selected',
+            deledeteStudent: 'Delete the student'
         },
         payment: {
             paymentTitle: 'PAYMENTS',
@@ -117,9 +120,11 @@ const en = {
             parentPhoneNumber: 'Parent\'s phone number',
             telegramUsername: 'Telegram (@username)',
             password: 'Password',
-            edit: 'Change'
+            edit: 'Change',
+            nameOfRoom: 'Room name'
         },
         sendMessageToStudent: {
+            title: 'Send an SMS to the student',
             message: 'Not activated for your center!'
         },
         recordPayment: {
@@ -162,7 +167,9 @@ const en = {
     },
     teachers: {
         teacher: {
-            teacherTitle: 'TEACHERS'
+            teacherTitle: 'TEACHERS',
+            addToNew: 'Yangisini qo’shish',
+            title: 'Add a new user'
         },
         teacherInfo: {
             teacherId: 'ID',
@@ -177,11 +184,13 @@ const en = {
             comment: 'Note',
             photo: 'Photo',
             password: 'Password',
-            save: 'Save'
+            save: 'Save',
+            date: 'Date-Month-Year'
         },
         teacherInfoDetail: {
             teacherName: 'Teacher\'s Name',
-            archiveProfile: 'PROFILE HISTORY',
+            archiveProfile: 'PROFILE',
+            history: 'HISTORY',
             phoneNumber: 'Phone number:',
             birthday: 'Date of birth:',
             role: 'Role:',
@@ -194,7 +203,7 @@ const en = {
         },
         courses: {
             courseName: 'Course Name',
-            startDay: 'Start: (course time)',
+            startDay: 'Start:',
             profileHistory: 'Profile History',
             accountReplenished: 'Account replenished:',
             editSituation: 'Account replenished:'
@@ -364,6 +373,7 @@ const en = {
             filterTitle: 'Filter',
             studentsFullName: 'Students F.I.O.',
             phoneNumber: 'Phone number',
+            created: 'Created',
             typePayment: 'Type of payment',
             currency: 'Soum',
             comment: 'Note'
@@ -442,7 +452,9 @@ const en = {
             groups: 'Groups',
             teachers: 'Teachers',
             courses: 'Courses',
-            currency: 'Soum'
+            currency: 'Soum',
+            allSums: 'Total Som',
+            countStudent: 'Number of students'
         },
         paymentCourses: {
             paymentCoursesTitle: 'COURSE FEES',
@@ -471,10 +483,13 @@ const en = {
             courseName: 'Course name',
             teacher: 'Teacher',
             days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            daysTitle: 'Days',
             daysShort: ['Mon', 'Tu', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             trainingDates: 'Course dates',
             room: 'Room',
-            countStudents: 'Number of students'
+            countStudents: 'Number of students',
+            ad: 'Lessons will be available for students to read. You can add or modify lessons on the course page',
+            warning: 'Lessons and materials not yet downloaded'
         },
         addNewGroups: {
             addNewGroupTitle: 'Add a new group',
@@ -482,6 +497,7 @@ const en = {
             course: 'Course',
             selectCourse:'Choose a course',
             teacher: 'Teacher',
+            chooseVariant: 'Select options',
             selectTeacher: 'Choose a teacher',
             days: 'Days',
             selectDays: 'Select dates',
@@ -495,7 +511,8 @@ const en = {
             startTimeLesson: 'Lesson start time',
             startGroupDate: 'Date of group start',
             endGroupDate: 'Date of group start',
-            save: 'Save'
+            save: 'Save',
+            successfullyAdded: 'The group joined'
         },
         groupInfo: {
             groupsGroupsName: 'Groups | Group name |',

@@ -9,10 +9,14 @@ import { useQuery, useMutation } from '@apollo/client';
 import { useState } from 'react';
 import DropSearch from '../../../components/DropSearch/DropSearch';
 import { useSnackbar } from 'notistack';
+import { useLang } from '../../../context/LanguageProvider';
+import Language from '../../../lang/index'
 
 const format = 'HH:mm';
 
 const GroupEdit = ({ onClose, dataForEdit }) => {
+
+   const [lang] = useLang()
 
    const [name, setName] = useState(dataForEdit.name)
    const [courseID, setCourseID] = useState(dataForEdit.courseId)
@@ -59,23 +63,23 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
 
    const daysArr = [
       {
-         name: 'Toq kunlar',
+         name: Language[lang].groups.addNewGroups.oddDays,
          id: '1,3,5',
       },
       {
-         name: 'Juft kunlar',
+         name: Language[lang].groups.addNewGroups.evenDays,
          id: '2,4,6',
       },
       {
-         name: 'Dam olish kuni',
+         name: Language[lang].groups.addNewGroups.weekends,
          id: '7',
       },
       {
-         name: 'Har kuni',
+         name: Language[lang].groups.addNewGroups.everyDay,
          id: '1,2,3,4,5,6,7',
       },
       {
-         name: 'Boshqa',
+         name: Language[lang].groups.addNewGroups.other,
          id: 'boshqa',
       }
    ]
@@ -106,37 +110,37 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
       <div className="groupForm">
          <div className="inner">
             <div className="top_group">
-               <h3>Yangi guruh qo’shish</h3>
+               <h3>{Language[lang].groups.addNewGroups.addNewGroupTitle}</h3>
                <button onClick={onClose}><img src={CloseBtn} alt="img" /></button>
             </div>
             <div className="form_wrapper">
                <form action="" id="groupEditRes" >
                   <div className="form_inputs">
-                     <label htmlFor="">Nomi</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.name}</label>
                      <input autoComplete="off"  defaultValue={name} onKeyUp={e => setName(e.target.value)} type="text" name="" id="" />
                   </div>
                   <div className="form_inputs">
-                     <label htmlFor="">Kurs tanlash</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.course}</label>
                      <DropSearch
                         arr={courses && courses.courses}
-                        pInput={'Variantlarni tanlang'}
+                        pInput={Language[lang].groups.addNewGroups.chooseVariant}
                         fnc={setCourseID}
                      />
 
                   </div>
                   <div className="form_inputs">
-                     <label htmlFor="">O'qituvchini tanlang</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.selectTeacher}</label>
                      <DropSearch
                         arr={teachers && teachers.colleagues}
-                        pInput={'Variantlarni tanlang'}
+                        pInput={Language[lang].groups.addNewGroups.chooseVariant}
                         fnc={setTeacherID}
                      />
                   </div>
                   <div className="form_inputs">
-                     <label htmlFor="">Kunlar</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.days}</label>
                      <DropSearch
                         arr={daysArr && daysArr}
-                        pInput={'Variantlarni tanlang'}
+                        pInput={Language[lang].groups.addNewGroups.chooseVariant}
                         fnc={setDays}
                      />
                   </div>
@@ -144,31 +148,31 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
                   {
                            days.id === 'boshqa' &&  <div>
                            <div>
-                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="mon">Dushanba
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="mon">{Language[lang].home.graph2.days[0]}
                               <input autoComplete="off"  value="1" onChange={SelectDate} style={{marginLeft: '2px'}} type="checkbox" id="mon" /></label>
                            </div>
                            <div>
-                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="tue">Seshanba
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="tue">{Language[lang].home.graph2.days[1]}
                               <input autoComplete="off"  onChange={SelectDate} value="2" style={{marginLeft: '2px'}} type="checkbox" id="tue" /></label>
                            </div> 
                            <div>
-                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="wed">Chorshanba
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="wed">{Language[lang].home.graph2.days[2]}
                               <input autoComplete="off"  onChange={SelectDate} value="3" style={{marginLeft: '2px'}} type="checkbox" id="wed" /></label>
                            </div>
                            <div>
-                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="thu">Payshanba
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="thu">{Language[lang].home.graph2.days[3]}
                               <input autoComplete="off"  onChange={SelectDate} value="4" style={{marginLeft: '2px'}} type="checkbox" id="thu" /></label>
                            </div>
                            <div>
-                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="fri">Juma
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="fri">{Language[lang].home.graph2.days[4]}
                               <input autoComplete="off"  onChange={SelectDate} value="5" style={{marginLeft: '2px'}} type="checkbox" id="fri" /></label>
                            </div>
                            <div>
-                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="sut">Shanba
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="sut">{Language[lang].home.graph2.days[5]}
                               <input autoComplete="off"  onChange={SelectDate} value="6" style={{marginLeft: '2px'}} type="checkbox" id="sut" /></label>
                            </div>
                            <div>
-                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="sun">Yakshanba
+                           <label style={{display: 'flex', alignItems: 'center'}} htmlFor="sun">{Language[lang].home.graph2.days[6]}
                               <input autoComplete="off"  onChange={SelectDate} value="7" style={{marginLeft: '2px'}} type="checkbox" id="sun" /></label>
                            </div>
                            <br />
@@ -176,10 +180,10 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
                        }
 
                   <div className="form_inputs">
-                     <label htmlFor="">Xonani tanlang</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.selectRoom}</label>
                      <DropSearch
                         arr={rooms && rooms.rooms}
-                        pInput={'Variantlarni tanlang'}
+                        pInput={Language[lang].groups.addNewGroups.chooseVariant}
                         fnc={setRoomID}
                      />
                   </div>
@@ -188,13 +192,13 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
 
                      <div className="izma__clock-time-wrapper">
                         <label className="izma__clock-time-label">
-                           Darsning boshlanish vaqti
+                          {Language[lang].groups.addNewGroups.startTimeLesson}
                         </label>
                         <TimePicker onChange={e => setTime(e.format('HH:mm'))} defaultValue={time && moment(time, format)} format={format} />
                      </div>
                   </div>
                   <div className="form_group">
-                     <label>Guruh boshlanish sanasi</label>
+                     <label>{Language[lang].groups.addNewGroups.startGroupDate}</label>
 
                      <DatePicker
                         className='date__picker'
@@ -208,7 +212,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
                      />
                   </div>
                   <div className="form_group">
-                     <label>Guruh tugash sanasi</label>
+                     <label>{Language[lang].groups.addNewGroups.endGroupDate}</label>
 
                      <DatePicker
                         className='date__picker'
@@ -222,7 +226,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
                         format={"DD-MM-YYYY"}
                      />
                   </div>
-                  <button onClick={handleGroup}>Yarating</button>
+                  <button onClick={handleGroup}>{Language[lang].groups.addNewGroups.save}</button>
                </form>
             </div>
          </div>

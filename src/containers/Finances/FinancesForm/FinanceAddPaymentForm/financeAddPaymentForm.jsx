@@ -9,7 +9,8 @@ import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import DropSearch from '../../../../components/DropSearch/DropSearch'
 import { useCheck } from '../../../../context/CheckProvider'
 import moment from 'moment'
-
+import { useLang } from '../../../../context/LanguageProvider'
+import Language from '../../../../lang/index'
 
 const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
   
@@ -20,6 +21,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
   const [names, setNames] = useState([])
   const [data, setData] = useState({})
   const [setCheck] = useCheck(true)
+  const [lang] = useLang()
 
   const [groups, setGroups] = useState()
 
@@ -215,7 +217,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 		}}
 		 className="izma__courses__form-bolim-form"  style={{ width: 400 }} id="financeFormRes">
         <div className="izma__courses__form-bolim-form-up">
-                    <h3 className='izma__courses__form-bolim-form-heading' >To’lov qo’shish</h3>
+                    <h3 className='izma__courses__form-bolim-form-heading' >{Language[lang].students.recordPayment.recordPaymentTitle}</h3>
                     <button className="izma__courses__form-bolim-form-close-btn" onClick={onClose} >
                         <img className="izma__courses__form-bolim-form-img" src={CloseBtn} alt="img"  />
                     </button>
@@ -223,34 +225,34 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
                 <div className="izma__courses__form-bolim-line"></div>
 
           <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
-            <label className='izma__courses__form-bolim-form-label'>Ism</label>
+            <label className='izma__courses__form-bolim-form-label'>{Language[lang].students.recordPayment.fullName}</label>
               <Input autoComplete="off"  className={"section_name_input"}  name={"nomi"} value={studenID && studenID.studentName} />
           </div>
           <div className="form_group">
-          <p className='izma__finance-form-radio-heading'>To'lov usuli</p>
+          <p className='izma__finance-form-radio-heading'>{Language[lang].students.recordPayment.paymentType}</p>
           <Radio.Group onChange={onChange} className='izma__finance-form-radio' value={payType}>
           
-      <Radio value={1}>Naqt pul</Radio>
-      <Radio value={2}>UZCARD</Radio>
-      <Radio value={3}>Bank hisobi</Radio>
+      <Radio value={1}>{Language[lang].students.recordPayment.cash}</Radio>
+      <Radio value={2}>{Language[lang].students.recordPayment.card}</Radio>
+      <Radio value={3}>{Language[lang].students.recordPayment.bankAccount}</Radio>
     </Radio.Group>
           </div>
           <div className="form_group" style={{ width: "100%" }}>
-            <label className='izma__courses__form-bolim-form-label'>Miqdor</label>
+            <label className='izma__courses__form-bolim-form-label'>{Language[lang].students.recordPayment.amount}</label>
               <input value={ammountt} autoComplete="off"  className={"section_name_input"}  name={"nomi"} onChange={e => setAmmoun(e.target.value)} type="number"/>
               {
 				  (groupID === '') && <>
-				  <label className='izma__courses__form-bolim-form-label'>Group</label>
+				  <label className='izma__courses__form-bolim-form-label'>{Language[lang].courses.courseName.groups}</label>
 				  <DropSearch
 					arr={groups && groups.student.groups}
-					pInput={'Variantlarni tanlang'}
+					pInput={Language[lang].groups.addNewGroups.chooseVariant}
 					fnc={setData}
 				  />
 				  </>
 			  }
           </div>
           <div className="form_group">
-          <label>Қабул қилинган сана</label>
+          <label>{Language[lang].students.recordPayment.AcceptedDate}</label>
        
           <DatePicker
             defaultPickerValue={payedData !== "" ? moment(moment().format("DD-MM-YYYY"), "DD-MM-YYYY") : null}
@@ -260,14 +262,14 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
             payed_at: value._d
 				})
 			}
-            placeholder={"Kun-Oy-Yil"}
+            placeholder={Language[lang].students.recordPayment.date}
             format={"DD-MM-YYYY"}
            
             />
           </div>
 		  
           <div className="form_group izma__form__teaxtarea" style={{ width: 400 }}>
-            <label>Izoh</label>
+            <label>{Language[lang].students.recordPayment.comment}</label>
             <TextArea
               className={"section_name_input"}
               name={"description"}
@@ -276,7 +278,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
               value={comment}
             />
           </div>
-          <button className="izma__courses__form-bolim-form-button" type="submit">Yarating</button>
+          <button className="izma__courses__form-bolim-form-button" type="submit">{Language[lang].students.recordPayment.save}</button>
         </Form>
 		</div>
 		

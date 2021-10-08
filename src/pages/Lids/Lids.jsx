@@ -51,8 +51,7 @@ const Lids = () => {
    const [updateLead] = useMutation(UPDATE_LEAD)
   
    
-   const { data: courses } = useQuery(COURSES)
-   const { data: teachers } = useQuery(TEACHER_FILTERS)
+ 
    
    
    

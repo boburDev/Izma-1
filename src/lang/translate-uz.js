@@ -55,7 +55,8 @@ const uz = {
             searchHolder: 'Ism yoki telefon raqam orqali qidirish'
         },
         studentCreated: {
-            title: 'O`quvchi yaratildi'
+            title: 'O`quvchi yaratildi',
+            notGroup : 'Hozirda Guruhlar va Kurslar yo\'q'
         },
         addNewStudent: {
             addStudent: 'Yangi o\'quvchi qo\'shish'
@@ -72,7 +73,8 @@ const uz = {
         studentInfoTitle: {
             students: 'O\'quvchilar',
             profile: 'Profil',
-            menu: 'Menu'
+            menu: 'Menu',
+            title: 'O\'quvchilar | Profil | Menu'
         },
         archiveStudents: {
             archiveStudent: 'Profil Tarix'
@@ -85,7 +87,8 @@ const uz = {
         },
         groups: {
             groupsTitle: 'Guruhlar',
-            groupsSelected: 'Kurs tanlanadi'
+            groupsSelected: 'Kurs tanlanadi',
+            deledeteStudent: 'O\'quvchini o\'chirish'
         },
         payment: {
             paymentTitle: 'TO\'LOVLAR',
@@ -117,9 +120,11 @@ const uz = {
             parentPhoneNumber: 'Ota-onasining telefon raqami',
             telegramUsername: 'Telegram(@username)',
             password: 'Parol',
-            edit: 'O\'zgartirish'
+            edit: 'O\'zgartirish',
+            nameOfRoom: 'Xonani nomi'
         },
         sendMessageToStudent: {
+            title: 'Talabaga SMS yuboring',
             message: 'Sizning o\'quv markazingiz uchun faollashtirilmagan!'
         },
         recordPayment: {
@@ -162,7 +167,10 @@ const uz = {
     },
     teachers: {
         teacher: {
-            teacherTitle: 'O\'QITUVCHILAR'
+            teacherTitle: 'O\'QITUVCHILAR',
+            addToNew: 'Yangisini qo’shish',
+            title: 'Yangi foydalanuvchi qo’shish',
+            profileTeacher: 'O’qituvchi | Profile'
         },
         teacherInfo: {
             teacherId: 'ID',
@@ -177,11 +185,13 @@ const uz = {
             comment: 'Izoh',
             photo: 'Foto',
             password: 'Parol',
-            save: 'Saqlash'
+            save: 'Saqlash',
+            date: 'Kun-Oy-Yil'
         },
         teacherInfoDetail: {
             teacherName: 'O\'qituvchining Ismi',
-            archiveProfile: 'PROFIL TARIX',
+            archiveProfile: 'PROFIL',
+            history: 'TARIX',
             phoneNumber: 'Telefon raqam:',
             birthday: 'Tug\'ilgan sana:',
             role: 'Rol:',
@@ -194,7 +204,7 @@ const uz = {
         },
         courses: {
             courseName: 'Kurs nomi',
-            startDay: 'Boshlash: (kurs vaqti)',
+            startDay: 'Boshlash:',
             profileHistory: 'Profil Tarix',
             accountReplenished: 'Hisob to\'ldirildi:',
             editSituation: 'Holati o\'zgartirildi: Harakatsiz (Sinov darsi)'
@@ -364,6 +374,7 @@ const uz = {
             filterTitle: 'Filtr',
             studentsFullName: 'Talabalar F.I.O',
             phoneNumber: 'Telefon raqami',
+            created: 'Yaratilgan',
             typePayment: 'To\'lov turi',
             currency: 'So\'m',
             comment: 'Izoh'
@@ -441,8 +452,10 @@ const uz = {
             orderInfoTitle: 'Buyurtma ma\'lumotlari',
             groups: 'Guruhlar',
             teachers: 'O\'qituvchilar',
+            countStudent: 'O\'quvchilar soni',
             courses: 'Kurslar',
-            currency: 'So\'m'
+            currency: 'So\'m',
+            allSums: 'Umumiy So\'m'
         },
         paymentCourses: {
             paymentCoursesTitle: 'KURS TO\'LOVLARI',
@@ -471,16 +484,20 @@ const uz = {
             code: 'Kod',
             courseName: 'Kurs nomi',
             teacher: 'O\'qituvchi',
+            daysTitle: 'Kunlar',
             days: ['Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba', 'Yakshanba'],
             daysShort: ['Du', 'Se', 'Chor', 'Pay', 'Ju', 'Shan', 'Yak'],
             trainingDates: 'Mashg\'ulot sanalari',
             room: 'Xona',
-            countStudents: 'Talabalar soni'
+            countStudents: 'Talabalar soni',
+            ad: 'Darslar talabalar tomonidan o\'qilishi uchun mavjud bo\'ladi. Kurs sahifasida darslarni qo\'shishingiz yoki o\'zgartirishingiz mumkin',
+            warning: ''
         },
         addNewGroups: {
             addNewGroupTitle: 'Yangi guruh qo\'shish',
             name: 'Nomi',
             course: 'Kurs',
+            chooseVariant: 'Variantlarni tanlang',
             selectCourse:'Kursni tanlang',
             teacher: 'O\'qituvchi',
             selectTeacher: 'O\'qitivchini tanlang',
@@ -496,7 +513,8 @@ const uz = {
             startTimeLesson: 'Darsning boshlanish vaqti',
             startGroupDate: 'Guruh boshlanishining sanasi',
             endGroupDate: 'Guruh tugashining sanasi',
-            save: 'Saqlash'
+            save: 'Saqlash',
+            successfullyAdded: 'Guruh qo`shildi'
         },
         groupInfo: {
             groupsGroupsName: 'Guruhlar | Guruh nomi |',
@@ -543,7 +561,7 @@ const uz = {
             payment: 'To\'lov',
             addNewNote: 'Yangi eslatma qo\'shish',
             addToGroupStudent: 'Talabani guruhga qo\'shish',
-            changeGroup: 'Guruhga boshqa guruhga o\'tkazish'
+            changeGroup: 'Guruhdan boshqa guruhga o\'tkazish'
         },
         activate: {
             activateTitle: 'Faollashtirish',

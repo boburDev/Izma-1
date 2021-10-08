@@ -6,11 +6,12 @@ import { STUDENT_GROUPS, SUBSCRIPTION_GROUPS } from './query';
 import { Link } from 'react-router-dom';
 import { useLang } from '../../../../context/LanguageProvider';
 import Language from '../../../../lang/index'
+import { useNavbar } from '../../../../context/NavbarProvider';
 
 
 
 const StudentsProfileRight = () => {
-
+   const [setNavbarP] = useNavbar(true)
    const [lang] = useLang();
 
    const { studentID } = useParams()
@@ -42,7 +43,7 @@ const StudentsProfileRight = () => {
 
                   // {console.log(item) }
                   <div key={item.id} className="izma__students-payment-inner-left-section-center-wrapper-left izma__students-payment-inner-left-section-center-wrapper-lefts">
-                     <Link to={`/groups/groupsProfil/${item.id}`}>
+                     <Link to={`/groups/groupsProfil/${item.id}`} onClick={() => setNavbarP(item.id)}>
                         <div className="izma__students-payment-inner-left-section-center-wrapper-inner-left">
                            <p className="izma__students-payment-inner-left-section-center-wrapper-left-id">
                               {item.name}

@@ -5,6 +5,12 @@ const ALL_BOX = gql `
         leadsBoxName{
         id
         boxName
+        courseName
+        courseID
+        teachID
+        teachName
+        courseDays
+        courseTime
         status
         }
     }

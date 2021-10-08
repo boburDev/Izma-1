@@ -11,12 +11,13 @@ import  Modal1  from '../../components/Modal/Modal'
 import { dayDivider } from '../../.../../context/DayDividerProvider'
 import { useNavbar } from '../../context/NavbarProvider'
 
+
 const TableBlock = ({ block, info, index, showDrawer }) => {
    const [setNavbarP] = useNavbar(true)
    const [ /*stID*/, setStudentID] = useStudentPay()
    const [modal, setModal] = useState()
-   const [getID] = useMutation(DELETE_STUDENT)
-   const [deleteTeacher] = useMutation(DELETE_TEACHER)
+   const [getID, {data: getIDdata}] = useMutation(DELETE_STUDENT)
+   const [deleteTeacher, {data: deleteTeacherdata}] = useMutation(DELETE_TEACHER)
    
    
 
@@ -108,6 +109,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                         text={info?.name + `ni o'chirilshni hohlaysizmi ?`}
                         info={info.__typename === 'Colleagues' ? { variables: { id: info.Id, status: -5 } } : info.__typename === 'Students' ? { variables: { studentID: info.id } } : ''}
                         setInfo={info.__typename === 'Colleagues' ? deleteTeacher : info.__typename === 'Students' ? getID : ''}
+                        snake={info.__typename === 'Colleagues' ? deleteTeacherdata : info.__typename === 'Students' ? getIDdata : ''}
                      />
                      <img src={DeleteImg} alt="" onClick={() => {
                         setModal(true)

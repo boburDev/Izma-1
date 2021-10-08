@@ -5,7 +5,7 @@ import moment from 'moment';
 import { COURSES, TEACHER_FILTERS } from '../../../Querys/FilterSoha';
 import { CREATE_GROUP, ROOMS } from '../../../Querys/Group_Query';
 import { useMutation, useQuery } from '@apollo/client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DropSearch from '../../../components/DropSearch/DropSearch';
 import { useSnackbar } from 'notistack';
 import { useLang } from '../../../context/LanguageProvider';
@@ -26,35 +26,68 @@ const GroupAdd = ({ onClose }) => {
    const [time, setTime] = useState('')
    const [startDate, setStartDate] = useState('')
    const [endDate, setEndDate] = useState('')
-
+   
    const [selectedDate, setselectedDate] = useState([])
-
+   
    const { data: teachers } = useQuery(TEACHER_FILTERS)
    const { data: courses } = useQuery(COURSES)
    const { data: rooms } = useQuery(ROOMS)
    
-   const [createGroup] = useMutation(CREATE_GROUP)
+   const [createGroup, {data: added}] = useMutation(CREATE_GROUP)
+   const { enqueueSnackbar } = useSnackbar();
+   
+   const handleClick = () => {
+      const message = Language[lang].groups.addNewGroups.successfullyAdded
+      enqueueSnackbar(message, {
+         variant: 'success',
+      });
+
+   };
+   const handleClick2 = () => {
+      const message = 'Formani to`liq to`ldiring !'
+      enqueueSnackbar(message, {
+         variant: 'error',
+      });
+
+   };
+
 
    const handleGroup = (e) => {
-      const data = {
-         name,
-         courseID: courseID.id,
-         teacherID: teacherID.Id,
-         days: days.id === 'boshqa' ? selectedDate.sort().join() : days.id,
-         roomID: roomID.id,
-         time,
-         startDate,
-         endDate
-      }
+      if (name && courseID?.id && teacherID?.Id && (days?.id || selectedDate) && roomID?.id && time && startDate && endDate) {
+         const data = {
+            name,
+            courseID: courseID.id,
+            teacherID: teacherID.Id,
+            days: days.id === 'boshqa' ? selectedDate.sort().join() : days.id,
+            roomID: roomID.id,
+            time,
+            startDate,
+            endDate
+         }
 
-      // console.log(data)
-      createGroup({
-         variables: data
-      })
-      document.getElementById('grouFormRes').reset()
-      onClose()
-      handleClick()
+         createGroup({
+            variables: data
+         })
+         onClose()
+         
+      }else {
+         handleClick2()
+      }
    }
+
+   useEffect(() => {
+      if (added?.createGroup?.id) {
+         handleClick()
+         document.getElementById('grouFormRes').reset()
+      }
+   }, [added])
+
+   
+   
+   
+  
+
+   
 
    function SelectDate(e) {
       if (e.target.checked) {
@@ -93,16 +126,8 @@ const GroupAdd = ({ onClose }) => {
       }
    ]
 
-   const { enqueueSnackbar } = useSnackbar();
 
-   const handleClick = () => {
-      const message = Language[lang].groups.addNewGroups.successfullyAdded
-      enqueueSnackbar(message, {
-         variant: 'success',
-      });
-
-   };
-
+  
    
 
 
@@ -117,9 +142,7 @@ const GroupAdd = ({ onClose }) => {
             <div className="form_wrapper">
                <form action="" id="grouFormRes" onSubmit={(e) =>{
                   e.preventDefault()
-
                   handleGroup()
-                  document.getElementById('grouFormRes').reset()
                }}>
                   <div className="form_inputs">
                      <label htmlFor="">{Language[lang].groups.addNewGroups.name}</label>

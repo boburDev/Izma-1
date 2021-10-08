@@ -6,7 +6,7 @@ import { COURSES } from '../../../Querys/Courses_Query';
 import { TEACHER_FILTERS } from '../../../Querys/FilterSoha';
 import { ROOMS, UPDATE_GROUP } from '../../../Querys/Group_Query';
 import { useQuery, useMutation } from '@apollo/client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DropSearch from '../../../components/DropSearch/DropSearch';
 import { useSnackbar } from 'notistack';
 import { useLang } from '../../../context/LanguageProvider';
@@ -34,7 +34,23 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
    const { data: rooms } = useQuery(ROOMS)
 
 
-   const [updateGroup] = useMutation(UPDATE_GROUP)
+   const [updateGroup, {data: updateSnake}] = useMutation(UPDATE_GROUP)
+
+   const { enqueueSnackbar } = useSnackbar();
+
+   const handleClick = () => {
+      const message = 'O`zgartirildi'
+      enqueueSnackbar(message, {
+         variant: 'success',
+      });
+
+   };
+
+   useEffect(() => {
+      if(updateSnake) {
+         handleClick()
+      }
+   }, [updateSnake])
 
    const handleGroup = (e) => {
       e.preventDefault()
@@ -55,7 +71,6 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
       })
 
       onClose()
-      handleClick()
 
       
       document.getElementById('groupEditRes').reset()
@@ -96,15 +111,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
       }
    }
 
-   const { enqueueSnackbar } = useSnackbar();
-
-   const handleClick = () => {
-      const message = 'O`zgartirildi'
-      enqueueSnackbar(message, {
-         variant: 'success',
-      });
-
-   };
+   
 
    return (
       <div className="groupForm">

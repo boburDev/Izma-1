@@ -103,6 +103,8 @@ const StudentAdd = ({ onCloseF }) => {
                cashAmm: '0'
             }
          })
+
+         handleClick()
       }
    }, [checkStudent, newCash])
 
@@ -290,7 +292,6 @@ const StudentAdd = ({ onCloseF }) => {
 
             <button className="create-btn" onClick={() => {
                (stName && stGender) && onCloseF()
-               handleClick()
 
             }}>{Language[lang].students.addNewStudentTitle.save}</button>
          </form>

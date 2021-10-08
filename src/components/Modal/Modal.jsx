@@ -7,7 +7,7 @@ import { DatePicker } from 'antd'
 import { useLang } from '../../context/LanguageProvider';
 import Language from '../../lang/index'
 
-const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text, groups,setInfo2, redir  }) => {
+const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text, groups,setInfo2, redir, snake  }) => {
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
          function handleClickOutside(event) {
@@ -26,13 +26,16 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
    const { enqueueSnackbar } = useSnackbar();
    const [lang] = useLang();
 
-   const handleClick = () => {
-      const message = 'O`chirildi'
-      enqueueSnackbar(message, {
-         variant: 'error',
-      });
+   useEffect(() => {
+      if(snake) {
+         const message = 'O`chirildi'
+         enqueueSnackbar(message, {
+            variant: 'error',
+         });
+      }
+   }, [snake])
 
-   };
+   
 
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
@@ -93,7 +96,6 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                                         if(redir) {
                                                            window.location.replace(redir)
                                                         }
-                                                         handleClick()
                                                       }}>Ha</button>
                                                    </div>
                                                 </> :

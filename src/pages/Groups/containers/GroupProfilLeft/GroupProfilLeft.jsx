@@ -10,6 +10,7 @@ import  Modal1  from '../../../../components/Modal/Modal'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import { useLang } from '../../../../context/LanguageProvider'
 import Language from '../../../../lang/index'
+import { useNavbar } from '../../../../context/NavbarProvider'
 import {
    BY_GROUP_ID,
    DELETE_GROUP,
@@ -53,6 +54,7 @@ const GroupProfilLeft = (prop) => {
    const [idName, setIdName] = useState()
    const [onKeyUp, setOnKeyUp] = useState('')
    const [lang] = useLang()
+   const [setNavbarP] = useNavbar(true)
 
    const [payment, setPayment] = useState(false)
 
@@ -366,6 +368,7 @@ const GroupProfilLeft = (prop) => {
                         setMymodal={setIsModalDelete}
                         myModal={isModalDelete}
                         redir={`/groups`}
+                        snake={delData}
                      />
                      <img src={Trash} alt="" />
                   </button>
@@ -435,7 +438,7 @@ const GroupProfilLeft = (prop) => {
                                  {s.groupStatus === 3 && <div className="izma__groups-attendance-left-bottom-box"></div>}
                                  {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
                                  {s.groupStatus === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
-                                 <Link to={`/studentProfile/${s.id}`}>
+                                 <Link to={`/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
                                     <h5 className="izma__groups-attendance-left-bottom-heading">
                                        {s.name}
                                     </h5>

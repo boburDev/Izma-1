@@ -116,6 +116,7 @@ const NEW_LEAD = gql `
         $comment: String
         $courseID: ID
         $teachID: ID
+        $index: Int
     ) {
         newLeadForm(
         name: $name
@@ -126,6 +127,7 @@ const NEW_LEAD = gql `
         comment: $comment
         courseID: $courseID
         teachID: $teachID
+        index: $index
         ) {
         id
         }
@@ -143,6 +145,7 @@ const UPDATE_LEAD = gql `
         $comment: String
         $courseID: ID
         $teachID: ID
+        $index: Int
     ) {
         updateLead(
         id: $leadID
@@ -154,6 +157,7 @@ const UPDATE_LEAD = gql `
         comment: $comment
         courseID: $courseID
         teachID: $teachID
+        index: $index
         ) {
         id
         }

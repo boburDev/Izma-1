@@ -34,15 +34,9 @@ const GroupAdd = ({ onClose }) => {
    const { data: rooms } = useQuery(ROOMS)
    
    const [createGroup, {data: added}] = useMutation(CREATE_GROUP)
-   const { enqueueSnackbar } = useSnackbar();
+  
    
-   const handleClick = () => {
-      const message = Language[lang].groups.addNewGroups.successfullyAdded
-      enqueueSnackbar(message, {
-         variant: 'success',
-      });
-
-   };
+  
    const handleClick2 = () => {
       const message = 'Formani to`liq to`ldiring !'
       enqueueSnackbar(message, {
@@ -75,12 +69,20 @@ const GroupAdd = ({ onClose }) => {
       }
    }
 
+   const { enqueueSnackbar } = useSnackbar();
    useEffect(() => {
+      const handleClick = () => {
+         const message = Language[lang].groups.addNewGroups.successfullyAdded
+         enqueueSnackbar(message, {
+            variant: 'success',
+         });
+
+      };
       if (added?.createGroup?.id) {
          handleClick()
          document.getElementById('grouFormRes').reset()
       }
-   }, [added])
+   }, [added, enqueueSnackbar, lang])
 
    
    

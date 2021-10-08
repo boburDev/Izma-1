@@ -38,19 +38,20 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
 
    const { enqueueSnackbar } = useSnackbar();
 
-   const handleClick = () => {
-      const message = 'O`zgartirildi'
-      enqueueSnackbar(message, {
-         variant: 'success',
-      });
-
-   };
+ 
 
    useEffect(() => {
+      const handleClick = () => {
+         const message = 'O`zgartirildi'
+         enqueueSnackbar(message, {
+            variant: 'success',
+         });
+
+      };
       if(updateSnake) {
          handleClick()
       }
-   }, [updateSnake])
+   }, [updateSnake, enqueueSnackbar])
 
    const handleGroup = (e) => {
       e.preventDefault()

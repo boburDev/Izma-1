@@ -75,9 +75,10 @@ const StudentAdd = ({ onCloseF }) => {
    // const onChange = (data) => {
    //     setValue(data);
    // };
-
-
-
+   
+   const { enqueueSnackbar } = useSnackbar();
+   
+   
    const [stPhoneNum, setStPhoneNum] = useState('')
    const [stName, setStName] = useState('')
    const [stBirth, setStBirth] = useState('')
@@ -86,15 +87,22 @@ const StudentAdd = ({ onCloseF }) => {
    const [stTg, setStTg] = useState('')
    const [stGroup, setStGroup] = useState(null)
    const [stPassword, setStPassword] = useState('')
-
+   
    // const [names, setNames] = useState([])
    // console.log(names)
-
-
+   
+   
    const [AddNewSudents, { data: checkStudent }] = useMutation(ADD_NEW_STUDENTS)
    const [newCash] = useMutation(NEW_CASH)
-
+   
    useEffect(() => {
+      const message = Language[lang].students.studentCreated.title
+      const handleClick = () => {
+      enqueueSnackbar(message, {
+         variant: 'success',
+      });
+
+   };
 
       if (checkStudent && checkStudent.createStudent.id) {
          newCash({
@@ -106,7 +114,7 @@ const StudentAdd = ({ onCloseF }) => {
 
          handleClick()
       }
-   }, [checkStudent, newCash])
+   }, [checkStudent, newCash, enqueueSnackbar, lang])
 
 
 
@@ -126,15 +134,8 @@ const StudentAdd = ({ onCloseF }) => {
    //    }
    // }, [dataGroups])
 
-   const { enqueueSnackbar } = useSnackbar();
 
-   const handleClick = () => {
-      const message = Language[lang].students.studentCreated.title
-      enqueueSnackbar(message, {
-         variant: 'success',
-      });
-
-   };
+   
 
 
    return (

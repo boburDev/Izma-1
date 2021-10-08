@@ -33,7 +33,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
             variant: 'error',
          });
       }
-   }, [snake])
+   }, [snake, enqueueSnackbar])
 
    
 

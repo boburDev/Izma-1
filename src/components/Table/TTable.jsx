@@ -171,7 +171,30 @@ const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId, setInfo, openM
                   }
                   </div>
 
-            </> :<>
+            </> : block === "test" ? <>
+               <div className="table-header">
+                  <h4 className={'paymentHistory'}>id</h4>
+                  <h4 className={'paymentHistory'}>fullName</h4>
+                  <h4 className={'paymentHistory'}>tulov</h4>
+                  <h4 className={'paymentHistory'}>voqt</h4>
+                  <h4 className={'paymentHistory'}>gruppasi</h4>
+               </div>
+
+               <div className="table-group-body">
+                  {
+                     arr && arr.map((el, index) => (
+                        <TTableBlock
+                              block={'test'}
+                              info={el}
+                              index={index+1}
+                              key={index}
+                              setTakeID={setTakeID}
+                        />
+                     ))
+                  }
+                  </div>
+
+            </>: <>
             TTable
             </>
          }

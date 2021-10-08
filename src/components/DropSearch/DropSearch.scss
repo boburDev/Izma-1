@@ -20,7 +20,7 @@
 
          .dropSearchInput {
             &.active {
-               display: flex;
+               display: flex !important;
             }
          }
          .dropBox {
@@ -38,7 +38,7 @@
       }
 
       input {
-         display: none;
+         display: none !important;
          border: none !important;
          width: 100%;
          background: transparent;

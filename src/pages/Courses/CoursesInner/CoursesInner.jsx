@@ -99,7 +99,7 @@ const CoursesInner = () => {
                            </p>
                            <div className="izma__courses-card-wrapper-bottom-wrapper">
                               <p className="izma__courses-card-wrapper-bottom-prices">
-                                 {e.price} UZS
+                                 {new Intl.NumberFormat().format(e.price)} UZS
                               </p>
                               <div className="izma__courses-card-wrapper-bottom-btn-wrapper">
                                  <button className='izma__courses-card-wrapper-bottom-btn-wrapper-btn izma__courses-card-wrapper-bottom-btn-wrapper-btn-edit' onClick={showDrawer}>

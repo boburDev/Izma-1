@@ -39,7 +39,7 @@ const CoursesCard = () => {
                               {e.name}
                            </p>
                            <p className="izma__courses-card-wrapper-bottom-price">
-                              {e.price} UZS
+                              {new Intl.NumberFormat().format(e.price)} UZS
                            </p>
                         </div>
                      </div>

@@ -84,7 +84,16 @@ const CoursesAdd = ({ onClose }) => {
                </div>
                <div className="form_group" style={{ width: "100%" }}>
                   <label className='izma__lidlar__form-bolim-form-label'>{Language[lang].courses.editCourse.price}</label>
-                  <Input autoComplete="off"  onChange={e => setPrice(e.target.value)} className={"section_name_input"} name={"nomi"} value={price} />
+                  <input type="text" autoComplete="off" 
+                  onKeyUp={e => {
+                     setPrice((e.target.value).replace(/\s/g, ''))
+                     let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
+                     if (money === '0') {
+                        e.target.value = ''
+                     } else {
+                        e.target.value = money
+                     }
+                  }} className={"section_name_input"} name={"nomi"}  />
                </div>
                <div className="form_group izma__form__teaxtarea" style={{ width: 400 }}>
                   <label>{Language[lang].courses.editCourse.description}</label>

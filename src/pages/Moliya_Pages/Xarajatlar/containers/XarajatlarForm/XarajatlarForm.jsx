@@ -62,7 +62,16 @@ const XarajatlarForm = () => {
                </div>
                <div className="form_group" style={{ width: "100%" }}>
                   <label className='izma__finance-cost__form-bolim-form-label'>{Language[lang].finance.newCosts.currency}</label>
-                  <Input autoComplete="off"  onKeyUp={e => setSum(e.target.value - 0)} type="number"
+                  <input type="text" autoComplete="off" 
+                  onKeyUp={e => {
+                     setSum((e.target.value).replace(/\s/g, ''))
+                     let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
+                     if (money === '0') {
+                        e.target.value = ''
+                     } else {
+                        e.target.value = money
+                     }
+                  }}    
 				  className={"section_name_input"} name={"nomi"} />
                </div>
 

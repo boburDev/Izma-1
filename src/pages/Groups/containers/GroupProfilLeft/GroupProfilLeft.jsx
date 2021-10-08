@@ -385,7 +385,7 @@ const GroupProfilLeft = (prop) => {
                         {Language[lang].groups.groupInfo.price}
                      </p>
                      <p className="izma__groups-attendance-left-center-prices-number">
-                        {groups.byGroupID.price} UZS
+                     {groups && new Intl.NumberFormat().format(groups.byGroupID.price)} UZS
                      </p>
                   </div>
 

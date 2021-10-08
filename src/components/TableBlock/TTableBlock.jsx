@@ -81,7 +81,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                         <h4 className={'financeCostHash'}>{moment(info?.createdAt-0).format('DD.MM.YYYY')}</h4>
                         <h4 className={'financeCostHash'}>{info?.type}</h4>
                         <h4 className={'financeCostHash'}>{info?.buyer}</h4>
-                        <h4 className={'financeCostHash'}>{info?.paymentAmount}</h4>
+                        <h4 className={'financeCostHash'}>{new Intl.NumberFormat().format(info?.paymentAmount)}</h4>
                         <h4 className={'financeCostHash'}>
                   <img src={DeleteImg} alt="" onClick={() => deleteCost({variables: {id: info.id}})}/>
                </h4>
@@ -98,7 +98,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                               info?.paymentType === 1 ? 'Naqt pul' :
                               info?.paymentType === 2 ? 'UZCARD' : 'Bank hisobi'}</h4>
                               <h4 className={'paymentHistory'}>{info?.payed_at}</h4>
-                              <h4 className={'paymentHistory'}>{info?.debit}</h4>
+                              <h4 className={'paymentHistory'}>{new Intl.NumberFormat().format(info?.debit)}</h4>
                               <h4 className={'paymentHistory'}>{info?.credit}</h4>
                               <h4 className={'paymentHistory'}>{info?.comment}</h4>
                               <h4 className={'paymentHistory'}>
@@ -115,7 +115,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
             </> : block === 'test' ? <>
                            <h4 className={'financeGroupHash'}>{index}</h4>
                            <h4 className={'financeGroupHash'}>{info?.studentName}</h4>
-                           <h4 className={'financeGroupHash'}>{info?.debit}</h4>
+                           <h4 className={'financeGroupHash'}>{new Intl.NumberFormat().format(info?.debit)}</h4>
                            <h4 className={'financeGroupHash'}>{info?.createdAt}</h4>
                            <h4 className={'financeGroupHash'}>
                            {

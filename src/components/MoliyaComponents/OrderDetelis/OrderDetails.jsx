@@ -45,7 +45,7 @@ const OrderDetails = () => {
                   someArr.map((item, i) => (
                      <div key={i} className="information">
                         <p>{item.title}</p>
-                        <span>{item.price}</span>
+                        <span>{new Intl.NumberFormat().format(item.price)}</span>
                      </div>
                   ))
                }
@@ -54,7 +54,7 @@ const OrderDetails = () => {
             <div className="total_nfo">
                <div className="sub_price">
                   <span>Total</span>
-                  <span>{total}</span>
+                  <span>{new Intl.NumberFormat().format(total)}</span>
                </div>
             </div>
          </div>

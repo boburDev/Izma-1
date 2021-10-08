@@ -3,12 +3,15 @@ import { useQuery } from '@apollo/client'
 import './roadmap.scss'
 import { ROADMAP } from '../../../Querys/Settings'
 import { Counter } from './counter/counter'
+import Language from '../../../lang/index'
+import { useLang } from '../../../context/LanguageProvider'
 
 const SettingsRoadMap = ()=>{
 
 
     const { data: roadmaps } = useQuery(ROADMAP)
     const colors = ['#2eb5be', '#8361d1', '#87e72c', '#e7902c', '#f057c9', '#6e93f8', '#6ef8cf']
+    const [lang] = useLang()
 
      const [result, setResult] = useState({first: 0})
 
@@ -24,18 +27,18 @@ const SettingsRoadMap = ()=>{
             <div className="inner">
                 <div className="seetings_navbar">
                     <div className="direct">
-                        <h3>Razdel</h3>
+                        <h3>{Language[lang].settings.map.section}</h3>
                     </div>
                     <div className="info">
                         <div className="questions">
-                            <h3>Savollar</h3>
+                            <h3>{Language[lang].settings.map.questions}</h3>
                         </div>
                         <div className="ball">
-                            <h3>Ball (yuqori 10)</h3>
+                            <h3>{Language[lang].settings.map.highestScore}</h3>
                         </div>
                     </div>
                     <div className="response">
-                        <h3>Natija</h3>
+                        <h3>{Language[lang].settings.map.result}</h3>
                     </div>
                 </div>
                 {
@@ -90,10 +93,10 @@ const SettingsRoadMap = ()=>{
                 
                 <div className="bottom_navbar">
                     <div className="total_ball">
-                        <h4>Umimiy ball</h4>
+                        <h4>{Language[lang].settings.map.overallBall}</h4>
                         <div className="div">
                             <h4>
-                                Yuqori bal
+                            {Language[lang].settings.map.highestBall}
                             </h4>
                             <span>60</span>
                         </div>
@@ -101,7 +104,7 @@ const SettingsRoadMap = ()=>{
                     <div className="user_ball">
                         <div className="div">
                             <h4>
-                                Sizning balingiz
+                                {Language[lang].settings.map.yourBall}
                             </h4>
                             <span>{result.first}</span>
                         </div>

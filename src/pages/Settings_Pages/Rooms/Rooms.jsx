@@ -4,6 +4,8 @@ import { ROOMS, CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM, SUBCRIPTIONS_ROOM } from 
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
 import Modal1 from '../../../components/Modal/Modal'
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 
 const Rooms = () => {
@@ -12,6 +14,7 @@ const Rooms = () => {
    const [isEditModalVisible, setEditIsModalVisible] = useState(false)
    const [roomName, setRoomName] = useState('')
    const [getId, setGetId] = useState('')
+   const [lang] = useLang()
 
    const { data: Srooms } = useQuery(ROOMS)
    const [newRoom] = useMutation(CREATE_ROOM)
@@ -90,10 +93,10 @@ const Rooms = () => {
          <div className="izma__settings-employees-inner">
             <div className="izma__settings-employees-inner-up">
                <h3 className="izma__settings-employees-inner-up-heading">
-                  Xonalar
+                  {Language[lang].settings.rooms.roomsTitle}
                </h3>
                <button className="izma__students-content-button" onClick={showModal} >
-                  Yangi xona qo’shing
+                  {Language[lang].settings.rooms.addNewRoom}
                </button>
                </div>
             <div className="izma__settings-employees-inner-button">
@@ -103,7 +106,7 @@ const Rooms = () => {
 
          <Modal1
             block={`roomAdd`}
-            title={`Yangi xona yaratish`}
+            title={Language[lang].settings.rooms.addNewRoom}
             setMymodal={handleCancel}
             myModal={isModalVisible}
             setInfo={setRoomName}
@@ -111,7 +114,7 @@ const Rooms = () => {
          />
          <Modal1
             block={`roomEdit`}
-            title={`Xonani tahrirlash`}
+            title={Language[lang].settings.rooms.edit}
             setMymodal={setEditIsModalVisible}
             myModal={isEditModalVisible}
             setInfo={setRoomName}

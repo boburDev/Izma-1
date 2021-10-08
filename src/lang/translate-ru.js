@@ -19,7 +19,9 @@ const ru = {
             testLesson: 'На тестовом уроке',
             paidForMonth: 'Оплачено за месяц',
             stoppedParticipate: 'Перестали ходить',
-            leftAfterFirstLesson: 'Те, кто ушели после тестового урока'
+            leftAfterFirstLesson: 'Те, кто ушели после тестового урока',
+            exit: 'Выход',
+            accountInfo: 'Выписка по счету'
         },
         graph1: {
             cResources: 'Клиентские ресурсы',
@@ -49,6 +51,12 @@ const ru = {
             everyDay: 'Каждый день ',
             others: 'Другие'
         }
+    },
+    lids: {
+        lidsTitle: 'Запросы',
+        addQuery: 'Добавить запрос',
+        wait: 'Ждать',
+        block: 'Коллекция'
     },
     students: {
         title: {
@@ -239,7 +247,7 @@ const ru = {
             result: 'Результат'
         },
         employee: {
-            employeeTitle: 'Общий счет',
+            employeeTitle: 'Сотрудники',
             addNewEmployee: 'Добавить нового сотрудника',
             id: 'ID',
             fullName: 'Ф.И.О',
@@ -357,6 +365,7 @@ const ru = {
         students: 'Студенты',
         teachers: 'Учителя',
         courses: 'Курсы',
+        groups: 'Группы',
         finance: 'Финансы',
         settings: 'Настройки',
         allPayments: 'Платежи',
@@ -368,7 +377,13 @@ const ru = {
         office: 'Офис',
         others: 'Другие',
         shapes: 'Формы',
-        companySettings: 'Настройки компании'
+        companySettings: 'Настройки компании',
+        empoyee: 'Сотрудники',
+        rooms: 'Комнаты',
+        journals: 'Журналы',
+        archive: 'Архив',
+        lidForm: 'Лид форм',
+        enterForm: 'Вступление форм'
     },
     finance: {
         financeTitle: 'ФИНАНСЫ',

@@ -1,13 +1,16 @@
 import './Jurnals.scss'
+import Language from '../../../lang/index'
+import { useLang } from '../../../context/LanguageProvider'
 
 
 const Jurnals = () => {
+   const [lang] = useLang()
    return (
 
       <>
          <div className="izma__settings-magazine">
             <h3 className="izma__settings-magazine-heading">
-               Jurnallar
+               {Language[lang].settings.journals.journalsTitle}
             </h3>
             <ul className="izma__settings-magazine-list">
                <li className="izma__settings-magazine-items">

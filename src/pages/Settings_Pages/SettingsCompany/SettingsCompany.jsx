@@ -3,6 +3,8 @@ import { Upload, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 // import { useState } from 'react';
 // import axios from 'axios';
+import { useLang } from '../../../context/LanguageProvider';
+import Language from '../../../lang/index'
 
 const SettigsCompany = () => {
    // const [state,setState] = useState()
@@ -17,16 +19,18 @@ const SettigsCompany = () => {
 
    // }
 
+   const [lang] = useLang()
+
 
    return (
       <div className="container">
          <div className="companySetting">
            <div className="wrapper">
-               <h2 className="company__settings-heading">Kompaniya so'zlamalari</h2>
+               <h2 className="company__settings-heading">{Language[lang].settings.companySettings.companySettingsTitle}</h2>
            </div>
             <div className="companySetting-inner">
                <div className="logo">
-                  <h2>Logo</h2>
+                  <h2>{Language[lang].settings.companySettings.logo}</h2>
                </div>
 
                <div className="forms-wrapper">
@@ -53,7 +57,7 @@ const SettigsCompany = () => {
                                 }} type="file" /> */}
                   </div>
                   <div className="browse-theme">
-                     <h3 className="theme_name">Asosiy rangni ko'rsating</h3>
+                     <h3 className="theme_name">{Language[lang].settings.companySettings.chooseMainColor}</h3>
                      <div className="thems">
 
                         <div className="site_theme">
@@ -85,73 +89,73 @@ const SettigsCompany = () => {
                      </div>
 
                      <div className="center_name">
-                        <label>O'quv markazining nomi</label>
-                        <input type="text" name="" id="" placeholder="Center name" />
+                        <label>{Language[lang].settings.companySettings.lcName}</label>
+                        <input type="text" name="" id="" placeholder={Language[lang].settings.companySettings.lcName} />
                      </div>
 
                      <div className="browse-file">
-                        <h3 className="place_name">Sahifa fon</h3>
+                        <h3 className="place_name">{Language[lang].settings.companySettings.bgcForPage}</h3>
                         <Upload
                            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                            listType="picture"
                         >
-                           <Button icon={<UploadOutlined />}>Upload</Button>
+                           <Button icon={<UploadOutlined />}>{Language[lang].settings.companySettings.download}</Button>
                         </Upload>
                      </div>
                      <div className="browse-file mt_5">
-                        <h3 className="place_name mt_5">Shakl rasm</h3>
+                        <h3 className="place_name mt_5">{Language[lang].settings.companySettings.mainPhoto}</h3>
                         <Upload
                            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                            listType="picture"
                         >
-                           <Button icon={<UploadOutlined />}>Upload</Button>
+                           <Button icon={<UploadOutlined />}>{Language[lang].settings.companySettings.download}</Button>
                         </Upload>
                      </div>
 
                      <div className="browse-file mt_5 alone_file" >
-                        <h3 className="place_name mt_5">Company Oferta</h3>
+                        <h3 className="place_name mt_5">{Language[lang].settings.companySettings.suggestions}</h3>
                         <Upload
                            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                            listType="picture"
                         >
-                           <Button icon={<UploadOutlined />}>Upload</Button>
+                           <Button icon={<UploadOutlined />}>{Language[lang].settings.companySettings.download}</Button>
                         </Upload>
                      </div>
 
                      <div className="center_name">
-                        <label>Talaba uchun to'lov rejimi *</label>
+                        <label>{Language[lang].settings.companySettings.paymentTypeForStudent} *</label>
                         <select name="" id="">
-                           <option value="">Plastik karta</option>
-                           <option value="">Naqd pul</option>
-                           <option value="">Pul o'tkazish</option>
+                           <option value="">{Language[lang].settings.companySettings.plasticCard}</option>
+                           <option value="">{Language[lang].settings.companySettings.cash}</option>
+                           <option value="">{Language[lang].settings.companySettings.acrossBankAccount}</option>
                         </select>
                      </div>
 
                      <div className="center_name">
-                        <label>Facebook pixel</label>
+                        <label>{Language[lang].settings.companySettings.facebookPixel}</label>
                         <input type="text" name="" id="" />
                      </div>
 
                      <div className="paynet">
-                        <h3>Paynet</h3>
+                        <h3>{Language[lang].settings.companySettings.paynet}</h3>
 
                         <div className="paynet_info">
                            <div className="center_name">
-                              <label>Paycom merchant ID</label>
+                              <label>{Language[lang].settings.companySettings.paycomUserId}</label>
                               <input type="text" name="" id="" />
                            </div>
                            <div className="center_name">
-                              <label>Paycom username</label>
+                              <label>{Language[lang].settings.companySettings.paycomeUsername}</label>
                               <input type="text" name="" id="" />
                            </div>
                            <div className="center_name">
-                              <label>Paycom password</label>
+                              <label>{Language[lang].settings.companySettings.paycomPassword}</label>
                               <input type="password" name="" id="" />
                            </div>
                         </div>
                      </div>
 
-                     <button className="save_btn">Saqlash</button>
+                     <button className="save_btn">{Language[lang].settings.companySettings.save}</button>
                   </div>
                </div>
             </div>

@@ -4,11 +4,14 @@ import { useState } from 'react';
 import PhoneNumberInput from "../../../components/PhoneNumberInput/PhoneNumberInput";
 import Avatar from './containers/UploadFoto/UploadFoto'
 import PasswordInput from '../../../components/PasswordInput/PasswordInput';
+import { useLang } from '../../../context/LanguageProvider';
+import Language from '../../../lang/index'
 
 const EnterForm = () => {
 
    const [, setPassword] = useState("")
    const [, setPhone] = useState("")
+   const [lang] = useLang()
 
    
    return (
@@ -47,13 +50,13 @@ const EnterForm = () => {
                                  <form id="enterFormRes" action="" onSubmit={() => {
                                     document.getElementById('enterFormRes').reset()
                                  }}>
-                                    <label htmlFor="">Telefon *</label>
+                                    <label htmlFor="">{Language[lang].settings.forms.phoneNum} *</label>
                                     <PhoneNumberInput
                                        setPhone={setPhone}
                                     />
 
 
-                                    <label className="mtt1" htmlFor="">Parol *</label>
+                                    <label className="mtt1" htmlFor="">{Language[lang].settings.forms.password} *</label>
                                     <PasswordInput
                                        setPassword={setPassword}
                                     />

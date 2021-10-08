@@ -2,13 +2,15 @@ import { useEffect, useRef } from 'react'
 import './LidAddForm.scss'
 import { useMutation } from '@apollo/client'
 import { NEW_LEAD } from '../../../pages/Lids/query'
-
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
    const userName = useRef()
    const userNumber = useRef()
    const userComment = useRef()
    const [createLead] = useMutation(NEW_LEAD)
+   const [lang] = useLang()
    
 
    const handleSubmit = async () => {
@@ -66,7 +68,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
       <form id={`form` + formId} className="lllid">
       <div className="addForm" ref={wrapperRef}>
             <input autoComplete="off"  type="text" className="home-column-top__name"
-            placeholder="ism va familiya" required ref={userName}
+            placeholder={Language[lang].students.id.fullName} required ref={userName}
             onKeyUp={(e) => {
                if (e.keyCode === 13) {
                   handleSubmit()
@@ -74,7 +76,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
             }}
          />
             <input autoComplete="off"  type="text" className="home-column-top__number"
-            placeholder="telefon" required ref={userNumber} minLength={12} maxLength={12}
+            placeholder={Language[lang].students.payment.comment} required ref={userNumber} minLength={12} maxLength={12}
             onKeyUp={(e) => {
                if (e.keyCode === 13) {
                   handleSubmit()

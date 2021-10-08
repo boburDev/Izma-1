@@ -5,11 +5,13 @@ import CalendarImg from '../../../../../assets/Icons/calendar.svg'
 import { CREATE_SALE, GROUP_SALE, SUBSCRIP_SALE } from './query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client';
 import { useParams } from 'react-router';
-
+import { useLang } from '../../../../../context/LanguageProvider';
+import Language from '../../../../../lang/index'
 
 const GroupProfilRightTab3 = ({ studentData }) => {
 
   const {groupID} = useParams()
+  const [lang] = useLang()
 
   const [onKeyUp, setOnKeyUp] = useState('')
   const [dataSale, setDataSale] = useState([])
@@ -49,17 +51,17 @@ const GroupProfilRightTab3 = ({ studentData }) => {
     
         const columns = [
             {
-              title: 'Ism',
+              title: Language[lang].groups.individualPrice.fullName,
               dataIndex: 'name',
               key: 'name',
             },
             {
-              title: 'Telefon',
+              title: Language[lang].groups.individualPrice.phoneNumber,
               dataIndex: 'phone',
               key: 'phone',
             },
             {
-              title: 'Individual narx',
+              title: Language[lang].groups.individualPrice.individualPrice,
               dataIndex: 'price',
               key: 'price',
               render: ( text, record, index) => {
@@ -84,7 +86,7 @@ const GroupProfilRightTab3 = ({ studentData }) => {
                   UpdateSale({variables: data})
 
 
-				   }}>Saqlash</button>
+				   }}>{Language[lang].teachers.addNewUser.save}</button>
                </div></>)
               }
             },
@@ -96,12 +98,12 @@ const GroupProfilRightTab3 = ({ studentData }) => {
     return (
         <>
          <h3 className="izma__groups-attendance-right-tabs-third-heading">
-            Individual narx
+            {Language[lang].groups.individualPrice.individualPrice}
             </h3>
             <div className="izma__groups-attendance-right-tabs-first">
             <div className="izma__groups-attendance-right-tabs-first-up">
                 <h3 className="izma__groups-attendance-right-tabs-second-heading">
-                Siz har qanday talaba uchun shaxsiy o'quv to'lovini belgilashingiz mumkin. Chegirmali narxni ko'rsating va Enter tugmasini bosing
+                {Language[lang].groups.individualPrice.everyStudentPrice}
                 </h3>
                 <div className="izma__groups-attendance-right-tabs-first-right">
                <img className="izma__groups-attendance-right-tabs-first-right-img" src={CalendarImg} alt="img" />
@@ -110,7 +112,7 @@ const GroupProfilRightTab3 = ({ studentData }) => {
             </div>
             </div> 
         <div className="izma__groups-attendance-right-tabs-third">
-          <input autoComplete="off"  type="text" placeholder="search" onChange={e => setOnKeyUp(e.target.value)}/>
+          <input autoComplete="off"  type="text" placeholder={Language[lang].groups.individualPrice.search} onChange={e => setOnKeyUp(e.target.value)}/>
             <br />
             <br />
             <div className="groups__attendance-right-tabs-third-table" >

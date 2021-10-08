@@ -21,8 +21,6 @@ const Teachers = () => {
 
    const [lang] = useLang();
 
-   console.log(Language[lang].teachers)
-
    return (
       <div className="izma__teachers-content">
          {
@@ -31,10 +29,10 @@ const Teachers = () => {
          <div className="izma__teachers-content-wrapper">
             <div className="izma__teachers-content-up">
                <h2 className="izma__teachers-content-heading">
-                  O’qituvchilar
+                  {Language[lang].teachers.teacher.teacherTitle}
                </h2>
                <button className="izma__teachers-content-button" onClick={showDrawer}>
-                  Yangisini qo’shish
+                  {Language[lang].courses.addCourse}
                </button>
                <Drawer
                   placement="right"

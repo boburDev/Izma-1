@@ -8,6 +8,8 @@ import { Drawer } from 'antd'
 import {  Modal, AutoComplete, DatePicker } from 'antd'
 import  Modal1  from '../../../../components/Modal/Modal'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
+import { useLang } from '../../../../context/LanguageProvider'
+import Language from '../../../../lang/index'
 import {
    BY_GROUP_ID,
    DELETE_GROUP,
@@ -50,6 +52,7 @@ const GroupProfilLeft = (prop) => {
    const [stID, setStID] = useState()
    const [idName, setIdName] = useState()
    const [onKeyUp, setOnKeyUp] = useState('')
+   const [lang] = useLang()
 
    const [payment, setPayment] = useState(false)
 
@@ -376,7 +379,7 @@ const GroupProfilLeft = (prop) => {
                   </h4>
                   <div className="izma__groups-attendance-left-center-prices-wrapper">
                      <p className="izma__groups-attendance-left-center-prices-text">
-                        Narx:
+                        {Language[lang].groups.groupInfo.price}
                      </p>
                      <p className="izma__groups-attendance-left-center-prices-number">
                         {groups.byGroupID.price} UZS
@@ -385,7 +388,7 @@ const GroupProfilLeft = (prop) => {
 
                   <div className="izma__groups-attendance-left-center-time-wrapper">
                      <p className="izma__groups-attendance-left-center-time-text">
-                        Vaqt:
+                        {Language[lang].groups.groupInfo.time}
                      </p>
                      <p className="izma__groups-attendance-left-center-time-number">
                         {dayDivide} ・ {groups.byGroupID.time}
@@ -394,7 +397,7 @@ const GroupProfilLeft = (prop) => {
 
                   <div className="izma__groups-attendance-left-center-room-wrapper">
                      <p className="izma__groups-attendance-left-center-room-text">
-                        Xonalar:
+                     {Language[lang].groups.groupInfo.room}
                      </p>
                      <p className="izma__groups-attendance-left-center-room-number">
                         Room #{groups.byGroupID.rooms}
@@ -403,7 +406,7 @@ const GroupProfilLeft = (prop) => {
 
                   <div className="izma__groups-attendance-left-center-communicate-wrapper">
                      <p className="izma__groups-attendance-left-center-communicate-text">
-                        Mashg'ulotlar sanalari:
+                     {Language[lang].groups.groupInfo.traningDates}
                      </p>
                      <p className="izma__groups-attendance-left-center-communicate-number">
                         {groups.byGroupID.startDate} — {groups.byGroupID.endDate}
@@ -412,7 +415,7 @@ const GroupProfilLeft = (prop) => {
                      <input
                      autoComplete="off"
                         type="text"
-                        placeholder="search"
+                        placeholder={Language[lang].groups.groupInfo.search}
                         onChange={e => setOnKeyUp(e.target.value)} />
                   </div>
                   <div className="izma__students-content-line"></div>
@@ -471,12 +474,12 @@ const GroupProfilLeft = (prop) => {
                                                 status: 5, stID: selectedUser, grID: groupID
                                              }
                                           })
-                                       }}>Muzlash</Link>}
+                                       }}>{Language[lang].groups.additionalOption.freeze}</Link>}
 
-                                       {(staatus === 2 || staatus === 5) && <Link to="#" className="del_link" onClick={() => setPayment(true)} >Faollashtirish</Link>}
-                                       <Link to="#" className="del_link" onClick={showFinanceDrawer}>To’lov</Link>
-                                       <Link to="#" className="del_link" onClick={showNote}>Yangi eslatma qo’shish</Link>
-                                       <Link to="#" className="del_link">Talabani guruhga o’tkazing</Link>
+                                       {(staatus === 2 || staatus === 5) && <Link to="#" className="del_link" onClick={() => setPayment(true)} >{Language[lang].groups.activate.activateTitle}</Link>}
+                                       <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
+                                       <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>
+                                       <Link to="#" className="del_link">{Language[lang].groups.activate.changeGroupStudent}</Link>
                                        <Link to="#" className="del_link--red" onClick={() => {
 
                                           if (setStatus_6 && setStatus_6.setStatus_6.length === 1) {
@@ -494,7 +497,7 @@ const GroupProfilLeft = (prop) => {
                                              }
                                           })
 
-                                       }}>Guruhdan olib tashlash</Link>
+                                       }}>{Language[lang].groups.exitToGroup}</Link>
                                     </div>
 
 
@@ -512,27 +515,27 @@ const GroupProfilLeft = (prop) => {
 
          </div>
 
-         <Modal footer={null} title="Yangi talaba" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+         <Modal footer={null} title={Language[lang].groups.newStudent} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
-               <label className='izma__courses__form-bolim-form-label'>Talabani tanlang</label>
+               <label className='izma__courses__form-bolim-form-label'>{Language[lang].groups.selectStudent}</label>
                <AutoComplete
                   options={userInput.length && dataUser}
                   onSearch={e => setUserInput(e)}
                   onSelect={(v, o) => {
                      setStID(o.key)
                   }}
-                  className={"section_name_input"} name={"nomi"} placeholder='Ism yoki telefon orqali topish' />
+                  className={"section_name_input"} name={"nomi"} placeholder={Language[lang].groups.searchByNameOrNumber} />
 
             </div>
             <div className="form_group">
-               <label>Sanadan boshlab</label>
+               <label>{Language[lang].finance.startDay}</label>
                {
                   // groups.byGroupID.endDate
                }
                <DatePicker
                   className='date__picker'
                   onChange={(value, dateString) => setStartedDate(dateString)}
-                  placeholder={"Kun-Oy-Yil"}
+                  placeholder={Language[lang].teachers.addNewUser.date}
                   format={"DD-MM-YYYY"}
                   disabledDate={(current) => {
                      let customDate = groups.byGroupID.endDate
@@ -549,7 +552,7 @@ const GroupProfilLeft = (prop) => {
                   }
                   handleOk()
                }} className={"btn btn-submit izma__group__modal"}>
-                  Yuborish
+                  {Language[lang].groups.send}
                </button>
             </div>
          </Modal>

@@ -1,6 +1,10 @@
 import './TeacherProfileHistory.scss'
+import { useLang } from '../../../../context/LanguageProvider'
+import Language from '../../../../lang/index'
 
 const TeacherProfileHistory = () => {
+   const [lang] = useLang();
+
    return (
       <>
 
@@ -10,7 +14,7 @@ const TeacherProfileHistory = () => {
                <div className="izma__students-history-right-tabs-fourth-items-up">
                   <div className="izma__students-history-right-tabs-fourth-items-up-left">
                      <h4 className="izma__students-history-right-tabs-fourth-items-up-left-heading">
-                        Hisob to'ldirildi
+                        {Language[lang].teachers.courses.accountReplenished}
                      </h4>
                   </div>
                   <div className="izma__students-history-right-tabs-fourth-items-up-right">
@@ -23,7 +27,7 @@ const TeacherProfileHistory = () => {
                <div className="izma__students-history-line"></div>
                <div className="izma__students-history-right-tabs-fourth-items-bottom">
                   <p className="izma__students-history-right-tabs-fourth-items-bottom-text">
-                     Holati o'zgartirildi: Harakatsiz (Sinov darsi)
+                  {Language[lang].teachers.courses.editSituation}
                   </p>
                </div>
             </li>
@@ -32,7 +36,7 @@ const TeacherProfileHistory = () => {
                <div className="izma__students-history-right-tabs-fourth-items-up">
                   <div className="izma__students-history-right-tabs-fourth-items-up-left">
                      <h4 className="izma__students-history-right-tabs-fourth-items-up-left-heading">
-                        Hisob to'ldirildi
+                        {Language[lang].teachers.courses.accountReplenished}
                      </h4>
                   </div>
                   <div className="izma__students-history-right-tabs-fourth-items-up-right">
@@ -45,7 +49,7 @@ const TeacherProfileHistory = () => {
                <div className="izma__students-history-line"></div>
                <div className="izma__students-history-right-tabs-fourth-items-bottom">
                   <p className="izma__students-history-right-tabs-fourth-items-bottom-text">
-                     Holati o'zgartirildi: Harakatsiz (Sinov darsi)
+                  {Language[lang].teachers.courses.editSituation}
                   </p>
                </div>
             </li>

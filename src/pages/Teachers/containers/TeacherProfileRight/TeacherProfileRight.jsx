@@ -5,6 +5,9 @@ import { GROUP_INFO } from './query'
 import { useQuery } from '@apollo/client'
 import { Drawer } from 'antd';
 import { Link } from 'react-router-dom';
+import { useLang } from '../../../../context/LanguageProvider';
+import Language from '../../../../lang/index'
+
 const TeacherProfileRight = () => {
 
    const [groupId] = useEvent()
@@ -18,6 +21,8 @@ const TeacherProfileRight = () => {
    const { data: group } = useQuery(GROUP_INFO, {
       variables: { groupID: groupId && groupId }
    })
+
+   const [lang] = useLang()
 
    // console.log(group);
    return (
@@ -47,7 +52,7 @@ const TeacherProfileRight = () => {
                   </div>
                   <div className="izma__teachers-profile-right-wrapper-time-wrapper">
                      <p className="izma__teachers-profile-right-wrapper-text">
-                        Boshlash:
+                        {Language[lang].teachers.courses.startDay}
                      </p>
                      <p className="izma__teachers-profile-right-wrapper-time">
                         {group.byGroupID.time}

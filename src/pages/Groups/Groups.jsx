@@ -7,10 +7,14 @@ import './Groups.scss'
 import FilterTeachers from '../../components/Groups/FilterTeachers/FilterTeachers';
 import { useLoader } from '../../context/Loader';
 import Loader from '../../components/Loader/Loader';
+import { useLang } from '../../context/LanguageProvider';
+import Language from '../../lang/index'
 
 const Groups = () => {
    const [toggleState, setToggleState] = useState(1);
    const [loading] = useLoader()
+
+   const [lang] = useLang()
 
    const toggleTab = (index) => {
       setToggleState(index);
@@ -32,12 +36,12 @@ const Groups = () => {
          <div className="izma__teachers-content-wrapper">
             <div className="izma__teachers-content-up">
                <h2 className="izma__teachers-content-heading">
-                  Guruhlar
+                  {Language[lang].groups.groupsTitle}
                </h2>
                <div className="izma__teachers-content-btns">
 
                   <button className="izma__teachers-content-button" onClick={showDrawer}>
-                     Yangisini qo’shish
+                     {Language[lang].groups.addNewGroup}
                   </button>
                   <Drawer
                      placement="right"
@@ -62,13 +66,13 @@ const Groups = () => {
                   className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
                   onClick={() => toggleTab(1)}
                >
-                  Faol guruhlar
+                  {Language[lang].groups.activeGroups}
                </button>
                <button
                   className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
                   onClick={() => toggleTab(2)}
                >
-                  Arxiv guruhlar
+                  {Language[lang].groups.archivedGroups}
                </button>
 
             </div>

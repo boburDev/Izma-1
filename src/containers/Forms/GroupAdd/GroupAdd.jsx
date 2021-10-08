@@ -8,10 +8,15 @@ import { useMutation, useQuery } from '@apollo/client';
 import { useState } from 'react';
 import DropSearch from '../../../components/DropSearch/DropSearch';
 import { useSnackbar } from 'notistack';
+import { useLang } from '../../../context/LanguageProvider';
+import Language from '../../../lang/index'
 
 const format = 'HH:mm';
 
 const GroupAdd = ({ onClose }) => {
+
+
+   const [lang] = useLang();
 
    const [name, setName] = useState('')
    const [courseID, setCourseID] = useState('')
@@ -91,7 +96,7 @@ const GroupAdd = ({ onClose }) => {
    const { enqueueSnackbar } = useSnackbar();
 
    const handleClick = () => {
-      const message = 'Guruh qo`shildi'
+      const message = Language[lang].groups.addNewGroups.successfullyAdded
       enqueueSnackbar(message, {
          variant: 'success',
       });
@@ -106,7 +111,7 @@ const GroupAdd = ({ onClose }) => {
       <div className="groupForm">
          <div className="inner">
             <div className="top_group">
-               <h3>Yangi guruh qo’shish</h3>
+               <h3>{Language[lang].groups.addNewGroups.addNewGroupTitle}</h3>
                <button onClick={onClose}><img src={CloseBtn} alt="img" /></button>
             </div>
             <div className="form_wrapper">
@@ -117,31 +122,31 @@ const GroupAdd = ({ onClose }) => {
                   document.getElementById('grouFormRes').reset()
                }}>
                   <div className="form_inputs">
-                     <label htmlFor="">Nomi</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.name}</label>
                      <input autoComplete="off"   required onKeyUp={e => setName(e.target.value)} type="text" name="" id="" />
                   </div>
                   <div className="form_inputs">
-                     <label htmlFor="">Kurs tanlash</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.selectCourse}</label>
                      <DropSearch
                         fnc={setCourseID}
                         arr={courses && courses.courses}
-                        pInput={'Variantlarni tanlang'}
+                        pInput={Language[lang].groups.addNewGroups.chooseVariant}
                      />
                   </div>
                   <div className="form_inputs">
-                     <label htmlFor="">O'qituvchini tanlang</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.selectTeacher}</label>
                      <DropSearch
                         arr={teachers && teachers.colleagues}
-                        pInput={'Variantlarni tanlang'}
+                        pInput={Language[lang].groups.addNewGroups.chooseVariant}
                         fnc={setTeacherID}
                      />
                   </div>
                   <div className="form_inputs">
-                     <label htmlFor="">Kunlar</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.days}</label>
                      <DropSearch
                         arr={daysArr && daysArr}
                         fnc={setDays}
-                        pInput={'Variantlarni tanlang'}
+                        pInput={Language[lang].groups.addNewGroups.chooseVariant}
                      />
                      
                   </div>
@@ -181,10 +186,10 @@ const GroupAdd = ({ onClose }) => {
                        }
 
                   <div className="form_inputs">
-                     <label htmlFor="">Xonani tanlang</label>
+                     <label htmlFor="">{Language[lang].groups.addNewGroups.selectRoom}</label>
                      <DropSearch
                         arr={rooms && rooms.rooms}
-                        pInput={'Variantlarni tanlang'}
+                        pInput={Language[lang].groups.addNewGroups.chooseVariant}
                         fnc={setRoomID}
                      />
                   </div>
@@ -193,13 +198,13 @@ const GroupAdd = ({ onClose }) => {
 
                      <div className="izma__clock-time-wrapper">
                         <label className="izma__clock-time-label">
-                           Darsning boshlanish vaqti
+                        {Language[lang].groups.addNewGroups.startTimeLesson}
                         </label>
                         <TimePicker required onChange={e => setTime(e.format('HH:mm'))} defaultValue={moment('00:00', format)} format={format} />
                      </div>
                   </div>
                   <div className="form_group">
-                     <label>Guruh boshlanish sanasi</label>
+                     <label>{Language[lang].groups.addNewGroups.startGroupDate}</label>
 
                      <DatePicker
                         className='date__picker'
@@ -207,13 +212,13 @@ const GroupAdd = ({ onClose }) => {
                            setStartDate(dateString)
                         }} 
                         required
-                        placeholder={"Kun-Oy-Yil"}
+                        placeholder={Language[lang].teachers.addNewUser.date}
                         //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                         format={"DD-MM-YYYY"}
                      />
                   </div>
                   <div className="form_group">
-                     <label>Guruh tugash sanasi</label>
+                     <label>{Language[lang].groups.addNewGroups.endGroupDate}</label>
 
                      <DatePicker
                         className='date__picker'
@@ -221,12 +226,12 @@ const GroupAdd = ({ onClose }) => {
                            setEndDate(dateString)
                         }}
                         required
-                        placeholder={"Kun-Oy-Yil"}
+                        placeholder={Language[lang].teachers.addNewUser.date}
                         //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
                         format={"DD-MM-YYYY"}
                      />
                   </div>
-                  <button type="submit" >Yarating</button>
+                  <button type="submit" >{Language[lang].groups.addNewGroups.save}</button>
                </form>
             </div>
          </div>

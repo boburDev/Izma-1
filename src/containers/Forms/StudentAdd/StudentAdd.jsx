@@ -186,7 +186,7 @@ const StudentAdd = ({ onCloseF }) => {
                   onChange={(value, dateString) => {
                      setStBirth(dateString)
                   }}
-                  placeholder={"Kun-Oy-Yil"}
+                  placeholder={Language[lang].teachers.addNewUser.date}
                   format={"DD-MM-YYYY"}
                />
             </div>
@@ -209,7 +209,7 @@ const StudentAdd = ({ onCloseF }) => {
                <label htmlFor="group">{Language[lang].students.addNewStudentTitle.selectGroup}</label>
                <DropSearch
                   arr={dataGroups && dataGroups.groups}
-                  pInput={'Variantlarni tanlang'}
+                  pInput={Language[lang].groups.addNewGroups.chooseVariant}
                   fnc={setStGroup}
                   notReq={true}
                />

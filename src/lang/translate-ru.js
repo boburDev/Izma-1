@@ -58,7 +58,8 @@ const ru = {
             searchHolder: 'Поиск по имени или номеру телефона'
         },
         studentCreated: {
-            title: 'Студент создан'
+            title: 'Студент создан',
+            notGroup : 'В настоящее время нет групп или курсов'
         },
         addNewStudent: {
             addStudent: 'Добавить новое'
@@ -75,7 +76,8 @@ const ru = {
         studentInfoTitle: {
             students: 'Студенты ',
             profile: 'Профиль ',
-            menu: 'Меню'
+            menu: 'Меню',
+            title: 'Студенты | Профиль | Меню'
         },
         archiveStudents: {
             archiveStudent: 'История профиля'
@@ -88,7 +90,8 @@ const ru = {
         },
         groups: {
             groupsTitle: 'Группы',
-            groupsSelected: 'Курс выбран)'
+            groupsSelected: 'Курс выбран)',
+            deledeteStudent: 'Удалить читателя'
         },
         payment: {
             paymentTitle: 'ПЛАТЕЖИ',
@@ -120,9 +123,11 @@ const ru = {
             parentPhoneNumber: 'Телефонный номер родителя',
             telegramUsername: 'Telegram (@ имя пользователя)',
             password: 'Пароль',
-            edit: 'Изменять'
+            edit: 'Изменять',
+            nameOfRoom: 'Название комнаты'
         },
         sendMessageToStudent: {
+            title: 'Отправить SMS студенту',
             message: 'Не активировано для вашего учебного центра!'
         },
         recordPayment: {
@@ -165,7 +170,10 @@ const ru = {
     },
     teachers: {
         teacher: {
-            teacherTitle: 'УЧИТЕЛЯ'
+            teacherTitle: 'УЧИТЕЛЯ',
+            addToNew: 'Yangisini qo’shish',
+            title: 'Добавить нового пользователя',
+            profileTeacher: 'УЧИТЕЛЯ | ПРОФИЛЯ'
         },
         teacherInfo: {
             teacherId: 'ID',
@@ -176,15 +184,18 @@ const ru = {
             phoneNumber: 'Номер телефона',
             fullName: 'Ф.И.О',
             birthday: 'Дата рождения',
+            genderTitle: 'Пол',
             gender: ['Мужской ', 'Женский'],
             comment: 'Примечание',
             photo: 'Фото',
             password: 'Пароль',
-            save: 'Сохранить'
+            save: 'Сохранить',
+            date: 'Дата-Месяц-Год'
         },
         teacherInfoDetail: {
             teacherName: 'Имя учителя',
-            archiveProfile: 'ИСТОРИЯ ПРОФИЛЯ',
+            archiveProfile: 'ПРОФИЛЯ',
+            history: 'ИСТОРИЯ',
             phoneNumber: 'Номер телефона:',
             birthday: 'Дата рождения:',
             role: 'Роль:',
@@ -197,7 +208,7 @@ const ru = {
         },
         courses: {
             courseName: 'Название курса',
-            startDay: 'Начало: (время курса)',
+            startDay: 'Начало:',
             profileHistory: 'История профиля',
             accountReplenished: 'Счет пополнен:',
             editSituation: 'Изменен статус: неактивен (тестовый урок)'
@@ -369,7 +380,8 @@ const ru = {
             phoneNumber: 'Номер телефона',
             typePayment: 'Тип платежа',
             currency: 'Сум',
-            comment: 'Примечание'
+            comment: 'Примечание',
+            created: 'Созданный'
         },
         costs: {
             costsTitle: 'РАСХОДЫ',
@@ -445,7 +457,9 @@ const ru = {
             groups: 'Группы',
             teachers: 'Учителя',
             courses: 'Курсы',
-            currency: 'Сум'
+            currency: 'Сум',
+            allSums: 'Итого сом',
+            countStudent: 'Количество студентов'
         },
         paymentCourses: {
             paymentCoursesTitle: 'ПЛАТА ЗА ОБУЧЕНИЕ',
@@ -467,7 +481,7 @@ const ru = {
     groups: {
         groupsTitle: 'ГРУППЫ',
         addNewGroup: 'Добавить новое',
-        activeGroups: 'Добавить новое',
+        activeGroups: 'Активные группы',
         archivedGroups: 'Архивные группы',
         teacherNames: 'Имена учителей',
         tableRow: {
@@ -476,9 +490,12 @@ const ru = {
             teacher: 'Учитель',
             days: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
             daysShort: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Су', 'Вос'],
+            daysTitle: 'Дни',
             trainingDates: 'Даты обучения',
             room: 'Комната',
-            countStudents: 'Количество студентов'
+            countStudents: 'Количество студентов',
+            ad: 'Уроки будут доступны для чтения студентам. Вы можете добавлять или изменять уроки на странице курса',
+            warning: 'Уроки и материалы еще не загружены'
         },
         addNewGroups: {
             addNewGroupTitle: 'Добавить новую группу',
@@ -491,15 +508,17 @@ const ru = {
             selectDays: 'Выберите даты',
             room: 'Комната',
             selectRoom: 'Выберите комнату',
+            chooseVariant: 'Выбрать опции',
             oddDays: 'Нечетные дни',
-            evenDays: 'Нечетные дни',
+            evenDays: 'Четные дни',
             weekends: 'Выходные',
             everyDay: 'Каждый день (5 дней в неделю)',
             other: 'Другой',
             startTimeLesson: 'Время начала урока',
             startGroupDate: 'Дата старта группы',
             endGroupDate: 'Дата окончания группы',
-            save: 'Сохранить'
+            save: 'Сохранить',
+            successfullyAdded: 'Группа присоединилась'
         },
         groupInfo: {
             groupsGroupsName: 'Группы | Название группы |',
@@ -536,7 +555,7 @@ const ru = {
         },
         groupEdited: 'Группа отредактирована',
         newStudent: 'Новый студент',
-        selectStudent: 'Новый студент',
+        selectStudent: 'Выберите студента',
         searchByNameOrNumber: 'Найти по имени или номеру телефона',
         comeToCourse: 'Дата прибытия на курс',
         date: 'день месяц год',

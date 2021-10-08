@@ -4,10 +4,13 @@ import CalendarImg from '../../../../../assets/Icons/calendar.svg'
 import { useQuery } from '@apollo/client'
 import { BY_GROUP_ID } from '../../../../../Querys/GroupTabs'
 import { useParams } from 'react-router'
+import { useLang } from '../../../../../context/LanguageProvider'
+import Language from '../../../../../lang/index'
 
 const GroupProfilRightTab2 = () => {
 
    const { groupID } = useParams()
+   const [lang] = useLang()
 
    const { data: onlineLesson } = useQuery(BY_GROUP_ID, {
       variables: { groupID }
@@ -36,7 +39,7 @@ const GroupProfilRightTab2 = () => {
                   <div className="izma__groups-attendance-right-tabs-first">
                      <div className="izma__groups-attendance-right-tabs-first-up">
                         <h3 className="izma__groups-attendance-right-tabs-second-heading">
-                           Darslar talabalar tomonidan o'qilishi uchun mavjud bo'ladi. Kurs sahifasida darslarni qo'shishingiz yoki o'zgartirishingiz mumkin
+                           {Language[lang].groups.tableRow.ad}
                         </h3>
                         <div className="izma__groups-attendance-right-tabs-first-right">
                            <img className="izma__groups-attendance-right-tabs-first-right-img" src={CalendarImg} alt="img" />
@@ -46,7 +49,7 @@ const GroupProfilRightTab2 = () => {
                   </div>
                   <div className="izma__groups-attendance-right-tabs-second-bottom">
                      <p className="izma__groups-attendance-right-tabs-second-bottom-text">
-                        Hali yuklanmagan darslar va materiallar
+                        {Language[lang].groups.tableRow.warning}
                      </p>
 
                   </div>

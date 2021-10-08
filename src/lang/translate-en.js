@@ -336,6 +336,9 @@ const en = {
         },
         addLesson: {
             addLessonTitle: 'Add a lesson',
+            addTitle: 'Enter the title here',
+            addBlok: 'Add a new block',
+            mission: 'Mission'
         },
         degrees: {
             degreesTitle: 'Levels',
@@ -363,7 +366,7 @@ const en = {
         companySettings: 'Company settings'
     },
     finance: {
-        financeTitle: 'FINANCE (All students)',
+        financeTitle: 'FINANCE',
         countStudentOverSum: 'Total on students\' accounts: soums',
         receiptsForPeriod: 'Revenues for the period:',
         currency: 'soums',
@@ -380,6 +383,7 @@ const en = {
         },
         costs: {
             costsTitle: 'COSTS',
+            financeCost: 'FINANCE | COSTS',
             startDay: 'From date',
             endDay: 'to date',
             filter: 'Filter'
@@ -419,17 +423,18 @@ const en = {
             settingsSalaryCalculator: 'Setting up a payroll counter'
         },
         firstSettingsSalary: {
-            firstSettingsSalaryTitle: '1. Specify the standard cost setting parameters for all teachers.',
+            firstSettingsSalaryTitle: 'Specify the standard cost setting parameters for all teachers.',
             optionExpances: 'Cost value',
             cash: 'Cash',
             save: 'Save'
         },
         secondSettingsSalary: {
-            secondSettingsSalaryTitle: '2. You can calculate individually for some teachers.',
+            secondSettingsSalaryTitle: ' You can calculate individually for some teachers.',
             chooseTeacher: 'Teacher selection',
             choose: 'Selection',
             optionExpances: 'Cost value',
             cash: 'Cash',
+            procent: 'Percent',
             save: 'Save',
             teacher: 'Teacher',
             methodCount: 'Calculation method',
@@ -458,7 +463,7 @@ const en = {
         },
         paymentCourses: {
             paymentCoursesTitle: 'COURSE FEES',
-            incomeForPeriod: 'Receipts for the period: (date and amount are indicated)',
+            incomeForPeriod: 'Receipts for the period:',
             id: 'ID',
             startDay: 'From the date',
             amount: 'Quantity',

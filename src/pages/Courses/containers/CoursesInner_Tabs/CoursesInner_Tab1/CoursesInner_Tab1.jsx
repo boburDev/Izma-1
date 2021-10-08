@@ -2,9 +2,13 @@ import './CoursesInner_Tab1.scss'
 import { useHistory, useParams } from 'react-router'
 import { useQuery } from '@apollo/client'
 import { BY_COURSE_ID } from '../../../../../Querys/Courses_Query'
+import { useLang } from '../../../../../context/LanguageProvider'
+import Language from '../../../../../lang/index'
+
 const CoursesInner_Tab1 = () => {
 
    const history = useHistory()
+   const [lang] = useLang()
 
    const { courseID } = useParams()
 
@@ -21,7 +25,7 @@ const CoursesInner_Tab1 = () => {
       <>
          <div className="izma__courses-tabs1">
             <button className="izma__courses-tabs1-button" onClick={toLesson} >
-               Dars qo’shish
+               {Language[lang].courses.addLesson.addLessonTitle}
             </button>
             {
                onlineLessons && onlineLessons.byCourseID.map((e, i) => (

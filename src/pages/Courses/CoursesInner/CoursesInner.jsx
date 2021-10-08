@@ -12,6 +12,8 @@ import { BY_COURSE_ID, DELETE_BY_COURSE_ID, COURSE_SUBSCRIPTION } from '../../..
 import { useQuery, useMutation, useSubscription } from '@apollo/client';
 import { useLoader } from '../../../context/Loader';
 import Modal1 from '../../../components/Modal/Modal';
+import { useLang } from '../../../context/LanguageProvider';
+import Language from '../../../lang/index'
 
 const CoursesInner = () => {
    const [setLoading] = useLoader(true)
@@ -20,6 +22,7 @@ const CoursesInner = () => {
    const { data: courses, loading } = useQuery(BY_COURSE_ID, {
       variables: { courseID }
    })
+   const [lang] = useLang()
 
    useSubscription(COURSE_SUBSCRIPTION, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -79,7 +82,7 @@ const CoursesInner = () => {
                         {e.name}
                      </h2>
                      <h3 className="izma__courses__inner-content-up-title">
-                        Kurslar
+                        {Language[lang].courses.courseTitle}
                      </h3>
                   </div>
                   <div className="izma__students-content-center">
@@ -125,19 +128,19 @@ const CoursesInner = () => {
                               className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
                               onClick={() => toggleTab(1)}
                            >
-                              Online darslar va materiallar
+                              {Language[lang].courses.courseName.onlineLessonMaterials}
                            </button>
                            <button
                               className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
                               onClick={() => toggleTab(2)}
                            >
-                              Darajalar
+                              {Language[lang].courses.courseName.degrees}
                            </button>
                            <button
                               className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
                               onClick={() => toggleTab(3)}
                            >
-                              Guruhlar
+                              {Language[lang].courses.courseName.groups}
                            </button>
 
                         </div>

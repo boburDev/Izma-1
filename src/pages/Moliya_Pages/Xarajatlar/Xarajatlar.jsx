@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react'
 import { useQuery, useSubscription } from '@apollo/client'
 import { FILTER_DATA, HARAJATLAR, SUBSCRIP_HARAJAT } from '../../../Querys/Finance_All'
 import TTable from '../../../components/Table/TTable'
-
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 const Xarajatlar = () => {
    const [dateFilter, setDateFilter] = useState([])
@@ -15,6 +16,7 @@ const Xarajatlar = () => {
 	const { RangePicker } = DatePicker
    const [amount,setAmount] = useState(0)
    const [cost,setCost] = useState([])
+   const [lang] = useLang()
    
 	const { data: filterCost } = useQuery(FILTER_DATA, {
 		variables: Object.keys(dateFilterValue).length ? dateFilterValue : dateFilterDefaultData
@@ -64,18 +66,18 @@ const Xarajatlar = () => {
             <div className="izma__finance-costs">
                <div className="izma__finance-costs-headings">
                   <h3 className="izma__finance-costs-heading">
-                     Xarajatlar
+                     {Language[lang].finance.costs.costsTitle}
                   </h3>
                   <h4 className="izma__finance-costs-title">
-                     Moliya | Xarajatlar
+                     {Language[lang].finance.costs.financeCost}
                   </h4>
                </div>
                <div className="izma__finance-allpayment-up-dates-texts">
                   <p className="izma__finance-allpayment-up-dates-text">
-                     Sanadan boshlab
+                     {Language[lang].finance.startDay}
                   </p>
                   <p className="izma__finance-allpayment-up-dates-text izma__finance-allpayment-up-dates-text-s">
-                     Sana bo'yicha
+                  {Language[lang].finance.endDay}
                   </p>
                </div>
 
@@ -99,7 +101,7 @@ const Xarajatlar = () => {
                         }
                   }}
                   className="izma__finance-allpayment-up-dates-btn">
-                  Filtr
+                  {Language[lang].finance.filter.filterTitle}
                   </button>
                   </div>
 
@@ -107,7 +109,7 @@ const Xarajatlar = () => {
                <div className="izma__finance-costs-right-tabs-second-up">
                   <div className="izma__finance-costs-right-tabs-second-line"></div>
                   <p className="izma__finance-costs-right-tabs-second-text">
-                     Davr uchun tushgan pul: {amount} UZS
+                     {Language[lang].finance.costsForPeriod.costsForPeriodTitle} {amount} UZS
                   </p>
                   <img className='izma__finance-costs-right-tabs-second-img' src={FinanceCostsImg} alt="" />
                </div>

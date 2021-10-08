@@ -4,11 +4,14 @@ import TTable from '../../../components/Table/TTable'
 import { GROUPS_COURSES } from '../../../Querys/Finance_All'
 import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 const PaymentGroups = () => {
 	
 	const {data: GrCrTch} = useQuery(GROUPS_COURSES)
 	const [state,setState] = useState([])
+	const [lang] = useLang()
 	useEffect(() => {
 		const grDataArr = []
 		
@@ -45,15 +48,15 @@ const PaymentGroups = () => {
 		<div className="izma__finance-payment-groups">
 		<div className="izma__finance-payment-groups-headings">
 		<h3 className="izma__finance-payment-groups-heading">
-		To’lovlar guruhi
+		{Language[lang].finance.paymentGroup.paymentGroupTitle}
 		</h3>
 		<h4 className="izma__finance-payment-groups-title">
-		Moliya /to’lov guruhi
+		{Language[lang].finance.financeTitle} | {Language[lang].finance.paymentGroup.paymentGroupTitle}
 		</h4>
 		</div>
 		<div className="izma__finance-payment-right-tabs-second-up">
 		<p className="izma__finance-payment-right-tabs-second-text">
-		Davr uchun tushumlar 2021.08.01 - 2021.08.31: 750,000 so'm
+		{Language[lang].finance.paymentGroup.incomeForPeriod} 2021.08.01 - 2021.08.31: 750,000 so'm
 		</p>
 		<img className='izma__finance-payment-right-tabs-second-img' src={FinanceCostsImg} alt="" />
 		</div>
@@ -61,7 +64,7 @@ const PaymentGroups = () => {
 		
 		<div className="izma__finance-payment-groups-table-wrapper">
 		<h4 className="izma__finance-payment-groups-table-wrapper-heading">
-		Order Details
+			{Language[lang].finance.orderInfoGroup.orderInfoTitle}
 		</h4>
 		<TTable arr={state} block={"financeGroupHash"} />
 		</div>

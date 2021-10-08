@@ -328,7 +328,7 @@ const ru = {
         addCourse: 'Добавить новое',
         editCourse: {
             editCourseTitle: 'РЕДАКТИРОВАНИЕ КУРСОВ',
-            name: 'Номи',
+            name: 'Имя',
             price: 'Расходы',
             description: 'Описание',
             create: 'Создать'
@@ -341,6 +341,9 @@ const ru = {
         },
         addLesson: {
             addLessonTitle: 'Добавить урок',
+            addTitle: 'Введите название здесь',
+            addBlok: 'Добавить новый блок',
+            mission: 'Задание'
         },
         degrees: {
             degreesTitle: 'Уровни',
@@ -368,7 +371,7 @@ const ru = {
         companySettings: 'Настройки компании'
     },
     finance: {
-        financeTitle: 'ФИНАНСЫ (все студенты)',
+        financeTitle: 'ФИНАНСЫ',
         countStudentOverSum: 'Итого на счетах студентов: сум.',
         receiptsForPeriod: 'Выручка за период:',
         currency: ' сумов',
@@ -385,6 +388,7 @@ const ru = {
         },
         costs: {
             costsTitle: 'РАСХОДЫ',
+            financeCost: 'Финансы | РАСХОДЫ',
             startDay: 'От даты ',
             endDay: 'до даты',
             filter: 'Фильтр'
@@ -424,17 +428,18 @@ const ru = {
             settingsSalaryCalculator: 'Настройка счетчика заработной платы'
         },
         firstSettingsSalary: {
-            firstSettingsSalaryTitle: '1. Укажите стандартные параметры настройки стоимости для всех учителей.',
+            firstSettingsSalaryTitle: 'Укажите стандартные параметры настройки стоимости для всех учителей.',
             optionExpances: 'Стоимость ',
             cash: 'Наличные',
             save: 'Сохранить'
         },
         secondSettingsSalary: {
-            secondSettingsSalaryTitle: '2. Можно рассчитать индивидуально для некоторых учителей.',
+            secondSettingsSalaryTitle: 'Можно рассчитать индивидуально для некоторых учителей.',
             chooseTeacher: 'Выбор учителя',
             choose: 'Выбор',
             optionExpances: 'Стоимость ',
             cash: 'Наличные',
+            procent: 'Процент',
             save: 'Сохранить',
             teacher: 'Учитель',
             methodCount: 'Метод расчета',
@@ -453,7 +458,7 @@ const ru = {
             currency: 'Сум'
         },
         orderInfoGroup: {
-            orderInfoTitle: 'Запросить информацию',
+            orderInfoTitle: 'Порядок информацию',
             groups: 'Группы',
             teachers: 'Учителя',
             courses: 'Курсы',
@@ -463,7 +468,7 @@ const ru = {
         },
         paymentCourses: {
             paymentCoursesTitle: 'ПЛАТА ЗА ОБУЧЕНИЕ',
-            incomeForPeriod: 'Квитанции за период: (указаны дата и сумма)',
+            incomeForPeriod: 'Квитанции за период:',
             id: 'ID',
             startDay: 'С даты',
             amount: 'Количество',

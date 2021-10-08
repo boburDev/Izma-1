@@ -2,12 +2,14 @@ import './SalaryUpTable.scss'
 import { CHECK_TEACHER, TEACHER_SALARY_TYPE, SUBSCRIP_SALARY } from '../SalaryUp/query'
 import { useQuery, useSubscription } from '@apollo/client'
 import { useEffect, useState } from 'react'
-
+import { useLang } from '../../../../../context/LanguageProvider'
+import Language from '../../../../../lang/index'
 
 const SalaryUpTable = (props) => {
    const [data, setData] = useState([])
    const [someArr, setSomeArr] = useState([])
    const [salary, setSalary] = useState([])
+   const [lang] = useLang()
 
    const {data: teachSalary} = useQuery(TEACHER_SALARY_TYPE)
    const {data: checkSumm} = useQuery(CHECK_TEACHER, {variables: {text: 'text'}})
@@ -52,22 +54,22 @@ const SalaryUpTable = (props) => {
 
    const columns = [
       {
-         title: "O'qituvchi",
+         title: Language[lang].finance.secondSettingsSalary.teacher,
          dataIndex: 'teacher',
          key: 'teacher',
       },
       {
-         title: 'Hisoblash usuli',
+         title: Language[lang].finance.secondSettingsSalary.methodCount,
          dataIndex: 'discountsdew',
          key: 'discountsdew',
       },
       {
-         title: 'Jami to\'lov',
+         title: Language[lang].navigation.allPayments,
          dataIndex: 'Jamit',
          key: 'Jamit',
       },
       {
-         title: 'Oylik maosh',
+         title: Language[lang].finance.select.salary,
          dataIndex: 'maosh',
          key: 'maosh',
       },

@@ -6,10 +6,13 @@ import { useMutation, useQuery } from '@apollo/client';
 import { UPDATE_COURSE, ONE_COURSE_TO_EDIT, CREATE_COURSE } from '../../../Querys/Courses_Query';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { useLang } from '../../../context/LanguageProvider';
+import Language from '../../../lang/index'
 
 const CoursesAdd = ({ onClose }) => {
 
    const { courseID } = useParams()
+   const [lang] = useLang();
 
    const { data: dataToEdit } = useQuery(ONE_COURSE_TO_EDIT, { variables: { id: courseID } })
    const [Update_course] = useMutation(UPDATE_COURSE)
@@ -68,7 +71,7 @@ const CoursesAdd = ({ onClose }) => {
          <div className="izma__lidlar__form-bolim">
             <Form className="izma__lidlar__form-bolim-form" style={{ width: 400 }} id={disabled}>
                <div className="izma__lidlar__form-bolim-form-up">
-                  <h3 className='izma__lidlar__form-bolim-form-heading' >Kursni tahrirlash</h3>
+                  <h3 className='izma__lidlar__form-bolim-form-heading' >{Language[lang].courses.editCourse.editCourseTitle}</h3>
                   <button className="izma__lidlar__form-bolim-form-close-btn" onClick={onClose} >
                      <img className="izma__lidlar__form-bolim-form-img" src={CloseBtn} alt="img" />
                   </button>
@@ -76,15 +79,15 @@ const CoursesAdd = ({ onClose }) => {
                <div className="izma__lidlar__form-bolim-line"></div>
 
                <div className="form_group izma__lidlar__form-bolim-form-center" style={{ width: "100%" }}>
-                  <label className='izma__lidlar__form-bolim-form-label'>Nomi</label>
+                  <label className='izma__lidlar__form-bolim-form-label'>{Language[lang].courses.editCourse.name}</label>
                   <Input onChange={e => setName(e.target.value)} className={"section_name_input"} name={"nomi"} value={name} />
                </div>
                <div className="form_group" style={{ width: "100%" }}>
-                  <label className='izma__lidlar__form-bolim-form-label'>Narxi</label>
+                  <label className='izma__lidlar__form-bolim-form-label'>{Language[lang].courses.editCourse.price}</label>
                   <Input autoComplete="off"  onChange={e => setPrice(e.target.value)} className={"section_name_input"} name={"nomi"} value={price} />
                </div>
                <div className="form_group izma__form__teaxtarea" style={{ width: 400 }}>
-                  <label>Tavsif</label>
+                  <label>{Language[lang].courses.editCourse.description}</label>
                   <TextArea
                      className={"section_name_input"}
                      onChange={e => setDescription(e.target.value)}
@@ -95,7 +98,7 @@ const CoursesAdd = ({ onClose }) => {
                </div>
             </Form>
             <button onClick={handleSubmit} className="izma__lidlar__form-bolim-form-button">
-               Yarating
+               {Language[lang].courses.editCourse.create}
             </button>
          </div>
       </>

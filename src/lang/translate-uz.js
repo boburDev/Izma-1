@@ -337,6 +337,9 @@ const uz = {
         },
         addLesson: {
             addLessonTitle: 'Dars qo\'shish',
+            addTitle: 'Sarlavhani shu yerga kiriting',
+            addBlok: 'Yangi blok qo\'shing',
+            mission: 'Topshiriq'
         },
         degrees: {
             degreesTitle: 'Darajalar',
@@ -364,8 +367,8 @@ const uz = {
         companySettings: 'Kompaniya sozlamalari'
     },
     finance: {
-        financeTitle: 'MOLIYA (Barcha o\'quvchilar)',
-        countStudentOverSum: 'O\'quvchilar hisobi bo\'yicha jami:  so\'m',
+        financeTitle: 'MOLIYA',
+        countStudentOverSum: 'O\'quvchilar hisobi bo\'yicha jami:',
         receiptsForPeriod: 'Davr uchun tushumlar:',
         currency: 'so\'m',
         startDay: 'Sanadan boshlab',
@@ -381,6 +384,7 @@ const uz = {
         },
         costs: {
             costsTitle: 'XARAJATLAR',
+            financeCost: 'Moliya | Xarajatlar',
             startDay: 'Sanadan boshlab',
             endDay: 'Sanagacha',
             filter: 'Filtr'
@@ -420,7 +424,7 @@ const uz = {
             settingsSalaryCalculator: 'Ish haqi hisoblagichini sozlash'
         },
         firstSettingsSalary: {
-            firstSettingsSalaryTitle: '1. Barcha o\'qituvchilar uchun standart xarajatlarni belgilash parametrlarini ko\'rsating.',
+            firstSettingsSalaryTitle: 'Barcha o\'qituvchilar uchun standart xarajatlarni belgilash parametrlarini ko\'rsating.',
             optionExpances: 'Xarajat qiymati',
             cash: 'Naqd',
             save: 'Saqlash'
@@ -431,6 +435,7 @@ const uz = {
             choose: 'Tanlash',
             optionExpances: 'Xarajat qiymati',
             cash: 'Naqd',
+            procent: 'Foiz',
             save: 'Saqlash',
             teacher: 'O\'qituvchi',
             methodCount: 'Hisoblash usuli',
@@ -459,7 +464,7 @@ const uz = {
         },
         paymentCourses: {
             paymentCoursesTitle: 'KURS TO\'LOVLARI',
-            incomeForPeriod: 'Davr uchun tushumlar: (sana va miqdor ko\'rsatiladi)',
+            incomeForPeriod: 'Davr uchun tushumlar:',
             id: 'ID',
             startDay: 'Sanadan boshlab',
             amount: 'Miqdori',

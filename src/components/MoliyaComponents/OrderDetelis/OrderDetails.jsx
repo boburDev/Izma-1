@@ -1,6 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { COURSES_INFO } from '../../../Querys/Finance_All'
 import './OrderDetails.scss'
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 const OrderDetails = () => {
    
@@ -8,6 +10,7 @@ const OrderDetails = () => {
 
    const someArr = []
    let total = 0
+   const [lang] = useLang()
 
    infoCourse && infoCourse.courses.map(course => {
 
@@ -28,13 +31,13 @@ const OrderDetails = () => {
    return (
       <div className="orderDetails">
          <div className="heading">
-            <h1>Order Details</h1>
+            <h1>{Language[lang].finance.orderInfoGroup.orderInfoTitle}</h1>
          </div>
 
          <div className="main_order">
             <div className="main_heading">
-               <h1>Kurslar</h1>
-               <h1>Summa</h1>
+               <h1>{Language[lang].finance.orderInfoGroup.courses}</h1>
+               <h1>{Language[lang].finance.orderInfoGroup.currency}</h1>
             </div>
 
             <div className="main_infor">

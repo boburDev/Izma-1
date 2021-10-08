@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { Drawer, } from 'antd';
 import { useLoader } from "../../context/Loader";
 import Loader from "../../components/Loader/Loader";
+import {useLang} from '../../context/LanguageProvider'
+import Language from '../../lang/index'
 
 const Courses = () => {
 
@@ -16,6 +18,7 @@ const Courses = () => {
    const onClose = () => {
       setVisible(false);
    };
+   const [lang] = useLang();
    return (
       <div className="izma__courses-content" >
          {
@@ -24,10 +27,10 @@ const Courses = () => {
          <div className="izma__students-content-wrapper">
             <div className="izma__students-content-up">
                <h2 className="izma__students-content-heading">
-                  Kurslar
+                  {Language[lang].courses.courseTitle}
                </h2>
                <button className="izma__students-content-button" onClick={showDrawer} >
-                  Yangisini qo’shish
+                  {Language[lang].courses.addCourse}
                </button>
             </div>
             <div className="izma__students-content-center">

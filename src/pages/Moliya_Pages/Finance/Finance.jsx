@@ -7,7 +7,8 @@ import { useEffect, useState } from 'react'
 
 import { FINANCE_STUDENT, FINANCE_STUDENT_FILTER } from '../../../Querys/Finance_All'
 import { useQuery } from '@apollo/client'
-
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 
 const Finance = () => {
@@ -20,6 +21,7 @@ const Finance = () => {
    const [dateFilterValue, setDateFilterValue] = useState({})
 
    const { data: financeStudent } = useQuery(FINANCE_STUDENT)
+   const [lang] = useLang()
 
 
     
@@ -60,29 +62,29 @@ const Finance = () => {
       <>
          <div className="izma__finance-allpaymet">
             <h1 className="izma__finance-allpaymet-heading">
-               Finance
+               {Language[lang].finance.financeTitle}
             </h1>
             <div className="izma__finance-allpaymet-up">
                <div className="izma__finance-allpaymet-up-left">
                   <div className="izma__finance-allpayment-up-wrapper">
                      <p className="izma__finance-allpayment-up-text">
-                        Talabalar balansi bo'yicha jami: {amont || 0} so'm
+                        {Language[lang].finance.countStudentOverSum} {amont || 0} so'm
                      </p>
                      <img className="izma__finance-allpayment-up-img" src={FinanceDollarImg} alt="dollar img" />
                   </div>
 
                   <div className="izma__finance-allpayment-up-wrapper">
                      <p className="izma__finance-allpayment-up-text">
-                        Davr uchun tushumlar {date}: {amontFilter || 0} so'm
+                        {Language[lang].finance.receiptsForPeriod} {amontFilter || 0} so'm
                      </p>
                      <img className="izma__finance-allpayment-up-img" src={FinanceDollarImg} alt="dollar img" />
                   </div>
                   <div className="izma__finance-allpayment-up-dates-texts">
                      <p className="izma__finance-allpayment-up-dates-text">
-                        Sanadan boshlab
+                        {Language[lang].finance.startDay}
                      </p>
                      <p className="izma__finance-allpayment-up-dates-text izma__finance-allpayment-up-dates-text-s">
-                        Sana bo'yicha
+                        {Language[lang].finance.endDay}
                      </p>
                   </div>
                   <div className="izma__finance-allpayment-up-dates" style={{ width: "350px" }}>
@@ -105,7 +107,7 @@ const Finance = () => {
                   }
               }}
               className="izma__finance-allpayment-up-dates-btn">
-              Filtr
+                 {Language[lang].finance.filter.filterTitle}
               </button>
             </div>
 

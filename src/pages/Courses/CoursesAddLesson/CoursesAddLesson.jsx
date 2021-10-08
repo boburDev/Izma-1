@@ -5,7 +5,8 @@ import { useState } from 'react'
 
 import AddContentIput from '../../../components/CoursesComponents/AddContentInput/AddContentInput'
 import Decleminer from '../../../components/CoursesComponents/Decleminer/Decleminer'
-
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 import {
    Heading,
@@ -21,7 +22,7 @@ import {
 const CoursesAddLesson = () => {
 
    const [addRem, setAddRem] = useState(false)
-
+   const [lang] = useLang()
 
 
    const [changeBlock, setChangeBlock] = useState({
@@ -108,8 +109,8 @@ const CoursesAddLesson = () => {
    return (
       <div className="addFeadback">
          <div className="heading">
-            <input autoComplete="off"  type="text" placeholder="Sarlavhani shu yerga kiriting" name="" id="" />
-            <button className="save_btn">Saqlash</button>
+            <input autoComplete="off"  type="text" placeholder={Language[lang].courses.addLesson.addTitle} name="" id="" />
+            <button className="save_btn">{Language[lang].settings.companySettings.save}</button>
          </div>
 
          <div className="fieldForFead">
@@ -178,7 +179,7 @@ const CoursesAddLesson = () => {
             <button className="add_newBlock"
                onClick={() => setAddRem(!addRem)}
             >
-               Yangi blok qo'shing
+               {Language[lang].courses.addLesson.addBlok}
             </button>
          </div>
 

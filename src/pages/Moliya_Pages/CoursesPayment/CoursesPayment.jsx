@@ -1,10 +1,12 @@
 import './CoursesPayment.scss'
 import FinanceCostsImg from '../../../assets/Icons/008-dollar.svg'
 import OrderDetails from '../../../components/MoliyaComponents/OrderDetelis/OrderDetails'
+import { useLang } from '../../../context/LanguageProvider'
+import Language from '../../../lang/index'
 
 const CoursesPayment = () => {
    
-
+   const [lang] = useLang()
 
     
     
@@ -15,12 +17,12 @@ const CoursesPayment = () => {
          <div className="izma__finance-payment-groups">
             <div className="izma__finance-payment-groups-headings">
                <h3 className="izma__finance-payment-groups-heading">
-                  Kurs To’lovlari
+                  {Language[lang].finance.paymentCourses.paymentCoursesTitle}
                </h3>
             </div>
             <div className="izma__finance-payment-right-tabs-second-up">
                <p className="izma__finance-payment-right-tabs-second-text">
-                  Davr uchun tushumlar 2021.10.01 - 2021.10.01: 0 so'm
+                {Language[lang].finance.paymentCourses.incomeForPeriod} 2021.10.01 - 2021.10.01: 0 so'm
                </p>
                <img className='izma__finance-payment-right-tabs-second-img' src={FinanceCostsImg} alt="" />
             </div>

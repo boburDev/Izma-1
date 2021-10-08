@@ -3,6 +3,8 @@ import CoursesFormMainDegree from '../../CoursesFormMainDegree/CoursesFormMainDe
 import { useState } from 'react'
 import { Drawer } from 'antd'
 import CoursesSmallCard from '../../../../../components/CoursesComponents/CoursesSmallCard/CoursesSmallCard'
+import { useLang } from '../../../../../context/LanguageProvider'
+import Language from '../../../../../lang/index'
 
 const CoursesInner_Tab2 = () => {
 
@@ -14,11 +16,13 @@ const CoursesInner_Tab2 = () => {
       setVisible(false);
    };
 
+   const [lang] = useLang()
+
    return (
       <>
          <div className="izma__courses-tabs1">
             <button className="izma__courses-tabs1-button" onClick={showDrawer}>
-               Darajani qo’shish
+            {Language[lang].courses.degrees.addDegree}
             </button>
             <Drawer
                placement="right"
@@ -30,7 +34,7 @@ const CoursesInner_Tab2 = () => {
             </Drawer>
             <div className="izma__courses-tabs2-message">
                <p className="izma__courses-tabs2-message-text">
-                  Hech qanday daraja yaratilmagan
+               {Language[lang].courses.degrees.notDegree}
                </p>
             </div>
             <CoursesSmallCard />

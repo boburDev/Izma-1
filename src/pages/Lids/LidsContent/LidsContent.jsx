@@ -16,6 +16,7 @@ const LidsContent = ({ columns, setColumns}) => {
 const [form1, setForm1] = useState()
 const [form2, setForm2] = useState()
 const [form3, setForm3] = useState()
+
 const [lidAdd, setLidAdd] = useState(false)
 const [lidAdd1, setLidAdd1] = useState(false)
 const [lidAdd2, setLidAdd2] = useState(false)
@@ -131,7 +132,7 @@ const closeLidAdd2 = () => {
                         formId={1}
                         columns={columns}
                         setColumns={setColumns}
-                        itemId={columns && columns.find(el => el.boxStatus === -1)}
+                        itemId={columns && columns.find(el => el?.boxStatus === -1)}
                      />
                   </div>
                   <div className="status1-header-row">

@@ -5,11 +5,9 @@ import { CREATE_BOX, UPDATE_BOX_NAME } from '../../../pages/Lids/queryy'
 const LidAddItem = ({ columns, setColumns, onClose, formNum, defaultInfo, boxId}) => {
    const itemName = useRef()
 
-    const [createBox] = useMutation(CREATE_BOX)
-  const [updateBoxName] = useMutation(UPDATE_BOX_NAME)
+   const [createBox] = useMutation(CREATE_BOX)
+   const [updateBoxName] = useMutation(UPDATE_BOX_NAME)
   
-
-
    const handleSub = async (e) => {
       e.preventDefault()
       if(defaultInfo) {

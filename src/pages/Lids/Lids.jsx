@@ -1,12 +1,11 @@
 import './Lids.scss'
 import LidsContent from './LidsContent/LidsContent'
-import {  useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { useLazyQuery, useMutation, useQuery, useSubscription } from '@apollo/client'
-import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX,  SUBCRIP_LEADS, UPDATE_LEAD } from './query'
+import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX,  SUBCRIP_LEADS, UPDATE_LEAD, ALL_LEADS } from './query'
 import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
-
 
 
 // const LidsBoxes = [
@@ -80,14 +79,53 @@ const Lids = () => {
    
    // const [deleteLead] = useMutation(DELETE_LEAD)
    // deleteLead({variables: {leadID: id}})
-   
-   
    const [columns, setColumns] = useState([])
+   
+   
+   const [lead, setLead] = useState([])
+   const [box, setBox] = useState([])
+
    const { data: boxes } = useQuery(ALL_BOX)
+   const { data: leads } = useQuery(ALL_LEADS)
+
+
    useEffect(() => {
       check({variables: {check: 'string'}})
-      setColumns( boxes && boxes?.leadsBoxName);
-   }, [ boxes])
+      if (boxes && boxes?.leadsBoxName && leads?.leads) {
+         setBox( boxes && boxes?.leadsBoxName)
+         setLead(leads?.leads)
+      }
+   }, [ boxes, leads, check])
+   
+   // console.log(box)
+   // console.log(lead)
+
+   useEffect(() => {
+
+      if (box.length && lead.length) {
+         const arr = []
+         
+         box.map(i => {
+
+            const data = {
+               id: i.id,
+               name: i.boxName,
+               boxStatus: i.status,
+               items: lead.filter(item => item.leadBoxID === i.id ? {id: item.id, userName: item.name} : '')
+            }
+            arr.push(data)
+            return ''
+         })
+         setColumns(arr)
+      }
+
+   }, [box, lead])
+
+
+
+   // console.log(columns)
+
+
 
    useSubscription(SUBCRIP_BOXES, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -109,17 +147,42 @@ const Lids = () => {
       },
    })
 
-   const onDragEnd = (result, columns, setColumns) => {
+   // console.log(columns)
+   
+   // function handleOnDragEnd(result) {
 
+   //    let items
+   //    for (const i of columns && columns) {
+   //       items = Array.from(i.items)
+   //       const [reorderedItem] = items.splice(result.source.index, 1);
+         
+   //       items.splice(result.destination.index, 0, reorderedItem);
+   //       console.log(items)
+   //    }
+      
+
+      
+   //    let toId = result.destination.droppableId
+   //    let leadId = result.draggableId
+   //    updateLead({ variables: { leadID: leadId, leadBoxID: toId} })
+      
+
+   //    // const data = columns.map(item => item.items = items)
+
+   //    setColumns()
+   // }
+   
+
+   const onDragEnd = (result) => {
 
       const { source, destination } = result;
 
        if (source.droppableId !== destination.droppableId) {
-          const sourceColumn = columns.find(el => source.droppableId === el.id)
-          let tel = sourceColumn.items[source.index].lead_tel
+         //  const sourceColumn = columns.find(el => source.droppableId === el.id)
+         //  let tel = sourceColumn.items[source.index].lead_tel
           let toId = result.destination.droppableId
           let leadId = result.draggableId
-          updateLead({ variables: { leadID: leadId, leadBoxID: toId, phone: tel } })
+          updateLead({ variables: { leadID: leadId, leadBoxID: toId} })
        }
 
 
@@ -153,12 +216,43 @@ const Lids = () => {
       //    )
       // }
 
-   };
+   }
+
+   // const dragReducer = produce((draft, action) => {
+   //    switch (action.type) {
+   //      case "MOVE": {
+   //        draft[action.from] = draft[action.from] || [];
+   //        draft[action.to] = draft[action.to] || [];
+   //        const [removed] = draft[action.from].splice(action.fromIndex, 1);
+   //        draft[action.to].splice(action.toIndex, 0, removed);
+   //      }
+   //    }
+   //  });
+
+   //  const [state, dispatch] = useReducer(dragReducer, {
+   //    items: columns[0] && columns,
+   //  });
+
+
+   // const onDragEnd = useCallback((result) => {
+   //    if (result.reason === "DROP") {
+   //      if (!result.destination) {
+   //        return;
+   //      }
+   //      dispatch({
+   //        type: "MOVE",
+   //        from: result.source.droppableId,
+   //        to: result.destination.droppableId,
+   //        fromIndex: result.source.index,
+   //        toIndex: result.destination.index,
+   //      });
+   //    }
+   //  }, []);
 
    return(
       <div className="lids">
          <DragDropContext
-            onDragEnd={result => onDragEnd(result, columns && columns, setColumns)}
+            onDragEnd={onDragEnd}
          >
             <div className="status">
                <LidsContent

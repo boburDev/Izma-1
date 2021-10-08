@@ -13,7 +13,7 @@ import LidAddForm from '../../../containers/Forms/LidAddForm/LidAddForm';
 import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem';
 import { Drawer } from 'antd';
 import { useMutation } from '@apollo/client';
-import { DELETE_BOX } from '../../../pages/Lids/queryy';
+import { DELETE_BOX } from '../../../pages/Lids/query';
 
 const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate, sorov }) => {
 
@@ -133,7 +133,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                               }}><img src={Link} alt="" />So’rov qo’shish</span>
                               <span
                                  onClick={() => {
-                                    deleteBox({ variables: { boxID: column.id, status: column.boxStatus } })
+                                    deleteBox({ variables: { boxID: column.id } })
                                  }}
                               ><img src={Delete} alt="" />O’chirish</span>
                            </div>

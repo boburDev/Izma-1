@@ -12,7 +12,33 @@
       justify-content: space-between;
       background: #F7F9FB;
 
+      .inputWrr {
+         display: flex;
+         align-items: center;
+         position: relative;
+         width: 100%;
+
+         .dropSearchInput {
+            &.active {
+               display: flex;
+            }
+         }
+         .dropBox {
+            justify-content: flex-start;
+            display: flex;
+            font-size: .8rem;
+            font-weight: bold;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            &.active {
+               display: none;
+            }
+         }
+      }
+
       input {
+         display: none;
          border: none !important;
          width: 100%;
          background: transparent;

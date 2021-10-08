@@ -107,6 +107,7 @@ const ALL_LEADS = gql `
         courseID
         teachID
         leadBoxID
+        index
         }
     }
 `

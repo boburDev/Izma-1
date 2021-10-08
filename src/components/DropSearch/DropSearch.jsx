@@ -1,11 +1,14 @@
 import './DropSearch.scss'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Arrow from '../../assets/Icons/arrow_im.svg'
 
 const DropSearch = ({ arr, pInput, fnc, notReq }) => {
    const input = useRef()
+   const inputSpan = useRef()
    const browsers = useRef()
    const arrow = useRef()
+   const [focs, setFocs] = useState()
+
 
 
 
@@ -13,6 +16,8 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
       arrow.current.classList.remove('active')
       browsers.current.style.display = 'none';
       input.current.style.borderRadius = "5px";
+
+      
 
       arrow.current.addEventListener('click', () => {
          if (arrow.current.className === 'dropSearchArrow active') {
@@ -27,6 +32,15 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
 
          }
       })
+
+      inputSpan.current.onclick = function () {
+         setFocs(true)
+         input.current.focus()
+      }
+
+      input.current.addEventListener('blur', () => {
+         setFocs(false)
+      }) 
       input.current.onfocus = function () {
          arrow.current.classList.add('active')
          browsers.current.style.display = 'block';
@@ -41,25 +55,27 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
             }
          }
       };
-      for (let option of browsers.current.childNodes) {
-
+      browsers.current.childNodes.forEach(option => {
          option.onclick = function () {
             if (option.className === 'selected') {
                input.current.value = '';
+               inputSpan.current.textContent = 'Select options'
             } else {
                input.current.value = option.textContent;
+               inputSpan.current.textContent = option.textContent;
             }
             arrow.current.classList.remove('active')
             browsers.current.style.display = 'none';
             input.current.style.borderRadius = "5px";
          }
-      };
+      })
 
+    
       input.current.oninput = function () {
          currentFocus = -1;
          var text = input.current.value.toUpperCase();
          for (let option of browsers.current.childNodes) {
-            if (option.dataset.name.toUpperCase().indexOf(text) > -1) {
+            if (option.textContent.toUpperCase().indexOf(text) > -1) {
                option.style.display = "block";
             } else {
                option.style.display = "none";
@@ -136,10 +152,14 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
    return (
       <div className="dropSearch" ref={wrapperRef}>
          <div className="inputWrapper">
-            <input autoComplete="off" list="" name="browsers" placeholder={pInput} className="dropSearchInput"
-               ref={input}
-               required={notReq ? false : true}
-            />
+            <div className="inputWrr">
+               <input autoComplete="off" list="" name="browsers" placeholder={pInput} 
+                  className={`dropSearchInput ${focs ? 'active': ''}`}
+                  ref={input}
+                  required={notReq ? false : true}
+               />
+               <span ref={inputSpan} className={`dropBox ${focs ? 'active' : ''}`}>Select options</span>
+            </div>
             <span ref={arrow} className="dropSearchArrow" ><img src={Arrow} alt=""
 
             /></span>

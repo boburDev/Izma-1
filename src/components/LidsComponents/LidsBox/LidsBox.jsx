@@ -6,6 +6,7 @@ import Arrow from '../../../assets/Icons/arrowLid.svg'
 import Edit from '../../../assets/Icons/edit.svg'
 import Delete from '../../../assets/Icons/delete.svg'
 import Add from '../../../assets/Icons/add.svg'
+import LidArrow from '../../../assets/Icons/lidArrow.svg'
 import Link from '../../../assets/Icons/link.svg'
 import { useState } from 'react';
 import { useEffect, useRef } from 'react'
@@ -116,12 +117,12 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                                           groupCreate(true)
                                           setMenu(false)
                                        }}
-                                 ><img src={Add} alt="" />Guruh yaratish</span>
+                                    ><img src={LidArrow} alt="" />Guruh yaratish</span>
                                   :
                                  <>
                                    {
                                       sorov ? 
-                                      <span><img src={Add} alt="" />Formaga havolani nusxalash</span>
+                                      <span><img src={Link} alt="" />Formaga havolani nusxalash</span>
                                         :
                                       <></>
                                    }
@@ -130,7 +131,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                               <span onClick={() =>{
                                  setMenu(false)
                                  setForm1(true)
-                              }}><img src={Link} alt="" />So’rov qo’shish</span>
+                              }}><img src={Add} alt="" />So’rov qo’shish</span>
                               <span
                                  onClick={() => {
                                     deleteBox({ variables: { boxID: column.id } })

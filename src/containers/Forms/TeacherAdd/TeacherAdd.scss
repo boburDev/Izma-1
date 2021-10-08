@@ -1,6 +1,19 @@
+
+
+
 .form_teacher {
    max-width: 670px;
    min-height: 100vh;
+   label, .file {
+      font-weight: bold !important;
+      font-size: .8rem !important;
+   }
+
+   .ant-picker {
+      .ant-picker-input {
+         padding: 10px;
+      }
+   }
 
    .teacher_top {
       font-family: "Calibri";

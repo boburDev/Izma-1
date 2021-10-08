@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { useLazyQuery, useMutation, useQuery, useSubscription } from '@apollo/client'
 import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX,  SUBCRIP_LEADS, UPDATE_LEAD, ALL_LEADS } from './query'
-import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
+// import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
 
@@ -175,45 +175,43 @@ const Lids = () => {
    const onDragEnd = (result) => {
 
       const { source, destination } = result;
+      if (!result.destination) return;
 
-       if (source.droppableId !== destination.droppableId) {
-         //  const sourceColumn = columns.find(el => source.droppableId === el.id)
-         //  let tel = sourceColumn.items[source.index].lead_tel
-          let toId = result.destination.droppableId
-          let leadId = result.draggableId
-          updateLead({ variables: { leadID: leadId, leadBoxID: toId} })
-       }
-
-
-      // if (!result.destination) return;
-
-      // if (source.droppableId !== destination.droppableId) {
+     
          
-      //    const destColumn = columns.find(el => destination.droppableId === el.id)
-      //    const sourceItems = [...sourceColumn.items];
-      //    const destItems = [...destColumn.items];
-
-      //    const [removed] = sourceItems.splice(source.index, 1);
-      //    destItems.splice(destination.index, 0, removed);
-      //    let col1 = columns.find(el => el.id === source.droppableId)
-      //    let col2 = columns.find(el => el.id === destination.droppableId)
-      //    col1.items = sourceItems
-      //    col2.items = destItems
-
          
-      //    setColumns(columns);
-      // } else {
-      //    const column = columns.find(el => source.droppableId === el.id)
-      //    const copiedItems = [...column.items];
-      //    const [removed] = copiedItems.splice(source.index, 1);
-      //    copiedItems.splice(destination.index, 0, removed);
-      //    let col = columns.find(el => el.id === source.droppableId)
-      //    col.items = copiedItems
-
-      //    setColumns(
-      //       columns
-      //    )
-      // }
+         
+      if (source.droppableId !== destination.droppableId && destination.droppableId !== null) {
+            const sourceColumn = columns.find(el => source.droppableId === el.id)
+            
+            const destColumn = columns.find(el => destination.droppableId === el.id)
+            const sourceItems = [...sourceColumn.items];
+            const destItems = [...destColumn.items];
+            
+            const [removed] = sourceItems.splice(source.index, 1);
+            destItems.splice(destination.index, 0, removed);
+            let col1 = columns.find(el => el.id === source.droppableId)
+            let col2 = columns.find(el => el.id === destination.droppableId)
+            col1.items = sourceItems
+            col2.items = destItems
+            
+            
+            setColumns(columns);
+            let toId = result.destination.droppableId
+            let leadId = result.draggableId
+            updateLead({ variables: { leadID: leadId, leadBoxID: toId } })
+         } else {
+            const column = columns.find(el => source.droppableId === el.id)
+            const copiedItems = [...column.items];
+            const [removed] = copiedItems.splice(source.index, 1);
+            copiedItems.splice(destination.index, 0, removed);
+            let col = columns.find(el => el.id === source.droppableId)
+            col.items = copiedItems
+            
+         setColumns(
+            columns
+         )
+      }
 
    }
 

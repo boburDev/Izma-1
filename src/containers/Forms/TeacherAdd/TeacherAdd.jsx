@@ -66,7 +66,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
 
 
    return (
-      <div className="form_teacher">
+      <div className="form_teacher s">
          <div className="teacher_top">
             <h1 className="name">{Language[lang].teachers.teacher.title}</h1>
             <button onClick={onClose}><img src={Closebtn} alt="" /></button>

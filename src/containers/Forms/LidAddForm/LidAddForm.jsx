@@ -2,35 +2,59 @@ import { useEffect, useRef } from 'react'
 import './LidAddForm.scss'
 import { useMutation } from '@apollo/client'
 import { NEW_LEAD } from '../../../pages/Lids/query'
+// <<<<<<< HEAD
 import { useLang } from '../../../context/LanguageProvider'
 import Language from '../../../lang/index'
+// =======
+import { useSnackbar } from 'notistack';
+
+// >>>>>>> 19e26c884841d66d8a6c48e3b37e02f80881de1d
 
 const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
    const userName = useRef()
    const userNumber = useRef()
    const userComment = useRef()
    const [createLead] = useMutation(NEW_LEAD)
+// <<<<<<< HEAD
    const [lang] = useLang()
+// =======
+
+   const { enqueueSnackbar } = useSnackbar();
+
+   const handleClick = () => {
+      const message = 'Ism va telefoningizni kiriting'
+      enqueueSnackbar(message, {
+         variant: 'warning',
+      });
+
+   };
+// >>>>>>> 19e26c884841d66d8a6c48e3b37e02f80881de1d
    
 
    const handleSubmit = async () => {
    
-      createLead({ variables: { 
-         name: userName.current.value,
-         phone: userNumber.current.value,
-         leadBoxID: typeof itemId === 'string' ? itemId : itemId?.id,
-         gender: null,
-         comment: userComment.current.value,
-         courseID: null,
-         teachID: null
-      } })
-     
-      setAdd()
-      let form = document.querySelector('#form' + formId)
-      form.reset()
-      userName.current.value = ''
-      userNumber.current.value = ''
-      userComment.current.value = ''
+     if(userName.current.value && userNumber.current.value) {
+        createLead({
+           variables: {
+              name: userName.current.value,
+              phone: userNumber.current.value,
+              leadBoxID: typeof itemId === 'string' ? itemId : itemId?.id,
+              gender: null,
+              comment: userComment.current.value,
+              courseID: null,
+              teachID: null
+           }
+        })
+
+        setAdd()
+        let form = document.querySelector('#form' + formId)
+        form.reset()
+        userName.current.value = ''
+        userNumber.current.value = ''
+        userComment.current.value = ''
+     }else {
+        handleClick()
+     }
    }
 
 
@@ -45,11 +69,14 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
                return ''
             })
 
-            if ((userName.current.value || userNumber.current.value) && closeOrAdd === 0) {
+            if ((userName.current.value && userNumber.current.value) && closeOrAdd === 0) {
                setAdd(false)
                handleSubmit()
             } else if ((!userName.current.value || !userNumber.current.value) && closeOrAdd === 0) {
                setAdd(false)
+               userName.current.value = ''
+               userNumber.current.value = ''
+               userComment.current.value = ''
             }
          }
          document.addEventListener("mousedown", handleClickOutside);

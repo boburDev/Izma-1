@@ -151,7 +151,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                         >
                            <LidAddForm
                               setAdd={setForm1}
-                              formId={1}
+                              // formId={1}
                               columns={columns}
                               setColumns={setColumns}
                               itemId={column.id}

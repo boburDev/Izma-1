@@ -86,7 +86,7 @@ const Lids = () => {
    useEffect(() => {
       check({variables: {check: 'string'}})
       setColumns( boxes && boxes?.leadsBoxName);
-   }, [ boxes])
+   }, [boxes, check])
 
    useSubscription(SUBCRIP_BOXES, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { useLazyQuery, useMutation, useQuery, useSubscription } from '@apollo/client'
 import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX,  SUBCRIP_LEADS, UPDATE_LEAD, ALL_LEADS } from './query'
-import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
+// import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
 

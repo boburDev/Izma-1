@@ -93,7 +93,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                            <h4 className={'financeGroupHash'}>{info?.price}</h4>
                            <h4 className={'financeGroupHash'}>{info?.price * info?.stCount}</h4>
             </> : block === 'paymentHistory' ? <>
-                              <h4 className={'paymentHistory'}>{moment(info?.createdAt-0).format('YYYY-MM-DD, HH:MM')}</h4>
+                              <h4 className={'paymentHistory'}>{info?.createdAt}</h4>
                               <h4 className={'paymentHistory'} style={{width: '150px'}}>{
                               info?.paymentType === 1 ? 'Naqt pul' :
                               info?.paymentType === 2 ? 'UZCARD' : 'Bank hisobi'}</h4>
@@ -112,6 +112,17 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                               <h4 className={'paymentHistory'}>
                                  <img id={info.Id} src={DeleteImg} alt="" onClick={e => setTakeID(e.target.id)} />
                               </h4>
+            </> : block === 'test' ? <>
+                           <h4 className={'financeGroupHash'}>{index}</h4>
+                           <h4 className={'financeGroupHash'}>{info?.studentName}</h4>
+                           <h4 className={'financeGroupHash'}>{info?.debit}</h4>
+                           <h4 className={'financeGroupHash'}>{info?.createdAt}</h4>
+                           <h4 className={'financeGroupHash'}>
+                           {
+                              info?.studentGroups && info?.studentGroups.map((i,key) => <span className="stuentGrWr" key={i?.name}>({i?.teacher} - {i?.time})</span>)
+                           }
+                           </h4>
+                           
             </> : <>ok</>
          }
       </div>

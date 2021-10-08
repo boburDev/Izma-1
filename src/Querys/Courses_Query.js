@@ -129,7 +129,6 @@ mutation deleteCourse($id: ID!) {
     }
   }
 }
-
 `
 
 export {

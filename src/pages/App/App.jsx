@@ -27,8 +27,9 @@ import EnterForm from "../Settings_Pages/EnterForm/EnterForm";
 import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
 import Lids from "../Lids/Lids";
 import SettingsRoadMap from "../Settings_Pages/Roadmap/roadmap";
-import StudentsTablee from '../../test';
+// import StudentsTablee from '../../test';
 import SettigsCompany from "../Settings_Pages/SettingsCompany/SettingsCompany";
+import Test from "./test";
 
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
@@ -106,7 +107,8 @@ const App = () => {
 
 
 
-                      <Route path="/test" component={StudentsTablee} />
+                      <Route path="/test-muammo" component={Test} />
+                      {/* <Route path="/test" component={StudentsTablee} /> */}
 
 
 

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import './LidAddForm.scss'
 import { useMutation } from '@apollo/client'
 import { NEW_LEAD } from '../../../pages/Lids/query'
+import { useSnackbar } from 'notistack';
 
 
 const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
@@ -9,26 +10,42 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
    const userNumber = useRef()
    const userComment = useRef()
    const [createLead] = useMutation(NEW_LEAD)
+
+   const { enqueueSnackbar } = useSnackbar();
+
+   const handleClick = () => {
+      const message = 'Ism va telefoningizni kiriting'
+      enqueueSnackbar(message, {
+         variant: 'warning',
+      });
+
+   };
    
 
    const handleSubmit = async () => {
    
-      createLead({ variables: { 
-         name: userName.current.value,
-         phone: userNumber.current.value,
-         leadBoxID: typeof itemId === 'string' ? itemId : itemId?.id,
-         gender: null,
-         comment: userComment.current.value,
-         courseID: null,
-         teachID: null
-      } })
-     
-      setAdd()
-      let form = document.querySelector('#form' + formId)
-      form.reset()
-      userName.current.value = ''
-      userNumber.current.value = ''
-      userComment.current.value = ''
+     if(userName.current.value && userNumber.current.value) {
+        createLead({
+           variables: {
+              name: userName.current.value,
+              phone: userNumber.current.value,
+              leadBoxID: typeof itemId === 'string' ? itemId : itemId?.id,
+              gender: null,
+              comment: userComment.current.value,
+              courseID: null,
+              teachID: null
+           }
+        })
+
+        setAdd()
+        let form = document.querySelector('#form' + formId)
+        form.reset()
+        userName.current.value = ''
+        userNumber.current.value = ''
+        userComment.current.value = ''
+     }else {
+        handleClick()
+     }
    }
 
 
@@ -43,11 +60,14 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
                return ''
             })
 
-            if ((userName.current.value || userNumber.current.value) && closeOrAdd === 0) {
+            if ((userName.current.value && userNumber.current.value) && closeOrAdd === 0) {
                setAdd(false)
                handleSubmit()
             } else if ((!userName.current.value || !userNumber.current.value) && closeOrAdd === 0) {
                setAdd(false)
+               userName.current.value = ''
+               userNumber.current.value = ''
+               userComment.current.value = ''
             }
          }
          document.addEventListener("mousedown", handleClickOutside);

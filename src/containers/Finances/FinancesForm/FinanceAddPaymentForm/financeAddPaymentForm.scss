@@ -25,6 +25,12 @@
     display: flex;
     flex-direction: column;
     margin-top: 25px;
+
+    label,
+    .file {
+        font-weight: bold !important;
+        font-size: .8rem !important;
+    }
 }
 .izma__courses__form-bolim-form-heading {
     font-style: normal;

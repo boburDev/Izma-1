@@ -136,7 +136,7 @@ const StudentAdd = ({ onCloseF }) => {
 
 
    return (
-      <div className="form-wrapper">
+      <div className="form-wrapper s">
          <div className="top-place">
             <h1 className="place-name">{Language[lang].students.addNewStudent.addStudent}</h1>
             <button className="x-btn" onClick={onCloseF} >

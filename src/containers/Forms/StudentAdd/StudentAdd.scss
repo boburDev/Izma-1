@@ -1,6 +1,18 @@
 .form-wrapper {
    width: 100%;
+   label {
+      font-weight: bold !important;
+      font-size: .8rem !important;
+   }
 }
+
+
+.s .ant-picker {
+   .ant-picker-input {
+      padding: 10px;
+   }
+}
+
 
 input {
    outline: none;
@@ -106,6 +118,7 @@ input[type=text] {
    label {
       display: block;
       margin-bottom: 8px;
+      font-weight: bold;
    }
 
    &.alone {

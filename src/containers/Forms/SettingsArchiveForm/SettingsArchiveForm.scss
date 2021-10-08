@@ -1,5 +1,11 @@
 .izma__settings-archive-form-wrapper {
    width: 100% !important;
+    label, .file {
+       font-weight: bold !important;
+       font-size: .8rem !important;
+    }
+
+   
 }
 
 .form-input {

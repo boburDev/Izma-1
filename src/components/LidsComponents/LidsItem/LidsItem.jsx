@@ -10,7 +10,7 @@ import { Drawer } from 'antd';
 import { useMutation } from '@apollo/client';
 import { DELETE_LEAD } from '../../../pages/Lids/query';
 
-const LidsItem = ({ item, index }) => {
+const LidsItem = ({ item, index, columns, setColumns }) => {
    const [menu, setMenu] = useState()
 
    const [deleteLead] = useMutation(DELETE_LEAD)
@@ -49,6 +49,7 @@ const LidsItem = ({ item, index }) => {
      setOpenEdit(false)
    }
 
+
    return (
       <Draggable
          key={item.id}
@@ -82,6 +83,9 @@ const LidsItem = ({ item, index }) => {
                         <LidsEdit
                            setEdit={setOpenEdit}
                            edit={openEdit}
+                           columns={columns}
+                           setColumns={setColumns}
+                           item={item}
 
                         />
                      </Drawer>

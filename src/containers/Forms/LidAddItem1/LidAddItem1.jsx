@@ -59,6 +59,8 @@ const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
          courseDays: day.id,
          courseTime: time
       } })
+      document.getElementById('formLid1').reset()
+      onClose()
    }
    return (
       <div className={`form2 ${active1 ? 'active' : ''}`} id="formLIdAddRes">
@@ -69,7 +71,7 @@ const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
                <span></span>
             </div>
          </div>
-         <form action="" onSubmit={handleSub}>
+         <form action="" id="formLid1" onSubmit={handleSub}>
             <div className="row">
                <label htmlFor="Nomi">Nomi</label>
                <input autoComplete="off"  type="text" ref={itemName} />

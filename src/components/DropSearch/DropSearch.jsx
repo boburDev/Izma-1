@@ -2,7 +2,7 @@ import './DropSearch.scss'
 import { useEffect, useRef, useState } from 'react'
 import Arrow from '../../assets/Icons/arrow_im.svg'
 
-const DropSearch = ({ arr, pInput, fnc, notReq }) => {
+const DropSearch = ({ arr, pInput, fnc, notReq, defolt }) => {
    const input = useRef()
    const inputSpan = useRef()
    const browsers = useRef()
@@ -38,6 +38,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
          input.current.focus()
       }
 
+      
       input.current.addEventListener('blur', () => {
          setFocs(false)
       }) 
@@ -147,18 +148,29 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
   
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
+ 
+
+ const [obj, setObj] = useState()
+
+ useEffect(() => {
+   setObj(arr && arr.find(el => el.id === defolt))
+ }, [arr])
+
+
 
 
    return (
       <div className="dropSearch" ref={wrapperRef}>
          <div className="inputWrapper">
             <div className="inputWrr">
-               <input autoComplete="off" list="" name="browsers" placeholder={pInput} 
+               <input 
+                  defaultValue={defolt ? arr && obj?.name : ''}
+               autoComplete="off" list="" name="browsers" placeholder={pInput} 
                   className={`dropSearchInput ${focs ? 'active': ''}`}
                   ref={input}
                   required={notReq ? false : true}
                />
-               <span ref={inputSpan} className={`dropBox ${focs ? 'active' : ''}`}>Select options</span>
+               <span ref={inputSpan} className={`dropBox ${focs ? 'active' : ''}`}>{input?.current?.value ? input?.current?.value : defolt ? arr && obj?.name : `Select options`}</span>
             </div>
             <span ref={arrow} className="dropSearchArrow" ><img src={Arrow} alt=""
 
@@ -166,18 +178,57 @@ const DropSearch = ({ arr, pInput, fnc, notReq }) => {
          </div>
          <div className="dropSearchDatalist" ref={browsers}>
             {
-               arr && arr.map((z, i) => (
-                  <span
-                  
-                     onClick={(e) => {
-                        if (e.target.className === 'selected') {
-                           fnc('')
-                        } else {
-                           fnc(z)
-                        }
-                     }}
-                     key={i} data-name={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
-               ))
+
+               defolt ?
+               <>
+                  {
+                        arr && arr.map((z, i) =>{
+                           if(z.id === defolt) {
+                              fnc(z)
+                              return <span
+                                 className='selected'
+                                 onClick={(e) => {
+                                    if (e.target.className === 'selected') {
+                                       fnc('')
+                                    } else {
+                                       fnc(z)
+                                    }
+                                 }}
+                                 key={i} data-name={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
+                           }else {
+                              return <span
+                                 onClick={(e) => {
+                                    if (e.target.className === 'selected') {
+                                       fnc('')
+                                    } else {
+                                       fnc(z)
+                                    }
+                                 }}
+                                 key={i} data-name={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
+                           }
+                        })
+                  }
+               </>
+
+               :
+
+               <>
+                  {
+                        arr && arr.map((z, i) => (
+                           <span
+
+                              onClick={(e) => {
+                                 if (e.target.className === 'selected') {
+                                    fnc('')
+                                 } else {
+                                    fnc(z)
+                                 }
+                              }}
+                              key={i} data-name={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
+                        ))
+                  }
+               </>
+               
             }
          </div>
       </div>

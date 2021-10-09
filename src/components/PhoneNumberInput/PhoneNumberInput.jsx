@@ -3,6 +3,19 @@ import './PhoneNumberInput.scss'
 
 const PhoneNumberInput = ({ setPhone, setParents, parents, placeholder }) => {
 
+   if(parents) {
+      let n = parents
+      if(parents.length === 13) {
+         parents = `(${n[4]}${n[5]}) ${n[6]}${n[7]}${n[8]}-${n[9]}${n[10]}-${n[11]}${n[12]}`
+      } else if (parents.length === 12) {
+         parents = `(${n[3]}${n[4]}) ${n[5]}${n[6]}${n[7]}-${n[8]}${n[9]}-${n[10]}${n[11]}`
+      }else if (parents.length === 9) {
+         parents = `(${n[0]}${n[1]}) ${n[2]}${n[3]}${n[4]}-${n[5]}${n[6]}-${n[7]}${n[8]}`
+      }else {
+         parents = ''
+      }
+   }
+
 
    useEffect(() => {
       let inp = document.querySelector('.telInput')
@@ -22,6 +35,7 @@ const PhoneNumberInput = ({ setPhone, setParents, parents, placeholder }) => {
       <div className="phoneInput">
          <span className="numb">+998</span>
          <input
+            defaultValue={parents ? parents : ''}
             autoComplete="off"
             placeholder={placeholder && placeholder}
             minLength="14"

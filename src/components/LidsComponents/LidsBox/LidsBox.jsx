@@ -29,6 +29,10 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
    const closeEdit = () => {
       setOpenEdit(false)
    }
+
+  
+
+   
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
          function handleClickOutside(event) {
@@ -102,7 +106,11 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                         <div className="lidItem-top-right">
                            <button onClick={() => setActive(!active)} className={`arrow ${active ? 'active' : ''}`}><img src={Arrow} alt="" /></button>
                            <button onClick={() => setMenu(!menu)}><img src={MenuIcon} alt="" /></button>
-                           <div className={`boxmenu ${menu ? 'active' : ''}`} ref={wrapperRef}>
+                           <div className={`boxmenu ${menu ? 'active' : ''}`} 
+                           style={{
+                              bottom: !groupCreate && !sorov ? '-103px' :'' 
+                           }}
+                           ref={wrapperRef}>
                               <span
                                  onClick={() => {
                                     setMenu(false)
@@ -165,6 +173,8 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                                  item={item}
                                  index={index}
                                  key={index}
+                                 columns={columns}
+                                 setColumns={setColumns}
                               />
                            );
                         })}

@@ -96,12 +96,11 @@ const Lids = () => {
       }
    }, [ boxes, leads, check])
    
-   // console.log(box)
-   // console.log(lead)
+  
 
    useEffect(() => {
 
-      if (box.length && lead.length) {
+      if (box.length || lead.length) {
          const arr = []
          
          box.map(i => {
@@ -123,7 +122,6 @@ const Lids = () => {
 
 
 
-   // console.log(columns)
 
 
 
@@ -172,11 +170,15 @@ const Lids = () => {
    //    setColumns()
    // }
    
-
+   
    const onDragEnd = (result) => {
-
+      
       const { source, destination } = result;
       if (!result.destination) return;
+      
+      
+      let toId = result.destination.droppableId
+      let leadId = result.draggableId
 
      
          
@@ -198,10 +200,9 @@ const Lids = () => {
             
             
             setColumns(columns);
-            let toId = result.destination.droppableId
-            let leadId = result.draggableId
             updateLead({ variables: { leadID: leadId, leadBoxID: toId } })
          } else {
+            console.log(source, destination);
             const column = columns.find(el => source.droppableId === el.id)
             const copiedItems = [...column.items];
             const [removed] = copiedItems.splice(source.index, 1);

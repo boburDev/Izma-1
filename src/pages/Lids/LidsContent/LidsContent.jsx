@@ -8,8 +8,7 @@ import LidAddItem1 from '../../../containers/Forms/LidAddItem1/LidAddItem1'
 import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem'
 import LidAddItem2 from '../../../containers/Forms/LidAddItem2/LidAddItem2'
 import { Drawer } from 'antd';
-import { useLang } from '../../../context/LanguageProvider'
-import Language from '../../../lang/index'
+
 
 const LidsContent = ({ columns, setColumns}) => {
    
@@ -17,7 +16,6 @@ const LidsContent = ({ columns, setColumns}) => {
 const [form1, setForm1] = useState()
 const [form2, setForm2] = useState()
 const [form3, setForm3] = useState()
-const [lang] = useLang()
 
 const [lidAdd, setLidAdd] = useState(false)
 const [lidAdd1, setLidAdd1] = useState(false)
@@ -52,6 +50,7 @@ const closeLidAdd1 = () => {
 const closeLidAdd2 = () => {
    setLidAdd2(false)
 }
+
 
 
 
@@ -100,7 +99,7 @@ const closeLidAdd2 = () => {
                />
             </Drawer>
             <div className="status1">
-               <h2 className="status1-header-title" >{Language[lang].lids.lidsTitle}</h2>
+               <h2 className="status1-header-title" >So'rovlar</h2>
                <div className="status1-header">
                   <div className="status1-header-row"
                      style={{
@@ -111,7 +110,7 @@ const closeLidAdd2 = () => {
                         onClick={openForm1}
                      >
                         <img src={Plus} alt="" />
-                        <h4>{Language[lang].lids.addQuery}</h4>
+                        <h4>So'rov qo'shish</h4>
                      </div>
 
                      <div className="status1-header-row-right">
@@ -187,7 +186,7 @@ const closeLidAdd2 = () => {
                </div>
             </div>
             <div className="status2">
-               <h2 className="status1-header-title" >{Language[lang].lids.wait}</h2>
+               <h2 className="status1-header-title" >Kutish</h2>
                <div className="status1-header">
                   <div className="status1-header-row"
                      style={{
@@ -198,7 +197,7 @@ const closeLidAdd2 = () => {
                         onClick={openForm2}
                      >
                         <img src={Plus} alt="" />
-                        <h4>{Language[lang].lids.addQuery}</h4>
+                        <h4>So'rov qo'shish</h4>
                      </div>
 
                      <div className="status1-header-row-right">
@@ -232,6 +231,7 @@ const closeLidAdd2 = () => {
                                        column={item}
                                        columnId={item.id}
                                        isVisible={true}
+                                       
 
                                     />
                                  </div>
@@ -268,7 +268,7 @@ const closeLidAdd2 = () => {
                </div>
             </div>
             <div className="status3">
-               <h2 className="status1-header-title" >{Language[lang].lids.block}</h2>
+               <h2 className="status1-header-title" >To’plam</h2>
                <div className="status1-header">
                   <div className="status1-header-row" 
                      style={{
@@ -279,7 +279,7 @@ const closeLidAdd2 = () => {
                         onClick={openForm3}
                      >
                         <img src={Plus} alt="" />
-                        <h4>{Language[lang].lids.addQuery}</h4>
+                        <h4>So'rov qo'shish</h4>
                      </div>
 
                      <div className="status1-header-row-right">

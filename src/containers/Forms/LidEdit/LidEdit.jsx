@@ -4,17 +4,32 @@ import LidHistoryBlock from '../../../components/LidsComponents/LidHistoryBlock/
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput'
 import { DatePicker } from 'antd'
 import './LidEdit.scss'
+import { useMutation, useQuery } from '@apollo/client'
+import { COURSES } from '../../../Querys/Courses_Query'
+import { UPDATE_LEAD } from '../../../pages/Lids/query'
 
-const LidsEdit = ({ setEdit, edit }) => {
+const LidsEdit = ({ setEdit, edit, item, columns, setColumns }) => {
+   const { data: courses } = useQuery(COURSES)
    const [phone, setPhone] = useState()
    const [stBirth, setStBirth] = useState('')
+   const [course, setCourse] = useState('')
    const [comment, setComment] = useState('')
    const [stGender, setStGender] = useState()
+   const [updateLead] = useMutation(UPDATE_LEAD)
+   // updateLead({variables: {leadID: id,  leadBoxID: id, phone: ''}})
+
+   const handleSubmit = () => {
+      
+      let box = columns.find(el => el.id === item.leadBoxID)
+      let lid = box.items.find(el => el.id === item.id)
+      
+   }
    useEffect(() => {
 
    }, [phone, stBirth, comment, stGender])
    return (
       <div className={`lidsedit ${edit ? 'active' : ''}`}>
+         <button onClick={handleSubmit}>Helo</button>
          <div className="lidsedit-header">
             <h2>So'rovni tahrirlash</h2>
 
@@ -32,20 +47,27 @@ const LidsEdit = ({ setEdit, edit }) => {
                      <label htmlFor="Nomi">Kurs</label>
                      <DropSearch
                        pInput={`Kurs nomi`}
+                       fnc={setCourse}
+                        arr={courses && courses.courses}
+                       defolt={item && item.courseID}
+                        // defolt={`8981ecca-2dc5-4364-b567-2c8c33cfe49b`}
+
                      />
                   </div>
                   <div className="row">
                      <label htmlFor="Nomi">Ism</label>
-                     <input autoComplete="off"  type="text" />
+                     <input autoComplete="off"  type="text" defaultValue={item?.name} />
                   </div>
                   <div className="row">
                      <label htmlFor="Nomi">Telefon</label>
                      <PhoneNumberInput
                         setPhone={setPhone}
+                        parents={item?.phone}
+                        
                      />
                   </div>
                   <div className="row" id="sty3">
-                     <label htmlFor="Nomi">Telefon</label>
+                     <label htmlFor="Nomi">Tugingan kun</label>
                      <DatePicker
                         className='date__picker lid-edit-date'
                         onChange={(value, dateString) => {
@@ -72,7 +94,7 @@ const LidsEdit = ({ setEdit, edit }) => {
                   </div>
                   <div className="form_one">
                      <label htmlFor="comment">Komment</label>
-                     <textarea onKeyUp={e => setComment(e.target.value)} name="" id="" cols="30" rows="10"></textarea>
+                     <textarea defaultValue={item?.comment} onKeyUp={e => setComment(e.target.value)} name="" id="" cols="30" rows="10"></textarea>
                   </div>
                   <button type="submit" >Saqlash</button>
                </form>

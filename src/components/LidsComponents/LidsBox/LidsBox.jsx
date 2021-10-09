@@ -61,6 +61,10 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
 
+   
+
+
+
    return (
       <Droppable droppableId={columnId} key={columnId}>
          {(provided, snapshot) => {
@@ -101,7 +105,18 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                         }}
                      >
                         <div className="lidItem-top-left">
-                           <h2>{column.name}</h2>
+                           {
+                              groupCreate ?
+                              <h2>
+                                 <span>{column?.name}</span>
+                                 <span>{column?.courseName}</span>
+                                 <span>{column?.teachName}</span>
+                                 <span>{column?.courseDays}</span>
+                                 <span>{column?.courseTime}</span>
+                              </h2>
+                                 :
+                              <h2>{column.name}</h2>
+                           }
                         </div>
                         <div className="lidItem-top-right">
                            <button onClick={() => setActive(!active)} className={`arrow ${active ? 'active' : ''}`}><img src={Arrow} alt="" /></button>

@@ -5,6 +5,8 @@ import { DragDropContext} from 'react-beautiful-dnd'
 import { useLazyQuery, useMutation, useQuery, useSubscription } from '@apollo/client'
 import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX,  SUBCRIP_LEADS, UPDATE_LEAD, ALL_LEADS } from './query'
 import { useLidsFunc } from '../../context/LidsProvider'
+import { Link } from 'react-router-dom';
+import ScriptImg from '../../assets/Icons/link-img.svg'
 // import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
@@ -111,7 +113,12 @@ const Lids = () => {
                id: i.id,
                name: i.boxName,
                boxStatus: i.status,
-               items: lead.filter(item => item.leadBoxID === i.id ? {id: item.id, userName: item.name} : '')
+               items: lead.filter(item => item.leadBoxID === i.id ? {id: item.id, userName: item.name} : ''),
+               courseName: i.courseName,
+               teachName: i.teachName,
+               courseDays: i.courseDays,
+               courseTime: i.courseTime
+
             }
             arr.push(data)
             return ''
@@ -249,6 +256,7 @@ const Lids = () => {
    //      });
    //    }
    //  }, []);
+   const [dragActive, setDragActive] = useState(false)
 
    return(
       <div className="lids">
@@ -262,6 +270,37 @@ const Lids = () => {
                />
             </div>
          </DragDropContext>
+
+         <>
+        <div className="lidlar__links-wrapper">
+        <div className="lidlar__links-box">
+
+         <img src={ScriptImg} alt="img links" className="lidlar__links-box-img" onClick={()=> setDragActive(!dragActive)} />
+       
+           <div className={`open_dragon ${dragActive ? 'active' : null}`}>
+           <button  >Instagram</button>
+            <button >Telegram</button>
+            <button >Facebook</button>
+           </div>
+      
+
+        <h2 className="izma__links-box-link">
+        Lid formaga havola: <Link className="izma__links-box-link-link" > Hhh </Link>
+        </h2>
+        {/* <CopyToClipboard text={lin} onCopy={() => setCopied(true)}>
+        <button className='izma__links-box-link-link-copy'onClick={() => openNotificationWithIcon('success')} >Saqlash</button>
+      </CopyToClipboard> */}
+    
+        </div>
+        <div className="lidlar__links-box">
+        <img src={ScriptImg} alt="img links" className="lidlar__links-box-img" />
+        <h2 className="izma__links-box-link">
+        Agar siz tugmalar sonini yoki nomlarini qo’shishni yoki o’zgartirishni xoxlasangiz biz bilan bog’laning
+        </h2>
+        </div>
+        </div>
+      
+        </>
       </div>
    )
 }

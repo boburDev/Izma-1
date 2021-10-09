@@ -4,3 +4,110 @@
    align-items: flex-start;
    justify-content: space-between;
 }
+
+.lidlar__links-wrapper {
+   display: flex;
+   flex-wrap: wrap;
+   margin-top: 120px;
+   flex-direction: column;
+}
+
+.open_dragon {
+   position: absolute;
+   bottom: 0px;
+   z-index: 5;
+   left: 100px;
+   display: flex;
+   flex-direction: column;
+   background-color: #fff;
+   box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
+   border-radius: 4px;
+   border: 1px solid #E7E7EC;
+   transform: scale(0);
+   transition: all ease 0.5s;
+   
+   &.active {
+      transform: scale(1);
+      transition: all ease 0.5s;
+   }
+
+   button {
+      border: none;
+      outline: none;
+      margin: 3px 0;
+      background-color: #fff;
+      padding: 5px 30px;
+   }
+}
+
+.lidlar__links-box {
+   display: flex;
+   position: relative;
+   flex-wrap: wrap;
+   align-items: center;
+   width: 100%;
+   background: #FFFFFF;
+   border: 1px solid #E7E7EC;
+   box-sizing: border-box;
+   box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
+   border-radius: 4px;
+   margin-bottom: 30px;
+}
+
+.lidlar__links-box-img {
+   width: 60px;
+   height: 60px;
+   margin: 35px;
+}
+
+.izma__links-box-link {
+   font-family: "Calibri";
+   font-weight: bold;
+   font-size: 20px;
+   line-height: 22px;
+   color: #2F2D51;
+}
+
+.izma__links-box-link-link {
+   font-family: "Calibri";
+   font-weight: bold;
+   font-size: 20px;
+   line-height: 22px;
+   color: #2F2D51;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu {
+   padding: 0 !important;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item:hover::after,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu:hover::after,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item-active::after,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu-active::after,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item-open::after,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu-open::after,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item-selected::after,
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-submenu-selected::after {
+   border-bottom: none !important;
+}
+
+.izma__links-box-link-link-copy {
+   margin-left: auto;
+   border: none;
+   outline: none;
+   font-style: normal;
+   font-weight: normal;
+   background-color: transparent;
+   font-size: 16px;
+   line-height: 23px;
+   padding: 7px 25px;
+   font-family: "Calibri";
+   margin-right: 10px;
+   margin-bottom: auto;
+   margin-top: 15px;
+   border: 1px solid #090761;
+   box-sizing: border-box;
+   border-radius: 46px;
+   color: #090761;
+}

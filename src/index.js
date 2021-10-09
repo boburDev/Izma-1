@@ -25,6 +25,7 @@ import { DayDividerProvider } from './context/DayDividerProvider'
 import { LangProvider } from './context/LanguageProvider'
 import { NameProvider } from './context/NameProvider'
 import { NavbarProvider } from './context/NavbarProvider'
+import { LidsProvider } from './context/LidsProvider'
 import Slide from '@material-ui/core/Slide'
 
 const isTester = false
@@ -114,7 +115,9 @@ const Main = () => {
 																<LangProvider>
 																	<NameProvider>
 																		<NavbarProvider>
-																	    <App />
+																			<LidsProvider>
+																	    		<App />
+																			</LidsProvider>
 																		</NavbarProvider>
 																	</NameProvider>
 																</LangProvider>

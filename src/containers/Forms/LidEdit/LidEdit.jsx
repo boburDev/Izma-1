@@ -4,34 +4,60 @@ import LidHistoryBlock from '../../../components/LidsComponents/LidHistoryBlock/
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput'
 import { DatePicker } from 'antd'
 import './LidEdit.scss'
-import { /*useMutation,*/ useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { COURSES } from '../../../Querys/Courses_Query'
-// import { UPDATE_LEAD } from '../../../pages/Lids/query'
+import { UPDATE_LEAD } from '../../../pages/Lids/query'
+import { useLidsFunc } from '../../../context/LidsProvider'
 
-const LidsEdit = ({ setEdit, edit, item, columns, setColumns }) => {
+const LidsEdit = ({ setEdit, edit, item }) => {
    const { data: courses } = useQuery(COURSES)
-   const [phone, setPhone] = useState()
-   const [stBirth, setStBirth] = useState('')
-   const [course, setCourse] = useState('')
-   console.log(course)
-   const [comment, setComment] = useState('')
-   const [stGender, setStGender] = useState()
-   // const [updateLead] = useMutation(UPDATE_LEAD)
-   // updateLead({variables: {leadID: id,  leadBoxID: id, phone: ''}})
+   const [columns] = useLidsFunc()
+   const [setColumns] = useLidsFunc(true)
+   const [phone, setPhone] = useState(item?.phone)
+   const [stBirth, setStBirth] = useState(item?.birthday)
+   const [course, setCourse] = useState(item?.courseID)
+   const [comment, setComment] = useState(item?.comment)
+   const [stGender, setStGender] = useState(item?.gender)
+   const [useName, setUserName] = useState(item?.name)
+   const [updateLead] = useMutation(UPDATE_LEAD)
+
+   console.log(item);
+
 
    const handleSubmit = () => {
-      
       let box = columns.find(el => el.id === item.leadBoxID)
-      let lid = box.items.find(el => el.id === item.id)
-      console.log(lid)
-      
+      let items = [...box.items]
+      let itemOr = JSON.parse(JSON.stringify(items))
+      let obj = itemOr.find(el => el.id === item.id)
+      obj.name = useName
+      obj.phone = phone
+      obj.comment = comment
+      box.items = itemOr
+      let arr = [...columns]
+      setColumns(arr)
+
+      updateLead({
+         variables: {
+            leadID: item.id,
+            leadBoxID: item.leadBoxID,
+            phone: phone,
+            name: useName,
+            birthday: stBirth,
+            gender: +stGender,
+            comment: comment,
+            courseID: course.id,
+            teachID: null,
+            index: null
+
+         }
+      })
+      setEdit(false)
    }
    useEffect(() => {
 
    }, [phone, stBirth, comment, stGender])
    return (
       <div className={`lidsedit ${edit ? 'active' : ''}`}>
-         <button onClick={handleSubmit}>Helo</button>
          <div className="lidsedit-header">
             <h2>So'rovni tahrirlash</h2>
 
@@ -41,31 +67,35 @@ const LidsEdit = ({ setEdit, edit, item, columns, setColumns }) => {
          </div>
          <div className="lidsedit-body">
             <div className="lidsedit-body-left">
-               <form action="formLIdAddRes3" id="" onSubmit={(e) => {
+               <form action="" id="formLIdAddRes31" onSubmit={(e) => {
                   e.preventDefault()
-                  document.getElementById('formLIdAddRes3').reset()
+                  handleSubmit()
                }}>
                   <div className="row">
                      <label htmlFor="Nomi">Kurs</label>
                      <DropSearch
-                       pInput={`Kurs nomi`}
-                       fnc={setCourse}
+                        pInput={`Kurs nomi`}
+                        fnc={setCourse}
                         arr={courses && courses.courses}
-                       defolt={item && item.courseID}
-                        // defolt={`8981ecca-2dc5-4364-b567-2c8c33cfe49b`}
+                        defolt={item && item.courseID}
+                        notReq={true}
+                     // defolt={`8981ecca-2dc5-4364-b567-2c8c33cfe49b`}
 
                      />
                   </div>
                   <div className="row">
                      <label htmlFor="Nomi">Ism</label>
-                     <input autoComplete="off"  type="text" defaultValue={item?.name} />
+                     <input autoComplete="off" type="text"
+                        defaultValue={item?.name}
+                        onKeyUp={(e) => setUserName(e.target.value)}
+                     />
                   </div>
                   <div className="row">
                      <label htmlFor="Nomi">Telefon</label>
                      <PhoneNumberInput
                         setPhone={setPhone}
                         parents={item?.phone}
-                        
+
                      />
                   </div>
                   <div className="row" id="sty3">

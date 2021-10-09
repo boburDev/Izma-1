@@ -75,6 +75,7 @@ const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId, setInfo, openM
                               info={el}
                               index={index+1}
                               key={index}
+                              setEditId={setEditId}
                         />
                      ))
                   }

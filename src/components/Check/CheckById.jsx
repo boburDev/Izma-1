@@ -3,17 +3,48 @@ import ReactToPrint from 'react-to-print'
 import Close from '../../assets/Icons/Group 26.svg'
 import { useEffect, useState, useRef } from 'react'
 import Logo from '../../assets/Icons/Sertifikat.png'
-import { useCheck } from '../../context/CheckProvider'
 import { useLang } from '../../context/LanguageProvider'
 import Language from '../../lang/index'
 import moment from 'moment'
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/client'
 
-const Check = ({ handleCancelY ,  handleOkY  })=>{
+
+const Check = ({ id, setId  })=>{
     let componentRef = useRef(null)
-    const [check, setCheck] = useCheck()
     const [today,setToday] = useState('')
     const [month,setMonth] = useState('')
+    const [state,setState] = useState({})
     const [lang] = useLang()
+
+    const Check_BY_ID = gql`
+    query checkOne($id: ID){
+        checkOne(id: $id) {
+          id
+          serialNumber
+          studentName
+          typePayment
+          amount
+          time
+          teacherName
+          groupName
+          timeAt
+        }
+      }
+    `
+
+    const { data: check } = useQuery(Check_BY_ID, {
+        variables: {
+            id: id
+        }
+    })
+
+    useEffect(()=>{
+        if(check && check.checkOne){
+            setState(check && check.checkOne)
+            console.log(check && check.checkOne)
+        }
+    },[check])
 
     const style = {
         fontFamily: 'Jost',
@@ -42,9 +73,9 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
         const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 
-        const today = new Date(check && check.checkData.payed_at)
+        const today = new Date(state.time-0)
         setMonth(months[today.getMonth()])
-    },[check])
+    },[state])
 
     useEffect(()=>{
         var today = new Date()
@@ -52,15 +83,15 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
         var mm = String(today.getMonth() + 1).padStart(2, '0')
         var yyyy = today.getFullYear()
         today = dd + '-' + mm + '-' + yyyy
-        setToday(moment(new Date()).format('DD-MM-YYYY / HH:MM:SS'))
-    },[])
+        setToday(moment(state.timeAt).format('DD-MM-YYYY / HH:MM:SS'))
+    },[state])
 
     return (
         <div className="check-wrapper">
             <div className="check-holder">
                 <h1>Kvitansiya</h1>
                  <button><img src={Close} onClick={() => {
-                     setCheck({ check: false, checkData: check && check.checkData })
+                     setId('')
                  }} alt="" /></button>
             </div>
             <div className="check-inner" ref={el => (componentRef = el)}
@@ -91,34 +122,30 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
                     <div className="check-items">
                         <p
                             style={style}
-                        >{Language[lang].groups.paymentInfo.receiptNumber} <span style={styleTwo}>#{check && check.checkData.count}</span></p>
+                        >{Language[lang].groups.paymentInfo.receiptNumber} <span style={styleTwo}># {state.serialNumber}</span></p>
                         <p
                             style={style}
-                        >{Language[lang].groups.paymentInfo.student} <span style={styleTwo}>{check &&  check.checkData.stName}</span></p>
-                        <p
-                            style={style}
-                        >{Language[lang].groups.paymentInfo.paymentType}: <span style={styleTwo}>{check &&  check.checkData.type === 1 ? 'Naqt pul'
-                        : check &&  check.checkData.type === 2 ?
-                        'UZCARD' : 'Bank hisobi'}</span></p>
-                        <p
-                            style={style}
-                        >{Language[lang].groups.paymentInfo.amountPayment} <span style={styleTwo}>{check && check.checkData.cashAmm}so'm</span></p>
+                        >{Language[lang].groups.paymentInfo.student} <span style={styleTwo}>{state.studentName}</span></p>
+                        <p style={style}
+                        >{Language[lang].groups.paymentInfo.paymentType}: <span style={styleTwo}>{state.typePayment}</span></p>
+                        <p style={style}
+                        >{Language[lang].groups.paymentInfo.amountPayment} <span style={styleTwo}>111 so'm</span></p>
                         <p style={style}>Vaqt: <span style={styleTwo}>
                             { today }
                             </span></p>
                         <p style={style}>{Language[lang].students.recordPayment.AcceptedDate} <span style={styleTwo}>
                             { month }
                             </span></p>
-                        <p style={style}>{Language[lang].settings.editable.teacher} <span style={styleTwo}>{check  && check?.checkData?.teacher}</span></p>
+                        <p style={style}>{Language[lang].settings.editable.teacher} <span style={styleTwo}> {state.teacherName}</span></p>
                         <p
                             style={style}
-                        >{Language[lang].groups.paymentInfo.group} <span style={styleTwo}>{check && check.checkData.name}</span></p>
+                        >{Language[lang].groups.paymentInfo.group} <span style={styleTwo}>{state.groupName}</span></p>
                     </div>
                 </div>
             </div>
             <ReactToPrint
                 trigger={() => {
-                    return <button onClick={handleOkY} className="copy-btn">Chop etish</button>
+                    return <button className="copy-btn">Chop etish</button>
                 }}
                 copyStyles="true"
                 content={() => componentRef}

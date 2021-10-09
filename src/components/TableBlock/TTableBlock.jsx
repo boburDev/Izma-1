@@ -6,10 +6,11 @@ import { useState } from 'react'
 import Modal1 from '../Modal/Modal'
 import { useMutation } from '@apollo/client'
 import { DELETE_HARAJAT } from '../../Querys/Finance_All'
-
+import priceCheck from '../../assets/priceCheck.png'
 
 
 const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, setInfo, openModal, setID, deleteRoom, setTakeID }) => {
+	console.log(info)
    
    const [modal, setModal] = useState()
    const [modal1, setModal1] = useState()
@@ -76,10 +77,16 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                      <h4 className={'financeHash'}>{info?.typePayment}</h4>
                      <h4 className={'financeHash'}>{info?.amount}</h4>
                      <h4 className={'financeHash'}>{info?.comment}</h4>
+                     <h4 className={'financeHash'}>
+						<img id={info.Id} src={priceCheck} alt="" onClick={e => {
+							// showDrawer()
+							// setEditId(e.target.id)
+						}} />
+                	</h4>
 
 
 
-                     
+
             </> : block === 'financeCostHash' ? <>
                         <h4 className={'financeCostHash'}>{info?.name}</h4>
                         <h4 className={'financeCostHash'}>{moment(info?.createdAt-0).format('DD.MM.YYYY')}</h4>

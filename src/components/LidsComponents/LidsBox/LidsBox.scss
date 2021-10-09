@@ -59,7 +59,26 @@
       &-left {
          h2 {
             display: flex;
-            font-size: 12px
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            span {
+               margin-right: 8px;
+               position: relative;
+               display: flex;
+               align-items: center;
+               &::after {
+                  content: "";
+                  position: absolute;
+                  width: 4px;
+                  height: 4px;
+                  background: #000000;
+                  border-radius: 50%;
+                  right: -12px;
+               }
+            }
          }
       }
 

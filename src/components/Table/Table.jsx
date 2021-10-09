@@ -9,9 +9,7 @@ import Language from '../../lang/index'
 const Table = ({ block, arr, showDrawer}) => {
    const [data] = useStudentData()
    const [teacherData] = useTeacherData()
-
    const [lang] = useLang()
-
 
    return (
       <div className="table">

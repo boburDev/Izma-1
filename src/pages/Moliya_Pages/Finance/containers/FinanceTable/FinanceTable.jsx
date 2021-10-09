@@ -3,10 +3,14 @@ import './FinanceTable.scss'
 import { useQuery } from '@apollo/client'
 import TTable from '../../../../../components/Table/TTable'
 import { FINANCE_STUDENT_TABLE } from '../../../../../Querys/Finance_All'
+import Check from '../../../../../components/Check/CheckById'
+import { Modal } from 'antd'
 
 const FinanceTable = () => {
    const [data,setData] = useState([])
    const { data: finanveStudents } = useQuery(FINANCE_STUDENT_TABLE)
+   const [state,setState] = useState('')
+   console.log(state)
 
    useEffect(()=>{
       if (finanveStudents && finanveStudents.financeStudentsList) {
@@ -14,9 +18,19 @@ const FinanceTable = () => {
       }
    },[finanveStudents])
 
+
+
    return (
       <div className="izma__finance-table" >
-         <TTable arr={data} block={'financeHash'} />
+         <Modal className="check-modal" footer={null} visible={state !== '' && state}>
+               <Check
+                  id={state !== '' && state}
+                  setId={setState}
+               />
+            </Modal>
+
+
+         <TTable setEditId={setState} arr={data} block={'financeHash'} />
       </div>
    )
 }

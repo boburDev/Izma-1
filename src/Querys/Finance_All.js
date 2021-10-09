@@ -24,6 +24,7 @@ const FINANCE_STUDENT_TABLE = gql`
     comment
     payed_at
     payed_time
+    ckeckId
   }
 }
 `

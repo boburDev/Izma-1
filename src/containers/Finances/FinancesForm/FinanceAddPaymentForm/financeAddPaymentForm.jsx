@@ -1,8 +1,8 @@
 import './financeAddPaymentForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
-import { Form, Input, DatePicker } from "antd"
+import { Form, DatePicker } from "antd"
+import { Radio, Input } from 'antd'
 import { useEffect, useState } from 'react'
-import { Radio } from 'antd'
 import TextArea from "antd/lib/input/TextArea"
 import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT_GROUPS, CREATE_CHECK, SUBSCRIPTION_CHECK, UPDATE_GR_STATUS, COUNT } from '../../../../Querys/FinanceAddPayForm_Query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
@@ -16,7 +16,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const [payType, setPayType] = useState(1)
 	const [ammountt, setAmmoun] = useState('')
 	const [payedData, setPayedData] = useState("")
-	console.log(payedData, studenID && studenID.isEmpty)
 	const [comment, setComment] = useState(null)
 	const [names, setNames] = useState([])
 	const [data, setData] = useState({})
@@ -25,7 +24,42 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 	const [groups, setGroups] = useState()
 
-	
+	// const InputVal = ({ initialValue = "", isNumber }) => {
+	// 	const [value, updateValue] = useState(initialValue);
+
+	// 	const update = (val) => {
+	// 		if (isNumber) {
+	// 			val = val.replace(/,/g, "");
+	// 			const x = Number(val);
+
+	// 			updateValue(x.toLocaleString());
+	// 		} else {
+	// 			updateValue(val);
+	// 		}
+	// 	};
+
+	// 	return (
+	// 		//   <input type="text" value={value} className='input' onChange={e => update(e.target.value)} />
+	// 		<input defaultValue={ammountt}
+	// 			autoComplete="off" className={"section_name_input"} name={"nomi"}
+	// 			onChange={e => update(e.target.value)}
+	// 			value={value}
+	// 			// onKeyUp={e => {
+	// 			// 	setAmmoun((e.target.value)
+	// 			// 	// .replace(/\s/g, '')
+	// 			// 	)
+	// 			// 	// let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
+	// 			// 	// if (money === '0') {
+	// 			// 	// 	e.target.value = ''
+	// 			// 	// } else {
+	// 			// 	// 	e.target.value = money
+	// 			// 	// }
+	// 			// }}
+	// 			type="text" />
+	// 	);
+	// };
+
+
 
 	useEffect(() => {
 
@@ -126,7 +160,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 							payed: payedData.payed,
 							payed_at: payedData.payed_at,
 						}
-	
+
 						const upCash = {
 							stID: (studenID.studentID || studenID.studentId),
 							cashAmm: String((ammountt - 0) + (forCheck && forCheck.studentCash.cashAmount - 0)),
@@ -134,14 +168,14 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 							type: payType,
 							payed: payedData.payed
 						}
-	
+
 						if (!forCheck) {
 							newCash({ variables: cache })
 						}
 						if (forCheck) {
 							updateCash({ variables: upCash })
 						}
-	
+
 						const historyPay = {
 							debit: ammountt,
 							comment: comment,
@@ -149,13 +183,13 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 							studentID: (studenID.studentID || studenID.studentId),
 							payedAt: payedData.payed
 						}
-	
+
 						if (localStorage.getItem(studenID && (studenID.studentID || studenID.studentId))) {
-	
+
 							const credit = String(-(JSON.parse(localStorage.getItem(studenID && (studenID.studentID || studenID.studentId)))))
-	
+
 							if (Number(credit) >= Number(ammountt)) {
-	
+
 								newHistoryPay({
 									variables: {
 										debit: ammountt,
@@ -166,7 +200,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 										payedAt: payedData.payed
 									}
 								})
-	
+
 							} else {
 								newHistoryPay({
 									variables: {
@@ -185,9 +219,9 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 								variables: historyPay
 							})
 						}
-	
+
 						someFunc()
-	
+
 						const ddd = {
 							checkNumber: count && count.checksCounts + 1,
 							studentId: cache.stID,
@@ -203,11 +237,11 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 							studentName: cache.stName,
 							comments: cache.comment
 						}
-	
+
 						newCheck({
 							variables: ddd
 						})
-	
+
 						setCheck({
 							check: true,
 							checkData: {
@@ -216,7 +250,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 								count: count && count.checksCounts + 1
 							}
 						})
-	
+
 						setAmmoun('')
 						setPayedData("")
 						setComment('')
@@ -248,6 +282,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					</div>
 					<div className="form_group" style={{ width: "100%" }}>
 						<label className='izma__courses__form-bolim-form-label'>{Language[lang].students.recordPayment.amount}</label>
+						{/* <Input initialValue={''} isNumber={true} /> */}
 						<input defaultValue={ammountt}
 						autoComplete="off" className={"section_name_input"} name={"nomi"}
 							onKeyUp={e => {
@@ -262,6 +297,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 								// }
 							}}
 							 type="text" />
+
 						{
 							(groupID === '') && <>
 								<label className='izma__courses__form-bolim-form-label'>{Language[lang].courses.courseName.groups}</label>

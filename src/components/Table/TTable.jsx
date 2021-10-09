@@ -64,7 +64,7 @@ const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId, setInfo, openM
                         <h4 className={'financeHash'}>{Language[lang].finance.filter.typePayment}</h4>
                         <h4 className={'financeHash'}>{Language[lang].finance.filter.currency}</h4>
                         <h4 className={'financeHash'}>{Language[lang].finance.filter.comment}</h4>
-                        <h4 className={'financeHash'}>{Language[lang].finance.filter.comment}</h4>
+                        <h4 className={'financeHash'}>Action</h4>
                </div>
 
                <div className="table-group-body">

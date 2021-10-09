@@ -18,13 +18,14 @@ const NavberSetLinkWrapper = ({ icon, setClose, title, links, link, func, setFun
 
                   <div className={`opened_head ${func ? 'active' : ''}`}>
                      {
-                        links.map(el => (
-                           <div className="radio_btns" key={el.title}>
+                        links.map((el, index) => (
+                           <div className="radio_btns" key={index}>
                               <NavbarSettingLink
                                  icon={el.icon}
                                  title={el.title}
                                  link={el.link}
                                  setClose={setClose}
+                                 key={index}
                               />
                            </div>
                         ))

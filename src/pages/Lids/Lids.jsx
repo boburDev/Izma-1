@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { useLazyQuery, useMutation, useQuery, useSubscription } from '@apollo/client'
 import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX,  SUBCRIP_LEADS, UPDATE_LEAD, ALL_LEADS } from './query'
-import { useLidsFunc } from '../../context/LidsProvider'
-import { Link } from 'react-router-dom';
+import { useLidsFunc } from '../../context/LidsProvider' 
 import ScriptImg from '../../assets/Icons/link-img.svg'
 import { useSnackbar } from 'notistack'
 // import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
@@ -257,7 +256,6 @@ const Lids = () => {
    //      });
    //    }
    //  }, []);
-   const [dragActive, setDragActive] = useState(false)
 
    const { enqueueSnackbar } = useSnackbar();
    const handleClick = () => {
@@ -291,15 +289,11 @@ const Lids = () => {
             handleClick()
          }} />
        
-           <div className={`open_dragon ${dragActive ? 'active' : null}`}>
-           <button  >Instagram</button>
-            <button >Telegram</button>
-            <button >Facebook</button>
-           </div>
+           
       
 
         <h2 className="izma__links-box-link">
-                     Lid formaga havola: <a target="_blank" className="izma__links-box-link-link" href={`http://localhost:3000/${localStorage.getItem('hashtag')}/entry/lead/`}>http://localhost:3000/alazhar/entry/lead/</a>
+                     Lid formaga havola: <a href={`http://localhost:3000/${localStorage.getItem('hashtag')}/entry/lead/`} className="izma__links-box-link-link" >http://localhost:3000/alazhar/entry/lead/</a>
         </h2>
         {/* <CopyToClipboard text={lin} onCopy={() => setCopied(true)}>
         <button className='izma__links-box-link-link-copy'onClick={() => openNotificationWithIcon('success')} >Saqlash</button>

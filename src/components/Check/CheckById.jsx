@@ -83,7 +83,7 @@ const Check = ({ id, setId  })=>{
         var mm = String(today.getMonth() + 1).padStart(2, '0')
         var yyyy = today.getFullYear()
         today = dd + '-' + mm + '-' + yyyy
-        setToday(moment(state.timeAt).format('DD-MM-YYYY / HH:MM:SS'))
+        setToday(moment(state.timeAt-0).format('DD-MM-YYYY / HH:MM:SS'))
     },[state])
 
     return (

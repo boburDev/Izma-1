@@ -1,8 +1,8 @@
 import './financeAddPaymentForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
 import { Form, DatePicker } from "antd"
+import { Radio, Input } from 'antd'
 import { useEffect, useState } from 'react'
-import { Radio } from 'antd'
 import TextArea from "antd/lib/input/TextArea"
 import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT_GROUPS, CREATE_CHECK, SUBSCRIPTION_CHECK, UPDATE_GR_STATUS, COUNT } from '../../../../Querys/FinanceAddPayForm_Query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
@@ -16,7 +16,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const [payType, setPayType] = useState(1)
 	const [ammountt, setAmmoun] = useState('')
 	const [payedData, setPayedData] = useState("")
-	console.log(payedData, studenID && studenID.isEmpty)
 	const [comment, setComment] = useState(null)
 	const [names, setNames] = useState([])
 	const [data, setData] = useState({})
@@ -25,40 +24,40 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 	const [groups, setGroups] = useState()
 
-	const Input = ({ initialValue = "", isNumber }) => {
-		const [value, updateValue] = useState(initialValue);
+	// const InputVal = ({ initialValue = "", isNumber }) => {
+	// 	const [value, updateValue] = useState(initialValue);
 
-		const update = (val) => {
-			if (isNumber) {
-				val = val.replace(/,/g, "");
-				const x = Number(val);
+	// 	const update = (val) => {
+	// 		if (isNumber) {
+	// 			val = val.replace(/,/g, "");
+	// 			const x = Number(val);
 
-				updateValue(x.toLocaleString());
-			} else {
-				updateValue(val);
-			}
-		};
+	// 			updateValue(x.toLocaleString());
+	// 		} else {
+	// 			updateValue(val);
+	// 		}
+	// 	};
 
-		return (
-			//   <input type="text" value={value} className='input' onChange={e => update(e.target.value)} />
-			<input defaultValue={ammountt}
-				autoComplete="off" className={"section_name_input"} name={"nomi"}
-				onChange={e => update(e.target.value)}
-				value={value}
-				// onKeyUp={e => {
-				// 	setAmmoun((e.target.value)
-				// 	// .replace(/\s/g, '')
-				// 	)
-				// 	// let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
-				// 	// if (money === '0') {
-				// 	// 	e.target.value = ''
-				// 	// } else {
-				// 	// 	e.target.value = money
-				// 	// }
-				// }}
-				type="text" />
-		);
-	};
+	// 	return (
+	// 		//   <input type="text" value={value} className='input' onChange={e => update(e.target.value)} />
+	// 		<input defaultValue={ammountt}
+	// 			autoComplete="off" className={"section_name_input"} name={"nomi"}
+	// 			onChange={e => update(e.target.value)}
+	// 			value={value}
+	// 			// onKeyUp={e => {
+	// 			// 	setAmmoun((e.target.value)
+	// 			// 	// .replace(/\s/g, '')
+	// 			// 	)
+	// 			// 	// let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
+	// 			// 	// if (money === '0') {
+	// 			// 	// 	e.target.value = ''
+	// 			// 	// } else {
+	// 			// 	// 	e.target.value = money
+	// 			// 	// }
+	// 			// }}
+	// 			type="text" />
+	// 	);
+	// };
 
 
 
@@ -283,8 +282,8 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					</div>
 					<div className="form_group" style={{ width: "100%" }}>
 						<label className='izma__courses__form-bolim-form-label'>{Language[lang].students.recordPayment.amount}</label>
-						<Input initialValue={''} isNumber={true} />
-						{/* <input defaultValue={ammountt}
+						{/* <Input initialValue={''} isNumber={true} /> */}
+						<input defaultValue={ammountt}
 						autoComplete="off" className={"section_name_input"} name={"nomi"}
 							onKeyUp={e => {
 								setAmmoun((e.target.value)
@@ -297,7 +296,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 								// 	e.target.value = money
 								// }
 							}}
-							 type="text" /> */}
+							 type="text" />
 
 						{
 							(groupID === '') && <>

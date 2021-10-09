@@ -89,7 +89,8 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                            onClick={() => {
                               setStudentID({
                                  studentName: info?.name,
-                                 studentId: info?.id
+                                 studentId: info?.id,
+                                 isEmpty: ""
                               })
                               showDrawer()
                            }}

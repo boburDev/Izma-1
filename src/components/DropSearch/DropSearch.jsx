@@ -154,7 +154,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt }) => {
 
  useEffect(() => {
    setObj(arr && arr.find(el => el.id === defolt))
- }, [arr])
+ }, [arr, defolt])
 
 
 

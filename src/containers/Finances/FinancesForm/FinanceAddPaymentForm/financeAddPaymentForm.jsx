@@ -13,10 +13,10 @@ import { useLang } from '../../../../context/LanguageProvider'
 import Language from '../../../../lang/index'
 
 const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
-
 	const [payType, setPayType] = useState(1)
 	const [ammountt, setAmmoun] = useState()
-	const [payedData, setPayedData] = useState('')
+	const [payedData, setPayedData] = useState("")
+	console.log(payedData, studenID && studenID.isEmpty)
 	const [comment, setComment] = useState(null)
 	const [names, setNames] = useState([])
 	const [data, setData] = useState({})
@@ -43,7 +43,9 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	})
 
 	const someFunc = () => {
-		onClose()
+		setPayedData("")
+		setAmmoun('')
+		// onClose()
 	}
 
 	const { data: forCheck } = useQuery(CHECK_CASH, {
@@ -107,7 +109,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const onChange = e => {
 		setPayType(e.target.value)
 	}
-
 	return (
 		<>
 			<div className="izma__courses__form-bolim">
@@ -115,111 +116,111 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					e.preventDefault()
 
 
-
-
-					const cache = {
-						stID: (studenID.studentID || studenID.studentId),
-						stName: studenID.studentName,
-						cashAmm: ammountt,
-						comment: comment,
-						type: payType,
-						payed: payedData.payed,
-						payed_at: payedData.payed_at,
-					}
-
-					const upCash = {
-						stID: (studenID.studentID || studenID.studentId),
-						cashAmm: String((ammountt - 0) + (forCheck && forCheck.studentCash.cashAmount - 0)),
-						comment: comment,
-						type: payType,
-						payed: payedData.payed
-					}
-
-					if (!forCheck) {
-						newCash({ variables: cache })
-					}
-					if (forCheck) {
-						updateCash({ variables: upCash })
-					}
-
-					const historyPay = {
-						debit: ammountt,
-						comment: comment,
-						paymentType: payType,
-						studentID: (studenID.studentID || studenID.studentId),
-						payedAt: payedData.payed
-					}
-
-					if (localStorage.getItem(studenID && (studenID.studentID || studenID.studentId))) {
-
-						const credit = String(-(JSON.parse(localStorage.getItem(studenID && (studenID.studentID || studenID.studentId)))))
-
-						if (Number(credit) >= Number(ammountt)) {
-
-							newHistoryPay({
-								variables: {
-									debit: ammountt,
-									credit: ammountt,
-									comment: comment,
-									paymentType: payType,
-									studentID: (studenID.studentID || studenID.studentId),
-									payedAt: payedData.payed
-								}
-							})
-
+					if (payedData !== '' && payedData.payed.length > 0) {
+						const cache = {
+							stID: (studenID.studentID || studenID.studentId),
+							stName: studenID.studentName,
+							cashAmm: ammountt,
+							comment: comment,
+							type: payType,
+							payed: payedData.payed,
+							payed_at: payedData.payed_at,
+						}
+	
+						const upCash = {
+							stID: (studenID.studentID || studenID.studentId),
+							cashAmm: String((ammountt - 0) + (forCheck && forCheck.studentCash.cashAmount - 0)),
+							comment: comment,
+							type: payType,
+							payed: payedData.payed
+						}
+	
+						if (!forCheck) {
+							newCash({ variables: cache })
+						}
+						if (forCheck) {
+							updateCash({ variables: upCash })
+						}
+	
+						const historyPay = {
+							debit: ammountt,
+							comment: comment,
+							paymentType: payType,
+							studentID: (studenID.studentID || studenID.studentId),
+							payedAt: payedData.payed
+						}
+	
+						if (localStorage.getItem(studenID && (studenID.studentID || studenID.studentId))) {
+	
+							const credit = String(-(JSON.parse(localStorage.getItem(studenID && (studenID.studentID || studenID.studentId)))))
+	
+							if (Number(credit) >= Number(ammountt)) {
+	
+								newHistoryPay({
+									variables: {
+										debit: ammountt,
+										credit: ammountt,
+										comment: comment,
+										paymentType: payType,
+										studentID: (studenID.studentID || studenID.studentId),
+										payedAt: payedData.payed
+									}
+								})
+	
+							} else {
+								newHistoryPay({
+									variables: {
+										debit: ammountt,
+										credit: credit,
+										comment: comment,
+										paymentType: payType,
+										studentID: (studenID.studentID || studenID.studentId),
+										payedAt: payedData.payed
+									}
+								})
+							}
+							//   setCredit(credit)
 						} else {
 							newHistoryPay({
-								variables: {
-									debit: ammountt,
-									credit: credit,
-									comment: comment,
-									paymentType: payType,
-									studentID: (studenID.studentID || studenID.studentId),
-									payedAt: payedData.payed
-								}
+								variables: historyPay
 							})
 						}
-						//   setCredit(credit)
-					} else {
-						newHistoryPay({
-							variables: historyPay
-						})
-					}
-
-					someFunc()
-
-					const ddd = {
-						checkNumber: count && count.checksCounts + 1,
-						studentId: cache.stID,
-						paymentType: cache.type === 1 ? 'Naqt pul'
-							: cache.type === 2 ?
-								'UZCARD' : 'Bank hisobi',
-						paymentAmount: cache.cashAmm - 0,
-						paymentTime: cache.payed_at,
-						teachId: data.teacherID,
-						teacherName: data.teacher,
-						groupId: data.id,
-						groupName: data.name,
-						studentName: cache.stName,
-						comments: cache.comment
-					}
-
-					newCheck({
-						variables: ddd
-					})
-
-					setCheck({
-						check: true,
-						checkData: {
-							...cache,
-							...data,
-							count: count && count.checksCounts + 1
+	
+						someFunc()
+	
+						const ddd = {
+							checkNumber: count && count.checksCounts + 1,
+							studentId: cache.stID,
+							paymentType: cache.type === 1 ? 'Naqt pul'
+								: cache.type === 2 ?
+									'UZCARD' : 'Bank hisobi',
+							paymentAmount: cache.cashAmm - 0,
+							paymentTime: cache.payed_at,
+							teachId: data.teacherID,
+							teacherName: data.teacher,
+							groupId: data.id,
+							groupName: data.name,
+							studentName: cache.stName,
+							comments: cache.comment
 						}
-					})
-
-					setAmmoun('')
-					setPayedData('')
-					setComment('')
+	
+						newCheck({
+							variables: ddd
+						})
+	
+						setCheck({
+							check: true,
+							checkData: {
+								...cache,
+								...data,
+								count: count && count.checksCounts + 1
+							}
+						})
+	
+						setAmmoun('')
+						setPayedData("")
+						setComment('')
+					}
 
 
 				}}
@@ -249,14 +250,17 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 						<label className='izma__courses__form-bolim-form-label'>{Language[lang].students.recordPayment.amount}</label>
 						<input autoComplete="off" className={"section_name_input"} name={"nomi"}
 							onKeyUp={e => {
-								setAmmoun((e.target.value).replace(/\s/g, ''))
-								let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
-								if (money === '0') {
-									e.target.value = ''
-								} else {
-									e.target.value = money
-								}
-							}} type="text" />
+								setAmmoun((e.target.value)
+								// .replace(/\s/g, '')
+								)
+								// let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
+								// if (money === '0') {
+								// 	e.target.value = ''
+								// } else {
+								// 	e.target.value = money
+								// }
+							}}
+							 type="text" />
 						{
 							(groupID === '') && <>
 								<label className='izma__courses__form-bolim-form-label'>{Language[lang].courses.courseName.groups}</label>
@@ -272,7 +276,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 						<label>{Language[lang].students.recordPayment.AcceptedDate}</label>
 
 						<DatePicker
-							defaultPickerValue={payedData !== "" ? moment(moment().format("DD-MM-YYYY"), "DD-MM-YYYY") : null}
+							defaultPickerValue={payedData !== "" ? moment(moment().format("DD-MM-YYYY"), "DD-MM-YYYY") : payedData}
 							className='date__picker'
 							onChange={(value, dateString) => setPayedData({
 								payed: dateString,

@@ -157,7 +157,7 @@ const StudentsTable = ({ studentSearch='' }) => {
             onClose={onClose}
             visible={visible}
          >
-            <FinanceAddPaymentForm studenID={studentID} onClose={onClose} />
+         <FinanceAddPaymentForm studenID={studentID} onClose={onClose} />
          </Drawer>
          <div className="sa">
             <Table block="studentHash" showDrawer={showDrawer} />

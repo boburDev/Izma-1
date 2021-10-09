@@ -4,24 +4,26 @@ import LidHistoryBlock from '../../../components/LidsComponents/LidHistoryBlock/
 import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberInput'
 import { DatePicker } from 'antd'
 import './LidEdit.scss'
-import { useMutation, useQuery } from '@apollo/client'
+import { /*useMutation,*/ useQuery } from '@apollo/client'
 import { COURSES } from '../../../Querys/Courses_Query'
-import { UPDATE_LEAD } from '../../../pages/Lids/query'
+// import { UPDATE_LEAD } from '../../../pages/Lids/query'
 
 const LidsEdit = ({ setEdit, edit, item, columns, setColumns }) => {
    const { data: courses } = useQuery(COURSES)
    const [phone, setPhone] = useState()
    const [stBirth, setStBirth] = useState('')
    const [course, setCourse] = useState('')
+   console.log(course)
    const [comment, setComment] = useState('')
    const [stGender, setStGender] = useState()
-   const [updateLead] = useMutation(UPDATE_LEAD)
+   // const [updateLead] = useMutation(UPDATE_LEAD)
    // updateLead({variables: {leadID: id,  leadBoxID: id, phone: ''}})
 
    const handleSubmit = () => {
       
       let box = columns.find(el => el.id === item.leadBoxID)
       let lid = box.items.find(el => el.id === item.id)
+      console.log(lid)
       
    }
    useEffect(() => {

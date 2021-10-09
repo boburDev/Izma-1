@@ -14,7 +14,7 @@ import Language from '../../../../lang/index'
 
 const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const [payType, setPayType] = useState(1)
-	const [ammountt, setAmmoun] = useState()
+	const [ammountt, setAmmoun] = useState('')
 	const [payedData, setPayedData] = useState("")
 	console.log(payedData, studenID && studenID.isEmpty)
 	const [comment, setComment] = useState(null)
@@ -248,7 +248,8 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					</div>
 					<div className="form_group" style={{ width: "100%" }}>
 						<label className='izma__courses__form-bolim-form-label'>{Language[lang].students.recordPayment.amount}</label>
-						<input autoComplete="off" className={"section_name_input"} name={"nomi"}
+						<input defaultValue={ammountt}
+						autoComplete="off" className={"section_name_input"} name={"nomi"}
 							onKeyUp={e => {
 								setAmmoun((e.target.value)
 								// .replace(/\s/g, '')

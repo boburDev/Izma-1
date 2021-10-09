@@ -339,7 +339,7 @@ const Navbar = ({ sidebarActive }) => {
          isBox: true,
          links: [
             {
-               link: `/${hashName}/entry/lead`,
+               link: `/settingLead`,
                title: Language[lang].navigation.lidForm,
                icon: Icon6
             }, {

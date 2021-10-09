@@ -15,6 +15,7 @@ import LidAddItem from '../../../containers/Forms/LidAddItem/LidAddItem';
 import { Drawer } from 'antd';
 import { useMutation } from '@apollo/client';
 import { DELETE_BOX } from '../../../pages/Lids/query';
+import { useSnackbar } from 'notistack';
 
 const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate, sorov }) => {
 
@@ -60,6 +61,14 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
 
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
+   const { enqueueSnackbar } = useSnackbar();
+   const handleClick = () => {
+      const message = 'Link nusxalandi'
+      enqueueSnackbar(message, {
+         variant: 'success',
+      });
+
+   };
 
    
 
@@ -145,7 +154,13 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                                  <>
                                    {
                                       sorov ? 
-                                      <span><img src={Link} alt="" />Formaga havolani nusxalash</span>
+                                      <span
+                                       onClick={() => {
+                                                   navigator.clipboard.writeText(`http://localhost:3000/${localStorage.getItem('hashtag')}/entry/lead/boxId=${column.id}`)
+                                       setMenu(false)
+                                       handleClick()
+                                       }}
+                                      ><img src={Link} alt="" />Formaga havolani nusxalash</span>
                                         :
                                       <></>
                                    }
@@ -175,7 +190,6 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                         >
                            <LidAddForm
                               setAdd={setForm1}
-                              // formId={1}
                               columns={columns}
                               setColumns={setColumns}
                               itemId={column.id}

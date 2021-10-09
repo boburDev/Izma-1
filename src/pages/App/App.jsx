@@ -1,6 +1,6 @@
 import Header from "../../components/Header/Header";
 import Navbar from "../../components/NavbarComponents/Navbar/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import './App.scss'
 import Home from "../Home/Home";
@@ -28,20 +28,30 @@ import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
 import Lids from "../Lids/Lids";
 import SettingsRoadMap from "../Settings_Pages/Roadmap/roadmap";
 // import StudentsTablee from '../../test';
+import { useHistory } from 'react-router'
 import SettigsCompany from "../Settings_Pages/SettingsCompany/SettingsCompany";
 import Test from "./test";
 
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
   const [token, setToken] = useState(window.localStorage.getItem('token'))
+  const [st, setSt] = useState(0)
 
+  const { location } = useHistory()
+  useEffect(() => {
+    setSt(0)
+    let paths = window.location.pathname.split('/')
+    if (paths[2] + '/' + paths[3] === 'entry/lead') {
+      setSt(1)
+    }
+  }, [location.path])
 
   
   return (
     <div className="app">
 
       {
-        token  ?
+        token && st ===  0 ?
         <>
           {/* ================  NAVBAR  =====================*/}
     
@@ -100,7 +110,7 @@ const App = () => {
                       <Route path="/settingsEmployeesInner" component={Rooms} />
                       <Route path="/settingsMagazine" component={Jurnals} />
                       <Route path="/settingsArchive" component={Archive} />
-                      <Route path="/:hashtag/entry/lead" component={LidForm} />
+                      <Route path="/settingLead" component={LidForm} />
                       <Route path="/settingsShapes" component={Shakillar} />
                       <Route path="/enterForm" component={EnterForm} />
                       <Route path="/settingsCompany" component={SettigsCompany} />
@@ -122,7 +132,7 @@ const App = () => {
           <Switch>
             
               <Route path="/login/:centerHashtag" component={Login} />
-              <Route path="/:hashtag/entry/lead" component={LidForm} />
+              <Route path="/:hashtag/entry/lead/*" component={LidForm} />
 
           </Switch>
         </>

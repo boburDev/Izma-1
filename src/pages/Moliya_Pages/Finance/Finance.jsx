@@ -24,13 +24,12 @@ const Finance = () => {
    const { data: financeStudent } = useQuery(FINANCE_STUDENT)
    const [lang] = useLang()
 
+   
 
     
    const { data: financeStudentFilter } = useQuery(FINANCE_STUDENT_FILTER, {
       variables: Object.keys(dateFilterValue).length ? dateFilterValue : dateFilterDefaultData
   })
-
-  console.log(financeStudent)
 
   useEffect(()=>{
       if (financeStudent && financeStudent.financeStudents) {
@@ -41,10 +40,12 @@ const Finance = () => {
   useEffect(()=>{
      if (financeStudentFilter && financeStudentFilter.financeStudentsFilter) {
       setAmountFilter(financeStudentFilter && financeStudentFilter.financeStudentsFilter)
+     }else {
+      setAmountFilter(0)
      }
   },[financeStudentFilter])
 
-   
+  console.log(amontFilter)
    useEffect(()=>{
       const date = new Date()
 

@@ -50,7 +50,7 @@
    &-top {
       border-bottom: 1px solid gray;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       padding-bottom: 4px;
       // margin-bottom: 8px;
@@ -62,10 +62,9 @@
             font-size: 12px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             flex-wrap: wrap;
             span {
-               margin-right: 8px;
+               margin-right: 16px;
                position: relative;
                display: flex;
                align-items: center;
@@ -76,7 +75,7 @@
                   height: 4px;
                   background: #000000;
                   border-radius: 50%;
-                  right: -12px;
+                  right: -10px;
                }
             }
          }

@@ -76,6 +76,10 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                      <h4 className={'financeHash'}>{info?.typePayment}</h4>
                      <h4 className={'financeHash'}>{info?.amount}</h4>
                      <h4 className={'financeHash'}>{info?.comment}</h4>
+
+
+
+                     
             </> : block === 'financeCostHash' ? <>
                         <h4 className={'financeCostHash'}>{info?.name}</h4>
                         <h4 className={'financeCostHash'}>{moment(info?.createdAt-0).format('DD.MM.YYYY')}</h4>

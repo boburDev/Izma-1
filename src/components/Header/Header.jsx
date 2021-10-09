@@ -8,8 +8,9 @@ import Language from '../../lang/index'
 import { useLang } from "../../context/LanguageProvider";
 
 const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
-   const [active, setActive] = useState()
-   const [lang] = useLang()
+	const [active, setActive] = useState()
+	const [activeLang, setActiveLang] = useState(1)
+	const [lang,setLang] = useLang()
    return (
       <>
          <header className="izma__header">
@@ -27,6 +28,33 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
                   src={HeaderImg} alt="img" className="izma__header-img" />
 
                <div className={`izma__header-dropdown ${active ? 'active' : ''}`}>
+				<div className="top_items">
+						<div className="lang">
+							<button onClick={() => {
+								setLang('en')
+								setActiveLang(1)
+							}}
+							className={`${activeLang === 'en' && 'active'}`}><b>{
+								Language[lang].authentication.lang.en
+								}</b></button>
+
+							<button onClick={() => {
+								setLang('ru')
+								setActiveLang(2)
+							}}
+							className={`${activeLang === 'ru' && 'active'} center_btn`}><b>{
+								Language[lang].authentication.lang.ru
+								}</b></button>
+
+							<button onClick={() => {
+								setLang('uz')
+								setActiveLang(3)
+							}}
+							className={`${activeLang === 'uz' && 'active'}`}><b>{
+								Language[lang].authentication.lang.uz
+								}</b></button>
+						</div>
+					</div>
                      <Link
                      onClick={()=> setActive(false)}
                      to={`/`}>{Language[lang].home.blocks.accountInfo}</Link>

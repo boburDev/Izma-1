@@ -373,7 +373,6 @@ const Navbar = ({ sidebarActive }) => {
    return (
 
       <div className={`navbar_wrapper ${sidebarActive ? 'active' : ' '}`}>
-
          <div className="navbar_wrapper-header">
             <NavLink exact className="navbar_links-logo" to="/">
                <img src={Logo} className="defualt_logo" alt="img logo" />
@@ -423,7 +422,7 @@ const Navbar = ({ sidebarActive }) => {
 
             
 
-            <div className={`navbar-plus ${openMoliya || openSetting ? 'active' : ''}`}>
+            <di   v className={`navbar-plus ${openMoliya || openSetting ? 'active' : ''}`}>
                <NavbarPlus
                   arr={MoliyaLinks}
                   arr2={SettingLinks}
@@ -432,7 +431,7 @@ const Navbar = ({ sidebarActive }) => {
                   setOpenMoliya={setOpenMoliya}
                   setOpenSetting={setOpenSetting}
                />
-            </div>
+            </di>
          </div>
 
 

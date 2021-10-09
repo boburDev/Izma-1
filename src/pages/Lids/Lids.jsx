@@ -119,7 +119,7 @@ const Lids = () => {
          setColumns(arr)
       }
 
-   }, [box, lead])
+   }, [box, lead, setColumns])
 
 
 

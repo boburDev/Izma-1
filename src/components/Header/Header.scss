@@ -74,7 +74,8 @@
 .izma__header-dropdown {
    display: flex;
    position: absolute;
-   bottom: -73px;
+   top: 60px;
+   left: -10%;
    z-index: -1000000;
    padding: 10px;
    color: black;
@@ -108,5 +109,72 @@
          background: #E7E7EC;
       }
       color: black;
+   }
+}
+
+
+.top_items {
+   
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   span {
+      font-family: "Jost";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 35px;
+      color: #000000;
+   }
+
+   button, button b{
+      border: none;
+      background-color: transparent;
+      font-family: "Jost";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      color: #000000;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+
+      &:hover {
+         color: #605edd;
+      }
+      
+      &.active {
+         color: #605edd;
+      }
+
+      &.center_btn {
+         padding: 0 15px;
+
+         &::before {
+            position: absolute;
+            content: '';
+            width: 2px;
+            height: 20px;
+            background-color: #000;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+         }
+
+         &::after {
+            position: absolute;
+            content: '';
+            width: 2px;
+            height: 20px;
+            background-color: #000;
+            right: 7px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+         }
+      }
+
    }
 }

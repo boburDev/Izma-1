@@ -52,7 +52,7 @@ const DELETE_GROUP = gql`
 `
 
 const GET_STUDENTS = gql`
-	query studentOnKeyup($name: String!){
+	query studentOnKeyup($name: String){
 		studentOnKeyup(name: $name){
 		id
 		name

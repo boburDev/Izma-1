@@ -50,9 +50,9 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                   <span></span>
                </div>
             </div>
-            <form className="myModal-inner-form" id="modalForm"onSubmit={e => {
+            <form className="myModal-inner-form" id=""onSubmit={e => {
                e.preventDefault()
-               document.getElementById('modalForm').reset()
+               e.target.reset()
                }}>
                {
                   block === 'addComment' ?

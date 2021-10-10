@@ -11,7 +11,9 @@ import { Drawer } from 'antd';
 
 
 const LidsContent = ({ columns, setColumns}) => {
-   
+let col1 = columns && columns.find(el => el?.boxStatus === -1)
+let col2 = columns && columns.find(el => el?.boxStatus === -2)
+let col3 = columns && columns.find(el => el?.boxStatus === -3)
 
 const [form1, setForm1] = useState()
 const [form2, setForm2] = useState()
@@ -133,7 +135,7 @@ const closeLidAdd2 = () => {
                         formId={1}
                         columns={columns}
                         setColumns={setColumns}
-                        itemId={columns && columns.find(el => el?.boxStatus === -1)}
+                        itemId={col1 && col1.id}
                      />
                   </div>
                   <div className="status1-header-row">
@@ -219,7 +221,7 @@ const closeLidAdd2 = () => {
                         formId={2}
                         columns={columns}
                         setColumns={setColumns}
-                        itemId={columns &&columns.find(el => el.boxStatus === -2)}
+                        itemId={col2 && col2.id}
                      />
                   </div>
                   <div className="status1-header-row">
@@ -298,7 +300,7 @@ const closeLidAdd2 = () => {
                         formId={3}
                         columns={columns}
                         setColumns={setColumns}
-                        itemId={columns && columns.find(el => el.boxStatus === -3)}
+                        itemId={col3 && col3.id}
                      />
                   </div>
                   <div className="status1-header-row">

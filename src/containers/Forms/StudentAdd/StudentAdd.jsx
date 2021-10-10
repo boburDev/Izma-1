@@ -54,31 +54,7 @@ const StudentAdd = ({ onCloseF }) => {
       setParents(valuesTwo)
    }
 
-
-   // const mockVal = (str, repeat = 1) => ({
-   //     value: str.repeat(repeat),
-   // });
-
-   // const [value, setValue] = useState('');
-   // const [options, setOptions] = useState([]);
-
-   // const onSearch = (searchText) => {
-   //     setOptions(
-   //         !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)],
-   //     );
-   // };
-
-   // const onSelect = (data) => {
-   //     console.log('onSelect', data);
-   // };
-
-   // const onChange = (data) => {
-   //     setValue(data);
-   // };
-   
    const { enqueueSnackbar } = useSnackbar();
-   
-   
    const [stPhoneNum, setStPhoneNum] = useState('')
    const [stName, setStName] = useState('')
    const [stBirth, setStBirth] = useState('')
@@ -88,13 +64,10 @@ const StudentAdd = ({ onCloseF }) => {
    const [stGroup, setStGroup] = useState(null)
    const [stPassword, setStPassword] = useState('')
    
-   // const [names, setNames] = useState([])
-   // console.log(names)
-   
-   
    const [AddNewSudents, { data: checkStudent }] = useMutation(ADD_NEW_STUDENTS)
    const [newCash] = useMutation(NEW_CASH)
    
+
    useEffect(() => {
       const message = Language[lang].students.studentCreated.title
       const handleClick = () => {
@@ -120,24 +93,6 @@ const StudentAdd = ({ onCloseF }) => {
 
    const { data: dataGroups } = useQuery(GROUPS, { variables: { teacherID: [], courseID: [] } })
 
-
-   // useEffect(() => {
-   //    if (dataGroups && dataGroups.groups) {
-   //       const guruh = dataGroups.groups.map(item => {
-   //          return {
-   //             key: item.id,
-   //             value: item.name,
-   //             text: item.name
-   //          }
-   //       })
-   //       setNames(guruh)
-   //    }
-   // }, [dataGroups])
-
-
-   
-
-
    return (
       <div className="form-wrapper s">
          <div className="top-place">
@@ -149,7 +104,7 @@ const StudentAdd = ({ onCloseF }) => {
 
          <form onSubmit={(e) => {
             e.preventDefault()
-
+            console.log(stName && stGender)
             if (stName && stGender) {
 
                const data = {
@@ -165,11 +120,9 @@ const StudentAdd = ({ onCloseF }) => {
                   telegram: [{ telegram: (stTg !== '@') ? stTg : null}],
                }
 
-               AddNewSudents({ variables: data })
-               
+               AddNewSudents({ variables: data })  
+               document.getElementById('studentFormRes').reset()
             }
-
-            document.getElementById('studentFormRes').reset()
          }} id="studentFormRes">
             <div className="form-input">
                <label htmlFor="">{Language[lang].students.editStudentInfo.phoneNumber}</label>
@@ -197,12 +150,12 @@ const StudentAdd = ({ onCloseF }) => {
                <label htmlFor="date">{Language[lang].students.editStudentInfo.genderTitle}</label>
                <div className="genders">
                   <div className="gen_one">
-                     <input autoComplete="off"  value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
+                     <input required autoComplete="off"  value={1} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="men" />
                      <label htmlFor="men"></label>
                      <span>{Language[lang].students.editStudentInfo.gender[0]}</span>
                   </div>
                   <div className="gen_one">
-                     <input autoComplete="off"  value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
+                     <input required autoComplete="off"  value={2} onChange={e => setStGender(e.target.value)} type="radio" name="gender" id="women" />
                      <label htmlFor="women"></label>
                      <span>{Language[lang].students.editStudentInfo.gender[1]}</span>
                   </div>

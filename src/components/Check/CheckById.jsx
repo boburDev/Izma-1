@@ -129,7 +129,7 @@ const Check = ({ id, setId  })=>{
                         <p style={style}
                         >{Language[lang].groups.paymentInfo.paymentType}: <span style={styleTwo}>{state.typePayment}</span></p>
                         <p style={style}
-                        >{Language[lang].groups.paymentInfo.amountPayment} <span style={styleTwo}>111 so'm</span></p>
+                        >{Language[lang].groups.paymentInfo.amountPayment} <span style={styleTwo}>{state.amount} so'm</span></p>
                         <p style={style}>Vaqt: <span style={styleTwo}>
                             { today }
                             </span></p>

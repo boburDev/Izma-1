@@ -39,7 +39,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
 
 
    const {data: findSale} = useQuery(FIND_SALE)
-   const {data: ddd} = useQuery(STUDENT_ON_KEY_UP, {variables: {name: studentSearch}})
+   const {data: ddd} = useQuery(STUDENT_ON_KEY_UP, {variables: {name: studentSearch.length > 0 && studentSearch}})
    const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: course}})
 
 
@@ -75,7 +75,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
          Allstudentss && setUserData(Allstudentss.studentCredit)
         }
         else if (searchedStudent) {
-    
+            
           setUserData(searchedStudent)
         } else if(course.length) {
     

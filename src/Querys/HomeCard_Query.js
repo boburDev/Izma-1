@@ -14,7 +14,9 @@ const STATUS_COUNT = gql `
 
 const GROUP_COUNT = gql `
   query{
-    groupsCount
+    groupsCount{
+      id
+    }
   }
 `
 export {

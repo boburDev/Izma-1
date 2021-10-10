@@ -10,6 +10,7 @@ import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberIn
 import PasswordInput from '../../../components/PasswordInput/PasswordInput';
 import Language from '../../../lang/index'
 import { useLang } from '../../../context/LanguageProvider';
+import moment from 'moment';
 
 
 const TeacherAdd = ({ onClose, setVisible }) => {
@@ -48,6 +49,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
       })
       document.getElementById('teacherFormRes').reset()
       handleClick()
+      setBirthDay('')
       onClose()
 
    }
@@ -96,6 +98,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
                      onChange={onChange}
                      placeholder={Language[lang].teachers.addNewUser.date}
                      format={"DD-MM-YYYY"}
+                     value={birthDay !== "" ? moment(birthDay) : ""}
                   />
                </div>
 

@@ -4,12 +4,13 @@ import { Form, Input, } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { useMutation, useQuery } from '@apollo/client';
 import { UPDATE_COURSE, ONE_COURSE_TO_EDIT, CREATE_COURSE } from '../../../Querys/Courses_Query';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router';
 import { useLang } from '../../../context/LanguageProvider';
 import Language from '../../../lang/index'
 
 const CoursesAdd = ({ onClose }) => {
+   const inputRef = useRef()
 
    const { courseID } = useParams()
    const [lang] = useLang();
@@ -58,6 +59,7 @@ const CoursesAdd = ({ onClose }) => {
 
       setName('')
       setPrice('')
+      inputRef.current.value = ''
       setDescription('')
 
       
@@ -85,6 +87,7 @@ const CoursesAdd = ({ onClose }) => {
                <div className="form_group" style={{ width: "100%" }}>
                   <label className='izma__lidlar__form-bolim-form-label'>{Language[lang].courses.editCourse.price}</label>
                   <input type="text" autoComplete="off" 
+                  ref={inputRef}
                   onKeyUp={e => {
                      setPrice((e.target.value).replace(/\s/g, ''))
                      let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))

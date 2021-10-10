@@ -81,6 +81,9 @@ const GroupAdd = ({ onClose }) => {
       if (added?.createGroup?.id) {
          handleClick()
          document.getElementById('grouFormRes').reset()
+         setTime('')
+         setEndDate('')
+         setStartDate('')
       }
    }, [added, enqueueSnackbar, lang])
 
@@ -225,7 +228,9 @@ const GroupAdd = ({ onClose }) => {
                         <label className="izma__clock-time-label">
                         {Language[lang].groups.addNewGroups.startTimeLesson}
                         </label>
-                        <TimePicker required onChange={e => setTime(e.format('HH:mm'))} defaultValue={moment('00:00', format)} format={format} />
+                        <TimePicker required onChange={e => setTime(e.format('HH:mm'))} defaultValue={moment('00:00', format)} format={format} 
+                           value={time !== "" ? moment(time) : moment('00:00', format)}
+                        />
                      </div>
                   </div>
                   <div className="form_group">
@@ -238,7 +243,7 @@ const GroupAdd = ({ onClose }) => {
                         }} 
                         required
                         placeholder={Language[lang].teachers.addNewUser.date}
-                        //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
+                        value={startDate !== "" ? moment(startDate) : ""}
                         format={"DD-MM-YYYY"}
                      />
                   </div>
@@ -252,7 +257,7 @@ const GroupAdd = ({ onClose }) => {
                         }}
                         required
                         placeholder={Language[lang].teachers.addNewUser.date}
-                        //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
+                        value={endDate !== "" ? moment(endDate) : ""}
                         format={"DD-MM-YYYY"}
                      />
                   </div>

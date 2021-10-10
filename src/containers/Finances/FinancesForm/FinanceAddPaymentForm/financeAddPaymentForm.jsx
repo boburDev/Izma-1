@@ -2,7 +2,7 @@ import './financeAddPaymentForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
 import {  DatePicker } from "antd"
 import { Radio, Input } from 'antd'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import TextArea from "antd/lib/input/TextArea"
 import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT_GROUPS, CREATE_CHECK, SUBSCRIPTION_CHECK, UPDATE_GR_STATUS, COUNT } from '../../../../Querys/FinanceAddPayForm_Query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
@@ -13,6 +13,7 @@ import { useLang } from '../../../../context/LanguageProvider'
 import Language from '../../../../lang/index'
 
 const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
+	const datePicker = useRef()
 	const [payType, setPayType] = useState(1)
 	const [ammountt, setAmmoun] = useState('')
 	const [payedData, setPayedData] = useState("")
@@ -212,9 +213,12 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 				}
 			})
 
+			document.getElementById('financeFormRes').reset()
 			setAmmoun('')
 			setPayedData("")
 			setComment('')
+			onClose()
+
 		}
 
 
@@ -270,11 +274,12 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 							</>
 						}
 					</div>
-					<div className="form_group">
+					<div className="form_group" id="skPay">
 						<label>{Language[lang].students.recordPayment.AcceptedDate}</label>
 
 						<DatePicker
-							defaultPickerValue={payedData !== "" ? moment(moment().format("DD-MM-YYYY"), "DD-MM-YYYY") : payedData}
+							ref={datePicker}
+							
 							className='date__picker'
 							onChange={(value, dateString) => setPayedData({
 								payed: dateString,
@@ -283,6 +288,8 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 							}
 							placeholder={Language[lang].students.recordPayment.date}
 							format={"DD-MM-YYYY"}
+							value={payedData !== "" ? moment(payedData) : ""}
+							
 
 						/>
 					</div>

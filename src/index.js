@@ -35,8 +35,6 @@ const isTester = false
 // const wssApi = `ws://localhost:4000/graphql`
 const api = `https://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
 const wssApi = `wss://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
-// console.log(api, wssApi)
-
 
 const httpLink = createHttpLink({
 	uri: api,

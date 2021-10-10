@@ -1,6 +1,5 @@
 import './LidAddItem2.scss'
 import { useRef, useState } from 'react'
-import request from '../../../services'
 import DropSearch from '../../../components/DropSearch/DropSearch'
 import { TimePicker, DatePicker } from 'antd'
 import moment from 'moment';
@@ -17,6 +16,12 @@ const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
    const [courseName, setCourseName] = useState()
    const [teacherName, setTeacherName] = useState()
    const [day, setDay] = useState()
+
+   console.log(startDate);
+   console.log(time);
+   console.log(courseName);
+   console.log(teacherName);
+   console.log(day);
 
 
 

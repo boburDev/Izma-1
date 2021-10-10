@@ -33,7 +33,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
            variables: {
               name: userName.current.value,
               phone: userNumber.current.value ? `${userNumber.current.value}` : null,
-              leadBoxID: typeof itemId === 'string' ? itemId : itemId?.id,
+              leadBoxID: itemId,
               gender: null,
               comment: userComment.current.value ? userComment.current.value : null,
               courseID: null,
@@ -79,6 +79,7 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
          return () => {
             document.removeEventListener("mousedown", handleClickOutside);
          };
+          // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [ref, itemId])
    }
 

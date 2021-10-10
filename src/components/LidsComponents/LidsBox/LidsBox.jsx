@@ -70,7 +70,6 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
 
    };
 
-   
 
 
 

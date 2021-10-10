@@ -24,42 +24,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 	const [groups, setGroups] = useState()
 
-	// const InputVal = ({ initialValue = "", isNumber }) => {
-	// 	const [value, updateValue] = useState(initialValue);
-
-	// 	const update = (val) => {
-	// 		if (isNumber) {
-	// 			val = val.replace(/,/g, "");
-	// 			const x = Number(val);
-
-	// 			updateValue(x.toLocaleString());
-	// 		} else {
-	// 			updateValue(val);
-	// 		}
-	// 	};
-
-	// 	return (
-	// 		//   <input type="text" value={value} className='input' onChange={e => update(e.target.value)} />
-	// 		<input defaultValue={ammountt}
-	// 			autoComplete="off" className={"section_name_input"} name={"nomi"}
-	// 			onChange={e => update(e.target.value)}
-	// 			value={value}
-	// 			// onKeyUp={e => {
-	// 			// 	setAmmoun((e.target.value)
-	// 			// 	// .replace(/\s/g, '')
-	// 			// 	)
-	// 			// 	// let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
-	// 			// 	// if (money === '0') {
-	// 			// 	// 	e.target.value = ''
-	// 			// 	// } else {
-	// 			// 	// 	e.target.value = money
-	// 			// 	// }
-	// 			// }}
-	// 			type="text" />
-	// 	);
-	// };
-
-
 
 	useEffect(() => {
 
@@ -288,7 +252,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					</div>
 					<div className="form_group" style={{ width: "100%" }}>
 						<label className='izma__courses__form-bolim-form-label'>{Language[lang].students.recordPayment.amount}</label>
-						{/* <Input initialValue={''} isNumber={true} /> */}
 						<input defaultValue={ammountt}
 						autoComplete="off" className={"section_name_input"} name={"nomi"}
 							onKeyUp={e => {

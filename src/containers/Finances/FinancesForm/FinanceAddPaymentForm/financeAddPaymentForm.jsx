@@ -91,6 +91,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	})
 
 	const { data: count } = useQuery(COUNT)
+	
 
 	const [newCash] = useMutation(NEW_CASH)
 	const [newHistoryPay] = useMutation(HISTORY_PAYMENT)
@@ -237,10 +238,10 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 							studentName: cache.stName,
 							comments: cache.comment
 						}
-
-						newCheck({
-							variables: ddd
-						})
+						console.log(ddd);
+						// newCheck({
+						// 	variables: ddd
+						// })
 
 						setCheck({
 							check: true,

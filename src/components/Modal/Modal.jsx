@@ -96,7 +96,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                                         if(redir) {
                                                            window.location.replace(redir)
                                                         }
-                                                      }}>Ha</button>
+                                                      }}>Ha</button> 
                                                    </div>
                                                 </> :
                                                 <>

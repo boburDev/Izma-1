@@ -13,6 +13,7 @@ import PasswordInput from '../../../components/PasswordInput/PasswordInput'
 import { useSnackbar } from 'notistack';
 import Language from '../../../lang/index'
 import { useLang } from '../../../context/LanguageProvider'
+import moment from 'moment'
 
 
 const StudentAdd = ({ onCloseF }) => {
@@ -93,6 +94,28 @@ const StudentAdd = ({ onCloseF }) => {
 
    const { data: dataGroups } = useQuery(GROUPS, { variables: { teacherID: [], courseID: [] } })
 
+   const hadleSubm = () => {
+      if (stName && stGender) {
+
+         const data = {
+            mainPhone: [stPhoneNum.length === 12 ? { number: stPhoneNum } : { number: null }],
+            name: stName,
+            birthday: stBirth,
+            password: stPassword,
+            gender: stGender - 0,
+            groupID: [{ groupID: stGroup?.id || null }],
+            comment: stTextInfo,
+            newNumber: fieldInput,
+            parentNumber: fieldParents,
+            telegram: [{ telegram: (stTg !== '@') ? stTg : null }],
+         }
+
+         AddNewSudents({ variables: data })
+         setStBirth('')
+         document.getElementById('studentFormRes').reset()
+      }
+   }
+
    return (
       <div className="form-wrapper s">
          <div className="top-place">
@@ -104,25 +127,7 @@ const StudentAdd = ({ onCloseF }) => {
 
          <form onSubmit={(e) => {
             e.preventDefault()
-            console.log(stName && stGender)
-            if (stName && stGender) {
-
-               const data = {
-                  mainPhone: [stPhoneNum.length === 12 ? {number: stPhoneNum} : { number: null }],
-                  name: stName,
-                  birthday: stBirth,
-                  password: stPassword,
-                  gender: stGender - 0,
-                  groupID: [{ groupID: stGroup?.id || null }],
-                  comment: stTextInfo,
-                  newNumber: fieldInput,
-                  parentNumber: fieldParents,
-                  telegram: [{ telegram: (stTg !== '@') ? stTg : null}],
-               }
-
-               AddNewSudents({ variables: data })  
-               document.getElementById('studentFormRes').reset()
-            }
+            hadleSubm()
          }} id="studentFormRes">
             <div className="form-input">
                <label htmlFor="">{Language[lang].students.editStudentInfo.phoneNumber}</label>
@@ -139,11 +144,14 @@ const StudentAdd = ({ onCloseF }) => {
 
                <DatePicker
                   className='date__picker lid-edit-date'
+                  
                   onChange={(value, dateString) => {
                      setStBirth(dateString)
                   }}
                   placeholder={Language[lang].teachers.addNewUser.date}
                   format={"DD-MM-YYYY"}
+                  value={stBirth !== "" ? moment(stBirth) : ""}
+
                />
             </div>
             <div className="form-input">

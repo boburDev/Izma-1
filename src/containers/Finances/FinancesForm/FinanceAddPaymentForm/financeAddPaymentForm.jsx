@@ -262,9 +262,8 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	return (
 		<>
 			<div className="izma__courses__form-bolim">
-				<Form onSubmitCapture={formOnSubmit}
+				<form onSubmitCapture={formOnSubmit}
 				className="izma__courses__form-bolim-form"
-				style={{ width: 400 }} 
 				id="financeFormRes">
 					<div className="izma__courses__form-bolim-form-up">
 						<h3 className='izma__courses__form-bolim-form-heading' >{Language[lang].students.recordPayment.recordPaymentTitle}</h3>
@@ -336,7 +335,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 						/>
 					</div>
 					<button className="izma__courses__form-bolim-form-button" type="submit">{Language[lang].students.recordPayment.save}</button>
-				</Form>
+				</form>
 			</div>
 
 

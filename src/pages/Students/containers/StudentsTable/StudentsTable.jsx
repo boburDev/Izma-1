@@ -76,7 +76,7 @@ const StudentsTable = ({ studentSearch='' }) => {
          Allstudentss && setUserData(Allstudentss.studentCredit)
         }
         else if (searchedStudent) {
-    
+            
           setUserData(searchedStudent)
         } else if(course.length) {
     

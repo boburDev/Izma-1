@@ -25,8 +25,6 @@ const Blocks = () => {
    const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: '6'}})
    
    
-
-
    const lists = [
       {
          icon: Home1Img,
@@ -44,7 +42,7 @@ const Blocks = () => {
          icon: Home3Img,
          title: language.groups,
          link: '/groups',
-         number: (GroupCount && GroupCount.groupsCount.count) ? GroupCount && GroupCount.groupsCount.count : '0'
+         number: GroupCount?.groupsCount?.length ||  '0'
       },
       {
          icon: Home4Img,

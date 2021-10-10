@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, memo } from 'react'
 import Close from '../../../../assets/Icons/Group 26.svg'
 import { Drawer } from 'antd'
 import StudentEdit from '../../../../containers/Forms/StudentAdd/StudentEdit'
@@ -12,7 +12,6 @@ import { Redirect, useParams } from 'react-router'
 import './StudentProfileLeft.scss'
 // import { useLoader } from '../../../../context/Loader'
 import { Modal } from 'antd'
-import { useEffect } from 'react'
 import Modal1 from '../../../../components/Modal/Modal'
 import { useName1 } from '../../../../context/NameProvider'
 import { useLang } from '../../../../context/LanguageProvider'
@@ -24,7 +23,7 @@ const StudentsProfileLeft = () => {
   const [setPeopleName] = useName1(true)
   const [lang] = useLang();
 
-  console.log(Language[lang].students)
+  // console.log(Language[lang].students)
 
   const [openSms, setOpenSms] = useState(false)
   // const [state, setState] = useState([])
@@ -45,7 +44,7 @@ const StudentsProfileLeft = () => {
 
   const [CheckBalanc] = useMutation(STATUS_3_4)
   //  const [UpdateComment] = useMutation(UPDATE_COMMENT)
-   const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)
+  const [SetStudentGroup] = useMutation(SELECT_STUDENT_GROUP)
   const [setStatus_3] = useMutation(UPDATE_STATUS_4)
   const [delStudent, { data: frRedirect }] = useMutation(DELETE_STUDENT)
 
@@ -85,21 +84,25 @@ const StudentsProfileLeft = () => {
     },
   })
 
-  if (checkCash && (checkCash.studentCash.cashAmount - 0) < 0) {
-    CheckBalanc({
-      variables: {
-        stID: studentID,
-        status: 4
-      }
-    })
-  } else {
-    setStatus_3({
-      variables: {
-        status: 3,
-        stID: studentID
-      }
-    })
-  }
+  useEffect(() => {
+
+    if (checkCash && (checkCash.studentCash.cashAmount - 0) < 0) {
+      CheckBalanc({
+        variables: {
+          stID: studentID,
+          status: 4
+        }
+      })
+    } else {
+      setStatus_3({
+        variables: {
+          status: 3,
+          stID: studentID
+        }
+      })
+    }
+  }, [CheckBalanc, checkCash, setStatus_3, studentID])
+
 
   //  const [gr, setGr] = useState([])
 
@@ -173,7 +176,7 @@ const StudentsProfileLeft = () => {
 
   useEffect(() => {
    oneStudent && setPeopleName(oneStudent.student.name)
-  }, )
+  }, [oneStudent, setPeopleName])
   //  const [ namesFind, setNamesFind ] = useState([])
 
 
@@ -187,7 +190,6 @@ const StudentsProfileLeft = () => {
   //        setNamesFind([])
   //     }
   //  }
-
 
 
 
@@ -254,7 +256,6 @@ const StudentsProfileLeft = () => {
       />
 
       <div className={`izma__students-payment-inner-left-wrapper ${openSms ? 'active' : ''}`}>
-
         <div className="izma__students-payment-inner-left-up">
           <div className="izma__finance-payment-inner-boxses-wrapper">
             <button className="izma__finance-payment-inner-left-up-box izma__finance-payment-inner-left-up-box-blue" onClick={() => setIsModalVisible(true)} ></button>
@@ -395,4 +396,4 @@ const StudentsProfileLeft = () => {
   )
 }
 
-export default StudentsProfileLeft
+export default memo (StudentsProfileLeft)

@@ -1,6 +1,7 @@
 import './FinanceRepaymeynForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
 import { Form, Input, } from "antd";
+import { memo } from 'react';
 
 const FinanceRepaymentForm = ({ onCloseS }) => {
    return (
@@ -30,4 +31,4 @@ const FinanceRepaymentForm = ({ onCloseS }) => {
       </>
    )
 }
-export default FinanceRepaymentForm
+export default memo (FinanceRepaymentForm)

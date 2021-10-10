@@ -5,7 +5,7 @@ import CloceBtn from '../../../assets/Icons/Group 26.svg'
 
 
 import './StudentAdd.scss'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 
 import Plus from '../../../assets/Icons/plus.png'
 import Minus from '../../../assets/Icons/minus.png'
@@ -254,4 +254,4 @@ const StudentsEditForm = ({ onCloseF }) => {
    )
 }
 
-export default StudentsEditForm
+export default memo(StudentsEditForm) 

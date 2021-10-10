@@ -2,7 +2,7 @@ import './financeAddPaymentForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
 import {  DatePicker } from "antd"
 import { Radio, Input } from 'antd'
-import { useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import TextArea from "antd/lib/input/TextArea"
 import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT_GROUPS, CREATE_CHECK, SUBSCRIPTION_CHECK, UPDATE_GR_STATUS, COUNT } from '../../../../Querys/FinanceAddPayForm_Query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
@@ -350,4 +350,4 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 		</>
 	)
 }
-export default FinanceAddPaymentForm
+export default memo (FinanceAddPaymentForm)

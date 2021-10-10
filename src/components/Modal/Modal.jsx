@@ -1,5 +1,5 @@
 import './Modal.scss';
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { useSnackbar } from 'notistack';
 import DropSearch from '../DropSearch/DropSearch';
 import { DatePicker } from 'antd'
@@ -152,4 +152,4 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
 
 
 
-export default Modal1
+export default memo (Modal1)

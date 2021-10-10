@@ -83,13 +83,7 @@ const SalaryUp = () => {
                      <div className="inputs">
                      <input autoComplete="off"  
                         onKeyUp={e => {
-                           setSalary((e.target.value).replace(/\s/g, ''))
-                           let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
-                           if (money === '0') {
-                              e.target.value = ''
-                           } else {
-                              e.target.value = money
-                           }
+                           setSalary(e.target.value)
                         }} type="text" />
                            <select onChange={e => setSalaryType(e.target.value)}>
                               <option value="1">{Language[lang].finance.firstSettingsSalary.cash}</option>
@@ -124,15 +118,8 @@ const SalaryUp = () => {
                      <label htmlFor="">{Language[lang].finance.secondSettingsSalary.optionExpances}</label>
                      <div className="input_items">
                            <div className="inputs">
-                        <input autoComplete="off" type="text" defaultValue={new Intl.NumberFormat().format(infoo?.amount)}
-                           o onKeyUp={e => {
-                              setSalary2((e.target.value).replace(/\s/g, ''))
-                              let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
-                              if (money === '0') {
-                                 e.target.value = ''
-                              } else {
-                                 e.target.value = money
-                              }
+                        <input autoComplete="off" type="text" defaultValue={infoo?.amount} onKeyUp={e => {
+                              setSalary2(e.target.value)
                            }} />
                               <select onChange={e => setSalaryType2(e.target.value)}>
                                  <option selected={infoo?.type === 1} value="1">{Language[lang].finance.firstSettingsSalary.cash}</option>

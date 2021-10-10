@@ -60,6 +60,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .ant-drawer-body {
+   overflow-x: hidden !important;
    &::-webkit-scrollbar {
       width: 10px;
    }

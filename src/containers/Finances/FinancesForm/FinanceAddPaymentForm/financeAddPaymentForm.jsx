@@ -1,6 +1,6 @@
 import './financeAddPaymentForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
-import { Form, DatePicker } from "antd"
+import {  DatePicker } from "antd"
 import { Radio, Input } from 'antd'
 import { useEffect, useState } from 'react'
 import TextArea from "antd/lib/input/TextArea"
@@ -324,7 +324,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 						/>
 					</div>
 
-					<div className="form_group izma__form__teaxtarea" style={{ width: 400 }}>
+					<div className="form_group izma__form__teaxtarea">
 						<label>{Language[lang].students.recordPayment.comment}</label>
 						<TextArea
 							className={"section_name_input"}

@@ -66,22 +66,26 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
 
 
-	const test = ((forCheck && Number(forCheck.studentCash.cashAmount) <= 0) && (payment && Number(payment.updateCash.cashAmount) > -1))
-
-
 	useEffect(() => {
 		setGroups(stGroups)
 	}, [stGroups])
 
-	if (test) {
-		CheckBalanc({
-			variables: {
-				stID: studenID && (studenID.studentID || studenID.studentId),
-				status: 3
-			}
-		})
-		SetStatus3_4({ variables: { status: 3, stID: (studenID.studentID || studenID.studentId) } })
-	}
+
+	useEffect(() => {
+
+		const test = ((forCheck && Number(forCheck.studentCash.cashAmount) <= 0) && (payment && Number(payment.updateCash.cashAmount) > -1))
+	
+		if (test) {
+			CheckBalanc({
+				variables: {
+					stID: studenID && (studenID.studentID || studenID.studentId),
+					status: 3
+				}
+			})
+			SetStatus3_4({ variables: { status: 3, stID: (studenID.studentID || studenID.studentId) } })
+		}
+	}, [CheckBalanc, SetStatus3_4, forCheck, payment, studenID])
+
 
 
 	if (forCheck && forCheck.studentCash.cashAmount < '0') {

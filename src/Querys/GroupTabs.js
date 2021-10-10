@@ -239,17 +239,6 @@ const SET_STATUS_6 = gql `
   }
 `
 
-const CHECK_CASH_GROUP = gql `
-  query studentCash($stID: ID!) {
-    studentCash(studentID: $stID)
-    {
-      id
-      studentID
-      cashAmount
-    }
-  }
-`
-
 const SUBSCRIPTION_STATUS = gql `
   subscription{
     groupStatus{
@@ -324,7 +313,6 @@ export {
   SELECT_STUDENT_GROUP,
   DELETE_FROM_GROUP,
   CHECK_CASH,
-  CHECK_CASH_GROUP,
   UPDATE_CASH,
   HISTORY_PAYMENT,
   HAS_STUDENT,

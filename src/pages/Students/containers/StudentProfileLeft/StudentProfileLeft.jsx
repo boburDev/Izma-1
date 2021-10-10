@@ -84,6 +84,8 @@ const StudentsProfileLeft = () => {
     },
   })
 
+  console.log(checkCash && (checkCash.studentCash.cashAmount - 0) < 0)
+
   useEffect(() => {
 
     if (checkCash && (checkCash.studentCash.cashAmount - 0) < 0) {

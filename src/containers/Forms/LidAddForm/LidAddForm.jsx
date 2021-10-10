@@ -8,6 +8,7 @@ import { useSnackbar } from 'notistack';
 
 
 const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
+   const wrapperRef = useRef(null);
    const userName = useRef()
    const userNumber = useRef()
    const userComment = useRef()
@@ -31,10 +32,10 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
         createLead({
            variables: {
               name: userName.current.value,
-              phone: userNumber.current.value,
+              phone: userNumber.current.value ? `${userNumber.current.value}` : null,
               leadBoxID: typeof itemId === 'string' ? itemId : itemId?.id,
               gender: null,
-              comment: userComment.current.value,
+              comment: userComment.current.value ? userComment.current.value : null,
               courseID: null,
               teachID: null
            }
@@ -82,7 +83,6 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
    }
 
 
-   const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
    return (
 

@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react'
 import { DragDropContext} from 'react-beautiful-dnd'
 import { useLazyQuery, useMutation, useQuery, useSubscription } from '@apollo/client'
 import { SUBCRIP_BOXES, CHECK_BOX_MINUS, ALL_BOX,  SUBCRIP_LEADS, UPDATE_LEAD, ALL_LEADS } from './query'
-import { useLidsFunc } from '../../context/LidsProvider'
-import { Link } from 'react-router-dom';
+import { useLidsFunc } from '../../context/LidsProvider' 
 import ScriptImg from '../../assets/Icons/link-img.svg'
+import { useSnackbar } from 'notistack'
 // import { COURSES, TEACHER_FILTERS } from '../../Querys/FilterSoha'
 // import { CREATE_BOX_CONTENT, UPDATE_BOX_CONTENT, CREATE_BOX_CONTENT_GROUP, UPDATE_BOX_CONT_STATUS, DELETE_CONTENT } from './query'
 
@@ -256,7 +256,16 @@ const Lids = () => {
    //      });
    //    }
    //  }, []);
-   const [dragActive, setDragActive] = useState(false)
+
+   const { enqueueSnackbar } = useSnackbar();
+   const handleClick = () => {
+      const message = 'Link nusxalandi'
+      enqueueSnackbar(message, {
+         variant: 'success',
+      });
+
+   };
+
 
    return(
       <div className="lids">
@@ -275,17 +284,16 @@ const Lids = () => {
         <div className="lidlar__links-wrapper">
         <div className="lidlar__links-box">
 
-         <img src={ScriptImg} alt="img links" className="lidlar__links-box-img" onClick={()=> setDragActive(!dragActive)} />
+         <img src={ScriptImg} alt="img links" className="lidlar__links-box-img" onClick={()=>{
+            navigator.clipboard.writeText(`http://localhost:3000/${localStorage.getItem('hashtag')}/entry/lead/`)
+            handleClick()
+         }} />
        
-           <div className={`open_dragon ${dragActive ? 'active' : null}`}>
-           <button  >Instagram</button>
-            <button >Telegram</button>
-            <button >Facebook</button>
-           </div>
+           
       
 
         <h2 className="izma__links-box-link">
-        Lid formaga havola: <Link className="izma__links-box-link-link" > Hhh </Link>
+                     Lid formaga havola: <a href={`http://localhost:3000/${localStorage.getItem('hashtag')}/entry/lead/`} className="izma__links-box-link-link" >http://localhost:3000/alazhar/entry/lead/</a>
         </h2>
         {/* <CopyToClipboard text={lin} onCopy={() => setCopied(true)}>
         <button className='izma__links-box-link-link-copy'onClick={() => openNotificationWithIcon('success')} >Saqlash</button>

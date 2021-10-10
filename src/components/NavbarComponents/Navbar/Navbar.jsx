@@ -60,7 +60,7 @@ const Navbar = ({ sidebarActive }) => {
          setHashName(hashtag.hashtag)
       }
 
-   }, [hashtag])
+   }, [hashtag, hashName])
 
    const openFinance1 = () => {
       setOpenMoliya(!openMoliya)
@@ -339,7 +339,7 @@ const Navbar = ({ sidebarActive }) => {
          isBox: true,
          links: [
             {
-               link: `/${hashName}/entry/lead`,
+               link: `/settingLead`,
                title: Language[lang].navigation.lidForm,
                icon: Icon6
             }, {
@@ -422,7 +422,7 @@ const Navbar = ({ sidebarActive }) => {
 
             
 
-            <di   v className={`navbar-plus ${openMoliya || openSetting ? 'active' : ''}`}>
+            <div className={`navbar-plus ${openMoliya || openSetting ? 'active' : ''}`}>
                <NavbarPlus
                   arr={MoliyaLinks}
                   arr2={SettingLinks}
@@ -431,7 +431,7 @@ const Navbar = ({ sidebarActive }) => {
                   setOpenMoliya={setOpenMoliya}
                   setOpenSetting={setOpenSetting}
                />
-            </di>
+            </div>
          </div>
 
 

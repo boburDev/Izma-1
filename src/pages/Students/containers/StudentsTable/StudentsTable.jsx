@@ -7,7 +7,6 @@ import { useQuery, useSubscription } from '@apollo/client';
 import { ALL_STUDENTS, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT, ALL_STUDENTSs, FILTER_COURSE, FIND_SALE } from '../../../../Querys/Table_Query';
 import { Modal } from 'antd';
 import Check from '../../../../components/Check/Check';
-// import { useCourse } from '../filterSoha/context'
 import { useCheck } from '../../../../context/CheckProvider'
 import { useStudentData } from '../../../../context/StudentTableProvider'
 import { useStudentPay } from '../../../../context/StudentPay'
@@ -17,7 +16,7 @@ import { useLoader } from '../../../../context/Loader'
 import { usePagination } from '../../../../context/Pagination'
 
 
-const StudentsTable = ({ studentSearch='' }) => {
+const StudentsTable = ({ studentSearch = '' }) => {
    const [page] = usePagination()
    const [truFalse] = useStudentFilter()
    const [course] = useCourseFilter()
@@ -40,7 +39,7 @@ const StudentsTable = ({ studentSearch='' }) => {
 
 
    const {data: findSale} = useQuery(FIND_SALE)
-   const {data: ddd} = useQuery(STUDENT_ON_KEY_UP, {variables: {name: (studentSearch.length > 0) && studentSearch}})
+   const {data: ddd} = useQuery(STUDENT_ON_KEY_UP, {variables: {name: studentSearch}})
    const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: course}})
 
 

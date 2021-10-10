@@ -1,0 +1,104 @@
+.select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    outline: none;
+    margin-right: 30px;
+}
+.select .picker {
+    width: 100%;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    background: #EFF2FF;
+    cursor: pointer;
+}
+.select .picker .picker-text {
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.select .options {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    min-width: 100%;    
+    min-height: 20px;
+    max-height: 150px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background: #EFF2FF;
+    overflow: auto;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100000000;
+}
+
+.select.active .options {
+    opacity: 1;
+    visibility: visible;
+}
+
+.select .options li {
+    width: 100%;
+    padding: 2px;
+    padding-left: 15px;
+    padding-right: 20px;
+    margin-right: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.8rem;
+    line-height: 22px;
+    color: #3D1D65;
+    cursor: pointer;
+}
+.select .options::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .select .options::-webkit-scrollbar-track {
+    width: 4px;
+    background-color: #F7F9FB;
+  }
+  .select .options::-webkit-scrollbar-thumb {
+    background-color: #F7F9FB;
+    max-height: 20px;
+  }
+  .select .options::-webkit-scrollbar-thumb :hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #F7F9FB;
+    outline: 4px solid #F7F9FB;
+  }
+
+
+.select .options li:hover {
+    background-color: rgb(43, 126, 221);
+    background: #ecd9f5;
+}
+
+.select .options .selected {
+    position: relative;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 30px;
+    background: #36ca4f;
+    color: #3D1D65;
+}
+
+.select .options .selected:hover {
+    cursor: default;
+    background: #217480;
+}

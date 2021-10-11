@@ -34,6 +34,7 @@ const GroupAdd = ({ onClose }) => {
    const { data: rooms } = useQuery(ROOMS)
    
    const [createGroup, {data: added}] = useMutation(CREATE_GROUP)
+   const { enqueueSnackbar } = useSnackbar();
   
    
   
@@ -69,7 +70,6 @@ const GroupAdd = ({ onClose }) => {
       }
    }
 
-   const { enqueueSnackbar } = useSnackbar();
    useEffect(() => {
       const handleClick = () => {
          const message = Language[lang].groups.addNewGroups.successfullyAdded

@@ -16,14 +16,15 @@ import Modal1 from '../../../../components/Modal/Modal'
 import { useName1 } from '../../../../context/NameProvider'
 import { useLang } from '../../../../context/LanguageProvider'
 import Language from '../../../../lang/index'
+// import { useGroup } from '../../../../context/NameProvider'
 
 const StudentsProfileLeft = () => {
+  // const [groupName] = useGroup()
   const [groupAdd, setGroupAdd] = useState()
   const [groupAddDate, setGroupAddDate] = useState()
   const [setPeopleName] = useName1(true)
   const [lang] = useLang();
 
-  // console.log(Language[lang].students)
 
   const [openSms, setOpenSms] = useState(false)
   // const [state, setState] = useState([])
@@ -41,6 +42,7 @@ const StudentsProfileLeft = () => {
   const { data: checkCash } = useQuery(CHECK_CASH, { variables: { stID: studentID } })
   const { data: filial } = useQuery(FILIAL)
   //  const [has, {data: hasStud}] = useLazyQuery(HAS_STUDENT)
+   
 
   const [CheckBalanc] = useMutation(STATUS_3_4)
   //  const [UpdateComment] = useMutation(UPDATE_COMMENT)
@@ -84,6 +86,7 @@ const StudentsProfileLeft = () => {
     },
   })
 
+
   useEffect(() => {
 
     if (checkCash && (checkCash.studentCash.cashAmount - 0) < 0) {
@@ -93,7 +96,9 @@ const StudentsProfileLeft = () => {
           status: 4
         }
       })
-    } else {
+    }
+
+    if (checkCash && (checkCash.studentCash.cashAmount - 0) >= 0) {
       setStatus_3({
         variables: {
           status: 3,
@@ -103,13 +108,6 @@ const StudentsProfileLeft = () => {
     }
   }, [CheckBalanc, checkCash, setStatus_3, studentID])
 
-
-  //  const [gr, setGr] = useState([])
-
-  
-
-  // console.log(oneStudent)
-
   const showDrawerF = () => {
     setVisibleF(true)
   }
@@ -118,7 +116,6 @@ const StudentsProfileLeft = () => {
     setVisibleF(false)
   }
 
-  //  const [ comme, setComme ] = useState('')
 
   const [visible, setVisible] = useState(false)
   const showDrawer = () => {
@@ -215,6 +212,8 @@ const StudentsProfileLeft = () => {
     })
     setNames(guruh)
   }, [Groups])
+  
+
 
   // useEffect(() => {
 

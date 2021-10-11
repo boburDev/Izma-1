@@ -7,6 +7,7 @@
    label, .file {
       font-weight: bold !important;
       font-size: .8rem !important;
+      font-family: 'Jost', 'Calibri', sans-serif !important;
    }
 
    .ant-picker {
@@ -119,6 +120,7 @@
             .gen_one {
                display: flex;
                align-items: center;
+               position: relative;
 
                span {
                   margin-right: 42px;
@@ -145,6 +147,12 @@
                   margin-right: 10px;
                   cursor: pointer;
                   margin-bottom: 0;
+               }
+
+               input {
+                  display: flex;
+                  position: absolute;
+                  opacity: 0;
                }
 
                input[type=radio]:checked+label {

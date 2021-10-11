@@ -57,6 +57,7 @@ const GroupProfilLeft = (prop) => {
    const [setNavbarP] = useNavbar(true)
 
    const [payment, setPayment] = useState(false)
+   const [paymentStatus, setPaymentStatus] = useState(false)
 
    const { groupID } = useParams()
 
@@ -76,11 +77,11 @@ const GroupProfilLeft = (prop) => {
       })
       if (groups && groups.byGroupID) {
          setDayDivide(groups.byGroupID.days)
+         prop.studData(groups && groups.byGroupID.students)
       }
-   }, [grStudents, setGroupStudents, groups, setDayDivide])
+   }, [grStudents, setGroupStudents, groups, setDayDivide, prop])
 
 
-   prop.studData(groups && groups.byGroupID.students)
 
    const { data: checkCache } = useQuery(CHECK_CASH, {
       variables: { stID: selectedUser }
@@ -88,9 +89,6 @@ const GroupProfilLeft = (prop) => {
 
    const { data: hasStud } = useQuery(HAS_STUDENT, { variables: { stID: stID, grID: groupID } })
    const { data: setStatus_6 } = useQuery(SET_STATUS_6, { variables: { stID: selectedUser } })
-
-   // const [cashCheck, {data: forCheck}] = useLazyQuery(CHECK_CASH_GROUP)
-
 
 
    const { data: students } = useQuery(GET_STUDENTS, {
@@ -117,11 +115,9 @@ const GroupProfilLeft = (prop) => {
    const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
    const [SetStatus_5] = useMutation(UPDATE_GR_STATUS)
 
-
    useEffect(() => {
 
-
-      if (forStatus && forStatus.updateCash.cashAmount) {
+      if (payment && forStatus?.updateCash?.cashAmount) {
          SetStatus_4({
             variables: {
                stID: selectedUser,
@@ -137,12 +133,11 @@ const GroupProfilLeft = (prop) => {
             }
          })
 
-         window.location.reload(true)
+         setPayment(false)
+
       }
 
-   }, [forStatus, SetStatus3_4, SetStatus_4, groupID, selectedUser])
-
-
+   }, [forStatus, SetStatus3_4, SetStatus_4, groupID, selectedUser, payment])
 
    useSubscription(SUBSCRIPTION_GROUPS, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -217,10 +212,7 @@ const GroupProfilLeft = (prop) => {
 
    useEffect(() => {
 
-      const paymentt = () => {
-
-         if (staatus !== 5) {
-
+         if (payment) {
             let backCash = (checkCache && checkCache.studentCash.cashAmount) - (groups && groups.byGroupID.price)
             UpdatePayment({ variables: { stID: selectedUser, cashAmm: String(backCash) } })
 
@@ -233,7 +225,8 @@ const GroupProfilLeft = (prop) => {
             }
 
             HistoryPay({ variables: data })
-         } else {
+         } 
+         if (staatus === 5 && paymentStatus) {
             SetStatus3_4({
                variables: {
                   status: (checkCache && checkCache.studentCash.cashAmount - 0) < 0 ? 4 : 3,
@@ -241,17 +234,16 @@ const GroupProfilLeft = (prop) => {
                   grID: groupID
                }
             })
+            setPaymentStatus(false)
          }
 
-      }
-      payment && paymentt()
-      payment && setPayment(false)
+   }, [payment, HistoryPay, SetStatus3_4, UpdatePayment, checkCache, groupID, groups, selectedUser, staatus, paymentStatus])
 
-   }, [payment, HistoryPay, SetStatus3_4, UpdatePayment, checkCache, groupID, groups, selectedUser, staatus])
 
    const showModal = () => {
       setIsModalVisible(true)
    }
+
 
    const handleOk = () => {
       setIsModalVisible(false)
@@ -471,7 +463,7 @@ const GroupProfilLeft = (prop) => {
                                     <div style={{ zIndex: 10000, position: 'absolute' }}
                                        className={`open_del ${delActive === s.id ? 'active' : ''}`} onClick={() => setDElActive(false)}>
 
-                                       {(staatus === 3 || staatus === 4) && <Link to="#" className="del_link" onClick={() => {
+                                       {(s.groupStatus === 3 || s.groupStatus === 4) && <Link to="#" className="del_link" onClick={() => {
                                           SetStatus_5({
                                              variables: {
                                                 status: 5, stID: selectedUser, grID: groupID
@@ -479,7 +471,10 @@ const GroupProfilLeft = (prop) => {
                                           })
                                        }}>{Language[lang].groups.additionalOption.freeze}</Link>}
 
-                                       {(staatus === 2 || staatus === 5) && <Link to="#" className="del_link" onClick={() => setPayment(true)} >{Language[lang].groups.activate.activateTitle}</Link>}
+                                       {(s.groupStatus === 2 || s.groupStatus === 5) && <Link to="#" className="del_link" onClick={() => {
+                                          s.groupStatus === 5 && setPaymentStatus(true)
+                                          s.groupStatus === 2 && setPayment(true)
+                                       }} >{Language[lang].groups.activate.activateTitle}</Link>}
                                        <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
                                        <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>
                                        <Link to="#" className="del_link">{Language[lang].groups.activate.changeGroupStudent}</Link>

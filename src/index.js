@@ -1,7 +1,6 @@
 import React from 'react'
 import { ApolloClient, ApolloProvider, InMemoryCache, split, createHttpLink } from '@apollo/client'
 import ReactDOM from 'react-dom'
-import App from './pages/App/App'
 import { BrowserRouter } from 'react-router-dom'
 import { CourseProvider } from './context/CourseProvider'
 import '../src/assets/izma fonts/fonts.scss'
@@ -27,14 +26,17 @@ import { NameProvider } from './context/NameProvider'
 import { NavbarProvider } from './context/NavbarProvider'
 import { LidsProvider } from './context/LidsProvider'
 import Slide from '@material-ui/core/Slide'
+import AppWrapper from './pages/AppWrapper/AppWrapper'
 
-// const isTester = false
+const isTester = false
 // http://api.al-azhar.uz/api/graphql
 
-const api = `http://localhost:4000/graphql`
-const wssApi = `ws://localhost:4000/graphql`
-// const api = `https://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
-// const wssApi = `wss://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
+// const api = `http://192.168.43.4:4000/graphql`
+// const wssApi = `ws://192.168.43.4:4000/graphql`
+const api = `https://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
+const wssApi = `wss://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
+// console.log(api, wssApi)
+
 
 const httpLink = createHttpLink({
 	uri: api,
@@ -107,14 +109,14 @@ const Main = () => {
 										<CourseFilterProvider>
 											<TeachersTableProvider>
 												<LoaderProvider>
-													<DavomatProvider>
+													<DavomatProvider	>
 														<Pagination>
 															<DayDividerProvider>
 																<LangProvider>
 																	<NameProvider>
 																		<NavbarProvider>
 																			<LidsProvider>
-																	    		<App />
+																	    		<AppWrapper />
 																			</LidsProvider>
 																		</NavbarProvider>
 																	</NameProvider>

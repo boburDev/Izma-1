@@ -6,6 +6,7 @@ import { STUDENT_GROUPS, SUBSCRIPTION_GROUPS } from './query';
 import { Link } from 'react-router-dom';
 import { useLang } from '../../../../context/LanguageProvider';
 import Language from '../../../../lang/index'
+import { useGroup } from '../../../../context/NameProvider';
 import { useNavbar } from '../../../../context/NavbarProvider';
 
 
@@ -13,6 +14,7 @@ import { useNavbar } from '../../../../context/NavbarProvider';
 const StudentsProfileRight = () => {
    const [setNavbarP] = useNavbar(true)
    const [lang] = useLang();
+   const [setGroupName] = useGroup(true)
 
    const { studentID } = useParams()
 
@@ -27,6 +29,8 @@ const StudentsProfileRight = () => {
          })
       },
    })
+
+   setGroupName(Group && Group.studentGroups)
 
    return (
       <>

@@ -113,19 +113,24 @@
    }
 
    .main_order {
+      width: 100%;
       .main_heading {
+         width: 100%;
          display: flex;
          align-items: center;
          justify-content: space-between;
          padding: 24px 0px 20px 0px;
          background-color: #fff;
-         color: #222222;
-         font-family: "Jost";
-         font-style: normal;
-         font-weight: 500;
-         padding-right: 490px;
-         font-size: 18px;
-         line-height: 26px;
+         
+        .information {
+           width: 20%;
+            color: #222222;
+            font-family: "Jost";
+            font-style: normal;
+            font-weight: 500;
+            font-size: .8rem;
+            line-height: 26px;
+        }
       }
 
       .main_infor {
@@ -134,8 +139,19 @@
             padding: 16px 0px;
             display: flex;
             align-items: center;
-            padding-right: 450px;
             justify-content: space-between;
+
+            h5 {
+               width: 20%;
+               color: #222222;
+               font-family: "Jost";
+               font-style: normal;
+               font-weight: 500;
+               font-size: .8rem;
+               line-height: 26px;
+            }
+
+
          }
       }
 

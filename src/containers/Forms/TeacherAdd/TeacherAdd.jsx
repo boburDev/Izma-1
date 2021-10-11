@@ -10,7 +10,6 @@ import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberIn
 import PasswordInput from '../../../components/PasswordInput/PasswordInput';
 import Language from '../../../lang/index'
 import { useLang } from '../../../context/LanguageProvider';
-import moment from 'moment';
 
 
 const TeacherAdd = ({ onClose, setVisible }) => {
@@ -98,7 +97,7 @@ const TeacherAdd = ({ onClose, setVisible }) => {
                      onChange={onChange}
                      placeholder={Language[lang].teachers.addNewUser.date}
                      format={"DD-MM-YYYY"}
-                     value={birthDay !== "" ? moment(birthDay) : ""}
+                     value={birthDay !== "" ? birthDay : ""}
                   />
                </div>
 
@@ -107,12 +106,12 @@ const TeacherAdd = ({ onClose, setVisible }) => {
 
                   <div className="genders">
                      <div className="gen_one">
-                        <input autoComplete="off"  value={1} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="men" />
+                        <input required autoComplete="off"  value={1} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="men" />
                         <label htmlFor="men"></label>
                         <span>{Language[lang].teachers.addNewUser.gender[0]}</span>
                      </div>
                      <div className="gen_one">
-                        <input autoComplete="off"  value={2} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="women" />
+                        <input required autoComplete="off"  value={2} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="women" />
                         <label htmlFor="women"></label>
                         <span>{Language[lang].teachers.addNewUser.gender[1]}</span>
                      </div>

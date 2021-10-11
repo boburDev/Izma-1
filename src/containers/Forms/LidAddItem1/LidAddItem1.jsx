@@ -59,7 +59,6 @@ const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
          courseDays: day.id,
          courseTime: time
       } })
-      document.getElementById('formLIdAddRes').reset()
       onClose()
    }
    return (

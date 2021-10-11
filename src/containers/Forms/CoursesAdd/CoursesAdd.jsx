@@ -8,13 +8,14 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router';
 import { useLang } from '../../../context/LanguageProvider';
 import Language from '../../../lang/index'
+import { useSnackbar } from 'notistack';
 
 const CoursesAdd = ({ onClose }) => {
    const inputRef = useRef()
 
    const { courseID } = useParams()
    const [lang] = useLang();
-
+   const { enqueueSnackbar } = useSnackbar();
    const { data: dataToEdit } = useQuery(ONE_COURSE_TO_EDIT, { variables: { id: courseID } })
    const [Update_course] = useMutation(UPDATE_COURSE)
 
@@ -34,33 +35,51 @@ const CoursesAdd = ({ onClose }) => {
       }
    })
 
+   const handleClick2 = (message) => {
+      enqueueSnackbar(message, {
+         variant: 'error',
+      });
+
+   };
+
+   
+
 
    const handleSubmit = (id) => {
-      onClose()
+      if(name && price) {
+         onClose()
 
-      const data = {
-         name,
-         price,
-         description
+         const data = {
+            name,
+            price,
+            description
+         }
+
+         if (courseID) {
+
+            Update_course({
+               variables: { id: courseID, ...data }
+            })
+
+         } else {
+
+            newCourse({
+               variables: data
+            })
+         }
+
+         setName('')
+         setPrice('')
+         inputRef.current.value = ''
+         setDescription('')
+      } 
+      else if(name && !price) {
+         handleClick2('Narxi bo`lishi shart')
+      }else if(!name && price){
+         handleClick2('Nomi bo`lishi shart')
+      }else  {
+         handleClick2('Nomi va Narxi bo`lishi shart')
       }
-
-      if (courseID) {
-
-         Update_course({
-            variables: { id: courseID, ...data }
-         })
-
-      } else {
-
-         newCourse({
-            variables: data
-         })
-      }
-
-      setName('')
-      setPrice('')
-      inputRef.current.value = ''
-      setDescription('')
 
       
 

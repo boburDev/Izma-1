@@ -6,8 +6,10 @@ import { DatePicker } from 'antd'
 
 import { useLang } from '../../context/LanguageProvider';
 import Language from '../../lang/index'
+import { useGroup } from '../../context/NameProvider';
 
 const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text, groups,setInfo2, redir, snake  }) => {
+   const [groupName] = useGroup()
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
          function handleClickOutside(event) {
@@ -50,7 +52,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                   <span></span>
                </div>
             </div>
-            <form className="myModal-inner-form" id=""onSubmit={e => {
+            <form className="myModal-inner-form" onSubmit={e => {
                e.preventDefault()
                e.target.reset()
                }}>
@@ -68,9 +70,13 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                            block === 'roomEdit' ?
                               <>
                                  <label className='myModal-inner-form-label'>{Language[lang].students.editStudentInfo.nameOfRoom}</label>
-                                 <input autoComplete="off"  type="text" defaultValue={info && info} onKeyUp={(e) => setInfo(e.target.value)} />
+                                 <input required autoComplete="off"  type="text" defaultValue={info && info} onKeyUp={(e) => setInfo(e.target.value)} />
                                  <div className="buttonWrapper">
-                                    <button onClick={uptRoom}>{Language[lang].students.background.save}</button>
+                                    <button onClick={() => {
+                                       if(info) {
+                                          uptRoom()
+                                       }
+                                    }}>{Language[lang].students.background.save}</button>
                                  </div>
                               </> :
                               <>
@@ -78,9 +84,13 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                     block === 'roomAdd' ?
                                        <>
                                           <label className='myModal-inner-form-label'>{Language[lang].students.editStudentInfo.nameOfRoom}</label>
-                                          <input autoComplete="off"  type="text" onKeyUp={(e) => setInfo(e.target.value)} />
+                                          <input required autoComplete="off"  type="text" onKeyUp={(e) => setInfo(e.target.value)} />
                                           <div className="buttonWrapper">
-                                             <button onClick={submitOK}>{Language[lang].students.background.save}</button>
+                                             <button onClick={() => {
+                                                if (info) {
+                                                   submitOK()
+                                                }
+                                             }}>{Language[lang].students.background.save}</button>
                                           </div>
                                        </> :
                                        <>
@@ -109,6 +119,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                                                   arr={groups}
                                                                   pInput={Language[lang].students.addNewStudentTitle.selectGroup}
                                                                   fnc={setInfo}
+                                                                  stGroups={groupName}
                                                                />
                                                         </div>
                                                         <div className="addGroup-row">
@@ -125,7 +136,9 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                                         </div>
                                                             <div className="buttonWrapper">
                                                                <button onClick={() => {
-                                                                  setMymodal(false)
+                                                                  if(info) {
+                                                                     setMymodal(false)
+                                                                  }
                                                                }}>{Language[lang].groups.additionalOption.addToGroupStudent}</button>
                                                             </div>
 

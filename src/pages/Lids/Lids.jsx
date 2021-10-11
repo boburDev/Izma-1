@@ -117,7 +117,9 @@ const Lids = () => {
                courseName: i.courseName,
                teachName: i.teachName,
                courseDays: i.courseDays,
-               courseTime: i.courseTime
+               courseTime: i.courseTime,
+               courseID: i.courseID,
+               teachID: i.teachID
 
             }
             arr.push(data)

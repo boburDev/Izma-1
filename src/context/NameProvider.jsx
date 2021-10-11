@@ -2,12 +2,14 @@ import React, { createContext, useContext, useState } from 'react'
 const Context = createContext()
 
 const NameProvider = ({ children }) => {
-
+   const [group, setGroup] = useState()
    const [state, setState] = useState()
 
    const value = {
       state,
-      setState
+      setState,
+      group,
+      setGroup
    }
 
    return (
@@ -25,8 +27,13 @@ const useName1 = (setterOnly) => {
    const { state, setState } = useContext(Context)
    return setterOnly ? [setState] : [state, setState]
 }
+const useGroup = (gr) => {
+   const { group, setGroup } = useContext(Context)
+   return gr ? [setGroup] : [group, setGroup]
+}
 
 export {
    NameProvider,
-   useName1
+   useName1,
+   useGroup
 }

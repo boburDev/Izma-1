@@ -3,8 +3,10 @@
    label {
       font-weight: bold !important;
       font-size: .8rem !important;
+      font-family: 'Jost', 'Calibri', sans-serif !important;
    }
 }
+
 
 
 .s .ant-picker {
@@ -219,6 +221,7 @@ input[type=text] {
    align-items: center;
 
    .gen_one {
+      position: relative;
       display: flex;
       align-items: center;
 
@@ -250,7 +253,8 @@ input[type=text] {
       }
 
       input[type=radio] {
-         display: none;
+         position: absolute;
+         opacity: 0;
       }
 
       input[type=radio]:checked+label {

@@ -144,7 +144,7 @@ const StudentAdd = ({ onCloseF }) => {
 
                <DatePicker
                   className='date__picker lid-edit-date'
-                  
+                  defaultPickerValue={stBirth !== "" ? moment(moment().format("DD-MM-YYYY"), "DD-MM-YYYY") : stBirth}
                   onChange={(value, dateString) => {
                      setStBirth(dateString)
                   }}

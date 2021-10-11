@@ -56,6 +56,8 @@ const GroupProfilLeft = (prop) => {
    const [lang] = useLang()
    const [setNavbarP] = useNavbar(true)
 
+   const [dataGroup, setDataGroup] = useState({})
+
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
 
@@ -68,6 +70,14 @@ const GroupProfilLeft = (prop) => {
    const { data: grStudents } = useQuery(GROUP_STUDENTS, {
       variables: { grID: groupID }
    })
+
+   useEffect(() => {
+
+      if (groups && groups.byGroupID) {
+         setDataGroup(groups.byGroupID)
+      }
+
+   }, [groups])
 
 
    useEffect(() => {
@@ -337,7 +347,7 @@ const GroupProfilLeft = (prop) => {
          <div className="izma__groups-attendance-left-section">
             <div className="izma__groups-attendance-left-up-wrapper">
                <p className="izma__groups-attendance-left-up-id">
-                  {groups && groups.byGroupID.name}
+                  {dataGroup?.name}
                </p>
                <div className="izma__groups-attendance-boxses">
                   <button className="izma__groups-attendance-left-up-btn-edit" onClick={showDrawer}>
@@ -349,13 +359,13 @@ const GroupProfilLeft = (prop) => {
                      onClose={onClose}
                      visible={visible}
                   >
-                     <GroupEdit dataForEdit={groups && groups.byGroupID} onClose={onClose} />
+                     <GroupEdit dataForEdit={dataGroup && dataGroup} onClose={onClose} />
                   </Drawer>
                   <button onClick={() => setIsModalDelete(true)} className="izma__groups-attendance-left-up-btn-del">
                      <Modal1
                         block="delete"
                         title="Guruhni o'chirish"
-                        text={groups && groups.byGroupID.name + 'ni o`chirishni hohlaysizmi ?'}
+                        text={dataGroup?.name + 'ni o`chirishni hohlaysizmi ?'}
                         setInfo={handleDelete}
                         setMymodal={setIsModalDelete}
                         myModal={isModalDelete}
@@ -367,17 +377,17 @@ const GroupProfilLeft = (prop) => {
 
                </div>
             </div>
-            {groups && groups.byGroupID &&
+            {dataGroup &&
                <div className="izma__groups-attendance-left-center-wrapper">
                   <h4 className="izma__groups-attendance-left-center-heading">
-                     {groups.byGroupID.courseName} | {groups.byGroupID.teacher}
+                     {dataGroup?.courseName} | {dataGroup?.teacher}
                   </h4>
                   <div className="izma__groups-attendance-left-center-prices-wrapper">
                      <p className="izma__groups-attendance-left-center-prices-text">
                         {Language[lang].groups.groupInfo.price}
                      </p>
                      <p className="izma__groups-attendance-left-center-prices-number">
-                     {groups && new Intl.NumberFormat().format(groups.byGroupID.price)} UZS
+                     {dataGroup && new Intl.NumberFormat().format(dataGroup?.price)} UZS
                      </p>
                   </div>
 
@@ -386,7 +396,7 @@ const GroupProfilLeft = (prop) => {
                         {Language[lang].groups.groupInfo.time}
                      </p>
                      <p className="izma__groups-attendance-left-center-time-number">
-                        {dayDivide} ・ {groups.byGroupID.time}
+                        {dayDivide} ・ {dataGroup?.time}
                      </p>
                   </div>
 
@@ -395,7 +405,7 @@ const GroupProfilLeft = (prop) => {
                      {Language[lang].groups.groupInfo.room}
                      </p>
                      <p className="izma__groups-attendance-left-center-room-number">
-                        Room #{groups.byGroupID.rooms}
+                        Room #{dataGroup?.rooms}
                      </p>
                   </div>
 
@@ -404,7 +414,7 @@ const GroupProfilLeft = (prop) => {
                      {Language[lang].groups.groupInfo.traningDates}
                      </p>
                      <p className="izma__groups-attendance-left-center-communicate-number">
-                        {groups.byGroupID.startDate} — {groups.byGroupID.endDate}
+                        {dataGroup?.startDate} — {dataGroup?.endDate}
                      </p>
                      <br />
                      <input

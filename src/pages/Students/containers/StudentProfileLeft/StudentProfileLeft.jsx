@@ -86,7 +86,6 @@ const StudentsProfileLeft = () => {
     },
   })
 
-  console.log(checkCash && (checkCash.studentCash.cashAmount - 0) < 0)
 
   useEffect(() => {
 
@@ -97,7 +96,9 @@ const StudentsProfileLeft = () => {
           status: 4
         }
       })
-    } else {
+    }
+
+    if (checkCash && (checkCash.studentCash.cashAmount - 0) >= 0) {
       setStatus_3({
         variables: {
           status: 3,

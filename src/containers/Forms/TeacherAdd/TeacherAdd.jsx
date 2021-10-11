@@ -10,7 +10,6 @@ import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberIn
 import PasswordInput from '../../../components/PasswordInput/PasswordInput';
 import Language from '../../../lang/index'
 import { useLang } from '../../../context/LanguageProvider';
-import moment from 'moment';
 
 
 const TeacherAdd = ({ onClose, setVisible }) => {

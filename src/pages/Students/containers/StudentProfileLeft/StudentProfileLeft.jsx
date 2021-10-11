@@ -16,16 +16,15 @@ import Modal1 from '../../../../components/Modal/Modal'
 import { useName1 } from '../../../../context/NameProvider'
 import { useLang } from '../../../../context/LanguageProvider'
 import Language from '../../../../lang/index'
-import { useGroup } from '../../../../context/NameProvider'
+// import { useGroup } from '../../../../context/NameProvider'
 
 const StudentsProfileLeft = () => {
-  const [groupName] = useGroup()
+  // const [groupName] = useGroup()
   const [groupAdd, setGroupAdd] = useState()
   const [groupAddDate, setGroupAddDate] = useState()
   const [setPeopleName] = useName1(true)
   const [lang] = useLang();
 
-  // console.log(Language[lang].students)
 
   const [openSms, setOpenSms] = useState(false)
   // const [state, setState] = useState([])
@@ -108,13 +107,6 @@ const StudentsProfileLeft = () => {
     }
   }, [CheckBalanc, checkCash, setStatus_3, studentID])
 
-
-  //  const [gr, setGr] = useState([])
-
-  
-
-  // console.log(oneStudent)
-
   const showDrawerF = () => {
     setVisibleF(true)
   }
@@ -123,7 +115,6 @@ const StudentsProfileLeft = () => {
     setVisibleF(false)
   }
 
-  //  const [ comme, setComme ] = useState('')
 
   const [visible, setVisible] = useState(false)
   const showDrawer = () => {

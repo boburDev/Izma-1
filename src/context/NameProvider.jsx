@@ -3,13 +3,16 @@ const Context = createContext()
 
 const NameProvider = ({ children }) => {
    const [group, setGroup] = useState()
+   const [userStatus, setUserStatus] = useState()
    const [state, setState] = useState()
 
    const value = {
       state,
       setState,
       group,
-      setGroup
+      setGroup,
+      userStatus,
+      setUserStatus
    }
 
    return (
@@ -31,9 +34,14 @@ const useGroup = (gr) => {
    const { group, setGroup } = useContext(Context)
    return gr ? [setGroup] : [group, setGroup]
 }
+const useUserStatus = (gr) => {
+   const { userStatus, setUserStatus } = useContext(Context)
+   return gr ? [setUserStatus] : [userStatus, setUserStatus]
+}
 
 export {
    NameProvider,
    useName1,
-   useGroup
+   useGroup,
+   useUserStatus
 }

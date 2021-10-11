@@ -7,8 +7,7 @@ import { COURSES, NEW_LEAD } from './query'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useLang } from '../../../context/LanguageProvider'
-import Language from '../../../lang/index'
-import PencilIcon from '../../../assets/Icons/fedit.svg'
+import Language from '../../../lang/index'   
 
 const LidFormSettings = () => {
 

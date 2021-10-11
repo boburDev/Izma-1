@@ -38,7 +38,7 @@ import './Navbar.scss'
 import NavbarLinks from '../NavbarLinks/NavbarLinks'
 import NavbarPlus from '../NavbarPlus/NavbarPlus'
 import { useNavbar } from '../../../context/NavbarProvider'
-
+import { useUserStatus } from '../../../context/NameProvider'
 
 
 const Navbar = ({ sidebarActive }) => {
@@ -52,7 +52,7 @@ const Navbar = ({ sidebarActive }) => {
    const [openShakl, setOpenShakl] = useState(false)
    const [hashName, setHashName] = useState('')
    const [lang] = useLang()
-
+   const [UserStatus] = useUserStatus()
    const {data: hashtag} = useQuery(BY_HASHTAG)
 
    useEffect(() => {
@@ -100,7 +100,13 @@ const Navbar = ({ sidebarActive }) => {
       setGroupActive(false)
       setCourseActive(false)
    }
-   const links = [
+
+
+   let links = []
+   
+
+
+   const links1 = [
       {
          title: Language[lang].navigation.main,
          icon: <Home />,
@@ -153,6 +159,104 @@ const Navbar = ({ sidebarActive }) => {
          clas: dragActive
       },
    ]
+
+   const links2 = [
+      {
+         title: Language[lang].navigation.lids,
+         icon: <Lidrlar />,
+         link: '/lidlar',
+         isButton: false,
+         nav: lidActive
+      }
+   ]
+
+   const links3 = [
+      {
+         title: Language[lang].navigation.main,
+         icon: <Home />,
+         link: '/',
+         isButton: false,
+         nav: homeActive
+
+      },
+      {
+         title: Language[lang].navigation.lids,
+         icon: <Lidrlar />,
+         link: '/lidlar',
+         isButton: false,
+         nav: lidActive
+      },
+      {
+         title: Language[lang].navigation.students,
+         icon: <Talabalar />,
+         link: '/students',
+         isButton: false,
+         nav: studentActive
+      },
+      {
+         title: Language[lang].navigation.teachers,
+         icon: <Teacher />,
+         link: '/teachers',
+         isButton: false,
+         nav: teachrtActive
+      },
+      {
+         title: Language[lang].navigation.groups,
+         icon: <Guruhlar />,
+         link: '/groups',
+         isButton: false,
+         nav: groupActive
+      },
+      {
+         title: Language[lang].navigation.courses,
+         icon: <Kurslar />,
+         link: '/courses',
+         isButton: false,
+         nav: courseActive
+      }
+   ]
+
+
+   const links4 = [
+      {
+         title: Language[lang].navigation.finance,
+         icon: <Moliya />,
+         link: '/finance',
+         isButton: true,
+         addClass: openFinance1,
+         clas: dragActive
+      },
+   ]
+
+   const links5 = [
+      {
+         title: Language[lang].navigation.groups,
+         icon: <Guruhlar />,
+         link: '/groups',
+         isButton: false,
+         nav: groupActive
+      }
+   ]
+
+   if(UserStatus === 1) {
+      links = links1
+   }
+   else if(UserStatus === 2) {
+      links = links2
+   }
+   else if(UserStatus === 3) {
+      links = links3
+   }
+   else if(UserStatus === 4) {
+      links = links4
+   }
+   else if(UserStatus === 5) {
+      links = links5
+   }
+
+
+
+   
 
    const { location } = useHistory()
    useEffect(() => {
@@ -420,16 +524,21 @@ const Navbar = ({ sidebarActive }) => {
                   }
                })
             }
-            <NavbarLinkSet
-               icon={<Settings />}
-               title={Language[lang].navigation.settings}
-               isButton={true}
-               link={'/settingsRoadmap'}
-               addClass={openSettings1}
-               link2={closeFinSet}
-               key={'set'}
-               clas={settingActive}
-            />
+            {
+               UserStatus === 1 ?
+                  <NavbarLinkSet
+                     icon={<Settings />}
+                     title={Language[lang].navigation.settings}
+                     isButton={true}
+                     link={'/settingsRoadmap'}
+                     addClass={openSettings1}
+                     link2={closeFinSet}
+                     key={'set'}
+                     clas={settingActive}
+                  />
+                  :
+                  <></>
+            }
 
             
 

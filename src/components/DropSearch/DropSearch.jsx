@@ -6,7 +6,6 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups }) => {
    const input = useRef()
    const browsers = useRef()
    const arrow = useRef()
-   const [focs, setFocs] = useState()
 
 
 
@@ -33,10 +32,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups }) => {
 
      
 
-      
-      input.current.addEventListener('blur', () => {
-         setFocs(false)
-      }) 
+   
       input.current.onfocus = function () {
          arrow.current.classList.add('active')
          browsers.current.style.display = 'block';

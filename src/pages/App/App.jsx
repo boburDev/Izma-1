@@ -32,11 +32,25 @@ import { useHistory } from 'react-router'
 import SettigsCompany from "../Settings_Pages/SettingsCompany/SettingsCompany";
 import Test from "./test";
 import LidFormSettings from "../Settings_Pages/LidFormSettings/LidFormSettings";
+import { STATUS } from "./query";
+import { useQuery } from "@apollo/client";
+import { useUserStatus } from "../../context/NameProvider";
 
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
   const [token, setToken] = useState(window.localStorage.getItem('token'))
+  
+	const {data: userStatus} = useQuery(STATUS)
+
   const [st, setSt] = useState(0)
+	const [setUserStatus] = useUserStatus(true)
+	const [UserStatus] = useUserStatus()
+
+	useEffect(() => {
+		setUserStatus(userStatus?.statusUser)
+	}, [userStatus, setUserStatus])
+
+
 
   const { location } = useHistory()
   useEffect(() => {
@@ -47,96 +61,109 @@ const App = () => {
     }
   }, [location.path])
 
-  
 
-  
+
+
   return (
     <div className="app">
 
       {
-        token && st ===  0 ?
-        <>
-          {/* ================  NAVBAR  =====================*/}
-    
-      <div className={`app-left ${sidebarActive ? 'active' : ''}`}>
-        <Navbar 
-          sidebarActive={sidebarActive}
+        token && st === 0 ?
+          <>
+            {/* ================  NAVBAR  =====================*/}
 
-        />
-      </div>
+            <div className={`app-left ${sidebarActive ? 'active' : ''}`}>
+              <Navbar
+                sidebarActive={sidebarActive}
 
-      {/* ==================  BODY =================== */}
+              />
+            </div>
 
-      <div className="app-right">
-        <div className="app-right-header">
-          <Header 
-            sidebarActive={sidebarActive}
-            setSidebarActive={setSidebarActive}
-            setToken={setToken}
-          />
-        </div>
+            {/* ==================  BODY =================== */}
 
-        {/* ====================== ROUTES ======================= */}
+            <div className="app-right">
+              <div className="app-right-header">
+                <Header
+                  sidebarActive={sidebarActive}
+                  setSidebarActive={setSidebarActive}
+                  setToken={setToken}
+                />
+              </div>
 
-        <div className="app-right-center">
+              {/* ====================== ROUTES ======================= */}
 
-                    <Switch>
-                      <Route path="/" component={Home} exact />
-                      <Route path="/students" component={Students} exact />
-                      <Route path="/teachers" component={Teachers} exact />
-                      <Route path="/groups" component={Groups} exact />
-                      <Route path="/courses" component={Courses} exact />
-                      <Route path="/groups/groupsProfil/:groupID" component={GroupProfil} exact />
-                      <Route path="/coursesAddLesson" component={CoursesAddLesson} exact />
-                      <Route path="/coursesInner/:courseID" component={CoursesInner} exact />
-                      <Route path="/lidlar" component={Lids} />
-                      <Route path="/studentProfile/:studentID" exact>
-                        <StudentProfile role="student" />
-                      </Route>
-                      <Route path="/teacherProfile/:collegueID" exact>
-                        <StudentProfile role="teacher" />
-                      </Route>
+              <div className="app-right-center">
 
-                      {/* ==============     MOLIYA =============== */}
+                <Switch>
 
-                      <Route path="/finance" component={Finance} />
-                      <Route path="/financeCosts" component={Xarajatlar} />
-                      <Route path="/financeSalary" component={Salary} />
-                      <Route path="/financePaymentGroups" component={PaymentGroups} />
-                      <Route path="/financePayment" component={CoursesPayment} />
+                  
 
+                  {
+					  
+					 UserStatus === 1 || UserStatus === 3 ? <>
+						<Route path="/" component={Home} exact />
+						<Route path="/students" component={Students} exact />
+						<Route path="/teachers" component={Teachers} exact />
+						<Route path="/courses" component={Courses} exact />
+						<Route path="/coursesAddLesson" component={CoursesAddLesson} exact />
+						<Route path="/coursesInner/:courseID" component={CoursesInner} exact />
+						<Route path="/teacherProfile/:collegueID" exact>
+							<StudentProfile role="teacher" />
+						</Route>
+						<Route path="/lidlar" component={Lids} />
+						<Route path="/groups" component={Groups} exact />
+						<Route path="/groups/groupsProfil/:groupID" component={GroupProfil} exact />
+						<Route path="/studentProfile/:studentID" exact>
+							<StudentProfile role="student" />
+						</Route>
+						{
+							UserStatus === 1 && <>
+								<Route path="/finance" component={Finance} />
+								<Route path="/financeCosts" component={Xarajatlar} />
+								<Route path="/financeSalary" component={Salary} />
+								<Route path="/financePaymentGroups" component={PaymentGroups} />
+								<Route path="/financePayment" component={CoursesPayment} />
 
-                      {/* =================== SETTINGS ======================= */}
+								<Route path="/settingsRoadmap" component={SettingsRoadMap} />
+								<Route path="/settingsEmployees" component={Employees} />
+								<Route path="/settingsEmployeesInner" component={Rooms} />
+								<Route path="/settingsMagazine" component={Jurnals} />
+								<Route path="/settingsArchive" component={Archive} />
+								<Route path="/settingLead" component={LidFormSettings} />
+								<Route path="/settingsShapes" component={Shakillar} />
+								<Route path="/enterForm" component={EnterForm} />
+								<Route path="/settingsCompany" component={SettigsCompany} />
+							</>
+						}
+					</>
+					: UserStatus === 4 ? <>
+						<Route path="/finance" component={Finance} />
+						<Route path="/financeCosts" component={Xarajatlar} />
+						<Route path="/financeSalary" component={Salary} />
+						<Route path="/financePaymentGroups" component={PaymentGroups} />
+						<Route path="/financePayment" component={CoursesPayment} />
+					</>
+					: UserStatus === 2 ?
+						<Route path="/lidlar" component={Lids} />
+					: <>
+						<Route path="/groups" component={Groups} exact />
+						<Route path="/groups/groupsProfil/:groupID" component={GroupProfil} exact />
+						<Route path="/studentProfile/:studentID" exact>
+							<StudentProfile role="student" />
+						</Route>
+					</>
+                  }
+                  <Route path="/test-muammo" component={Test} />
+                </Switch>
+              </div>
+            </div>
+          </> : <>
 
-                      <Route path="/settingsRoadmap" component={SettingsRoadMap} />
-                      <Route path="/settingsEmployees" component={Employees} />
-                      <Route path="/settingsEmployeesInner" component={Rooms} />
-                      <Route path="/settingsMagazine" component={Jurnals} />
-                      <Route path="/settingsArchive" component={Archive} />
-                      <Route path="/settingLead" component={LidFormSettings} />
-                      <Route path="/settingsShapes" component={Shakillar} />
-                      <Route path="/enterForm" component={EnterForm} />
-                      <Route path="/settingsCompany" component={SettigsCompany} />
-
-
-
-                      <Route path="/test-muammo" component={Test} />
-                      {/* <Route path="/test" component={StudentsTablee} /> */}
-
-
-
-                    </Switch>
-        </div>
-        
-
-      </div>
-        </> : <>
-        
-          <Switch>
+            <Switch>
               <Route path="/login/:centerHashtag" component={Login} />
               <Route path="/:hashtag/entry/lead/*" component={LidForm} />
-          </Switch>
-        </>
+            </Switch>
+          </>
       }
     </div>
   )

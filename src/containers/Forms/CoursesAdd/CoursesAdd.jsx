@@ -108,13 +108,7 @@ const CoursesAdd = ({ onClose }) => {
                   <input type="text" autoComplete="off" 
                   ref={inputRef}
                   onKeyUp={e => {
-                     setPrice((e.target.value).replace(/\s/g, ''))
-                     let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
-                     if (money === '0') {
-                        e.target.value = ''
-                     } else {
-                        e.target.value = money
-                     }
+                     setPrice(e.target.value)
                   }} className={"section_name_input"} name={"nomi"}  />
                </div>
                <div className="form_group izma__form__teaxtarea" style={{ width: 400 }}>

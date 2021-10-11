@@ -1,7 +1,6 @@
 import React from 'react'
 import { ApolloClient, ApolloProvider, InMemoryCache, split, createHttpLink } from '@apollo/client'
 import ReactDOM from 'react-dom'
-import App from './pages/App/App'
 import { BrowserRouter } from 'react-router-dom'
 import { CourseProvider } from './context/CourseProvider'
 import '../src/assets/izma fonts/fonts.scss'

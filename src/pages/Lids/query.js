@@ -108,6 +108,7 @@ const ALL_LEADS = gql `
         teachID
         leadBoxID
         index
+        courseName
         }
     }
 `
@@ -121,6 +122,7 @@ const NEW_LEAD = gql `
         $birthday: String
         $gender: Int
         $comment: String
+        $courseName: String
         $courseID: ID
         $teachID: ID
         $index: Int
@@ -133,6 +135,7 @@ const NEW_LEAD = gql `
         gender: $gender
         comment: $comment
         courseID: $courseID
+        courseName: $courseName
         teachID: $teachID
         index: $index
         ) {
@@ -153,6 +156,7 @@ const UPDATE_LEAD = gql `
         $courseID: ID
         $teachID: ID
         $index: Int
+        $courseName: String
     ) {
         updateLead(
         id: $leadID
@@ -165,6 +169,7 @@ const UPDATE_LEAD = gql `
         courseID: $courseID
         teachID: $teachID
         index: $index
+        courseName: $courseName
         ) {
         id
         }

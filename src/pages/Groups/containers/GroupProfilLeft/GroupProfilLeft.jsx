@@ -132,6 +132,7 @@ const GroupProfilLeft = (prop) => {
                grID: groupID
             }
          })
+         console.log('status')
 
          setPayment(false)
 
@@ -213,6 +214,7 @@ const GroupProfilLeft = (prop) => {
    useEffect(() => {
 
          if (payment) {
+            
             let backCash = (checkCache && checkCache.studentCash.cashAmount) - (groups && groups.byGroupID.price)
             UpdatePayment({ variables: { stID: selectedUser, cashAmm: String(backCash) } })
 
@@ -223,8 +225,8 @@ const GroupProfilLeft = (prop) => {
                studentID: selectedUser,
                debit: backCash < 0 ? String(backCash) : null
             }
-
             HistoryPay({ variables: data })
+            console.log('payed')
          } 
          if (staatus === 5 && paymentStatus) {
             SetStatus3_4({

@@ -14,17 +14,17 @@ const COLLEGUES = gql`
 
 const ROADMAP = gql`
 {
-    roadMap{
+  roadMap{
+    id
+    name
+    roadmapItems{
       id
-      name
-      roadmapItems{
-        id
-        nameUz
-        nameRu
-        nameEn
-      }
+      nameUz
+      nameRu
+      nameEn
     }
   }
+}
 `
 
 const TEACHER_SUBSCRIPTION = gql `

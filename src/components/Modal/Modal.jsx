@@ -60,7 +60,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                   block === 'addComment' ?
                      <>
                         <label className='myModal-inner-form-label'>{Language[lang].students.payment.comment}</label>
-                        <textarea name="" id="" cols="30" onKeyUp={(e) => setInfo(e.target.value)} rows="4"></textarea>
+                        <textarea name="" cols="30" onKeyUp={(e) => setInfo(e.target.value)} rows="4"></textarea>
                         <div className="buttonWrapper">
                            <button>{Language[lang].students.background.save}</button>
                         </div>

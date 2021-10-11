@@ -24,42 +24,14 @@ const Counter = ({ text, handleMinus, handlePlus, })=>{
         <div className="questions_item white">
             <p>{text}</p>
             <div className="counter">
-                <button onClick={decremenet}><img src={Minus} alt="" /></button>
+                <button onClick={incremenet}><img src={Plus} alt="" /></button>
                 <span>{counter}</span>
-                <button onClick={incremenet}><img src={Plus} alt="" /></button>
-            </div>
-        </div>
-    )
-}
-
-const SecondCounter = ({ handleMinusTwo, handlePlusTwo, text})=>{
-    const [counterTwo, setCounterTwo] = useState(0)
-    const decremenet = () => {
-        if (counterTwo < 10) {
-        setCounterTwo(counterTwo + 1)
-        handlePlusTwo()
-        }
-    }
-
-    const incremenet = () => {
-        if (counterTwo > 0) {
-            setCounterTwo(counterTwo - 1)
-            handleMinusTwo()
-        }
-    }
-    return (
-        <div className="questions_item white">
-            <p>{text}</p>
-            <div className="counter">
                 <button onClick={decremenet}><img src={Minus} alt="" /></button>
-                <span>{counterTwo}</span>
-                <button onClick={incremenet}><img src={Plus} alt="" /></button>
             </div>
         </div>
     )
 }
 
 export  {
-    Counter,
-    SecondCounter
+    Counter
 }

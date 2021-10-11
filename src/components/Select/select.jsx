@@ -11,7 +11,7 @@ export const Select = ({ children, defaultValue, onSelect }) => {
     const [opened,setOpened] = useState(false)
     const [search,setSearch] = useState('')
     const [result,setResult] = useState([])
-    const [changeInput,setChangeInput] = useState(true)
+    const [,setChangeInput] = useState(true)
 
     const value = {
         currentValue,

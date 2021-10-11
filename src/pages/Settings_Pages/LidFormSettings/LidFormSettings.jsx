@@ -71,7 +71,7 @@ const LidFormSettings = () => {
                               :
                            <input type="text"/>
                      }
-                     <button onClick={() => setInputForm(!inputForm)}></button>
+                     <button onClick={() => setInputForm(!inputForm)} className={inputForm ? '' : 'active'}></button>
                   </div>
                </div>
 

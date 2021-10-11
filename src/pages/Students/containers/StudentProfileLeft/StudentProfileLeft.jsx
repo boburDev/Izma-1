@@ -320,6 +320,7 @@ const StudentsProfileLeft = () => {
               myModal={isModalVisibleD}
               setMymodal={setIsModalVisibleD}
               setInfo={setGroupAdd}
+              info={groupAdd}
               groups={Groups && Groups?.groups}
               setInfo2={setGroupAddDate}
             />

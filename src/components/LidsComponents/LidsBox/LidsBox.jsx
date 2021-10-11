@@ -17,6 +17,8 @@ import { useMutation } from '@apollo/client';
 import { DELETE_BOX } from '../../../pages/Lids/query';
 import { useSnackbar } from 'notistack';
 import LidAddItem1 from '../../../containers/Forms/LidAddItem1/LidAddItem1';
+import LidAddItem2 from '../../../containers/Forms/LidAddItem2/LidAddItem2';
+import { dayDivider } from '../../../context/DayDividerProvider';
 
 const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate, sorov }) => {
 
@@ -26,6 +28,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
    const [active, setActive] = useState(false)
    const [openEdit, setOpenEdit] = useState(false)
    const [openEdit2, setOpenEdit2] = useState(false)
+   const [openEdit3, setOpenEdit3] = useState(false)
 
    const [deleteBox] = useMutation(DELETE_BOX)
 
@@ -34,6 +37,9 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
    }
    const closeEdit2 = () => {
       setOpenEdit2(false)
+   }
+   const closeEdit3 = () => {
+      setOpenEdit3(false)
    }
 
   
@@ -115,6 +121,21 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
 
                      />
                   </Drawer>
+                  <Drawer
+                     placement="right"
+                     closable={false}
+                     onClose={closeEdit3}
+                     visible={openEdit3}
+                  >
+                     <LidAddItem2
+                        onClose={closeEdit3}
+                        setColumns={setColumns}
+                        columns={columns}
+                        defaultInfo={defaultInfo}
+                        boxId={column.id}
+                        formNum={column.boxStatus}
+                     />
+                  </Drawer>
                   <div
                      className={`lidItem ${active ? 'active' : ''}`}
                      {...provided.droppableProps}
@@ -140,7 +161,7 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                                  <span>{column?.name}</span>
                                  <span>{column?.courseName}</span>
                                  <span>{column?.teachName}</span>
-                                 <span>{column?.courseDays}</span>
+                                 <span>{dayDivider(column?.courseDays)}</span>
                                  <span>{column?.courseTime}</span>
                               </h2>
                                  :
@@ -167,8 +188,9 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                                  groupCreate ?
                                  <span
                                        onClick={() => {
-                                          groupCreate(true)
                                           setMenu(false)
+                                          setDefaultInfo(column)
+                                          setOpenEdit3(true)
                                        }}
                                     ><img src={LidArrow} alt="" />Guruh yaratish</span>
                                   :

@@ -55,6 +55,8 @@
                transition: all ease 0.5s;
                transform: rotate(180deg);
             }
+
+            
          }
       }
    }
@@ -107,6 +109,9 @@
       // cursor: pointer;
       // display: flex;
       // align-items: center;
+      &.disabled {
+         opacity: 0.4;
+      }
 
       
 

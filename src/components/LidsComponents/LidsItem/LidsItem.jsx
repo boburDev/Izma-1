@@ -49,7 +49,6 @@ const LidsItem = ({ item, index, columns, setColumns }) => {
      setOpenEdit(false)
    }
 
-   console.log('hello'.substring(0, 47));
 
 
    return (

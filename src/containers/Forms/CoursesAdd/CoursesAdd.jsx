@@ -15,26 +15,26 @@ const CoursesAdd = ({ onClose }) => {
 
    const { courseID } = useParams()
    const [lang] = useLang();
-   const { enqueueSnackbar } = useSnackbar();
    const { data: dataToEdit } = useQuery(ONE_COURSE_TO_EDIT, { variables: { id: courseID } })
    const [Update_course] = useMutation(UPDATE_COURSE)
-
-
+   
+   
    const [name, setName] = useState(dataToEdit && dataToEdit.byCourseID[0].name)
    const [price, setPrice] = useState(dataToEdit && dataToEdit.byCourseID[0].price)
    const [description, setDescription] = useState(dataToEdit && dataToEdit.byCourseID[0].description)
    const [disabled, setDisabled] = useState(true)
-
+   
    useEffect(() => {
       name && price ? setDisabled(false) : setDisabled(true)
    }, [name, price])
-
+   
    const [newCourse] = useMutation(CREATE_COURSE, {
       update: (cache, data) => {
          // console.log(data)
       }
    })
-
+   
+   const { enqueueSnackbar } = useSnackbar();
    const handleClick2 = (message) => {
       enqueueSnackbar(message, {
          variant: 'error',

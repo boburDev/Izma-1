@@ -9,19 +9,15 @@ import { TEACHER_FILTERS } from '../../../Querys/FilterSoha'
 
 const format = 'HH:mm';
 
-const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
-   const itemName = useRef()
-   const [startDate, setStartDate] = useState()
-   const [time, setTime] = useState('')
-   const [courseName, setCourseName] = useState()
-   const [teacherName, setTeacherName] = useState()
-   const [day, setDay] = useState()
+const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose, defaultInfo }) => {
+   const itemName = useRef(defaultInfo?.name)
+   const [startDate, setStartDate] = useState('')
+   const [time, setTime] = useState(defaultInfo?.courseTime)
+   const [courseName, setCourseName] = useState(defaultInfo?.courseID)
+   const [teacherName, setTeacherName] = useState(defaultInfo?.teachID)
+   const [day, setDay] = useState(defaultInfo?.courseDays)
 
-   console.log(startDate);
-   console.log(time);
-   console.log(courseName);
-   console.log(teacherName);
-   console.log(day);
+
 
 
 
@@ -69,10 +65,12 @@ const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
       // document.getElementById('formLIdAddRes2').reset()
       onClose()
    }
+
+   console.log(defaultInfo)
    return (
       <div className={`form2 ${active1 ? 'active' : ''}`} id="formLIdAddRes2">
          <div className="form2-header">
-            <h2>Yaratishni o’rnatish</h2>
+            <h2>Guruh yaratish</h2>
 
             <div className="closeBox" onClick={() => onClose()}>
                <span></span>
@@ -81,7 +79,7 @@ const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
          <form action="" id="formLid1" onSubmit={handleSub}>
             <div className="row">
                <label htmlFor="Nomi">Nomi</label>
-               <input autoComplete="off" type="text" ref={itemName} />
+               <input autoComplete="off" type="text" ref={itemName} defaultValue={defaultInfo?.name}/>
             </div>
             <div className="row">
                <label htmlFor="Nomi">Kursni tanlash</label>
@@ -89,6 +87,7 @@ const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
                   pInput="Kursni tanlang"
                   arr={courses && courses?.courses}
                   fnc={setCourseName}
+                  defolt={defaultInfo?.courseID}
                />
             </div>
             <div className="row">
@@ -97,6 +96,8 @@ const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
                   pInput="O’qituvchini tanlang"
                   fnc={setTeacherName}
                   arr={teachers && teachers?.colleagues}
+                  defolt={defaultInfo?.teachID}
+                  teach={true}
                />
             </div>
             <div className="row">
@@ -105,11 +106,12 @@ const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
                   pInput="Kunlarni tanlang"
                   fnc={setDay}
                   arr={daysArr}
+                  defolt={defaultInfo?.courseDays}
                />
             </div>
             <div className="row">
                <label htmlFor="Nomi">Darsning boshlanish vaqti</label>
-               <TimePicker onChange={e => setTime(e.format('HH:mm'))} defaultValue={moment('00:00', format)} format={format} />
+               <TimePicker onChange={e => setTime(e.format('HH:mm'))} defaultValue={moment(defaultInfo?.courseTime, format)} format={format} />
             </div>
             <div className="row">
                <label htmlFor="">Guruh boshlanish sanasi</label>

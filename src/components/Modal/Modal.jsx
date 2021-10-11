@@ -28,6 +28,8 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
    const { enqueueSnackbar } = useSnackbar();
    const [lang] = useLang();
 
+   
+
    useEffect(() => {
       if(snake) {
          const message = 'O`chirildi'

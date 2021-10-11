@@ -1,11 +1,21 @@
 import './DropSearch.scss'
 import { useEffect, useRef, useState } from 'react'
 import Arrow from '../../assets/Icons/arrow_im.svg'
+import { useSnackbar } from 'notistack'
 
-const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups }) => {
+const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
    const input = useRef()
    const browsers = useRef()
    const arrow = useRef()
+
+   const { enqueueSnackbar } = useSnackbar();
+   const handleClick2 = (message) => {
+      enqueueSnackbar(message, {
+         variant: 'error',
+      });
+
+   };
+
 
 
 
@@ -49,7 +59,10 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups }) => {
       };
       browsers.current.childNodes.forEach(option => {
          option.onclick = function () {
-            if (option.className === 'selected') {
+            if (option.className === 'disabled') {
+               
+            }
+           else if (option.className === 'selected') {
                input.current.value = '';
             } else {
                input.current.value = option.textContent;
@@ -142,9 +155,13 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups }) => {
  const [obj, setObj] = useState()
 
  useEffect(() => {
-   setObj(arr && arr.find(el => el.id === defolt))
+    if(teach) {
+       setObj(arr && arr.find(el => el.Id === defolt))
+      }else {
+       setObj(arr && arr.find(el => el.id === defolt))
+    }
+   
  }, [arr, defolt])
-
 
 
 
@@ -167,8 +184,13 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups }) => {
                   {
                         arr && arr.map((z, i) => (
                            <span
+                              disabled={stGroups && stGroups.find(el => el.id === z.id) ? true : false}
+                              className={stGroups && stGroups.find(el => el.id === z.id) ? 'disabled' : ''}
                               onClick={(e) => {
-                                 if (e.target.className === 'selected') {
+                                 if (e.target.className === 'disabled') {
+                                    return handleClick2('O`quvchi ushbu guruhda mavjud')
+                                }
+                                 else if (e.target.className === 'selected') {
                                     fnc('')
                                  } else {
                                     fnc(z)

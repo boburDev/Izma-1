@@ -10,12 +10,12 @@ import { NEW_BOX } from '../../../pages/Lids/query'
 
 const format = 'HH:mm';
 
-const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
+const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose, defaultInfo }) => {
    const itemName = useRef()
-   const [time, setTime] = useState('')
-   const [courseName, setCourseName] = useState()
-   const [teacherName, setTeacherName] = useState()
-   const [day, setDay] = useState()
+   const [time, setTime] = useState(defaultInfo?.name)
+   const [courseName, setCourseName] = useState(defaultInfo?.courseID)
+   const [teacherName, setTeacherName] = useState(defaultInfo?.teachID)
+   const [day, setDay] = useState(defaultInfo?.courseDays)
 
     const [createBox] = useMutation(NEW_BOX)
    
@@ -73,7 +73,7 @@ const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
          <form action="" id="formLid1" onSubmit={handleSub}>
             <div className="row">
                <label htmlFor="Nomi">Nomi</label>
-               <input autoComplete="off"  type="text" ref={itemName} />
+               <input autoComplete="off"  type="text" ref={itemName} defaultValue={defaultInfo?.name} />
             </div>
             <div className="row">
                <label htmlFor="Nomi">Kursni tanlash</label>
@@ -81,6 +81,8 @@ const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
                   pInput="Kursni tanlang"
                   arr={courses && courses?.courses}
                   fnc={setCourseName}
+                  defolt={defaultInfo?.courseID}
+
                />
             </div>
             <div className="row">
@@ -89,6 +91,8 @@ const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
                   pInput="O’qituvchini tanlang"
                   fnc={setTeacherName}
                   arr={teachers && teachers?.colleagues}
+                  defolt={defaultInfo?.teachID}
+                  teach={true}
                />
             </div>
             <div className="row">
@@ -97,11 +101,12 @@ const LidAddItem1 = ({ setActive1, active1, refresh, setRefresh, onClose }) => {
                   pInput="Kunlarni tanlang"
                   fnc={setDay}
                   arr={daysArr}
+                  defolt={defaultInfo?.courseDays}
                />
             </div>
             <div className="row">
                <label htmlFor="Nomi">Darsning boshlanish vaqti</label>
-               <TimePicker onChange={e => setTime(e.format('HH:mm'))} defaultValue={moment('00:00', format)} format={format} />
+               <TimePicker onChange={e => setTime(e.format('HH:mm'))} defaultValue={moment(defaultInfo ? defaultInfo?.courseTime : '00:00', format)} format={format} />
             </div>
             <button type="submit" >Yaratish</button>
          </form>

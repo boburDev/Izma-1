@@ -100,7 +100,7 @@ const Lids = () => {
       }
    }, [ boxes, leads, check])
    
-  
+
 
    useEffect(() => {
 

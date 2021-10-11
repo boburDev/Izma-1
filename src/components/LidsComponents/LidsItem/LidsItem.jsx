@@ -49,6 +49,8 @@ const LidsItem = ({ item, index, columns, setColumns }) => {
      setOpenEdit(false)
    }
 
+   console.log('hello'.substring(0, 47));
+
 
    return (
       <Draggable
@@ -86,10 +88,9 @@ const LidsItem = ({ item, index, columns, setColumns }) => {
                            columns={columns}
                            setColumns={setColumns}
                            item={item}
-
                         />
                      </Drawer>
-                     <span className='span'>{item.name} / {item.phone} / {item.comment}</span>
+                     <span className='span'>{item.name} / {item.phone} / </span>
                      <div className="menuWrapper" >
                         <button className="lidList-inner-user-button" onClick={() => setMenu(!menu)}><img src={MenuIcon} alt="" /></button>
                         <div className={`boxmenu ${menu ? 'active' : ''}`} ref={wrapperRef}>
@@ -103,8 +104,8 @@ const LidsItem = ({ item, index, columns, setColumns }) => {
                               }}><img src={Delete} alt=""/> O’chirish</span>
                         </div>
                      </div>
-                     <span className={`lidList-inner-comment ${item?.lead_comment ? 'hasComment' : ''}`}>
-                        {item.lead_comment}
+                     <span className={`lidList-inner-comment ${item?.comment ? 'hasComment' : ''}`}>
+                        {item.comment && item.comment.substring(0, 40)+'...'}
                      </span>
                   </div>
                </div>

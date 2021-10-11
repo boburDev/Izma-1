@@ -36,7 +36,7 @@
 
    &-comment {
       position: absolute;
-      bottom: 0;
+      transform: translateY(-100%);
       border-radius: 4px;
       width: auto;
       padding: 14px;
@@ -85,11 +85,11 @@
       color: #5E5873;
       position: relative;
 
-      .span:hover~.hasComment {
+      .span:hover ~.hasComment {
          display: flex;
       }
 
-      &:hover~.hasComment {
+      &:hover ~ .hasComment {
          display: flex;
       }
 

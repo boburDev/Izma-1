@@ -1,7 +1,7 @@
 import './check.scss'
 import ReactToPrint from 'react-to-print'
 import Close from '../../assets/Icons/Group 26.svg'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, memo } from 'react'
 import Logo from '../../assets/Icons/Sertifikat.png'
 import { useCheck } from '../../context/CheckProvider'
 import { useLang } from '../../context/LanguageProvider'
@@ -127,4 +127,4 @@ const Check = ({ handleCancelY ,  handleOkY  })=>{
     )
 }
 
-export default Check
+export default memo (Check)

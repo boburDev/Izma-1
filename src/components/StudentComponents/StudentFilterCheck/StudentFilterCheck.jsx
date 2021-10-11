@@ -1,5 +1,5 @@
 import './StudentFilterCheck.scss'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 // import { useSearch } from '../../../context/SearchProvider'
 
 const StudentFilterCheck = ({ nameSoha, id, setState, state }) => {
@@ -35,4 +35,4 @@ const StudentFilterCheck = ({ nameSoha, id, setState, state }) => {
    )
 }
 
-export default StudentFilterCheck
+export default memo (StudentFilterCheck)

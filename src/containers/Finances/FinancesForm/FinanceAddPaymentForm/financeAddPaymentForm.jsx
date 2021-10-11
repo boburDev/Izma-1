@@ -2,7 +2,7 @@ import './financeAddPaymentForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
 import {  DatePicker } from "antd"
 import { Radio, Input } from 'antd'
-import { useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import TextArea from "antd/lib/input/TextArea"
 import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT_GROUPS, CREATE_CHECK, SUBSCRIPTION_CHECK, UPDATE_GR_STATUS, COUNT } from '../../../../Querys/FinanceAddPayForm_Query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
@@ -24,42 +24,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const [lang] = useLang()
 
 	const [groups, setGroups] = useState()
-
-	// const InputVal = ({ initialValue = "", isNumber }) => {
-	// 	const [value, updateValue] = useState(initialValue);
-
-	// 	const update = (val) => {
-	// 		if (isNumber) {
-	// 			val = val.replace(/,/g, "");
-	// 			const x = Number(val);
-
-	// 			updateValue(x.toLocaleString());
-	// 		} else {
-	// 			updateValue(val);
-	// 		}
-	// 	};
-
-	// 	return (
-	// 		//   <input type="text" value={value} className='input' onChange={e => update(e.target.value)} />
-	// 		<input defaultValue={ammountt}
-	// 			autoComplete="off" className={"section_name_input"} name={"nomi"}
-	// 			onChange={e => update(e.target.value)}
-	// 			value={value}
-	// 			// onKeyUp={e => {
-	// 			// 	setAmmoun((e.target.value)
-	// 			// 	// .replace(/\s/g, '')
-	// 			// 	)
-	// 			// 	// let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
-	// 			// 	// if (money === '0') {
-	// 			// 	// 	e.target.value = ''
-	// 			// 	// } else {
-	// 			// 	// 	e.target.value = money
-	// 			// 	// }
-	// 			// }}
-	// 			type="text" />
-	// 	);
-	// };
-
 
 
 	useEffect(() => {
@@ -102,22 +66,26 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
 
 
-	const test = ((forCheck && Number(forCheck.studentCash.cashAmount) <= 0) && (payment && Number(payment.updateCash.cashAmount) > -1))
-
-
 	useEffect(() => {
 		setGroups(stGroups)
 	}, [stGroups])
 
-	if (test) {
-		CheckBalanc({
-			variables: {
-				stID: studenID && (studenID.studentID || studenID.studentId),
-				status: 3
-			}
-		})
-		SetStatus3_4({ variables: { status: 3, stID: (studenID.studentID || studenID.studentId) } })
-	}
+
+	useEffect(() => {
+
+		const test = ((forCheck && Number(forCheck.studentCash.cashAmount) <= 0) && (payment && Number(payment.updateCash.cashAmount) > -1))
+	
+		if (test) {
+			CheckBalanc({
+				variables: {
+					stID: studenID && (studenID.studentID || studenID.studentId),
+					status: 3
+				}
+			})
+			SetStatus3_4({ variables: { status: 3, stID: (studenID.studentID || studenID.studentId) } })
+		}
+	}, [CheckBalanc, SetStatus3_4, forCheck, payment, studenID])
+
 
 
 	if (forCheck && forCheck.studentCash.cashAmount < '0') {
@@ -292,7 +260,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					</div>
 					<div className="form_group" style={{ width: "100%" }}>
 						<label className='izma__courses__form-bolim-form-label'>{Language[lang].students.recordPayment.amount}</label>
-						{/* <Input initialValue={''} isNumber={true} /> */}
 						<input defaultValue={ammountt}
 						autoComplete="off" className={"section_name_input"} name={"nomi"}
 							onKeyUp={e => {
@@ -350,4 +317,4 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 		</>
 	)
 }
-export default FinanceAddPaymentForm
+export default memo (FinanceAddPaymentForm)

@@ -4,7 +4,7 @@ import './StudentAdd.scss'
 
 import CloceBtn from '../../../assets/Icons/Group 26.svg'
 // import { AutoComplete } from 'antd';
-import { useState } from 'react'
+import { memo, useState } from 'react'
 
 import 'antd/dist/antd.css'
 import { ADD_NEW_STUDENTS_GROUP, NEW_CASH } from '../../../Querys/Students_Query';
@@ -101,4 +101,4 @@ const StudentAddGroup = ({ onCloseF }) => {
    )
 }
 
-export default StudentAddGroup
+export default memo (StudentAddGroup)

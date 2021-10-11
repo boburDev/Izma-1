@@ -29,7 +29,7 @@ import { LidsProvider } from './context/LidsProvider'
 import Slide from '@material-ui/core/Slide'
 import AppWrapper from './pages/AppWrapper/AppWrapper'
 
-const isTester = false
+// const isTester = false
 // http://api.al-azhar.uz/api/graphql
 
 const api = `http://192.168.43.4:4000/graphql`
@@ -110,7 +110,7 @@ const Main = () => {
 										<CourseFilterProvider>
 											<TeachersTableProvider>
 												<LoaderProvider>
-													<DavomatProvider>
+													<DavomatProvider	>
 														<Pagination>
 															<DayDividerProvider>
 																<LangProvider>

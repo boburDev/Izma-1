@@ -76,11 +76,11 @@ const GroupProfilLeft = (prop) => {
       })
       if (groups && groups.byGroupID) {
          setDayDivide(groups.byGroupID.days)
+         prop.studData(groups && groups.byGroupID.students)
       }
-   }, [grStudents, setGroupStudents, groups, setDayDivide])
+   }, [grStudents, setGroupStudents, groups, setDayDivide, prop])
 
 
-   prop.studData(groups && groups.byGroupID.students)
 
    const { data: checkCache } = useQuery(CHECK_CASH, {
       variables: { stID: selectedUser }
@@ -88,9 +88,6 @@ const GroupProfilLeft = (prop) => {
 
    const { data: hasStud } = useQuery(HAS_STUDENT, { variables: { stID: stID, grID: groupID } })
    const { data: setStatus_6 } = useQuery(SET_STATUS_6, { variables: { stID: selectedUser } })
-
-   // const [cashCheck, {data: forCheck}] = useLazyQuery(CHECK_CASH_GROUP)
-
 
 
    const { data: students } = useQuery(GET_STUDENTS, {

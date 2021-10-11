@@ -133,10 +133,8 @@ const App = () => {
         </> : <>
         
           <Switch>
-            
               <Route path="/login/:centerHashtag" component={Login} />
               <Route path="/:hashtag/entry/lead/*" component={LidForm} />
-
           </Switch>
         </>
       }

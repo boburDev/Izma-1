@@ -6,7 +6,7 @@ import { COURSES } from '../../../Querys/Courses_Query';
 import { TEACHER_FILTERS } from '../../../Querys/FilterSoha';
 import { ROOMS, UPDATE_GROUP } from '../../../Querys/Group_Query';
 import { useQuery, useMutation } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import DropSearch from '../../../components/DropSearch/DropSearch';
 import { useSnackbar } from 'notistack';
 import { useLang } from '../../../context/LanguageProvider';
@@ -242,7 +242,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
    )
 }
 
-export default GroupEdit
+export default memo (GroupEdit)
 
 
 

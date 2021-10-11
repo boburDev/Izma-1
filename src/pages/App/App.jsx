@@ -31,6 +31,7 @@ import SettingsRoadMap from "../Settings_Pages/Roadmap/roadmap";
 import { useHistory } from 'react-router'
 import SettigsCompany from "../Settings_Pages/SettingsCompany/SettingsCompany";
 import Test from "./test";
+import LidFormSettings from "../Settings_Pages/LidFormSettings/LidFormSettings";
 
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
@@ -45,6 +46,8 @@ const App = () => {
       setSt(1)
     }
   }, [location.path])
+
+  
 
   
   return (
@@ -110,7 +113,7 @@ const App = () => {
                       <Route path="/settingsEmployeesInner" component={Rooms} />
                       <Route path="/settingsMagazine" component={Jurnals} />
                       <Route path="/settingsArchive" component={Archive} />
-                      <Route path="/settingLead" component={LidForm} />
+                      <Route path="/settingLead" component={LidFormSettings} />
                       <Route path="/settingsShapes" component={Shakillar} />
                       <Route path="/enterForm" component={EnterForm} />
                       <Route path="/settingsCompany" component={SettigsCompany} />

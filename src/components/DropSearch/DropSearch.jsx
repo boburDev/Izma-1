@@ -2,13 +2,11 @@ import './DropSearch.scss'
 import { useEffect, useRef, useState } from 'react'
 import Arrow from '../../assets/Icons/arrow_im.svg'
 
-const DropSearch = ({ arr, pInput, fnc, notReq, defolt }) => {
+const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups }) => {
    const input = useRef()
-   const inputSpan = useRef()
    const browsers = useRef()
    const arrow = useRef()
    const [focs, setFocs] = useState()
-
 
 
 
@@ -33,10 +31,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt }) => {
          }
       })
 
-      inputSpan.current.onclick = function () {
-         setFocs(true)
-         input.current.focus()
-      }
+     
 
       
       input.current.addEventListener('blur', () => {
@@ -60,10 +55,8 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt }) => {
          option.onclick = function () {
             if (option.className === 'selected') {
                input.current.value = '';
-               inputSpan.current.textContent = 'Select options'
             } else {
                input.current.value = option.textContent;
-               inputSpan.current.textContent = option.textContent;
             }
             arrow.current.classList.remove('active')
             browsers.current.style.display = 'none';
@@ -165,58 +158,19 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt }) => {
             <div className="inputWrr">
                <input 
                   defaultValue={defolt ? arr && obj?.name : ''}
-               autoComplete="off" list="" name="browsers" placeholder={pInput} 
-                  className={`dropSearchInput ${focs ? 'active': ''}`}
+               autoComplete="off" list="" name="browsers" placeholder={pInput}
                   ref={input}
                   required={notReq ? false : true}
                />
-               <span ref={inputSpan} className={`dropBox ${focs ? 'active' : ''}`}>{input?.current?.value ? input?.current?.value : defolt ? arr && obj?.name : `Select options`}</span>
-            </div>
-            <span ref={arrow} className="dropSearchArrow" ><img src={Arrow} alt=""
+               <span ref={arrow} className="dropSearchArrow" ><img src={Arrow} alt=""
 
-            /></span>
+               /></span>
+            </div>
          </div>
          <div className="dropSearchDatalist" ref={browsers}>
-            {
-
-               defolt ?
-               <>
-                  {
-                        arr && arr.map((z, i) =>{
-                           if(z.id === defolt) {
-                              fnc(z)
-                              return <span
-                                 className='selected'
-                                 onClick={(e) => {
-                                    if (e.target.className === 'selected') {
-                                       fnc('')
-                                    } else {
-                                       fnc(z)
-                                    }
-                                 }}
-                                 key={i} data-name={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
-                           }else {
-                              return <span
-                                 onClick={(e) => {
-                                    if (e.target.className === 'selected') {
-                                       fnc('')
-                                    } else {
-                                       fnc(z)
-                                    }
-                                 }}
-                                 key={i} data-name={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
-                           }
-                        })
-                  }
-               </>
-
-               :
-
-               <>
                   {
                         arr && arr.map((z, i) => (
                            <span
-
                               onClick={(e) => {
                                  if (e.target.className === 'selected') {
                                     fnc('')
@@ -227,9 +181,6 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt }) => {
                               key={i} data-name={z.id ? z.id : z.Id}>{z.name ? z.name : z.room}</span>
                         ))
                   }
-               </>
-               
-            }
          </div>
       </div>
    )

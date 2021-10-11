@@ -83,9 +83,7 @@ const SalaryUpTable = (props) => {
                <div className="main_heading">
                   {
                      columns.map((title, i) => (
-                        <div key={i} className="information">
-                           <h5>{title.title}</h5>
-                        </div>
+                           <h5 className="information" key={i}>{title.title}</h5>
                      ))
                   }
                </div>
@@ -94,10 +92,10 @@ const SalaryUpTable = (props) => {
                   {
                      someArr.map((item, i) => (
                         <div key={i} className="information">
-                           <p>{item.teacher}</p>
-                           <span >{item.discount}</span>
-                           <span >{item.allPay}</span>
-                           <span >{item.salary}</span>
+                           <h5>{item.teacher}</h5>
+                           <h5>{item.discount}</h5>
+                           <h5>{item.allPay}</h5>
+                           <h5>{item.salary}</h5>
                         </div>
                      ))
                   }

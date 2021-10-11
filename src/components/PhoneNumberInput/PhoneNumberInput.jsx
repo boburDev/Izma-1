@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import './PhoneNumberInput.scss'
 
-const PhoneNumberInput = ({ setPhone, setParents, parents, placeholder }) => {
+const PhoneNumberInput = ({ setPhone, setParents, parents, placeholder, disabled }) => {
 
    if(parents) {
       let n = parents
@@ -35,6 +35,7 @@ const PhoneNumberInput = ({ setPhone, setParents, parents, placeholder }) => {
       <div className="phoneInput">
          <span className="numb">+998</span>
          <input
+            disabled={disabled}
             defaultValue={parents ? parents : ''}
             autoComplete="off"
             placeholder={placeholder && placeholder}

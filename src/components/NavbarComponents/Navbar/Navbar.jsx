@@ -228,6 +228,16 @@ const Navbar = ({ sidebarActive }) => {
             setSettingActive(true)
             setDragActive(false)
             break;
+         case "/settingLead":
+            closeAll()
+            setSettingActive(true)
+            setDragActive(false)
+            break;
+         case "/enterForm":
+            closeAll()
+            setSettingActive(true)
+            setDragActive(false)
+            break;
          case "/groups/groupsProfil/" + paths[paths.length - 1]:
             closeAll()
             setGroupActive(true)
@@ -236,6 +246,7 @@ const Navbar = ({ sidebarActive }) => {
          case "/studentProfile/" + paths[paths.length - 1]:
             closeAll()
             setStudentActive(true)
+            
             
             break;
          case "/teacherProfile/" + paths[paths.length - 1]:

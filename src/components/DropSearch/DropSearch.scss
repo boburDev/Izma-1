@@ -17,12 +17,6 @@
          align-items: center;
          position: relative;
          width: 100%;
-
-         .dropSearchInput {
-            &.active {
-               display: flex !important;
-            }
-         }
          .dropBox {
             justify-content: flex-start;
             display: flex;
@@ -38,7 +32,7 @@
       }
 
       input {
-         display: none !important;
+         display: flex ;
          border: none !important;
          width: 100%;
          background: transparent;

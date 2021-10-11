@@ -16,6 +16,7 @@ import { Drawer } from 'antd';
 import { useMutation } from '@apollo/client';
 import { DELETE_BOX } from '../../../pages/Lids/query';
 import { useSnackbar } from 'notistack';
+import LidAddItem1 from '../../../containers/Forms/LidAddItem1/LidAddItem1';
 
 const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate, sorov }) => {
 
@@ -24,11 +25,15 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
    const [defaultInfo, setDefaultInfo] = useState('')
    const [active, setActive] = useState(false)
    const [openEdit, setOpenEdit] = useState(false)
+   const [openEdit2, setOpenEdit2] = useState(false)
 
    const [deleteBox] = useMutation(DELETE_BOX)
 
    const closeEdit = () => {
       setOpenEdit(false)
+   }
+   const closeEdit2 = () => {
+      setOpenEdit2(false)
    }
 
   
@@ -94,6 +99,22 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
 
                      />
                   </Drawer>
+                  <Drawer
+                     placement="right"
+                     closable={false}
+                     onClose={closeEdit2}
+                     visible={openEdit2}
+                  >
+                     <LidAddItem1
+                        onClose={closeEdit2}
+                        setColumns={setColumns}
+                        columns={columns}
+                        defaultInfo={defaultInfo}
+                        boxId={column.id}
+                        formNum={column.boxStatus}
+
+                     />
+                  </Drawer>
                   <div
                      className={`lidItem ${active ? 'active' : ''}`}
                      {...provided.droppableProps}
@@ -137,8 +158,9 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
                               <span
                                  onClick={() => {
                                     setMenu(false)
-                                    setDefaultInfo(column?.name)
-                                    setOpenEdit(true)
+                                    column.boxStatus < 3 ? setDefaultInfo(column?.name) : setDefaultInfo(column)
+                                    column.boxStatus < 3 ? setOpenEdit(true) : setOpenEdit2(true)
+                                    
                                  }}
                               ><img src={Edit} alt=""/>Tahrirlash</span>
                               {

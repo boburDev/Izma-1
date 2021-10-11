@@ -10,7 +10,6 @@ import priceCheck from '../../assets/priceCheck.png'
 
 
 const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, setInfo, openModal, setID, deleteRoom, setTakeID }) => {
-	// console.log(info)
    
    const [modal, setModal] = useState()
    const [modal1, setModal1] = useState()
@@ -49,8 +48,8 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                   <h4 className={'settingsHashRooms'}>{index}</h4>
                   <h4 className={'settingsHashRooms'}>{info?.room || info?.name}</h4>
                   {
-                     (info?.summa-0 >= 0) ? <h4>
-                     <b>{ info?.summa }</b>
+                     (info?.summa-0 >= 0) ? <h4 className={'settingsHashRooms'} >
+                     { info?.summa }
                      </h4> : <h4 className={'settingsHashRooms'} onClick={(e) => {
                         setInfo(info?.room)
                         setID(info.id)

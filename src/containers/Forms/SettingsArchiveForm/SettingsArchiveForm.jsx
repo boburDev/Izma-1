@@ -9,14 +9,15 @@ import PhoneNumberInput from '../../../components/PhoneNumberInput/PhoneNumberIn
 import PasswordInput from '../../../components/PasswordInput/PasswordInput';
 import Language from '../../../lang/index'
 import { useLang } from '../../../context/LanguageProvider';
+import { useSnackbar } from 'notistack';
 
 const SettingsArchiveForm = ({ onClose }) => {
 
-   const [value, setValue] = useState('')
+   const [value, setValue] = useState()
    const [phone, setPhone] = useState('')
-   const [name, setName] = useState('')
+   const [name, setName] = useState()
    const [date, setDate] = useState('')
-   const [gender, setGender] = useState('')
+   const [gender, setGender] = useState()
    const [password, setPassword] = useState('')
    const [lang] = useLang()
 
@@ -27,20 +28,42 @@ const SettingsArchiveForm = ({ onClose }) => {
 
    const [newColleague] = useMutation(CREATE_COLLEAGUE)
 
+   const { enqueueSnackbar } = useSnackbar();
+
+
+
+   const handleClick2 = (message) => {
+      enqueueSnackbar(message, {
+         variant: 'error',
+      });
+
+   };
+
 
    function createColleague() {
-      const data = {
-         name: name,
-         phoneNumber: phone,
-         gender: gender - 0,
-         password: password,
-         status: value,
-         birthday: date
+      if(name && gender && value) {
+         const data = {
+            name: name,
+            phoneNumber: phone,
+            gender: gender - 0,
+            password: password,
+            status: value,
+            birthday: date
+         }
+         newColleague({
+            variables: data
+         })
+         onClose()
+         document.getElementById('archiveFormRes').reset()
+      }else if(!name){
+         handleClick2('F.I.O bo`lishi shart')
+      }else if(!gender) {
+         handleClick2('Jinsi bo`lishi shart')
+      }else if(!value) {
+         handleClick2('Roli bo`lishi shart')
+      }else {
+         handleClick2('Formani to`liq to`ldiring ')
       }
-      newColleague({
-         variables: data
-      })
-      document.getElementById('archiveFormRes').reset()
    }
 
 
@@ -64,7 +87,7 @@ const SettingsArchiveForm = ({ onClose }) => {
 
                <div className="form-input">
                   <label htmlFor="name">{Language[lang].teachers.addNewUser.fullName}</label>
-                  <input autoComplete="off"  onKeyUp={e => setName(e.target.value)} type="text" name="" id="name" className="input-izma" />
+                  <input required autoComplete="off"  onKeyUp={e => setName(e.target.value)} type="text" name="" id="name" className="input-izma" />
                </div>
                <div className="form_group">
                   <label htmlFor="date" className="form_label">{Language[lang].teachers.addNewUser.birthday}</label>
@@ -81,12 +104,12 @@ const SettingsArchiveForm = ({ onClose }) => {
 
                   <div className="genders">
                      <div className="gen_one">
-                        <input autoComplete="off"  value={1} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="men" />
+                        <input required autoComplete="off"  value={1} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="men" />
                         <label htmlFor="men"></label>
                         <span>{Language[lang].students.editStudentInfo.gender[0]}</span>
                      </div>
                      <div className="gen_one">
-                        <input autoComplete="off"  value={2} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="women" />
+                        <input required autoComplete="off"  value={2} onChange={e => setGender(e.target.value)} type="radio" name="gender" id="women" />
                         <label htmlFor="women"></label>
                         <span>{Language[lang].students.editStudentInfo.gender[1]}</span>
                      </div>
@@ -106,18 +129,16 @@ const SettingsArchiveForm = ({ onClose }) => {
                </div>
 
                <div>
-                  <Radio.Group
-                     className="izma__settings-checkbox-wrapper" onChange={onChange}>
-                     <Radio value={1}>{Language[lang].settings.editable.leader}</Radio>
-                     <Radio value={3}>{Language[lang].settings.editable.adminstrator}</Radio>
-                     <Radio value={5}>{Language[lang].settings.editable.teacher}</Radio>
-                     <Radio value={2}>{Language[lang].settings.editable.marketolog}</Radio>
-                     <Radio value={4}>{Language[lang].settings.editable.accountant}</Radio>
+                  <Radio.Group className="izma__settings-checkbox-wrapper" onChange={onChange}>
+                     <Radio  value={1}>{Language[lang].settings.editable.leader}</Radio>
+                     <Radio  value={3}>{Language[lang].settings.editable.adminstrator}</Radio>
+                     <Radio  value={5}>{Language[lang].settings.editable.teacher}</Radio>
+                     <Radio  value={2}>{Language[lang].settings.editable.marketolog}</Radio>
+                     <Radio  value={4}>{Language[lang].settings.editable.accountant}</Radio>
                   </Radio.Group>
                </div>
 
                <button className="create-btn" onClick={() => {
-                  onClose()
                   createColleague()
                }}>{Language[lang].courses.editCourse.create}</button>
             </form>

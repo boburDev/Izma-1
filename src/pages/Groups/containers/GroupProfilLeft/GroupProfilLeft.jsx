@@ -132,10 +132,8 @@ const GroupProfilLeft = (prop) => {
                grID: groupID
             }
          })
-         console.log('status')
 
          setPayment(false)
-
       }
 
    }, [forStatus, SetStatus3_4, SetStatus_4, groupID, selectedUser, payment])
@@ -211,23 +209,25 @@ const GroupProfilLeft = (prop) => {
       })
    }
 
-   useEffect(() => {
 
-         if (payment) {
-            
-            let backCash = (checkCache && checkCache.studentCash.cashAmount) - (groups && groups.byGroupID.price)
-            UpdatePayment({ variables: { stID: selectedUser, cashAmm: String(backCash) } })
+   const rrr = () => {
 
-            const test = Number(checkCache && checkCache.studentCash.cashAmount) <= Number(groups && groups.byGroupID.price)
-
-            const data = {
-               credit: test ? (checkCache && checkCache.studentCash.cashAmount) : (groups && groups.byGroupID.price),
-               studentID: selectedUser,
-               debit: backCash < 0 ? String(backCash) : null
-            }
-            HistoryPay({ variables: data })
-            console.log('payed')
-         } 
+      let backCash = (checkCache && checkCache.studentCash.cashAmount) - (groups && groups.byGroupID.price)
+      UpdatePayment({ variables: { stID: selectedUser, cashAmm: String(backCash) } })
+   
+      const test = Number(checkCache && checkCache.studentCash.cashAmount) <= Number(groups && groups.byGroupID.price)
+   
+      const data = {
+         credit: test ? (checkCache && checkCache.studentCash.cashAmount) : (groups && groups.byGroupID.price),
+         studentID: selectedUser,
+         debit: backCash < 0 ? String(backCash) : null
+      }
+      HistoryPay({ variables: data })
+      console.log('payed')
+   }   
+      
+      useEffect(() => {
+         
          if (staatus === 5 && paymentStatus) {
             SetStatus3_4({
                variables: {
@@ -238,9 +238,7 @@ const GroupProfilLeft = (prop) => {
             })
             setPaymentStatus(false)
          }
-
-   }, [payment, HistoryPay, SetStatus3_4, UpdatePayment, checkCache, groupID, groups, selectedUser, staatus, paymentStatus])
-
+   }, [SetStatus3_4, checkCache, groupID, paymentStatus, selectedUser, staatus])
 
    const showModal = () => {
       setIsModalVisible(true)
@@ -476,6 +474,7 @@ const GroupProfilLeft = (prop) => {
                                        {(s.groupStatus === 2 || s.groupStatus === 5) && <Link to="#" className="del_link" onClick={() => {
                                           s.groupStatus === 5 && setPaymentStatus(true)
                                           s.groupStatus === 2 && setPayment(true)
+                                          s.groupStatus === 2 && rrr()
                                        }} >{Language[lang].groups.activate.activateTitle}</Link>}
                                        <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
                                        <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>

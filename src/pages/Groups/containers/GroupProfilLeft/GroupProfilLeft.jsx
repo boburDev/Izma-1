@@ -34,7 +34,7 @@ import {
    HAS_STUDENT,
    UPDATE_GR_STATUS,
    SUBSCRIPTION_ADD_STUDENT,
-   // SUBSCRIPTION_CASH
+   SUBSCRIPTION_CASH
 } from '../../../../Querys/GroupTabs'
 import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
@@ -198,15 +198,15 @@ const GroupProfilLeft = (prop) => {
       },
    })
 
-   // useSubscription(SUBSCRIPTION_CASH, {
-   //    onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
-   //       cache.modify({
-   //          fields: {
-   //             studentCash: () => {}
-   //          }
-   //       })
-   //    },
-   // })
+   useSubscription(SUBSCRIPTION_CASH, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               studentCash: () => {}
+            }
+         })
+      },
+   })
 
    const [isModalVisible, setIsModalVisible] = useState(false)
    const [isModalDelete, setIsModalDelete] = useState(false)
@@ -327,8 +327,6 @@ const GroupProfilLeft = (prop) => {
    const filtered = grStudents && grStudents.findStudByGrId.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
 
    if (delData && delData) return <Redirect to='/groups' />
-
-
 
    const newNoteStyle = {
       width: '100%',

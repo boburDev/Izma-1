@@ -101,6 +101,7 @@ const App = () => {
                   {
 					  
 					 UserStatus === 1 || UserStatus === 3 ? <>
+					 	<Route path="/test-muammo" component={Test} />
 						<Route path="/" component={Home} exact />
 						<Route path="/students" component={Students} exact />
 						<Route path="/teachers" component={Teachers} exact />
@@ -153,7 +154,6 @@ const App = () => {
 						</Route>
 					</>
                   }
-                  <Route path="/test-muammo" component={Test} />
                 </Switch>
               </div>
             </div>

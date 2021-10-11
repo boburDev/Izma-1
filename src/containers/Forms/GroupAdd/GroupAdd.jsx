@@ -10,7 +10,7 @@ import DropSearch from '../../../components/DropSearch/DropSearch';
 import { useSnackbar } from 'notistack';
 import { useLang } from '../../../context/LanguageProvider';
 import Language from '../../../lang/index'
-
+import { Select, Option } from '../../../components/Select/select'
 const format = 'HH:mm';
 
 const GroupAdd = ({ onClose }) => {
@@ -149,6 +149,18 @@ const GroupAdd = ({ onClose }) => {
                   e.preventDefault()
                   handleGroup()
                }}>
+
+               <Select>
+                  {
+                     teachers && teachers.colleagues.map((i,key) => <Option
+                     key={key}
+                     placeholder={i.name}
+                     value={i.Id}>{i.name}</Option>)
+                  }
+               </Select>
+
+
+
                   <div className="form_inputs">
                      <label htmlFor="">{Language[lang].groups.addNewGroups.name}</label>
                      <input autoComplete="off"   required onKeyUp={e => setName(e.target.value)} type="text" name="" id="" />

@@ -13,13 +13,18 @@ const SettingsRoadMap = ()=>{
     const colors = ['#2eb5be', '#8361d1', '#87e72c', '#e7902c', '#f057c9', '#6e93f8', '#6ef8cf']
     const [lang] = useLang()
 
-     const [result, setResult] = useState({first: 0})
+     const [result, setResult] = useState({'0': ''})
 
-    const handlePlus = () => {
-        setResult({...result,  first: result.first + 1})
+    const handlePlus = (i, value) => {
+        var tmp = {}
+        tmp[i] = value
+        setResult({...result, ...tmp })
     }
-    const handleMinus = () => {
-        setResult({...result, first: result.first - 1 })
+
+    const handleMinus = (i, value) => {
+        var tmp = {}
+        tmp[i] = value
+        setResult({...result, ...tmp})
     }
 
     return (
@@ -49,48 +54,26 @@ const SettingsRoadMap = ()=>{
                     </div>
                     <div className="name_questions">
                         {
-                            i.roadmapItems.map((item, i) => (
-                                <Counter
-                                key={i}
-                                    handlePlus={handlePlus}
-                                    handleMinus={handleMinus}
+                            i.roadmapItems.map((item, j) => {
+                                console.log(item)
+                                return <Counter
+                                    key={j}
+                                    handlePlus={() => handlePlus(index, 0)}
+                                    handleMinus={() => handleMinus(index, 0)}
                                     text={item.nameRu}
                                 />
-                            ))
+                            })
                         }           
                     </div>
                     <br />
                     <br />
                     
                     <div className="name_response">
-                        <h2>{result.first}</h2>
+                        <h2>{console.log(result)}</h2>
                     </div>
                 </div>)
                 }
 
-
-
-                {/* <div className="main_settings second_settings">
-                    <div className="name_direct">
-                        <h2>Marketing</h2>
-                    </div>
-                    <div className="name_questions">
-                        {
-                            someArr.map((item, i) => (
-                                <SecondCounter
-                                key={i}
-                                    handlePlusTwo={handlePlusTwo}
-                                    handleMinusTwo={handleMinusTwo}
-                                    text={item.text}
-                                />
-                            ))
-                        }
-                    </div>
-                    <div className="name_response">
-                        <h2>{resultTwo.first}</h2>
-                    </div>
-                </div> */}
-                
                 <div className="bottom_navbar">
                     <div className="total_ball">
                         <h4>{Language[lang].settings.map.overallBall}</h4>

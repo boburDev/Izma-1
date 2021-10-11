@@ -23,6 +23,7 @@ const Students = () => {
    const onCloseF = () => {
       setVisibleF(false);
    };
+   
    return (
       <div className="izma__students-content" >
          {

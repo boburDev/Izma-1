@@ -17,8 +17,13 @@
     background: #EFF2FF;
     cursor: pointer;
 }
+
+
+.select .picker-text {
+    position: absolute;
+}
 .select .picker .picker-text {
-    min-width: 100%;
+    position: absolute;
     min-height: 100%;
     font-size: 0.8rem;
     margin-bottom: 0;
@@ -26,6 +31,15 @@
     align-items: center;
     margin-left: 10px;
 }
+
+
+/* .select .picker:active, .select .picker .picker-text:active {
+    width: 0px;
+}
+
+.select .picker:hover {
+    width: 0;
+} */
 
 .select .options {
     display: flex;

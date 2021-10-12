@@ -4,7 +4,7 @@ import './StudentAdd.scss'
 
 import CloceBtn from '../../../assets/Icons/Group 26.svg'
 // import { AutoComplete } from 'antd';
-import { memo, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 import 'antd/dist/antd.css'
 import { ADD_NEW_STUDENTS_GROUP, NEW_CASH } from '../../../Querys/Students_Query';
@@ -29,17 +29,21 @@ const StudentAddGroup = ({ onCloseF }) => {
    const [AddNewSudents, { data: checkStudent }] = useMutation(ADD_NEW_STUDENTS_GROUP)
    const [newCash] = useMutation(NEW_CASH)
 
-   if (checkStudent && checkStudent.createStudent.id && stGender !== '' && setStName !== '' && access === true) {
-      newCash({
-         variables: {
-            stID: checkStudent && checkStudent.createStudent.id,
-            cashAmm: '0'
-         }
-      })
-      setStGender('')
-      setStName('')
-      setAccess(false)
-   }
+   useEffect(() => {
+
+      if (checkStudent && checkStudent.createStudent.id && stGender !== '' && setStName !== '' && access === true) {
+         newCash({
+            variables: {
+               stID: checkStudent && checkStudent.createStudent.id,
+               cashAmm: '0'
+            }
+         })
+         setStGender('')
+         setStName('')
+         setAccess(false)
+      }
+   }, [access, checkStudent, newCash, stGender])
+
 
 
    return (

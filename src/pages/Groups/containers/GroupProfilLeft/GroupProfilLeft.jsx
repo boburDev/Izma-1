@@ -140,7 +140,7 @@ const GroupProfilLeft = (prop) => {
                grID: groupID
             }
          })
-
+         console.log('st-3-4')
          setPayment(false)
       }
 
@@ -224,9 +224,7 @@ const GroupProfilLeft = (prop) => {
       // console.log('payed')
    }   
 
-   console.log('okay')
-      
-      useEffect(() => {
+   useEffect(() => {
          
          if (staatus === 5 && paymentStatus) {
             SetStatus3_4({
@@ -236,6 +234,7 @@ const GroupProfilLeft = (prop) => {
                   grID: groupID
                }
             })
+            console.log('st_3_4')
             setPaymentStatus(false)
          }
    }, [SetStatus3_4, checkCache, groupID, paymentStatus, selectedUser, staatus])

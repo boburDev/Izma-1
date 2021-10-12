@@ -161,7 +161,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
        setObj(arr && arr.find(el => el.id === defolt))
     }
    
- }, [arr, defolt])
+ }, [arr, defolt, teach])
 
 
 

@@ -16,7 +16,7 @@ const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose, defaul
    const [courseName, setCourseName] = useState(defaultInfo?.courseID)
    const [teacherName, setTeacherName] = useState(defaultInfo?.teachID)
    const [day, setDay] = useState(defaultInfo?.courseDays)
-
+   console.log(startDate, time, courseName, teacherName, day)
 
 
 

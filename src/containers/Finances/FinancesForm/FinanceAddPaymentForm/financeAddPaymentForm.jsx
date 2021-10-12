@@ -89,7 +89,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	}, [CheckBalanc, SetStatus3_4, forCheck, payment, studenID, tester])
 
 
-
 	if (forCheck && forCheck.studentCash.cashAmount < '0') {
 		localStorage.setItem(studenID && (studenID.studentID || studenID.studentId), JSON.stringify(forCheck && forCheck.studentCash.cashAmount))
 	}

@@ -30,6 +30,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 	}, [names])
 
+	console.log('okay')
 
 	useSubscription(SUBSCRIPTION_CHECK, {
 		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {

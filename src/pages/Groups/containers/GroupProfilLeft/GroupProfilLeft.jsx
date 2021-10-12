@@ -34,7 +34,6 @@ import {
    HAS_STUDENT,
    UPDATE_GR_STATUS,
    SUBSCRIPTION_ADD_STUDENT,
-   SUBSCRIPTION_CASH
 } from '../../../../Querys/GroupTabs'
 import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
@@ -197,16 +196,6 @@ const GroupProfilLeft = (prop) => {
       },
    })
 
-   useSubscription(SUBSCRIPTION_CASH, {
-      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
-         cache.modify({
-            fields: {
-               studentCash: () => {}
-            }
-         })
-      },
-   })
-
    const [isModalVisible, setIsModalVisible] = useState(false)
    const [isModalDelete, setIsModalDelete] = useState(false)
 
@@ -234,6 +223,8 @@ const GroupProfilLeft = (prop) => {
       HistoryPay({ variables: data })
       // console.log('payed')
    }   
+
+   console.log('okay')
       
       useEffect(() => {
          

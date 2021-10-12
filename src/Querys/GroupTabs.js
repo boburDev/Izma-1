@@ -289,18 +289,6 @@ const SUBSCRIPTION_GROUP_INFO = gql `
   }
 `
 
-const SUBSCRIPTION_CASH = gql `
-	subscription {
-		studentCash {
-      id
-      cashAmount
-      cashComment
-      cashType
-      payedAt
-		}
-	}
-`
-
 
 export {
   NEW_CASH,
@@ -324,5 +312,4 @@ export {
   SUBSCRIPTION_ADD_STUDENT,
   NEW_SUB_STUDENT,
   SUBSCRIPTION_GROUP_INFO,
-  SUBSCRIPTION_CASH
 }

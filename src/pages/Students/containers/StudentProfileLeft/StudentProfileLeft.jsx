@@ -213,6 +213,7 @@ const StudentsProfileLeft = () => {
     setNames(guruh)
   }, [Groups])
   
+  console.log('okay')
 
 
   // useEffect(() => {

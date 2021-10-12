@@ -23,20 +23,23 @@ const StudentAddGroup = ({ onCloseF }) => {
    const [stPhoneNum, setStPhoneNum] = useState('')
    const [stName, setStName] = useState('')
    const [stGender, setStGender] = useState()
+   const [access, setAccess] = useState(false)
 
 
    const [AddNewSudents, { data: checkStudent }] = useMutation(ADD_NEW_STUDENTS_GROUP)
    const [newCash] = useMutation(NEW_CASH)
 
-   if (checkStudent && checkStudent.createStudent.id) {
+   if (checkStudent && checkStudent.createStudent.id && stGender !== '' && setStName !== '' && access === true) {
       newCash({
          variables: {
             stID: checkStudent && checkStudent.createStudent.id,
             cashAmm: '0'
          }
       })
+      setStGender('')
+      setStName('')
+      setAccess(false)
    }
-
 
 
    return (
@@ -62,6 +65,8 @@ const StudentAddGroup = ({ onCloseF }) => {
 
                // console.log(stPhoneNum.number.length)
                AddNewSudents({ variables: data })
+               setAccess(true)
+               e.target.reset()
             }
 
             document.getElementById('settingFormRes2').reset()

@@ -222,16 +222,13 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 			setPayedData("")
 			setComment('')
 			onClose()
-
 		}
-
-
 	}
 
 
-	function numberWithCommas(x) {
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-	}
+	// function numberWithCommas(x) {
+	// 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+	// }
 
 	return (
 		<>
@@ -266,7 +263,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 						autoComplete="off" className={"section_name_input"} name={"nomi"}
 							onKeyUp={e => {
 								setAmmoun(e.target.value)
-								e.target.value = numberWithCommas(e.target.value)
+								// e.target.value = numberWithCommas(e.target.value)
 							}}
 							 type="text" />
 

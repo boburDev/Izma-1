@@ -115,7 +115,6 @@ const GroupProfilLeft = (prop) => {
    }, [students])
 
    const [deletGroup, { data: delData }] = useMutation(DELETE_GROUP)
-
    const [HistoryPay] = useMutation(HISTORY_PAYMENT)
    const [AddStudentToGroup] = useMutation(SELECT_STUDENT_GROUP)
    const [SetStatus_6] = useMutation(STATUS_6)
@@ -233,7 +232,7 @@ const GroupProfilLeft = (prop) => {
          debit: backCash < 0 ? String(backCash) : null
       }
       HistoryPay({ variables: data })
-      console.log('payed')
+      // console.log('payed')
    }   
       
       useEffect(() => {
@@ -375,6 +374,7 @@ const GroupProfilLeft = (prop) => {
 
                </div>
             </div>
+
             {dataGroup &&
                <div className="izma__groups-attendance-left-center-wrapper">
                   <h4 className="izma__groups-attendance-left-center-heading">

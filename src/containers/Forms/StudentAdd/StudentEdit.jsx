@@ -177,7 +177,7 @@ const StudentsEditForm = ({ onCloseF }) => {
                </div>
                <div className="form-input">
                    <label htmlFor="group">{Language[lang].students.editStudentInfo.comment}</label>
-                   <textarea className="comment" name="" id="" cols="30" rows="10" defaultValue={forEdit && forEdit.student.comment} onChange={e => setStTextInfo(e.target.value)}></textarea>
+                   <textarea className="comment" name="" cols="30" rows="10" defaultValue={forEdit && forEdit.student.comment} onChange={e => setStTextInfo(e.target.value)}></textarea>
                </div>
 
                <div className="many-input">

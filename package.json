@@ -21,6 +21,7 @@
     "react-to-print": "^2.13.0",
     "sass": "^1.37.5",
     "subscriptions-transport-ws": "^0.9.19",
+    "swiper": "^6.8.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

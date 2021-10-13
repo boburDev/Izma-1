@@ -52,7 +52,7 @@ class FinanceGrafig extends Component {
    render() {
       return (
          <>
-            <ReactApexCharts options={this.state.options} series={this.state.series} type="line" width={520} height={415} />
+            <ReactApexCharts options={this.state.options} series={this.state.series} type="line" width={'100%'} height={415} />
          </>
       )
    }

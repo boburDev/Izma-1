@@ -1,10 +1,32 @@
 .izma__table-g {
+   width: 100%;
+   overflow-x: scroll;
    background: #FFFFFF;
    padding: 45px 30px;
    border: 1px solid #E7E7EC;
    box-sizing: border-box;
    box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
    border-radius: 4px;
+
+    @media screen and (max-width: 1023px) {
+       .table {
+          width: 1100px;
+          overflow-x: scroll;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+
+          &::-webkit-scrollbar {
+             display: none;
+
+          }
+       }
+
+    }
+}
+
+.boxGroups {
+   width: 100%;
+   overflow-x: scroll;
 }
 
 .izma__table-g tr:nth-child(even) {

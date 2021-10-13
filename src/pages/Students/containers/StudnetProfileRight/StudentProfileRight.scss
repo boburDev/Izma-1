@@ -1,6 +1,52 @@
 .izma__students-payment-inner-left-section {
    margin-top: 30px;
-   width: 67%;
+   width: calc(100% - 380px);
+
+   @media screen and (max-width: 1023px) {
+      width: 100%;
+       .swiper-slide {
+          width: 100%;
+       }
+   }
+
+   .swiper-wrapper {
+      align-items: center;
+   }
+
+   .swiper-container {
+      width: 100%;
+      min-height: 160px;
+   }
+
+   .swiper-pagination.swiper-pagination-bullets {
+      bottom: 0;
+   }
+
+   .swiper-slide {
+      width: 100%;
+   }
+
+   .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      transition: all ease 0.5s;
+      background: #C8C8D6;
+
+      &.swiper-pagination-bullet-active {
+         width: 30px;
+         height: 12px;
+         border-radius: 10px;
+         transition: all ease 0.5s;
+         background: #090761;
+      }
+   }
+
+   
+}
+
+.finance__inner-table {
+   width: 100%;
+   overflow-x: scroll;
 }
 
 .izma__students-payment-inner-left-section-heading {
@@ -19,21 +65,10 @@
 .izma__students-payment-inner-left-section-center-wrapper {
    display: flex;
    align-items: center;
-   width: 600px;
+   width: 100%;
    padding: 20px 0;
    box-sizing: border-box;
-   overflow-x: auto;
-   &::-webkit-scrollbar {
-      width: 10px;
-   }
-
-   &::-webkit-scrollbar-track {
-      background: #fff;
-   }
-
-   &::-webkit-scrollbar-thumb {
-      background: #090761;
-   }
+   min-height: 200px;
 }
 
 .izma__students-payment-inner-left-section-center-wrapper-left {
@@ -58,7 +93,9 @@
 
 .izma__students-payment-inner-left-section-center-wrapper-lefts {
    margin-right: 40px;
-   width: 500px;
+   width: 100%;
+
+   
 
 
    p{

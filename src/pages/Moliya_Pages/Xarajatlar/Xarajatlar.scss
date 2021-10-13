@@ -1,6 +1,16 @@
 .dwBox {
    display: flex;
    width: 100%;
+    @media screen and (max-width: 1023px) { 
+       flex-direction: column;
+    }
+
+    .ds {
+       @media screen and (max-width: 1023px) {
+          width: 100%;
+          margin-top: 30px;
+       }
+    }
 }
 
 .izma__finance-costs-headings {
@@ -10,7 +20,11 @@
 
 .dw {
    width: 65%;
+   @media screen and (max-width: 1023px) {
+      width: 100%;
+   }
 }
+
 
 .izma_page-costs {
    display: flex;
@@ -87,6 +101,10 @@
    background: #FFFFFF;
    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
    border-radius: 4px;
+   @media screen and (max-width: 1023px) {
+      width: 100%;
+      overflow-x: scroll;
+   }
 }
 
 .izma__finance__costs tr:nth-child(even) {

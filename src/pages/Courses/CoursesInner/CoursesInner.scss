@@ -1,7 +1,6 @@
 .izma__courses__inner-content {
    display: flex;
    flex-direction: column;
-   padding: 50px 30px;
 }
 
 .izma__courses-card-wrappers {
@@ -28,9 +27,11 @@
    text-transform: capitalize;
    margin-right: 10px;
    color: #2F2D51;
+   margin-bottom: 0;
 }
 
 .izma__courses__inner-content-up-title {
+   margin-bottom: 0;
    font-weight: bold;
    font-size: 20px;
    line-height: 24px;
@@ -40,6 +41,9 @@
 
 .izma__courses__inner-content-bottom {
    display: flex;
+       @media screen and (max-width: 1023px) {
+          flex-direction: column;
+       }
 }
 
 .izma__courses__inner-content .ant-tabs-tab-btn {

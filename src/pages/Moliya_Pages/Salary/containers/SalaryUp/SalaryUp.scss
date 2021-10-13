@@ -6,6 +6,8 @@
       box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
       border-radius: 7px;
 
+      
+
       .harj_top {
          margin-bottom: 34px;
          display: flex;
@@ -61,10 +63,27 @@
             margin-bottom: 50px;
          }
 
+         .another_three {
+            width: 50%;
+            margin-right: 30px;
+            @media screen and (max-width: 1023px) {
+               width: 50%;
+
+               & + button {
+                  margin-top: 20px;
+               }
+            }
+         }
+
          &.another_two {
             display: flex;
-            align-items: center;
-            padding-bottom: 25px;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding-bottom: 25px;   
+
+            @media screen and (max-width: 1023px) {
+               flex-wrap: wrap;
+            }
 
             select {
                padding: 15px 0 14px 24px;
@@ -83,13 +102,17 @@
 
             .select_two {
                margin-right: 31px;
+               width: 25%;
+               @media screen and (max-width: 1023px) {
+                  width: 40%;
+               }
 
                select {
                   border: 1px solid #B7B7B7;
                   box-sizing: border-box;
                   border-radius: 4px;
                   background-color: #fff;
-                  width: 250px;
+                  width: 100%;
                }
             }
          }
@@ -109,6 +132,15 @@
             display: flex;
             align-items: center;
 
+             @media screen and (max-width: 1023px) {
+                flex-direction: column;
+                align-items: flex-start;
+
+                button {
+                   margin-top: 20px;
+                }
+             }
+
             .inputs {
                width: 822px;
                border: 1px solid #B7B7B7;
@@ -116,6 +148,12 @@
                border-radius: 4px 0px 0px 4px;
                display: flex;
                margin-right: 60px;
+                @media screen and (max-width: 1023px) {
+                   width: 100% !important;
+                   display: flex;
+                   justify-content: space-between;
+                   margin-right: 0 !important;
+                }
 
                input {
                   width: 65%;
@@ -124,6 +162,8 @@
                   box-sizing: border-box;
                   border: none;
                   outline: none;
+
+                 
                }
 
                select {
@@ -137,18 +177,18 @@
                }
             }
 
-            button {
-               font-family: Poppins;
-               font-style: normal;
-               font-weight: 500;
-               font-size: 16px;
-               line-height: 24px;
-               color: #FFFFFF;
-               padding: 13px 32px;
-               border: none;
-               background: #090761;
-               border-radius: 23px;
-            }
+         }
+         button {
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #FFFFFF;
+            padding: 13px 32px;
+            border: none;
+            background: #090761;
+            border-radius: 23px;
          }
       }
    }

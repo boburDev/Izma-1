@@ -1,6 +1,16 @@
 .izma__courses-card {
    display: flex;
    flex-wrap: wrap;
+   @media screen and (max-width: 1023px) {
+      justify-content: space-between;
+      a {
+         width: 30%;
+
+      }
+   }
+   
+
+    
 }
 
 .izma__courses-card-wrapper {
@@ -14,6 +24,9 @@
    border-radius: 7px;
    margin-bottom: 30px;
    margin-right: 30px;
+   @media screen and (max-width: 1023px) {
+      width: 100%;
+   }
 }
 
 .izma__courses-card-wrapper:nth-child(4n) {
@@ -25,6 +38,9 @@
    height: 164px;
    margin-left: auto;
    margin-right: auto;
+   @media screen and (max-width: 1023px) {
+      width: 100%;
+   }
 }
 
 .izma__courses-card-wrapper-bottom {
@@ -35,6 +51,9 @@
    box-sizing: border-box;
    box-shadow: 0px 4px 11px rgba(140, 152, 164, 0.1);
    border-radius: 7px;
+   @media screen and (max-width: 1023px) {
+      width: 100%;
+   }
 }
 
 .izma__courses-card-wrapper-bottom-name {

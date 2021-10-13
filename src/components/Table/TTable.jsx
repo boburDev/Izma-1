@@ -156,6 +156,7 @@ const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId, setInfo, openM
                   <h4 className={'paymentHistory'}>{Language[lang].settings.employee.id}</h4>
                   <h4 className={'paymentHistory'}>{Language[lang].settings.employee.fullName}</h4>
                   <h4 className={'paymentHistory'}>{Language[lang].settings.employee.role}</h4>
+                  <h4 className={'paymentHistory'}>{Language[lang].settings.employee.phoneNumber}</h4>
                   <h4 className={'paymentHistory'}>{Language[lang].settings.employee.actions}</h4>
                </div>
 

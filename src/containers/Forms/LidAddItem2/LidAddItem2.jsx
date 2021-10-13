@@ -66,7 +66,6 @@ const LidAddItem2 = ({ setActive1, active1, refresh, setRefresh, onClose, defaul
       onClose()
    }
 
-   console.log(defaultInfo)
    return (
       <div className={`form2 ${active1 ? 'active' : ''}`} id="formLIdAddRes2">
          <div className="form2-header">

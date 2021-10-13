@@ -7,7 +7,7 @@ const STUDENT_COUNT = gql `
 `
 
 const STATUS_COUNT = gql `
-  query studentStatus($count: String) {
+  query studentStatus($count: Int) {
     studentStatus(count: $count)
   }
 `
@@ -19,8 +19,15 @@ const GROUP_COUNT = gql `
     }
   }
 `
+
+const ST_COUNT = gql `
+  subscription {
+    count
+  }
+`
 export {
   STUDENT_COUNT,
   STATUS_COUNT,
-  GROUP_COUNT
+  GROUP_COUNT,
+  ST_COUNT
 }

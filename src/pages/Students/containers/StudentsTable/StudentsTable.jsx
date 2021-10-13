@@ -61,7 +61,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
       if (truFalse.sales) {
          
             studID = findSale && findSale.findSale.map(i => {
-            return { ID: i.studentid, name: i.name, mainPhone: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
+            return { id: i.studentid, name: i.name, mainPhone: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
          })
       }
 

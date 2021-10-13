@@ -70,7 +70,6 @@ export const Option = ({ children, value, placeholder }) => {
        <li
         className={currentValue === value ? 'selected' : null}
         onClick={ (e) => {
-            console.log(e)
             setCurrentValue(value)
             setPlaceholder(placeholder)
             setOpened(false)

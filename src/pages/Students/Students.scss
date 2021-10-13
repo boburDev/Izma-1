@@ -4,6 +4,11 @@
    flex-direction: column;
 }
 
+.studentTable {
+   width: 100%;
+   overflow-x: scroll;
+   position: relative;
+}
 .izma__students-content {
    display: flex;
    padding-top: 30px;

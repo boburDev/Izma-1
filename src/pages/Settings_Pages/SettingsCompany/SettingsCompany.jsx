@@ -90,7 +90,7 @@ const SettigsCompany = () => {
 
                      <div className="center_name">
                         <label>{Language[lang].settings.companySettings.lcName}</label>
-                        <input type="text" name="" id="" placeholder={Language[lang].settings.companySettings.lcName} />
+                        <input type="text"  placeholder={Language[lang].settings.companySettings.lcName} />
                      </div>
 
                      <div className="browse-file">
@@ -124,7 +124,7 @@ const SettigsCompany = () => {
 
                      <div className="center_name">
                         <label>{Language[lang].settings.companySettings.paymentTypeForStudent} *</label>
-                        <select name="" id="">
+                        <select >
                            <option value="">{Language[lang].settings.companySettings.plasticCard}</option>
                            <option value="">{Language[lang].settings.companySettings.cash}</option>
                            <option value="">{Language[lang].settings.companySettings.acrossBankAccount}</option>
@@ -133,7 +133,7 @@ const SettigsCompany = () => {
 
                      <div className="center_name">
                         <label>{Language[lang].settings.companySettings.facebookPixel}</label>
-                        <input type="text" name="" id="" />
+                        <input type="text" name="" />
                      </div>
 
                      <div className="paynet">
@@ -142,15 +142,15 @@ const SettigsCompany = () => {
                         <div className="paynet_info">
                            <div className="center_name">
                               <label>{Language[lang].settings.companySettings.paycomUserId}</label>
-                              <input type="text" name="" id="" />
+                              <input type="text" />
                            </div>
                            <div className="center_name">
                               <label>{Language[lang].settings.companySettings.paycomeUsername}</label>
-                              <input type="text" name="" id="" />
+                              <input type="text"  />
                            </div>
                            <div className="center_name">
                               <label>{Language[lang].settings.companySettings.paycomPassword}</label>
-                              <input type="password" name="" id="" />
+                              <input type="password"  />
                            </div>
                         </div>
                      </div>

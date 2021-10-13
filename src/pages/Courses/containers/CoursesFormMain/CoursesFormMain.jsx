@@ -65,7 +65,7 @@ const CoursesFormMain = ({ onClose }) => {
    return (
       <>
          <div className="izma__lidlar__form-bolim">
-            <Form id="courseformRes" className="izma__lidlar__form-bolim-form" style={{ width: 400 }} data={disabled}>
+            <Form id="courseformRes" className="izma__lidlar__form-bolim-form" style={{ width: 400 }} data={disabled ? '1' : '0'}>
                <div className="izma__lidlar__form-bolim-form-up">
                   <h3 className='izma__lidlar__form-bolim-form-heading' >{Language[lang].courses.editCourse.editCourseTitle}</h3>
                   <button className="izma__lidlar__form-bolim-form-close-btn" onClick={onClose} >
@@ -82,14 +82,8 @@ const CoursesFormMain = ({ onClose }) => {
                   <label className='izma__lidlar__form-bolim-form-label'>{Language[lang].courses.editCourse.price}</label>
                   <input type="text" autoComplete="off" 
                      onKeyUp={e => {
-                        setPrice((e.target.value).replace(/\s/g, ''))
-                        let money = new Intl.NumberFormat().format((e.target.value).replace(/\s/g, ''))
-                        if (money === '0') {
-                           e.target.value = ''
-                        } else {
-                           e.target.value = money
-                        }
-                     }} className={"section_name_input"} name={"nomi"} value={new Intl.NumberFormat().format(price)} />
+                        setPrice(e.target.value)
+                     }} className={"section_name_input"} name={"nomi"} defaultValue={price} />
                </div>
                <div className="form_group izma__form__teaxtarea" style={{ width: 400 }}>
                   <label>{Language[lang].courses.editCourse.description}</label>

@@ -8,21 +8,49 @@ import Home5Img from '../../../../assets/Icons/home5.svg'
 import Home6Img from '../../../../assets/Icons/home6.svg'
 import Home7Img from '../../../../assets/Icons/home7.svg'
 import Home8Img from '../../../../assets/Icons/home8.svg'
-import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT } from '../../../../Querys/HomeCard_Query'
-import { useQuery } from '@apollo/client'
+import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT, ST_COUNT } from '../../../../Querys/HomeCard_Query'
+import { useQuery, useSubscription } from '@apollo/client'
 import Language from '../../../../lang/index'
 import { useLang } from '../../../../context/LanguageProvider'
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/swiper-bundle.min.css'
+import 'swiper/swiper.min.css'
+import "swiper/components/pagination/pagination.min.css"
+import SwiperCore, {
+   Pagination
+} from 'swiper/core';
+SwiperCore.use([Pagination])
 
 const Blocks = () => {
    const [lang] = useLang()
    const language = Language[lang].home.blocks
    const {data: CountStudents } = useQuery(STUDENT_COUNT)
    const {data: GroupCount } = useQuery(GROUP_COUNT)
-   const {data: CountStatus_2 } = useQuery(STATUS_COUNT, {variables: {count: '2'}})
-   const {data: CountStatus_3 } = useQuery(STATUS_COUNT, {variables: {count: '3'}})
-   const {data: CountStatus_4 } = useQuery(STATUS_COUNT, {variables: {count: '4'}})
-   const {data: CountStatus_5 } = useQuery(STATUS_COUNT, {variables: {count: '5'}})
-   const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: '6'}})
+   const {data: CountStatus_2 } = useQuery(STATUS_COUNT, {variables: {count: 2}})
+   const {data: CountStatus_3 } = useQuery(STATUS_COUNT, {variables: {count: 3}})
+   const {data: CountStatus_4 } = useQuery(STATUS_COUNT, {variables: {count: 4}})
+   const {data: CountStatus_5 } = useQuery(STATUS_COUNT, {variables: {count: 5}})
+   const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: 6}})
+
+   useSubscription(ST_COUNT, {
+		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+			cache.modify({
+				fields: {
+					studentCountHome: () => { }
+				}
+			})
+		},
+	})
+
+   useSubscription(ST_COUNT, {
+		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+			cache.modify({
+				fields: {
+					studentStatus: () => { }
+				}
+			})
+		},
+	})
    
    
    const lists = [
@@ -77,17 +105,44 @@ const Blocks = () => {
    ]
    return(
       <div className="blocks">
-         {
-            lists.map(el => (
-               <HomeCard
-                  icon={el.icon}
-                  title={el.title}
-                  link={el.link}
-                  number={el.number}
-                  key={el.title}
-               />
-            ))
-         }
+         <Swiper
+            slidesPerView={8} spaceBetween={10} 
+            modules={Pagination}
+            pagination={true}
+            breakpoints={{
+               "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 10
+               },
+               "645": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 10
+               },
+               "768": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 10
+               },
+               "1024": {
+                  "slidesPerView": 8,
+                  "spaceBetween": 10
+               }
+            }} className="mySwiper"
+         >
+            {
+               lists.map(el => (
+                  <SwiperSlide key={el.title}>
+                     <HomeCard
+                        icon={el.icon}
+                        title={el.title}
+                        link={el.link}
+                        number={el.number}
+                        key={el.title}
+                     />
+                  </SwiperSlide>
+               ))
+            }
+         </Swiper>
+        
       </div>
    )
 }

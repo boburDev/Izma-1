@@ -35,8 +35,6 @@ function RoomsTable({ days = '1' }) {
     },[group])
 
    return (
-      <>
-         {
 
             <div className="table-main">
                <div>
@@ -84,9 +82,6 @@ function RoomsTable({ days = '1' }) {
                   </table>
                </div>
             </div>
-
-         }
-      </>
    )
 }
 

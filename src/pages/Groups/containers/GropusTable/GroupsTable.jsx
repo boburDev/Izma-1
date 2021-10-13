@@ -44,7 +44,9 @@ const GroupsTable = () => {
 
    return (
       <div className="izma__table-g" >
-         <Table block="groupHash" arr={groups && groups.groups} />
+         <div className="boxGroups">
+            <Table block="groupHash" arr={groups && groups.groups} />
+         </div>
       </div>
    )
 }

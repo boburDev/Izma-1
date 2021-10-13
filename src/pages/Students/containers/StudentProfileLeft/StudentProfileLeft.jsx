@@ -19,7 +19,6 @@ import Language from '../../../../lang/index'
 // import { useGroup } from '../../../../context/NameProvider'
 
 const StudentsProfileLeft = () => {
-  // const [groupName] = useGroup()
   const [groupAdd, setGroupAdd] = useState()
   const [groupAddDate, setGroupAddDate] = useState()
   const [setPeopleName] = useName1(true)
@@ -27,8 +26,6 @@ const StudentsProfileLeft = () => {
 
 
   const [openSms, setOpenSms] = useState(false)
-  // const [state, setState] = useState([])
-  // const [userInput, setUserInput] = useState('')
   const [visibleF, setVisibleF] = useState(false)
   const [deleteStudent, setDeleteStudent] = useState()
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -132,39 +129,6 @@ const StudentsProfileLeft = () => {
     setVisibleS(false)
   }
 
-
-
-  //  const showModal = () => {
-  //    setIsModalVisible(true)
-
-  //  }
-
-
-  //  const handleOk = (e) => {
-  //    e.preventDefault()
-  //    UpdateComment({variables: {stID: studentID, stComment: comme}})
-  //    setIsModalVisible(false)
-  //  }
-
-  //  const handleCancel = () => {
-  //    setIsModalVisible(false)
-  //  }
-
-
-
-  //  const showModalD = () => {
-  //    setIsModalVisibleD(true)
-
-  //  }
-
-
-  //  const handleOkD = () => {
-  //    setIsModalVisibleD(false)
-  //  }
-
-  //  const handleCancelD = () => {
-  //    setIsModalVisibleD(false)
-  //  }
   const [names, setNames] = useState([])
 
   useEffect(() => {
@@ -174,20 +138,6 @@ const StudentsProfileLeft = () => {
   useEffect(() => {
    oneStudent && setPeopleName(oneStudent.student.name)
   }, [oneStudent, setPeopleName])
-  //  const [ namesFind, setNamesFind ] = useState([])
-
-
-  //  const onSearch = (searchText) => {
-  //     const s = names.filter(i => i.value.toLowerCase().includes(searchText.toLowerCase()))
-  //     // console.log(s)
-
-  //     if (s.length) {
-  //        setNamesFind(s)
-  //     } else {
-  //        setNamesFind([])
-  //     }
-  //  }
-
 
 
   const [isModalVisibleY, setIsModalVisibleY] = useState(false)
@@ -212,7 +162,6 @@ const StudentsProfileLeft = () => {
     })
     setNames(guruh)
   }, [Groups])
-  
 
 
   // useEffect(() => {

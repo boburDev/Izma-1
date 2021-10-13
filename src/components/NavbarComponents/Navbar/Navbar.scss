@@ -1,8 +1,26 @@
 
 .navbar_wrapper {
    width: 100%;
+   // box-sizing: border-box;
+   // min-height: 100vh;
+   // overflow-y: scroll;
+   //  &::-webkit-scrollbar {
+   //     width: 10px;
+   //  }
+
+   //  &::-webkit-scrollbar-track {
+   //     background: #fff;
+   //  }
+
+   //  &::-webkit-scrollbar-thumb {
+   //     background: #090761;
+   //  }
    .active_logo {
       margin-left: 5px;
+   }
+
+   @media screen and (max-width: 1023px) {
+      
    }
    
    .navbar_links-logo  {
@@ -11,6 +29,9 @@
    }
 
    &.active {
+      @media screen and (max-width: 1023px) {
+         
+      }
       .defualt_logo {
          display: flex;
          
@@ -18,6 +39,11 @@
       
       .active_logo {
          display: none;
+         @media screen and (max-width: 1023px) {
+            display: flex;
+         }
+
+         
       }
 
       .navbar-plus {
@@ -34,6 +60,10 @@
       .navbar_wrapper-center {
          padding: 0 10px;
          padding-top: 30px;
+         @media screen and (max-width: 1023px) {
+            padding: 0 50px;
+            padding-top: 30px;
+          }
          .navbar_bloks,
          .navbar_links {
             display: flex;
@@ -43,9 +73,15 @@
                display: flex;
                align-items: center;
                justify-content: center;
+               @media screen and (max-width: 1023px) {
+                  justify-content: flex-start;
+               }
                
                .link__text {
                   display: none;
+                  @media screen and (max-width: 1023px) {
+                     display: flex;
+                  }
                }
             }
 
@@ -57,13 +93,19 @@
 
    &-header {
       border-bottom: 1px solid #E7E7EC;
-      height: 110px;
+      height: 75px;
       display: flex;
       align-items: center;
       justify-content: center;
+      @media screen and (max-width: 1023px) {
+         justify-content: flex-start;
+         padding: 0 50px;
+      }
+
    }
    
    &-center {
+      height: calc(100% - 75px);
       padding: 0 50px;
       padding-top: 30px;
       position: relative;
@@ -72,7 +114,7 @@
          position: absolute;
          top: 0;
          width: 100%;
-         left: 101%;
+         left: 100%;
          z-index: 1000000;
          height: 100vh;
          display: none;

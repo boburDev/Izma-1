@@ -24,12 +24,12 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const [lang] = useLang()
 
 	const [groups, setGroups] = useState()
+	const [tester, setTester] = useState(false)
 
 
 	useEffect(() => {
 
 	}, [names])
-
 
 	useSubscription(SUBSCRIPTION_CHECK, {
 		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -75,17 +75,18 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 		const test = ((forCheck && Number(forCheck.studentCash.cashAmount) <= 0) && (payment && Number(payment.updateCash.cashAmount) > -1))
 	
-		if (test) {
+		if (test && tester) {
 			CheckBalanc({
 				variables: {
 					stID: studenID && (studenID.studentID || studenID.studentId),
 					status: 3
 				}
 			})
+			console.log('status_3')
 			SetStatus3_4({ variables: { status: 3, stID: (studenID.studentID || studenID.studentId) } })
+			setTester(false)
 		}
-	}, [CheckBalanc, SetStatus3_4, forCheck, payment, studenID])
-
+	}, [CheckBalanc, SetStatus3_4, forCheck, payment, studenID, tester])
 
 
 	if (forCheck && forCheck.studentCash.cashAmount < '0') {
@@ -116,6 +117,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 	function formOnSubmit(e) {
 		e.preventDefault()
+		setTester(true)
 		if (payedData !== '' && payedData.payed.length > 0) {
 			const cache = {
 				stID: (studenID.studentID || studenID.studentId),

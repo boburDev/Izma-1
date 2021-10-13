@@ -13,7 +13,7 @@ import Language from '../../../lang/index'
 
 const Finance = () => {
    const { RangePicker } = DatePicker
-   const [date,setDate] = useState('')
+   const [,setDate] = useState('')
    const [amont,setAmount] = useState(0)
    const [amontFilter,setAmountFilter] = useState(0)
    const [dateFilterDefaultData,setDateFilterDefaultData] = useState({})

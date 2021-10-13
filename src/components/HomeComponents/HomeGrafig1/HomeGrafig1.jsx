@@ -60,7 +60,7 @@ function HomeGrafig1 (props) {
                         {props.lang.cResources}
                      </h2>
                      <div className="chart-wrapper">
-                        <ReactApexCharts className="react-chart-izma" options={state.options} series={state.series} type="radialBar" height={250} />
+                        <ReactApexCharts className="react-chart-izma" options={state.options} series={state.series} type="radialBar" height={300} />
                      </div>
                      <div className="izma__graph-info">
 

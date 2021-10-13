@@ -4,7 +4,7 @@
    border-radius: 7px;
    padding: 28px;
    margin-right: 50px;
-   width: 32%;
+   width: 370px;
 }
 
 .izma__groups-attendance-left-center-communicate-wrapper {
@@ -29,6 +29,9 @@
    background: #C5CEE8;
    border-radius: 3px;
    color: #222222;
+   margin-bottom: 0;
+   min-width: 220px;
+   max-width: 220px;
 }
 
 .izma__groups-attendance-boxses {
@@ -180,35 +183,44 @@
 }
 
 .izma__groups-attendance-left-bottom-box {
+   position: absolute;
    width: 15px;
    height: 15px;
    background: #131096;
    border-radius: 50%;
-   margin-right: 8px;
 }
 
 .izma__groups-attendance-left-bottom-box-white {
+   position: absolute;
    width: 15px;
    height: 15px;
    background: #fff;
    border-radius: 50%;
-   margin-right: 8px;
 }
 
 .izma__groups-attendance-left-bottom-box-red {
+   position: absolute;
    width: 15px;
    height: 15px;
    background: #FF0000;
    border-radius: 50%;
-   margin-right: 8px;
 }
 
 .izma__groups-attendance-left-bottom-box-orange {
+   position: absolute;
    width: 15px;
    height: 15px;
    background: #ffa500;
    border-radius: 50%;
-   margin-right: 8px;
+}
+
+.colorBox {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 15px;
+   margin-right: 5px;
 }
 
 .izma__groups-attendance-left-bottom-heading {
@@ -217,8 +229,10 @@
    font-family: "Calibri";
    font-size: 12px;
    line-height: 17px;
-   margin-right: 45px;
+   min-width: 125px;
+   max-width: 125px;
    color: #000000;
+   margin-right: 10px;
 }
 
 .izma__groups-attendance-left-bottom-phone {
@@ -227,8 +241,10 @@
    font-size: 12px;
    line-height: 15px;
    color: #7D7D7D;
-   margin-right: 25px;
    margin-bottom: 0;
+   min-width: 90px;
+   max-width: 90px;
+   margin-right: 10px;
 }
 
 .izma__groups-attendance-left-bottom-button {

@@ -12,6 +12,14 @@ import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT } from '../../../../Querys/Hom
 import { useQuery } from '@apollo/client'
 import Language from '../../../../lang/index'
 import { useLang } from '../../../../context/LanguageProvider'
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/swiper-bundle.min.css'
+import 'swiper/swiper.min.css'
+import "swiper/components/pagination/pagination.min.css"
+import SwiperCore, {
+   Pagination
+} from 'swiper/core';
+SwiperCore.use([Pagination])
 
 const Blocks = () => {
    const [lang] = useLang()
@@ -23,6 +31,8 @@ const Blocks = () => {
    const {data: CountStatus_4 } = useQuery(STATUS_COUNT, {variables: {count: '4'}})
    const {data: CountStatus_5 } = useQuery(STATUS_COUNT, {variables: {count: '5'}})
    const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: '6'}})
+
+   
    
    
    const lists = [
@@ -77,17 +87,44 @@ const Blocks = () => {
    ]
    return(
       <div className="blocks">
-         {
-            lists.map(el => (
-               <HomeCard
-                  icon={el.icon}
-                  title={el.title}
-                  link={el.link}
-                  number={el.number}
-                  key={el.title}
-               />
-            ))
-         }
+         <Swiper
+            slidesPerView={8} spaceBetween={10} 
+            modules={Pagination}
+            pagination={true}
+            breakpoints={{
+               "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 10
+               },
+               "645": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 10
+               },
+               "768": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 10
+               },
+               "1024": {
+                  "slidesPerView": 8,
+                  "spaceBetween": 10
+               }
+            }} className="mySwiper"
+         >
+            {
+               lists.map(el => (
+                  <SwiperSlide key={el.title}>
+                     <HomeCard
+                        icon={el.icon}
+                        title={el.title}
+                        link={el.link}
+                        number={el.number}
+                        key={el.title}
+                     />
+                  </SwiperSlide>
+               ))
+            }
+         </Swiper>
+        
       </div>
    )
 }

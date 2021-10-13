@@ -2,6 +2,11 @@
    background-color: #FFFFFF;
 }
 
+.izma__table-t {
+   width: 100%;
+   overflow-x: scroll;
+}
+
 .izma__table-t tr:nth-child(even):hover {
    background-color: #FFFFFF;
 }

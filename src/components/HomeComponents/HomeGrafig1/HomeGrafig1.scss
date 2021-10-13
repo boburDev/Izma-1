@@ -12,9 +12,11 @@
 }
 
 .react-chart-izma {
-   width: 250px;
-   margin-right: auto;
-   margin-left: 40%;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 300px !important;
 }
 
 .apexcharts-radialbar-slice-3 {
@@ -44,10 +46,11 @@
 }
 
 .apexcharts-canvas {
-   position: relative;
-   user-select: none;
-   left: -57px;
-   top: 16px;
+   width: 100% !important;
+   min-height: 300px !important;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .apexcharts-radialbar-area {
@@ -56,10 +59,10 @@
 }
 
 .chart-wrapper {
-   height: 290px;
+   min-height: 300px;
    display: flex;
-   flex-wrap: wrap;
-   justify-content: flex-end;
+   align-items: center;
+   justify-content: center;
 }
 
 .izma__graph-heading {

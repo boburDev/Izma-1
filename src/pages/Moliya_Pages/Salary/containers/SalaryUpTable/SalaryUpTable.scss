@@ -4,6 +4,10 @@
    background: #FFFFFF;
    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
    border-radius: 4px;
+    @media screen and (max-width: 1023px) {
+      width: 100%;
+      overflow-x: scroll;
+    }
 }
 
 .izma__finance__salary-table tr:nth-child(even) {

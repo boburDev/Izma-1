@@ -18,25 +18,75 @@ h1, h2, h3, h4, h5, h6, p {
    display: flex;
    width: 100%;
    &-left {
+      
       width: 300px;
       border-right: 1px solid #E7E7EC;
+      @media screen and (max-width: 1023px) { 
+         position: fixed;
+         left: 0;
+         z-index: 1000001;
+         background: white;
+         transform: translateX(-350%);
+         transition: all ease 0.5s;
+         min-height: 100vh;
+
+         
+         & ~ .boxClick {
+            display: flex;
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.445);
+            z-index: 1000000;
+            transform: translateX(-150%);
+            transition: all ease 0.5s;
+            
+         }
+      }
       &.active {
          width: 100px;
+         & ~ .app-right {
+            width: calc(100% - 100px);
+         }
+         @media screen and (max-width: 1023px) {
+            transform: translateX(0);
+            transition: all ease 0.5s;
+            width: 300px;
+            position: fixed;
+            left: 0;
+
+            & ~ .app-right {
+
+               width: 100%;
+            }
+
+             &~.boxClick {
+                transform: translateX(0);
+                transition: all ease 0.5s;
+             }
+         }
+
       }
    }
 
    &-right {
-      width: 100%;
+      overflow-x: hidden;
+      width: calc(100% - 300px);
       height: 100vh;
-
+      box-sizing: border-box;
+       @media screen and (max-width: 1023px) {
+          width: 100%;
+       }
       &-header {
          height: auto;
       }
 
       &-center {
+         height: calc(100% - 75px);
          position: relative;
          background: #F7F9FB;
-         height: 85%;
          overflow-y: scroll;
          padding: 20px;
          box-sizing: border-box;

@@ -65,7 +65,9 @@ const Students = () => {
 
             
 
-            <StudentsTable studentSearch={search}  />
+            <div className="studentTable">
+               <StudentsTable studentSearch={search} />
+            </div>
 
             <Drawer
                placement="right"

@@ -100,7 +100,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					status: 3
 				}
 			})
-			console.log('status_3')
 			SetStatus3_4({ variables: { status: 3, stID: (studenID.studentID || studenID.studentId) } })
 			setTester(false)
 		}

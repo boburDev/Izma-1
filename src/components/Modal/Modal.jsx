@@ -13,7 +13,6 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
          function handleClickOutside(event) {
-            console.log('hello');
             if (event.target.className === 'myModal active') {
                setMymodal(false)
             }

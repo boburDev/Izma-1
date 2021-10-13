@@ -42,7 +42,6 @@ const Check = ({ id, setId  })=>{
     useEffect(()=>{
         if(check && check.checkOne){
             setState(check && check.checkOne)
-            console.log(check && check.checkOne)
         }
     },[check])
 

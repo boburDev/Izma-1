@@ -213,7 +213,6 @@ const Lids = () => {
             setColumns(columns);
             updateLead({ variables: { leadID: leadId, leadBoxID: toId } })
          } else {
-            console.log(source, destination);
             const column = columns.find(el => source.droppableId === el.id)
             const copiedItems = [...column.items];
             const [removed] = copiedItems.splice(source.index, 1);

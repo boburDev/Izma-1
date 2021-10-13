@@ -140,7 +140,6 @@ const GroupProfilLeft = (prop) => {
                grID: groupID
             }
          })
-         console.log('st-3-4')
          setPayment(false)
       }
 
@@ -234,7 +233,6 @@ const GroupProfilLeft = (prop) => {
                   grID: groupID
                }
             })
-            console.log('st_3_4')
             setPaymentStatus(false)
          }
    }, [SetStatus3_4, checkCache, groupID, paymentStatus, selectedUser, staatus])

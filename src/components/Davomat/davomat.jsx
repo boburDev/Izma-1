@@ -34,12 +34,6 @@ function Davomat() {
 
     const [groupData,setGroupData] = useState({})
 
-    // useLayoutEffect(()=>{
-    //     // console.log(groupStudents)
-    // },[groupStudents])
-
-
-
 
     const { data: groupById } = useQuery(BY_GROUP_ID, {
         variables: { groupID: id && id.groupID }

@@ -12,6 +12,8 @@ const STUDENT_GROUPS = gql `
       price
       courseName
       days
+      teacher
+      teacherID
     }
   }
 `

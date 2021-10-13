@@ -114,7 +114,7 @@ const SalaryUp = () => {
                            }
                      </select>
                   </div>
-                  <div>
+               <div className="another_three">
                      <label htmlFor="">{Language[lang].finance.secondSettingsSalary.optionExpances}</label>
                      <div className="input_items">
                            <div className="inputs">
@@ -126,9 +126,9 @@ const SalaryUp = () => {
                                  <option selected={infoo?.type === 2} value="2">{Language[lang].finance.secondSettingsSalary.procent}</option>
                               </select>
                            </div>
-                           <button onClick={updateSlary}>{Language[lang].finance.firstSettingsSalary.save}</button>
                      </div>
                   </div>
+                           <button onClick={updateSlary}>{Language[lang].finance.firstSettingsSalary.save}</button>
 
                </div>
                

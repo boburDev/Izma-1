@@ -7,7 +7,7 @@
       
       margin: 15px 0;
       padding: 5px 7px 5px 23px;
-      background: #c2c9eb;
+      background: #090761;
       border-radius: 3px;
       position: relative;
       margin-right: 15px;
@@ -16,18 +16,21 @@
       &::before {
          content: '';
          position: absolute;
-         width: 8px;
-         height: 8px;
+         width: 10px;
+         height: 10px;
          border-radius: 50%;
-         background-color: #fff;
+         border: 2px solid #fff;
          left: 7px;
          top: 0;
          bottom: 0;
          margin: auto;
+         background-color: #090761;
       }
-
+      
       &.checked {
-         background-color: #3c39db;
+         &::before {
+            background-color: #fff;
+         }
       }
 
       span {

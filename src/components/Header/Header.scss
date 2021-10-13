@@ -3,7 +3,7 @@
    align-items: center;
    border-bottom: 1px solid #E7E7EC;
    width: 100%;
-   height: 110px;
+   height: 75px;
 }
 
 .izma__header-burger {
@@ -56,6 +56,9 @@
    align-items: center;
    margin-left: auto;
    position: relative;
+    @media screen and (max-width: 768px) {
+       display: none;
+    }
 }
 
 .izma__header-notification-img {
@@ -65,10 +68,28 @@
 }
 
 .izma__header-img {
-   width: 70px;
-   height: 70px;
+   width: 50px;
+   height: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 50%;
+   overflow: hidden;
    cursor: pointer;
    margin-right: 50px;
+   border: 1px solid #E7E7EC;
+   box-sizing: border-box;
+   box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
+   
+   img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+   }
 }
 
 .izma__header-dropdown {

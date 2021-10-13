@@ -50,10 +50,10 @@ const Teachers = () => {
                </div>
             </div>
          </div>
+            <TeachersTable block="teachersHash" />
 
 
          
-         <TeachersTable block="teachersHash" />
 
       </div>
    )

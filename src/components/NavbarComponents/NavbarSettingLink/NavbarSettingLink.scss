@@ -11,6 +11,10 @@
    margin-bottom: 21px;
    text-decoration: none;
 
+   &.active {
+      color: #1890ff;
+   }
+
    &.alone {
       img {
          padding-right: 13px;

@@ -332,6 +332,16 @@ const GroupProfilLeft = (prop) => {
    return (
       <>
          <div className="izma__groups-attendance-left-section">
+            <Modal1
+               block="delete"
+               title="Guruhni o'chirish"
+               text={dataGroup?.name + 'ni o`chirishni hohlaysizmi ?'}
+               setInfo={handleDelete}
+               setMymodal={setIsModalDelete}
+               myModal={isModalDelete}
+               redir={`/groups`}
+               snake={delData}
+            />
             <div className="izma__groups-attendance-left-up-wrapper">
                <p className="izma__groups-attendance-left-up-id">
                   {dataGroup?.name}
@@ -349,16 +359,7 @@ const GroupProfilLeft = (prop) => {
                      <GroupEdit dataForEdit={dataGroup && dataGroup} onClose={onClose} />
                   </Drawer>
                   <button onClick={() => setIsModalDelete(true)} className="izma__groups-attendance-left-up-btn-del">
-                     <Modal1
-                        block="delete"
-                        title="Guruhni o'chirish"
-                        text={dataGroup?.name + 'ni o`chirishni hohlaysizmi ?'}
-                        setInfo={handleDelete}
-                        setMymodal={setIsModalDelete}
-                        myModal={isModalDelete}
-                        redir={`/groups`}
-                        snake={delData}
-                     />
+                     
                      <img src={Trash} alt="" />
                   </button>
 
@@ -424,14 +425,14 @@ const GroupProfilLeft = (prop) => {
                      {
                         filtered && filtered.map((s, i) => (
                            <div key={i} className="izma__groups-attendance-left-bottom">
+                                 <div className="colorBox">
                                  {s.groupStatus === 2 && <div className="izma__groups-attendance-left-bottom-box-white"></div>}
                                  {s.groupStatus === 3 && <div className="izma__groups-attendance-left-bottom-box"></div>}
                                  {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
                                  {s.groupStatus === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
-                                 <Link to={`/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
-                                    <h5 className="izma__groups-attendance-left-bottom-heading">
+                                 </div>
+                                 <Link className="izma__groups-attendance-left-bottom-heading" to={`/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
                                        {s.name}
-                                    </h5>
                                  </Link>
                                  <p className="izma__groups-attendance-left-bottom-phone">
                                     {

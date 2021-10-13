@@ -8,6 +8,10 @@
    text-decoration: none;
 
    &.active {
+      @media screen and (max-width: 1023px) {
+        background: #090761;
+        border-radius: 4px;
+      }
       .open_navbar {
          .link_img {
             background: #090761;
@@ -21,8 +25,10 @@
          }
 
          .link__text {
-            
             color: #090761;
+             @media screen and (max-width: 1023px) {
+                color: #fff;
+             }
          }
       }
    }

@@ -35,6 +35,7 @@ import LidFormSettings from "../Settings_Pages/LidFormSettings/LidFormSettings";
 import { STATUS } from "./query";
 import { useQuery } from "@apollo/client";
 import { useUserStatus } from "../../context/NameProvider";
+import { useRef } from "react";
 
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState()
@@ -61,6 +62,24 @@ const App = () => {
     }
   }, [location.path])
 
+	const useOutsideAlerter = (ref) => {
+		useEffect(() => {
+			function handleClickOutside(event) {
+				if (event.target.className === 'boxClick') {
+					setSidebarActive(false)
+				}
+			}
+			document.addEventListener("mousedown", handleClickOutside);
+
+			return () => {
+				document.removeEventListener("mousedown", handleClickOutside);
+			};
+		}, [ref])
+	}
+
+	const wrapperRef = useRef(null);
+	useOutsideAlerter(wrapperRef);
+
 
 
 
@@ -78,6 +97,7 @@ const App = () => {
 
               />
             </div>
+					<div className="boxClick"></div>
 
             {/* ==================  BODY =================== */}
 

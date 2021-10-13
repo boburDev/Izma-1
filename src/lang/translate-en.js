@@ -377,6 +377,9 @@ const en = {
         rooms: 'Rooms',
         journals: 'Journals',
         archive: 'Archive',
+        lidForm: 'Form Lead',
+        enterForm: 'Entry form',
+        
     },
     finance: {
         financeTitle: 'FINANCE',

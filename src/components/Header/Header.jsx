@@ -1,11 +1,11 @@
 import NotificationImg from "../../assets/notification.svg";
-import HeaderImg from '../../assets/header-img.svg'
 import './Header.scss'
 import Close from '../../assets/Icons/close.svg'
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Language from '../../lang/index'
 import { useLang } from "../../context/LanguageProvider";
+import Img from '../../assets/img.png'
 
 const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 	const [active, setActive] = useState()
@@ -22,10 +22,12 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 
             <div className="izma__header-left-wrapper">
                <img src={NotificationImg} className="izma__header-notification-img" alt="img" />
-               <img onClick={() => {
+               <button className="izma__header-img" onClick={() => {
                   setActive(!active)
-               }}
-                  src={HeaderImg} alt="img" className="izma__header-img" />
+               }}>
+                  <img 
+                     src={Img} alt="img"  />
+               </button>
 
                <div className={`izma__header-dropdown ${active ? 'active' : ''}`}>
 				<div className="top_items">

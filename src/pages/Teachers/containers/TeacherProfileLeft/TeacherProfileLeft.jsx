@@ -221,7 +221,7 @@ useEffect(() => {
 
                         <DatePicker
                            className='date__picker lid-edit-date'
-                           defaultPickerValue={moment(collegueInfo?.birthday, 'DD-MM-YYYY')}
+                           
                            onChange={takeBirth}
                            placeholder={"Kun-Oy-Yil"}
                            format={"DD-MM-YYYY"}

@@ -140,7 +140,7 @@ const GroupProfilLeft = (prop) => {
                grID: groupID
             }
          })
-         console.log('st-3-4')
+         // console.log('st-3-4')
          setPayment(false)
       }
 
@@ -234,7 +234,7 @@ const GroupProfilLeft = (prop) => {
                   grID: groupID
                }
             })
-            console.log('st_3_4')
+            // console.log('st_3_4')
             setPaymentStatus(false)
          }
    }, [SetStatus3_4, checkCache, groupID, paymentStatus, selectedUser, staatus])
@@ -535,8 +535,8 @@ const GroupProfilLeft = (prop) => {
                   placeholder={Language[lang].teachers.addNewUser.date}
                   format={"DD-MM-YYYY"}
                   disabledDate={(current) => {
-                     let customDate = groups.byGroupID.endDate
-                     return current && current < moment(customDate, "DD-MM-YYYY")
+                     // let customDate = groups.byGroupID.endDate
+                     // return current && current < moment(customDate, "DD-MM-YYYY")
                   }}
                />
                {hasStud && hasStud.hasStudent && <>Siz tanlagan o'quvchi guruhga qo'shilgan</>}

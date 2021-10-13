@@ -3,12 +3,12 @@ import moment from 'moment'
 import { useDavomat } from '../../context/DavomatProvider'
 import st from './davomat.module.scss'
 import { useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
+import { useLazyQuery, useQuery } from '@apollo/client'
 import { GROUP_DAVOMAT, STUDENT_DAVOMAT } from './query'
 import {useLang} from '../../context/LanguageProvider'
 import Language from '../../lang/index'
 
-// react-redux uninstall qivor
+// react-redux uninstall qivoring
 function Davomat() {
     const id = useParams()
     const [arr, setArr] = useState([])
@@ -25,7 +25,19 @@ function Davomat() {
     const [groupStuMonth,setGroupStuMonth] = useState([])
     const [monthlyGr, setMonthlyGr] = useState([])
     const [monthlyStGr, setMonthlyStGr] = useState([])
-    const { data: groupAtt } = useQuery(GROUP_DAVOMAT, { variables: { groupID: id && id.groupID}})
+
+
+
+
+
+
+
+
+
+
+
+
+    const [fff, { data: groupAtt }] = useLazyQuery(GROUP_DAVOMAT)
     const [lang] = useLang()
 
     const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
@@ -152,9 +164,16 @@ function Davomat() {
         })
         return data
     }
-    // console.log(groupMonth)
 
 
+
+    useEffect(()=>{
+        fff({ variables: { 
+            groupID: id && id.groupID,
+            month: active
+        }})
+        console.log(active)
+    },[active, fff, id])
 
 
 
@@ -241,45 +260,43 @@ function Davomat() {
 
 
     
-    // const checkInput = (e) => {
-    //     e.target.parentNode.childNodes[1].classList.toggle(`${st.show}`)
-    // }
+    const checkInput = (e) => {
+        e.target.parentNode.childNodes[1].classList.toggle(`${st.show}`)
+    }
     
-    // const come = e => {
-    //     e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
-    //     e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.true}`)
-    //     e.target.parentNode.classList.remove(`${st.show}`)
-    //     let body = {
-    //         name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
-    //         date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
-    //         title: 'keldi'
-    //     }
-    //     console.log(body)
-    //     arr.push(body)
-    //     setArr(arr)
-    // }
+    const come = e => {
+        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
+        e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.true}`)
+        e.target.parentNode.classList.remove(`${st.show}`)
+        let body = {
+            name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
+            date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
+            title: 'keldi'
+        }
+        console.log(body)
+        arr.push(body)
+        setArr(arr)
+    }
     
-    // const dontCome = e => {
-    //     e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
-    //     e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.false}`)
-    //     e.target.parentNode.classList.remove(`${st.show}`)
-    //     let body = {
-    //         name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
-    //         date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
-    //         title: 'kelmadi'
-    //     }
-    //     console.log(body)
-    //     arr.push(body)
-    //     setArr(arr)
-    // }
+    const dontCome = e => {
+        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
+        e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.false}`)
+        e.target.parentNode.classList.remove(`${st.show}`)
+        let body = {
+            name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
+            date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
+            title: 'kelmadi'
+        }
+        console.log(body)
+        arr.push(body)
+        setArr(arr)
+    }
     
-    // const closer = (e) => {
-    //     e.target.parentNode.classList.remove(`${st.show}`)
-    //     e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
-    //     e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
-    // }
-
-    // console.log(monthlyGr)
+    const closer = (e) => {
+        e.target.parentNode.classList.remove(`${st.show}`)
+        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
+        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
+    }
 
     return (
         <div className={st.home}>
@@ -309,7 +326,6 @@ function Davomat() {
             monthlyGr.sort().map((item, index) => (
                 <th className={st.th} key={index}>
                 {moment(item).format('DD/MM')}
-                {/* {console.log(typeof item)} */}
                 &ensp;&ensp;
                 </th>
                 ))
@@ -323,26 +339,26 @@ function Davomat() {
                     <td className={`${st.pupil} ${st.td_tbody} ${
                         item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''}`} key={index}>{item.name}</td>
                     {
-                        // monthlyGr.map((val, key) => {
-                        //         return <td className={st.td} key={key}>
-                        //         <div
-                        //             className={st.round}
-                        //             onClick={checkInput}
-                        //             data-date={val}
-                        //             data-id={item.id}>
-                        //         </div>
-                        //         <div className={st.checker}>
-                        //         <h4
-                        //         onClick={come} className={st.checker_true}>
+                        monthlyGr.map((val, key) => {
+                                return <td className={st.td} key={key}>
+                                <div
+                                    className={st.round}
+                                    onClick={checkInput}
+                                    data-date={val}
+                                    data-id={item.id}>
+                                </div>
+                                <div className={st.checker}>
+                                <h4
+                                onClick={come} className={st.checker_true}>
                                 
-                        //         </h4>
-                        //         <h4 onClick={dontCome} className={st.checker_false}>
+                                </h4>
+                                <h4 onClick={dontCome} className={st.checker_false}>
                                 
-                        //         </h4>
-                        //         <button className={st.checker_close} onClick={closer}>&times; </button>
-                        //         </div>
-                        //         </td>
-                        // })
+                                </h4>
+                                <button className={st.checker_close} onClick={closer}>&times; </button>
+                                </div>
+                                </td>
+                        })
                     }
                         </tr>
                 })

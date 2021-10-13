@@ -13,16 +13,22 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
    const useOutsideAlerter = (ref) => {
       useEffect(() => {
          function handleClickOutside(event) {
+            console.log('hello');
             if (event.target.className === 'myModal active') {
                setMymodal(false)
             }
          }
-         document.addEventListener("mousedown", handleClickOutside);
+
+         if(myModal) {
+            document.addEventListener("mousedown", handleClickOutside);
+         }
+        
 
          return () => {
+
             document.removeEventListener("mousedown", handleClickOutside);
          };
-      }, [ref])
+      }, [ref, myModal])
    }
 
    const { enqueueSnackbar } = useSnackbar();

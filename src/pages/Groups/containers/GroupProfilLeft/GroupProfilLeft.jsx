@@ -39,10 +39,10 @@ import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
 import Check from '../../../../components/Check/Check'
 import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
-import { useDavomat } from '../../../../context/DavomatProvider'
-import moment from 'moment'
+
+
 const GroupProfilLeft = (prop) => {
-   const [setGroupStudents] = useDavomat(true)
+
    const [dayDivide, setDayDivide] = useDayDivider()
    const [userInput, setUserInput] = useState('')
    const [selectedUser, setSelectedUser] = useState()
@@ -80,15 +80,11 @@ const GroupProfilLeft = (prop) => {
 
 
    useEffect(() => {
-      setGroupStudents({
-         students: grStudents && grStudents.findStudByGrId,
-         groups: groups && groups.byGroupID
-      })
       if (groups && groups.byGroupID) {
          setDayDivide(groups.byGroupID.days)
          prop.studData(groups && groups.byGroupID.students)
       }
-   }, [grStudents, setGroupStudents, groups, setDayDivide, prop])
+   }, [grStudents, groups, setDayDivide, prop])
 
 
 
@@ -421,86 +417,84 @@ const GroupProfilLeft = (prop) => {
                   <br />
                   <div className="izma__groups-attendance-left-bottom-wrapper">
                      {
-                        filtered && filtered.map((s, i) => (
-                           <div key={i} className="izma__groups-attendance-left-bottom">
-                                 <div className="colorBox">
-                                 {s.groupStatus === 2 && <div className="izma__groups-attendance-left-bottom-box-white"></div>}
-                                 {s.groupStatus === 3 && <div className="izma__groups-attendance-left-bottom-box"></div>}
-                                 {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
-                                 {s.groupStatus === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
-                                 </div>
-                                 <Link className="izma__groups-attendance-left-bottom-heading" to={`/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
-                                       {s.name}
-                                 </Link>
-                                 <p className="izma__groups-attendance-left-bottom-phone">
-                                    {
-                                       s.studentPhone.map((i, key) => <span key={key}> +{i.phone}<br /> </span>)
+                        filtered && filtered.map((s, i) => <div key={i} className="izma__groups-attendance-left-bottom">
+                        <div className="colorBox">
+                        {s.groupStatus === 2 && <div className="izma__groups-attendance-left-bottom-box-white"></div>}
+                        {s.groupStatus === 3 && <div className="izma__groups-attendance-left-bottom-box"></div>}
+                        {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
+                        {s.groupStatus === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
+                        </div>
+                        <Link className="izma__groups-attendance-left-bottom-heading" to={`/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
+                              {s.name}
+                        </Link>
+                        <p className="izma__groups-attendance-left-bottom-phone">
+                           {
+                              s.studentPhone.map((i, key) => <span key={key}> +{i.phone}<br /> </span>)
+                           }
+                        </p>
+
+                        <div style={{ position: 'relative', marginLeft: 'auto' }}>
+                           <button
+                              className="izma__groups-attendance-left-bottom-btn" onClick={() => {
+                                 if (delActive) {
+                                    setDElActive(false)
+                                 } else {
+                                    setDElActive(s.id)
+                                 }
+                                 setSelectedUser(s.id)
+                                 settStatus(s.groupStatus)
+                                 setIdName({ studentID: s.id, studentName: s.name })
+                              }}>
+                                 <span></span>
+                           </button>
+
+
+
+
+
+                           <div style={{ zIndex: 10000, position: 'absolute' }}
+                              className={`open_del ${delActive === s.id ? 'active' : ''}`} onClick={() => setDElActive(false)}>
+
+                              {(s.groupStatus === 3 || s.groupStatus === 4) && <Link to="#" className="del_link" onClick={() => {
+                                 SetStatus_5({
+                                    variables: {
+                                       status: 5, stID: selectedUser, grID: groupID
                                     }
-                                 </p>
+                                 })
+                              }}>{Language[lang].groups.additionalOption.freeze}</Link>}
 
-                                 <div style={{ position: 'relative', marginLeft: 'auto' }}>
-                                    <button
-                                       className="izma__groups-attendance-left-bottom-btn" onClick={() => {
-                                          if (delActive) {
-                                             setDElActive(false)
-                                          } else {
-                                             setDElActive(s.id)
-                                          }
-                                          setSelectedUser(s.id)
-                                          settStatus(s.groupStatus)
-                                          setIdName({ studentID: s.id, studentName: s.name })
-                                       }}>
-                                          <span></span>
-                                    </button>
+                              {(s.groupStatus === 2 || s.groupStatus === 5) && <Link to="#" className="del_link" onClick={() => {
+                                 s.groupStatus === 5 && setPaymentStatus(true)
+                                 s.groupStatus === 2 && setPayment(true)
+                                 s.groupStatus === 2 && rrr()
+                              }} >{Language[lang].groups.activate.activateTitle}</Link>}
+                              <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
+                              <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>
+                              <Link to="#" className="del_link">{Language[lang].groups.activate.changeGroupStudent}</Link>
+                              <Link to="#" className="del_link--red" onClick={() => {
 
+                                 if (setStatus_6 && setStatus_6.setStatus_6.length === 1) {
 
+                                    SetStatus_6({
+                                       variables: {
+                                          status: 6, stID: selectedUser
+                                       }
+                                    })
+                                 }
 
+                                 DelFromGroup({
+                                    variables: {
+                                       grID: groupID, stID: selectedUser
+                                    }
+                                 })
 
-
-                                    <div style={{ zIndex: 10000, position: 'absolute' }}
-                                       className={`open_del ${delActive === s.id ? 'active' : ''}`} onClick={() => setDElActive(false)}>
-
-                                       {(s.groupStatus === 3 || s.groupStatus === 4) && <Link to="#" className="del_link" onClick={() => {
-                                          SetStatus_5({
-                                             variables: {
-                                                status: 5, stID: selectedUser, grID: groupID
-                                             }
-                                          })
-                                       }}>{Language[lang].groups.additionalOption.freeze}</Link>}
-
-                                       {(s.groupStatus === 2 || s.groupStatus === 5) && <Link to="#" className="del_link" onClick={() => {
-                                          s.groupStatus === 5 && setPaymentStatus(true)
-                                          s.groupStatus === 2 && setPayment(true)
-                                          s.groupStatus === 2 && rrr()
-                                       }} >{Language[lang].groups.activate.activateTitle}</Link>}
-                                       <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
-                                       <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>
-                                       <Link to="#" className="del_link">{Language[lang].groups.activate.changeGroupStudent}</Link>
-                                       <Link to="#" className="del_link--red" onClick={() => {
-
-                                          if (setStatus_6 && setStatus_6.setStatus_6.length === 1) {
-
-                                             SetStatus_6({
-                                                variables: {
-                                                   status: 6, stID: selectedUser
-                                                }
-                                             })
-                                          }
-
-                                          DelFromGroup({
-                                             variables: {
-                                                grID: groupID, stID: selectedUser
-                                             }
-                                          })
-
-                                       }}>{Language[lang].groups.exitToGroup}</Link>
-                                    </div>
+                              }}>{Language[lang].groups.exitToGroup}</Link>
+                           </div>
 
 
 
-                                 </div>
-                              </div>
-                        ))
+                        </div>
+                     </div>)
                      }
 
                   </div>

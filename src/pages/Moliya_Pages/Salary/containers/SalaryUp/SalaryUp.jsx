@@ -102,12 +102,12 @@ const SalaryUp = () => {
                <div className="inputs_wrap another_two">
                   <div className="select_two">
                      <label htmlFor="">{Language[lang].finance.secondSettingsSalary.chooseTeacher}</label>
-                     <select onChange={e => setCollegueId(e.target.value)}>
-                           <option selected disabled>{Language[lang].finance.secondSettingsSalary.choose}</option>
+                     <select onChange={e => setCollegueId(e.target.value)} >
+                           <option key="1d2" selected disabled value="">{Language[lang].finance.secondSettingsSalary.choose}</option>
                            {
                               data?.map(i => {
                                  if (i.status !== 'CEO') {
-                                       return <option value={i.Id}>{i.name}</option>
+                                       return <option key={i.id} value={i.Id}>{i.name}</option>
                                  }
                                  return ""
                               })

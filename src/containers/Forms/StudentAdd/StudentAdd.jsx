@@ -150,7 +150,6 @@ const StudentAdd = ({ onCloseF }) => {
                   }}
                   placeholder={Language[lang].teachers.addNewUser.date}
                   format={"DD-MM-YYYY"}
-                  value={stBirth !== "" ? moment(stBirth) : ""}
 
                />
             </div>

@@ -21,7 +21,7 @@ const LidsEdit = ({ setEdit, edit, item }) => {
    const [useName, setUserName] = useState(item?.name)
    const [updateLead] = useMutation(UPDATE_LEAD)
 
-   console.log(item);
+ 
 
 
    const handleSubmit = () => {

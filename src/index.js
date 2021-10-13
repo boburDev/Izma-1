@@ -33,8 +33,8 @@ import AppWrapper from './pages/AppWrapper/AppWrapper'
 
 // const api = `http://192.168.43.4:4000/graphql`
 // const wssApi = `ws://192.168.43.4:4000/graphql`
-const api = `http://localhost:4000/graphql`
-const wssApi = `ws://localhost:4000/graphql`
+const api = `http://localhost:4001/graphql`
+const wssApi = `ws://localhost:4001/graphql`
 // const api = `https://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
 // const wssApi = `wss://${isTester ? 'api.izma.uz' : 'api.triiipple.uz'}/graphql`
 // console.log(api, wssApi)

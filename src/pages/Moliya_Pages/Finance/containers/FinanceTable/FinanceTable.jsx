@@ -10,7 +10,6 @@ const FinanceTable = () => {
    const [data,setData] = useState([])
    const { data: finanveStudents } = useQuery(FINANCE_STUDENT_TABLE)
    const [state,setState] = useState('')
-   console.log(state)
 
    useEffect(()=>{
       if (finanveStudents && finanveStudents.financeStudentsList) {

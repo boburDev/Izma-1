@@ -93,7 +93,6 @@ const GroupProfilRightTab3 = ({ studentData }) => {
 
            
           ];
-  console.log(dataSale);
 
     return (
         <>

@@ -55,7 +55,6 @@ const SettingsRoadMap = ()=>{
                     <div className="name_questions">
                         {
                             i.roadmapItems.map((item, j) => {
-                                console.log(item)
                                 return <Counter
                                     key={j}
                                     handlePlus={() => handlePlus(index, 0)}

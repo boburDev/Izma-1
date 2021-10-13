@@ -25,7 +25,7 @@ const CoursesFormMainDegree = ({ onClose }) => {
 
    const [newDegree, { data: ss }] = useMutation(NEW_DEGREE)
 
-   console.log(ss)
+   
    const handleSubmit = (id) => {
       onClose()
 

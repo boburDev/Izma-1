@@ -100,7 +100,6 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					status: 3
 				}
 			})
-			console.log('status_3')
 			SetStatus3_4({ variables: { status: 3, stID: (studenID.studentID || studenID.studentId) } })
 			setTester(false)
 		}
@@ -303,18 +302,10 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 						<DatePicker
 							ref={datePicker}
-							
 							className='date__picker'
-							onChange={(value, dateString) => setPayedData({
-								payed: dateString,
-								payed_at: value._d
-							})
-							}
+							onChange={(value, dateString) => setPayedData({ payed: dateString, payed_at: value._d })}
 							placeholder={Language[lang].students.recordPayment.date}
-							format={"DD-MM-YYYY"}
-							value={payedData !== "" ? moment(payedData) : ""}
-							
-
+							format={"DD-MM-YYYY"}							
 						/>
 					</div>
 

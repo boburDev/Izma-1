@@ -24,7 +24,6 @@ function Test() {
      `
 
      const { data: tt } = useQuery(ONE_COURSE_TO_EDIT)
-     console.log(tt)
 
     return (
         <>

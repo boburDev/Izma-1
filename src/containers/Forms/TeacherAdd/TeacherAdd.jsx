@@ -26,7 +26,6 @@ const TeacherAdd = ({ onClose, setVisible }) => {
    const [lang] = useLang()
 
 
-   console.log(Language[lang].teachers.addNewUser.date)
 
    const [newTeacher] = useMutation(NEW_TEACHER)
 

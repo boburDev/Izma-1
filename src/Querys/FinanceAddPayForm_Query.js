@@ -101,16 +101,19 @@ const HISTORY_PAYMENT = gql`
 `
 
 const STUDENT_GROUPS = gql `
-query student($id: ID!) {
-  student(id: $id){
-    groups{
+  query studentGroups($studentID: ID!){
+    studentGroups(studentID: $studentID){
       id
       name
+      time
+      startDate
+      price
+      courseName
+      days
       teacher
       teacherID
     }
   }
-}
 `
 
 const COUNT = gql`
@@ -165,6 +168,18 @@ const UPDATE_GR_STATUS = gql `
   }
 `
 
+const SUBSCRIPTION_GROUPS = gql `
+	subscription {
+		studentGroupss {
+      id
+      name
+      time
+      startDate
+      days
+		}
+	}
+`
+
 export {
   NEW_CASH,
   CHECK_CASH,
@@ -175,5 +190,6 @@ export {
   COUNT,
   CREATE_CHECK,
   SUBSCRIPTION_CHECK,
-  UPDATE_GR_STATUS
+  UPDATE_GR_STATUS,
+  SUBSCRIPTION_GROUPS
 }

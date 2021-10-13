@@ -4,7 +4,7 @@ import {  DatePicker } from "antd"
 import { Radio, Input } from 'antd'
 import { memo, useEffect, useRef, useState } from 'react'
 import TextArea from "antd/lib/input/TextArea"
-import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT_GROUPS, CREATE_CHECK, SUBSCRIPTION_CHECK, UPDATE_GR_STATUS, COUNT } from '../../../../Querys/FinanceAddPayForm_Query'
+import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT_GROUPS, CREATE_CHECK, SUBSCRIPTION_CHECK, UPDATE_GR_STATUS, COUNT, SUBSCRIPTION_GROUPS } from '../../../../Querys/FinanceAddPayForm_Query'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import DropSearch from '../../../../components/DropSearch/DropSearch'
 import { useCheck } from '../../../../context/CheckProvider'
@@ -23,7 +23,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const [setCheck] = useCheck(true)
 	const [lang] = useLang()
 
-	const [groups, setGroups] = useState()
+	const [groups, setGroups] = useState([])
 	const [tester, setTester] = useState(false)
 
 
@@ -41,6 +41,16 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 		},
 	})
 
+	useSubscription(SUBSCRIPTION_GROUPS, {
+		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+			 cache.modify({
+					fields: {
+						 studentGroups: () => { }
+					}
+			 })
+		},
+ })
+
 	const someFunc = () => {
 		setPayedData("")
 		setAmmoun('')
@@ -51,9 +61,14 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 		variables: { stID: studenID && (studenID.studentID || studenID.studentId) }
 	})
 
+	// const { data: stGroups } = useQuery(STUDENT_GROUPS, {
+	// 	variables: { id: studenID && (studenID.studentID || studenID.studentId) }
+	// })
+
 	const { data: stGroups } = useQuery(STUDENT_GROUPS, {
-		variables: { id: studenID && (studenID.studentID || studenID.studentId) }
+		variables: { studentID: studenID && (studenID.studentID || studenID.studentId) } 
 	})
+
 
 	const { data: count } = useQuery(COUNT)
 	
@@ -67,7 +82,10 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 
 	useEffect(() => {
-		setGroups(stGroups)
+		if (stGroups && stGroups.studentGroups) {
+			
+			setGroups(stGroups.studentGroups)
+		}
 	}, [stGroups])
 
 
@@ -273,7 +291,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 							(groupID === '') && <>
 								<label className='izma__courses__form-bolim-form-label'>{Language[lang].courses.courseName.groups}</label>
 								<DropSearch
-									arr={groups && groups.student.groups}
+									arr={groups.length !== 0 && groups}
 									pInput={Language[lang].groups.addNewGroups.chooseVariant}
 									fnc={setData}
 								/>

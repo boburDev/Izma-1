@@ -8,8 +8,8 @@ import Home5Img from '../../../../assets/Icons/home5.svg'
 import Home6Img from '../../../../assets/Icons/home6.svg'
 import Home7Img from '../../../../assets/Icons/home7.svg'
 import Home8Img from '../../../../assets/Icons/home8.svg'
-import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT } from '../../../../Querys/HomeCard_Query'
-import { useQuery } from '@apollo/client'
+import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT, ST_COUNT } from '../../../../Querys/HomeCard_Query'
+import { useQuery, useSubscription } from '@apollo/client'
 import Language from '../../../../lang/index'
 import { useLang } from '../../../../context/LanguageProvider'
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -26,13 +26,31 @@ const Blocks = () => {
    const language = Language[lang].home.blocks
    const {data: CountStudents } = useQuery(STUDENT_COUNT)
    const {data: GroupCount } = useQuery(GROUP_COUNT)
-   const {data: CountStatus_2 } = useQuery(STATUS_COUNT, {variables: {count: '2'}})
-   const {data: CountStatus_3 } = useQuery(STATUS_COUNT, {variables: {count: '3'}})
-   const {data: CountStatus_4 } = useQuery(STATUS_COUNT, {variables: {count: '4'}})
-   const {data: CountStatus_5 } = useQuery(STATUS_COUNT, {variables: {count: '5'}})
-   const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: '6'}})
+   const {data: CountStatus_2 } = useQuery(STATUS_COUNT, {variables: {count: 2}})
+   const {data: CountStatus_3 } = useQuery(STATUS_COUNT, {variables: {count: 3}})
+   const {data: CountStatus_4 } = useQuery(STATUS_COUNT, {variables: {count: 4}})
+   const {data: CountStatus_5 } = useQuery(STATUS_COUNT, {variables: {count: 5}})
+   const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: 6}})
 
-   
+   useSubscription(ST_COUNT, {
+		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+			cache.modify({
+				fields: {
+					studentCountHome: () => { }
+				}
+			})
+		},
+	})
+
+   useSubscription(ST_COUNT, {
+		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+			cache.modify({
+				fields: {
+					studentStatus: () => { }
+				}
+			})
+		},
+	})
    
    
    const lists = [

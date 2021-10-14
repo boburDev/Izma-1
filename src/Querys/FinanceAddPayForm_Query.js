@@ -2,8 +2,7 @@ import { gql } from '@apollo/client'
 
 const CHECK_CASH = gql `
   query studentCash($stID: ID!) {
-    studentCash(studentID: $stID)
-    {
+    studentCash(studentID: $stID) {
       id
       studentID
       cashAmount
@@ -107,7 +106,6 @@ const STUDENT_GROUPS = gql `
       name
       time
       startDate
-      price
       courseName
       days
       teacher

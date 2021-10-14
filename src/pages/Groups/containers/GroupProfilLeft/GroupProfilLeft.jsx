@@ -26,7 +26,6 @@ import {
 import { useDayDivider } from '../../../../context/DayDividerProvider'
 import {
    DELETE_FROM_GROUP,
-   CHECK_CASH,
    UPDATE_CASH,
    STATUS_3_4,
    HISTORY_PAYMENT,
@@ -35,6 +34,7 @@ import {
    UPDATE_GR_STATUS,
    SUBSCRIPTION_ADD_STUDENT,
 } from '../../../../Querys/GroupTabs'
+import { CHECK_CASH } from '../../../../Querys/FinanceAddPayForm_Query'
 import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
 import Check from '../../../../components/Check/Check'
@@ -45,7 +45,7 @@ const GroupProfilLeft = (prop) => {
 
    const [dayDivide, setDayDivide] = useDayDivider()
    const [userInput, setUserInput] = useState('')
-   const [selectedUser, setSelectedUser] = useState()
+   const [selectedUser, setSelectedUser] = useState('')
    const [startedDate, setStartedDate] = useState('')
    const [dataUser, setDataUser] = useState([])
    const [staatus, settStatus] = useState()
@@ -56,6 +56,7 @@ const GroupProfilLeft = (prop) => {
    const [setNavbarP] = useNavbar(true)
 
    const [dataGroup, setDataGroup] = useState({})
+   const [grStudent, setGrStudent] = useState([])
 
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
@@ -72,6 +73,14 @@ const GroupProfilLeft = (prop) => {
 
    useEffect(() => {
 
+      if (grStudents && grStudents.findStudByGrId) {
+         setGrStudent(grStudents.findStudByGrId)
+      }
+
+   }, [grStudents])
+
+   useEffect(() => {
+
       if (groups && groups.byGroupID) {
          setDataGroup(groups.byGroupID)
       }
@@ -84,7 +93,7 @@ const GroupProfilLeft = (prop) => {
          setDayDivide(groups.byGroupID.days)
          prop.studData(groups && groups.byGroupID.students)
       }
-   }, [grStudents, groups, setDayDivide, prop])
+   }, [groups, setDayDivide, prop])
 
 
 
@@ -307,7 +316,7 @@ const GroupProfilLeft = (prop) => {
       setCheckModal(false)
    }
 
-   const filtered = grStudents && grStudents.findStudByGrId.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
+   const filtered = grStudent?.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
 
    if (delData && delData) return <Redirect to='/groups' />
 
@@ -412,6 +421,8 @@ const GroupProfilLeft = (prop) => {
 
                   <button className="izma__groups-attendance-left-bottom-button-add" onClick={showStudentDrawer} >
                   </button>
+
+                  <button>active</button>
 
                   <br />
                   <br />

@@ -118,17 +118,6 @@ const DELETE_FROM_GROUP = gql `
   }
 `
 
-const CHECK_CASH = gql `
-  query studentCash($stID: ID!) {
-    studentCash(studentID: $stID)
-    {
-      id
-      studentID
-      cashAmount
-    }
-  }
-`
-
 const UPDATE_CASH = gql `
   mutation updateCash(
     $stID: ID!
@@ -300,7 +289,6 @@ export {
 	GET_STUDENTS,
   SELECT_STUDENT_GROUP,
   DELETE_FROM_GROUP,
-  CHECK_CASH,
   UPDATE_CASH,
   HISTORY_PAYMENT,
   HAS_STUDENT,

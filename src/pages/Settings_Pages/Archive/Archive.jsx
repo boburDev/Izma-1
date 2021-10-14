@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useSubscription } from '@apollo/client';
 import { useState, useEffect } from 'react';
 import TTable from '../../../components/Table/TTable';
-import { COLLEGUES_BY_STATUS, UPT_STATUS, TEACHER_SUBSCRIPTION } from '../../../Querys/Settings';
+import { COLLEGUES_BY_STATUS, TEACHER_SUBSCRIPTIONN, DELETE_COLLEGUE } from '../../../Querys/Settings';
 import './Archive.scss'
 import { useLang } from '../../../context/LanguageProvider';
 import Language from '../../../lang/index'
@@ -11,12 +11,11 @@ const Archive = () => {
    const [data, setData] = useState([])
    const [val, setVal] = useState([])
    const [takeID, setTakeID] = useState()
-   const [stat, setStat] = useState('')
    const [lang] = useLang()
 
 
    const {data: minusStatus} = useQuery(COLLEGUES_BY_STATUS)
-	const [deleteCollegue] = useMutation(UPT_STATUS)
+	const [deleteCollegue] = useMutation(DELETE_COLLEGUE)
 
    useEffect(() => {
       if (minusStatus && minusStatus.selectByStatus) {  
@@ -56,38 +55,16 @@ const Archive = () => {
 
    }, [data])
 
-	const deletble = val.find(e => e.Id === takeID)
-
-   useEffect(() => {
-		
-		if (takeID) {
-
-			if (deletble?.status === 'CEO'){
-				setStat(-1)
-			} else if (deletble?.status === 'Marketer'){
-				setStat(-2)}
-			else if (deletble?.status === 'Adminstrator'){
-				setStat(-3)
-			} else if (deletble?.status === 'Casher'){
-				setStat(-4)
-			} else if (deletble?.status === 'Teacher'){
-				setStat(-5)
-			}
-
-		}
-		
-
-	}, [takeID, deletble, setStat])
-
+	
    useEffect(() => {
 
-      if (stat) {
-         deleteCollegue({variables: {id: takeID, status: stat * 10}})
+      if (takeID) {
+         deleteCollegue({variables: {id: takeID}})
       }
 
-   }, [deleteCollegue, stat, takeID])
+   }, [deleteCollegue, takeID])
 
-   useSubscription(TEACHER_SUBSCRIPTION, {
+   useSubscription(TEACHER_SUBSCRIPTIONN, {
 		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
 			cache.modify({
 				fields: {
@@ -95,8 +72,7 @@ const Archive = () => {
 				}
 			})
 		},
-	})   
-
+	})
 
    return (
       <>

@@ -11,28 +11,28 @@ import { BY_GROUP_ID } from '../../Querys/GroupTabs'
 // react-redux uninstall qivoring
 function Davomat() {
     const id = useParams()
+    const [lang] = useLang()
+    
     const [arr, setArr] = useState([])
     const [state, setState] = useState([])
     const [start, setStart] = useState('')
     const [startDay, setStartDay] = useState('')
     const [days, setDays] = useState('')
-    const [active, setActive] = useState(start-0)
+    const [active, setActive] = useState(0)
     const [yearStart, setYearStart] = useState('')
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [groupMonth,setGroupMonth] = useState([])
     const [groupStuMonth,setGroupStuMonth] = useState([])
     const [monthlyGr, setMonthlyGr] = useState([])
-    const [monthlyStGr, setMonthlyStGr] = useState([])
-    const [lang] = useLang()
-
-
-
-
-
 
 
     const [groupData,setGroupData] = useState({})
+    const [attandenceDate, setAttandenceDate] = useState([])
+    
+    useEffect(()=>{
+        setActive(start-0)
+    },[start])
 
 
     const { data: groupById } = useQuery(BY_GROUP_ID, {
@@ -45,27 +45,122 @@ function Davomat() {
         }
     },[groupById])
 
-
-
+    useEffect(() => {
+        if (groupData.id) {
+            setStart(groupData.startDate.split('-')[1])
+            setStartDay(groupData.startDate.split('-')[2])
+            setDays(groupData.days)
+            setYearStart(groupData.startDate.split('-')[0])
+            setStartDate(groupData.startDate)
+            setEndDate(groupData.endDate)
+        }
+    }, [groupData])
 
     const [fff, { data: groupAtt }] = useLazyQuery(GROUP_DAVOMAT)
-    
-
-    // const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
 
     useEffect(() => {
-        console.log(groupData)
-    }, [groupData])
+        if (active !== 0) {
+            fff({
+                variables: {
+                    groupID: id && id.groupID,
+                    month: active
+                }
+            })
+        }
+    }, [active, fff, groupData, id])
+    
+    
+    useEffect(()=>{
+        if (groupAtt && groupAtt.groupAttendences) {
+            // console.log(groupAtt.groupAttendences)
+            setAttandenceDate(groupAtt.groupAttendences)
+        }
+    },[groupAtt])
+    
+    
+   
+
+
+
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+
+    const getMonths = (fromDate, toDate) => {
+        const fromYear = fromDate.getFullYear();
+        const fromMonth = fromDate.getMonth();
+        const toYear = toDate.getFullYear();
+        const toMonth = toDate.getMonth();
+        const months = [];
+        for(let year = fromYear; year <= toYear; year++) {
+            let month = year === fromYear ? fromMonth : 0;
+            const monthLimit = year === toYear ? toMonth : 11;
+            for(; month <= monthLimit; month++) {
+                months.push({ year, month })
+            }
+        }
+        return months;
+    }
+
+    useEffect(()=>{
+        setState(getMonths(new Date(startDate), new Date(endDate)))
+    },[endDate, startDate])
+
+    // const getDaysInMonth = (months, year, start) => {
+    //     let startDay = start
+    //     const daysInMonth = groupMonth.map(i => {
+    //         if (year >= moment(i).format('YYYY') && (months-0) === (moment(i).format('MM')-0)) {
+    //             if (startDay <= moment(i).format('DD') ) {
+    //                 startDay = '01'
+    //                 return i
+    //             }
+    //         }
+    //         return ''
+    //     })
+    //     const data = []
+    //     for (const i of daysInMonth) {
+    //         if (i !== '') {
+    //             data.push(i)
+    //         }
+    //     }
+    //     return data
+    // }
+
+    function davomatCalendar(value) {
+        const data = []
+        console.log(value)
+        days.split(',').map(i => {
+            value.map(item => {
+                if (endDate >= moment(item.day-0).format('YYYY-MM-DD')) {
+                    if ((i - 1) === new Date(item.day).getDay()) {
+                        data.push(item)
+                        // data.date.push(moment(item).format('DD/MM-YYYY'))
+                    }
+                }
+                return ""
+            })
+            return ""
+        })
+        return data
+    }
+
 
 
     // useEffect(()=>{
-    //     if (groupAtt && groupAtt.groupAttendences) {
-    //         const mapped = groupAtt.groupAttendences.map(i => {
-    //             return new Date(i.day-0)
-    //         })
-    //         setGroupMonth(mapped)
-    //     }
-    // },[groupAtt])
+    //     fff({ variables: { 
+    //         groupID: id && id.groupID,
+    //         month: active
+    //     }})
+    //     // console.log(active)
+    // },[active, fff, id])
+
+
+
+
+
+
+
+    // const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
+
 
     // useEffect(()=>{
     //     if ((studentGrAtt && studentGrAtt.studentAttendence) &&
@@ -99,99 +194,6 @@ function Davomat() {
     //     }
     // },[studentGrAtt, groupStudents])
 
-    useEffect(() => {
-        if (groupById && groupById.byGroupID) {
-            setStart(groupById.byGroupID.startDate.split('-')[1])
-            setStartDay(groupById.byGroupID.startDate.split('-')[2])
-            setDays(groupById.byGroupID.days)
-            setYearStart(groupById.byGroupID.startDate.split('-')[0])
-            setStartDate(groupById.byGroupID.startDate)
-            setEndDate(groupById.byGroupID.endDate)
-        }
-    }, [groupById])
-
-
-
-
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
-
-    const getMonths = (fromDate, toDate) => {
-        const fromYear = fromDate.getFullYear();
-        const fromMonth = fromDate.getMonth();
-        const toYear = toDate.getFullYear();
-        const toMonth = toDate.getMonth();
-        const months = [];
-        for(let year = fromYear; year <= toYear; year++) {
-            let month = year === fromYear ? fromMonth : 0;
-            const monthLimit = year === toYear ? toMonth : 11;
-            for(; month <= monthLimit; month++) {
-                months.push({ year, month })
-            }
-        }
-        return months;
-    }
-
-    useEffect(()=>{
-        setState(getMonths(new Date(startDate), new Date(endDate)))
-    },[endDate, startDate])
-
-    const getDaysInMonth = (months, year, start) => {
-        let startDay = start
-        const daysInMonth = groupMonth.map(i => {
-            if (year >= moment(i).format('YYYY') && (months-0) === (moment(i).format('MM')-0)) {
-                if (startDay <= moment(i).format('DD') ) {
-                    startDay = '01'
-                    return i
-                }
-            }
-            return ''
-        })
-        const data = []
-        for (const i of daysInMonth) {
-            if (i !== '') {
-                data.push(i)
-            }
-        }
-        return data
-    }
-
-    function davomatCalendar(start, yearStart, startDay = 1) {
-        const DATE = getDaysInMonth(start, yearStart, startDay)
-        const data = {
-            date: []
-        }
-        
-        days.split(',').map(i => {
-            DATE.map(item => {
-                if (endDate >= moment(item).format('YYYY-MM-DD')) {
-                    if ((i - 1) === new Date(item).getDay()) {
-                        data.date.push(item)
-                        // data.date.push(moment(item).format('DD/MM-YYYY'))
-                    }
-                }
-                return ""
-            })
-            return ""
-        })
-        return data
-    }
-
-
-
-    // useEffect(()=>{
-    //     fff({ variables: { 
-    //         groupID: id && id.groupID,
-    //         month: active
-    //     }})
-    //     // console.log(active)
-    // },[active, fff, id])
-
-
-
-
-
-
-
 
 
 
@@ -215,9 +217,9 @@ function Davomat() {
     
     
     
-    const monthly = (month,year, day = 1) => {
+    const monthly = () => {
         setArr(arr)
-        setMonthlyGr(davomatCalendar(month, year, day).date.sort())
+        setMonthlyGr(davomatCalendar(attandenceDate).sort())
 
         let roun = document.querySelectorAll(`${st.round}`)
         roun.forEach(item => {
@@ -233,13 +235,16 @@ function Davomat() {
 
     
     
-    // useEffect(() => {
-    //     const data = davomatCalendar(start, yearStart, startDay)
-    //     // setArr(arr)
-    //     setActive(start-1)
-    //     setMonthlyGr(data.date.sort())
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [start, startDay, yearStart])
+    useEffect(() => {
+        if (false) {
+        }
+        const data = davomatCalendar(attandenceDate)
+        // console.log(attandenceDate)
+        // console.log(data)
+        // setArr(arr)
+        // setActive(start-1)
+        // setMonthlyGr(data.date.sort())
+    }, [attandenceDate, davomatCalendar, start, startDay, yearStart])
     
     // useEffect(() => {
     //     const data = davomatCalendar(start, yearStart, startDay)
@@ -282,10 +287,10 @@ function Davomat() {
             <button
             onClick={() => {
                 setMonth(i.month + 1, i.year, ((i.month + 1) === (start-0)) ? startDay : 1)
-                setActive(i.month)
+                setActive(i.month+1)
             }}
             key={key}
-            className={`${st.top__btn} ${active === i.month ? `${st.top__btn_active}` : ''}`}>{monthNames[i.month]}</button>)
+            className={`${st.top__btn} ${active === i.month+1 ? `${st.top__btn_active}` : ''}`}>{monthNames[i.month]}</button>)
         }
         </div>
         </div>

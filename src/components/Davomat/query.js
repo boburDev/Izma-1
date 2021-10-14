@@ -6,7 +6,6 @@ import {
  query groupAttendences($groupID: ID! $month: Int) {
    groupAttendences(groupID: $groupID month: $month) {
      id
-     groupID
      day
      status
      comment

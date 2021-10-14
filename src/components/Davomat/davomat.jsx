@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import moment from 'moment'
 import st from './davomat.module.scss'
 import { useParams } from 'react-router-dom'
 import { useLazyQuery, useQuery } from '@apollo/client'
-import { GROUP_DAVOMAT, STUDENT_DAVOMAT } from './query'
+import { GROUP_DAVOMAT } from './query'
 import {useLang} from '../../context/LanguageProvider'
 import Language from '../../lang/index'
 import { BY_GROUP_ID } from '../../Querys/GroupTabs'
@@ -22,9 +22,9 @@ function Davomat() {
     const [yearStart, setYearStart] = useState('')
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
-    const [groupMonth,setGroupMonth] = useState([])
-    const [groupStuMonth,setGroupStuMonth] = useState([])
-    const [monthlyGr, setMonthlyGr] = useState([])
+    // const [groupMonth,setGroupMonth] = useState([])
+    // const [groupStuMonth,setGroupStuMonth] = useState([])
+    const [, setMonthlyGr] = useState([])
 
 
     const [groupData,setGroupData] = useState({})
@@ -125,23 +125,24 @@ function Davomat() {
     //     return data
     // }
 
-    function davomatCalendar(value) {
+    const davomatCalendar = useCallback((value) => {
         const data = []
-        console.log(value)
-        days.split(',').map(i => {
-            value.map(item => {
-                if (endDate >= moment(item.day-0).format('YYYY-MM-DD')) {
-                    if ((i - 1) === new Date(item.day).getDay()) {
-                        data.push(item)
-                        // data.date.push(moment(item).format('DD/MM-YYYY'))
+        // console.log(data)
+            days.split(',').map(i => {
+                value.map(item => {
+                    if (endDate >= moment(item.day-0).format('YYYY-MM-DD')) {
+                        if ((i - 1) === new Date(item.day).getDay()) {
+                            data.push(item)
+                            // data.date.push(moment(item).format('DD/MM-YYYY'))
+                        }
                     }
-                }
+                    return ""
+                })
                 return ""
             })
-            return ""
-        })
         return data
-    }
+
+    }, [days, endDate])
 
 
 
@@ -238,7 +239,7 @@ function Davomat() {
     useEffect(() => {
         if (false) {
         }
-        const data = davomatCalendar(attandenceDate)
+        // const data = davomatCalendar(attandenceDate)
         // console.log(attandenceDate)
         // console.log(data)
         // setArr(arr)

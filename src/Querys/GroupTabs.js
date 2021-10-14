@@ -278,6 +278,12 @@ const SUBSCRIPTION_GROUP_INFO = gql `
   }
 `
 
+const DOES_ACTIVE = gql `
+  mutation updateAllStudentCash($needID: YYYYY) {
+    updateAllStudentCash (needID: $needID)
+  }
+`
+
 
 export {
   NEW_CASH,
@@ -294,10 +300,11 @@ export {
   HAS_STUDENT,
   UPDATE_GR_STATUS,
   GROUP_STUDENTS,
+  NEW_SUB_STUDENT,
+  DOES_ACTIVE,
   SUBSCRIPTION_GROUPS,
   SUBSCRIPTION_STUDENT,
   SUBSCRIPTION_STATUS,
   SUBSCRIPTION_ADD_STUDENT,
-  NEW_SUB_STUDENT,
   SUBSCRIPTION_GROUP_INFO,
 }

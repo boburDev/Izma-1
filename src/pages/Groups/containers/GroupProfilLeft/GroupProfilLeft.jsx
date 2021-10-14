@@ -21,7 +21,8 @@ import {
    SUBSCRIPTION_STATUS,
    GROUP_STUDENTS,
    NEW_SUB_STUDENT,
-   SUBSCRIPTION_GROUP_INFO
+   SUBSCRIPTION_GROUP_INFO,
+   DOES_ACTIVE
 } from '../../../../Querys/GroupTabs'
 import { useDayDivider } from '../../../../context/DayDividerProvider'
 import {
@@ -60,6 +61,7 @@ const GroupProfilLeft = (prop) => {
 
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
+   const [activator, setActivator] = useState(false)
 
    const { groupID } = useParams()
 
@@ -127,6 +129,7 @@ const GroupProfilLeft = (prop) => {
    const [SetStatus_4] = useMutation(STATUS_3_4)
    const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
    const [SetStatus_5] = useMutation(UPDATE_GR_STATUS)
+   const [Activated] = useMutation(DOES_ACTIVE)
 
    useEffect(() => {
 
@@ -241,6 +244,18 @@ const GroupProfilLeft = (prop) => {
             setPaymentStatus(false)
          }
    }, [SetStatus3_4, checkCache, groupID, paymentStatus, selectedUser, staatus])
+
+
+   useEffect(() => {
+
+      if (grStudent.length > 0 && activator) {
+         let sorted = []
+         grStudent.map(i => i.groupStatus === 2 && sorted.push({id: i.id, status: i.groupStatus}))
+         Activated({variables: {needID: sorted}})
+         setActivator(false)
+         console.log('once')
+      }
+   }, [grStudent, Activated, activator])
 
    const showModal = () => {
       setIsModalVisible(true)
@@ -422,7 +437,7 @@ const GroupProfilLeft = (prop) => {
                   <button className="izma__groups-attendance-left-bottom-button-add" onClick={showStudentDrawer} >
                   </button>
 
-                  <button>active</button>
+                  <button onClick={() => setActivator(true)}>active</button>
 
                   <br />
                   <br />

@@ -4,12 +4,22 @@
    align-items: center;
    justify-content: center;
    flex-direction: column;
+    @media screen and (max-width: 768px) {
+       padding: 0;
+       width: 100%;
+       overflow-x: scroll;
+    }
+
+
 
    .wrapper {
       width: 648px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      @media screen and (max-width: 768px) {
+         width: 100%;
+      }
    }
 
    .company__settings-heading {
@@ -20,6 +30,9 @@
       line-height: 43px;
       margin-bottom: 38px;
       color: #000000;
+      @media screen and (max-width: 768px) {
+        font-size: 22px;
+      }
    }
 
    .companySetting-inner {
@@ -30,7 +43,12 @@
       box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.08);
       border-radius: 7px;
       max-width: 648px;
-
+      
+      @media screen and (max-width: 768px) {
+         max-width: 100%;
+         min-width: 100%;
+         padding: 16px;
+      }
       .logo {
          margin-bottom: 17px;
       }
@@ -254,6 +272,11 @@
                color: #FFFFFF;
                margin-top: 53px;
                cursor: pointer;
+               @media screen and (max-width: 768px) {
+                  font-size: 16px;
+                  padding: 8px 25px;
+                  margin-top: 0;
+               }
             }
          }
       }

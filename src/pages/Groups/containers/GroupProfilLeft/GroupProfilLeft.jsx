@@ -395,7 +395,7 @@ const GroupProfilLeft = (prop) => {
                         {Language[lang].groups.groupInfo.price}
                      </p>
                      <p className="izma__groups-attendance-left-center-prices-number">
-                     {dataGroup.price === null ? window.location.reload(true) : dataGroup.price} UZS
+                     {dataGroup.price} UZS
                      </p>
                   </div>
 

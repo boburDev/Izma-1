@@ -10,6 +10,9 @@
     @media screen and (max-width: 1023px) {
        margin-left: 0;
     }
+    @media screen and (max-width: 768px) {
+       width: 100%;
+    }
 }
 
 .izma__form__teaxtarea .ant-input {
@@ -88,4 +91,8 @@
    padding: 12px 40px;
    margin-top: 60px;
    color: #FFFFFF;
+   @media screen and (max-width: 768px) {
+      font-size: 15px;
+      padding: 8px 25px;
+   }
 }

@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { BY_HASHTAG } from './query'
-// import Close from '../../../assets/Icons/close.svg'
 import Icon from '../../../assets/Icons/arrow_im.svg'
 import LogoTwo from '../../../assets/Group 12.svg'
 import Logo from '../../../assets/Icons/top.svg'
@@ -41,7 +40,7 @@ import { useNavbar } from '../../../context/NavbarProvider'
 import { useUserStatus } from '../../../context/NameProvider'
 
 
-const Navbar = ({ sidebarActive }) => {
+const Navbar = ({ sidebarActive, setSidebarActive }) => {
    const [navbarP] = useNavbar()
    const [dragActive, setDragActive] = useState()
    const [settingActive, setSettingActive] = useState(false)
@@ -53,7 +52,7 @@ const Navbar = ({ sidebarActive }) => {
    const [hashName, setHashName] = useState('')
    const [lang] = useLang()
    const [UserStatus] = useUserStatus()
-   const {data: hashtag} = useQuery(BY_HASHTAG)
+   const { data: hashtag } = useQuery(BY_HASHTAG)
 
    useEffect(() => {
       if (hashtag && hashtag) {
@@ -83,7 +82,7 @@ const Navbar = ({ sidebarActive }) => {
    }
 
 
-   
+
 
    const [homeActive, setHomeActive] = useState()
    const [lidActive, setLidActive] = useState()
@@ -103,14 +102,14 @@ const Navbar = ({ sidebarActive }) => {
 
 
    let links = []
-   
+
 
 
    const links1 = [
       {
          title: Language[lang].navigation.main,
          icon: <Home />,
-         link: '/',
+         link: '/dashboard',
          isButton: false,
          nav: homeActive
 
@@ -118,42 +117,42 @@ const Navbar = ({ sidebarActive }) => {
       {
          title: Language[lang].navigation.lids,
          icon: <Lidrlar />,
-         link: '/lidlar',
+         link: '/dashboard/lidlar',
          isButton: false,
          nav: lidActive
       },
       {
          title: Language[lang].navigation.students,
          icon: <Talabalar />,
-         link: '/students',
+         link: '/dashboard/students',
          isButton: false,
          nav: studentActive
       },
       {
          title: Language[lang].navigation.teachers,
          icon: <Teacher />,
-         link: '/teachers',
+         link: '/dashboard/teachers',
          isButton: false,
          nav: teachrtActive
       },
       {
          title: Language[lang].navigation.groups,
          icon: <Guruhlar />,
-         link: '/groups',
+         link: '/dashboard/groups',
          isButton: false,
          nav: groupActive
       },
       {
          title: Language[lang].navigation.courses,
          icon: <Kurslar />,
-         link: '/courses',
+         link: '/dashboard/courses',
          isButton: false,
          nav: courseActive
       },
       {
          title: Language[lang].navigation.finance,
          icon: <Moliya />,
-         link: '/finance',
+         link: '/dashboard/finance',
          isButton: true,
          addClass: openFinance1,
          clas: dragActive
@@ -164,7 +163,7 @@ const Navbar = ({ sidebarActive }) => {
       {
          title: Language[lang].navigation.lids,
          icon: <Lidrlar />,
-         link: '/lidlar',
+         link: '/dashboard/lidlar',
          isButton: false,
          nav: lidActive
       }
@@ -174,7 +173,7 @@ const Navbar = ({ sidebarActive }) => {
       {
          title: Language[lang].navigation.main,
          icon: <Home />,
-         link: '/',
+         link: '/dashboard',
          isButton: false,
          nav: homeActive
 
@@ -182,35 +181,35 @@ const Navbar = ({ sidebarActive }) => {
       {
          title: Language[lang].navigation.lids,
          icon: <Lidrlar />,
-         link: '/lidlar',
+         link: '/dashboard/lidlar',
          isButton: false,
          nav: lidActive
       },
       {
          title: Language[lang].navigation.students,
          icon: <Talabalar />,
-         link: '/students',
+         link: '/dashboard/students',
          isButton: false,
          nav: studentActive
       },
       {
          title: Language[lang].navigation.teachers,
          icon: <Teacher />,
-         link: '/teachers',
+         link: '/dashboard/teachers',
          isButton: false,
          nav: teachrtActive
       },
       {
          title: Language[lang].navigation.groups,
          icon: <Guruhlar />,
-         link: '/groups',
+         link: '/dashboard/groups',
          isButton: false,
          nav: groupActive
       },
       {
          title: Language[lang].navigation.courses,
          icon: <Kurslar />,
-         link: '/courses',
+         link: '/dashboard/courses',
          isButton: false,
          nav: courseActive
       }
@@ -221,7 +220,7 @@ const Navbar = ({ sidebarActive }) => {
       {
          title: Language[lang].navigation.finance,
          icon: <Moliya />,
-         link: '/finance',
+         link: '/dashboard/finance',
          isButton: true,
          addClass: openFinance1,
          clas: dragActive
@@ -232,144 +231,145 @@ const Navbar = ({ sidebarActive }) => {
       {
          title: Language[lang].navigation.groups,
          icon: <Guruhlar />,
-         link: '/groups',
+         link: '/dashboard/groups',
          isButton: false,
          nav: groupActive
       }
    ]
 
-   if(UserStatus === 1) {
+   if (UserStatus === 1) {
       links = links1
    }
-   else if(UserStatus === 2) {
+   else if (UserStatus === 2) {
       links = links2
    }
-   else if(UserStatus === 3) {
+   else if (UserStatus === 3) {
       links = links3
    }
-   else if(UserStatus === 4) {
+   else if (UserStatus === 4) {
       links = links4
    }
-   else if(UserStatus === 5) {
+   else if (UserStatus === 5) {
       links = links5
    }
 
 
 
-   
+
 
    const { location } = useHistory()
    useEffect(() => {
       let paths = window.location.pathname.split('/')
       switch (location.pathname) {
-         case "/settingsEmployeesInner":
+         case "/dashboard/settingsEmployeesInner":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/finance":
+         case "/dashboard/finance":
             closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
-         case "/financeCosts":
+         case "/dashboard/financeCosts":
             closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
-         case "/financeSalary":
+         case "/dashboard/financeSalary":
             closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
-         case "/financePaymentGroups":
+         case "/dashboard/financePaymentGroups":
             closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
-         case "/financePayment":
+         case "/dashboard/financePayment":
             closeAll()
             setDragActive(true)
             setSettingActive(false)
             break;
-         case "/settingsRoadmap":
+         case "/dashboard/settingsRoadmap":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/settingsEmployees":
+         case "/dashboard/settingsEmployees":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/settingsMagazine":
+         case "/dashboard/settingsMagazine":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/settingsArchive":
+         case "/dashboard/settingsArchive":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/settingsLidform":
+         case "/dashboard/settingsLidform":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/settingsEnter":
+         case "/dashboard/settingsEnter":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/settingsShapes":
+         case "/dashboard/settingsShapes":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/settingsCompany":
+         case "/dashboard/settingsCompany":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/settingLead":
+         case "/dashboard/settingLead":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/enterForm":
+         case "/dashboard/enterForm":
             closeAll()
             setSettingActive(true)
             setDragActive(false)
             break;
-         case "/groups/groupsProfil/" + paths[paths.length - 1]:
+         case "/dashboard/groups/groupsProfil/" + paths[paths.length - 1]:
             closeAll()
             setGroupActive(true)
-            
+
             break;
-         case "/studentProfile/" + paths[paths.length - 1]:
+         case "/dashboard/studentProfile/" + paths[paths.length - 1]:
             closeAll()
             setStudentActive(true)
-            
-            
+
+
             break;
-         case "/teacherProfile/" + paths[paths.length - 1]:
+         case "/dashboard/teacherProfile/" + paths[paths.length - 1]:
             closeAll()
             setTeacherActive(true)
-            
+
             break;
-         case "/coursesInner/" + paths[paths.length - 1]:
+         case "/dashboard/coursesInner/" + paths[paths.length - 1]:
             closeAll()
             setCourseActive(true)
-            
+
             break;
 
-         case "/": 
-         
+         case "/dashboard":
+            closeAll()
+            setHomeActive(true)
             break;
          default:
             closeAll()
-            closeFinSet() 
+            closeFinSet()
             setSettingActive(false)
             setDragActive(false)
             break;
@@ -378,29 +378,29 @@ const Navbar = ({ sidebarActive }) => {
 
    const MoliyaLinks = [
       {
-         link: '/finance',
+         link: '/dashboard/finance',
          title: Language[lang].navigation.allPayments
       },
       {
-         link: '/financeCosts',
+         link: '/dashboard/financeCosts',
          title: Language[lang].navigation.costs
       },
       {
-         link: '/financeSalary',
+         link: '/dashboard/financeSalary',
          title: Language[lang].navigation.salaryForWork
       },
       {
-         link: '/financePaymentGroups',
+         link: '/dashboard/financePaymentGroups',
          title: Language[lang].navigation.paymentGroups
       },
       {
-         link: '/financePayment',
+         link: '/dashboard/financePayment',
          title: Language[lang].navigation.paymentCourses
       },
    ]
    const SettingLinks = [
       {
-         link: '/settingsRoadmap',
+         link: '/dashboard/settingsRoadmap',
          title: Language[lang].navigation.map,
          icon: Icon1,
          isBox: false,
@@ -416,11 +416,11 @@ const Navbar = ({ sidebarActive }) => {
          isBox: true,
          links: [
             {
-               link: '/settingsEmployees',
+               link: '/dashboard/settingsEmployees',
                title: Language[lang].navigation.empoyee,
                icon: Icon2
             }, {
-               link: '/settingsEmployeesInner',
+               link: '/dashboard/settingsEmployeesInner',
                title: Language[lang].navigation.rooms,
                icon: Icon3
             }
@@ -435,11 +435,11 @@ const Navbar = ({ sidebarActive }) => {
          isBox: true,
          links: [
             {
-               link: '/settingsMagazine',
+               link: '/dashboard/settingsMagazine',
                title: Language[lang].navigation.journals,
                icon: Icon4
             }, {
-               link: '/settingsArchive',
+               link: '/dashboard/settingsArchive',
                title: Language[lang].navigation.archive,
                icon: Icon5
             }
@@ -454,16 +454,16 @@ const Navbar = ({ sidebarActive }) => {
          isBox: true,
          links: [
             {
-               link: `/settingLead`,
+               link: `/dashboard/settingLead`,
                title: Language[lang].navigation.lidForm,
                icon: Icon6
             }, {
-               link: '/enterForm',
+               link: '/dashboard/enterForm',
                title: Language[lang].navigation.enterForm,
                icon: Icon7
-            
+
             }, {
-               link: '/settingsShapes',
+               link: '/dashboard/settingsShapes',
                title: Language[lang].navigation.shapes,
                icon: Icon8
             }
@@ -472,7 +472,7 @@ const Navbar = ({ sidebarActive }) => {
          setFunc: setOpenShakl
       },
       {
-         link: '/settingsCompany',
+         link: '/dashboard/settingsCompany',
          title: Language[lang].navigation.companySettings,
          icon: Icon9,
          isBox: false,
@@ -494,53 +494,60 @@ const Navbar = ({ sidebarActive }) => {
                <img src={LogoTwo} className="active_logo" alt="" />
             </NavLink>
 
+            <button
+               className="izma__navbar--burger"
+               onClick={() => setSidebarActive(!sidebarActive)}
+            ><span></span></button>
+
          </div>
 
          <div className="navbar_wrapper-center">
-            {
-               links.map(el => {
-                  if (el.isButton) {
-                     return <NavbarLinks
-                        icon={el.icon}
-                        title={el.title}
-                        isButton={el.isButton}
-                        link={el.link}
-                        addClass={el.addClass}
+            <div className="boxLinks">
+               {
+                  links.map(el => {
+                     if (el.isButton) {
+                        return <NavbarLinks
+                           icon={el.icon}
+                           title={el.title}
+                           isButton={el.isButton}
+                           link={el.link}
+                           addClass={el.addClass}
+                           link2={closeFinSet}
+                           key={el.title}
+                           clas={el.clas}
+                        />
+                     } else {
+                        return <NavbarLinks
+                           icon={el.icon}
+                           title={el.title}
+                           isButton={el.isButton}
+                           link={el.link}
+                           link2={closeFinSet}
+                           key={el.title}
+                           quitButton={quitButton}
+                           nav={el.nav}
+                        />
+                     }
+                  })
+               }
+               {
+                  UserStatus === 1 ?
+                     <NavbarLinkSet
+                        icon={<Settings />}
+                        title={Language[lang].navigation.settings}
+                        isButton={true}
+                        link={'/dashboard/settingsRoadmap'}
+                        addClass={openSettings1}
                         link2={closeFinSet}
-                        key={el.title}
-                        clas={el.clas}
+                        key={'set'}
+                        clas={settingActive}
                      />
-                  } else {
-                     return <NavbarLinks
-                        icon={el.icon}
-                        title={el.title}
-                        isButton={el.isButton}
-                        link={el.link}
-                        link2={closeFinSet}
-                        key={el.title}
-                        quitButton={quitButton}
-                        nav={el.nav}
-                     />
-                  }
-               })
-            }
-            {
-               UserStatus === 1 ?
-                  <NavbarLinkSet
-                     icon={<Settings />}
-                     title={Language[lang].navigation.settings}
-                     isButton={true}
-                     link={'/settingsRoadmap'}
-                     addClass={openSettings1}
-                     link2={closeFinSet}
-                     key={'set'}
-                     clas={settingActive}
-                  />
-                  :
-                  <></>
-            }
+                     :
+                     <></>
+               }
+            </div>
 
-            
+
 
             <div className={`navbar-plus ${openMoliya || openSetting ? 'active' : ''}`}>
                <NavbarPlus

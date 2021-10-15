@@ -29,10 +29,10 @@ h1, h2, h3, h4, h5, h6, p {
          transform: translateX(-350%);
          transition: all ease 0.5s;
          min-height: 100vh;
+         height: 100vh;
 
          
          & ~ .boxClick {
-            display: flex;
             position: fixed;
             right: 0;
             top: 0;
@@ -40,11 +40,20 @@ h1, h2, h3, h4, h5, h6, p {
             width: 100%;
             background: rgba(0, 0, 0, 0.445);
             z-index: 1000000;
-            transform: translateX(-150%);
-            transition: all ease 0.5s;
+            display: none;
+
+             @media screen and (max-width: 768px) {
+                display: none;
+             }
             
          }
       }
+
+       @media screen and (max-width: 768px) {
+         width: 100% !important;
+         height: 100vh;
+         overflow-y: scroll;
+       }
       &.active {
          width: 100px;
          & ~ .app-right {
@@ -63,8 +72,7 @@ h1, h2, h3, h4, h5, h6, p {
             }
 
              &~.boxClick {
-                transform: translateX(0);
-                transition: all ease 0.5s;
+                display: flex;
              }
          }
 
@@ -78,6 +86,7 @@ h1, h2, h3, h4, h5, h6, p {
       box-sizing: border-box;
        @media screen and (max-width: 1023px) {
           width: 100%;
+          
        }
       &-header {
          height: auto;
@@ -90,6 +99,17 @@ h1, h2, h3, h4, h5, h6, p {
          overflow-y: scroll;
          padding: 20px;
          box-sizing: border-box;
+         @media screen and (max-width: 768px) {
+            padding: 20px 15px;
+            &::-webkit-scrollbar {
+               display: none;
+            }
+
+            
+               -ms-overflow-style: none;
+               scrollbar-width: none;
+            
+         }
          &::-webkit-scrollbar {
             width: 10px;
          }
@@ -121,5 +141,17 @@ h1, h2, h3, h4, h5, h6, p {
 
    &::-webkit-scrollbar-thumb {
       background: #090761;
+   }
+
+   @media screen and (max-width: 768px) {
+
+      &::-webkit-scrollbar {
+         display: none;
+      }
+
+
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
    }
 }

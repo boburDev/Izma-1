@@ -103,6 +103,8 @@ const Blocks = () => {
          number: CountStatus_6 && CountStatus_6.studentStatus.count ? CountStatus_6 && CountStatus_6.studentStatus.count : '0'
       }
    ]
+
+   
    return(
       <div className="blocks">
          <Swiper
@@ -110,7 +112,7 @@ const Blocks = () => {
             modules={Pagination}
             pagination={true}
             breakpoints={{
-               "320": {
+               "300": {
                   "slidesPerView": 2,
                   "spaceBetween": 10
                },
@@ -122,7 +124,7 @@ const Blocks = () => {
                   "slidesPerView": 4,
                   "spaceBetween": 10
                },
-               "1024": {
+               "1023": {
                   "slidesPerView": 8,
                   "spaceBetween": 10
                }
@@ -130,7 +132,7 @@ const Blocks = () => {
          >
             {
                lists.map(el => (
-                  <SwiperSlide key={el.title}>
+                  <SwiperSlide key={el.title} width="auto" >
                      <HomeCard
                         icon={el.icon}
                         title={el.title}

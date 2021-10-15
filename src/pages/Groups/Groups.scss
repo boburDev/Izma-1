@@ -9,6 +9,10 @@
    flex-wrap: wrap;
    align-items: center;
    justify-content: space-between;
+   @media screen and (max-width: 768px) {
+      justify-content: none;
+      flex-direction: column;
+   }
 }
 
 .izma__teachers-content-btn-group {
@@ -30,7 +34,17 @@
    font-size: 30px;
    line-height: 38px;
    text-transform: capitalize;
-   color: #2F2D51
+   color: #2F2D51;
+   @media screen and (max-width: 768px) {
+      font-size: 22px;
+      margin-top: 10px;
+   }
+}
+
+.izma__groups-tabs {
+   @media screen and (max-width: 768px) {
+      margin-top: 20px;
+   }
 }
 
 .izma__teachers-content-button {
@@ -46,6 +60,9 @@
    box-sizing: border-box;
    border-radius: 46px;
    color: #090761;
+   @media screen and (max-width: 768px) {
+      font-size: 14px;
+   }
 }
 
 .izma__teachers-content-line {

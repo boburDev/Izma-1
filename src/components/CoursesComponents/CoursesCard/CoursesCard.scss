@@ -8,6 +8,13 @@
 
       }
    }
+   @media screen and (max-width: 768px) {
+      flex-direction: column;
+
+      a {
+         width: 100%;
+      }
+   }
    
 
     
@@ -27,6 +34,7 @@
    @media screen and (max-width: 1023px) {
       width: 100%;
    }
+   
 }
 
 .izma__courses-card-wrapper:nth-child(4n) {

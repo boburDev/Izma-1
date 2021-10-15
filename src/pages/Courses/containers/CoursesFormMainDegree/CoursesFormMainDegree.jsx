@@ -25,7 +25,6 @@ const CoursesFormMainDegree = ({ onClose }) => {
 
    const [newDegree] = useMutation(NEW_DEGREE)
 
-   
    const handleSubmit = (id) => {
       onClose()
 
@@ -45,7 +44,7 @@ const CoursesFormMainDegree = ({ onClose }) => {
    return (
       <>
          <div className="izma__lidlar__form-bolim">
-            <Form id="courseformRes2" className="izma__lidlar__form-bolim-form" style={{ width: 400 }} data={disabled}>
+            <Form id="courseformRes2" className="izma__lidlar__form-bolim-form" style={{ width: 400 }} data={disabled ? '1' : '0'}>
                <div className="izma__lidlar__form-bolim-form-up">
                   <h3 className='izma__lidlar__form-bolim-form-heading' >{Language[lang].courses.editCourse.editCourseName}</h3>
                   <button className="izma__lidlar__form-bolim-form-close-btn" onClick={onClose} >

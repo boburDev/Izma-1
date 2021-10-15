@@ -9,6 +9,13 @@
    align-items: center;
    justify-content: space-between;
    margin-bottom: 25px;
+
+   @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      .izma__students-content-button {
+         margin-top: 0;
+      }
+   }
 }
 
 .izma__settings-shapes-up-heading {
@@ -18,6 +25,9 @@
    line-height: 43px;
    color: #000000;
    margin-bottom: 0;
+   @media screen and (max-width: 768px) {
+      font-size: 22px;
+   }
 }
 
 .izma__settings-shapes-up-button {

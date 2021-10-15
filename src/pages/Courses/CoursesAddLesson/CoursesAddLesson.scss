@@ -1,12 +1,19 @@
-.addFeadback {
+   .addFeadback {
    max-width: 1183px;
    padding: 50px 30px;
+   @media screen and (max-width: 768px) {
+      padding: 0;
+   }
 
    .heading {
       margin-bottom: 33px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      @media screen and (max-width: 768px) {
+         flex-direction: column;
+         align-items: flex-start;
+      }
 
       input {
          font-family: "Jost";
@@ -19,6 +26,9 @@
          border: none;
          outline: none;
          background-color: transparent;
+         @media screen and (max-width: 768px) {
+            font-size: 22px;
+         }
       }
 
       .save_btn {
@@ -35,6 +45,10 @@
          border: 1px solid #090761;
          box-sizing: border-box;
          border-radius: 46px;
+         @media screen and (max-width: 768px) {
+            font-size: 14px;
+            padding: 5px 25px;
+         }
       }
    }
 
@@ -136,6 +150,11 @@
          line-height: 29px;
          color: #8B8B8B;
 
+         @media screen and (max-width: 768px) {
+            font-size: 17px;
+            padding: 10px 30px;
+         }
+
          &:focus {
             &::placeholder {
                visibility: hidden;
@@ -157,6 +176,10 @@
          margin: auto;
          cursor: pointer;
          z-index: 10;
+          @media screen and (max-width: 768px) {
+             width: 40px;
+             height: 40px;
+          }
 
          &.grid {
             right: 0;

@@ -22,12 +22,15 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 
             <div className="izma__header-left-wrapper">
                <img src={NotificationImg} className="izma__header-notification-img" alt="img" />
-               <button className="izma__header-img" onClick={() => {
-                  setActive(!active)
-               }}>
-                  <img 
-                     src={Img} alt="img"  />
-               </button>
+               <div className="accauntHeader">
+                  <button className="izma__header-img" onClick={() => {
+                     setActive(!active)
+                  }}>
+                     <img
+                        src={Img} alt="img" />
+                  </button>
+                  {/* <h3>Asadulloh</h3> */}
+               </div>
 
                <div className={`izma__header-dropdown ${active ? 'active' : ''}`}>
 				<div className="top_items">

@@ -8,6 +8,10 @@
    display: flex;
    align-items: center;
    margin-bottom: 25px;
+   @media screen and (max-width: 768px) {
+      justify-content: space-between;
+      flex-wrap: wrap;
+   }
 }
 
 .izma__settings-archive-up-heading {
@@ -16,6 +20,10 @@
    font-size: 30px;
    line-height: 43px;
    color: #000000;
+   @media screen and (max-width: 768px) {
+      font-size: 22px;
+      margin-bottom: 0;
+   }
 }
 
 .izma__settingsarchive-up-title {
@@ -25,6 +33,10 @@
    line-height: 24px;
    color: #9897C1;
    margin-left: 18px;
+   @media screen and (max-width: 768px) {
+      margin-bottom: 0;
+      margin-left: 0;
+   }
 }
 
 .izma__settings-archive-up-button {

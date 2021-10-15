@@ -12,6 +12,15 @@
       line-height: 43px;
       margin-bottom: 0;
       color: #000000;
+      @media screen and (max-width: 768px) {
+         font-size: 22px;
+      }
+   }
+
+   .izma__students-content-button {
+      @media screen and (max-width: 768px) {
+         margin-top: 0;
+      }
    }
 }
 
@@ -24,4 +33,7 @@
    display: flex;
    align-items: center;
    justify-content: space-between;
+   @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+   }
 }

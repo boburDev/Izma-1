@@ -9,6 +9,11 @@
    align-items: center;
    justify-content: space-between;
    margin-bottom: 25px;
+   .izma__students-content-button {
+      @media screen and (max-width: 768px) {
+         margin-top: 0;
+      }
+   }
 }
 
 .izma__settings-employees-inner-up-heading {
@@ -18,7 +23,12 @@
    line-height: 43px;
    margin-bottom: 0;
    color: #000000;
+   @media screen and (max-width: 768px) {
+      font-size: 22px;
+   }
 }
+
+
 
 .izma__settings-employees-inner-up-button {
    margin-left: auto;
@@ -31,6 +41,7 @@
    background-color: #fff;
    border: 1px solid #090761;
    border-radius: 57px;
+   
 }
 
 .izma__settings-employees-inner-button {

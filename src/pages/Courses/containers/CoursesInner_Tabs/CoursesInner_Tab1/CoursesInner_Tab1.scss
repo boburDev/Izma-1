@@ -14,17 +14,33 @@
    margin-left: auto;
    border-radius: 46px;
    color: #090761;
+    @media screen and (max-width: 768px) {
+       margin-left: 0;
+    }
 }
 
 .izma__courses-tabs1 {
    margin-top: 30px;
    width: 100%;
+
+   .izma__courses-tabs3-message {
+      padding-left: 0;
+   }
+   @media screen and (max-width: 768px) {
+      .izma__courses-tabs3-message {
+         width: 100%;
+         min-width: 900px;
+      }
+   }
 }
 
 .izma__courses-tabs1-message-list {
    display: flex;
    flex-direction: column;
    margin-top: 25px;
+   @media screen and (max-width: 768px) {
+     padding-left: 0;
+   }
 }
 
 .izma__courses-tabs1-message-list-item {

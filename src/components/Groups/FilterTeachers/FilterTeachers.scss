@@ -11,6 +11,7 @@
       position: relative;
       margin-right: 15px;
       cursor: pointer;
+      opacity: 0.3;
 
       &::before {
          content: '';
@@ -27,6 +28,7 @@
       }
       
       &.checked {
+         opacity: 1;
          &::before {
             background-color: #fff;
          }

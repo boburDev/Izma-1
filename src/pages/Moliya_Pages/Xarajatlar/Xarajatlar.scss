@@ -16,6 +16,9 @@
 .izma__finance-costs-headings {
    display: flex;
    align-items: center;
+   @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+   }
 }
 
 .dw {
@@ -50,6 +53,11 @@
    text-transform: capitalize;
    margin-right: 35px;
    color: #2F2D51;
+   @media screen and (max-width: 768px) {
+      font-size: 22px;
+      margin-bottom: 0;
+      margin-right: 20px;
+   }
 }
 
 .izma__finance-costs-title {
@@ -59,6 +67,10 @@
    line-height: 24px;
    text-transform: capitalize;
    color: #9493B4;
+   @media screen and (max-width: 768px) {
+      font-size: 16px;
+      margin-bottom: 0;
+   }
 }
 
 .izma__finance-costs-right-tabs-second-up {

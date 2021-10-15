@@ -28,7 +28,6 @@ import Shakillar from "../Settings_Pages/Shakillar/Shakilar";
 import Lids from "../Lids/Lids";
 import SettingsRoadMap from "../Settings_Pages/Roadmap/roadmap";
 // import StudentsTablee from '../../test';
-import { useHistory } from 'react-router'
 import SettigsCompany from "../Settings_Pages/SettingsCompany/SettingsCompany";
 import Test from "./test";
 import LidFormSettings from "../Settings_Pages/LidFormSettings/LidFormSettings";
@@ -43,7 +42,6 @@ const App = () => {
   
 	const {data: userStatus} = useQuery(STATUS)
 
-  const [st, setSt] = useState(0)
 	const [setUserStatus] = useUserStatus(true)
 	const [UserStatus] = useUserStatus()
 
@@ -53,14 +51,7 @@ const App = () => {
 
 
 
-  const { location } = useHistory()
-  useEffect(() => {
-    setSt(0)
-    let paths = window.location.pathname.split('/')
-    if (paths[2] + '/' + paths[3] === 'entry/lead') {
-      setSt(1)
-    }
-  }, [location.path])
+ 
 
 	const useOutsideAlerter = (ref) => {
 		useEffect(() => {
@@ -87,13 +78,14 @@ const App = () => {
     <div className="app">
 
       {
-        token && st === 0 ?
+        token ?
           <>
             {/* ================  NAVBAR  =====================*/}
 
             <div className={`app-left ${sidebarActive ? 'active' : ''}`}>
               <Navbar
                 sidebarActive={sidebarActive}
+					 setSidebarActive={setSidebarActive}
 
               />
             </div>
@@ -121,55 +113,55 @@ const App = () => {
                   {
 					  
 					 UserStatus === 1 || UserStatus === 3 ? <>
-					 	<Route path="/test-muammo" component={Test} />
-						<Route path="/" component={Home} exact />
-						<Route path="/students" component={Students} exact />
-						<Route path="/teachers" component={Teachers} exact />
-						<Route path="/courses" component={Courses} exact />
-						<Route path="/coursesAddLesson" component={CoursesAddLesson} exact />
-						<Route path="/coursesInner/:courseID" component={CoursesInner} exact />
-						<Route path="/teacherProfile/:collegueID" exact>
+						<Route path="/dashboard" component={Home} exact />
+					 	<Route path="/dashboard/test-muammo" component={Test} />
+						<Route path="/dashboard/students" component={Students} exact />
+						<Route path="/dashboard/teachers" component={Teachers} exact />
+						<Route path="/dashboard/courses" component={Courses} exact />
+						<Route path="/dashboard/coursesAddLesson" component={CoursesAddLesson} exact />
+						<Route path="/dashboard/coursesInner/:courseID" component={CoursesInner} exact />
+						<Route path="/dashboard/teacherProfile/:collegueID" exact>
 							<StudentProfile role="teacher" />
 						</Route>
-						<Route path="/lidlar" component={Lids} />
-						<Route path="/groups" component={Groups} exact />
-						<Route path="/groups/groupsProfil/:groupID" component={GroupProfil} exact />
-						<Route path="/studentProfile/:studentID" exact>
+						<Route path="/dashboard/lidlar" component={Lids} />
+						<Route path="/dashboard/groups" component={Groups} exact />
+						<Route path="/dashboard/groups/groupsProfil/:groupID" component={GroupProfil} exact />
+						<Route path="/dashboard/studentProfile/:studentID" exact>
 							<StudentProfile role="student" />
 						</Route>
 						{
 							UserStatus === 1 && <>
-								<Route path="/finance" component={Finance} />
-								<Route path="/financeCosts" component={Xarajatlar} />
-								<Route path="/financeSalary" component={Salary} />
-								<Route path="/financePaymentGroups" component={PaymentGroups} />
-								<Route path="/financePayment" component={CoursesPayment} />
+								<Route path="/dashboard/finance" component={Finance} />
+								<Route path="/dashboard/financeCosts" component={Xarajatlar} />
+								<Route path="/dashboard/financeSalary" component={Salary} />
+								<Route path="/dashboard/financePaymentGroups" component={PaymentGroups} />
+								<Route path="/dashboard/financePayment" component={CoursesPayment} />
 
-								<Route path="/settingsRoadmap" component={SettingsRoadMap} />
-								<Route path="/settingsEmployees" component={Employees} />
-								<Route path="/settingsEmployeesInner" component={Rooms} />
-								<Route path="/settingsMagazine" component={Jurnals} />
-								<Route path="/settingsArchive" component={Archive} />
-								<Route path="/settingLead" component={LidFormSettings} />
-								<Route path="/settingsShapes" component={Shakillar} />
-								<Route path="/enterForm" component={EnterForm} />
-								<Route path="/settingsCompany" component={SettigsCompany} />
+								<Route path="/dashboard/settingsRoadmap" component={SettingsRoadMap} />
+								<Route path="/dashboard/settingsEmployees" component={Employees} />
+								<Route path="/dashboard/settingsEmployeesInner" component={Rooms} />
+								<Route path="/dashboard/settingsMagazine" component={Jurnals} />
+								<Route path="/dashboard/settingsArchive" component={Archive} />
+								<Route path="/dashboard/settingLead" component={LidFormSettings} />
+								<Route path="/dashboard/settingsShapes" component={Shakillar} />
+								<Route path="/dashboard/enterForm" component={EnterForm} />
+								<Route path="/dashboard/settingsCompany" component={SettigsCompany} />
 							</>
 						}
 					</>
 					: UserStatus === 4 ? <>
-						<Route path="/finance" component={Finance} />
-						<Route path="/financeCosts" component={Xarajatlar} />
-						<Route path="/financeSalary" component={Salary} />
-						<Route path="/financePaymentGroups" component={PaymentGroups} />
-						<Route path="/financePayment" component={CoursesPayment} />
+						<Route path="/dashboard/finance" component={Finance} />
+						<Route path="/dashboard/financeCosts" component={Xarajatlar} />
+						<Route path="/dashboard/financeSalary" component={Salary} />
+						<Route path="/dashboard/financePaymentGroups" component={PaymentGroups} />
+						<Route path="/dashboard/financePayment" component={CoursesPayment} />
 					</>
 					: UserStatus === 2 ?
-						<Route path="/lidlar" component={Lids} />
+						<Route path="/dashboard/lidlar" component={Lids} />
 					: <>
-						<Route path="/groups" component={Groups} exact />
-						<Route path="/groups/groupsProfil/:groupID" component={GroupProfil} exact />
-						<Route path="/studentProfile/:studentID" exact>
+						<Route path="/dashboard/groups" component={Groups} exact />
+						<Route path="/dashboard/groups/groupsProfil/:groupID" component={GroupProfil} exact />
+						<Route path="/dashboard/studentProfile/:studentID" exact>
 							<StudentProfile role="student" />
 						</Route>
 					</>

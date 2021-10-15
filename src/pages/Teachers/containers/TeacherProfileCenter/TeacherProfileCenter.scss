@@ -24,6 +24,9 @@
       padding-left: 25px;
       padding-right: 30px;
       border-radius: 4px;
+      @media screen and (max-width: 768px) {
+         flex-direction: column;
+      }
 
        &:hover {
           background: #314FA5;
@@ -46,6 +49,11 @@
          display: flex;
          margin: 24px 0;
          flex-direction: column;
+         @media screen and (max-width: 768px) {
+           width: 100%;
+           justify-content: center;
+           align-items: center;
+         }
 
          .izma__teachers-profile-certer-box-left-id span{
             font-family: "Jost";
@@ -72,6 +80,13 @@
       .izma__teachers-profile-certer-box-right {
          display: flex;
          margin-left: auto;
+         @media screen and (max-width: 768px) {
+           align-items: center;
+           justify-content: space-between;
+           margin-left: 0;
+           width: 100%;
+           padding: 10px 0;
+         }
       }
 
       .izma__teachers-profile-certer-box-right-date {

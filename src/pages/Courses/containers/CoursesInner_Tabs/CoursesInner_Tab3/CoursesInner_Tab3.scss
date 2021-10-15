@@ -9,6 +9,9 @@
    border-radius: 4px;
    padding: 33px;
    margin-bottom: 22px;
+   @media screen and (max-width: 768px) {
+      padding: 20px;
+   }
 }
 
 .izma__courses-tabs3-message-list-item-left {

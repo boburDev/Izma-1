@@ -103,6 +103,10 @@
    margin-top: 40px;
    padding-bottom: 50px;
 
+   @media screen and (max-width: 768px) {
+      overflow-x: scroll;
+   }
+
    .heading {
       h1 {
          font-family: "Jost";
@@ -118,6 +122,9 @@
 
    .main_order {
       width: 100%;
+       @media screen and (max-width: 768px) {
+          min-width: 780px;
+       }
       .main_heading {
          width: 100%;
          display: flex;

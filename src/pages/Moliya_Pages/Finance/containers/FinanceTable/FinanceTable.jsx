@@ -1,25 +1,13 @@
 import { useEffect, useState } from 'react'
 import './FinanceTable.scss'
-import { useQuery } from '@apollo/client'
 import TTable from '../../../../../components/Table/TTable'
-import { FINANCE_STUDENT_TABLE } from '../../../../../Querys/Finance_All'
 import Check from '../../../../../components/Check/CheckById'
 import { Modal } from 'antd'
 import axios from 'axios'
 
 const FinanceTable = () => {
    const [data,setData] = useState([])
-   const { data: finanveStudents } = useQuery(FINANCE_STUDENT_TABLE)
-   
    const [state,setState] = useState('')
-
-   useEffect(()=>{
-      if (finanveStudents && finanveStudents.financeStudentsList) {
-         // setData(finanveStudents && finanveStudents.financeStudentsList)
-         // console.log(finanveStudents && finanveStudents.financeStudentsList)
-      }
-   },[finanveStudents])
-
 
    useEffect(()=>{
       ;(async()=>{
@@ -30,9 +18,8 @@ const FinanceTable = () => {
                }
             })
             setData(res.data)
-            console.log(res.data)
          } catch (error) {
-            
+            console.log(error)
          }
       })()
    },[])

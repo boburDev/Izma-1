@@ -13,22 +13,6 @@ query financeStudentsFilter($startDate: String, $endDate: String){
 `
 
 
-const FINANCE_STUDENT_TABLE = gql`
-{
-  financeStudentsList {
-    id
-    studentName
-    typePayment
-    amount
-    comment
-    payed_at
-    payed_time
-    ckeckId
-  }
-}
-`
-
-
 const HARAJATLAR = gql`
 {
     harajatlar{
@@ -125,7 +109,6 @@ const SUBSCRIP_HARAJAT = gql `
 export {
     FINANCE_STUDENT,
     FINANCE_STUDENT_FILTER,
-    FINANCE_STUDENT_TABLE,
     HARAJATLAR,
     NEW_HARAJAT,
     FILTER_DATA,

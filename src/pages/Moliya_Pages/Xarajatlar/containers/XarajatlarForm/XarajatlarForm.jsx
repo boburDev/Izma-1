@@ -36,7 +36,7 @@ const XarajatlarForm = () => {
 
                   <DatePicker
                      className='date__picker'
-					 onChange={(value) => setSelectedDate(value._d)}
+					      onChange={(value) => setSelectedDate(value._d)}
                      placeholder={Language[lang].teachers.addNewUser.date}
                      format={"DD-MM-YYYY"}
                   />
@@ -75,15 +75,17 @@ const XarajatlarForm = () => {
                 selectValue.length &&
                 buyer.length &&
                 sum) {
-                    newCost({
-                        variables:{
+                   const data = {
                             name,
                             buyer,
                             paymentAmount: sum,
                             type: selectValue,
                             createdAt: selectedDate
-                        }
-                    })
+                  }
+                        console.log(data)
+                  //   newCost({
+                  //       variables: data
+                  //   })
                     // window.location.reload()
                 }
                document.getElementById('xarajatFormRes').reset()

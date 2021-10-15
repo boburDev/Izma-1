@@ -134,6 +134,7 @@ const GroupProfilLeft = (prop) => {
    useEffect(() => {
 
       if (payment && forStatus?.updateCash?.cashAmount) {
+         console.log('status_#_$')
          SetStatus_4({
             variables: {
                stID: selectedUser,
@@ -228,7 +229,7 @@ const GroupProfilLeft = (prop) => {
          debit: backCash < 0 ? String(backCash) : null
       }
       HistoryPay({ variables: data })
-      // console.log('payed')
+      console.log('payed')
    }   
 
    useEffect(() => {
@@ -491,8 +492,8 @@ const GroupProfilLeft = (prop) => {
 
                               {(s.groupStatus === 2 || s.groupStatus === 5) && <Link to="#" className="del_link" onClick={() => {
                                  s.groupStatus === 5 && setPaymentStatus(true)
-                                 s.groupStatus === 2 && setPayment(true)
                                  s.groupStatus === 2 && rrr()
+                                 s.groupStatus === 2 && setPayment(true)
                               }} >{Language[lang].groups.activate.activateTitle}</Link>}
                               <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
                               <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>

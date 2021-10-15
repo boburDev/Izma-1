@@ -34,7 +34,7 @@ const SalaryUp = () => {
 
          setSalaryForAll({variables: {
             salary: salary - 0 || infoo?.amount,
-            type: salaryType - 0 || infoo?.amount
+            type: salaryType - 0 || infoo?.type
          }})
 
       }
@@ -43,8 +43,8 @@ const SalaryUp = () => {
 
          setSalaryCollegue({variables: {
             id: collegueId,
-            salary: salary2 - 0,
-            type: salaryType2 - 0,
+            salary: salary2 - 0 || infoo?.amount,
+            type: salaryType2 - 0|| infoo?.type,
          }})
 
       }

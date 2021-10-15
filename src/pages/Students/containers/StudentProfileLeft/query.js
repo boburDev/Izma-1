@@ -48,17 +48,6 @@ const SELECT_STUDENT_GROUP = gql `
   }
 `
 
-const CHECK_CASH = gql `
-  query studentCash($stID: ID!) {
-    studentCash(studentID: $stID)
-    {
-      id
-      studentID
-      cashAmount
-    }
-  }
-`
-
 const UPDATE_COMMENT = gql `
   mutation updateComment($stID: ID! $stComment: String) {
     updateComment(studentID: $stID  comment: $stComment) {
@@ -147,7 +136,6 @@ const SUBSCRIPTION_ST_EDIT = gql `
 export {
   FILIAL,
   GROUPS,
-  CHECK_CASH, 
   ONE_STUDENT,
   UPDATE_COMMENT,
   DELETE_STUDENT,

@@ -27,7 +27,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
 
             document.removeEventListener("mousedown", handleClickOutside);
          };
-      }, [ref, myModal])
+      }, [ref])
    }
 
    const { enqueueSnackbar } = useSnackbar();

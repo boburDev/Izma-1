@@ -21,12 +21,12 @@ import {
    SUBSCRIPTION_STATUS,
    GROUP_STUDENTS,
    NEW_SUB_STUDENT,
-   SUBSCRIPTION_GROUP_INFO
+   SUBSCRIPTION_GROUP_INFO,
+   DOES_ACTIVE
 } from '../../../../Querys/GroupTabs'
 import { useDayDivider } from '../../../../context/DayDividerProvider'
 import {
    DELETE_FROM_GROUP,
-   CHECK_CASH,
    UPDATE_CASH,
    STATUS_3_4,
    HISTORY_PAYMENT,
@@ -35,17 +35,18 @@ import {
    UPDATE_GR_STATUS,
    SUBSCRIPTION_ADD_STUDENT,
 } from '../../../../Querys/GroupTabs'
+import { CHECK_CASH } from '../../../../Querys/FinanceAddPayForm_Query'
 import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
 import Check from '../../../../components/Check/Check'
 import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
-import { useDavomat } from '../../../../context/DavomatProvider'
-import moment from 'moment'
+
+
 const GroupProfilLeft = (prop) => {
-   const [setGroupStudents] = useDavomat(true)
+
    const [dayDivide, setDayDivide] = useDayDivider()
    const [userInput, setUserInput] = useState('')
-   const [selectedUser, setSelectedUser] = useState()
+   const [selectedUser, setSelectedUser] = useState('')
    const [startedDate, setStartedDate] = useState('')
    const [dataUser, setDataUser] = useState([])
    const [staatus, settStatus] = useState()
@@ -56,9 +57,11 @@ const GroupProfilLeft = (prop) => {
    const [setNavbarP] = useNavbar(true)
 
    const [dataGroup, setDataGroup] = useState({})
+   const [grStudent, setGrStudent] = useState([])
 
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
+   const [activator, setActivator] = useState(false)
 
    const { groupID } = useParams()
 
@@ -72,6 +75,14 @@ const GroupProfilLeft = (prop) => {
 
    useEffect(() => {
 
+      if (grStudents && grStudents.findStudByGrId) {
+         setGrStudent(grStudents.findStudByGrId)
+      }
+
+   }, [grStudents])
+
+   useEffect(() => {
+
       if (groups && groups.byGroupID) {
          setDataGroup(groups.byGroupID)
       }
@@ -80,15 +91,11 @@ const GroupProfilLeft = (prop) => {
 
 
    useEffect(() => {
-      setGroupStudents({
-         students: grStudents && grStudents.findStudByGrId,
-         groups: groups && groups.byGroupID
-      })
       if (groups && groups.byGroupID) {
          setDayDivide(groups.byGroupID.days)
          prop.studData(groups && groups.byGroupID.students)
       }
-   }, [grStudents, setGroupStudents, groups, setDayDivide, prop])
+   }, [groups, setDayDivide, prop])
 
 
 
@@ -122,6 +129,7 @@ const GroupProfilLeft = (prop) => {
    const [SetStatus_4] = useMutation(STATUS_3_4)
    const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
    const [SetStatus_5] = useMutation(UPDATE_GR_STATUS)
+   const [Activated] = useMutation(DOES_ACTIVE)
 
    useEffect(() => {
 
@@ -237,6 +245,18 @@ const GroupProfilLeft = (prop) => {
          }
    }, [SetStatus3_4, checkCache, groupID, paymentStatus, selectedUser, staatus])
 
+
+   useEffect(() => {
+
+      if (grStudent.length > 0 && activator) {
+         let sorted = []
+         grStudent.map(i => i.groupStatus === 2 && sorted.push({id: i.id, status: i.groupStatus}))
+         Activated({variables: {needID: sorted}})
+         setActivator(false)
+         console.log('once')
+      }
+   }, [grStudent, Activated, activator])
+
    const showModal = () => {
       setIsModalVisible(true)
    }
@@ -311,7 +331,7 @@ const GroupProfilLeft = (prop) => {
       setCheckModal(false)
    }
 
-   const filtered = grStudents && grStudents.findStudByGrId.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
+   const filtered = grStudent?.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
 
    if (delData && delData) return <Redirect to='/groups' />
 
@@ -374,7 +394,7 @@ const GroupProfilLeft = (prop) => {
                         {Language[lang].groups.groupInfo.price}
                      </p>
                      <p className="izma__groups-attendance-left-center-prices-number">
-                     {dataGroup && new Intl.NumberFormat().format(dataGroup?.price)} UZS
+                     {dataGroup.price} UZS
                      </p>
                   </div>
 
@@ -417,90 +437,90 @@ const GroupProfilLeft = (prop) => {
                   <button className="izma__groups-attendance-left-bottom-button-add" onClick={showStudentDrawer} >
                   </button>
 
+                  <button onClick={() => setActivator(true)}>active</button>
+
                   <br />
                   <br />
                   <div className="izma__groups-attendance-left-bottom-wrapper">
                      {
-                        filtered && filtered.map((s, i) => (
-                           <div key={i} className="izma__groups-attendance-left-bottom">
-                                 <div className="colorBox">
-                                 {s.groupStatus === 2 && <div className="izma__groups-attendance-left-bottom-box-white"></div>}
-                                 {s.groupStatus === 3 && <div className="izma__groups-attendance-left-bottom-box"></div>}
-                                 {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
-                                 {s.groupStatus === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
-                                 </div>
-                                 <Link className="izma__groups-attendance-left-bottom-heading" to={`/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
-                                       {s.name}
-                                 </Link>
-                                 <p className="izma__groups-attendance-left-bottom-phone">
-                                    {
-                                       s.studentPhone.map((i, key) => <span key={key}> +{i.phone}<br /> </span>)
+                        filtered && filtered.map((s, i) => <div key={i} className="izma__groups-attendance-left-bottom">
+                        <div className="colorBox">
+                        {s.groupStatus === 2 && <div className="izma__groups-attendance-left-bottom-box-white"></div>}
+                        {s.groupStatus === 3 && <div className="izma__groups-attendance-left-bottom-box"></div>}
+                        {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
+                        {s.groupStatus === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
+                        </div>
+                        <Link className="izma__groups-attendance-left-bottom-heading" to={`/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
+                              {s.name}
+                        </Link>
+                        <p className="izma__groups-attendance-left-bottom-phone">
+                           {
+                              s.studentPhone.map((i, key) => <span key={key}> +{i.phone}<br /> </span>)
+                           }
+                        </p>
+
+                        <div style={{ position: 'relative', marginLeft: 'auto' }}>
+                           <button
+                              className="izma__groups-attendance-left-bottom-btn" onClick={() => {
+                                 if (delActive) {
+                                    setDElActive(false)
+                                 } else {
+                                    setDElActive(s.id)
+                                 }
+                                 setSelectedUser(s.id)
+                                 settStatus(s.groupStatus)
+                                 setIdName({ studentID: s.id, studentName: s.name })
+                              }}>
+                                 <span></span>
+                           </button>
+
+
+
+
+
+                           <div style={{ zIndex: 10000, position: 'absolute' }}
+                              className={`open_del ${delActive === s.id ? 'active' : ''}`} onClick={() => setDElActive(false)}>
+
+                              {(s.groupStatus === 3 || s.groupStatus === 4) && <Link to="#" className="del_link" onClick={() => {
+                                 SetStatus_5({
+                                    variables: {
+                                       status: 5, stID: selectedUser, grID: groupID
                                     }
-                                 </p>
+                                 })
+                              }}>{Language[lang].groups.additionalOption.freeze}</Link>}
 
-                                 <div style={{ position: 'relative', marginLeft: 'auto' }}>
-                                    <button
-                                       className="izma__groups-attendance-left-bottom-btn" onClick={() => {
-                                          if (delActive) {
-                                             setDElActive(false)
-                                          } else {
-                                             setDElActive(s.id)
-                                          }
-                                          setSelectedUser(s.id)
-                                          settStatus(s.groupStatus)
-                                          setIdName({ studentID: s.id, studentName: s.name })
-                                       }}>
-                                          <span></span>
-                                    </button>
+                              {(s.groupStatus === 2 || s.groupStatus === 5) && <Link to="#" className="del_link" onClick={() => {
+                                 s.groupStatus === 5 && setPaymentStatus(true)
+                                 s.groupStatus === 2 && setPayment(true)
+                                 s.groupStatus === 2 && rrr()
+                              }} >{Language[lang].groups.activate.activateTitle}</Link>}
+                              <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
+                              <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>
+                              <Link to="#" className="del_link">{Language[lang].groups.activate.changeGroupStudent}</Link>
+                              <Link to="#" className="del_link--red" onClick={() => {
 
+                                 if (setStatus_6 && setStatus_6.setStatus_6.length === 1) {
 
+                                    SetStatus_6({
+                                       variables: {
+                                          status: 6, stID: selectedUser
+                                       }
+                                    })
+                                 }
 
+                                 DelFromGroup({
+                                    variables: {
+                                       grID: groupID, stID: selectedUser
+                                    }
+                                 })
 
-
-                                    <div style={{ zIndex: 10000, position: 'absolute' }}
-                                       className={`open_del ${delActive === s.id ? 'active' : ''}`} onClick={() => setDElActive(false)}>
-
-                                       {(s.groupStatus === 3 || s.groupStatus === 4) && <Link to="#" className="del_link" onClick={() => {
-                                          SetStatus_5({
-                                             variables: {
-                                                status: 5, stID: selectedUser, grID: groupID
-                                             }
-                                          })
-                                       }}>{Language[lang].groups.additionalOption.freeze}</Link>}
-
-                                       {(s.groupStatus === 2 || s.groupStatus === 5) && <Link to="#" className="del_link" onClick={() => {
-                                          s.groupStatus === 5 && setPaymentStatus(true)
-                                          s.groupStatus === 2 && setPayment(true)
-                                          s.groupStatus === 2 && rrr()
-                                       }} >{Language[lang].groups.activate.activateTitle}</Link>}
-                                       <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
-                                       <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>
-                                       <Link to="#" className="del_link">{Language[lang].groups.activate.changeGroupStudent}</Link>
-                                       <Link to="#" className="del_link--red" onClick={() => {
-
-                                          if (setStatus_6 && setStatus_6.setStatus_6.length === 1) {
-
-                                             SetStatus_6({
-                                                variables: {
-                                                   status: 6, stID: selectedUser
-                                                }
-                                             })
-                                          }
-
-                                          DelFromGroup({
-                                             variables: {
-                                                grID: groupID, stID: selectedUser
-                                             }
-                                          })
-
-                                       }}>{Language[lang].groups.exitToGroup}</Link>
-                                    </div>
+                              }}>{Language[lang].groups.exitToGroup}</Link>
+                           </div>
 
 
 
-                                 </div>
-                              </div>
-                        ))
+                        </div>
+                     </div>)
                      }
 
                   </div>
@@ -534,8 +554,8 @@ const GroupProfilLeft = (prop) => {
                   placeholder={Language[lang].teachers.addNewUser.date}
                   format={"DD-MM-YYYY"}
                   disabledDate={(current) => {
-                     let customDate = groups.byGroupID.endDate
-                     return current && current < moment(customDate, "DD-MM-YYYY")
+                     // let customDate = groups.byGroupID.endDate
+                     // return current && current < moment(customDate, "DD-MM-YYYY")
                   }}
                />
                {hasStud && hasStud.hasStudent && <>Siz tanlagan o'quvchi guruhga qo'shilgan</>}

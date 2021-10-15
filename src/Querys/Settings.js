@@ -27,7 +27,7 @@ const ROADMAP = gql`
 }
 `
 
-const TEACHER_SUBSCRIPTION = gql `
+const TEACHER_SUBSCRIPTIONN = gql `
     subscription {
         colleagues {
             Id
@@ -60,10 +60,19 @@ const COLLEGUES_BY_STATUS = gql`
     }
 `
 
+const DELETE_COLLEGUE = gql `
+  mutation deleteColleague($id: ID) {
+    deleteColleague (Id: $id) {
+      Id
+    }
+  }
+`
+
 export {
   COLLEGUES,
   ROADMAP,
-  TEACHER_SUBSCRIPTION,
+  TEACHER_SUBSCRIPTIONN,
   UPT_STATUS,
-  COLLEGUES_BY_STATUS
+  COLLEGUES_BY_STATUS,
+  DELETE_COLLEGUE
 }

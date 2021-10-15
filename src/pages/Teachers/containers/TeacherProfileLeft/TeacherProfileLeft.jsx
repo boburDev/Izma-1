@@ -10,7 +10,6 @@ import PasswordInput from '../../../../components/PasswordInput/PasswordInput';
 import { useLoader } from '../../../../context/Loader';
 import { useEffect } from 'react';
 import PhoneNumberInput from '../../../../components/PhoneNumberInput/PhoneNumberInput';
-import moment from 'moment';
 import { useName1 } from '../../../../context/NameProvider';
 import {useLang} from '../../../../context/LanguageProvider'
 import Language from '../../../../lang/index.js'
@@ -221,7 +220,7 @@ useEffect(() => {
 
                         <DatePicker
                            className='date__picker lid-edit-date'
-                           defaultPickerValue={moment(collegueInfo?.birthday, 'DD-MM-YYYY')}
+                           
                            onChange={takeBirth}
                            placeholder={"Kun-Oy-Yil"}
                            format={"DD-MM-YYYY"}

@@ -8,7 +8,6 @@ import { CHECK_CASH, NEW_CASH, UPDATE_CASH, HISTORY_PAYMENT, STATUS_3_4, STUDENT
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import DropSearch from '../../../../components/DropSearch/DropSearch'
 import { useCheck } from '../../../../context/CheckProvider'
-import moment from 'moment'
 import { useLang } from '../../../../context/LanguageProvider'
 import Language from '../../../../lang/index'
 
@@ -302,18 +301,10 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 						<DatePicker
 							ref={datePicker}
-							
 							className='date__picker'
-							onChange={(value, dateString) => setPayedData({
-								payed: dateString,
-								payed_at: value._d
-							})
-							}
+							onChange={(value, dateString) => setPayedData({ payed: dateString, payed_at: value._d })}
 							placeholder={Language[lang].students.recordPayment.date}
-							format={"DD-MM-YYYY"}
-							value={payedData !== "" ? moment(payedData) : ""}
-							
-
+							format={"DD-MM-YYYY"}							
 						/>
 					</div>
 

@@ -71,11 +71,11 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                   <img src={DeleteImg} alt="" />
                </h4>
             </> : block === 'financeHash' ? <>
-                     <h4 className={'financeHash'}>{info?.studentName}</h4>
-                     <h4 className={'financeHash'}>{info?.payed_time}</h4>
-                     <h4 className={'financeHash'}>{info?.typePayment}</h4>
-                     <h4 className={'financeHash'}>{info?.amount}</h4>
-                     <h4 className={'financeHash'}>{info?.comment}</h4>
+                     <h4 className={'financeHash'}>{info?.student_name}</h4>
+                     <h4 className={'financeHash'}>{moment(info?.payment_time).format('YYYY-MM-DD hh:mm')}</h4>
+                     <h4 className={'financeHash'}>{info?.payment_type}</h4>
+                     <h4 className={'financeHash'}>{info?.payment_amount}</h4>
+                     <h4 className={'financeHash'}>{info?.comments}</h4>
                      <h4 className={'financeHash'}>
 						<img id={info.ckeckId} src={priceCheck} alt="" onClick={e => {
 							setEditId(e.target.id)

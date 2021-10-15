@@ -3,10 +3,9 @@ import {
  } from '@apollo/client'
  
  const GROUP_DAVOMAT = gql `
- query groupAttendences($groupID: ID!) {
-   groupAttendences(groupID: $groupID) {
+ query groupAttendences($groupID: ID! $month: Int) {
+   groupAttendences(groupID: $groupID month: $month) {
      id
-     groupID
      day
      status
      comment

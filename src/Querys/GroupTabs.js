@@ -118,17 +118,6 @@ const DELETE_FROM_GROUP = gql `
   }
 `
 
-const CHECK_CASH = gql `
-  query studentCash($stID: ID!) {
-    studentCash(studentID: $stID)
-    {
-      id
-      studentID
-      cashAmount
-    }
-  }
-`
-
 const UPDATE_CASH = gql `
   mutation updateCash(
     $stID: ID!
@@ -289,6 +278,12 @@ const SUBSCRIPTION_GROUP_INFO = gql `
   }
 `
 
+const DOES_ACTIVE = gql `
+  mutation updateAllStudentCash($needID: YYYYY) {
+    updateAllStudentCash (needID: $needID)
+  }
+`
+
 
 export {
   NEW_CASH,
@@ -300,16 +295,16 @@ export {
 	GET_STUDENTS,
   SELECT_STUDENT_GROUP,
   DELETE_FROM_GROUP,
-  CHECK_CASH,
   UPDATE_CASH,
   HISTORY_PAYMENT,
   HAS_STUDENT,
   UPDATE_GR_STATUS,
   GROUP_STUDENTS,
+  NEW_SUB_STUDENT,
+  DOES_ACTIVE,
   SUBSCRIPTION_GROUPS,
   SUBSCRIPTION_STUDENT,
   SUBSCRIPTION_STATUS,
   SUBSCRIPTION_ADD_STUDENT,
-  NEW_SUB_STUDENT,
   SUBSCRIPTION_GROUP_INFO,
 }

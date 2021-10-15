@@ -23,7 +23,7 @@ const CoursesFormMainDegree = ({ onClose }) => {
       name && price ? setDisabled(false) : setDisabled(true)
    }, [name, price])
 
-   const [newDegree, { data: ss }] = useMutation(NEW_DEGREE)
+   const [newDegree] = useMutation(NEW_DEGREE)
 
    
    const handleSubmit = (id) => {

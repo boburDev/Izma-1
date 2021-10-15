@@ -3,7 +3,7 @@ import { Drawer } from 'antd'
 import SettingsArchiveForm from '../../../containers/Forms/SettingsArchiveForm/SettingsArchiveForm'
 import SettingsArchiveFormEdit from '../../../containers/Forms/SettingsArchiveFormEdit/SettingsArchiveFormEdit'
 import './Employees.scss'
-import { COLLEGUES, TEACHER_SUBSCRIPTION, UPT_STATUS } from '../../../Querys/Settings'
+import { COLLEGUES, TEACHER_SUBSCRIPTIONN, UPT_STATUS } from '../../../Querys/Settings'
 import { useMutation, useQuery, useSubscription } from '@apollo/client'
 import TTable from '../../../components/Table/TTable'
 import Language from '../../../lang/index'
@@ -66,7 +66,7 @@ const Employees = () => {
 
 
 
-	useSubscription(TEACHER_SUBSCRIPTION, {
+	useSubscription(TEACHER_SUBSCRIPTIONN, {
 		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
 			cache.modify({
 				fields: {

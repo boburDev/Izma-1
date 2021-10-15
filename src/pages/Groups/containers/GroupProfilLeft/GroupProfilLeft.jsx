@@ -21,12 +21,12 @@ import {
    SUBSCRIPTION_STATUS,
    GROUP_STUDENTS,
    NEW_SUB_STUDENT,
-   SUBSCRIPTION_GROUP_INFO
+   SUBSCRIPTION_GROUP_INFO,
+   DOES_ACTIVE
 } from '../../../../Querys/GroupTabs'
 import { useDayDivider } from '../../../../context/DayDividerProvider'
 import {
    DELETE_FROM_GROUP,
-   CHECK_CASH,
    UPDATE_CASH,
    STATUS_3_4,
    HISTORY_PAYMENT,
@@ -35,6 +35,7 @@ import {
    UPDATE_GR_STATUS,
    SUBSCRIPTION_ADD_STUDENT,
 } from '../../../../Querys/GroupTabs'
+import { CHECK_CASH } from '../../../../Querys/FinanceAddPayForm_Query'
 import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
 import Check from '../../../../components/Check/Check'
@@ -45,7 +46,7 @@ const GroupProfilLeft = (prop) => {
 
    const [dayDivide, setDayDivide] = useDayDivider()
    const [userInput, setUserInput] = useState('')
-   const [selectedUser, setSelectedUser] = useState()
+   const [selectedUser, setSelectedUser] = useState('')
    const [startedDate, setStartedDate] = useState('')
    const [dataUser, setDataUser] = useState([])
    const [staatus, settStatus] = useState()
@@ -56,9 +57,11 @@ const GroupProfilLeft = (prop) => {
    const [setNavbarP] = useNavbar(true)
 
    const [dataGroup, setDataGroup] = useState({})
+   const [grStudent, setGrStudent] = useState([])
 
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
+   const [activator, setActivator] = useState(false)
 
    const { groupID } = useParams()
 
@@ -69,6 +72,14 @@ const GroupProfilLeft = (prop) => {
    const { data: grStudents } = useQuery(GROUP_STUDENTS, {
       variables: { grID: groupID }
    })
+
+   useEffect(() => {
+
+      if (grStudents && grStudents.findStudByGrId) {
+         setGrStudent(grStudents.findStudByGrId)
+      }
+
+   }, [grStudents])
 
    useEffect(() => {
 
@@ -84,7 +95,7 @@ const GroupProfilLeft = (prop) => {
          setDayDivide(groups.byGroupID.days)
          prop.studData(groups && groups.byGroupID.students)
       }
-   }, [grStudents, groups, setDayDivide, prop])
+   }, [groups, setDayDivide, prop])
 
 
 
@@ -118,6 +129,7 @@ const GroupProfilLeft = (prop) => {
    const [SetStatus_4] = useMutation(STATUS_3_4)
    const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
    const [SetStatus_5] = useMutation(UPDATE_GR_STATUS)
+   const [Activated] = useMutation(DOES_ACTIVE)
 
    useEffect(() => {
 
@@ -233,6 +245,18 @@ const GroupProfilLeft = (prop) => {
          }
    }, [SetStatus3_4, checkCache, groupID, paymentStatus, selectedUser, staatus])
 
+
+   useEffect(() => {
+
+      if (grStudent.length > 0 && activator) {
+         let sorted = []
+         grStudent.map(i => i.groupStatus === 2 && sorted.push({id: i.id, status: i.groupStatus}))
+         Activated({variables: {needID: sorted}})
+         setActivator(false)
+         console.log('once')
+      }
+   }, [grStudent, Activated, activator])
+
    const showModal = () => {
       setIsModalVisible(true)
    }
@@ -307,7 +331,7 @@ const GroupProfilLeft = (prop) => {
       setCheckModal(false)
    }
 
-   const filtered = grStudents && grStudents.findStudByGrId.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
+   const filtered = grStudent?.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
 
    if (delData && delData) return <Redirect to='/groups' />
 
@@ -412,6 +436,8 @@ const GroupProfilLeft = (prop) => {
 
                   <button className="izma__groups-attendance-left-bottom-button-add" onClick={showStudentDrawer} >
                   </button>
+
+                  <button onClick={() => setActivator(true)}>active</button>
 
                   <br />
                   <br />

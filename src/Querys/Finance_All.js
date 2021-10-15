@@ -17,7 +17,6 @@ const FINANCE_STUDENT_TABLE = gql`
 {
   financeStudentsList {
     id
-    phone
     studentName
     typePayment
     amount

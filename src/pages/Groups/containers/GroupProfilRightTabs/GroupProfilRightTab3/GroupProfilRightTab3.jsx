@@ -29,27 +29,30 @@ const GroupProfilRightTab3 = ({ studentData }) => {
     },
   })
 
-
+  
+  
   useEffect(() => {
     
     const filtered = studentData && studentData.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
 
-      const stDATA = filtered && filtered.map((item, i) => {
+    const stDATA = filtered && filtered.map((item, i) => {
         const data = {
           stID: item.id,
           id: i + 1,
           name: item.name,
-          phone: (item.mainPhone[0] && item.mainPhone[0].phone) || '-'
+          phone: (item.mainPhone[0] && item.mainPhone[0].phone) || '-',
+          key: item.id
         }
         return data
       })
-
+      
       setDataSale(stDATA)
       }, [setDataSale, studentData, onKeyUp]);
-    
+
+      
 
     
-        const columns = [
+      const columns = [
             {
               title: Language[lang].groups.individualPrice.fullName,
               dataIndex: 'name',
@@ -70,7 +73,7 @@ const GroupProfilRightTab3 = ({ studentData }) => {
 
                 {grSale && grSale.groupSaleInfo.map(item => {
 
-                  return (item.studentID === record.stID) && <input autoComplete="off" type="text" style={{ marginRight: '10px' }} className='izma__groups-attendance-right-tabs-third-up-input' defaultValue={item.groupSale}/>
+                  return (item.studentID === record.stID) && <input key={item.groupSale} autoComplete="off" type="text" style={{ marginRight: '10px' }} className='izma__groups-attendance-right-tabs-third-up-input' defaultValue={item.groupSale}/>
                 })}
                <button
                data-stid={record.stID}

@@ -15,4 +15,10 @@
          width: 100%;
       }
    }
+
+   @media screen and (max-width: 768px) {
+    .izma__graph-section {
+      margin-right: 0;
+    }
+   }
 }

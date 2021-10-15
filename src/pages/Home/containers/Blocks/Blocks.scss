@@ -5,8 +5,25 @@
    justify-content: space-between;
    flex-wrap: wrap;
 
+   .swiper-slide {
+      width: calc((100% / 8) - 10px) !important; 
+      @media screen and (max-width: 1023px) {
+       width: calc((100% / 4) - 8px) !important;
+      }
+      @media screen and (max-width: 768px) {
+       width: calc((100% / 3) - 7px) !important;
+      }
+      @media screen and (max-width: 645px) {
+       width: calc((100% / 2) - 5px) !important;
+      }
+   }
+
    .swiper-container {
+      width: 100% !important;
       min-height: 270px;
+      @media screen and (max-width: 768px) {
+         min-height: 200px;
+      }
    }
 
    .swiper-pagination.swiper-pagination-bullets {

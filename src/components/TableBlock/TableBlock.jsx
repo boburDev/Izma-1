@@ -33,7 +33,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
 
                      {
                         block === 'studentHash' ?
-                           <Link to={`/studentProfile/${info?.id}`}
+                           <Link to={`/dashboard/studentProfile/${info?.id}`}
                               onClick={() => {
                                  setNavbarP(info?.id)
                               }}
@@ -41,7 +41,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                               {info?.name}
                            </Link>
                            :
-                           <Link to={`/teacherProfile/${info?.Id}`}
+                           <Link to={`/dashboard/teacherProfile/${info?.Id}`}
                               onClick={() => {
                                  setNavbarP(info?.id)
                               }}
@@ -118,7 +118,7 @@ const TableBlock = ({ block, info, index, showDrawer }) => {
                   </h4>
                </> :
 
-               <Link to={`/groups/groupsProfil/${info?.id}`}
+               <Link to={`/dashboard/groups/groupsProfil/${info?.id}`}
                  onClick={() => {
                     setNavbarP(info?.id)
                  }}

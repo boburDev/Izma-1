@@ -9,11 +9,20 @@
    display: flex;
    align-items: center;
 
+   @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      align-items: flex-start;
+   }
+
    .ant-picker {
       border: none;
       width: 350px !important;
       padding: 0;
       background: transparent;
+      @media screen and (max-width: 768px) {
+         width: 100% !important;
+        flex-wrap: wrap;
+      }
    }
 
    .ant-picker-input {
@@ -22,6 +31,10 @@
       background: #FFFFFF;
       box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
       border-radius: 5px;
+      @media screen and (max-width: 768px) {
+         margin-bottom: 10px;
+         width: 45% !important;
+      }
    }
 }
 
@@ -33,7 +46,7 @@
 
 .izma__finance-salary-up-dates-line {
    margin-top: 35px;
-   width: 800px;
+   width: 100%;
    border-bottom: 1px solid #959494;
 }
 
@@ -46,6 +59,9 @@
    margin-right: 35px;
    color: #222222;
    margin-bottom: 0;
+   @media screen and (max-width: 768px) {
+      display: none;
+   }
 }
 
 .izma__finance-salary-up-dates-btn {
@@ -60,4 +76,8 @@
    background-color: #ffffff;
    color: #090761;
    margin-left: 80px;
+   @media screen and (max-width: 768px) {
+      margin-left: 0;
+      margin-top: 10px;
+   }
 }

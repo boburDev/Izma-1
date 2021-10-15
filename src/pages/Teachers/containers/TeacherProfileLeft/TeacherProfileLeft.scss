@@ -43,9 +43,18 @@
    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
    border-radius: 15px;
    margin-right: 45px;
+   @media screen and (max-width: 768px) {
+      width: 100%;
+      margin-right: 0;
+      background: transparent;
+      box-shadow: none;
+   }
 }
 .izma__teachers-payment-inner-left-centerizma__teachers-payment-inner-left-center {
    padding-left: 35px;
+   @media screen and (max-width: 768px) {
+      padding-left: 0;
+   }
 }
 
 .izma__teachers-payment-inner-left-up-box-black {
@@ -112,6 +121,9 @@
    display: flex;
    align-items: center;
    margin-top: 11px;
+   @media screen and (max-width: 768px) {
+      margin-top: 20px;
+   }
 }
 
 .izma__teachers-payment-inner-left-center-text {
@@ -120,6 +132,9 @@
    font-size: 16px;
    line-height: 23px;
    color: #7D7D7D;
+   @media screen and (max-width: 768px) {
+      margin-bottom: 0;
+   }
 }
 
 .izma__teachers-payment-inner-left-center-number-number-wrapper {
@@ -128,6 +143,9 @@
    font-size: 16px;
    line-height: 20px;
    color: #000000;
+   @media screen and (max-width: 768px) {
+      margin-bottom: 0;
+   }
 }
 
 .izma__teachers-payment-inner-left-center-number-number {
@@ -145,6 +163,9 @@
    border: 1px solid #090761;
    border-radius: 30px;
    color: #090761;
+    @media screen and (max-width: 768px) {
+       margin-bottom: 0;
+    }
 }
 
 .izma__teachers-payment-inner-left-center-role-role {

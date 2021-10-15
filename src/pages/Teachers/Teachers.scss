@@ -6,6 +6,9 @@
 
 .izma__teachers-content {
    padding: 30px 0 0 0;
+    @media screen and (max-width: 768px) {
+       padding: 0;
+    }
 }
 
 .izma__teachers-content-up {

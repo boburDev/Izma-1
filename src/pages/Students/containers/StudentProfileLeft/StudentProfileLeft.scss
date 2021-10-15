@@ -10,6 +10,10 @@
 .izma__students-payment-inner-left-wrapper {
    width: 350px;
    margin-right: 30px;
+   @media screen and (max-width: 768px) {
+      width: 100%;
+      margin-right: 0;
+   }
    &.active {
       &::before {
          position: fixed;
@@ -26,6 +30,8 @@
          opacity: 0.3;
       }
    }
+
+   
 }
 
 
@@ -73,10 +79,20 @@
    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.16);
    border-radius: 15px;
    margin-right: 45px;
+
+   @media screen and (max-width: 768px) {
+      background: transparent;
+      width: 100%;
+      box-shadow: none;
+      margin-right: 0;
+   }
 }
 
 .izma__students-payment-inner-left-centerizma__students-payment-inner-left-center {
    padding-left: 35px;
+   @media screen and (max-width: 768px) {
+     padding-left: 0;
+   }
 }
 
 
@@ -100,7 +116,7 @@
    width: 100%;
    text-align: center;
    padding: 0 80px;
-
+   
 }
 
 .izma__students-payment-inner-left-up-left-id {
@@ -120,6 +136,13 @@
    display: flex;
    align-items: center;
    margin-top: 11px;
+   @media screen and (max-width: 768px) {
+      margin-top: 20px;
+
+      p {
+         margin-bottom: 0;
+      }
+   }
 }
 
 .izma__students-payment-inner-left-center-text {
@@ -265,6 +288,9 @@
    margin-right: 20px;
    color: #2F2D51;
    margin-bottom: 0;
+   @media screen and (max-width: 768px) {
+      font-size: 22px;
+   }
 }
 
 .izma__finance-payment-inner-title {
@@ -274,6 +300,9 @@
    line-height: 24px;
    text-transform: capitalize;
    color: #9493B4;
+   @media screen and (max-width: 768px) {
+     font-size: 16px;
+   }
 }
 
 
@@ -312,21 +341,33 @@
 .izma__finance-payment-inner-left-up-box-blue {
    background-image: url('../../../../assets/Icons/fcom.svg');
    top: 40px;
+   @media screen and (max-width: 768px) {
+      top: 0;
+   }
 }
 
 .izma__finance-payment-inner-left-up-box-green {
    background-image: url('../../../../assets/Icons/fedit.svg');
    top: 85px;
+   @media screen and (max-width: 768px) {
+      top: 40px;
+   }
 }
 
 .izma__finance-payment-inner-left-up-box-orange {
    background-image: url('../../../../assets/Icons/fphone.svg');
    top: 130px;
+   @media screen and (max-width: 768px) {
+      top: 85px;
+   }
 }
 
 .izma__finance-payment-inner-left-up-box-red {
    background-image: url('../../../../assets/Icons/fdel.svg');
    top: 175px;
+   @media screen and (max-width: 768px) {
+      top: 130px;
+   }
 }
 
 .izma__finance-payment-inner-left-up-left {

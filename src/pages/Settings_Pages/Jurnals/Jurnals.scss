@@ -9,6 +9,14 @@
    background-color: var(--background-main);
    box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
    border-radius: 4px;
+   @media screen and (max-width: 768px) {
+      min-width: 768px;
+   }
+}
+
+.boxJurnals {
+   width: 100%;
+   overflow-x: scroll;
 }
 
 .izma__settings-magazine-heading {
@@ -19,6 +27,9 @@
    line-height: 43px;
    margin-bottom: 25px;
    color: #000000;
+   @media screen and (max-width: 768px) {
+      font-size: 22px;
+   }
 }
 
 .izma__settings-magazine-items {

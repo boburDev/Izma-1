@@ -13,6 +13,9 @@
    display: flex;
    padding-top: 30px;
    flex-direction: column;
+   @media screen and (max-width: 768px) {
+      padding-top: 0;
+   }
 }
 
 .izma__students-content-up {
@@ -20,6 +23,10 @@
    flex-wrap: wrap;
    align-items: center;
    justify-content: space-between;
+   @media screen and (max-width: 768px) {
+      justify-content: none;
+      flex-direction: column;
+   }
 }
 
 .izma__students-content-heading {
@@ -28,7 +35,10 @@
    line-height: 38px;
    text-align: center;
    text-transform: capitalize;
-   color: #2F2D51
+   color: #2F2D51;
+   @media screen and (max-width: 768px) {
+     font-size: 22px;
+   }
 }
 
 .izma__students-content-button {
@@ -46,6 +56,10 @@
    color: #090761;
    cursor: pointer;
    transition: all ease 0.5s;
+   @media screen and (max-width: 768px) {
+      font-size: 14px;
+      margin-top: 10px;
+   }
 
    &:hover {
       background: #090761;
@@ -53,6 +67,8 @@
       transition: all ease 0.5s;
    }
 }
+
+
 
 .izma__students-content-line {
    height: 1px;
@@ -77,6 +93,9 @@
 .ds {
    margin-left: auto;
    cursor: pointer;
+   @media screen and (max-width: 768px) {
+      margin-left: 0;
+   }
 }
 
 .izma__students-content-input {
@@ -89,6 +108,9 @@
    border-radius: 4px;
    width: 280px;
    font-weight: bold;
+   @media screen and (max-width: 768px) {
+      width: 100%;
+   }
 
    &::placeholder {
       font-weight: bold;
@@ -97,4 +119,7 @@
 
 .ant-drawer-content-wrapper {
    width: 400px !important;
+   @media screen and (max-width: 768px) {
+      width: 100% !important;
+   }
 }

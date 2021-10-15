@@ -1,4 +1,16 @@
 .izma__finance-table {
    width: 100%;
    overflow-x: scroll;
+
+
+}
+   
+   
+
+@media screen and (max-width: 768px) {
+   .ant-modal-wrap {
+      .ant-modal {
+         width: 100% !important;
+      }
+   }
 }

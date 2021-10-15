@@ -10,7 +10,7 @@ import { useGroup } from '../../context/NameProvider';
 
 const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text, groups,setInfo2, redir, snake  }) => {
    const [groupName] = useGroup()
-   const useOutsideAlerter = (ref) => {
+   const useOutsideAlerter = (ref, myModal) => {
       useEffect(() => {
          function handleClickOutside(event) {
             if (event.target.className === 'myModal active') {
@@ -47,7 +47,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
    
 
    const wrapperRef = useRef(null);
-   useOutsideAlerter(wrapperRef);
+   useOutsideAlerter(wrapperRef, myModal);
    return (
       <div className={`myModal ${myModal ? 'active' : ''}`} ref={wrapperRef}>
          <div className="myModal-inner">

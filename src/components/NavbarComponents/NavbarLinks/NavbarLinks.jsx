@@ -10,20 +10,20 @@ const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitB
    const { location } = useHistory()
    useEffect(() => {
       switch (location.pathname) {
-         case "/finance":
-            setLinks('/finance')
+         case "/dashboard/finance":
+            setLinks('/dashboard/finance')
             break;
-         case "/financeCosts":
-            setLinks('/financeCosts')
+         case "/dashboard/financeCosts":
+            setLinks('/dashboard/financeCosts')
             break;
-         case "/financeSalary":
-            setLinks('/financeSalary')
+         case "/dashboard/financeSalary":
+            setLinks('/dashboard/financeSalary')
             break;
-         case "/financePaymentGroups":
-            setLinks('/financePaymentGroups')
+         case "/dashboard/financePaymentGroups":
+            setLinks('/dashboard/financePaymentGroups')
             break;
-         case "/financePayment":
-            setLinks('/financePayment')
+         case "/dashboard/financePayment":
+            setLinks('/dashboard/financePayment')
             break;
 
          case "/":
@@ -38,11 +38,13 @@ const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitB
 
 
 
+
+
    return (
       <>
          {
             isButton ? (
-               <NavLink onClick={addClass}  className={`navbar_links ${clas ? 'active' : ''}`} to={links} 
+               <NavLink onClick={addClass}   className={`navbar_links ${clas ? 'active' : ''}`} to={links} 
                >
 
                   <div
@@ -57,9 +59,9 @@ const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitB
             ) : (
                <NavLink exact className={`navbar_links ${nav ? 'active' : ''}`} to={`${link}`} activeClassName="active"
                      onClick={() => {
+                        setNavbarP(title)
                         quitButton()
                         link2()
-                        setNavbarP(link)
                      }}
                >
                   <div className="open_navbar ">

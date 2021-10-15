@@ -37,6 +37,12 @@
 }
 
 // ==============
+
+.izma__fiance-history-list {
+   @media screen and (max-width: 768px) {
+     padding: 0;
+   }
+}
 .izma__students-history-right-tabs-fourth-items {
    display: flex;
    flex-direction: column;
@@ -47,12 +53,19 @@
    border-radius: 4px;
    width: 65%;
    margin: 35px 0;
+   @media screen and (max-width: 768px) {
+      width: 100%;
+   }
 }
 
 .izma__students-history-right-tabs-fourth-items-up {
    display: flex;
    align-items: center;
    padding-bottom: 20px;
+   @media screen and (max-width: 768px) {
+     padding-bottom: 10px;
+     justify-content: space-between;
+   }
 }
 
 .izma__students-history-right-tabs-fourth-items-up-left-heading {
@@ -61,6 +74,11 @@
    font-size: 20px;
    line-height: 29px;
    color: #222222;
+   @media screen and (max-width: 768px) {
+      font-size: 16px;
+      margin-bottom: 0;
+      line-height: 18px;
+   }
 }
 
 .izma__students-history-right-tabs-fourth-items-up-right {
@@ -74,6 +92,10 @@
    line-height: 15px;
    width: 121px;
    color: #9B9B9B;
+   @media screen and (max-width: 768px) {
+      margin-bottom: 0;
+      width: auto;
+   }
 }
 
 .izma__students-history-right-tabs-fourth-items-bottom-text {

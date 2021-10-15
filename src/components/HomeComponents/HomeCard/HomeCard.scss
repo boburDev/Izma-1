@@ -8,9 +8,11 @@
    border: 1px solid #E7E7EC;
    box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
    border-radius: 4px;
-   margin-right: 10px;
-   height: 230px;
+   min-height: 230px;
    text-decoration: none;
+   @media screen and (max-width: 768px) {
+      min-height: 170px;
+   }
 
    &:nth-child(8n) {
       margin-right: 0;
@@ -21,6 +23,10 @@
       height: 50px;
       // margin-left: auto;
       // margin-right: auto;
+       @media screen and (max-width: 768px) {
+          width: 36px;
+          height: 36px;
+       }
    }
 
    .izma__home-card-wrapper-title-wrapper {
@@ -39,6 +45,10 @@
          margin-bottom: 3px;
          padding: 0 15px;
          box-sizing: border-box;
+          @media screen and (max-width: 768px) {
+             font-size: 16px;
+             padding: 0 10px;
+          }
       }
 
       .izma__home-card-wrapper-text {

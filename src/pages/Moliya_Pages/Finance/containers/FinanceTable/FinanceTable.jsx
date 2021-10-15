@@ -12,7 +12,7 @@ const FinanceTable = () => {
    useEffect(()=>{
       ;(async()=>{
          try {
-            const res = await axios.get('http://localhost:4000/test', {
+            const res = await axios.get('https://api.triiipple.uz/test', {
                headers: {
                   'Authorization': localStorage.getItem('token')
                }

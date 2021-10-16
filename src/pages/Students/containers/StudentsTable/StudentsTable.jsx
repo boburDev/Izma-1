@@ -25,7 +25,6 @@ const StudentsTable = ({ studentSearch = '' }) => {
    const [setLoading] = useLoader(true)
    const [userData, setUserData] = useState([])
 
-
    const { data: Allstudents, loading } = useQuery(ALL_STUDENTS, {
       variables: {
          page: page?.page,
@@ -41,6 +40,8 @@ const StudentsTable = ({ studentSearch = '' }) => {
    const {data: findSale} = useQuery(FIND_SALE)
    const {data: ddd} = useQuery(STUDENT_ON_KEY_UP, {variables: {name: studentSearch.length > 0 ? studentSearch : ''}})
    const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: course}})
+
+   // console.log(fCourse)
 
    useEffect(()=>{
          const filterCourseArr = []
@@ -61,6 +62,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
             return { id: i.studentid, name: i.name, mainPhone: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
          })
       }
+      console.log(filterCourseArr)
 
       const searchedStudent = ddd && ddd.studentOnKeyup
       
@@ -73,7 +75,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
         else if (searchedStudent) {
             
           setUserData(searchedStudent)
-        } else if(course.length) {
+        } else if(course.length !== 0) {
     
           setUserData(filterCourseArr)
         } else if (truFalse.sales) {

@@ -14,7 +14,7 @@ const AppWrapper = ({ api }) => {
             {
                token ?
                   <>
-                     <Redirect exact from="/" to="/dashboard" />
+                     {/* <Redirect exact from="/" to="/dashboard" /> */}
                      <Route path="/dashboard">
                         <App api={api} />
                      </Route>

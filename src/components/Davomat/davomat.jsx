@@ -7,30 +7,28 @@ import { GROUP_DAVOMAT } from './query'
 import {useLang} from '../../context/LanguageProvider'
 import Language from '../../lang/index'
 import { BY_GROUP_ID } from '../../Querys/GroupTabs'
+import { introspectionFromSchema } from 'graphql'
 
 // react-redux uninstall qivoring
 function Davomat() {
     const id = useParams()
     const [lang] = useLang()
-    
-    const [arr, setArr] = useState([])
+
     const [state, setState] = useState([])
     const [start, setStart] = useState('')
     const [startDay, setStartDay] = useState('')
     const [days, setDays] = useState('')
     const [active, setActive] = useState(0)
-    const [yearStart, setYearStart] = useState('')
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
-    // const [groupMonth,setGroupMonth] = useState([])
-    // const [groupStuMonth,setGroupStuMonth] = useState([])
-    const [, setMonthlyGr] = useState([])
-
+    const [monthlyGr, setMonthlyGr] = useState([])
+    const [activeYear,setActiveYear] = useState(0)
 
     const [groupData,setGroupData] = useState({})
     const [attandenceDate, setAttandenceDate] = useState([])
     
     useEffect(()=>{
+        console.log(startDay)
         setActive(start-0)
     },[start])
 
@@ -50,7 +48,6 @@ function Davomat() {
             setStart(groupData.startDate.split('-')[1])
             setStartDay(groupData.startDate.split('-')[2])
             setDays(groupData.days)
-            setYearStart(groupData.startDate.split('-')[0])
             setStartDate(groupData.startDate)
             setEndDate(groupData.endDate)
         }
@@ -63,22 +60,27 @@ function Davomat() {
             fff({
                 variables: {
                     groupID: id && id.groupID,
-                    month: active
+                    month: active,
+                    year: activeYear
                 }
             })
         }
-    }, [active, fff, groupData, id])
+    }, [active, activeYear, fff, groupData, id])
     
     
     useEffect(()=>{
         if (groupAtt && groupAtt.groupAttendences) {
             // console.log(groupAtt.groupAttendences)
             setAttandenceDate(groupAtt.groupAttendences)
+            // console.log(groupAtt.groupAttendences)
         }
     },[groupAtt])
     
     
    
+
+
+
 
 
 
@@ -105,34 +107,24 @@ function Davomat() {
         setState(getMonths(new Date(startDate), new Date(endDate)))
     },[endDate, startDate])
 
-    // const getDaysInMonth = (months, year, start) => {
-    //     let startDay = start
-    //     const daysInMonth = groupMonth.map(i => {
-    //         if (year >= moment(i).format('YYYY') && (months-0) === (moment(i).format('MM')-0)) {
-    //             if (startDay <= moment(i).format('DD') ) {
-    //                 startDay = '01'
-    //                 return i
-    //             }
-    //         }
-    //         return ''
-    //     })
-    //     const data = []
-    //     for (const i of daysInMonth) {
-    //         if (i !== '') {
-    //             data.push(i)
-    //         }
-    //     }
-    //     return data
-    // }
-
     const davomatCalendar = useCallback((value) => {
+        
         const data = []
         // console.log(data)
             days.split(',').map(i => {
                 value.map(item => {
+                    // console.log(endDate, moment(item.day-0).format('YYYY-MM-DD'))
                     if (endDate >= moment(item.day-0).format('YYYY-MM-DD')) {
-                        if ((i - 1) === new Date(item.day).getDay()) {
-                            data.push(item)
+                        // console.log(moment(item.day-0).format('YYYY-MM-DD'))
+                        // console.log((i - 1), new Date(item.day-0).getDay())
+                        if ((i - 1) === new Date(item.day-0).getDay()) {
+                            const result = {
+                                comment: item.comment,
+                                id: item.id,
+                                status: item.status,
+                                day: item.day
+                            }
+                            data.push(result)
                             // data.date.push(moment(item).format('DD/MM-YYYY'))
                         }
                     }
@@ -140,19 +132,10 @@ function Davomat() {
                 })
                 return ""
             })
+            console.log(data)
         return data
 
     }, [days, endDate])
-
-
-
-    // useEffect(()=>{
-    //     fff({ variables: { 
-    //         groupID: id && id.groupID,
-    //         month: active
-    //     }})
-    //     // console.log(active)
-    // },[active, fff, id])
 
 
 
@@ -218,44 +201,18 @@ function Davomat() {
     
     
     
-    const monthly = () => {
-        setArr(arr)
-        setMonthlyGr(davomatCalendar(attandenceDate).sort())
-
-        let roun = document.querySelectorAll(`${st.round}`)
-        roun.forEach(item => {
-            item.classList.remove(`${st.false}`)
-            item.classList.remove(`${st.true}`)
-        })
-    }
-    
-    const setMonth = (month, year, day) => {
-        monthly(month, year, day)
+    const setMonth = () => {
+        
     }
 
 
     
     
     useEffect(() => {
-        if (false) {
-        }
-        // const data = davomatCalendar(attandenceDate)
-        // console.log(attandenceDate)
-        // console.log(data)
-        // setArr(arr)
-        // setActive(start-1)
-        // setMonthlyGr(data.date.sort())
-    }, [attandenceDate, davomatCalendar, start, startDay, yearStart])
-    
-    // useEffect(() => {
-    //     const data = davomatCalendar(start, yearStart, startDay)
-    //     // setArr(arr)
-    //     setActive(start-1)
-    //     setMonthlyStGr(data.date.sort())
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [start, startDay, yearStart])
+        const data = davomatCalendar(attandenceDate)
+        setMonthlyGr(data.sort((a, b) => a.day - b.day))
+    }, [attandenceDate, davomatCalendar])
 
-    
 
 
 
@@ -287,14 +244,37 @@ function Davomat() {
             state.map((i,key) =>
             <button
             onClick={() => {
-                setMonth(i.month + 1, i.year, ((i.month + 1) === (start-0)) ? startDay : 1)
+                setMonthlyGr(davomatCalendar(attandenceDate).sort((a, b) => a.day - b.day))
                 setActive(i.month+1)
+                setActiveYear(i.year)
             }}
             key={key}
             className={`${st.top__btn} ${active === i.month+1 ? `${st.top__btn_active}` : ''}`}>{monthNames[i.month]}</button>)
         }
         </div>
         </div>
+
+        <table className={st.customer}>
+        <thead className={st.customer_thead}>
+        <tr className={st.tr}>
+        <th className={`${st.name_table} ${st.th}`}>F.I.O</th>
+        {
+            monthlyGr.length>0 && monthlyGr.map((item, index) => (
+            <th
+            id={item.id}
+            data-satus={introspectionFromSchema.status}
+            className={st.th} key={index} style={{
+                cursor: `${(
+                    moment(item.day-0).format('DD-MM-YYYY') <= moment(new Date()).format('DD-MM-YYYY')
+                ) ? 'pointer' : ''}`
+            }}>
+                {moment(item.day-0).format('DD/MM') }&ensp;&ensp;
+            </th>
+            ))
+        }
+        </tr>
+        </thead>
+        </table>
         
             
         </div>

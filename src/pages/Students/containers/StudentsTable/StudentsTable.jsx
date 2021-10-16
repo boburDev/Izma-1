@@ -43,9 +43,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
    const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: course}})
 
    useEffect(()=>{
-
          const filterCourseArr = []
-    
          if (course.length) {
          fCourse && fCourse.byCourseIDFilter.map(cs => {
             const groups = cs.groups.map(gr => {

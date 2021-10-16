@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router'
 import { useState, useEffect } from 'react'
+import { useNavbar } from '../../../context/NavbarProvider'
 
 const NavbarLinkSet = ({ icon, title, link, isButton, addClass, link2, clas}) => {
    const { location } = useHistory()
+   const [setNavbarP] = useNavbar(true)
    const [links, setLinks] = useState(link)
    useEffect(() => {
       switch (location.pathname) {
@@ -45,7 +47,10 @@ const NavbarLinkSet = ({ icon, title, link, isButton, addClass, link2, clas}) =>
       }
    }, [location.pathname]);
    return(
-      <NavLink onClick={addClass} className={`navbar_links ${clas ? 'active' : ''}`} to={links}
+      <NavLink onClick={() => {
+         addClass()
+         setNavbarP(title)
+      }} className={`navbar_links ${clas ? 'active' : ''}`} to={links}
       >
 
          <div

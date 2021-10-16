@@ -85,7 +85,7 @@ const LidForm = () => {
                <div className="user_name1">
                   <label className="name_label1" htmlFor="">{Language[lang].settings.forms.selectCourse} *</label>
                   <select onChange={e => setCourse(e.target.value)} className="name_input1" name="" id="">
-                     <option value="" selected disabled>{Language[lang].settings.forms.selectCourse}</option>
+                     <option value=""  disabled>{Language[lang].settings.forms.selectCourse}</option>
                      {
                         allCourse?.map((e, i) => (
                            <option key={i} value={e.id}>{e.name}</option>

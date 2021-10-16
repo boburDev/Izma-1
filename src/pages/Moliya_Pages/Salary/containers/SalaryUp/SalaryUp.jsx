@@ -1,7 +1,7 @@
 import './SalaryUp.scss'
 import { Settings } from '../../../../../assets/Icons/icons'
 import SalaryUpTable from '../SalaryUpTable/SalaryUpTable'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 import { COLLEGUES, CREATE_SALARY, CREATE_SALARY_FOR_ALL } from './query'
 import { useLang } from '../../../../../context/LanguageProvider'
@@ -9,10 +9,10 @@ import Language from '../../../../../lang/index'
 
 const SalaryUp = () => {
 
-   const [salary,setSalary] = useState(0)
-   const [salary2,setSalary2] = useState(0)
-   const [salaryType, setSalaryType] = useState('1')
-   const [salaryType2, setSalaryType2] = useState('1')
+   const [salary,setSalary] = useState()
+   const [salary2,setSalary2] = useState()
+   const [salaryType, setSalaryType] = useState()
+   const [salaryType2, setSalaryType2] = useState()
    const [collegueId,setCollegueId] = useState('')
    const [data, setData] = useState([])
    const [lang] = useLang()
@@ -39,13 +39,16 @@ const SalaryUp = () => {
 
       }
 
-      function updateSlary() {
+      // console.log(infoo)
 
-         setSalaryCollegue({variables: {
-            id: collegueId,
-            salary: salary2 - 0 || infoo?.amount,
-            type: salaryType2 - 0|| infoo?.type,
-         }})
+      function updateSlary() {
+         if (collegueId && (salary2 || infoo?.amount)) {
+            setSalaryCollegue({variables: {
+               id: collegueId,
+               salary: salary2 - 0 || infoo?.amount,
+               type: salaryType2 - 0|| infoo?.type,
+            }})
+         }
 
       }
 
@@ -55,6 +58,7 @@ const SalaryUp = () => {
       }, [info, collegueId])
 
 
+      const testRef = useRef('')
 
    return (
       <div className="harajatlar_wrapper">
@@ -99,11 +103,16 @@ const SalaryUp = () => {
                   <p className="text">{Language[lang].finance.secondSettingsSalary.secondSettingsSalaryTitle}</p>
                </div>
 
-               <div className="inputs_wrap another_two">
+               <form onSubmit={(e) => {
+                  e.preventDefault()
+                  setSalaryType2('')
+                  setSalary2('')
+                  e.currentTarget.reset()
+               }} className="inputs_wrap another_two">
                   <div className="select_two">
                      <label htmlFor="">{Language[lang].finance.secondSettingsSalary.chooseTeacher}</label>
                      <select onChange={e => setCollegueId(e.target.value)} >
-                           <option key="1d2" selected disabled value="">{Language[lang].finance.secondSettingsSalary.choose}</option>
+                           <option key="1d2" selected value="">{Language[lang].finance.secondSettingsSalary.choose}</option>
                            {
                               data?.map(i => {
                                  if (i.status !== 'CEO') {
@@ -114,11 +123,11 @@ const SalaryUp = () => {
                            }
                      </select>
                   </div>
-               <div className="another_three">
+                  <div className="another_three">
                      <label htmlFor="">{Language[lang].finance.secondSettingsSalary.optionExpances}</label>
                      <div className="input_items">
                            <div className="inputs">
-                        <input autoComplete="off" type="text" defaultValue={infoo?.amount} onKeyUp={e => {
+                        <input ref={testRef} autoComplete="off" type="text" defaultValue={infoo?.amount} onKeyUp={e => {
                               setSalary2(e.target.value)
                            }} />
                               <select onChange={e => setSalaryType2(e.target.value)}>
@@ -128,9 +137,11 @@ const SalaryUp = () => {
                            </div>
                      </div>
                   </div>
-                           <button onClick={updateSlary}>{Language[lang].finance.firstSettingsSalary.save}</button>
-
-               </div>
+                  <button onClick={() => {
+                     updateSlary()
+                     testRef.current.value = ''
+                  }}>{Language[lang].finance.firstSettingsSalary.save}</button>
+               </form>
                
                <div className="izma__finance-salary-bootom-dates-line-up"></div>
                <SalaryUpTable info={(e) => setInfo(e)}/>

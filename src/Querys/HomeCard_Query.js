@@ -25,9 +25,18 @@ const ST_COUNT = gql `
     count
   }
 `
+
+const BY_STATUS = gql `
+  query grStatus($status: Int) {
+    grStatus(status: $status) {
+      studentID
+    }
+  }
+`
 export {
   STUDENT_COUNT,
   STATUS_COUNT,
   GROUP_COUNT,
+  BY_STATUS,
   ST_COUNT
 }

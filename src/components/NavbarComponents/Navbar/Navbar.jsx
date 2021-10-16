@@ -32,6 +32,8 @@ import {
 import { useHistory } from 'react-router'
 import './Navbar.scss'
 
+
+
 // =============== Import  Components ================= 
 
 import NavbarLinks from '../NavbarLinks/NavbarLinks'
@@ -53,6 +55,8 @@ const Navbar = ({ sidebarActive, setSidebarActive }) => {
    const [lang] = useLang()
    const [UserStatus] = useUserStatus()
    const { data: hashtag } = useQuery(BY_HASHTAG)
+
+   
 
    useEffect(() => {
       if (hashtag && hashtag) {
@@ -252,6 +256,8 @@ const Navbar = ({ sidebarActive, setSidebarActive }) => {
    else if (UserStatus === 5) {
       links = links5
    }
+
+
 
 
 
@@ -515,6 +521,7 @@ const Navbar = ({ sidebarActive, setSidebarActive }) => {
                            link2={closeFinSet}
                            key={el.title}
                            clas={el.clas}
+                           
                         />
                      } else {
                         return <NavbarLinks
@@ -526,6 +533,7 @@ const Navbar = ({ sidebarActive, setSidebarActive }) => {
                            key={el.title}
                            quitButton={quitButton}
                            nav={el.nav}
+                           setSidebarActive={setSidebarActive}
                         />
                      }
                   })
@@ -557,6 +565,7 @@ const Navbar = ({ sidebarActive, setSidebarActive }) => {
                   openSetting={openSetting}
                   setOpenMoliya={setOpenMoliya}
                   setOpenSetting={setOpenSetting}
+                  setSidebarActive={setSidebarActive}
                />
             </div>
          </div>

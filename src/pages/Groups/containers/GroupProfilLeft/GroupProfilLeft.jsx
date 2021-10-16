@@ -41,10 +41,12 @@ import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/
 import Check from '../../../../components/Check/Check'
 import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
 import { SUBSCRIPTION_CASH } from '../../../Students/containers/StudentProfileLeft/query'
+import { GROUPS } from '../../../../Querys/Group_Query'
+import { useGroup } from '../../../../context/NameProvider'
 
 
 const GroupProfilLeft = (prop) => {
-
+   const [setGroupName] = useGroup(true)
    const [dayDivide, setDayDivide] = useDayDivider()
    const [userInput, setUserInput] = useState('')
    const [selectedUser, setSelectedUser] = useState('')
@@ -56,19 +58,27 @@ const GroupProfilLeft = (prop) => {
    const [onKeyUp, setOnKeyUp] = useState('')
    const [lang] = useLang()
    const [setNavbarP] = useNavbar(true)
-
+   const [addStudent, setAddStudent] = useState()
+   const [studentAddGroup, setStudentAddGroup] = useState('')
+   const [dateAddGroup, setDateAddGroup] = useState('')
    const [dataGroup, setDataGroup] = useState({})
    const [grStudent, setGrStudent] = useState([])
-
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
    const [activator, setActivator] = useState(false)
 
+   console.log(studentAddGroup)
+   console.log(dateAddGroup)
+   
    const { groupID } = useParams()
+
+   const { data: Groups } = useQuery(GROUPS, { variables: { teacherID: [], courseID: [] } })
 
    const { data: groups } = useQuery(BY_GROUP_ID, {
       variables: { groupID }
    })
+
+ 
 
    const { data: grStudents } = useQuery(GROUP_STUDENTS, {
       variables: { grID: groupID }
@@ -97,6 +107,8 @@ const GroupProfilLeft = (prop) => {
          prop.studData(groups && groups.byGroupID.students)
       }
    }, [groups, setDayDivide, prop])
+
+  
 
 
 
@@ -359,6 +371,8 @@ const GroupProfilLeft = (prop) => {
       borderRadius: '7px',
    }
 
+
+
    return (
       <>
          <div className="izma__groups-attendance-left-section">
@@ -371,6 +385,16 @@ const GroupProfilLeft = (prop) => {
                myModal={isModalDelete}
                redir={`/groups`}
                snake={delData}
+            />
+            <Modal1
+               block="addGroupStudent"
+               title={Language[lang].groups.additionalOption.addToGroupStudent}
+               myModal={addStudent}
+               setMymodal={setAddStudent}
+               groups={Groups && Groups?.groups}
+               setInfo={setStudentAddGroup}
+               info={studentAddGroup}
+               setInfo2={setDateAddGroup}
             />
             <div className="izma__groups-attendance-left-up-wrapper">
                <p className="izma__groups-attendance-left-up-id">
@@ -508,7 +532,12 @@ const GroupProfilLeft = (prop) => {
                               }} >{Language[lang].groups.activate.activateTitle}</Link>}
                               <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
                               <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>
-                              <Link to="#" className="del_link">{Language[lang].groups.activate.changeGroupStudent}</Link>
+                              <Link to="#" className="del_link"
+                                 onClick={() => {
+                                    setAddStudent(true)
+                                    setGroupName([groups && groups?.byGroupID])
+                                 }}
+                              >{Language[lang].groups.activate.changeGroupStudent}</Link>
                               <Link to="#" className="del_link--red" onClick={() => {
 
                                  if (setStatus_6 && setStatus_6.setStatus_6.length === 1) {

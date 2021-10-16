@@ -4,10 +4,17 @@ import { useHistory } from 'react-router'
 import { useState, useEffect } from 'react'
 import { useNavbar } from '../../../context/NavbarProvider'
 
-const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitButton, nav }) => {
+const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitButton, nav, setSidebarActive }) => {
    const [setNavbarP] = useNavbar(true)
    const [links, setLinks] = useState(link)
+   const [wid, setWid] = useState(window.innerWidth)
    const { location } = useHistory()
+
+   useEffect(() => {
+      setWid(window.innerWidth)
+   },[wid])
+
+
    useEffect(() => {
       switch (location.pathname) {
          case "/dashboard/finance":
@@ -44,7 +51,10 @@ const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitB
       <>
          {
             isButton ? (
-               <NavLink onClick={addClass}   className={`navbar_links ${clas ? 'active' : ''}`} to={links} 
+               <NavLink onClick={() => {
+                  addClass()
+                  setNavbarP(title)
+               }}   className={`navbar_links ${clas ? 'active' : ''}`} to={links} 
                >
 
                   <div
@@ -62,6 +72,9 @@ const NavbarLinks = ({ icon, title, link, isButton, addClass, link2, clas, quitB
                         setNavbarP(title)
                         quitButton()
                         link2()
+                        if (wid < 1023) {
+                           setSidebarActive()
+                        }
                      }}
                >
                   <div className="open_navbar ">

@@ -13,7 +13,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 	const [activeLang, setActiveLang] = useState(1)
 	const [lang,setLang] = useLang()
    const [navbarP] = useNavbar()
-   console.log(navbarP)
+   console.log(navbarP || 'heardaki value keladi')
    return (
       <>
          <header className="izma__header">

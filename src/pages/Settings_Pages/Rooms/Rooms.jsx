@@ -54,11 +54,13 @@ const Rooms = () => {
    }
 
    const handleOkk = () => {
+
       newRoom({
          variables: {
             name: roomName
          }
       })
+      console.log(roomName)
       setRoomName('')
       setIsModalVisible(false)
    }

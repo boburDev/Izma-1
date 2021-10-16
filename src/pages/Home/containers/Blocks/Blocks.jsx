@@ -32,6 +32,7 @@ const Blocks = () => {
    const {data: CountStatus_4 } = useQuery(BY_STATUS, {variables: {status: 4}})
    const {data: CountStatus_5 } = useQuery(BY_STATUS, {variables: {status: 5}})
    const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: 6}})
+   const {data: CountStatus_7 } = useQuery(STATUS_COUNT, {variables: {count: 7}})
 
    useSubscription(ST_COUNT, {
 		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -121,7 +122,7 @@ const Blocks = () => {
          icon: Home8Img,
          title: language.leftAfterFirstLesson,
          link: '/',
-         number: '0000'
+         number: CountStatus_7?.studentStatus?.count || '0'
       }
    ]
 

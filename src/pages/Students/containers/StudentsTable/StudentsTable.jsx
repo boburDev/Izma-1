@@ -45,7 +45,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
 
    useEffect(()=>{
          const filterCourseArr = []
-         if (course.length) {
+         if (course.length !== 0) {
          fCourse && fCourse.byCourseIDFilter.map(cs => {
             const groups = cs.groups.map(gr => {
                const student = gr.students.map((st) => filterCourseArr.push({ ...st, groups: [gr] }))
@@ -62,36 +62,32 @@ const StudentsTable = ({ studentSearch = '' }) => {
             return { id: i.studentid, name: i.name, mainPhone: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
          })
       }
-      console.log(filterCourseArr)
+      // console.log(filterCourseArr)
 
       const searchedStudent = ddd && ddd.studentOnKeyup
       
-       if (Allstudents && Allstudents.students) {
-          const users = Allstudents?.students
-        if (truFalse.credit) {
+      if (Allstudents && Allstudents.students) {
+         const users = Allstudents?.students
 
-         Allstudentss && setUserData(Allstudentss.studentCredit)
-        }
-        else if (searchedStudent) {
-            
-          setUserData(searchedStudent)
-        } else if(course.length !== 0) {
-    
-          setUserData(filterCourseArr)
-        } else if (truFalse.sales) {
-    
-          setUserData(studID)
-        } else {
-    
-          setUserData(users)
-        }
-       }
+         if (truFalse.credit) {
+
+            Allstudentss && setUserData(Allstudentss.studentCredit)
+         } else if (searchedStudent) {
+               
+            setUserData(searchedStudent)
+         } else if(course.length !== 0) {
+      
+            setUserData(filterCourseArr)
+         } else if (truFalse.sales) {
+      
+            setUserData(studID)
+         } else {
+      
+            setUserData(users)
+         }
+      }
    },[Allstudents, studentSearch, ddd, truFalse, findSale, fCourse, course, Allstudentss])
     
-   
-
-
-   
    
 
    const [visible, setVisible] = useState(false)

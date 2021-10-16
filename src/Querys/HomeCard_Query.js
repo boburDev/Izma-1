@@ -33,10 +33,19 @@ const BY_STATUS = gql `
     }
   }
 `
+
+const SUBSCRIP_GROUP = gql `
+  subscription {
+    groupCount{
+      id
+    }
+  }
+`
 export {
   STUDENT_COUNT,
   STATUS_COUNT,
   GROUP_COUNT,
   BY_STATUS,
-  ST_COUNT
+  ST_COUNT,
+  SUBSCRIP_GROUP
 }

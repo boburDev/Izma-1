@@ -8,7 +8,7 @@ import Home5Img from '../../../../assets/Icons/home5.svg'
 import Home6Img from '../../../../assets/Icons/home6.svg'
 import Home7Img from '../../../../assets/Icons/home7.svg'
 import Home8Img from '../../../../assets/Icons/home8.svg'
-import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT, ST_COUNT, BY_STATUS } from '../../../../Querys/HomeCard_Query'
+import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT, ST_COUNT, BY_STATUS, SUBSCRIP_GROUP } from '../../../../Querys/HomeCard_Query'
 import { useQuery, useSubscription } from '@apollo/client'
 import Language from '../../../../lang/index'
 import { useLang } from '../../../../context/LanguageProvider'
@@ -58,6 +58,16 @@ const Blocks = () => {
          cache.modify({
             fields: {
                grStatus: () => { }
+            }
+         })
+      },
+   })
+
+   useSubscription(SUBSCRIP_GROUP, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               groupsCount: () => { }
             }
          })
       },

@@ -8,7 +8,7 @@ import Home5Img from '../../../../assets/Icons/home5.svg'
 import Home6Img from '../../../../assets/Icons/home6.svg'
 import Home7Img from '../../../../assets/Icons/home7.svg'
 import Home8Img from '../../../../assets/Icons/home8.svg'
-import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT, ST_COUNT } from '../../../../Querys/HomeCard_Query'
+import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT, ST_COUNT, BY_STATUS } from '../../../../Querys/HomeCard_Query'
 import { useQuery, useSubscription } from '@apollo/client'
 import Language from '../../../../lang/index'
 import { useLang } from '../../../../context/LanguageProvider'
@@ -26,10 +26,14 @@ const Blocks = () => {
    const language = Language[lang].home.blocks
    const {data: CountStudents } = useQuery(STUDENT_COUNT)
    const {data: GroupCount } = useQuery(GROUP_COUNT)
-   const {data: CountStatus_2 } = useQuery(STATUS_COUNT, {variables: {count: 2}})
-   const {data: CountStatus_3 } = useQuery(STATUS_COUNT, {variables: {count: 3}})
-   const {data: CountStatus_4 } = useQuery(STATUS_COUNT, {variables: {count: 4}})
-   const {data: CountStatus_5 } = useQuery(STATUS_COUNT, {variables: {count: 5}})
+   const {data: CountStatus_2 } = useQuery(BY_STATUS, {variables: {status: 2}})
+   const {data: CountStatus_3 } = useQuery(BY_STATUS, {variables: {status: 3}})
+   const {data: CountStatus_4 } = useQuery(BY_STATUS, {variables: {status: 4}})
+   const {data: CountStatus_5 } = useQuery(BY_STATUS, {variables: {status: 5}})
+   // const {data: CountStatus_2 } = useQuery(STATUS_COUNT, {variables: {count: 2}})
+   // const {data: CountStatus_3 } = useQuery(STATUS_COUNT, {variables: {count: 3}})
+   // const {data: CountStatus_4 } = useQuery(STATUS_COUNT, {variables: {count: 4}})
+   // const {data: CountStatus_5 } = useQuery(STATUS_COUNT, {variables: {count: 5}})
    const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: 6}})
 
    useSubscription(ST_COUNT, {
@@ -64,7 +68,7 @@ const Blocks = () => {
          icon: Home2Img,
          title: language.activeStudent,
          link: '/student',
-         number: (CountStudents && CountStudents.studentCountHome) ? (CountStudents && CountStudents.studentCountHome) : '0'
+         number: CountStudents?.studentCountHome || '0'
       },
       {
          icon: Home3Img,
@@ -76,31 +80,31 @@ const Blocks = () => {
          icon: Home4Img,
          title: language.debtStudent,
          link: '/studentDebtors',
-         number: CountStatus_4 && CountStatus_4.studentStatus.count ? CountStatus_4 && CountStatus_4.studentStatus.count : '0'
+         number: CountStatus_4?.grStatus?.length || '0'
       },
       {
          icon: Home5Img,
          title: language.testLesson,
          link: '',
-         number: CountStatus_2 && CountStatus_2.studentStatus.count ? CountStatus_2 && CountStatus_2.studentStatus.count : '0'
+         number: CountStatus_2?.grStatus?.length || '0'
       },
       {
          icon: Home6Img,
          title: language.paidForMonth,
          link: '',
-         number: CountStatus_3 && CountStatus_3.studentStatus.count ? CountStatus_3 && CountStatus_3.studentStatus.count : '0'
+         number: CountStatus_3?.grStatus?.length || '0'
       },
       {
          icon: Home7Img,
          title: language.stoppedParticipate,
          link: '/lidlar',
-         number: CountStatus_5 && CountStatus_5.studentStatus.count ? CountStatus_5 && CountStatus_5.studentStatus.count : '0'
+         number: (CountStatus_6?.studentStatus?.count -0) + (CountStatus_5?.grStatus?.length) || '0'
       },
       {
          icon: Home8Img,
          title: language.leftAfterFirstLesson,
          link: '/',
-         number: CountStatus_6 && CountStatus_6.studentStatus.count ? CountStatus_6 && CountStatus_6.studentStatus.count : '0'
+         number: '0000'
       }
    ]
 

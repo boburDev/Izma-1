@@ -41,11 +41,20 @@ const SUBSCRIP_GROUP = gql `
     }
   }
 `
+
+const LEADS = gql `
+  query {
+    leads{
+      id
+    }
+  }
+`
 export {
   STUDENT_COUNT,
   STATUS_COUNT,
   GROUP_COUNT,
   BY_STATUS,
   ST_COUNT,
+  LEADS,
   SUBSCRIP_GROUP
 }

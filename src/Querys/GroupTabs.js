@@ -229,9 +229,9 @@ const SET_STATUS_6 = gql `
 `
 
 const SUBSCRIPTION_STATUS = gql `
-  subscription{
-    groupStatus{
-      grStatus
+  subscription {
+    groupStatus {
+      groupStatus
     }
   }
 `

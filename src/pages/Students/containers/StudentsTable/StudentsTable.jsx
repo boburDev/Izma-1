@@ -14,6 +14,7 @@ import { useStudentFilter } from '../../../../context/StudentFilter'
 import { useCourseFilter } from '../../../../context/CourseFilterProvider'
 import { useLoader } from '../../../../context/Loader'
 import { usePagination } from '../../../../context/Pagination'
+import { SUBSCRIPTION_STUDENT } from '../../../../Querys/GroupTabs';
 
 
 const StudentsTable = ({ studentSearch = '' }) => {
@@ -76,7 +77,6 @@ const StudentsTable = ({ studentSearch = '' }) => {
          const users = Allstudents?.students
 
          if (truFalse.credit) {
-            console.log('filtered credit')
 
             Allstudentss && setUserData(Allstudentss.studentCredit)
          } else if (searchedStudent && studentSearch && searchedStudent.length !== users.length ) {
@@ -132,6 +132,17 @@ const StudentsTable = ({ studentSearch = '' }) => {
          cache.modify({
             fields: {
                students: () => { }
+            }
+         })
+      },
+   })
+
+   useSubscription(SUBSCRIPTION_STUDENT, {
+
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               studentCredit: () => { }
             }
          })
       },

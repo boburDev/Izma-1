@@ -5,7 +5,7 @@ import Check from '../../../../../components/Check/CheckById'
 import { Modal } from 'antd'
 import axios from 'axios'
 
-const FinanceTable = ({ api = false }) => {
+const FinanceTable = ({ api = true }) => {
    const [data,setData] = useState([])
    const [state,setState] = useState('')
    const route = api ? 'http://localhost:4000' : 'https://api.triiipple.uz'

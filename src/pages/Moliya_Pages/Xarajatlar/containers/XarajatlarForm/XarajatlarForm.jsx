@@ -64,7 +64,7 @@ const XarajatlarForm = () => {
                   <label className='izma__finance-cost__form-bolim-form-label'>{Language[lang].finance.newCosts.currency}</label>
                   <input type="text" autoComplete="off" 
                   onKeyUp={e => {
-                     setSum(e.target.value)
+                     setSum((e.target.value - 0))
                   }}    
 				  className={"section_name_input"} name={"nomi"} />
                </div>
@@ -82,11 +82,9 @@ const XarajatlarForm = () => {
                             type: selectValue,
                             createdAt: selectedDate
                   }
-                        console.log(data)
-                  //   newCost({
-                  //       variables: data
-                  //   })
-                    // window.location.reload()
+                    newCost({
+                        variables: data
+                    })
                 }
                document.getElementById('xarajatFormRes').reset()
         }}

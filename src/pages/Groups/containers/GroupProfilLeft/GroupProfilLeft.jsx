@@ -313,7 +313,6 @@ const GroupProfilLeft = (prop) => {
       setVisibleStudent(false)
    }
 
-
    const [noteModal, setNoteModal] = useState(false)
 
    const showNote = () => {

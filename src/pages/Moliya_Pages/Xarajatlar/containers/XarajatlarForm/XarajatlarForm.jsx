@@ -36,7 +36,7 @@ const XarajatlarForm = () => {
 
                   <DatePicker
                      className='date__picker'
-					 onChange={(value) => setSelectedDate(value._d)}
+					      onChange={(value) => setSelectedDate(value._d)}
                      placeholder={Language[lang].teachers.addNewUser.date}
                      format={"DD-MM-YYYY"}
                   />
@@ -64,7 +64,7 @@ const XarajatlarForm = () => {
                   <label className='izma__finance-cost__form-bolim-form-label'>{Language[lang].finance.newCosts.currency}</label>
                   <input type="text" autoComplete="off" 
                   onKeyUp={e => {
-                     setSum(e.target.value)
+                     setSum((e.target.value - 0))
                   }}    
 				  className={"section_name_input"} name={"nomi"} />
                </div>
@@ -75,16 +75,16 @@ const XarajatlarForm = () => {
                 selectValue.length &&
                 buyer.length &&
                 sum) {
-                    newCost({
-                        variables:{
+                   const data = {
                             name,
                             buyer,
                             paymentAmount: sum,
                             type: selectValue,
                             createdAt: selectedDate
-                        }
+                  }
+                    newCost({
+                        variables: data
                     })
-                    // window.location.reload()
                 }
                document.getElementById('xarajatFormRes').reset()
         }}

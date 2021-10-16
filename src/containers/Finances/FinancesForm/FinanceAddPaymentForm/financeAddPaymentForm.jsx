@@ -114,15 +114,15 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	}
 
 	useEffect(() => {
-		if (stGroups && stGroups.student && stGroups.student.groups) {
+		if (stGroups && stGroups.studentGroups) {
 			if (groupID !== '') {
-				for (const i of stGroups.student.groups) {
+				for (const i of stGroups.studentGroups) {
 					if (i.id === groupID) {
 						setData(i)
 					}
 				}
 			} else {
-				setNames(stGroups.student.groups)
+				setNames(stGroups.studentGroups)
 			}
 		}
 	}, [stGroups, groupID])
@@ -304,7 +304,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 							className='date__picker'
 							onChange={(value, dateString) => setPayedData({ payed: dateString, payed_at: value._d })}
 							placeholder={Language[lang].students.recordPayment.date}
-							format={"DD-MM-YYYY"}							
+							format={"DD-MM-YYYY"}
 						/>
 					</div>
 

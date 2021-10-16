@@ -5,8 +5,8 @@ import Login from "../Login/Login";
 import LidForm from "../Settings_Pages/LidForm/LidForm";
 
 
-const AppWrapper = () => {
-   const [token, setToken] = useState(window.localStorage.getItem('token'))
+const AppWrapper = ({ api }) => {
+   const [token] = useState(window.localStorage.getItem('token'))
    return (
       <div className="appwrapper">
          <Switch>
@@ -15,7 +15,9 @@ const AppWrapper = () => {
                token ?
                   <>
                      <Redirect exact from="/" to="/dashboard" />
-                     <Route path="/dashboard" component={App} />
+                     <Route path="/dashboard">
+                        <App api={api} />
+                     </Route>
                   </>
                   :
                   <Route path="/login/:centerHashtag" component={Login} />

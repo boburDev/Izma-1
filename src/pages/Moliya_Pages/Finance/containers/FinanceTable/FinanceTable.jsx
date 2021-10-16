@@ -5,14 +5,14 @@ import Check from '../../../../../components/Check/CheckById'
 import { Modal } from 'antd'
 import axios from 'axios'
 
-const FinanceTable = () => {
+const FinanceTable = ({ api = false }) => {
    const [data,setData] = useState([])
    const [state,setState] = useState('')
-
+   const route = api ? 'http://localhost:4000' : 'https://api.triiipple.uz'
    useEffect(()=>{
       ;(async()=>{
          try {
-            const res = await axios.get('https://api.triiipple.uz/test', {
+            const res = await axios.get(route + '/test', {
                headers: {
                   'Authorization': localStorage.getItem('token')
                }
@@ -22,7 +22,7 @@ const FinanceTable = () => {
             console.log(error)
          }
       })()
-   },[])
+   },[route])
 
 
 

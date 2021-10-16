@@ -18,7 +18,7 @@
       margin-left: 5px;
    }
 
-   @media screen and (max-width: 1023px) {}
+  
 
    .navbar_links-logo {
       display: flex;
@@ -97,6 +97,8 @@
          @media screen and (max-width: 1023px) {
             padding: 0 50px;
             padding-top: 30px;
+            height: calc(100vh - 75px);
+            overflow-y: scroll;
          }
 
          @media screen and (max-width: 768px) {
@@ -106,6 +108,7 @@
 
             .boxLinks {
                width: 50%;
+               padding-right: 10px;
             }
          }
 
@@ -209,6 +212,10 @@
       padding: 0 50px;
       padding-top: 30px;
       position: relative;
+
+       @media screen and (max-width: 1023px) {
+          position: static;
+       }
 
       .navbar-plus {
          position: absolute;

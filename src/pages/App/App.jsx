@@ -76,10 +76,6 @@ const App = () => {
 
   return (
     <div className="app">
-
-      {
-        token ?
-          <>
             {/* ================  NAVBAR  =====================*/}
 
             <div className={`app-left ${sidebarActive ? 'active' : ''}`}>
@@ -169,14 +165,6 @@ const App = () => {
                 </Switch>
               </div>
             </div>
-          </> : <>
-
-            <Switch>
-              <Route path="/login/:centerHashtag" component={Login} />
-              <Route path="/:hashtag/entry/lead/*" component={LidForm} />
-            </Switch>
-          </>
-      }
     </div>
   )
 }

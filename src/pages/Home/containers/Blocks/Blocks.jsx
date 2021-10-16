@@ -19,6 +19,7 @@ import "swiper/components/pagination/pagination.min.css"
 import SwiperCore, {
    Pagination
 } from 'swiper/core';
+import { SUBSCRIPTION_STATUS } from '../../../../Querys/GroupTabs'
 SwiperCore.use([Pagination])
 
 const Blocks = () => {
@@ -55,6 +56,16 @@ const Blocks = () => {
 			})
 		},
 	})
+
+   useSubscription(SUBSCRIPTION_STATUS, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               grStatus: () => { }
+            }
+         })
+      },
+   })
    
    
    const lists = [

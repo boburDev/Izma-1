@@ -24,8 +24,7 @@ const StudentsProfileLeft = () => {
   const [groupAddDate, setGroupAddDate] = useState()
   const [setPeopleName] = useName1(true)
   const [lang] = useLang();
-
-
+  
   const [openSms, setOpenSms] = useState(false)
   const [visibleF, setVisibleF] = useState(false)
   const [deleteStudent, setDeleteStudent] = useState()
@@ -270,8 +269,8 @@ const StudentsProfileLeft = () => {
               myModal={isModalVisibleD}
               setMymodal={setIsModalVisibleD}
               setInfo={setGroupAdd}
-              info={groupAdd}
               groups={Groups && Groups?.groups}
+              info={groupAdd}
               setInfo2={setGroupAddDate}
             />
             <button className="izma__finance-payment-inner-left-btn izma__finance-payment-inner-drive" onClick={() => {

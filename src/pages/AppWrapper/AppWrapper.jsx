@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import App from "../App/App";
 import Login from "../Login/Login";
 import LidForm from "../Settings_Pages/LidForm/LidForm";
@@ -14,7 +14,7 @@ const AppWrapper = ({ api }) => {
             {
                token ?
                   <>
-                     {/* <Redirect from="/" to="/dashboard" /> */}
+                     {/* <Redirect exact from="/" to="/dashboard" /> */}
                      <Route path="/dashboard">
                         <App api={api} />
                      </Route>

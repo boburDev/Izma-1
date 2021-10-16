@@ -12,7 +12,8 @@ const NavabarPlusLinks = ({
    func, 
    setFunc,
    setOpenMoliya,
-   setOpenSetting
+   setOpenSetting,
+   setSidebarActive
 }) => {
    return (
       <>
@@ -22,6 +23,7 @@ const NavabarPlusLinks = ({
                   link={link}
                   title={title}
                   setClose={setOpenMoliya}
+                  setSidebarActive={setSidebarActive}
                   />
                   ) : (
                      <NavberSetLinkWrapper
@@ -33,6 +35,7 @@ const NavabarPlusLinks = ({
                      func={func}
                      setFunc={setFunc}
                      setClose={setOpenSetting}
+                     setSidebarActive={setSidebarActive}
                /> 
             )
          }

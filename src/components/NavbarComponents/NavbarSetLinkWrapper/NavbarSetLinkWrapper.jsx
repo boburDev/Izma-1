@@ -2,7 +2,7 @@ import './NavbarSetLinkWrapper.scss'
 import Icon from '../../../assets/Icons/arrow_im.svg'
 import NavbarSettingLink from '../NavbarSettingLink/NavbarSettingLink'
 
-const NavberSetLinkWrapper = ({ icon, setClose, title, links, link, func, setFunc, isBox }) => {
+const NavberSetLinkWrapper = ({ icon, setClose, title, links, link, func, setFunc, isBox, setSidebarActive }) => {
    return (
       <>
          {
@@ -26,6 +26,7 @@ const NavberSetLinkWrapper = ({ icon, setClose, title, links, link, func, setFun
                                  link={el.link}
                                  setClose={setClose}
                                  key={index}
+                                 setSidebarActive={setSidebarActive}
                               />
                            </div>
                         ))
@@ -39,6 +40,7 @@ const NavberSetLinkWrapper = ({ icon, setClose, title, links, link, func, setFun
                      title={title}
                      link={link}
                      setClose={setClose}
+                        setSidebarActive={setSidebarActive}
                      
                   />
                </div>

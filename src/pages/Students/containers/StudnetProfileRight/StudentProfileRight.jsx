@@ -42,6 +42,7 @@ const    StudentsProfileRight = () => {
   useEffect(() => {
      setGroupName(Group && Group.studentGroups)
   }, [Group, setGroupName])
+   
 
    return (
       <>

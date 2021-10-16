@@ -6,11 +6,14 @@ import { useState } from "react";
 import Language from '../../lang/index'
 import { useLang } from "../../context/LanguageProvider";
 import Img from '../../assets/img.png'
+import { useNavbar } from "../../context/NavbarProvider";
 
 const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 	const [active, setActive] = useState()
 	const [activeLang, setActiveLang] = useState(1)
 	const [lang,setLang] = useLang()
+   const [navbarP] = useNavbar()
+   console.log(navbarP)
    return (
       <>
          <header className="izma__header">

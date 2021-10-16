@@ -1,7 +1,7 @@
 import NavabarPlusLinks from '../NavbarPlusLinks/NavbarPlusLinks'
 import './NavbarPlus.scss'
 
-const NavbarPlus = ({ openMoliya, arr, arr2, openSetting, setOpenMoliya, setOpenSetting }) => {
+const NavbarPlus = ({ openMoliya, arr, arr2, openSetting, setOpenMoliya, setOpenSetting, setSidebarActive }) => {
    return (
 
       <div className={`${openMoliya || openSetting ? 'active' : '' } opened_moliya`}>
@@ -15,6 +15,7 @@ const NavbarPlus = ({ openMoliya, arr, arr2, openSetting, setOpenMoliya, setOpen
                      title={elem.title}
                      key={elem.title}
                      setOpenMoliya={setOpenMoliya}
+                     setSidebarActive={setSidebarActive}
                   />
                ))
 
@@ -32,6 +33,7 @@ const NavbarPlus = ({ openMoliya, arr, arr2, openSetting, setOpenMoliya, setOpen
                      setFunc={elem.setFunc}
                      key={elem.title}
                      setOpenSetting={setOpenSetting}
+                     setSidebarActive={setSidebarActive}
                      
 
                   />

@@ -32,7 +32,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
          count: +page?.count
       }
    })
- 
+
    const {data: Allstudentss} = useQuery(ALL_STUDENTSs)
 
    const { data: countSt } = useQuery(STUDENT_COUNT, { variables: { count: +page?.count } })
@@ -43,9 +43,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
    const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: course}})
 
    useEffect(()=>{
-
          const filterCourseArr = []
-    
          if (course.length) {
          fCourse && fCourse.byCourseIDFilter.map(cs => {
             const groups = cs.groups.map(gr => {
@@ -67,8 +65,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
       const searchedStudent = ddd && ddd.studentOnKeyup
       
        if (Allstudents && Allstudents.students) {
-          const users = Allstudents && Allstudents.students
-    
+          const users = Allstudents?.students
         if (truFalse.credit) {
 
          Allstudentss && setUserData(Allstudentss.studentCredit)
@@ -113,10 +110,12 @@ const StudentsTable = ({ studentSearch = '' }) => {
 
    
    useEffect(() => {
-   setData({
-      studentData: userData,
-      pagination: countSt
-   })
+      if (userData.length !== 0) {
+         setData({
+            studentData: userData,
+            pagination: countSt
+         })
+      }
    }, [countSt, setData, userData])
 
 

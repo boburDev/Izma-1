@@ -6,7 +6,8 @@ import LidForm from "../Settings_Pages/LidForm/LidForm";
 
 
 const AppWrapper = () => {
-   const [token, setToken] = useState(window.localStorage.getItem('token'))
+   const [token] = useState(window.localStorage.getItem('token'))
+   
    return (
       <div className="appwrapper">
          <Switch>

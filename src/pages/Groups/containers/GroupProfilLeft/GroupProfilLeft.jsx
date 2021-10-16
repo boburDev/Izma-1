@@ -40,6 +40,7 @@ import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
 import Check from '../../../../components/Check/Check'
 import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
+import { SUBSCRIPTION_CASH } from '../../../Students/containers/StudentProfileLeft/query'
 
 
 const GroupProfilLeft = (prop) => {
@@ -203,6 +204,16 @@ const GroupProfilLeft = (prop) => {
          })
       },
    })
+
+   useSubscription(SUBSCRIPTION_CASH, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+        cache.modify({
+          fields: {
+            studentCash: () => { }
+          }
+        })
+      },
+    })
 
    const [isModalVisible, setIsModalVisible] = useState(false)
    const [isModalDelete, setIsModalDelete] = useState(false)

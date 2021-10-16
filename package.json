@@ -9,6 +9,7 @@
     "apexcharts": "^3.27.3",
     "axios": "^0.21.4",
     "classnames": "^2.3.1",
+    "file-saver": "^2.0.5",
     "graphql": "^15.6.0",
     "moment": "^2.29.1",
     "notistack": "^1.0.10",
@@ -22,7 +23,8 @@
     "sass": "^1.37.5",
     "subscriptions-transport-ws": "^0.9.19",
     "swiper": "^6.8.4",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "xlsx": "^0.17.3"
   },
   "scripts": {
     "start": "react-scripts start",

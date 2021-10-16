@@ -4,10 +4,13 @@ import TTable from '../../../../../components/Table/TTable'
 import Check from '../../../../../components/Check/CheckById'
 import { Modal } from 'antd'
 import axios from 'axios'
+import {ExportCSV} from './ExportCsv'
 
 const FinanceTable = ({ api = true }) => {
    const [data,setData] = useState([])
    const [state,setState] = useState('')
+   const fileName = 'Izma_cheklar'
+
    const route = api ? 'http://localhost:4000' : 'https://api.triiipple.uz'
    useEffect(()=>{
       ;(async()=>{
@@ -35,7 +38,7 @@ const FinanceTable = ({ api = true }) => {
                />
             </Modal>
 
-
+         <ExportCSV csvData={data} fileName={fileName} />
          <TTable setEditId={setState} arr={data} block={'financeHash'} />
       </div>
    )

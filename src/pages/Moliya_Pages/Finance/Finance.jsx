@@ -11,7 +11,7 @@ import { useLang } from '../../../context/LanguageProvider'
 import Language from '../../../lang/index'
 
 
-const Finance = () => {
+const Finance = ({ api }) => {
    const { RangePicker } = DatePicker
    const [,setDate] = useState('')
    const [amont,setAmount] = useState(0)
@@ -117,7 +117,7 @@ const Finance = () => {
                   <FinanceGrafig />
                </div>
             </div>
-            <FinanceTable />
+            <FinanceTable api={api} />
          </div>
       </>
    )

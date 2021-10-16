@@ -118,7 +118,8 @@ const Main = () => {
 																	<NameProvider>
 																		<NavbarProvider>
 																			<LidsProvider>
-																	    		<AppWrapper />
+																	    		<AppWrapper 
+																				api={isTester} />
 																			</LidsProvider>
 																		</NavbarProvider>
 																	</NameProvider>

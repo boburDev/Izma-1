@@ -31,10 +31,6 @@ const Blocks = () => {
    const {data: CountStatus_3 } = useQuery(BY_STATUS, {variables: {status: 3}})
    const {data: CountStatus_4 } = useQuery(BY_STATUS, {variables: {status: 4}})
    const {data: CountStatus_5 } = useQuery(BY_STATUS, {variables: {status: 5}})
-   // const {data: CountStatus_2 } = useQuery(STATUS_COUNT, {variables: {count: 2}})
-   // const {data: CountStatus_3 } = useQuery(STATUS_COUNT, {variables: {count: 3}})
-   // const {data: CountStatus_4 } = useQuery(STATUS_COUNT, {variables: {count: 4}})
-   // const {data: CountStatus_5 } = useQuery(STATUS_COUNT, {variables: {count: 5}})
    const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: 6}})
 
    useSubscription(ST_COUNT, {

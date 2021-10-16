@@ -77,7 +77,7 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                      <h4 className={'financeHash'}>{info?.payment_amount}</h4>
                      <h4 className={'financeHash'}>{info?.comments}</h4>
                      <h4 className={'financeHash'}>
-						<img id={info.check_id} src={priceCheck} alt="" onClick={e => {
+						<img id={info.ckeckId} src={priceCheck} alt="" onClick={e => {
 							setEditId(e.target.id)
 						}} />
                 	</h4>

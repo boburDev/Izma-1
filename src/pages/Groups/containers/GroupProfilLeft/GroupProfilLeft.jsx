@@ -40,6 +40,7 @@ import Trash from '../../../../assets/trash.png'
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm'
 import Check from '../../../../components/Check/Check'
 import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddGroup';
+import { SUBSCRIPTION_CASH } from '../../../Students/containers/StudentProfileLeft/query'
 
 
 const GroupProfilLeft = (prop) => {
@@ -134,6 +135,7 @@ const GroupProfilLeft = (prop) => {
    useEffect(() => {
 
       if (payment && forStatus?.updateCash?.cashAmount) {
+         console.log('status_#_$')
          SetStatus_4({
             variables: {
                stID: selectedUser,
@@ -203,6 +205,16 @@ const GroupProfilLeft = (prop) => {
       },
    })
 
+   useSubscription(SUBSCRIPTION_CASH, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+        cache.modify({
+          fields: {
+            studentCash: () => { }
+          }
+        })
+      },
+    })
+
    const [isModalVisible, setIsModalVisible] = useState(false)
    const [isModalDelete, setIsModalDelete] = useState(false)
 
@@ -228,7 +240,7 @@ const GroupProfilLeft = (prop) => {
          debit: backCash < 0 ? String(backCash) : null
       }
       HistoryPay({ variables: data })
-      // console.log('payed')
+      console.log('payed')
    }   
 
    useEffect(() => {
@@ -491,8 +503,8 @@ const GroupProfilLeft = (prop) => {
 
                               {(s.groupStatus === 2 || s.groupStatus === 5) && <Link to="#" className="del_link" onClick={() => {
                                  s.groupStatus === 5 && setPaymentStatus(true)
-                                 s.groupStatus === 2 && setPayment(true)
                                  s.groupStatus === 2 && rrr()
+                                 s.groupStatus === 2 && setPayment(true)
                               }} >{Language[lang].groups.activate.activateTitle}</Link>}
                               <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
                               <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>

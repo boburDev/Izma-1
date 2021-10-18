@@ -70,6 +70,8 @@ const GROUPS_COURSES = gql `
       students{
         id
         status
+        groupStatus
+        groupSale
       }
     }
   }

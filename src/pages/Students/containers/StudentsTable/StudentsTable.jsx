@@ -3,7 +3,7 @@ import Table from '../../../../components/Table/Table'
 import './StudentsTable.scss'
 import { useEffect, useState } from 'react';
 import FinanceAddPaymentForm from '../../../../containers/Finances/FinancesForm/FinanceAddPaymentForm/financeAddPaymentForm';
-import { useQuery, useSubscription } from '@apollo/client';
+import { useQuery, useSubscription, useLazyQuery } from '@apollo/client';
 import { ALL_STUDENTS, SUBSCRIPTION, STUDENT_ON_KEY_UP, STUDENT_COUNT, ALL_STUDENTSs, FILTER_COURSE, FIND_SALE } from '../../../../Querys/Table_Query';
 import { Modal } from 'antd';
 import Check from '../../../../components/Check/Check';
@@ -14,6 +14,7 @@ import { useStudentFilter } from '../../../../context/StudentFilter'
 import { useCourseFilter } from '../../../../context/CourseFilterProvider'
 import { useLoader } from '../../../../context/Loader'
 import { usePagination } from '../../../../context/Pagination'
+import { SUBSCRIPTION_STUDENT } from '../../../../Querys/GroupTabs';
 
 
 const StudentsTable = ({ studentSearch = '' }) => {
@@ -38,10 +39,17 @@ const StudentsTable = ({ studentSearch = '' }) => {
 
 
    const {data: findSale} = useQuery(FIND_SALE)
-   const {data: ddd} = useQuery(STUDENT_ON_KEY_UP, {variables: {name: studentSearch.length > 0 ? studentSearch : ''}})
+   const [Searched, {data: ddd}] = useLazyQuery(STUDENT_ON_KEY_UP)
    const {data: fCourse} = useQuery(FILTER_COURSE, {variables: {courseID: course}})
 
-   // console.log(fCourse)
+
+   useEffect(() => {
+      if (studentSearch) {
+         
+         Searched({variables: {name: studentSearch.length > 0 && studentSearch}})
+      }
+   }, [Searched, studentSearch])
+
 
    useEffect(()=>{
          const filterCourseArr = []
@@ -62,7 +70,6 @@ const StudentsTable = ({ studentSearch = '' }) => {
             return { id: i.studentid, name: i.name, mainPhone: [{number: i.stphone}], groups: [{name: i.groupname, teacher: i.teacher, time: i.time}]}
          })
       }
-      // console.log(filterCourseArr)
 
       const searchedStudent = ddd && ddd.studentOnKeyup
       
@@ -72,7 +79,7 @@ const StudentsTable = ({ studentSearch = '' }) => {
          if (truFalse.credit) {
 
             Allstudentss && setUserData(Allstudentss.studentCredit)
-         } else if (searchedStudent) {
+         } else if (searchedStudent && studentSearch && searchedStudent.length !== users.length ) {
                
             setUserData(searchedStudent)
          } else if(course.length !== 0) {
@@ -125,6 +132,17 @@ const StudentsTable = ({ studentSearch = '' }) => {
          cache.modify({
             fields: {
                students: () => { }
+            }
+         })
+      },
+   })
+
+   useSubscription(SUBSCRIPTION_STUDENT, {
+
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               studentCredit: () => { }
             }
          })
       },

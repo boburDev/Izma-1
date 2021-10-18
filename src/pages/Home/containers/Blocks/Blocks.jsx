@@ -8,7 +8,9 @@ import Home5Img from '../../../../assets/Icons/home5.svg'
 import Home6Img from '../../../../assets/Icons/home6.svg'
 import Home7Img from '../../../../assets/Icons/home7.svg'
 import Home8Img from '../../../../assets/Icons/home8.svg'
-import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT, ST_COUNT, BY_STATUS } from '../../../../Querys/HomeCard_Query'
+import { STUDENT_COUNT, GROUP_COUNT, STATUS_COUNT, ST_COUNT, BY_STATUS, SUBSCRIP_GROUP, LEADS } from '../../../../Querys/HomeCard_Query'
+import { SUBSCRIPTION_STATUS } from '../../../../Querys/GroupTabs'
+import { SUBCRIP_LEADS } from '../../../Lids/query'
 import { useQuery, useSubscription } from '@apollo/client'
 import Language from '../../../../lang/index'
 import { useLang } from '../../../../context/LanguageProvider'
@@ -16,10 +18,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css'
 import "swiper/components/pagination/pagination.min.css"
-import SwiperCore, {
-   Pagination
-} from 'swiper/core';
-import { SUBSCRIPTION_STATUS } from '../../../../Querys/GroupTabs'
+import SwiperCore, { Pagination } from 'swiper/core';
 SwiperCore.use([Pagination])
 
 const Blocks = () => {
@@ -27,11 +26,13 @@ const Blocks = () => {
    const language = Language[lang].home.blocks
    const {data: CountStudents } = useQuery(STUDENT_COUNT)
    const {data: GroupCount } = useQuery(GROUP_COUNT)
+   const {data: Leads } = useQuery(LEADS)
    const {data: CountStatus_2 } = useQuery(BY_STATUS, {variables: {status: 2}})
    const {data: CountStatus_3 } = useQuery(BY_STATUS, {variables: {status: 3}})
    const {data: CountStatus_4 } = useQuery(BY_STATUS, {variables: {status: 4}})
    const {data: CountStatus_5 } = useQuery(BY_STATUS, {variables: {status: 5}})
    const {data: CountStatus_6 } = useQuery(STATUS_COUNT, {variables: {count: 6}})
+   const {data: CountStatus_7 } = useQuery(STATUS_COUNT, {variables: {count: 7}})
 
    useSubscription(ST_COUNT, {
 		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -62,14 +63,33 @@ const Blocks = () => {
          })
       },
    })
-   
+
+   useSubscription(SUBSCRIP_GROUP, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               groupsCount: () => { }
+            }
+         })
+      },
+   })
+
+   useSubscription(SUBCRIP_LEADS, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               leads: () => { }
+            }
+         })
+      },
+   })
    
    const lists = [
       {
          icon: Home1Img,
          title: language.activeLead,
          link: '/lidlar',
-         number: '0000'
+         number: Leads?.leads.length || '0'
       },
       {
          icon: Home2Img,
@@ -111,7 +131,7 @@ const Blocks = () => {
          icon: Home8Img,
          title: language.leftAfterFirstLesson,
          link: '/',
-         number: '0000'
+         number: CountStatus_7?.studentStatus?.count || '0'
       }
    ]
 

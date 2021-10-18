@@ -547,6 +547,14 @@ const GroupProfilLeft = (prop) => {
                                        }
                                     })
                                  }
+                                 if (s.groupStatus === 2) {
+                                    
+                                    SetStatus_6({
+                                       variables: {
+                                          status: 7, stID: selectedUser
+                                       }
+                                    })
+                                 }
 
                                  DelFromGroup({
                                     variables: {

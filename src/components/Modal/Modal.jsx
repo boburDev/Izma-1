@@ -95,9 +95,7 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
                                           <input required autoComplete="off"  type="text" onKeyUp={(e) => setInfo(e.target.value)} />
                                           <div className="buttonWrapper">
                                              <button onClick={() => {
-                                                if (info) {
-                                                   submitOK()
-                                                }
+                                                submitOK()
                                              }}>{Language[lang].students.background.save}</button>
                                           </div>
                                        </> :

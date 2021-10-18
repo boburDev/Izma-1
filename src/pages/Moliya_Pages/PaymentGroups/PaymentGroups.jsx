@@ -17,23 +17,23 @@ const PaymentGroups = () => {
 		
 		GrCrTch && GrCrTch.courses.map(item => {
 			const t = item.groups.map((sub, i) => {
-				let price = '0'
-				const s = sub.students.map((st) => {
+				// let price = '0'
+				// const s = sub.students.map((st) => {
 					
-					const arr = []
-					if (st.status !== 2) {
-						arr.push(st)
-					}
-					price = arr.length ? arr.length * item.price : '0'
-					return price
-				})
+				// 	const arr = []
+				// 	if (st.status !== 2) {
+				// 		arr.push(st)
+				// 	}
+				// 	price = arr.length ? arr.length * item.price : '0'
+				// 	return price
+				// })
 				
 				const grData = {
-					stCount: sub.students.length, groups: sub.name, teachers: sub.teacher, courses: item.name, price: `${price}`
+					stCount: sub.students.length, groups: sub.name, teachers: sub.teacher, courses: item.name, price: item.price
 				}
 				
 				grDataArr.push(grData)
-				return s
+				return 's'
 			})
 			
 			return t

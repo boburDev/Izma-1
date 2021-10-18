@@ -30,7 +30,7 @@ function Davomat() {
     useEffect(()=>{
         console.log(startDay)
         setActive(start-0)
-    },[start])
+    },[start, startDay])
 
 
     const { data: groupById } = useQuery(BY_GROUP_ID, {

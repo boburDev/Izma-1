@@ -1,8 +1,8 @@
 import './PaymentGroups.scss'
 import FinanceCostsImg from '../../../assets/Icons/008-dollar.svg'
 import TTable from '../../../components/Table/TTable'
-import { GROUPS_COURSES } from '../../../Querys/Finance_All'
-import { useQuery } from '@apollo/client'
+// import { GROUPS_COURSES } from '../../../Querys/Finance_All'
+// import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useLang } from '../../../context/LanguageProvider'
 import Language from '../../../lang/index'
@@ -15,8 +15,6 @@ const PaymentGroups = ({ api = true}) => {
 	const [state,setState] = useState([])
 	const [lang] = useLang()
 
-	// console.log(GrCrTchh)
-
 	const route = api ? 'http://localhost:4000' : 'https://api.triiipple.uz'
 
 	useEffect(()=>{
@@ -27,7 +25,6 @@ const PaymentGroups = ({ api = true}) => {
 					'Authorization': localStorage.getItem('token')
 				}
 				})
-				// console.log(res.data)
 				setGrCrTch(res.data)
 			} catch (error) {
 				console.log(error)
@@ -40,8 +37,6 @@ const PaymentGroups = ({ api = true}) => {
 	useEffect(() => {
 		const grDataArr = []
 
-		// console.log(GrCrTch.length !== 0 && GrCrTch)
-		
 		GrCrTch.length && GrCrTch.map(item => {
 			item.groups.map(sub => {
 				let sale = 0

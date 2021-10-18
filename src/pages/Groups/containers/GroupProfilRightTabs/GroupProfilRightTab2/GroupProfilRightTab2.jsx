@@ -19,7 +19,7 @@ const GroupProfilRightTab2 = () => {
    return (
       <>
          {
-            onlineLesson && onlineLesson.byGroupID[0] && onlineLesson.byGroupID[0].onlineLessons.length ?
+            onlineLesson && onlineLesson?.byGroupID[0] && onlineLesson?.byGroupID[0]?.onlineLessons.length ?
 
                <div className="izma__groups-attendance-right-tabs-second">
                   {

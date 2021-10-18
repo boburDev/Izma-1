@@ -1,32 +1,62 @@
-import { useQuery } from '@apollo/client'
-import { COURSES_INFO } from '../../../Querys/Finance_All'
+// import { useQuery } from '@apollo/client'
+// import { COURSES_INFO } from '../../../Querys/Finance_All'
 import './OrderDetails.scss'
 import { useLang } from '../../../context/LanguageProvider'
 import Language from '../../../lang/index'
+import { useState, useEffect, memo } from 'react'
+import axios from 'axios'
 
-const OrderDetails = () => {
+const OrderDetails = ({ api = true }) => {
    
-   const { data: infoCourse } = useQuery(COURSES_INFO)
+   // const { data: infoCourse } = useQuery(COURSES_INFO)
+   const [infoCourse, setInfoCourse] = useState([])
+   const route = api ? 'http://localhost:4000' : 'https://api.triiipple.uz'
+
+	useEffect(()=>{
+		;(async()=>{
+			try {
+				const res = await axios.get(route + '/courses', {
+				headers: {
+					'Authorization': localStorage.getItem('token')
+				}
+				})
+				setInfoCourse(res.data)
+			} catch (error) {
+				console.log(error)
+			}
+		})()
+	},[route])
 
    const someArr = []
    let total = 0
    const [lang] = useLang()
 
-   infoCourse && infoCourse.courses.map(course => {
+   infoCourse && infoCourse.map(course => {
 
-       let countStudent = 0
+      let countStudent = []
+      let allSales = 0
 
-       const cr = course.groups.map(group => countStudent += group.studentsCount )
-       const data = {
-           title: course.name,
-           price: Number(countStudent) * course.price
-       }
-       someArr.push(data)
-       return cr
+      course.groups.map(group => {
+         group.students.map(st => {
+            st.groupStatus !== 2 && countStudent.push(st)
+            allSales += Number(st.groupSale)
+            return ''
+         })
+         return ''
+      })
+
+      const data = {
+         title: course.name,
+         price: countStudent.length * Number(course.price),
+         allSales: allSales && 0
+      }
+
+      someArr.push(data)
+      console.log('allSales', allSales)
+      return ''
    })
-
+      
    someArr && someArr.map(i => total += i.price)
-
 
    return (
       <div className="orderDetails">
@@ -62,4 +92,4 @@ const OrderDetails = () => {
    )
 }
 
-export default OrderDetails
+export default memo (OrderDetails)

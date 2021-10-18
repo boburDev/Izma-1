@@ -144,69 +144,6 @@ function Davomat() {
 
 
     // const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
-
-
-    // useEffect(()=>{
-    //     if ((studentGrAtt && studentGrAtt.studentAttendence) &&
-    //     (groupStudents && groupStudents.students)) {
-    //         const mapped = groupStudents.students && groupStudents.students.map(i => {
-    //             const mappedAtt = studentGrAtt.studentAttendence.map(j => {
-    //                 if (i.id === j.studentID) {
-    //                     return j
-    //                 }
-    //                 return ''
-    //             })
-    //             const data = []
-    //             for (const i of mappedAtt) {
-    //                 if (i !== '') {
-    //                     data.push({ status: i.status, stId: i.studentID, day: i.day })
-    //                 }
-    //             }
-    //             return {id: i.id, month: data}
-    //         })
-            
-    //         const resultMapped = mapped.map(i => {
-    //             const data = i.month.map(j => ({
-    //                 s: j.status,
-    //                 d: j.day
-    //                 // moment(new Date(j.day-0)).format('DD/MM-YYYY')
-    //             }))
-    //             return { id: i.id, data }
-    //         })
-    //         // console.log(resultMapped)
-    //         setGroupStuMonth(resultMapped)
-    //     }
-    // },[studentGrAtt, groupStudents])
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    const setMonth = () => {
-        
-    }
-
-
-    
     
     useEffect(() => {
         const data = davomatCalendar(attandenceDate)

@@ -7,6 +7,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
    const input = useRef()
    const browsers = useRef()
    const arrow = useRef()
+   const [state, setState] = useState()
 
    const { enqueueSnackbar } = useSnackbar();
    const handleClick2 = (message) => {
@@ -130,11 +131,11 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
             })
 
 
-            if (coun === 0) {
-               arrow.current.classList.remove('active')
-               browsers.current.style.display = 'none';
-               input.current.style.borderRadius = "5px";
-            }
+            // if (coun === 0) {
+            //    arrow.current.classList.remove('active')
+            //    browsers.current.style.display = 'none';
+            //    input.current.style.borderRadius = "5px";
+            // }
 
          }
          document.addEventListener("mousedown", handleClickOutside);
@@ -174,6 +175,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
                autoComplete="off" list="" name="browsers" placeholder={pInput}
                   ref={input}
                   required={notReq ? false : true}
+                  value={state}
                />
                <span ref={arrow} className="dropSearchArrow" ><img src={Arrow} alt=""
 
@@ -187,6 +189,7 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
                               disabled={stGroups && stGroups.find(el => el.id === z.id) ? true : false}
                               className={stGroups && stGroups.find(el => el.id === z.id) ? 'disabled' : ''}
                               onClick={(e) => {
+                                 setState(e.target.textContent)
                                  if (e.target.className === 'disabled') {
                                     return handleClick2('O`quvchi ushbu guruhda mavjud')
                                 }

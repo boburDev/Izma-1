@@ -108,7 +108,6 @@ function Davomat() {
                                 day: item.day
                             }
                             data.push(result)
-                            // data.date.push(moment(item).format('DD/MM-YYYY'))
                         }
                     }
                     return ""
@@ -137,18 +136,9 @@ function Davomat() {
     
     useEffect(()=>{
         if (studentGrAtt && studentGrAtt.studentAttendences) {
-            // console.log(studentGrAtt && studentGrAtt.studentAttendences)
             setStudentAtt(studentGrAtt && studentGrAtt.studentAttendences)
         }
     },[studentGrAtt])
-
-
-
-
-    
-
-
-
 
 
 
@@ -248,7 +238,6 @@ function Davomat() {
                                     let checker = false
                                     val.data.map(j => {
                                         if (moment(i.day-0).format('DD-MM-YYYY') === moment(j.attendenceDay-0).format('DD-MM-YYYY')) {
-                                            // console.log(moment(i.day-0).format('DD-MM-YYYY'), moment(j.attendenceDay-0).format('DD-MM-YYYY'))
                                             checker = true
                                         }
                                         return ''
@@ -281,11 +270,8 @@ function Davomat() {
                             }
                             return ''
                     })
-
-                        // })
-                        // monthlyGr.map((val, key) => {
                     }
-                        </tr>
+                    </tr>
                 })
                     
             }

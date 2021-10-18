@@ -7,10 +7,11 @@ import { GROUP_DAVOMAT, STUDENT_DAVOMAT } from './query'
 import {useLang} from '../../context/LanguageProvider'
 import Language from '../../lang/index'
 import { BY_GROUP_ID } from '../../Querys/GroupTabs'
+import { useDavomat } from '../../context/DavomatProvider'
 function Davomat() {
     const id = useParams()
     const [lang] = useLang()
-
+    const [groupStudents] = useDavomat()
     const [state, setState] = useState([])
     const [start, setStart] = useState('')
     const [startDay, setStartDay] = useState('')
@@ -20,9 +21,9 @@ function Davomat() {
     const [endDate, setEndDate] = useState('')
     const [monthlyGr, setMonthlyGr] = useState([])
     const [activeYear,setActiveYear] = useState(0)
-
     const [groupData,setGroupData] = useState({})
     const [attandenceDate, setAttandenceDate] = useState([])
+    const [studentAtt,setStudentAtt] = useState([])
     
     useEffect(()=>{
         setActive(start-0)
@@ -70,15 +71,6 @@ function Davomat() {
             setAttandenceDate(groupAtt.groupAttendences)
         }
     },[groupAtt])
-    
-    
-   
-
-
-
-
-
-
 
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
@@ -139,13 +131,14 @@ function Davomat() {
 
     const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { 
         groupId: id && id.groupID,
-        month: 10,
-        year: 2021
+        month: active,
+        year: activeYear
     }})
     
     useEffect(()=>{
         if (studentGrAtt && studentGrAtt.studentAttendences) {
-            console.log(studentGrAtt && studentGrAtt.studentAttendences)
+            // console.log(studentGrAtt && studentGrAtt.studentAttendences)
+            setStudentAtt(studentGrAtt && studentGrAtt.studentAttendences)
         }
     },[studentGrAtt])
 
@@ -161,7 +154,39 @@ function Davomat() {
 
 
 
-
+    const checkInput = (e) => {
+        e.target.parentNode.childNodes[1].classList.toggle(`${st.show}`)
+    }
+    
+    const come = e => {
+        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
+        e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.true}`)
+        e.target.parentNode.classList.remove(`${st.show}`)
+        let body = {
+            name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
+            date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
+            title: 'keldi'
+        }
+        console.log(body)
+    }
+    
+    const dontCome = e => {
+        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
+        e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.false}`)
+        e.target.parentNode.classList.remove(`${st.show}`)
+        let body = {
+            name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
+            date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
+            title: 'kelmadi'
+        }
+        console.log(body)
+    }
+    
+    const closer = (e) => {
+        e.target.parentNode.classList.remove(`${st.show}`)
+        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
+        e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
+    }
 
 
 
@@ -192,7 +217,7 @@ function Davomat() {
 
         <table className={st.customer}>
         <thead className={st.customer_thead}>
-        <tr className={st.tr}>
+        <tr className={st.tr} id="tr_all">
         <th className={`${st.name_table} ${st.th}`}>F.I.O</th>
         {
             monthlyGr.length>0 && monthlyGr.map((item, index) => (
@@ -210,6 +235,61 @@ function Davomat() {
         }
         </tr>
         </thead>
+        <tbody className={st.tbody}>
+            {
+                groupStudents.length > 0 && groupStudents.map((item, index) => {
+                    return <tr className={st.tr_tbody} key={index}>
+                    <td className={`${st.pupil} ${st.td_tbody} ${
+                        item.groupStatus === 4 ? `${st.red}`: item.groupStatus === 5 ? `${st.orange}` : item.groupStatus === 3 ? `${st.blue}` :  ''}`} key={index}>{item.name}</td>
+                    {
+                        studentAtt.length > 0 && studentAtt.map((val,key) => {
+                            if (val.stId === item.id && val.data.length > 0) {
+                                const result = monthlyGr.map((i, heys) => {
+                                    let checker = false
+                                    val.data.map(j => {
+                                        if (moment(i.day-0).format('DD-MM-YYYY') === moment(j.attendenceDay-0).format('DD-MM-YYYY')) {
+                                            // console.log(moment(i.day-0).format('DD-MM-YYYY'), moment(j.attendenceDay-0).format('DD-MM-YYYY'))
+                                            checker = true
+                                        }
+                                        return ''
+                                    })
+                                    if (checker) {
+                                        console.log(checker)
+                                        checker = false
+                                        return <td className={st.td} key={heys}>
+                                            <div
+                                                className={st.round}
+                                                onClick={checkInput}
+                                                data-date={i.day}
+                                                data-id={i.id}>
+                                            </div>
+                                            <div className={st.checker}>
+                                            <h4
+                                            onClick={come} className={st.checker_true}>
+                                            
+                                            </h4>
+                                            <h4 onClick={dontCome} className={st.checker_false}>
+                                            
+                                            </h4>
+                                            <button className={st.checker_close} onClick={closer}>&times; </button>
+                                            </div>
+                                            </td>
+                                    }
+                                    return <td></td>
+                                })
+                                return result
+                            }
+                            return ''
+                    })
+
+                        // })
+                        // monthlyGr.map((val, key) => {
+                    }
+                        </tr>
+                })
+                    
+            }
+            </tbody>
         </table>
         
             

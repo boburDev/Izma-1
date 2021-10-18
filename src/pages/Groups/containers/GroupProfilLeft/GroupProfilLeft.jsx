@@ -43,6 +43,7 @@ import StudentAddGroup from '../../../../containers/Forms/StudentAdd/StudentAddG
 import { SUBSCRIPTION_CASH } from '../../../Students/containers/StudentProfileLeft/query'
 import { GROUPS } from '../../../../Querys/Group_Query'
 import { useGroup } from '../../../../context/NameProvider'
+import { useDavomat } from '../../../../context/DavomatProvider'
 
 
 const GroupProfilLeft = (prop) => {
@@ -66,7 +67,7 @@ const GroupProfilLeft = (prop) => {
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
    const [activator, setActivator] = useState(false)
-
+   const [setStudents] = useDavomat(true)
    // console.log(studentAddGroup)
    // console.log(dateAddGroup)
    
@@ -88,9 +89,10 @@ const GroupProfilLeft = (prop) => {
 
       if (grStudents && grStudents.findStudByGrId) {
          setGrStudent(grStudents.findStudByGrId)
+         setStudents(grStudents.findStudByGrId)
       }
 
-   }, [grStudents])
+   }, [grStudents, setStudents])
 
    useEffect(() => {
 

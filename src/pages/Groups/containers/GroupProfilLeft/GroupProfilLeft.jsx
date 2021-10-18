@@ -61,7 +61,7 @@ const GroupProfilLeft = (prop) => {
    const [addStudent, setAddStudent] = useState()
    const [studentAddGroup, setStudentAddGroup] = useState('')
    const [dateAddGroup, setDateAddGroup] = useState('')
-   const [dataGroup, setDataGroup] = useState({})
+   const [dataGroup, setDataGroup] = useState()
    const [grStudent, setGrStudent] = useState([])
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
@@ -79,10 +79,10 @@ const GroupProfilLeft = (prop) => {
    })
 
  
-
    const { data: grStudents } = useQuery(GROUP_STUDENTS, {
       variables: { grID: groupID }
    })
+
 
    useEffect(() => {
 
@@ -94,8 +94,8 @@ const GroupProfilLeft = (prop) => {
 
    useEffect(() => {
 
-      if (groups && groups.byGroupID) {
-         setDataGroup(groups.byGroupID)
+      if (groups?.byGroupID) {
+         setDataGroup(groups?.byGroupID)
       }
 
    }, [groups])
@@ -429,7 +429,7 @@ const GroupProfilLeft = (prop) => {
                         {Language[lang].groups.groupInfo.price}
                      </p>
                      <p className="izma__groups-attendance-left-center-prices-number">
-                     {dataGroup.price} UZS
+                     {dataGroup?.price} UZS
                      </p>
                   </div>
 

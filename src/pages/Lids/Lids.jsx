@@ -294,7 +294,7 @@ const Lids = () => {
       
 
         <h2 className="izma__links-box-link">
-                     Lid formaga havola: <a href={`http://localhost:3000/${localStorage.getItem('hashtag')}/entry/lead/`} className="izma__links-box-link-link" >http://localhost:3000/alazhar/entry/lead/</a>
+         Lid formaga havola: <a href={`http://localhost:3000/${localStorage.getItem('hashtag')}/entry/lead/`} className="izma__links-box-link-link" >http://localhost:3000/alazhar/entry/lead/</a>
         </h2>
         {/* <CopyToClipboard text={lin} onCopy={() => setCopied(true)}>
         <button className='izma__links-box-link-link-copy'onClick={() => openNotificationWithIcon('success')} >Saqlash</button>

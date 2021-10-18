@@ -67,8 +67,8 @@ const GroupProfilLeft = (prop) => {
    const [paymentStatus, setPaymentStatus] = useState(false)
    const [activator, setActivator] = useState(false)
 
-   console.log(studentAddGroup)
-   console.log(dateAddGroup)
+   // console.log(studentAddGroup)
+   // console.log(dateAddGroup)
    
    const { groupID } = useParams()
 
@@ -485,7 +485,7 @@ const GroupProfilLeft = (prop) => {
                         {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
                         {s.groupStatus === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
                         </div>
-                        <Link className="izma__groups-attendance-left-bottom-heading" to={`/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
+                        <Link className="izma__groups-attendance-left-bottom-heading" to={`/dashboard/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
                               {s.name}
                         </Link>
                         <p className="izma__groups-attendance-left-bottom-phone">

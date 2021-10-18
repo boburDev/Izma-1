@@ -3,12 +3,10 @@ import moment from 'moment'
 import st from './davomat.module.scss'
 import { useParams } from 'react-router-dom'
 import { useLazyQuery, useQuery } from '@apollo/client'
-import { GROUP_DAVOMAT } from './query'
+import { GROUP_DAVOMAT, STUDENT_DAVOMAT } from './query'
 import {useLang} from '../../context/LanguageProvider'
 import Language from '../../lang/index'
 import { BY_GROUP_ID } from '../../Querys/GroupTabs'
-import { introspectionFromSchema } from 'graphql'
-
 function Davomat() {
     const id = useParams()
     const [lang] = useLang()
@@ -44,6 +42,7 @@ function Davomat() {
     useEffect(() => {
         if (groupData.id) {
             setStart(groupData.startDate.split('-')[1])
+            setActiveYear(groupData.startDate.split('-')[0]-0)
             setStartDay(groupData.startDate.split('-')[2])
             setDays(groupData.days)
             setStartDate(groupData.startDate)
@@ -129,17 +128,26 @@ function Davomat() {
     }, [days, endDate])
 
 
-
-
-
-
-
-    // const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { groupID: id && id.groupID}})
-    
     useEffect(() => {
         const data = davomatCalendar(attandenceDate)
         setMonthlyGr(data.sort((a, b) => a.day - b.day))
     }, [attandenceDate, davomatCalendar])
+
+
+
+
+
+    const { data: studentGrAtt } = useQuery(STUDENT_DAVOMAT, { variables: { 
+        groupId: id && id.groupID,
+        month: 10,
+        year: 2021
+    }})
+    
+    useEffect(()=>{
+        if (studentGrAtt && studentGrAtt.studentAttendences) {
+            console.log(studentGrAtt && studentGrAtt.studentAttendences)
+        }
+    },[studentGrAtt])
 
 
 
@@ -190,7 +198,7 @@ function Davomat() {
             monthlyGr.length>0 && monthlyGr.map((item, index) => (
             <th
             id={item.id}
-            data-satus={introspectionFromSchema.status}
+            data-satus={item.status}
             className={st.th} key={index} style={{
                 cursor: `${(
                     moment(item.day-0).format('DD-MM-YYYY') <= moment(new Date()).format('DD-MM-YYYY')

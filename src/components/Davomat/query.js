@@ -14,16 +14,21 @@ import {
  `
 
  const STUDENT_DAVOMAT = gql`
- query studentAttendence($groupID: ID!){
-   studentAttendence(groupID:$groupID){
-     id
-     groupID
-     studentID
-     day
-     status
-   }
- }
- `
+ query studentAttendences($groupId: ID! $month: Int! $year: Int!){
+  studentAttendences(
+    groupId: $groupId
+    month: $month
+    year: $year
+  ){
+    stId
+    data{
+      id
+      attendenceDay
+      status
+    }
+  }
+}
+`
 
 
  

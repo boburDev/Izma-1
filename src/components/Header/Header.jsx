@@ -13,7 +13,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 	const [activeLang, setActiveLang] = useState(1)
 	const [lang,setLang] = useLang()
    const [navbarP] = useNavbar()
-   console.log(navbarP || 'heardaki value keladi')
+   // console.log(navbarP || 'heardaki value keladi')
    return (
       <>
          <header className="izma__header">
@@ -65,7 +65,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 					</div>
                      <Link
                      onClick={()=> setActive(false)}
-                     to={`/`}>{Language[lang].home.blocks.accountInfo}</Link>
+                     to={`/dashboard`}>{Language[lang].home.blocks.accountInfo}</Link>
                      <span
                         onClick={() => {
                         localStorage.removeItem('token')

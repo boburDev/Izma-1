@@ -31,7 +31,7 @@ const CoursesCard = () => {
          <div className="izma__courses-card">
             {
                courses && courses.courses.map((e, i) => (
-                  <Link key={i} to={`/coursesInner/${e.id}`}>
+                  <Link key={i} to={`/dashboard/coursesInner/${e.id}`}>
                      <div key={i} className="izma__courses-card-wrapper">
                         <img src={CoursesImg} alt="course img" className="izma__courses-card-img" />
                         <div className="izma__courses-card-wrapper-bottom">

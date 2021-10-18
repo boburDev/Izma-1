@@ -79,7 +79,7 @@ const    StudentsProfileRight = () => {
                   {Group && Group.studentGroups.map(item => (
                      <SwiperSlide key={item.name}>
                         <div key={item.id} className="izma__students-payment-inner-left-section-center-wrapper-left izma__students-payment-inner-left-section-center-wrapper-lefts">
-                           <Link to={`/groups/groupsProfil/${item.id}`} onClick={() => setNavbarP(item.id)}>
+                           <Link to={`/dashboard/groups/groupsProfil/${item.id}`} onClick={() => setNavbarP(item.id)}>
                               <div className="izma__students-payment-inner-left-section-center-wrapper-inner-left">
                                  <p className="izma__students-payment-inner-left-section-center-wrapper-left-id">
                                     {item.name}

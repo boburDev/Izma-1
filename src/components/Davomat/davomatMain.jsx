@@ -172,7 +172,7 @@ function Davomat() {
             groupID: id && id.groupID,
             month: active
         }})
-        console.log(active)
+        // console.log(active)
     },[active, fff, id])
 
 

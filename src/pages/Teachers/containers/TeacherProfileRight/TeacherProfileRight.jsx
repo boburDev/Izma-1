@@ -62,7 +62,7 @@ const TeacherProfileRight = () => {
                   </div>
                   {
                      group.byGroupID.students.map((i, key) => <div key={key} id={i.id} className="izma__teachers-profile-right-wrapper-name-wrapper">
-                        <Link to={`/studentProfile/${i.id}`}onClick={() => setNavbarP(i.id)} className="izma__teachers-profile-right-wrapper-name-wrapper-name">
+                        <Link to={`/dashboard/studentProfile/${i.id}`}onClick={() => setNavbarP(i.id)} className="izma__teachers-profile-right-wrapper-name-wrapper-name">
                            {i.name}
                         </Link>
                         <p className="izma__teachers-profile-right-wrapper-name-wrapper-phone">

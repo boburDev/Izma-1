@@ -495,7 +495,7 @@ const Navbar = ({ sidebarActive, setSidebarActive }) => {
 
       <div className={`navbar_wrapper ${sidebarActive ? 'active' : ' '}`}>
          <div className="navbar_wrapper-header">
-            <NavLink exact className="navbar_links-logo" to="/">
+            <NavLink exact className="navbar_links-logo" to="/dashboard">
                <img src={Logo} className="defualt_logo" alt="img logo" />
                <img src={LogoTwo} className="active_logo" alt="" />
             </NavLink>

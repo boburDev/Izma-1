@@ -28,18 +28,20 @@ const OrderDetails = ({ api = true }) => {
 	},[route])
 
    const someArr = []
+   const allSales = []
    let total = 0
    const [lang] = useLang()
 
    infoCourse && infoCourse.map(course => {
 
       let countStudent = []
-      let allSales = 0
 
       course.groups.map(group => {
          group.students.map(st => {
             st.groupStatus !== 2 && countStudent.push(st)
-            allSales += Number(st.groupSale)
+            if (st.groupSale !== '0') {
+               allSales.push(Number(st.groupSale))
+            }
             return ''
          })
          return ''
@@ -48,14 +50,15 @@ const OrderDetails = ({ api = true }) => {
       const data = {
          title: course.name,
          price: countStudent.length * Number(course.price),
-         allSales: allSales && 0
       }
 
       someArr.push(data)
-      console.log('allSales', allSales)
       return ''
    })
-      
+
+   const salesTotal = allSales.length && allSales.reduce((a,b) => a + b)
+   
+   console.log('allSales', salesTotal)
    someArr && someArr.map(i => total += i.price)
 
    return (

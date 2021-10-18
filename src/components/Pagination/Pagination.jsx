@@ -35,8 +35,10 @@ const Pagination = () => {
       const dotsLeft = '... '
       const dotsRight = ' ...'
 
-
-      if (numberOfPages.length < 4) {
+      if (numberOfPages.length === 4) {
+         tempNumberOfPages = [1, 2, 3, 4]
+      }
+      else if (numberOfPages.length < 4) {
          tempNumberOfPages = [...numberOfPages]
       } else if(activeBtn >= 1 && activeBtn < 3) {
          tempNumberOfPages = [1, 2, 3,  dotsRight, numberOfPages.length]

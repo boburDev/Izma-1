@@ -150,7 +150,9 @@ const App = ({ api }) => {
 						</Route>
 						<Route path="/dashboard/financeCosts" component={Xarajatlar} />
 						<Route path="/dashboard/financeSalary" component={Salary} />
-						<Route path="/dashboard/financePaymentGroups" component={PaymentGroups} />
+						<Route>
+							<PaymentGroups api={api} />
+						</Route>
 						<Route path="/dashboard/financePayment" component={CoursesPayment} />
 					</>
 					: UserStatus === 2 ?

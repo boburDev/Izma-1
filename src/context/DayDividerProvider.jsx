@@ -58,7 +58,7 @@ const dayDivider = (state) => {
         return 'Toq kuni'
     } else if (state === daysEven.join()) {
         return 'Juft kuni'
-    } else if (state.length) {
+    } else if (state?.length) {
         const days = state.split(',').map(i => i.length && daysAll[i - 1])
         if (days.join().length) {
             return days.join(' ')

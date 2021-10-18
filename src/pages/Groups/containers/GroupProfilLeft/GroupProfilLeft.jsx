@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import './GroupProfilLeft.scss'
 import { useState } from 'react'
 import { useParams } from 'react-router'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, NavLink, Redirect } from 'react-router-dom'
 import GroupEdit from '../../../../containers/Forms/GroupEdit/GroupEdit';
 import { Drawer } from 'antd'
 import {  Modal, AutoComplete, DatePicker } from 'antd'
@@ -62,7 +62,7 @@ const GroupProfilLeft = (prop) => {
    const [addStudent, setAddStudent] = useState()
    const [studentAddGroup, setStudentAddGroup] = useState('')
    const [dateAddGroup, setDateAddGroup] = useState('')
-   const [dataGroup, setDataGroup] = useState({})
+   const [dataGroup, setDataGroup] = useState()
    const [grStudent, setGrStudent] = useState([])
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
@@ -70,6 +70,10 @@ const GroupProfilLeft = (prop) => {
    const [setStudents] = useDavomat(true)
    // console.log(studentAddGroup)
    // console.log(dateAddGroup)
+
+   useEffect(() => {
+      setNavbarP('/dashboard/groups/groupsProfil/')
+   }, [])
    
    const { groupID } = useParams()
 
@@ -80,10 +84,10 @@ const GroupProfilLeft = (prop) => {
    })
 
  
-
    const { data: grStudents } = useQuery(GROUP_STUDENTS, {
       variables: { grID: groupID }
    })
+
 
    useEffect(() => {
 
@@ -96,8 +100,8 @@ const GroupProfilLeft = (prop) => {
 
    useEffect(() => {
 
-      if (groups && groups.byGroupID) {
-         setDataGroup(groups.byGroupID)
+      if (groups?.byGroupID) {
+         setDataGroup(groups?.byGroupID)
       }
 
    }, [groups])
@@ -431,7 +435,7 @@ const GroupProfilLeft = (prop) => {
                         {Language[lang].groups.groupInfo.price}
                      </p>
                      <p className="izma__groups-attendance-left-center-prices-number">
-                     {dataGroup.price} UZS
+                     {dataGroup?.price} UZS
                      </p>
                   </div>
 
@@ -487,9 +491,9 @@ const GroupProfilLeft = (prop) => {
                         {s.groupStatus === 4 && <div className="izma__groups-attendance-left-bottom-box-red"></div>}
                         {s.groupStatus === 5 && <div className="izma__groups-attendance-left-bottom-box-orange"></div>}
                         </div>
-                        <Link className="izma__groups-attendance-left-bottom-heading" to={`/dashboard/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
+                        <NavLink className="izma__groups-attendance-left-bottom-heading" to={`/dashboard/studentProfile/${s.id}`} onClick={() => setNavbarP(s.id)}>
                               {s.name}
-                        </Link>
+                        </NavLink>
                         <p className="izma__groups-attendance-left-bottom-phone">
                            {
                               s.studentPhone.map((i, key) => <span key={key}> +{i.phone}<br /> </span>)
@@ -581,10 +585,11 @@ const GroupProfilLeft = (prop) => {
 
          </div>
 
-         <Modal footer={null} title={Language[lang].groups.newStudent} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+         <Modal animation={false} footer={null} title={Language[lang].groups.newStudent} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <div className="form_group izma__courses__form-bolim-form-center" style={{ width: "100%" }}>
                <label className='izma__courses__form-bolim-form-label'>{Language[lang].groups.selectStudent}</label>
                <AutoComplete
+                  animation={false}
                   options={userInput.length && dataUser}
                   onSearch={e => setUserInput(e)}
                   onSelect={(v, o) => {
@@ -599,6 +604,7 @@ const GroupProfilLeft = (prop) => {
                   // groups.byGroupID.endDate
                }
                <DatePicker
+                  animation={false}
                   className='date__picker'
                   onChange={(value, dateString) => setStartedDate(dateString)}
                   placeholder={Language[lang].teachers.addNewUser.date}

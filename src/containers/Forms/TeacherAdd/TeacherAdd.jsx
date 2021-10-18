@@ -64,6 +64,13 @@ const TeacherAdd = ({ onClose, setVisible }) => {
 
    };
 
+   const handleClick2 = (message) => {
+      enqueueSnackbar(message, {
+         variant: 'error',
+      });
+
+   };
+
 
    return (
       <div className="form_teacher s">
@@ -131,7 +138,15 @@ const TeacherAdd = ({ onClose, setVisible }) => {
                   <PasswordInput setPassword={setPassword}/>
                </div>
 
-               <button type="submit" className="cre_btn">{Language[lang].teachers.addNewUser.save}</button>
+               <button type="submit" className="cre_btn" 
+                  onClick={() => {
+                     if(!name.length) {
+                        handleClick2('Ism va Familiyani kiriting !')
+                     }else if(!gender) {
+                        handleClick2(`Jinsini tanlang !`)
+                     }
+                  }}
+               >{Language[lang].teachers.addNewUser.save}</button>
             </form>
          </div>
       </div>

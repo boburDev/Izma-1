@@ -15,9 +15,12 @@ import Check from '../../../components/Check/Check'
 import { useCheck } from '../../../context/CheckProvider'
 import { useLang } from '../../../context/LanguageProvider'
 import Language from '../../../lang/index'
+import { useNavbar } from '../../../context/NavbarProvider'
+import { useEffect } from 'react'
 
 
 const StudentProfile = ({ role }) => {
+   const [setNavbarP] = useNavbar(true)
    const [peopleName] = useName1()
    const [toggleState, setToggleState] = useState(1);
    const [loading] = useLoader()
@@ -26,6 +29,10 @@ const StudentProfile = ({ role }) => {
       setToggleState(index);
    };
 
+
+   useEffect(() => {
+      setNavbarP('/dashboard/students')
+   }, [])
    
    const [, setIsModalVisibleY] = useState(false)
    const [lang] = useLang();

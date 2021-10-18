@@ -38,12 +38,10 @@ const GroupAdd = ({ onClose }) => {
   
    
   
-   const handleClick2 = () => {
-      const message = 'Formani to`liq to`ldiring !'
+   const handleClick2 = (message) => {
       enqueueSnackbar(message, {
          variant: 'error',
       });
-
    };
 
 
@@ -65,8 +63,6 @@ const GroupAdd = ({ onClose }) => {
          })
          onClose()
          
-      }else {
-         handleClick2()
       }
    }
 
@@ -270,7 +266,27 @@ const GroupAdd = ({ onClose }) => {
                         format={"DD-MM-YYYY"}
                      />
                   </div>
-                  <button type="submit" >{Language[lang].groups.addNewGroups.save}</button>
+                  <button type="submit" 
+                     onClick={() => {
+                        if(!name.length) {
+                           handleClick2('Guruh nomini kiriting !')
+                        }else if(!courseID) {
+                           handleClick2('Kursni tanlang !')
+                        }else if(!teacherID) {
+                           handleClick2(`O'qituvchini tanlang !`)
+                        }else if(!days) {
+                           handleClick2(`Kunlarni tanlang !`)
+                        }else if(!roomID) {
+                           handleClick2(`Xonani tanlang !`)
+                        }else if(!time) {
+                           handleClick2(`Dars vaqtini tanlang !`)
+                        }else if(!startDate) {
+                           handleClick2(`Dars boshlanish kunini tanlang !`)
+                        }else if(!endDate) {
+                           handleClick2(`Dars tugash kunini tanlang !`)
+                        }
+                     }}
+                  >{Language[lang].groups.addNewGroups.save}</button>
                </form>
             </div>
          </div>

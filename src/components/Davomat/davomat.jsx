@@ -9,7 +9,6 @@ import Language from '../../lang/index'
 import { BY_GROUP_ID } from '../../Querys/GroupTabs'
 import { introspectionFromSchema } from 'graphql'
 
-// react-redux uninstall qivoring
 function Davomat() {
     const id = useParams()
     const [lang] = useLang()
@@ -28,7 +27,6 @@ function Davomat() {
     const [attandenceDate, setAttandenceDate] = useState([])
     
     useEffect(()=>{
-        console.log(startDay)
         setActive(start-0)
     },[start, startDay])
 
@@ -70,9 +68,7 @@ function Davomat() {
     
     useEffect(()=>{
         if (groupAtt && groupAtt.groupAttendences) {
-            // console.log(groupAtt.groupAttendences)
             setAttandenceDate(groupAtt.groupAttendences)
-            // console.log(groupAtt.groupAttendences)
         }
     },[groupAtt])
     
@@ -110,13 +106,9 @@ function Davomat() {
     const davomatCalendar = useCallback((value) => {
         
         const data = []
-        // console.log(data)
             days.split(',').map(i => {
                 value.map(item => {
-                    // console.log(endDate, moment(item.day-0).format('YYYY-MM-DD'))
                     if (endDate >= moment(item.day-0).format('YYYY-MM-DD')) {
-                        // console.log(moment(item.day-0).format('YYYY-MM-DD'))
-                        // console.log((i - 1), new Date(item.day-0).getDay())
                         if ((i - 1) === new Date(item.day-0).getDay()) {
                             const result = {
                                 comment: item.comment,
@@ -132,7 +124,6 @@ function Davomat() {
                 })
                 return ""
             })
-            console.log(data)
         return data
 
     }, [days, endDate])

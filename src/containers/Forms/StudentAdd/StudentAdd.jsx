@@ -26,7 +26,7 @@ const StudentAdd = ({ onCloseF }) => {
       }
    ])
 
-
+   
 
    const [fieldParents, setParents] = useState([
       {
@@ -89,6 +89,13 @@ const StudentAdd = ({ onCloseF }) => {
          handleClick()
       }
    }, [checkStudent, newCash, enqueueSnackbar, lang])
+
+   const handleClick2 = (message) => {
+      enqueueSnackbar(message, {
+         variant: 'error',
+      });
+
+   };
 
 
 
@@ -252,6 +259,11 @@ const StudentAdd = ({ onCloseF }) => {
             </div>
 
             <button className="create-btn" onClick={() => {
+               if (stName.length <= 0) {
+                  handleClick2(`Ism va Familiyani kiriting !`)
+               } else if (!stGender) {
+                  handleClick2(`Jinsini tanlang !`)
+               }
                (stName && stGender) && onCloseF()
 
             }}>{Language[lang].students.addNewStudentTitle.save}</button>

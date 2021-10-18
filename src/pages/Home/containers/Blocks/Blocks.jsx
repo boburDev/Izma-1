@@ -88,49 +88,49 @@ const Blocks = () => {
       {
          icon: Home1Img,
          title: language.activeLead,
-         link: '/lidlar',
+         link: '/dashboard/lidlar',
          number: Leads?.leads.length || '0'
       },
       {
          icon: Home2Img,
          title: language.activeStudent,
-         link: '/student',
+         link: '/dashboard/students',
          number: CountStudents?.studentCountHome || '0'
       },
       {
          icon: Home3Img,
          title: language.groups,
-         link: '/groups',
+         link: '/dashboard/groups',
          number: GroupCount?.groupsCount?.length ||  '0'
       },
       {
          icon: Home4Img,
          title: language.debtStudent,
-         link: '/studentDebtors',
+         link: '/dashboard',
          number: CountStatus_4?.grStatus?.length || '0'
       },
       {
          icon: Home5Img,
          title: language.testLesson,
-         link: '',
+         link: '/dashboard',
          number: CountStatus_2?.grStatus?.length || '0'
       },
       {
          icon: Home6Img,
          title: language.paidForMonth,
-         link: '',
+         link: '/dashboard',
          number: CountStatus_3?.grStatus?.length || '0'
       },
       {
          icon: Home7Img,
          title: language.stoppedParticipate,
-         link: '/lidlar',
+         link: '/dashboard',
          number: (CountStatus_6?.studentStatus?.count -0) + (CountStatus_5?.grStatus?.length) || '0'
       },
       {
          icon: Home8Img,
          title: language.leftAfterFirstLesson,
-         link: '/',
+         link: '/dashboard',
          number: CountStatus_7?.studentStatus?.count || '0'
       }
    ]

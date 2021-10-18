@@ -1,6 +1,6 @@
 import './financeAddPaymentForm.scss'
 import CloseBtn from '../../../../assets/Icons/Group 26.svg'
-import {  DatePicker } from "antd"
+import { DatePicker } from "antd"
 import { Radio, Input } from 'antd'
 import { memo, useEffect, useRef, useState } from 'react'
 import TextArea from "antd/lib/input/TextArea"
@@ -10,6 +10,7 @@ import DropSearch from '../../../../components/DropSearch/DropSearch'
 import { useCheck } from '../../../../context/CheckProvider'
 import { useLang } from '../../../../context/LanguageProvider'
 import Language from '../../../../lang/index'
+import { useSnackbar } from 'notistack';
 
 const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const datePicker = useRef()
@@ -25,6 +26,13 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	const [groups, setGroups] = useState([])
 	const [tester, setTester] = useState(false)
 
+	const { enqueueSnackbar } = useSnackbar();
+	const handleClick2 = (message) => {
+		enqueueSnackbar(message, {
+			variant: 'error',
+		});
+
+	};
 
 	useEffect(() => {
 
@@ -42,13 +50,13 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 	useSubscription(SUBSCRIPTION_GROUPS, {
 		onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
-			 cache.modify({
-					fields: {
-						 studentGroups: () => { }
-					}
-			 })
+			cache.modify({
+				fields: {
+					studentGroups: () => { }
+				}
+			})
 		},
- })
+	})
 
 	const someFunc = () => {
 		setPayedData("")
@@ -65,12 +73,12 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	// })
 
 	const { data: stGroups } = useQuery(STUDENT_GROUPS, {
-		variables: { studentID: studenID && (studenID.studentID || studenID.studentId) } 
+		variables: { studentID: studenID && (studenID.studentID || studenID.studentId) }
 	})
 
 
 	const { data: count } = useQuery(COUNT)
-	
+
 
 	const [newCash] = useMutation(NEW_CASH)
 	const [newHistoryPay] = useMutation(HISTORY_PAYMENT)
@@ -82,7 +90,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 
 	useEffect(() => {
 		if (stGroups && stGroups.studentGroups) {
-			
+
 			setGroups(stGroups.studentGroups)
 		}
 	}, [stGroups])
@@ -91,7 +99,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 	useEffect(() => {
 
 		const test = ((forCheck && Number(forCheck.studentCash.cashAmount) <= 0) && (payment && Number(payment.updateCash.cashAmount) > -1))
-	
+
 		if (test && tester) {
 			CheckBalanc({
 				variables: {
@@ -239,7 +247,16 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 			setAmmoun('')
 			setPayedData("")
 			setComment('')
+			setData('')
 			onClose()
+		} 
+		else if (ammountt <= 0) {
+			handleClick2(`Miqdorni kiriting !`)
+		}
+		else if (!data?.courseName) {
+			handleClick2(`Guruhni tanlang !`)
+		} else if(!payedData) {
+			handleClick2(`Sanani tanlang !`)
 		}
 	}
 
@@ -252,8 +269,8 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 		<>
 			<div className="izma__courses__form-bolim">
 				<form onSubmitCapture={formOnSubmit}
-				className="izma__courses__form-bolim-form"
-				id="financeFormRes">
+					className="izma__courses__form-bolim-form"
+					id="financeFormRes">
 					<div className="izma__courses__form-bolim-form-up">
 						<h3 className='izma__courses__form-bolim-form-heading' >{Language[lang].students.recordPayment.recordPaymentTitle}</h3>
 						<button className="izma__courses__form-bolim-form-close-btn" onClick={onClose} >
@@ -278,12 +295,12 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					<div className="form_group" style={{ width: "100%" }}>
 						<label className='izma__courses__form-bolim-form-label'>{Language[lang].students.recordPayment.amount}</label>
 						<input defaultValue={ammountt}
-						autoComplete="off" className={"section_name_input"} name={"nomi"}
+							autoComplete="off" className={"section_name_input"} name={"nomi"}
 							onKeyUp={e => {
 								setAmmoun(e.target.value)
 								// e.target.value = numberWithCommas(e.target.value)
 							}}
-							 type="text" />
+							type="text" />
 
 						{
 							(groupID === '') && <>
@@ -292,6 +309,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 									arr={groups.length !== 0 && groups}
 									pInput={Language[lang].groups.addNewGroups.chooseVariant}
 									fnc={setData}
+									notReq={true}
 								/>
 							</>
 						}
@@ -327,4 +345,4 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 		</>
 	)
 }
-export default memo (FinanceAddPaymentForm)
+export default memo(FinanceAddPaymentForm)

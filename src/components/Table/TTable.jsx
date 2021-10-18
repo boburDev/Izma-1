@@ -111,6 +111,7 @@ const TTable = ({ block, arr, showDrawer, setDeleteId, setEditId, setInfo, openM
                      <h4 className={'financeGroupHash'}>{Language[lang].finance.orderInfoGroup.courses}</h4>
                      <h4 className={'financeGroupHash'}>{Language[lang].finance.orderInfoGroup.countStudent}</h4>
                      <h4 className={'financeGroupHash'}>{Language[lang].finance.orderInfoGroup.currency}</h4>
+                     <h4 className={'financeGroupHash'}>{"Sale - Chegirma"}</h4>
                      <h4 className={'financeGroupHash'}>{Language[lang].finance.orderInfoGroup.allSums}</h4>
                </div>
 

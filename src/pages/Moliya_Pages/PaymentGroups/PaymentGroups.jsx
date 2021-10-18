@@ -10,10 +10,12 @@ import axios from 'axios'
 
 const PaymentGroups = ({ api = true}) => {
 	
-	// const {data: GrCrTch} = useQuery(GROUPS_COURSES)
+	// const {data: GrCrTchh} = useQuery(GROUPS_COURSES)
 	const [GrCrTch, setGrCrTch] = useState([])
 	const [state,setState] = useState([])
 	const [lang] = useLang()
+
+	// console.log(GrCrTchh)
 
 	const route = api ? 'http://localhost:4000' : 'https://api.triiipple.uz'
 
@@ -35,41 +37,43 @@ const PaymentGroups = ({ api = true}) => {
 
 
 
-	// useEffect(() => {
-	// 	const grDataArr = []
+	useEffect(() => {
+		const grDataArr = []
 
-	// 	// console.log(GrCrTch.length !== 0 && GrCrTch)
+		// console.log(GrCrTch.length !== 0 && GrCrTch)
 		
-	// 	GrCrTch.length !== 0 && GrCrTch.map(item => {
-	// 		const t = item.groups.map((sub, i) => {
-	// 			// let price = '0'
-	// 			// const s = sub.students.map((st) => {
-					
-	// 			// 	const arr = []
-	// 			// 	if (st.status !== 2) {
-	// 			// 		arr.push(st)
-	// 			// 	}
-	// 			// 	price = arr.length ? arr.length * item.price : '0'
-	// 			// 	return price
-	// 			// })
-	// 			// console.log(item)
+		GrCrTch.length && GrCrTch.map(item => {
+			item.groups.map(sub => {
+				let sale = 0
+				let count = []
+				sub.students.map((st) => {
+					sale += Number(st.groupSale)
+					if (st.groupStatus !== 2) {
+						count.push(st)
+					}
+					return ''
+				})
 				
-	// 			const grData = {
-	// 				stCount: sub.students?.length, groups: sub.name, teachers: sub.teacher, courses: item.name, price: item.price
-	// 			}
+				const grData = {
+					groups: sub?.name,
+					teachers: sub?.teacher,
+					courses: item?.name,
+					price: item?.price,
+					sale: sale,
+					notStatus_2_count: count.length
+				}
 				
-	// 			grDataArr.push(grData)
-	// 			return 's'
-	// 		})
-	// 		// console.log(item)
+				grDataArr.push(grData)
+				return 's'
+			})
 			
-	// 		return t
-	// 	})
-	// 	setState(grDataArr)
-	// }, [GrCrTch]);
+			return 't'
+		})
+		setState(grDataArr)
+	}, [GrCrTch]);
 	
 	
-	console.log(GrCrTch)
+	// console.log(GrCrTch)
 	
 	return (
 		<>

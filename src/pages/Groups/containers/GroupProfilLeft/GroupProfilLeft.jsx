@@ -70,11 +70,11 @@ const GroupProfilLeft = (prop) => {
    const [activator, setActivator] = useState(false)
    const [setStudents] = useDavomat(true)
    // console.log(studentAddGroup)
-   // console.log(dateAddGroup)
+   console.log(dateAddGroup)
 
    useEffect(() => {
       setNavbarP('/dashboard/groups/groupsProfil/')
-   }, [])
+   }, [setNavbarP])
    
    const { groupID } = useParams()
 
@@ -320,7 +320,7 @@ const GroupProfilLeft = (prop) => {
          setActivator(false)
          console.log('once')
       }
-   }, [grStudent, Activated, activator])
+   }, [grStudent, Activated, activator, groupID])
 
    const showModal = () => {
       setIsModalVisible(true)

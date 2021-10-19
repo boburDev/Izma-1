@@ -45,31 +45,27 @@ const LidsBox = ({ column, columnId, isVisible, columns, setColumns, groupCreate
   
 
    
-   const useOutsideAlerter = (ref) => {
+   function useOutsideAlerter(ref) {
       useEffect(() => {
-         function handleClickOutside(event) {
-            let coun = 0
-            event.path && event.path.map(el => {
-               if (el.className === 'boxmenu active' || el.className === 'lidItem-top-right') {
-                  coun++
-               }
-               return ''
-            })
-
-            
-            if(coun === 0) {
-               setMenu(false)
-            }
-            
-         }
-         document.addEventListener("mousedown", handleClickOutside);
-
-         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-         };
-      }, [ref])
-   }
-
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+          if (ref.current && !ref.current.contains(event.target)) {
+            setMenu(false)
+          }
+        }
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          // Unbind the event listener on clean up
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, [ref]);
+    }
+   
+   
+   
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
    const { enqueueSnackbar } = useSnackbar();

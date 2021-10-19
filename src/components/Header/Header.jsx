@@ -2,7 +2,7 @@ import NotificationImg from "../../assets/notification.svg";
 import './Header.scss'
 import Close from '../../assets/Icons/close.svg'
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Language from '../../lang/index'
 import { useLang } from "../../context/LanguageProvider";
 import Img from '../../assets/img.png'
@@ -14,6 +14,30 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 	const [lang,setLang] = useLang()
    const [navbarP] = useNavbar()
    // console.log(navbarP || 'heardaki value keladi')
+
+   function useOutsideAlerter(ref) {
+      useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+          if (ref.current && !ref.current.contains(event.target)) {
+            setActive(false)
+          }
+        }
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          // Unbind the event listener on clean up
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, [ref]);
+    }
+   
+   
+   
+   const wrapperRef = useRef(null);
+   useOutsideAlerter(wrapperRef);
    return (
       <>
          <header className="izma__header">
@@ -35,7 +59,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
                   {/* <h3>Asadulloh</h3> */}
                </div>
 
-               <div className={`izma__header-dropdown ${active ? 'active' : ''}`}>
+               <div className={`izma__header-dropdown ${active ? 'active' : ''}`} ref={wrapperRef}>
 				<div className="top_items">
 						<div className="lang">
 							<button onClick={() => {

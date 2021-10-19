@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import './GroupProfilLeft.scss'
 import { useState } from 'react'
 import { useParams } from 'react-router'
@@ -149,6 +149,30 @@ const GroupProfilLeft = (prop) => {
    const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
    const [SetStatus_5] = useMutation(UPDATE_GR_STATUS)
    const [Activated] = useMutation(DOES_ACTIVE)
+
+   function useOutsideAlerter(ref) {
+      useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+          if (ref.current && !ref.current.contains(event.target)) {
+            setDElActive(false)
+          }
+        }
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          // Unbind the event listener on clean up
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, [ref]);
+    }
+   
+   
+   
+   const wrapperRef = useRef(null);
+   useOutsideAlerter(wrapperRef);
 
    useEffect(() => {
 
@@ -375,6 +399,8 @@ const GroupProfilLeft = (prop) => {
       boxSizing: 'border-box',
       borderRadius: '7px',
    }
+   
+
 
 
 
@@ -520,7 +546,7 @@ const GroupProfilLeft = (prop) => {
 
 
                            <div style={{ zIndex: 10000, position: 'absolute' }}
-                              className={`open_del ${delActive === s.id ? 'active' : ''}`} onClick={() => setDElActive(false)}>
+                              className={`open_del ${delActive === s.id ? 'active' : ''}`} onClick={() => setDElActive(false)} ref={wrapperRef}>
 
                               {(s.groupStatus === 3 || s.groupStatus === 4) && <Link to="#" className="del_link" onClick={() => {
                                  SetStatus_5({

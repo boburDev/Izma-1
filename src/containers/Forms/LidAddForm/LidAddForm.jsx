@@ -8,7 +8,6 @@ import { useSnackbar } from 'notistack';
 
 
 const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
-   const wrapperRef = useRef(null);
    const userName = useRef()
    const userNumber = useRef()
    const userComment = useRef()
@@ -53,38 +52,41 @@ const LidAddForm = ({ setAdd, itemId, formId, columns, setColumns }) => {
    }
 
 
-   const useOutsideAlerter = (ref) => {
-      useEffect(() => {
-         function handleClickOutside(event) {
-            let closeOrAdd = 0
-            event.path && event.path.map(el => {
-               if (el.className === 'home-column-top__name' || el.className === 'home-column-top__number' || el.className === 'home-column-top__coment') {
-                  closeOrAdd++
-               }
-               return ''
-            })
+  
 
-            if ((userName.current.value) && closeOrAdd === 0) {
+   function useOutsideAlerter(ref) {
+      useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+          if (ref.current && !ref.current.contains(event.target)) {
+            if (userName.current.value) {
                handleSubmit()
                setAdd(false)
-            } else if (closeOrAdd === 0) {
+            } else  {
                setAdd(false)
                userName.current.value = ''
                userNumber.current.value = ''
                userComment.current.value = ''
             }
-         }
-         document.addEventListener("mousedown", handleClickOutside);
-
-         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-         };
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [ref, itemId])
-   }
-
-
+          }
+        }
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          // Unbind the event listener on clean up
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, [ref]);
+    }
+   
+   
+   
+   const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
+
+
    return (
 
       <form id={`form` + formId} className="lllid">

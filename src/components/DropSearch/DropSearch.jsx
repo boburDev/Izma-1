@@ -7,7 +7,6 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
    const input = useRef()
    const browsers = useRef()
    const arrow = useRef()
-   const [state, setState] = useState()
 
    const { enqueueSnackbar } = useSnackbar();
    const handleClick2 = (message) => {
@@ -119,38 +118,40 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
       }
    }, [arr])
 
-   const useOutsideAlerter = (ref) => {
-      useEffect(() => {
-         function handleClickOutside(event) {
-            let coun = 0
-            event.path && event.path.map(el => {
-               if (el.className === 'dropSearch') {
-                  coun++
-               }
-               return ''
-            })
+      // useEffect(() => {
+      //    wrapperRef.current.addEventListener('blur', () => {
+      //       arrow.current.classList.remove('active')
+      //             browsers.current.style.display = 'none';
+      //             input.current.style.borderRadius = "5px";
+      //    })
+        
+      // }, [])
 
-
-            // if (coun === 0) {
-            //    arrow.current.classList.remove('active')
-            //    browsers.current.style.display = 'none';
-            //    input.current.style.borderRadius = "5px";
-            // }
-
-         }
-         document.addEventListener("mousedown", handleClickOutside);
-
-         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-         };
-      }, [ref])
-   }
-
-
-
-  
-   const wrapperRef = useRef(null);
-   useOutsideAlerter(wrapperRef);
+      function useOutsideAlerter(ref) {
+         useEffect(() => {
+           /**
+            * Alert if clicked on outside of element
+            */
+           function handleClickOutside(event) {
+             if (ref.current && !ref.current.contains(event.target)) {
+               arrow.current.classList.remove('active')
+               browsers.current.style.display = 'none';
+               input.current.style.borderRadius = "5px";
+             }
+           }
+           // Bind the event listener
+           document.addEventListener("mousedown", handleClickOutside);
+           return () => {
+             // Unbind the event listener on clean up
+             document.removeEventListener("mousedown", handleClickOutside);
+           };
+         }, [ref]);
+       }
+      
+      
+      
+      const wrapperRef = useRef(null);
+      useOutsideAlerter(wrapperRef);
  
 
  const [obj, setObj] = useState()
@@ -167,15 +168,14 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
 
 
    return (
-      <div className="dropSearch" ref={wrapperRef}>
-         <div className="inputWrapper">
+      <div className="dropSearch"  ref={wrapperRef}>
+         <div className="inputWrapper" >
             <div className="inputWrr">
                <input 
                   defaultValue={defolt ? arr && obj?.name : ''}
                autoComplete="off" list="" name="browsers" placeholder={pInput}
                   ref={input}
                   required={notReq ? false : true}
-                  value={state}
                />
                <span ref={arrow} className="dropSearchArrow" ><img src={Arrow} alt=""
 
@@ -189,7 +189,6 @@ const DropSearch = ({ arr, pInput, fnc, notReq, defolt, stGroups, teach }) => {
                               disabled={stGroups && stGroups.find(el => el.id === z.id) ? true : false}
                               className={stGroups && stGroups.find(el => el.id === z.id) ? 'disabled' : ''}
                               onClick={(e) => {
-                                 setState(e.target.textContent)
                                  if (e.target.className === 'disabled') {
                                     return handleClick2('O`quvchi ushbu guruhda mavjud')
                                 }

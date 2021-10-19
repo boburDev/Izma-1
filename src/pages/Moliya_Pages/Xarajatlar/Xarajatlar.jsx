@@ -60,6 +60,16 @@ const Xarajatlar = () => {
       },
    })
 
+   useSubscription(SUBSCRIP_HARAJAT, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               harajatlarFilter: () => { }
+            }
+         })
+      },
+   })
+
    return (
       <div className="dwBox">
          <div className="dw">

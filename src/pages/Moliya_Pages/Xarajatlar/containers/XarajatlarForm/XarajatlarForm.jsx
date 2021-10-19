@@ -76,16 +76,16 @@ const XarajatlarForm = () => {
                 buyer.length &&
                 sum) {
                    const data = {
-                            name,
-                            buyer,
-                            paymentAmount: sum,
-                            type: selectValue,
-                            createdAt: selectedDate
+                     name,
+                     buyer,
+                     paymentAmount: sum,
+                     type: selectValue,
+                     createdAt: selectedDate
                   }
                     newCost({
                         variables: data
                     })
-                }
+            }
                document.getElementById('xarajatFormRes').reset()
         }}
 			className="izma__finance-cost__form-bolim-form-button">

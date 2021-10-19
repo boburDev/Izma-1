@@ -15,6 +15,7 @@ import { useCourseFilter } from '../../../../context/CourseFilterProvider'
 import { useLoader } from '../../../../context/Loader'
 import { usePagination } from '../../../../context/Pagination'
 import { SUBSCRIPTION_STUDENT } from '../../../../Querys/GroupTabs';
+import { SUBSCRIP_SALE } from '../../../Groups/containers/GroupProfilRightTabs/GroupProfilRightTab3/query';
 
 
 const StudentsTable = ({ studentSearch = '' }) => {
@@ -148,7 +149,15 @@ const StudentsTable = ({ studentSearch = '' }) => {
       },
    })
 
-
+   useSubscription(SUBSCRIP_SALE, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+        cache.modify({
+          fields: {
+            findSale: () => {}
+          }
+        })
+      },
+    })
 
    const [, setIsModalVisibleY] = useState(false)
 

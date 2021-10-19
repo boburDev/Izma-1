@@ -35,6 +35,7 @@ import { STATUS } from "./query"
 import { useQuery } from "@apollo/client"
 import { useUserStatus } from "../../context/NameProvider"
 import { useRef } from "react"
+import Profil from "../Profil/Profil"
 
 const App = ({ api }) => {
   const [sidebarActive, setSidebarActive] = useState()
@@ -102,6 +103,7 @@ const App = ({ api }) => {
               <div className="app-right-center">
 
                 <Switch>
+					  <Route path="/dashboard/profil/:collegueID" component={Profil} exact />
 
                   
 

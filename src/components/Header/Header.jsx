@@ -13,6 +13,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 	const [activeLang, setActiveLang] = useState(1)
 	const [lang,setLang] = useLang()
    const [navbarP] = useNavbar()
+   const [setNavbarP] = useNavbar(true)
    // console.log(navbarP || 'heardaki value keladi')
 
    function useOutsideAlerter(ref) {
@@ -88,8 +89,12 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
 						</div>
 					</div>
                      <Link
-                     onClick={()=> setActive(false)}
-                     to={`/dashboard`}>{Language[lang].home.blocks.accountInfo}</Link>
+                     onClick={()=> {
+                        setNavbarP('h')
+                        setActive(false)}
+                     }
+                     
+                     to={`/dashboard/Profil/bf6591ec-c84b-4d4d-aa5e-81d690fb04d8`}>{Language[lang].home.blocks.accountInfo}</Link>
                      <span
                         onClick={() => {
                         localStorage.removeItem('token')

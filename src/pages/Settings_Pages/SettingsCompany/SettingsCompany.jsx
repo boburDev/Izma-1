@@ -57,36 +57,7 @@ const SettigsCompany = () => {
                                 }} type="file" /> */}
                   </div>
                   <div className="browse-theme">
-                     <h3 className="theme_name">{Language[lang].settings.companySettings.chooseMainColor}</h3>
-                     <div className="thems">
-
-                        <div className="site_theme">
-                           <input type="radio" name="theme" id="first" />
-                           <label htmlFor="first" className="theme_btn one"></label>
-
-
-                        </div>
-                        <div className="site_theme">
-                           <input type="radio" name="theme" id="second" />
-                           <label htmlFor="second" className="theme_btn two"></label>
-                        </div>
-                        <div className="site_theme">
-                           <input type="radio" name="theme" id="thirt" />
-                           <label htmlFor="thirt" className="theme_btn thre"></label>
-                        </div>
-                        <div className="site_theme">
-                           <input type="radio" name="theme" id="four" />
-                           <label htmlFor="four" className="theme_btn four"></label>
-                        </div>
-                        <div className="site_theme">
-                           <input type="radio" name="theme" id="five" />
-                           <label htmlFor="five" className="theme_btn five"></label>
-                        </div>
-                        <div className="site_theme">
-                           <input type="radio" name="theme" id="six" />
-                           <label htmlFor="six" className="theme_btn six"></label>
-                        </div>
-                     </div>
+                     
 
                      <div className="center_name">
                         <label>{Language[lang].settings.companySettings.lcName}</label>
@@ -122,14 +93,6 @@ const SettigsCompany = () => {
                         </Upload>
                      </div>
 
-                     <div className="center_name">
-                        <label>{Language[lang].settings.companySettings.paymentTypeForStudent} *</label>
-                        <select >
-                           <option value="">{Language[lang].settings.companySettings.plasticCard}</option>
-                           <option value="">{Language[lang].settings.companySettings.cash}</option>
-                           <option value="">{Language[lang].settings.companySettings.acrossBankAccount}</option>
-                        </select>
-                     </div>
 
                      <div className="center_name">
                         <label>{Language[lang].settings.companySettings.facebookPixel}</label>
@@ -137,7 +100,7 @@ const SettigsCompany = () => {
                      </div>
 
                      <div className="paynet">
-                        <h3>{Language[lang].settings.companySettings.paynet}</h3>
+                        {/* <h3>{Language[lang].settings.companySettings.paynet}</h3> */}
 
                         <div className="paynet_info">
                            <div className="center_name">

@@ -44,6 +44,7 @@ import { SUBSCRIPTION_CASH } from '../../../Students/containers/StudentProfileLe
 import { GROUPS } from '../../../../Querys/Group_Query'
 import { useGroup } from '../../../../context/NameProvider'
 import { useDavomat } from '../../../../context/DavomatProvider'
+import { COURSE_SUBSCRIPTION } from '../../../../Querys/Courses_Query'
 
 
 const GroupProfilLeft = (prop) => {
@@ -256,6 +257,16 @@ const GroupProfilLeft = (prop) => {
         })
       },
     })
+
+   useSubscription(COURSE_SUBSCRIPTION, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               byGroupID: () => { }
+            }
+         })
+      },
+   })
 
    const [isModalVisible, setIsModalVisible] = useState(false)
    const [isModalDelete, setIsModalDelete] = useState(false)

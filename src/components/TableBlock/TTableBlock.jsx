@@ -98,9 +98,10 @@ const TTableBlock = ({ block, info, showDrawer, setDeleteId, setEditId, index, s
                            <h4 className={'financeGroupHash'}>{info?.groups}</h4>
                            <h4 className={'financeGroupHash'}>{info?.teachers}</h4>
                            <h4 className={'financeGroupHash'}>{info?.courses}</h4>
-                           <h4 className={'financeGroupHash'}>{info?.stCount}</h4>
+                           <h4 className={'financeGroupHash'}>{info?.notStatus_2_count}</h4>
                            <h4 className={'financeGroupHash'}>{info?.price}</h4>
-                           <h4 className={'financeGroupHash'}>{info?.price * info?.stCount}</h4>
+                           <h4 className={'financeGroupHash'}>{info?.sale}</h4>
+                           <h4 className={'financeGroupHash'}>{info?.price * info?.notStatus_2_count}</h4>
             </> : block === 'paymentHistory' ? <>
                               <h4 className={'paymentHistory'}>{info?.createdAt}</h4>
                               <h4 className={'paymentHistory'} style={{width: '150px'}}>{

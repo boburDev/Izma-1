@@ -4,14 +4,10 @@ import OrderDetails from '../../../components/MoliyaComponents/OrderDetelis/Orde
 import { useLang } from '../../../context/LanguageProvider'
 import Language from '../../../lang/index'
 
-const CoursesPayment = () => {
+const CoursesPayment = ({ api }) => {
    
    const [lang] = useLang()
-
-    
-    
-
-
+ 
    return (
       <>
          <div className="izma__finance-payment-groups">
@@ -27,7 +23,7 @@ const CoursesPayment = () => {
                <img className='izma__finance-payment-right-tabs-second-img' src={FinanceCostsImg} alt="" />
             </div>
 
-            <OrderDetails />
+            <OrderDetails api={ api } />
          </div>
       </>
 

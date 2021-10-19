@@ -59,7 +59,7 @@ query harajatlarFilter($startDate: String $endDate: String){
 `
 
 
-const GROUPS_COURSES = gql `
+const GROUPS_COURSES = gql`
 {
   courses{
     name
@@ -78,19 +78,24 @@ const GROUPS_COURSES = gql `
 }
 `
 
-const COURSES_INFO = gql `
+const COURSES_INFO = gql`
     query {
         courses {
         name
         price
-            groups {
-            studentsCount
-            }
+        groups{
+          students{
+            id
+            status
+            groupStatus
+            groupSale
+          }
         }
+      }
     }
 `
 
-const DELETE_HARAJAT = gql `
+const DELETE_HARAJAT = gql`
   mutation deleteHarajat($id: ID) {
     deleteHarajat(id: $id) {
       id
@@ -98,7 +103,7 @@ const DELETE_HARAJAT = gql `
   }
 `
 
-const SUBSCRIP_HARAJAT = gql `
+const SUBSCRIP_HARAJAT = gql`
   subscription {
     harajat{
       id
@@ -109,13 +114,13 @@ const SUBSCRIP_HARAJAT = gql `
 `
 
 export {
-    FINANCE_STUDENT,
-    FINANCE_STUDENT_FILTER,
-    HARAJATLAR,
-    NEW_HARAJAT,
-    FILTER_DATA,
-    GROUPS_COURSES,
-    COURSES_INFO,
-    DELETE_HARAJAT,
-    SUBSCRIP_HARAJAT
+  FINANCE_STUDENT,
+  FINANCE_STUDENT_FILTER,
+  HARAJATLAR,
+  NEW_HARAJAT,
+  FILTER_DATA,
+  GROUPS_COURSES,
+  COURSES_INFO,
+  DELETE_HARAJAT,
+  SUBSCRIP_HARAJAT
 }

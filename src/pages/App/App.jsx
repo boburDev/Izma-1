@@ -130,7 +130,9 @@ const App = ({ api }) => {
 								<Route path="/dashboard/financeCosts" component={Xarajatlar} />
 								<Route path="/dashboard/financeSalary" component={Salary} />
 								<Route path="/dashboard/financePaymentGroups" component={PaymentGroups} />
-								<Route path="/dashboard/financePayment" component={CoursesPayment} />
+								<Route path="/dashboard/financePayment">
+									<CoursesPayment api={api} />
+								</ Route>
 
 								<Route path="/dashboard/settingsRoadmap" component={SettingsRoadMap} />
 								<Route path="/dashboard/settingsEmployees" component={Employees} />

@@ -303,7 +303,7 @@ const GroupProfilLeft = (prop) => {
    useEffect(() => {
 
       if (grStudent.length > 0 && activator) {
-         let sorted = []
+         let sorted = [{grID: groupID},]
          grStudent.map(i => i.groupStatus === 2 && sorted.push({id: i.id, status: i.groupStatus}))
          Activated({variables: {needID: sorted}})
          setActivator(false)

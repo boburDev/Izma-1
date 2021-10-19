@@ -243,7 +243,7 @@ function Davomat() {
                                         return ''
                                     })
                                     if (checker) {
-                                        console.log(checker)
+                                        // console.log(checker)
                                         checker = false
                                         return <td className={st.td} key={heys}>
                                             <div

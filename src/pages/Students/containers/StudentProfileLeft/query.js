@@ -43,7 +43,9 @@ const SELECT_STUDENT_GROUP = gql `
       studentID: $idStudent
       startAt: $startAt
     ) {
-      message
+      studentID
+      studentAddTime
+      groupID
     }
   }
 `

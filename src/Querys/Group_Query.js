@@ -32,8 +32,10 @@ const CREATE_GROUP = gql `
         startDate: $startDate
         endDate: $endDate
     ) {
-            id
-            name
+        id
+        name
+        startDate
+        endDate
         }
     }
 `
@@ -92,12 +94,26 @@ const SUBSCRIPTION_GROUPS = gql `
 	}
 `
 
+const ATTANDANCE_GROUP = gql `
+  mutation createGroupAtt(
+    $groupID: ID!
+    $startDate: String!
+    $endDate: String!
+  ) {
+    createGroupAtt(
+      groupID: $groupID
+      startDate: $startDate
+      endDate: $endDate
+    )
+  }
+`
 
 
 export {
    ROOMS,
    CREATE_GROUP,
    GROUPS,
+   UPDATE_GROUP,
+   ATTANDANCE_GROUP,
    SUBSCRIPTION_GROUPS,
-   UPDATE_GROUP
 }

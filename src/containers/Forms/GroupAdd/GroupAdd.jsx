@@ -3,7 +3,7 @@ import CloseBtn from '../../../assets/Icons/Group 26.svg'
 import { TimePicker, DatePicker } from 'antd'
 import moment from 'moment';
 import { COURSES, TEACHER_FILTERS } from '../../../Querys/FilterSoha';
-import { CREATE_GROUP, ROOMS } from '../../../Querys/Group_Query';
+import { CREATE_GROUP, ROOMS, ATTANDANCE_GROUP } from '../../../Querys/Group_Query';
 import { useMutation, useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import DropSearch from '../../../components/DropSearch/DropSearch';
@@ -34,8 +34,18 @@ const GroupAdd = ({ onClose }) => {
    const { data: rooms } = useQuery(ROOMS)
    
    const [createGroup, {data: added}] = useMutation(CREATE_GROUP)
+   const [createGroupAtt] = useMutation(ATTANDANCE_GROUP)
    const { enqueueSnackbar } = useSnackbar();
   
+   useEffect(() => {
+      if (added?.createGroup?.id) {
+         createGroupAtt({variables: {
+            groupID: added.createGroup.id,
+            startDate: added.createGroup.startDate,
+            endDate: added.createGroup.endDate
+         }})
+      }
+   }, [added, createGroupAtt])
    
   
    const handleClick2 = (message) => {

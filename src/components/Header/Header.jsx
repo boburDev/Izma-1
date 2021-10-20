@@ -14,7 +14,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken, collegaID}) => {
 	const [lang,setLang] = useLang()
    const [navbarP] = useNavbar()
    const [setNavbarP] = useNavbar(true)
-   // console.log(navbarP || 'heardaki value keladi')
+   console.log(navbarP || 'heardaki value keladi')
 
    function useOutsideAlerter(ref) {
       useEffect(() => {

@@ -6,12 +6,12 @@ import { Modal } from 'antd'
 import axios from 'axios'
 import {ExportCSV} from './ExportCsv'
 
-const FinanceTable = ({ api = true }) => {
+const FinanceTable = ({ api = false }) => {
    const [data,setData] = useState([])
    const [state,setState] = useState('')
    const fileName = 'Izma_cheklar'
 
-   const route = api ? 'http://localhost:4000' : 'https://api.triiipple.uz'
+   const route = api ? 'http://localhost:4000' : 'https://api.izma.uz'
    useEffect(()=>{
       ;(async()=>{
          try {

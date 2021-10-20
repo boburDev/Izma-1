@@ -21,12 +21,7 @@ const Login = () => {
    const language = Language[lang].authentication
 
    const { enqueueSnackbar } = useSnackbar();
-   const handleClick2 = (message) => {
-      enqueueSnackbar(message, {
-         variant: 'error',
-      });
-
-   };
+   
 
 
    const [login, {data: error}] = useMutation(LOGIN, {
@@ -39,10 +34,17 @@ const Login = () => {
    })
 
    useEffect(() => {
+      const handleClick2 = (message) => {
+         enqueueSnackbar(message, {
+            variant: 'error',
+         });
+   
+      };
+
       if (error?.login === null) {
          handleClick2(`Telefon yoki Parol noto'gri terilgan`)
       }
-   }, [error])
+   }, [enqueueSnackbar, error])
 
    const submitLogin = (e) => {
       e.preventDefault()

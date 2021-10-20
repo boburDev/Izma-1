@@ -55,9 +55,9 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
          const message = 'O`zgartirildi'
          enqueueSnackbar(message, {
             variant: 'success',
-         });
+         })
 
-      };
+      }
       if(updateSnake) {
          handleClick()
       }

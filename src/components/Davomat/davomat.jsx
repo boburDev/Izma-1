@@ -2,12 +2,13 @@ import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import moment from 'moment'
 import st from './davomat.module.scss'
 import { useParams } from 'react-router-dom'
-import { useLazyQuery, useQuery } from '@apollo/client'
-import { GROUP_DAVOMAT, STUDENT_DAVOMAT } from './query'
+import { useLazyQuery, useQuery, useSubscription } from '@apollo/client'
+import { GROUP_DAVOMAT, STUDENT_DAVOMAT, SUBCR_GR_ATT, SUBCR_ST_ATT } from './query'
 import {useLang} from '../../context/LanguageProvider'
 import Language from '../../lang/index'
 import { BY_GROUP_ID } from '../../Querys/GroupTabs'
 import { useDavomat } from '../../context/DavomatProvider'
+
 function Davomat() {
     const id = useParams()
     const [lang] = useLang()
@@ -24,6 +25,26 @@ function Davomat() {
     const [groupData,setGroupData] = useState({})
     const [attandenceDate, setAttandenceDate] = useState([])
     const [studentAtt,setStudentAtt] = useState([])
+
+    useSubscription(SUBCR_GR_ATT, {
+        onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+           cache.modify({
+              fields: {
+                groupAttendences: () => { }
+              }
+           })
+        },
+     })
+
+    useSubscription(SUBCR_ST_ATT, {
+        onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+           cache.modify({
+              fields: {
+                studentAttendences: () => { }
+              }
+           })
+        },
+     })
     
     useEffect(()=>{
         setActive(start-0)

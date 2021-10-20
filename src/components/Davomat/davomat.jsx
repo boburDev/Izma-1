@@ -276,7 +276,6 @@ function Davomat() {
                                                 onClick={checkInput}
                                                 data-date={i.day}
                                                 data-id={i.id}>
-                                                    {console.log(val)}
                                             </div>
                                             <div className={st.checker}>
                                             <h4

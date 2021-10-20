@@ -29,7 +29,7 @@ const Login = () => {
    };
 
 
-   const [login, {error}] = useMutation(LOGIN, {
+   const [login, {data: error}] = useMutation(LOGIN, {
       update: (cache, data) => {
          if (data) setToken({
             token: data.data.login,
@@ -39,7 +39,7 @@ const Login = () => {
    })
 
    useEffect(() => {
-      if (error) {
+      if (error?.login === null) {
          handleClick2(`Telefon yoki Parol noto'gri terilgan`)
       }
    }, [error])
@@ -63,8 +63,6 @@ const Login = () => {
    if (token.token) {
       window.location.assign('/dashboard')
    }
-
-
 
    return (
       <div className="container">

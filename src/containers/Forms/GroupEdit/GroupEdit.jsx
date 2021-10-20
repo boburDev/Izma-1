@@ -31,6 +31,8 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
    const [startDate, setStartDate] = useState(dataForEdit.startDate)
    const [endDate, setEndDate] = useState(dataForEdit.endDate)
 
+   const [active, setActive] = useState(false)
+
    const [selectedDate, setselectedDate] = useState([])
 
    const { data: teachers } = useQuery(TEACHER_FILTERS)
@@ -79,17 +81,36 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
          variables: data
       })
 
-      const ttt = dataForEdit.endDate.split('-')
+      if (active && dataForEdit.endDate < endDate) {
+         const ttt = dataForEdit.endDate.split('-')
+   
+         const dataa = {
+            groupID: groupID,
+            startDate: `${ttt[0]}-${ttt[1]}-${ttt[2] -0 +1}`,
+            endDate: endDate
+         }
 
-      const dataa = {
-         groupID: groupID,
-         startDate: `${ttt[0]}-${ttt[1]}-${ttt[2] -0 +1}`,
-         endDate: endDate
+         createGroupAtt({variables: dataa})
+         StudentAttan({variables: {stID: null, ...dataa}})
+
+         setActive(false)
       }
 
-      createGroupAtt({variables: dataa})
-      StudentAttan({variables: {stID: null, ...dataa}})
+      if (active && dataForEdit.startDate > startDate) {
+         const ttt = dataForEdit.startDate.split('-')
+   
+         const dataa = {
+            groupID: groupID,
+            endDate: `${ttt[0]}-${ttt[1]}-${ttt[2] -0 -1}`,
+            startDate: startDate
+         }
 
+         createGroupAtt({variables: dataa})
+         StudentAttan({variables: {stID: null, ...dataa}})
+
+         setActive(false)
+
+      }
 
       onClose()
 
@@ -233,6 +254,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
                         defaultValue={moment(startDate, "YYYY-MM-DD")}
                         onChange={(value, dateString) => {
                            setStartDate(dateString)
+                           setActive(true)
                         }}
                         placeholder={"Kun-Oy-Yil"}
                         //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
@@ -248,6 +270,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
 
                         onChange={(value, dateString) => {
                            setEndDate(dateString)
+                           setActive(true)
                         }}
                         placeholder={"Kun-Oy-Yil"}
                         //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}

@@ -4,19 +4,23 @@ import { TimePicker, DatePicker } from 'antd'
 import moment from 'moment';
 import { COURSES } from '../../../Querys/Courses_Query';
 import { TEACHER_FILTERS } from '../../../Querys/FilterSoha';
-import { ROOMS, UPDATE_GROUP } from '../../../Querys/Group_Query';
+import { ATTANDANCE_GROUP, ROOMS, UPDATE_GROUP } from '../../../Querys/Group_Query';
 import { useQuery, useMutation } from '@apollo/client';
 import { useEffect, useState, memo } from 'react';
 import DropSearch from '../../../components/DropSearch/DropSearch';
 import { useSnackbar } from 'notistack';
 import { useLang } from '../../../context/LanguageProvider';
 import Language from '../../../lang/index'
+import { useParams } from 'react-router';
+import { ATTANDANCE_STUDENT } from '../../../Querys/GroupTabs';
 
 const format = 'HH:mm';
 
 const GroupEdit = ({ onClose, dataForEdit }) => {
 
    const [lang] = useLang()
+
+   const { groupID } = useParams()
 
    const [name, setName] = useState(dataForEdit.name)
    const [courseID, setCourseID] = useState(dataForEdit.courseId)
@@ -35,6 +39,10 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
 
 
    const [updateGroup, {data: updateSnake}] = useMutation(UPDATE_GROUP)
+   const [createGroupAtt] = useMutation(ATTANDANCE_GROUP)
+   const [StudentAttan] = useMutation(ATTANDANCE_STUDENT)
+
+
 
    const { enqueueSnackbar } = useSnackbar();
 
@@ -70,6 +78,18 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
       updateGroup({
          variables: data
       })
+
+      const ttt = dataForEdit.endDate.split('-')
+
+      const dataa = {
+         groupID: groupID,
+         startDate: `${ttt[0]}-${ttt[1]}-${ttt[2] -0 +1}`,
+         endDate: endDate
+      }
+
+      createGroupAtt({variables: dataa})
+      StudentAttan({variables: {stID: null, ...dataa}})
+
 
       onClose()
 
@@ -216,7 +236,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
                         }}
                         placeholder={"Kun-Oy-Yil"}
                         //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
-                        format={"DD-MM-YYYY"}
+                        format={"YYYY-MM-DD"}
                      />
                   </div>
                   <div className="form_group">
@@ -231,7 +251,7 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
                         }}
                         placeholder={"Kun-Oy-Yil"}
                         //   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
-                        format={"DD-MM-YYYY"}
+                        format={"YYYY-MM-DD"}
                      />
                   </div>
                   <button onClick={handleGroup}>{Language[lang].groups.addNewGroups.save}</button>

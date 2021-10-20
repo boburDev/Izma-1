@@ -288,7 +288,7 @@ const DOES_ACTIVE = gql `
 
 const ATTANDANCE_STUDENT = gql `
   mutation createStudentAttendence(
-    $stID: ID!
+    $stID: ID
     $groupID: ID!
     $startDate: String!
     $endDate: String!

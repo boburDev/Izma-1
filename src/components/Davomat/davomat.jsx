@@ -100,7 +100,7 @@ function Davomat() {
             days.split(',').map(i => {
                 value.map(item => {
                     if (endDate >= moment(item.day-0).format('YYYY-MM-DD')) {
-                        if ((i - 1) === new Date(item.day-0).getDay()) {
+                        if ((i - 0) === new Date(item.day-0).getDay()) {
                             const result = {
                                 comment: item.comment,
                                 id: item.id,

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import moment from 'moment'
 import st from './davomat.module.scss'
 import { useParams } from 'react-router-dom'
-import { useLazyQuery, useQuery, useSubscription } from '@apollo/client'
+import { concat, useLazyQuery, useQuery, useSubscription } from '@apollo/client'
 import { GROUP_DAVOMAT, STUDENT_DAVOMAT, SUBCR_GR_ATT, SUBCR_ST_ATT } from './query'
 import {useLang} from '../../context/LanguageProvider'
 import Language from '../../lang/index'
@@ -168,15 +168,17 @@ function Davomat() {
     const checkInput = (e) => {
         e.target.parentNode.childNodes[1].classList.toggle(`${st.show}`)
     }
-    
+
     const come = e => {
         e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
         e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.true}`)
         e.target.parentNode.classList.remove(`${st.show}`)
         let body = {
-            name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
-            date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
-            title: 'keldi'
+            // name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
+            // date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
+            grID: id.groupID,
+            dayId: e.target.parentNode.parentNode.childNodes[0].dataset.id,
+            dayStatus: 2
         }
         console.log(body)
     }
@@ -186,9 +188,11 @@ function Davomat() {
         e.target.parentNode.parentNode.childNodes[0].classList.add(`${st.false}`)
         e.target.parentNode.classList.remove(`${st.show}`)
         let body = {
-            name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
-            date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
-            title: 'kelmadi'
+            // name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
+            // date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
+            grID: id.groupID,
+            dayId: e.target.parentNode.parentNode.childNodes[0].dataset.id,
+            dayStatus: 3
         }
         console.log(body)
     }
@@ -272,6 +276,7 @@ function Davomat() {
                                                 onClick={checkInput}
                                                 data-date={i.day}
                                                 data-id={i.id}>
+                                                    {console.log(val)}
                                             </div>
                                             <div className={st.checker}>
                                             <h4

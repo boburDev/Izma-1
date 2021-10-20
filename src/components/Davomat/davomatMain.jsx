@@ -47,6 +47,7 @@ function Davomat() {
     }, [monthlyStGr ,groupStuMonth])
 
 
+    
     useEffect(()=>{
         if (groupAtt && groupAtt.groupAttendences) {
             const mapped = groupAtt.groupAttendences.map(i => {

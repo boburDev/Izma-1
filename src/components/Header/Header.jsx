@@ -8,7 +8,7 @@ import { useLang } from "../../context/LanguageProvider";
 import Img from '../../assets/img.png'
 import { useNavbar } from "../../context/NavbarProvider";
 
-const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
+const Header = ({ sidebarActive, setSidebarActive, setToken, collegaID}) => {
 	const [active, setActive] = useState()
 	const [activeLang, setActiveLang] = useState(1)
 	const [lang,setLang] = useLang()
@@ -94,7 +94,7 @@ const Header = ({ sidebarActive, setSidebarActive, setToken}) => {
                         setActive(false)}
                      }
                      
-                     to={`/dashboard/Profil/bf6591ec-c84b-4d4d-aa5e-81d690fb04d8`}>{Language[lang].home.blocks.accountInfo}</Link>
+                     to={`/dashboard/Profil/${collegaID}`}>{Language[lang].home.blocks.accountInfo}</Link>
                      <span
                         onClick={() => {
                         localStorage.removeItem('token')

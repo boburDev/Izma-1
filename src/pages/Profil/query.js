@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 const BY_COLLEGUE_ID = gql`
-query colleague_by_id($id: ID!) {
-  colleague_by_id(collegueID: $id) {
+query colleague_by_id($id: ID! $check: String) {
+  colleague_by_id(collegueID: $id check: $check) {
     Id
     name
     phoneNumber

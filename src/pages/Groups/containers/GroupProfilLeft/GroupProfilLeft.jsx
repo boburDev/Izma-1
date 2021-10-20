@@ -22,7 +22,8 @@ import {
    GROUP_STUDENTS,
    NEW_SUB_STUDENT,
    SUBSCRIPTION_GROUP_INFO,
-   DOES_ACTIVE
+   DOES_ACTIVE,
+   ATTANDANCE_STUDENT
 } from '../../../../Querys/GroupTabs'
 import { useDayDivider } from '../../../../context/DayDividerProvider'
 import {
@@ -44,6 +45,7 @@ import { SUBSCRIPTION_CASH } from '../../../Students/containers/StudentProfileLe
 import { GROUPS } from '../../../../Querys/Group_Query'
 import { useGroup } from '../../../../context/NameProvider'
 import { useDavomat } from '../../../../context/DavomatProvider'
+import { COURSE_SUBSCRIPTION } from '../../../../Querys/Courses_Query'
 
 
 const GroupProfilLeft = (prop) => {
@@ -67,9 +69,10 @@ const GroupProfilLeft = (prop) => {
    const [payment, setPayment] = useState(false)
    const [paymentStatus, setPaymentStatus] = useState(false)
    const [activator, setActivator] = useState(false)
+   const [attanStud, setAttanStud] = useState(false)
    const [setStudents] = useDavomat(true)
    // console.log(studentAddGroup)
-   // console.log(dateAddGroup)
+   useEffect(() => {}, [dateAddGroup])
 
    useEffect(() => {
       setNavbarP('/dashboard/groups/groupsProfil/')
@@ -141,7 +144,8 @@ const GroupProfilLeft = (prop) => {
 
    const [deletGroup, { data: delData }] = useMutation(DELETE_GROUP)
    const [HistoryPay] = useMutation(HISTORY_PAYMENT)
-   const [AddStudentToGroup] = useMutation(SELECT_STUDENT_GROUP)
+   const [AddStudentToGroup, {data: added_student}] = useMutation(SELECT_STUDENT_GROUP)
+   const [StudentAttan] = useMutation(ATTANDANCE_STUDENT)
    const [SetStatus_6] = useMutation(STATUS_6)
    const [DelFromGroup] = useMutation(DELETE_FROM_GROUP)
    const [UpdatePayment, { data: forStatus }] = useMutation(UPDATE_CASH)
@@ -170,10 +174,21 @@ const GroupProfilLeft = (prop) => {
             document.removeEventListener("mousedown", handleClickOutside);
          };
       }, [ref]);
-   }
-
-
-
+    }
+   
+   useEffect(() => {
+      if (attanStud && added_student?.createStudentGroup) {
+         StudentAttan({variables: {
+            stID: added_student.createStudentGroup.studentID,
+            groupID: added_student.createStudentGroup.groupID,
+            startDate: added_student.createStudentGroup.studentAddTime,
+            endDate: dataGroup?.endDate
+         }})
+         setAttanStud(false)
+      }
+   }, [added_student, StudentAttan, dataGroup, attanStud])
+   
+   
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
 
@@ -260,6 +275,16 @@ const GroupProfilLeft = (prop) => {
       },
     })
 
+   useSubscription(COURSE_SUBSCRIPTION, {
+      onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
+         cache.modify({
+            fields: {
+               byGroupID: () => { }
+            }
+         })
+      },
+   })
+
    const [isModalVisible, setIsModalVisible] = useState(false)
    const [isModalDelete, setIsModalDelete] = useState(false)
 
@@ -312,7 +337,7 @@ const GroupProfilLeft = (prop) => {
          setActivator(false)
          console.log('once')
       }
-   }, [grStudent, Activated, activator])
+   }, [grStudent, Activated, activator, groupID])
 
    const showModal = () => {
       setIsModalVisible(true)
@@ -389,7 +414,7 @@ const GroupProfilLeft = (prop) => {
 
    const filtered = grStudent?.filter(opt => opt.name.toLowerCase().startsWith(onKeyUp.toLowerCase()))
 
-   if (delData && delData) return <Redirect to='/groups' />
+   if (delData && delData) return <Redirect to='/dashboard/groups' />
 
    const newNoteStyle = {
       width: '100%',
@@ -642,7 +667,8 @@ const GroupProfilLeft = (prop) => {
                   className='date__picker'
                   onChange={(value, dateString) => setStartedDate(dateString)}
                   placeholder={Language[lang].teachers.addNewUser.date}
-                  format={"DD-MM-YYYY"}
+                  // format={"DD-MM-YYYY"}
+                  format={"YYYY-MM-DD"}
                   disabledDate={(current) => {
                      // let customDate = groups.byGroupID.endDate
                      // return current && current < moment(customDate, "DD-MM-YYYY")
@@ -654,6 +680,7 @@ const GroupProfilLeft = (prop) => {
                <button onClick={() => {
 
                   if (hasStud && !hasStud.hasStudent) {
+                     setAttanStud(true)
                      AddStudentToGroup({ variables: { idGroup: groupID, idStudent: stID, startAt: startedDate } })
                   }
                   handleOk()

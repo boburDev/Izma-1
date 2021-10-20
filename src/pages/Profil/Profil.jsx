@@ -13,6 +13,8 @@ import PhoneNumberInput from '../../components/PhoneNumberInput/PhoneNumberInput
 import { useName1 } from '../../context/NameProvider';
 import { useLang } from '../../context/LanguageProvider'
 import Language from '../../lang/index.js'
+import { useUserStatus } from "../../context/NameProvider"
+
 
 
 const Profil = () => {
@@ -23,7 +25,7 @@ const Profil = () => {
    const [setLoader] = useLoader(true)
 
    const [collegueInfo, setCollgueInfo] = useState()
-   const { data: collegue, loading } = useQuery(BY_COLLEGUE_ID, { variables: { id: collegueID } })
+   const { data: collegue, loading } = useQuery(BY_COLLEGUE_ID, { variables: { id: collegueID, check: 'true' } })
    const { data: filial } = useQuery(FILIAL)
    const [UpdateColleguee] = useMutation(UPDATE_COLLEGUES)
 
@@ -33,6 +35,8 @@ const Profil = () => {
    const [gender, setGender] = useState()
    const [password, setPassword] = useState("")
    const [comment, setComment] = useState("")
+
+   const [userStatus] = useUserStatus()
 
    useSubscription(SUBCRIPTION_TEACHER, {
       onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -118,7 +122,7 @@ const Profil = () => {
          <div className="izma__teachers-payment-inner">
             <div className="izma__students-profile-inner-headings">
                <h2 className="izma__finance-payment-inner-heading">
-                  Nazokat
+               {collegueInfo?.name}
                </h2>
                <p className="izma__finance-payment-inner-title"> <>Foydalanuvchi :
                   Profile</> 
@@ -174,7 +178,11 @@ const Profil = () => {
                               {Language[lang].teachers.teacherInfoDetail.role}
                            </p>
                            <p className="izma__teachers-payment-inner-left-center-role-role izma__teachers-payment-inner-left-center-role-role-wrapper">
-                              O’qituvchi
+                              {userStatus === 1 && 'CEO'}
+                              {userStatus === 2 && 'Marketer'}
+                              {userStatus === 3 && 'Adminstrator'}
+                              {userStatus === 4 && 'Casher'}
+                              {userStatus === 5 && 'Teacher'}
                            </p>
                         </div>
 

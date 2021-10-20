@@ -71,7 +71,9 @@ const SELECT_STUDENT_GROUP = gql `
       studentID: $idStudent
       startAt: $startAt
     ) {
-      message
+      studentID
+      studentAddTime
+      groupID
     }
   }
 `
@@ -284,6 +286,22 @@ const DOES_ACTIVE = gql `
   }
 `
 
+const ATTANDANCE_STUDENT = gql `
+  mutation createStudentAttendence(
+    $stID: ID
+    $groupID: ID!
+    $startDate: String!
+    $endDate: String!
+  ) {
+    createStudentAttendence(
+      studentId: $stID
+      groupID: $groupID
+      startDate: $startDate
+      endDate: $endDate
+    )
+  }
+`
+
 
 export {
   NEW_CASH,
@@ -302,6 +320,7 @@ export {
   GROUP_STUDENTS,
   NEW_SUB_STUDENT,
   DOES_ACTIVE,
+  ATTANDANCE_STUDENT,
   SUBSCRIPTION_GROUPS,
   SUBSCRIPTION_STUDENT,
   SUBSCRIPTION_STATUS,

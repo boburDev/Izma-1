@@ -43,16 +43,16 @@ const App = ({ api }) => {
   
 	const {data: userStatus} = useQuery(STATUS)
 
+	const [collegaID, setCollegaID] = useState()
+
 	const [setUserStatus] = useUserStatus(true)
 	const [UserStatus] = useUserStatus()
 
 	useEffect(() => {
-		setUserStatus(userStatus?.statusUser)
+		setUserStatus(userStatus?.statusUser?.status)
+		setCollegaID(userStatus?.statusUser?.collegaID)
 	}, [userStatus, setUserStatus])
 
-
-
- 
 
 	const useOutsideAlerter = (ref) => {
 		useEffect(() => {
@@ -95,6 +95,7 @@ const App = ({ api }) => {
                   sidebarActive={sidebarActive}
                   setSidebarActive={setSidebarActive}
                   setToken={setToken}
+				  collegaID={collegaID}
                 />
               </div>
 

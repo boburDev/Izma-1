@@ -32,7 +32,7 @@ const StudentProfile = ({ role }) => {
 
    useEffect(() => {
       setNavbarP('/dashboard/students')
-   }, [])
+   }, [setNavbarP])
    
    const [, setIsModalVisibleY] = useState(false)
    const [lang] = useLang();

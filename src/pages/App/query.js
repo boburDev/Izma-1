@@ -3,7 +3,10 @@ import {gql} from "@apollo/client";
 
 const STATUS = gql `
    query {
-      statusUser
+      statusUser{
+         collegaID
+         status
+      }
    }
 `
 

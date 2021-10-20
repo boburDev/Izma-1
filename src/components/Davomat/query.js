@@ -53,10 +53,23 @@ const SUBCR_ST_ATT = gql `
   }
 `
 
+const CREATE_ST_ATT = gql `
+  mutation updateStudentAttendence (
+    $status: Int
+    $dayID: ID
+  ){
+    updateStudentAttendence(
+      status: $status
+      dayID: $dayID
+    )
+  }
+`
+
  
  export {
    GROUP_DAVOMAT,
    STUDENT_DAVOMAT,
    SUBCR_GR_ATT,
-   SUBCR_ST_ATT
+   SUBCR_ST_ATT,
+   CREATE_ST_ATT
  }

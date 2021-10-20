@@ -2,8 +2,8 @@ import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import moment from 'moment'
 import st from './davomat.module.scss'
 import { useParams } from 'react-router-dom'
-import { concat, useLazyQuery, useQuery, useSubscription } from '@apollo/client'
-import { GROUP_DAVOMAT, STUDENT_DAVOMAT, SUBCR_GR_ATT, SUBCR_ST_ATT } from './query'
+import { useLazyQuery, useMutation, useQuery, useSubscription } from '@apollo/client'
+import { GROUP_DAVOMAT, STUDENT_DAVOMAT, SUBCR_GR_ATT, SUBCR_ST_ATT, CREATE_ST_ATT } from './query'
 import {useLang} from '../../context/LanguageProvider'
 import Language from '../../lang/index'
 import { BY_GROUP_ID } from '../../Querys/GroupTabs'
@@ -25,6 +25,9 @@ function Davomat() {
     const [groupData,setGroupData] = useState({})
     const [attandenceDate, setAttandenceDate] = useState([])
     const [studentAtt,setStudentAtt] = useState([])
+
+
+    const [CreateStAtt] = useMutation(CREATE_ST_ATT)
 
     useSubscription(SUBCR_GR_ATT, {
         onSubscriptionData: ({ client: { cache }, subscriptionData: { data } }) => {
@@ -154,7 +157,7 @@ function Davomat() {
         month: active,
         year: activeYear
     }})
-    
+
     useEffect(()=>{
         if (studentGrAtt && studentGrAtt.studentAttendences) {
             setStudentAtt(studentGrAtt && studentGrAtt.studentAttendences)
@@ -176,11 +179,11 @@ function Davomat() {
         let body = {
             // name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
             // date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
-            grID: id.groupID,
-            dayId: e.target.parentNode.parentNode.childNodes[0].dataset.id,
-            dayStatus: 2
+            dayID: e.target.parentNode.parentNode.childNodes[0].dataset.id,
+            status: 2
         }
-        console.log(body)
+
+        CreateStAtt({variables: body})
     }
     
     const dontCome = e => {
@@ -190,17 +193,25 @@ function Davomat() {
         let body = {
             // name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
             // date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
-            grID: id.groupID,
-            dayId: e.target.parentNode.parentNode.childNodes[0].dataset.id,
-            dayStatus: 3
+            dayID: e.target.parentNode.parentNode.childNodes[0].dataset.id,
+            status: 3
         }
-        console.log(body)
+        CreateStAtt({variables: body})
     }
     
     const closer = (e) => {
         e.target.parentNode.classList.remove(`${st.show}`)
         e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.false}`)
         e.target.parentNode.parentNode.childNodes[0].classList.remove(`${st.true}`)
+
+        let body = {
+            // name: e.target.parentNode.parentNode.parentNode.childNodes[0].innerHTML,
+            // date: e.target.parentNode.parentNode.childNodes[0].dataset.date,
+            dayID: e.target.parentNode.parentNode.childNodes[0].dataset.id,
+            status: 1
+        }
+        
+        CreateStAtt({variables: body})
     }
 
 
@@ -261,9 +272,13 @@ function Davomat() {
                             if (val.stId === item.id && val.data.length > 0) {
                                 const result = monthlyGr.map((i, heys) => {
                                     let checker = false
+                                    let stGrAttId = ''
+                                    let status = 1
                                     val.data.map(j => {
                                         if (moment(i.day-0).format('DD-MM-YYYY') === moment(j.attendenceDay-0).format('DD-MM-YYYY')) {
                                             checker = true
+                                            stGrAttId = j.id
+                                            status = j.status
                                         }
                                         return ''
                                     })
@@ -272,10 +287,15 @@ function Davomat() {
                                         checker = false
                                         return <td className={st.td} key={heys}>
                                             <div
-                                                className={st.round}
+                                                style={{
+                                                    pointerEvents: (moment(new Date()).format('DD-MM-YYYY') >= moment(i.day-0).format('DD-MM-YYYY')) ? 'auto' : 'none'
+                                                }}
+                                                className={`
+                                                ${st.round}
+                                                ${status === 2 ? st.true : status === 3 ? st.false : ''}`}
                                                 onClick={checkInput}
                                                 data-date={i.day}
-                                                data-id={i.id}>
+                                                data-id={stGrAttId}>
                                             </div>
                                             <div className={st.checker}>
                                             <h4

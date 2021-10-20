@@ -1,7 +1,7 @@
 import './Login.scss'
 import Banner from '../../assets/banner.jpg'
 import IZMA from '../../assets/Icons/top.svg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LOGIN } from './query'
 import { useMutation } from '@apollo/client';
 import { useLogin } from '../../context/LoginProvider'
@@ -10,6 +10,7 @@ import PhoneNumberInput from '../../components/PhoneNumberInput/PhoneNumberInput
 import PasswordInput from '../../components/PasswordInput/PasswordInput';
 import { useLang } from '../../context/LanguageProvider'
 import Language from '../../lang/index'
+import { useSnackbar } from 'notistack';
 const Login = () => {
    const [lang,setLang] = useLang()
    const [password, setPassword] = useState("")
@@ -19,8 +20,16 @@ const Login = () => {
    const { centerHashtag } = useParams()
    const language = Language[lang].authentication
 
+   const { enqueueSnackbar } = useSnackbar();
+   const handleClick2 = (message) => {
+      enqueueSnackbar(message, {
+         variant: 'error',
+      });
 
-   const [login] = useMutation(LOGIN, {
+   };
+
+
+   const [login, {error}] = useMutation(LOGIN, {
       update: (cache, data) => {
          if (data) setToken({
             token: data.data.login,
@@ -28,6 +37,12 @@ const Login = () => {
          })
       }
    })
+
+   useEffect(() => {
+      if (error) {
+         handleClick2(`Telefon yoki Parol noto'gri terilgan`)
+      }
+   }, [error])
 
    const submitLogin = (e) => {
       e.preventDefault()
@@ -40,11 +55,14 @@ const Login = () => {
       login({
          variables: data
       })
+      
 
       document.getElementById('loginFormRes').reset()
    }
 
-   if (token.token) window.location.assign('/')
+   if (token.token) {
+      window.location.assign('/dashboard')
+   }
 
 
 

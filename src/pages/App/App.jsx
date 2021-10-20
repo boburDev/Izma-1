@@ -104,9 +104,6 @@ const App = ({ api }) => {
 
                 <Switch>
 					  <Route path="/dashboard/profil/:collegueID" component={Profil} exact />
-
-                  
-
                   {
 					  
 					 UserStatus === 1 || UserStatus === 3 ? <>

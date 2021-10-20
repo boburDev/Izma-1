@@ -73,7 +73,7 @@ const GroupProfilLeft = (prop) => {
 
    useEffect(() => {
       setNavbarP('/dashboard/groups/groupsProfil/')
-   }, [])
+   }, [setNavbarP])
    
    const { groupID } = useParams()
 
@@ -152,25 +152,28 @@ const GroupProfilLeft = (prop) => {
 
    function useOutsideAlerter(ref) {
       useEffect(() => {
-        /**
-         * Alert if clicked on outside of element
-         */
-        function handleClickOutside(event) {
-          if (ref.current && !ref.current.contains(event.target)) {
-            setDElActive(false)
-          }
-        }
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-          // Unbind the event listener on clean up
-          document.removeEventListener("mousedown", handleClickOutside);
-        };
+         /**
+          * Alert if clicked on outside of element
+          */
+         function handleClickOutside(event) {
+
+            if (ref.current && !ref.current.contains(event.target)) {
+               console.log(ref.current.contains(event.target))
+               console.log(ref.current, event.target)
+               setDElActive(false)
+            }
+         }
+         // Bind the event listener
+         document.addEventListener("mousedown", handleClickOutside);
+         return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+         };
       }, [ref]);
-    }
-   
-   
-   
+   }
+
+
+
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
 
@@ -545,8 +548,7 @@ const GroupProfilLeft = (prop) => {
 
 
 
-                           <div style={{ zIndex: 10000, position: 'absolute' }}
-                              className={`open_del ${delActive === s.id ? 'active' : ''}`} onClick={() => setDElActive(false)} ref={wrapperRef}>
+                              <div style={{ zIndex: 10000, position: 'absolute' }} className={`open_del ${delActive === s.id ? 'active' : ''}`}  >
 
                               {(s.groupStatus === 3 || s.groupStatus === 4) && <Link to="#" className="del_link" onClick={() => {
                                  SetStatus_5({
@@ -554,23 +556,29 @@ const GroupProfilLeft = (prop) => {
                                        status: 5, stID: selectedUser, grID: groupID
                                     }
                                  })
+                                 setDElActive(false)
                               }}>{Language[lang].groups.additionalOption.freeze}</Link>}
 
                               {(s.groupStatus === 2 || s.groupStatus === 5) && <Link to="#" className="del_link" onClick={() => {
                                  s.groupStatus === 5 && setPaymentStatus(true)
                                  s.groupStatus === 2 && rrr()
                                  s.groupStatus === 2 && setPayment(true)
+                                    setDElActive(false)
                               }} >{Language[lang].groups.activate.activateTitle}</Link>}
-                              <Link to="#" className="del_link" onClick={showFinanceDrawer}>{Language[lang].groups.activate.payment}</Link>
+                              <Link to="#" className="del_link" onClick={() => {
+                                 showFinanceDrawer()
+                                 setDElActive(false)
+                              }}>{Language[lang].groups.activate.payment}</Link>
                               <Link to="#" className="del_link" onClick={showNote}>{Language[lang].groups.activate.addNewNote}</Link>
                               <Link to="#" className="del_link"
                                  onClick={() => {
+                                    setDElActive(false)
                                     setAddStudent(true)
                                     setGroupName([groups && groups?.byGroupID])
                                  }}
                               >{Language[lang].groups.activate.changeGroupStudent}</Link>
                               <Link to="#" className="del_link--red" onClick={() => {
-
+                                    setDElActive(false)
                                  if (setStatus_6 && setStatus_6.setStatus_6.length === 1) {
 
                                     SetStatus_6({

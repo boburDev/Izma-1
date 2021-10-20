@@ -273,7 +273,7 @@ const FinanceAddPaymentForm = ({ onClose, studenID, groupID = '' }) => {
 					id="financeFormRes">
 					<div className="izma__courses__form-bolim-form-up">
 						<h3 className='izma__courses__form-bolim-form-heading' >{Language[lang].students.recordPayment.recordPaymentTitle}</h3>
-						<button className="izma__courses__form-bolim-form-close-btn" onClick={onClose} >
+						<button type="button" className="izma__courses__form-bolim-form-close-btn" onClick={onClose} >
 							<img className="izma__courses__form-bolim-form-img" src={CloseBtn} alt="img" />
 						</button>
 					</div>

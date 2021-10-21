@@ -11,7 +11,7 @@ const FinanceTable = ({ api = false }) => {
    const [state,setState] = useState('')
    const fileName = 'Izma_cheklar'
 
-   const route = api ? 'http://localhost:4000' : 'https://api.izma.uz'
+   const route = api ? 'http://localhost:4000' : 'https://api.triiipple.uz'
    useEffect(()=>{
       ;(async()=>{
          try {

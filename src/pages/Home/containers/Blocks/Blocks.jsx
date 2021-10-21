@@ -26,7 +26,7 @@ const Blocks = () => {
    const language = Language[lang].home.blocks
    const {data: CountStudents } = useQuery(STUDENT_COUNT)
    const {data: GroupCount } = useQuery(GROUP_COUNT)
-   const {data: Leads } = useQuery(LEADS)
+   const {data: Leads } = useQuery(LEADS, {variables: {check: 'true'}})
    const {data: CountStatus_2 } = useQuery(BY_STATUS, {variables: {status: 2}})
    const {data: CountStatus_3 } = useQuery(BY_STATUS, {variables: {status: 3}})
    const {data: CountStatus_4 } = useQuery(BY_STATUS, {variables: {status: 4}})

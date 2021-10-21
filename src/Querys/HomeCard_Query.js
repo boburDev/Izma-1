@@ -43,8 +43,8 @@ const SUBSCRIP_GROUP = gql `
 `
 
 const LEADS = gql `
-  query {
-    leads{
+  query leads($check: String) {
+    leads (check: $check){
       id
     }
   }

@@ -96,17 +96,18 @@ const GroupEdit = ({ onClose, dataForEdit }) => {
          setActive(false)
       }
 
+
       if (active && dataForEdit.startDate > startDate) {
          const ttt = dataForEdit.startDate.split('-')
    
          const dataa = {
             groupID: groupID,
-            endDate: `${ttt[0]}-${ttt[1]}-${ttt[2] -0 -1}`,
+            endDate: `${ttt[0]}-${ttt[1]}-${(String(ttt[2] -0 -1)).padStart(2,0)}`,
             startDate: startDate
          }
 
          createGroupAtt({variables: dataa})
-         StudentAttan({variables: {stID: null, ...dataa}})
+         // StudentAttan({variables: {stID: null, ...dataa}})
 
          setActive(false)
 

@@ -194,6 +194,7 @@ const GroupProfilLeft = (prop) => {
 
       if (studentAddGroup?.id && dateAddGroup && stGrId && activatorr) {
          ChangeStGroup({variables: {
+            currentGrId: groupID,
             stGrId: stGrId,
             grID: studentAddGroup?.id,
             addTime: dateAddGroup
@@ -209,7 +210,7 @@ const GroupProfilLeft = (prop) => {
          setActivatorr(false)
       }
 
-   }, [studentAddGroup?.id, dateAddGroup, ChangeStGroup, stGrId, activatorr, StudentAttan, dataGroup, selectedUser])
+   }, [studentAddGroup?.id, dateAddGroup, ChangeStGroup, stGrId, activatorr, StudentAttan, dataGroup, selectedUser, groupID])
    
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);

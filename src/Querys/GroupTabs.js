@@ -308,11 +308,13 @@ const CHANGE_ST_GROUP = gql `
     $grID: ID
     $stGrId: ID
     $addTime: String
+    $currentGrId: ID
     ){
     changeStudentGroup(
       grID: $grID
       stGrId: $stGrId
       addTime: $addTime
+      currentGrId: $currentGrId
       ){
       id
     }

@@ -292,7 +292,7 @@ const ATTANDANCE_STUDENT = gql `
     $stID: ID
     $groupID: ID!
     $startDate: String!
-    $endDate: String!
+    $endDate: String
   ) {
     createStudentAttendence(
       studentId: $stID

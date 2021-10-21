@@ -198,9 +198,18 @@ const GroupProfilLeft = (prop) => {
             grID: studentAddGroup?.id,
             addTime: dateAddGroup
          }})
+
+         StudentAttan({variables: {
+            stID: selectedUser,
+            groupID: studentAddGroup?.id,
+            startDate: dateAddGroup,
+            endDate: null
+         }})
+
+         setActivatorr(false)
       }
 
-   }, [studentAddGroup?.id, dateAddGroup, ChangeStGroup, stGrId, activatorr])
+   }, [studentAddGroup?.id, dateAddGroup, ChangeStGroup, stGrId, activatorr, StudentAttan, dataGroup, selectedUser])
    
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);

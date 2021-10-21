@@ -7,7 +7,7 @@ import { useLang } from '../../context/LanguageProvider';
 import Language from '../../lang/index'
 import { useGroup } from '../../context/NameProvider';
 
-const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text, groups,setInfo2, redir, snake  }) => {
+const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, uptRoom, text, groups,setInfo2, redir, snake, submit }) => {
 	const [groupName] = useGroup()
 	const useOutsideAlerter = (ref, myModal) => {
 		useEffect(() => {
@@ -136,11 +136,12 @@ const Modal1 = ({ myModal, setMymodal, block, title, setInfo, info, submitOK, up
 							}}
 							placeholder={Language[lang].teachers.addNewUser.date}
 							//   value={values.sana ? moment(values.sana, "YYYY-MM-DD") : undefined}
-							format={"DD-MM-YYYY"}
+							format={"YYYY-MM-DD"}
 							/>
 							</div>
 							<div className="buttonWrapper">
 							<button onClick={() => {
+								submit(true)
 								if(info) {
 									setMymodal(false)
 								}

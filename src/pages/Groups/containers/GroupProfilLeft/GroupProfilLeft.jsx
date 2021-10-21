@@ -23,7 +23,8 @@ import {
    NEW_SUB_STUDENT,
    SUBSCRIPTION_GROUP_INFO,
    DOES_ACTIVE,
-   ATTANDANCE_STUDENT
+   ATTANDANCE_STUDENT,
+   CHANGE_ST_GROUP
 } from '../../../../Querys/GroupTabs'
 import { useDayDivider } from '../../../../context/DayDividerProvider'
 import {
@@ -59,6 +60,7 @@ const GroupProfilLeft = (prop) => {
    const [stID, setStID] = useState()
    const [idName, setIdName] = useState()
    const [onKeyUp, setOnKeyUp] = useState('')
+   const [stGrId, setStGrId] = useState('')
    const [lang] = useLang()
    const [setNavbarP] = useNavbar(true)
    const [addStudent, setAddStudent] = useState()
@@ -70,9 +72,8 @@ const GroupProfilLeft = (prop) => {
    const [paymentStatus, setPaymentStatus] = useState(false)
    const [activator, setActivator] = useState(false)
    const [attanStud, setAttanStud] = useState(false)
+   const [activatorr, setActivatorr] = useState(false)
    const [setStudents] = useDavomat(true)
-   // console.log(studentAddGroup)
-   useEffect(() => {}, [dateAddGroup])
 
    useEffect(() => {
       setNavbarP('/dashboard/groups/groupsProfil/')
@@ -153,6 +154,7 @@ const GroupProfilLeft = (prop) => {
    const [SetStatus3_4] = useMutation(UPDATE_GR_STATUS)
    const [SetStatus_5] = useMutation(UPDATE_GR_STATUS)
    const [Activated] = useMutation(DOES_ACTIVE)
+   const [ChangeStGroup] = useMutation(CHANGE_ST_GROUP)
 
    function useOutsideAlerter(ref) {
       useEffect(() => {
@@ -187,7 +189,28 @@ const GroupProfilLeft = (prop) => {
          setAttanStud(false)
       }
    }, [added_student, StudentAttan, dataGroup, attanStud])
-   
+
+   useEffect(() => {
+
+      if (studentAddGroup?.id && dateAddGroup && stGrId && activatorr) {
+         ChangeStGroup({variables: {
+            currentGrId: groupID,
+            stGrId: stGrId,
+            grID: studentAddGroup?.id,
+            addTime: dateAddGroup
+         }})
+
+         StudentAttan({variables: {
+            stID: selectedUser,
+            groupID: studentAddGroup?.id,
+            startDate: dateAddGroup,
+            endDate: null
+         }})
+
+         setActivatorr(false)
+      }
+
+   }, [studentAddGroup?.id, dateAddGroup, ChangeStGroup, stGrId, activatorr, StudentAttan, dataGroup, selectedUser, groupID])
    
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef);
@@ -454,6 +477,7 @@ const GroupProfilLeft = (prop) => {
                setInfo={setStudentAddGroup}
                info={studentAddGroup}
                setInfo2={setDateAddGroup}
+               submit={setActivatorr}
             />
             <div className="izma__groups-attendance-left-up-wrapper">
                <p className="izma__groups-attendance-left-up-id">
@@ -565,6 +589,7 @@ const GroupProfilLeft = (prop) => {
                                  setSelectedUser(s.id)
                                  settStatus(s.groupStatus)
                                  setIdName({ studentID: s.id, studentName: s.name })
+                                 setStGrId(s.stGrId)
                               }}>
                                  <span></span>
                            </button>

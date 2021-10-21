@@ -34,6 +34,7 @@ const GROUP_STUDENTS = gql `
   query findStudByGrId($grID: ID) {
     findStudByGrId(grID: $grID) {
       id
+      stGrId
       name
       groupStatus
       studentPhone{
@@ -291,7 +292,7 @@ const ATTANDANCE_STUDENT = gql `
     $stID: ID
     $groupID: ID!
     $startDate: String!
-    $endDate: String!
+    $endDate: String
   ) {
     createStudentAttendence(
       studentId: $stID
@@ -299,6 +300,24 @@ const ATTANDANCE_STUDENT = gql `
       startDate: $startDate
       endDate: $endDate
     )
+  }
+`
+
+const CHANGE_ST_GROUP = gql `
+  mutation changeStudentGroup(
+    $grID: ID
+    $stGrId: ID
+    $addTime: String
+    $currentGrId: ID
+    ){
+    changeStudentGroup(
+      grID: $grID
+      stGrId: $stGrId
+      addTime: $addTime
+      currentGrId: $currentGrId
+      ){
+      id
+    }
   }
 `
 
@@ -321,6 +340,7 @@ export {
   NEW_SUB_STUDENT,
   DOES_ACTIVE,
   ATTANDANCE_STUDENT,
+  CHANGE_ST_GROUP,
   SUBSCRIPTION_GROUPS,
   SUBSCRIPTION_STUDENT,
   SUBSCRIPTION_STATUS,

@@ -14,7 +14,8 @@ const CoursesHome = () => {
             </div>
             <div className="courses-left-center">
                <HomeAcordion
-                  title={Language[lang].home.journals.courseStarted}
+                  title={'Oqituvchi: Abdulaziz'}
+                  // title={Language[lang].home.journals.courseStarted}
                   date="13.02.2021"
                   text="lorem  asdfka ljsdkfj kjsdk fkjfkjakjdfkjk djka jkj akjdk jka jkj akj kdj asfdkj aksdjf lkajklsdfjskldfj aklsj ajfksdf sdskt alsdjf lakjsfkl fj askldfji eajdsk aj "
                />
